@@ -22,7 +22,7 @@ formatted strings.
 """
 from distutils.core import setup
 setup(name='PyLatex',
-      version='0.2.0',
+      version='0.2.1',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
