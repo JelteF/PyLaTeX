@@ -28,3 +28,20 @@ If you add a feature yourself, or fix a bug, please send a pull request.
 
 You can submit issues, but it will not be my priority to fix them. My job and
 education are a bit higher on the priority list.
+
+### Support
+
+This library has only been tested on Linux using Python 3.3. It might work fully
+or partially on any differently configured systems. I will not test with
+different configurations and I will not write fixes as well. You can of course
+always submit a pull request.
+
+### Dependencies
+
+- Python 3.3
+- LaTeX (only if you want to compile the tex file)
+
+
+### License
+
+MIT, see LICENSE for details
