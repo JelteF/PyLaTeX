@@ -25,7 +25,7 @@ class Document:
         self.content = []
 
     def render(self):
-        """Represents the document as a string in with LaTeX syntax."""
+        """Represents the document as a string in LaTeX syntax."""
         string = r'\documentclass{' + self.documentclass + '}'
 
         string += render_list(self.packages)

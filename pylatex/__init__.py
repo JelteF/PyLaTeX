@@ -12,3 +12,4 @@
 from .document import Document
 from .package import Package
 from .section import Section
+from .table import Table

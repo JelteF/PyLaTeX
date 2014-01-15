@@ -12,7 +12,7 @@ class Section:
         self.content = []
 
     def render(self):
-        """Represents the class as a string in with LaTeX syntax."""
+        """Represents the section as a string in LaTeX syntax."""
         if self.numbering:
             num = '*'
         else:

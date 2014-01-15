@@ -22,9 +22,9 @@ def escape_latex(s):
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
-def render_list(l, escape=False):
+def render_list(l, escape=False, token='\n'):
     """Renders a list that can contain anything"""
-    return '\n'.join(_latex_item_to_string(i, escape) for i in l)
+    return token.join(_latex_item_to_string(i, escape) for i in l)
 
 
 def _latex_item_to_string(i, escape=False):

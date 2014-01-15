@@ -1,13 +1,13 @@
 class Package:
 
-    """A class that represents a package"""
+    """A class that represents a package."""
 
     def __init__(self, name, option=None):
         self.name = name
         self.option = option
 
     def render(self):
-        """Represents the class as a string in with LaTeX syntax."""
+        """Represents the package as a string in LaTeX syntax."""
         if self.option is None:
             option = ''
         else:
