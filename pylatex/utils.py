@@ -9,6 +9,7 @@ _latex_special_chars = {
     '~':  r'\lettertilde{}',
     '^':  r'\letterhat{}',
     '\\': r'\letterbackslash{}',
+    '\n': r'\\\\',
 }
 
 
