@@ -24,7 +24,7 @@ formatted strings.
 I will keep adding functionality I need to this library, an interface for
 graphics and math will probably be added in a future version.
 
-If you add a feature yourself, or fixed a bug, please send a pull request.
+If you add a feature yourself, or fix a bug, please send a pull request.
 
 You can submit issues, but it will not be my priority to fix them. My job and
 education are a bit higher on the priority list.
