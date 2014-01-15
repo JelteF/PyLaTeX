@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    pylatex.section
+    ~~~~~~~
+
+    This module implements the class that deals with sections.
+
+    :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
+
 from .utils import render_list
 
 

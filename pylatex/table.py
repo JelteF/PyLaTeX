@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    pylatex.table
+    ~~~~~~~
+
+    This module implements the class that deals with tables.
+
+    :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
+
 from .utils import render_list
 
 from collections import Counter

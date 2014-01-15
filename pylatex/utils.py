@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+    pylatex.utils
+    ~~~~~~~
+
+    This module implements some simple functions with all kinds of
+    functionality.
+
+    :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
+
 _latex_special_chars = {
     '&':  r'\&',
     '%':  r'\%',

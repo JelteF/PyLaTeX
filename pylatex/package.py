@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+    pylatex.package
+    ~~~~~~~
+
+    This module implements the class that deals with packages.
+
+    :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
+
+
 class Package:
 
     """A class that represents a package."""
