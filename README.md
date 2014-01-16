@@ -36,71 +36,50 @@ formatted strings instead of classes or regular strings.
 Basics:
 
 ```python
-from pylatex import Document, Section, Table
+import numpy as np
+
+from pylatex import Document, Section, Subsection, Table, Math
+from pylatex.numpy import Matrix
 from pylatex.utils import italic
 
 doc = Document()
 section = Section('Yaay the first section, it can even be ' + italic('italic'))
 
-table = Table('r|ccl')
+section.append('Some regular text')
+
+math = Subsection('Math', data=[Math(data=['2*3', '=', 6])])
+
+section.append(math)
+table = Table('rc|cl')
 table.add_hline()
 table.add_row((1, 2, 3, 4))
 table.add_hline(1, 2)
 table.add_empty_row()
 table.add_row((4, 5, 6, 7))
 
-section.content.append(table)
-doc.content.append(section)
+table = Subsection('Table of something', data=[table])
+
+section.append(table)
+
+a = np.array([[100, 10, 20]]).T
+M = np.matrix([[2, 3, 4],
+               [0, 0, 1],
+               [0, 0, 2]])
+
+math = Math(data=[Matrix(M), Matrix(a), '=', Matrix(M*a)])
+print(math.dumps())
+equation = Subsection('Matrix equation', data=[math])
+print(equation.dumps())
+
+section.append(equation)
+
+doc.append(section)
+
 doc.generate_pdf()
 ```
 
 This code will generate this:
 ![Generated PDF by PyLaTeX](https://raw.github.com/JelteF/PyLaTeX/master/docs/static/screenshot.png)
-
-
-Numpy:
-
-```python
-import numpy as np
-
-from pylatex import Document, Section, Subsection, Table, Math
-from pylatex.numpy import Matrix, format_vec
-
-
-a = np.array([[100, 10, 20]]).T
-
-doc = Document()
-section = Section('Numpy tests')
-subsection = Subsection('Array')
-
-vec = Matrix(a)
-vec_name = format_vec('a')
-math = Math(data=[vec_name, '=', vec])
-
-subsection.append(math)
-section.append(subsection)
-
-subsection = Subsection('Matrix')
-M = np.matrix([[2, 3, 4],
-               [0, 0, 1],
-               [0, 0, 2]])
-matrix = Matrix(M, mtype='b')
-math = Math(data=['M=', matrix])
-
-subsection.append(math)
-section.append(subsection)
-
-
-subsection = Subsection('Product')
-
-math = Math(data=['M', vec_name, '=', Matrix(M*a)])
-subsection.append(math)
-
-section.append(subsection)
-
-doc.append(section)
-doc.generate_pdf()
-```
 
 
 ### Future development
