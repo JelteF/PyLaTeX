@@ -13,6 +13,8 @@ table.add_hline(1, 2)
 table.add_empty_row()
 table.add_row((4, 5, 6, 7))
 
-section.content.append(table)
-doc.content.append(section)
+section.append(table)
+
+doc.append(section)
+
 doc.generate_pdf()

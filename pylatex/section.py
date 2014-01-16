@@ -10,17 +10,18 @@
 """
 
 from .utils import dumps_list
+from .base_classes import BaseLaTeXContainer
 
 
-class Section:
+class Section(BaseLaTeXContainer):
 
     """A class that represents a section."""
 
-    def __init__(self, title, numbering=True):
+    def __init__(self, title, numbering=True, data=None):
         self.title = title
         self.numbering = numbering
 
-        self.content = []
+        super().__init__(data)
 
     def dumps(self):
         """Represents the section as a string in LaTeX syntax."""
@@ -30,4 +31,4 @@ class Section:
             num = ''
 
         base = r'\section' + num + '{' + self.title + '}\n'
-        return base + dumps_list(self.content)
+        return base + dumps_list(self)

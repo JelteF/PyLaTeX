@@ -12,15 +12,17 @@
 import subprocess
 from .package import Package
 from .utils import dumps_list
+from .base_classes import BaseLaTeXContainer
+from collections import UserList
 
 
-class Document:
+class Document(BaseLaTeXContainer):
 
     """A class that contains a full latex document."""
 
     def __init__(self, filename='default_filename', documentclass='article',
                  fontenc='T1', inputenc='utf8', author=None, title=None,
-                 date=None):
+                 date=None, data=None):
         self.filename = filename
 
         self.documentclass = documentclass
@@ -33,7 +35,7 @@ class Document:
         self.title = title
         self.date = date
 
-        self.content = []
+        super().__init__(data)
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
@@ -50,7 +52,7 @@ class Document:
 
         string += r'\begin{document}'
 
-        string += dumps_list(self.content)
+        string += dumps_list(self)
 
         string += r'\end{document}'
 
@@ -59,7 +61,7 @@ class Document:
     def generate_tex(self):
         """Generates a .tex file."""
         newf = open(self.filename + '.tex', 'w')
-        newf.write(self.dumps())
+        self.dump(newf)
         newf.close()
 
     def generate_pdf(self, clean=True):

@@ -10,12 +10,13 @@
 """
 
 from .utils import dumps_list
+from .base_classes import BaseLaTeXContainer
 
 from collections import Counter
 import re
 
 
-class Table():
+class Table(BaseLaTeXContainer):
 
     """A class that represents a table."""
 
@@ -31,26 +32,26 @@ class Table():
 
         self.width = sum(spec_counter[l] for l in column_letters)
 
-        self.content = []
+        super().__init__()
 
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table"""
         if start is None and end is None:
-            self.content.append(r'\hline')
+            self.append(r'\hline')
         else:
             if start is None:
                 start = 1
             elif end is None:
                 end = self.width
-            self.content.append(r'\cline{' + str(start) + '-' + str(end) + '}')
+            self.append(r'\cline{' + str(start) + '-' + str(end) + '}')
 
     def add_empty_row(self):
         """Add an empty row to the table"""
-        self.content.append((self.width - 1) * '&' + r'\\')
+        self.append((self.width - 1) * '&' + r'\\')
 
     def add_row(self, cells, escape=False):
         """Add a row of cells to the table"""
-        self.content.append(dumps_list(cells, escape=escape, token='&') +
+        self.append(dumps_list(cells, escape=escape, token='&') +
                             r'\\')
 
     def dumps(self):
@@ -62,7 +63,7 @@ class Table():
 
         string += '{' + self.table_spec + '}\n'
 
-        string += dumps_list(self.content)
+        string += dumps_list(self)
 
         string += r'\end{tabular}'
 
