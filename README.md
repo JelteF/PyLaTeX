@@ -1,7 +1,7 @@
 PyLaTeX
 =======
 
-PyLaTeX is a Python library for creating LaTeX files. The point of this library
+PyLaTeX is a Python library for creating LaTeX files. The goal of this library
 is being an easy, but extensible interface between Python and LaTeX.
 
 
@@ -15,6 +15,7 @@ Currently those are:
 - A matrix class that can compile NumPy ndarrays and matrices to LaTeX
 - An escape function
 - Bold and italic functions
+- Every class has a dump method, which writes the output to a filepointer
 
 Everything else you want you can still add to the document by adding LaTeX
 formatted strings instead of classes or regular strings.
