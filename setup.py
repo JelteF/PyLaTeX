@@ -87,7 +87,7 @@ environment specific bugs, but pull requests that fix those are always welcome.
 """
 from distutils.core import setup
 setup(name='PyLaTeX',
-      version='0.2.1.1',
+      version='0.2.2',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
