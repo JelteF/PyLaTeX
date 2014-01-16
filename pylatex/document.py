@@ -29,7 +29,8 @@ class Document(BaseLaTeXContainer):
 
         fontenc = Package('fontenc', fontenc)
         inputenc = Package('inputenc', inputenc)
-        self.packages = [fontenc, inputenc, Package('lmodern')]
+        self.packages = [fontenc, inputenc, Package('lmodern'),
+                         Package('amsmath')]
 
         self.author = author
         self.title = title
