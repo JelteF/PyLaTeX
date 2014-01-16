@@ -31,13 +31,16 @@ Dependencies
 Installation
 ~~~~~~~~~~~~
 
-.. code::
-   pip install pylatex`
+::
+
+    pip install pylatex
+
 
 Example
 ~~~~~~~
 
 .. code:: python
+
     from pylatex import Document, Section, Table
     from pylatex.utils import italic
 
@@ -56,6 +59,7 @@ Example
     doc.generate_pdf()
 
 This code will generate this:
+
 .. image:: https://raw.github.com/JelteF/PyLaTeX/master/docs/static/screenshot.png
 
 
@@ -82,7 +86,6 @@ different platforms.
 I have no intention of testing on any different platforms or with different
 Python versions. I also don't have the intention to write fixes for platform or
 environment specific bugs, but pull requests that fix those are always welcome.
-
 
 """
 from distutils.core import setup
