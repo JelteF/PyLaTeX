@@ -21,7 +21,7 @@ formatted strings instead of classes or regular strings.
 
 ### Dependencies
 
-- Python 3.3 (2.7 currently works as well)
+- Python 3.3 (Python 3.x might work as well)
 - pdflatex (only if you want to compile the tex file)
 
 
@@ -67,8 +67,8 @@ education are a bit higher on the priority list.
 
 ### Support
 
-This library is being developed for Python 3.3. It currently works for Python
-2.7 as well, but further aditions to the library might break that compatibility.
+This library is being developed for Python 3.3. It currently doesn't work for
+Python 2.7, but it's mostly syntax and import changes that break it for 2.7.
 It is also only tested on Linux, so it might not work on any different
 platforms.
 
