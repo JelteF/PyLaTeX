@@ -2,7 +2,7 @@ PyLaTeX
 =======
 
 PyLaTeX is a Python library for creating LaTeX files. The point of this library
-is being an easy, but extensible interface between Python and Latex.
+is being an easy, but extensible interface between Python and LaTeX.
 
 
 ### Features
@@ -16,7 +16,7 @@ Currently those are:
 - Bold and italic functions
 
 Everything else you want you can still add to the document by adding LaTeX
-formatted strings.
+formatted strings instead of classes or regular strings.
 
 
 ### Dependencies
@@ -77,6 +77,7 @@ Python versions. I also don't have the intention to write fixes for platform or
 environment specific bugs, but pull requests that fix those are always welcome.
 
 
-### License
+### Copyright and License
 
-MIT, see LICENSE for details
+Copyright 2014 Jelte Fennema, under [the MIT
+license](https://github.com/JelteF/PyLaTeX/blob/master/LICENSE)
