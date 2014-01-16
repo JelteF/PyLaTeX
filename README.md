@@ -1,7 +1,7 @@
-PyLatex
+PyLaTeX
 =======
 
-PyLatex is a Python library for creating LaTeX files. The point of this library
+PyLaTeX is a Python library for creating LaTeX files. The point of this library
 is being an easy, but extensible interface between Python and Latex.
 
 
@@ -51,7 +51,7 @@ doc.generate_pdf()
 ```
 
 This code will generate this:
-![Generated PDF by PyLatex](https://raw.github.com/JelteF/PyLatex/master/docs/static/screenshot.png)
+![Generated PDF by PyLaTeX](https://raw.github.com/JelteF/PyLaTeX/master/docs/static/screenshot.png)
 
 
 ### Future development

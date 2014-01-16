@@ -1,8 +1,8 @@
 """
-PyLatex
+PyLaTeX
 -------
 
-PyLatex is a Python library for creating LaTeX files. The point of this library
+PyLaTeX is a Python library for creating LaTeX files. The point of this library
 is being an easy, but extensible interface between Python and Latex.
 
 
@@ -36,13 +36,13 @@ Dependencies
 
 """
 from distutils.core import setup
-setup(name='PyLatex',
+setup(name='PyLaTeX',
       version='0.2.1.1',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
       long_description=__doc__,
       packages=['pylatex'],
-      url='https://github.com/JelteF/PyLatex',
+      url='https://github.com/JelteF/PyLaTeX',
       license='MIT',
       )
