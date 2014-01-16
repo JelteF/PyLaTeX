@@ -37,7 +37,7 @@ Dependencies
 """
 from distutils.core import setup
 setup(name='PyLatex',
-      version='0.2.1',
+      version='0.2.1.1',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
