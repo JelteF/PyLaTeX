@@ -24,7 +24,7 @@ class Section:
 
     def dumps(self):
         """Represents the section as a string in LaTeX syntax."""
-        if self.numbering:
+        if not self.numbering:
             num = '*'
         else:
             num = ''
