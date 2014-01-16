@@ -96,7 +96,7 @@ Copyright 2014 Jelte Fennema, under `the MIT license
 """
 from distutils.core import setup
 setup(name='PyLaTeX',
-      version='0.2.2',
+      version='0.2.2.1',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
