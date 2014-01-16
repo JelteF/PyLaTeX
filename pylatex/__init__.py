@@ -10,6 +10,7 @@
 """
 
 from .document import Document
+from .math import Math
 from .package import Package
-from .section import Section
+from .section import Section, Subsection, Subsubsection
 from .table import Table

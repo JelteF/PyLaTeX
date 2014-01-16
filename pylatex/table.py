@@ -20,7 +20,7 @@ class Table(BaseLaTeXContainer):
 
     """A class that represents a table."""
 
-    def __init__(self, table_spec, pos=None):
+    def __init__(self, table_spec, data=None, pos=None):
         self.table_spec = table_spec
         self.pos = pos
 
@@ -32,7 +32,7 @@ class Table(BaseLaTeXContainer):
 
         self.width = sum(spec_counter[l] for l in column_letters)
 
-        super().__init__()
+        super().__init__(data)
 
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table"""

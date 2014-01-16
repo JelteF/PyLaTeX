@@ -12,10 +12,9 @@
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
 
+class SectionBase(BaseLaTeXContainer):
 
-class Section(BaseLaTeXContainer):
-
-    """A class that represents a section."""
+    """A class that is the base for all section type classes"""
 
     def __init__(self, title, numbering=True, data=None):
         self.title = title
@@ -30,5 +29,20 @@ class Section(BaseLaTeXContainer):
         else:
             num = ''
 
-        base = r'\section' + num + '{' + self.title + '}\n'
-        return base + dumps_list(self)
+        base = '\\' + self.__class__.__name__.lower() + num
+        return base + '{' + self.title + '}\n' + dumps_list(self)
+
+
+class Section(SectionBase):
+
+    """A class that represents a section."""
+
+
+class Subsection(SectionBase):
+
+    """A class that represents a subsection."""
+
+
+class Subsubsection(SectionBase):
+
+    """A class that represents a subsubsection."""
