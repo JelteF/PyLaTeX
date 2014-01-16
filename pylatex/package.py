@@ -18,7 +18,7 @@ class Package:
         self.name = name
         self.option = option
 
-    def render(self):
+    def dumps(self):
         """Represents the package as a string in LaTeX syntax."""
         if self.option is None:
             option = ''

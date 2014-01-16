@@ -9,7 +9,7 @@
     :license: MIT, see License for more details.
 """
 
-from .utils import render_list
+from .utils import dumps_list
 
 
 class Section:
@@ -22,7 +22,7 @@ class Section:
 
         self.content = []
 
-    def render(self):
+    def dumps(self):
         """Represents the section as a string in LaTeX syntax."""
         if self.numbering:
             num = '*'
@@ -30,4 +30,4 @@ class Section:
             num = ''
 
         base = r'\section' + num + '{' + self.title + '}\n'
-        return base + render_list(self.content)
+        return base + dumps_list(self.content)

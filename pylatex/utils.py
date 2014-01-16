@@ -35,15 +35,15 @@ def escape_latex(s):
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
-def render_list(l, escape=False, token='\n'):
-    """Renders a list that can contain anything"""
+def dumps_list(l, escape=False, token='\n'):
+    """Dumps a list that can contain anything"""
     return token.join(_latex_item_to_string(i, escape) for i in l)
 
 
 def _latex_item_to_string(i, escape=False):
     """Use the render method when possible, otherwise use str."""
-    if hasattr(i, 'render'):
-        return i.render()
+    if hasattr(i, 'dumps'):
+        return i.dumps()
     elif escape:
         return str(escape_latex(i))
     return str(i)

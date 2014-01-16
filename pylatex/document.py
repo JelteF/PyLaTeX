@@ -11,7 +11,7 @@
 
 import subprocess
 from .package import Package
-from .utils import render_list
+from .utils import dumps_list
 
 
 class Document:
@@ -35,11 +35,11 @@ class Document:
 
         self.content = []
 
-    def render(self):
+    def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
         string = r'\documentclass{' + self.documentclass + '}'
 
-        string += render_list(self.packages)
+        string += dumps_list(self.packages)
 
         if self.title is not None:
             string += r'\title{' + self.title + '}\n'
@@ -50,7 +50,7 @@ class Document:
 
         string += r'\begin{document}'
 
-        string += render_list(self.content)
+        string += dumps_list(self.content)
 
         string += r'\end{document}'
 
@@ -59,7 +59,7 @@ class Document:
     def generate_tex(self):
         """Generates a .tex file."""
         newf = open(self.filename + '.tex', 'w')
-        newf.write(self.render())
+        newf.write(self.dumps())
         newf.close()
 
     def generate_pdf(self, clean=True):

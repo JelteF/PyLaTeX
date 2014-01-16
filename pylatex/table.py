@@ -9,7 +9,7 @@
     :license: MIT, see License for more details.
 """
 
-from .utils import render_list
+from .utils import dumps_list
 
 from collections import Counter
 import re
@@ -50,10 +50,10 @@ class Table():
 
     def add_row(self, cells, escape=False):
         """Add a row of cells to the table"""
-        self.content.append(render_list(cells, escape=escape, token='&') +
+        self.content.append(dumps_list(cells, escape=escape, token='&') +
                             r'\\')
 
-    def render(self):
+    def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
         string = r'\begin{tabular}'
 
@@ -62,7 +62,7 @@ class Table():
 
         string += '{' + self.table_spec + '}\n'
 
-        string += render_list(self.content)
+        string += dumps_list(self.content)
 
         string += r'\end{tabular}'
 
