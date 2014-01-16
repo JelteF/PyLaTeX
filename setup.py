@@ -19,6 +19,21 @@ Currently those are:
 
 Everything else you want you can still add to the document by adding LaTeX
 formatted strings.
+
+Support
+~~~~~~~
+
+This library has only been tested on Linux using Python 3.3. It might work
+fully or partially on any differently configured systems. I will not test with
+different configurations and I will not write fixes as well. You can of course
+always submit a pull request.
+
+Dependencies
+~~~~~~~~~~~~
+
+- Python 3.3
+- LaTeX (only if you want to compile the tex file)
+
 """
 from distutils.core import setup
 setup(name='PyLatex',
