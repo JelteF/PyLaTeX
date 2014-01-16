@@ -11,7 +11,8 @@ The library contains some basic features I have had the need for so far.
 Currently those are:
 
 - Document generation and compilation
-- Section, table and package classes
+- Section, table, math and package classes
+- A matrix class that can compile NumPy ndarrays and matrices to LaTeX
 - An escape function
 - Bold and italic functions
 
@@ -23,13 +24,16 @@ formatted strings instead of classes or regular strings.
 
 - Python 3.3 (Python 3.x might work as well)
 - pdflatex (only if you want to compile the tex file)
+- NumPy (only if you want to convert it's matrixes)
 
 
 ### Installation
 `pip install pylatex`
 
 
-### Example
+### Examples
+
+Basics:
 
 ```python
 from pylatex import Document, Section, Table
@@ -52,6 +56,51 @@ doc.generate_pdf()
 
 This code will generate this:
 ![Generated PDF by PyLaTeX](https://raw.github.com/JelteF/PyLaTeX/master/docs/static/screenshot.png)
+
+
+Numpy:
+
+```python
+import numpy as np
+
+from pylatex import Document, Section, Subsection, Table, Math
+from pylatex.numpy import Matrix, format_vec
+
+
+a = np.array([[100, 10, 20]]).T
+
+doc = Document()
+section = Section('Numpy tests')
+subsection = Subsection('Array')
+
+vec = Matrix(a)
+vec_name = format_vec('a')
+math = Math(data=[vec_name, '=', vec])
+
+subsection.append(math)
+section.append(subsection)
+
+subsection = Subsection('Matrix')
+M = np.matrix([[2, 3, 4],
+               [0, 0, 1],
+               [0, 0, 2]])
+matrix = Matrix(M, mtype='b')
+math = Math(data=['M=', matrix])
+
+subsection.append(math)
+section.append(subsection)
+
+
+subsection = Subsection('Product')
+
+math = Math(data=['M', vec_name, '=', Matrix(M*a)])
+subsection.append(math)
+
+section.append(subsection)
+
+doc.append(section)
+doc.generate_pdf()
+```
 
 
 ### Future development

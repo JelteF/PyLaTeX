@@ -11,4 +11,4 @@ class Math(BaseLaTeXContainer):
         if self.inline:
             return '$' + dumps_list(self, token=' ') + '$'
 
-        return '$$' + dumps_list(self.data, token=' ') + '$$\n'
+        return '$$' + dumps_list(self, token=' ') + '$$\n'
