@@ -1,5 +1,7 @@
 import numpy as np
 from pylatex.base_classes import BaseLaTeXClass
+from pylatex.package import Package
+
 
 def format_vec(name):
     return r'\mathbf{' + name + '}'
@@ -12,13 +14,15 @@ class Matrix(BaseLaTeXClass):
         self.alignment = alignment
         self.name = name
 
+        super().__init__(packages=[Package('amsmath')])
+
     def dumps(self):
         string = r'\begin{'
         mtype = self.mtype + 'matrix'
 
         if self.alignment is not None:
             mtype += '*'
-            alignment = '{' + alignment + '}'
+            alignment = '{' + self.alignment + '}'
         else:
             alignment = ''
 
@@ -39,4 +43,5 @@ class Matrix(BaseLaTeXClass):
 
         string += r'\end{' + mtype + '}'
 
+        super().dumps()
         return string

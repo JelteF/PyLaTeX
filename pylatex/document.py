@@ -13,7 +13,6 @@ import subprocess
 from .package import Package
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
-from collections import UserList
 
 
 class Document(BaseLaTeXContainer):
@@ -29,35 +28,36 @@ class Document(BaseLaTeXContainer):
 
         fontenc = Package('fontenc', fontenc)
         inputenc = Package('inputenc', inputenc)
-        self.packages = [fontenc, inputenc, Package('lmodern'),
-                         Package('amsmath')]
+        packages = [fontenc, inputenc, Package('lmodern')]
 
         self.author = author
         self.title = title
         self.date = date
 
-        super().__init__(data)
+        super().__init__(data, packages=packages)
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
-        string = r'\documentclass{' + self.documentclass + '}'
+        document = r'\begin{document}'
 
-        string += dumps_list(self.packages)
+        document += dumps_list(self)
+
+        document += r'\end{document}'
+
+        super().dumps()
+
+        head = r'\documentclass{' + self.documentclass + '}'
+
+        head += self.dumps_packages()
 
         if self.title is not None:
-            string += r'\title{' + self.title + '}\n'
+            head += r'\title{' + self.title + '}\n'
         if self.author is not None:
-            string += r'\author{' + self.author + '}\n'
+            head += r'\author{' + self.author + '}\n'
         if self.author is not None:
-            string += r'\date{' + self.date + '}\n'
+            head += r'\date{' + self.date + '}\n'
 
-        string += r'\begin{document}'
-
-        string += dumps_list(self)
-
-        string += r'\end{document}'
-
-        return string
+        return head + document
 
     def generate_tex(self):
         """Generates a .tex file."""

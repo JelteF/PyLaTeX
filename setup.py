@@ -75,9 +75,7 @@ Example
                    [0, 0, 2]])
 
     math = Math(data=[Matrix(M), Matrix(a), '=', Matrix(M*a)])
-    print(math.dumps())
     equation = Subsection('Matrix equation', data=[math])
-    print(equation.dumps())
 
     section.append(equation)
 
@@ -131,4 +129,5 @@ setup(name='PyLaTeX',
       packages=['pylatex'],
       url='https://github.com/JelteF/PyLaTeX',
       license='MIT',
+      install_requires=['ordered-set'],
       )

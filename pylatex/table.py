@@ -51,8 +51,7 @@ class Table(BaseLaTeXContainer):
 
     def add_row(self, cells, escape=False):
         """Add a row of cells to the table"""
-        self.append(dumps_list(cells, escape=escape, token='&') +
-                            r'\\')
+        self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
@@ -67,4 +66,5 @@ class Table(BaseLaTeXContainer):
 
         string += r'\end{tabular}'
 
+        super().dumps()
         return string

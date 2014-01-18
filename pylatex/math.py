@@ -9,6 +9,9 @@ class Math(BaseLaTeXContainer):
 
     def dumps(self):
         if self.inline:
-            return '$' + dumps_list(self, token=' ') + '$'
+            string = '$' + dumps_list(self, token=' ') + '$'
+        else:
+            string = '$$' + dumps_list(self, token=' ') + '$$\n'
 
-        return '$$' + dumps_list(self, token=' ') + '$$\n'
+        super().dumps()
+        return string
