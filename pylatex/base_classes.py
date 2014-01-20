@@ -54,7 +54,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         super().__init__(packages=packages)
 
     def dumps(self):
-        """Represents the class as a string in LaTeX syntax."""
+        """Represents the container as a string in LaTeX syntax."""
         self.propegate_packages()
 
     def propegate_packages(self):
@@ -68,3 +68,29 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         """Represents the packages needed as a string in LaTeX syntax."""
         self.propegate_packages()
         return dumps_list(self.packages)
+
+
+class BaseLaTeXNamedContainer(BaseLaTeXContainer):
+
+    """A base class for containers with one of a basic begin end syntax"""
+
+    def __init__(self, name, data=None, packages=None, options=None):
+        self.name = name
+        self.options = options
+
+        super().__init__(data=data, packages=packages)
+
+    def dumps(self):
+        """Represents the named container as a string in LaTeX syntax."""
+        string = r'\begin{' + self.name + '}\n'
+
+        if self.options is not None:
+            string += '[' + self.options + ']'
+
+        string += dumps_list(self)
+
+        string += r'\end{' + self.name + '}\n'
+
+        super().dumps()
+
+        return string

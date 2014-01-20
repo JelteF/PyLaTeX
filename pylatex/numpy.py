@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    pylatex.numpy
+    ~~~~~~~~~~~~~
+
+    This module implements the classes that deals with numpy objects.
+
+    :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
+
 import numpy as np
 from pylatex.base_classes import BaseLaTeXClass
 from pylatex.package import Package

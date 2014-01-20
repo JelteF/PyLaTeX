@@ -16,7 +16,8 @@ class Package:
 
     """A class that represents a package."""
 
-    def __init__(self, name, option=None):
+    def __init__(self, name, base='usepackage', option=None):
+        self.base = base
         self.name = name
         self.option = option
 
@@ -27,4 +28,4 @@ class Package:
         else:
             option = '[' + self.option + ']'
 
-        return r'\usepackage' + option + '{' + self.name + '}\n'
+        return '\\'+ self.base + option + '{' + self.name + '}\n'

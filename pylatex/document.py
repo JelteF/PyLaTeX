@@ -26,13 +26,16 @@ class Document(BaseLaTeXContainer):
 
         self.documentclass = documentclass
 
-        fontenc = Package('fontenc', fontenc)
-        inputenc = Package('inputenc', inputenc)
+        fontenc = Package('fontenc', option=fontenc)
+        inputenc = Package('inputenc', option=inputenc)
         packages = [fontenc, inputenc, Package('lmodern')]
 
-        self.author = author
-        self.title = title
-        self.date = date
+        if title is not None:
+            packages.append(Package(title, base='title'))
+        if author is not None:
+            packages.append(Package(author, base='author'))
+        if date is not None:
+            packages.append(Package(date, base='date'))
 
         super().__init__(data, packages=packages)
 
@@ -49,13 +52,6 @@ class Document(BaseLaTeXContainer):
         head = r'\documentclass{' + self.documentclass + '}'
 
         head += self.dumps_packages()
-
-        if self.title is not None:
-            head += r'\title{' + self.title + '}\n'
-        if self.author is not None:
-            head += r'\author{' + self.author + '}\n'
-        if self.author is not None:
-            head += r'\date{' + self.date + '}\n'
 
         return head + document
 
