@@ -29,6 +29,7 @@ Dependencies
 - Python 3.3 (Python 3.x might work as well)
 - pdflatex (only if you want to compile the tex file)
 - NumPy (only if you want to convert it's matrixes)
+- ordered-set
 
 
 Installation
@@ -46,7 +47,8 @@ Example
 
     import numpy as np
 
-    from pylatex import Document, Section, Subsection, Table, Math
+    from pylatex import Document, Section, Subsection, Table, Math, TikZ, Axis, \
+        Plot
     from pylatex.numpy import Matrix
     from pylatex.utils import italic
 
@@ -55,7 +57,7 @@ Example
 
     section.append('Some regular text')
 
-    math = Subsection('Math', data=[Math(data=['2*3', '=', 6])])
+    math = Subsection('Math that is incorrect', data=[Math(data=['2*3', '=', 9])])
 
     section.append(math)
     table = Table('rc|cl')
@@ -78,6 +80,34 @@ Example
     equation = Subsection('Matrix equation', data=[math])
 
     section.append(equation)
+
+    tikz = TikZ()
+
+    axis = Axis(options='height=6cm, width=6cm, grid=major')
+
+    plot1 = Plot(name='model', func='-x^5 - 242')
+    coordinates = [
+        (-4.77778, 2027.60977),
+        (-3.55556, 347.84069),
+        (-2.33333, 22.58953),
+        (-1.11111, -493.50066),
+        (0.11111, 46.66082),
+        (1.33333, -205.56286),
+        (2.55556, -341.40638),
+        (3.77778, -1169.24780),
+        (5.00000, -3269.56775),
+    ]
+
+    plot2 = Plot(name='estimate', coordinates=coordinates)
+
+    axis.append(plot1)
+    axis.append(plot2)
+
+    tikz.append(axis)
+
+    plot_section = Subsection('Random graph', data=[tikz])
+
+    section.append(plot_section)
 
     doc.append(section)
 
