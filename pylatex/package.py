@@ -9,6 +9,8 @@
     :license: MIT, see License for more details.
 """
 
+from .base_classes import BaseLaTeXClass
+
 
 class Package:
 

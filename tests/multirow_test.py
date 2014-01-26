@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 
-from pylatex import Document, Section, Subsection, Table
+import numpy as np
+
+from pylatex import Document, Section, Subsection, Table, Math, TikZ, Axis, \
+    Plot
+from pylatex.numpy import Matrix
+from pylatex.utils import italic
 
 doc = Document(filename="multirow")
 section = Section('Multirow Test')

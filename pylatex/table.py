@@ -53,9 +53,9 @@ class Table(BaseLaTeXContainer):
         """Add a row of cells to the table"""
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 
-    def add_multicolumn(self, size, align, content, cells=None):
+    def add_multicolumn(self, size, align, content, cells=None, escape=False):
         """Add a multicolumn of width size to the table, with cell content content"""
-        string = list()
+        string = []
         string.append(r'\multicolumn{%d}{%s}{%s}' % (size, align, content))
         if cells:
             self.append("".join(string))
@@ -66,12 +66,11 @@ class Table(BaseLaTeXContainer):
 
     def add_multirow(self, size, align, content, hlines=True, cells=None, escape=False):
         """Add a multirow of height size to the table, with cell content content"""
-        string = list()
+        string = []
         string.append(r'\multirow{%d}{%s}{%s}' % (size, align, content))
         string.append(r'&' + dumps_list(cells[0], escape=escape, token='&') + r'\\' + "\n")
         for row in cells[1:size]:
-            if hlines:
-                string.append(r'\cline{%d-%d}' % (size, self.width-1))
+            string.append(r'\cline{%d-%d}' % (size, self.width-1))
             string.append(r'&' + dumps_list(row, escape=escape, token='&') + r'\\' + "\n")
         self.append("".join(string))
 
