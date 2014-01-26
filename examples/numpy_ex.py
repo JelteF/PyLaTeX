@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from pylatex import Document, Section, Subsection, Table, Math
+from pylatex import Document, Section, Subsection, Math
 from pylatex.numpy import Matrix, format_vec
 
 
@@ -20,9 +20,10 @@ subsection.append(math)
 section.append(subsection)
 
 subsection = Subsection('Matrix')
-M = np.matrix([[2, 3, 4],
+M = np.array([[2, 3, 4],
                [0, 0, 1],
                [0, 0, 2]])
+M = np.asmatrix(M)
 matrix = Matrix(M, mtype='b')
 math = Math(data=['M=', matrix])
 

@@ -27,9 +27,10 @@ table = Subsection('Table of something', data=[table])
 section.append(table)
 
 a = np.array([[100, 10, 20]]).T
-M = np.matrix([[2, 3, 4],
+M = np.array([[2, 3, 4],
                [0, 0, 1],
                [0, 0, 2]])
+M = np.asmatrix(M)
 
 math = Math(data=[Matrix(M), Matrix(a), '=', Matrix(M*a)])
 equation = Subsection('Matrix equation', data=[math])
