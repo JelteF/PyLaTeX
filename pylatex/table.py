@@ -53,6 +53,27 @@ class Table(BaseLaTeXContainer):
         """Add a row of cells to the table"""
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 
+    def add_multicolumn(self, size, align, content, cells=None, escape=False):
+        """Add a multicolumn of width size to the table, with cell content content"""
+        string = []
+        string.append(r'\multicolumn{%d}{%s}{%s}' % (size, align, content))
+        if cells:
+            self.append("".join(string))
+            self.add_row(cells)
+        else:
+            string.append(r'\\')
+            self.append("".join(string))
+
+    def add_multirow(self, size, align, content, hlines=True, cells=None, escape=False):
+        """Add a multirow of height size to the table, with cell content content"""
+        string = []
+        string.append(r'\multirow{%d}{%s}{%s}' % (size, align, content))
+        string.append(r'&' + dumps_list(cells[0], escape=escape, token='&') + r'\\' + "\n")
+        for row in cells[1:size]:
+            string.append(r'\cline{%d-%d}' % (size, self.width-1))
+            string.append(r'&' + dumps_list(row, escape=escape, token='&') + r'\\' + "\n")
+        self.append("".join(string))
+
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
         string = r'\begin{tabular}'
