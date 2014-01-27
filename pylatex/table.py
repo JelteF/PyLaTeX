@@ -16,6 +16,16 @@ from collections import Counter
 import re
 
 
+def get_table_width(table_spec):
+    column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
+
+    # Remove things like {\bfseries}
+    cleaner_spec = re.sub(r'{[^}]*}', '', table_spec)
+    spec_counter = Counter(cleaner_spec)
+
+    return sum(spec_counter[l] for l in column_letters)
+
+
 class Table(BaseLaTeXContainer):
 
     """A class that represents a table."""
@@ -24,13 +34,7 @@ class Table(BaseLaTeXContainer):
         self.table_spec = table_spec
         self.pos = pos
 
-        column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
-
-        # Remove things like {\bfseries}
-        cleaner_spec = re.sub(r'{[^}]*}', '', table_spec)
-        spec_counter = Counter(cleaner_spec)
-
-        self.width = sum(spec_counter[l] for l in column_letters)
+        self.width = get_table_width(table_spec)
 
         super().__init__(data)
 
@@ -54,25 +58,30 @@ class Table(BaseLaTeXContainer):
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 
     def add_multicolumn(self, size, align, content, cells=None, escape=False):
-        """Add a multicolumn of width size to the table, with cell content content"""
-        string = []
-        string.append(r'\multicolumn{%d}{%s}{%s}' % (size, align, content))
-        if cells:
-            self.append("".join(string))
+        """
+        Add a multicolumn of width size to the table, with cell content content
+        """
+        self.append(r'\multicolumn{%d}{%s}{%s}' % (size, align, content))
+        if cells is not None:
             self.add_row(cells)
         else:
-            string.append(r'\\')
-            self.append("".join(string))
+            self.append(r'\\')
 
-    def add_multirow(self, size, align, content, hlines=True, cells=None, escape=False):
-        """Add a multirow of height size to the table, with cell content content"""
-        string = []
-        string.append(r'\multirow{%d}{%s}{%s}' % (size, align, content))
-        string.append(r'&' + dumps_list(cells[0], escape=escape, token='&') + r'\\' + "\n")
-        for row in cells[1:size]:
-            string.append(r'\cline{%d-%d}' % (size, self.width-1))
-            string.append(r'&' + dumps_list(row, escape=escape, token='&') + r'\\' + "\n")
-        self.append("".join(string))
+    def add_multirow(self, size, align, content, hlines=True, cells=None,
+                     escape=False):
+        """
+        Add a multirow of height size to the table, with cell content content
+        """
+        self.append(r'\multirow{%d}{%s}{%s}' % (size, align, content))
+        if cells is not None:
+            for i, row in enumerate(cells):
+                if hlines and i:
+                    self.add_hline(2)
+                self.append('&')
+                self.add_row(row)
+        else:
+            for i in range(size):
+                self.add_empty_row()
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""

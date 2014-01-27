@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 
-import numpy as np
-
-from pylatex import Document, Section, Subsection, Table, Math, TikZ, Axis, \
-    Plot
-from pylatex.numpy import Matrix
-from pylatex.utils import italic
+from pylatex import Document, Section, Subsection, Table
 
 doc = Document(filename="multirow")
 section = Section('Multirow Test')
@@ -22,9 +17,11 @@ table1.add_hline()
 table1.add_row((3, 4))
 table1.add_hline()
 
-table2 = Table('|cc|c|c|')
+table2 = Table('|c|c|c|')
 table2.add_hline()
-table2.add_multirow(2, '*', 'Multirow', cells=((1, 2), (3, 4)))
+table2.add_multirow(3, '*', 'Multirow', cells=((1, 2), (3, 4), (5, 6)))
+table2.add_hline()
+table2.add_multirow(3, '*', 'Multirow2')
 table2.add_hline()
 
 test1.append(table1)
@@ -34,5 +31,4 @@ section.append(test1)
 section.append(test2)
 
 doc.append(section)
-doc.generate_tex()
 doc.generate_pdf()
