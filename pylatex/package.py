@@ -12,7 +12,7 @@
 from .base_classes import BaseLaTeXClass
 
 
-class Package:
+class Package(BaseLaTeXClass):
 
     """A class that represents a package."""
 
@@ -21,6 +21,15 @@ class Package:
         self.name = name
         self.option = option
 
+    def __key(self):
+        return (self.base, self.name, self.option)
+
+    def __eq__(self, other):
+        return self.__key() == other.__key()
+
+    def __hash__(self):
+        return hash(self.__key())
+
     def dumps(self):
         """Represents the package as a string in LaTeX syntax."""
         if self.option is None:
@@ -28,4 +37,4 @@ class Package:
         else:
             option = '[' + self.option + ']'
 
-        return '\\'+ self.base + option + '{' + self.name + '}\n'
+        return '\\' + self.base + option + '{' + self.name + '}\n'

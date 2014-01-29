@@ -28,7 +28,7 @@ class Document(BaseLaTeXContainer):
 
         fontenc = Package('fontenc', option=fontenc)
         inputenc = Package('inputenc', option=inputenc)
-        packages = [fontenc, inputenc, Package('lmodern'), Package("multirow")]
+        packages = [fontenc, inputenc, Package('lmodern')]
 
         if title is not None:
             packages.append(Package(title, base='title'))

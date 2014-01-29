@@ -11,6 +11,7 @@
 
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
+from .package import Package
 
 from collections import Counter
 import re
@@ -73,6 +74,7 @@ class Table(BaseLaTeXContainer):
         Add a multirow of height size to the table, with cell content content
         """
         self.append(r'\multirow{%d}{%s}{%s}' % (size, align, content))
+        self.packages.add(Package('multirow'))
         if cells is not None:
             for i, row in enumerate(cells):
                 if hlines and i:
