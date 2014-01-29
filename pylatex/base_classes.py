@@ -28,7 +28,7 @@ class BaseLaTeXClass:
     def dumps(self):
         """Represents the class as a string in LaTeX syntax."""
 
-    def dump(self, file_, protocol=None):
+    def dump(self, file_):
         """Writes the LaTeX representation of the class to a file."""
         file_.write(self.dumps())
 
@@ -36,7 +36,7 @@ class BaseLaTeXClass:
         """Represents the packages needed as a string in LaTeX syntax."""
         return dumps_list(self.packages)
 
-    def dump_packages(self, file_, protocol=None):
+    def dump_packages(self, file_):
         """Writes the LaTeX representation of the packages to a file."""
         file_.write(self.dumps_packages())
 
