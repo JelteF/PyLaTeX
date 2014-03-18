@@ -31,13 +31,14 @@ class Table(BaseLaTeXContainer):
 
     """A class that represents a table."""
 
-    def __init__(self, table_spec, data=None, pos=None):
+    def __init__(self, table_spec, data=None, pos=None, packages=None):
+        self.table_type = 'tabular'
         self.table_spec = table_spec
         self.pos = pos
 
         self.width = get_table_width(table_spec)
 
-        super().__init__(data)
+        super().__init__(data=data, packages=packages)
 
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table"""
@@ -87,7 +88,7 @@ class Table(BaseLaTeXContainer):
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
-        string = r'\begin{tabular}'
+        string = r'\begin{' + self.table_type + '}'
 
         if self.pos is not None:
             string += '[' + self.pos + ']'
@@ -96,7 +97,35 @@ class Table(BaseLaTeXContainer):
 
         string += dumps_list(self)
 
-        string += r'\end{tabular}'
+        string += r'\end{' + self.table_type + '}'
 
         super().dumps()
         return string
+
+
+class Tabu(Table):
+
+    """A class that represents a tabu (more flexible table)"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, packages=[Package('tabu')], **kwargs)
+        self.table_type = 'tabu'
+
+
+class LongTable(Table):
+
+    """A class that represents a longtable (multipage table)"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, packages=[Package('longtable')], **kwargs)
+        self.table_type = 'longtable'
+
+
+class LongTabu(Table):
+
+    """A class that represents a longtabu (more flexible multipage table)"""
+
+    def __init__(self, *args, **kwargs):
+        packages = [Package('tabu'), Package('longtable')]
+        super().__init__(*args, packages=packages, **kwargs)
+        self.table_type = 'longtabu'
