@@ -20,7 +20,7 @@ class TikZ(BaseLaTeXNamedContainer):
 
     def __init__(self, data=None):
         packages = [Package('tikz')]
-        super().__init__('tikzpicture', data=data, packages=packages)
+        super(TikZ,self).__init__('tikzpicture', data=data, packages=packages)
 
 
 class Axis(BaseLaTeXNamedContainer):
@@ -31,7 +31,7 @@ class Axis(BaseLaTeXNamedContainer):
         packages = [Package('pgfplots'), Package('compat=newest',
                                                  base='pgfplotsset')]
 
-        super().__init__('axis', data=data, options=options, packages=packages)
+        super(Axis,self).__init__('axis', data=data, options=options, packages=packages)
 
 
 class Plot(BaseLaTeXClass):
@@ -47,7 +47,7 @@ class Plot(BaseLaTeXClass):
         packages = [Package('pgfplots'), Package('compat=newest',
                                                  base='pgfplotsset')]
 
-        super().__init__(packages=packages)
+        super(Plot,self).__init__(packages=packages)
 
     def dumps(self):
         """Represents the plot as a string in LaTeX syntax."""
@@ -69,6 +69,6 @@ class Plot(BaseLaTeXClass):
         if self.name is not None:
             string += r'\addlegendentry{' + self.name + '}\n'
 
-        super().dumps()
+        super(Plot,self).dumps()
 
         return string

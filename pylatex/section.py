@@ -21,7 +21,7 @@ class SectionBase(BaseLaTeXContainer):
         self.title = title
         self.numbering = numbering
 
-        super().__init__(data)
+        super(SectionBase,self).__init__(data)
 
     def dumps(self):
         """Represents the section as a string in LaTeX syntax."""
@@ -34,7 +34,7 @@ class SectionBase(BaseLaTeXContainer):
         base = '\\' + self.__class__.__name__.lower() + num
         string = base + '{' + self.title + '}\n' + dumps_list(self)
 
-        super().dumps()
+        super(SectionBase,self).dumps()
         return string
 
 
