@@ -38,6 +38,11 @@ class BaseLaTeXClass(object):
     def dump_packages(self, file_):
         """Writes the LaTeX representation of the packages to a file."""
         file_.write(self.dumps_packages())
+        
+    def add(self,other):
+        """Preform inplace add of new container, return the new container."""
+        self.append(other)
+        return other
 
 
 class BaseLaTeXContainer(BaseLaTeXClass, list):
