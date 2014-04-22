@@ -10,11 +10,6 @@
     :license: MIT, see License for more details.
 """
 
-
-try:
-    from collections import UserList
-except ImportError:
-    from UserList import UserList
 from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
 
@@ -45,15 +40,13 @@ class BaseLaTeXClass(object):
         file_.write(self.dumps_packages())
 
 
-class BaseLaTeXContainer(BaseLaTeXClass, UserList):
+class BaseLaTeXContainer(BaseLaTeXClass, list):
 
     """A base class that can cointain other LaTeX content."""
 
     def __init__(self, data=None, packages=None):
-        if data is None:
-            data = []
-
-        self.data = data
+        if data is not None:
+            self[:] = data
 
         super(BaseLaTeXContainer,self).__init__(packages=packages)
 
@@ -63,7 +56,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
 
     def propegate_packages(self):
         """Makes sure packages get propegated."""
-        for item in self.data:
+        for item in self:
             if isinstance(item, BaseLaTeXClass):
                 for p in item.packages:
                     self.packages.add(p)
