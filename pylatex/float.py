@@ -31,7 +31,7 @@ class Graphics(BaseLaTeXClass):
     \\includegraphics[width=0.5\\textwidth]{foo.png}
     """
     def __init__(self, file, width=None, height=None):
-        super(Graphics, self).__init__(['\usepackage{graphicx}'])
+        super(Graphics, self).__init__([r'\usepackage{graphicx}'])
         self.file = file
         self.width = width
         self.height = height
@@ -43,7 +43,7 @@ class Graphics(BaseLaTeXClass):
         if self.height is not None:
             options.height = self.height
 
-        return "\includegraphics{opts}{{{file}}}".format(opts=options.dumps(), file=self.file)
+        return r"\includegraphics{opts}{{{file}}}".format(opts=options.dumps(), file=self.file)
 
 
 class Subfloat(TemplatedLatexClass):
@@ -60,7 +60,7 @@ class Subfloat(TemplatedLatexClass):
     TEMPLATE_NAME = "subfloat.tex"
 
     def __init__(self, caption, graphics):
-        super(Subfloat, self).__init__(['\usepackage{subfig}', '\usepackage{graphicx}'])
+        super(Subfloat, self).__init__([r'\usepackage{subfig}', r'\usepackage{graphicx}'])
         self.caption = caption
         self.graphics = graphics
 
