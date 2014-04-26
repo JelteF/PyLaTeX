@@ -8,7 +8,7 @@ from pylatex.numpy import Matrix, format_vec
 
 a = np.array([[100, 10, 20]]).T
 
-doc = Document()
+doc = Document(filename="numpy_ex")
 section = Section('Numpy tests')
 subsection = Subsection('Array')
 

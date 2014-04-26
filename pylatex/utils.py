@@ -10,6 +10,8 @@
     :license: MIT, see License for more details.
 """
 
+import six
+
 _latex_special_chars = {
     '&':  r'\&',
     '%':  r'\%',
@@ -32,7 +34,8 @@ def escape_latex(s):
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
     """
-    return ''.join(_latex_special_chars.get(c, c) for c in s)
+    s = six.text_type(s)
+    return u''.join(_latex_special_chars.get(c, c) for c in s)
 
 
 def dumps_list(l, escape=False, token='\n'):
@@ -45,8 +48,8 @@ def _latex_item_to_string(i, escape=False):
     if hasattr(i, 'dumps'):
         return i.dumps()
     elif escape:
-        return str(escape_latex(i))
-    return str(i)
+        return six.text_type(escape_latex(i))
+    return six.text_type(i)
 
 
 def bold(s):

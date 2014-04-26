@@ -38,3 +38,8 @@ nosetests.xml
 
 # Testfiles
 *.pdf
+examples/*.aux
+examples/*.tex
+examples/*.log
+
+.idea/**

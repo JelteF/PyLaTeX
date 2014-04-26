@@ -8,9 +8,10 @@
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
+import six
 
-
-from pylatex.base_classes import BaseLaTeXClass, BaseLaTeXNamedContainer
+from pylatex.base_classes import BaseLaTeXClass, BaseLaTeXNamedContainer, \
+    Options
 from pylatex.package import Package
 
 
@@ -20,7 +21,7 @@ class TikZ(BaseLaTeXNamedContainer):
 
     def __init__(self, data=None):
         packages = [Package('tikz')]
-        super().__init__('tikzpicture', data=data, packages=packages)
+        super(TikZ,self).__init__('tikzpicture', data=data, packages=packages)
 
 
 class Axis(BaseLaTeXNamedContainer):
@@ -31,7 +32,7 @@ class Axis(BaseLaTeXNamedContainer):
         packages = [Package('pgfplots'), Package('compat=newest',
                                                  base='pgfplotsset')]
 
-        super().__init__('axis', data=data, options=options, packages=packages)
+        super(Axis, self).__init__(u'axis', data=data, options=options, packages=packages)
 
 
 class Plot(BaseLaTeXClass):
@@ -42,19 +43,20 @@ class Plot(BaseLaTeXClass):
         self.name = name
         self.func = func
         self.coordinates = coordinates
-        self.options = options
+        self.options = Options.create(options)
 
         packages = [Package('pgfplots'), Package('compat=newest',
                                                  base='pgfplotsset')]
 
-        super().__init__(packages=packages)
+        super(Plot,self).__init__(packages=packages)
 
     def dumps(self):
         """Represents the plot as a string in LaTeX syntax."""
-        string = r'\addplot'
+        string = six.text_type()
 
-        if self.options is not None:
-            string += '[' + self.options + ']'
+        string+= r'\addplot'
+
+        string += self.options.dumps()
 
         if self.coordinates is not None:
             string += ' coordinates {\n'
@@ -69,6 +71,6 @@ class Plot(BaseLaTeXClass):
         if self.name is not None:
             string += r'\addlegendentry{' + self.name + '}\n'
 
-        super().dumps()
+        super(Plot,self).dumps()
 
         return string

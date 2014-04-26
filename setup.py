@@ -149,7 +149,13 @@ Copyright 2014 Jelte Fennema, under `the MIT license
 <https://github.com/JelteF/PyLaTeX/blob/master/LICENSE>`_.
 
 """
-from distutils.core import setup
+
+
+try:
+    from setuptools import setup
+except ImportError:
+	from distutils.core import setup
+
 setup(name='PyLaTeX',
       version='0.4.2',
       author='Jelte Fennema',

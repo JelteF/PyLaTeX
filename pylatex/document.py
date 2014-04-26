@@ -10,6 +10,8 @@
 """
 
 import subprocess
+import codecs
+
 from .package import Package
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
@@ -37,7 +39,7 @@ class Document(BaseLaTeXContainer):
         if date is not None:
             packages.append(Package(date, base='date'))
 
-        super().__init__(data, packages=packages)
+        super(Document,self).__init__(data, packages=packages)
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
@@ -47,7 +49,7 @@ class Document(BaseLaTeXContainer):
 
         document += r'\end{document}'
 
-        super().dumps()
+        super(Document,self).dumps()
 
         head = r'\documentclass{' + self.documentclass + '}'
 
@@ -57,9 +59,9 @@ class Document(BaseLaTeXContainer):
 
     def generate_tex(self):
         """Generates a .tex file."""
-        newf = open(self.filename + '.tex', 'w')
-        self.dump(newf)
-        newf.close()
+        with codecs.open(self.filename + '.tex', 'w', encoding="utf8") as newf:
+        	self.dump(newf)
+
 
     def generate_pdf(self, clean=True):
         """Generates a pdf"""

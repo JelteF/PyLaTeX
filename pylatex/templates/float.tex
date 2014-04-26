@@ -1,0 +1,4 @@
+<% extends "enviorment.tex" %>
+<% block block_contents %> << super() >>
+<% if s.caption %>\caption{<< s.caption >><% if s.label %>\label{<< s.label >>}<% endif %>}<% endif %>
+<% endblock %>
