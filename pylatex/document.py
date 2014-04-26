@@ -10,6 +10,8 @@
 """
 
 import subprocess
+import codecs
+
 from .package import Package
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
@@ -57,9 +59,9 @@ class Document(BaseLaTeXContainer):
 
     def generate_tex(self):
         """Generates a .tex file."""
-        newf = open(self.filename + '.tex', 'w')
-        self.dump(newf)
-        newf.close()
+        with codecs.open(self.filename + '.tex', 'w', encoding="utf8") as newf:
+        	self.dump(newf)
+
 
     def generate_pdf(self, clean=True):
         """Generates a pdf"""

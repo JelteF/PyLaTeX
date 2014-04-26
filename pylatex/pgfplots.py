@@ -8,9 +8,10 @@
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
+import six
 
-
-from pylatex.base_classes import BaseLaTeXClass, BaseLaTeXNamedContainer
+from pylatex.base_classes import BaseLaTeXClass, BaseLaTeXNamedContainer, \
+    Options
 from pylatex.package import Package
 
 
@@ -31,7 +32,7 @@ class Axis(BaseLaTeXNamedContainer):
         packages = [Package('pgfplots'), Package('compat=newest',
                                                  base='pgfplotsset')]
 
-        super(Axis,self).__init__('axis', data=data, options=options, packages=packages)
+        super(Axis, self).__init__(u'axis', data=data, options=options, packages=packages)
 
 
 class Plot(BaseLaTeXClass):
@@ -42,7 +43,7 @@ class Plot(BaseLaTeXClass):
         self.name = name
         self.func = func
         self.coordinates = coordinates
-        self.options = options
+        self.options = Options.create(options)
 
         packages = [Package('pgfplots'), Package('compat=newest',
                                                  base='pgfplotsset')]
@@ -51,10 +52,11 @@ class Plot(BaseLaTeXClass):
 
     def dumps(self):
         """Represents the plot as a string in LaTeX syntax."""
-        string = r'\addplot'
+        string = six.text_type()
 
-        if self.options is not None:
-            string += '[' + self.options + ']'
+        string+= r'\addplot'
+
+        string += self.options.dumps()
 
         if self.coordinates is not None:
             string += ' coordinates {\n'

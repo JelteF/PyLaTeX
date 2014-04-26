@@ -7,7 +7,7 @@ from pylatex import Document, Section, Subsection, Table, Math, TikZ, Axis, \
 from pylatex.numpy import Matrix
 from pylatex.utils import italic
 
-doc = Document()
+doc = Document(filename="example")
 section = Section('Yaay the first section, it can even be ' + italic('italic'))
 
 section.append('Some regular text')
