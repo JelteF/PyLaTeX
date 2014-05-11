@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 from pylatex import Document, Section, Subsection, Table
 

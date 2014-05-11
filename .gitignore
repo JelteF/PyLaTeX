@@ -38,3 +38,6 @@ nosetests.xml
 
 # Testfiles
 *.pdf
+
+# Python 2 distribution files
+python2_source
