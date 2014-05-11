@@ -149,13 +149,30 @@ Copyright 2014 Jelte Fennema, under `the MIT license
 <https://github.com/JelteF/PyLaTeX/blob/master/LICENSE>`_.
 
 """
+
 from distutils.core import setup
+import sys
+
+
+if sys.version_info[:2] <= (2, 6):
+    raise RuntimeError(
+        "You're using Python <= 2.6, but this package requires either Python "
+        "2.7, or 3.3 or above, so you can't use it unless you upgrade your "
+        "Python version."
+    )
+
+if sys.version_info[0] == 3:
+    source_dir = '.'
+else:
+    source_dir = 'python2_source'
+
 setup(name='PyLaTeX',
       version='0.4.2',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
       long_description=__doc__,
+      package_dir={'': source_dir},
       packages=['pylatex'],
       url='https://github.com/JelteF/PyLaTeX',
       license='MIT',
