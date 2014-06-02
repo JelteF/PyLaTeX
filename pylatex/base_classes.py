@@ -10,12 +10,11 @@
     :license: MIT, see License for more details.
 """
 
-from collections import UserList
 from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
 
 
-class BaseLaTeXClass:
+class BaseLaTeXClass(object):
 
     """A class that has some basic functions for LaTeX functions."""
 
@@ -39,19 +38,22 @@ class BaseLaTeXClass:
     def dump_packages(self, file_):
         """Writes the LaTeX representation of the packages to a file."""
         file_.write(self.dumps_packages())
+        
+    def add(self,other):
+        """Preform inplace add of new container, return the new container."""
+        self.append(other)
+        return other
 
 
-class BaseLaTeXContainer(BaseLaTeXClass, UserList):
+class BaseLaTeXContainer(BaseLaTeXClass, list):
 
     """A base class that can cointain other LaTeX content."""
 
     def __init__(self, data=None, packages=None):
-        if data is None:
-            data = []
+        if data is not None:
+            self[:] = data
 
-        self.data = data
-
-        super().__init__(packages=packages)
+        super(BaseLaTeXContainer,self).__init__(packages=packages)
 
     def dumps(self):
         """Represents the container as a string in LaTeX syntax."""
@@ -59,7 +61,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
 
     def propegate_packages(self):
         """Makes sure packages get propegated."""
-        for item in self.data:
+        for item in self:
             if isinstance(item, BaseLaTeXClass):
                 for p in item.packages:
                     self.packages.add(p)
@@ -78,7 +80,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
         self.name = name
         self.options = options
 
-        super().__init__(data=data, packages=packages)
+        super(BaseLaTeXNamedContainer, self).__init__(data=data, packages=packages)
 
     def dumps(self):
         """Represents the named container as a string in LaTeX syntax."""
@@ -91,6 +93,6 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
         string += r'\end{' + self.name + '}\n'
 
-        super().dumps()
+        super(BaseLaTeXNamedContainer, self).dumps()
 
         return string

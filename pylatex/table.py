@@ -38,7 +38,7 @@ class Table(BaseLaTeXContainer):
 
         self.width = get_table_width(table_spec)
 
-        super().__init__(data=data, packages=packages)
+        super(Table, self).__init__(data=data, packages=packages)
 
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table"""
@@ -99,7 +99,7 @@ class Table(BaseLaTeXContainer):
 
         string += r'\end{' + self.table_type + '}'
 
-        super().dumps()
+        super(Table,self).dumps()
         return string
 
 
@@ -108,7 +108,7 @@ class Tabu(Table):
     """A class that represents a tabu (more flexible table)"""
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, packages=[Package('tabu')], **kwargs)
+        super(Tabu,self).__init__(*args, packages=[Package('tabu')], **kwargs)
         self.table_type = 'tabu'
 
 
@@ -117,7 +117,7 @@ class LongTable(Table):
     """A class that represents a longtable (multipage table)"""
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, packages=[Package('longtable')], **kwargs)
+        super(LongTable,self).__init__(*args, packages=[Package('longtable')], **kwargs)
         self.table_type = 'longtable'
 
 
@@ -127,5 +127,5 @@ class LongTabu(Table):
 
     def __init__(self, *args, **kwargs):
         packages = [Package('tabu'), Package('longtable')]
-        super().__init__(*args, packages=packages, **kwargs)
+        super(LongTabu,self).__init__(*args, packages=packages, **kwargs)
         self.table_type = 'longtabu'

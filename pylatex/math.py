@@ -5,7 +5,7 @@ from .base_classes import BaseLaTeXContainer
 class Math(BaseLaTeXContainer):
     def __init__(self, data=None, inline=False):
         self.inline = inline
-        super().__init__(data)
+        super(Math,self).__init__(data)
 
     def dumps(self):
         if self.inline:
@@ -13,5 +13,5 @@ class Math(BaseLaTeXContainer):
         else:
             string = '$$' + dumps_list(self, token=' ') + '$$\n'
 
-        super().dumps()
+        super(Math,self).dumps()
         return string

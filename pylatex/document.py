@@ -37,7 +37,7 @@ class Document(BaseLaTeXContainer):
         if date is not None:
             packages.append(Package(date, base='date'))
 
-        super().__init__(data, packages=packages)
+        super(Document,self).__init__(data, packages=packages)
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
@@ -47,7 +47,7 @@ class Document(BaseLaTeXContainer):
 
         document += r'\end{document}'
 
-        super().dumps()
+        super(Document,self).dumps()
 
         head = r'\documentclass{' + self.documentclass + '}'
 
