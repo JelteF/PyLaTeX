@@ -167,7 +167,7 @@ else:
     source_dir = 'python2_source'
 
 setup(name='PyLaTeX',
-      version='0.4.2',
+      version='0.5',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
