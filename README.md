@@ -23,7 +23,7 @@ formatted strings instead of classes or regular strings.
 
 ### Dependencies
 
-- Python 3.3 (Python 3.x might work as well)
+- Python 3.x or Python 2.7
 - pdflatex (only if you want to compile the tex file)
 - NumPy (only if you want to convert it's matrixes)
 - ordered-set
@@ -122,14 +122,14 @@ education are a bit higher on the priority list.
 
 ### Support
 
-This library is being developed for Python 3.3. It currently doesn't work for
-Python 2.7, but it's mostly syntax and import changes that break it for 2.7.
-It is also only tested on Linux, so it might not work on any different
-platforms.
+This library is being developed in and for Python 3. Because of a conversion
+script the current version also works in Python 2.7. For futere versions, no
+such promise will be made. Uncompatible Python 3 features will not be headed to
+keep supporting Python 2.7.
 
-I have no intention of testing on any different platforms or with different
-Python versions. I also don't have the intention to write fixes for platform or
-environment specific bugs, but pull requests that fix those are always welcome.
+The platform this library is developed for is Linux. I have no intention to
+write fixes or test for platform specific bugs. Pull requests that fix those
+are always welcome though.
 
 
 ### Copyright and License
