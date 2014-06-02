@@ -1,2 +1,3 @@
 include *.md
 recursive-include pylatex *.py
+recursive-include python2_source *.py
