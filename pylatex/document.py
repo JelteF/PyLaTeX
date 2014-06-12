@@ -21,7 +21,7 @@ class Document(BaseLaTeXContainer):
 
     def __init__(self, filename='default_filename', documentclass='article',
                  fontenc='T1', inputenc='utf8', author=None, title=None,
-                 date=None, data=None):
+                 date=None, data=None, extrapreamble=None):
         self.filename = filename
 
         self.documentclass = documentclass
@@ -36,6 +36,8 @@ class Document(BaseLaTeXContainer):
             packages.append(Package(author, base='author'))
         if date is not None:
             packages.append(Package(date, base='date'))
+
+        self.extrapreamble = extrapreamble
 
         super().__init__(data, packages=packages)
 
@@ -52,6 +54,9 @@ class Document(BaseLaTeXContainer):
         head = r'\documentclass{' + self.documentclass + '}'
 
         head += self.dumps_packages()
+
+        if self.extrapreamble is not None:
+            head += self.extrapreamble + '\n'
 
         return head + document
 
