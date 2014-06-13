@@ -68,7 +68,7 @@ class Document(BaseLaTeXContainer):
         command = 'pdflatex --jobname="' + self.filename + '" "' + \
             self.filename + '.tex"'
 
-        subprocess.call(command, shell=True)
+        subprocess.check_call(command, shell=True)
 
         if clean:
             subprocess.call('rm "' + self.filename + '.aux" "' +
