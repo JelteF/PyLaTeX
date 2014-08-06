@@ -123,7 +123,7 @@ education are a bit higher on the priority list.
 ### Support
 
 This library is being developed in and for Python 3. Because of a conversion
-script the current version also works in Python 2.7. For futere versions, no
+script the current version also works in Python 2.7. For future versions, no
 such promise will be made. Uncompatible Python 3 features will not be headed to
 keep supporting Python 2.7.
 
