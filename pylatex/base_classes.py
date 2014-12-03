@@ -51,6 +51,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
             data = []
 
         self.data = data
+        self._cur_obj = self #to implement create
 
         super().__init__(packages=packages)
 
@@ -73,8 +74,11 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
     @contextmanager
     def create(self, object):
         """Add a latex object to current container, context-manager style"""
-        yield object
-        self.append(object)
+        prev_obj = self._cur_obj
+        self._cur_obj = object # so we don't have to keep track of the current object
+        yield object # allows with ... as to be used as well
+        self._cur_obj = prev_obj
+        self._cur_obj.append(object)
 
 
 
