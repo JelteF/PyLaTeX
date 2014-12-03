@@ -13,6 +13,7 @@
 from collections import UserList
 from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
+from contextlib import contextmanager
 
 
 class BaseLaTeXClass:
@@ -68,6 +69,13 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         """Represents the packages needed as a string in LaTeX syntax."""
         self.propegate_packages()
         return dumps_list(self.packages)
+
+    @contextmanager
+    def create(self, object):
+        """Add a latex object to current container, context-manager style"""
+        yield object
+        self.append(object)
+
 
 
 class BaseLaTeXNamedContainer(BaseLaTeXContainer):
