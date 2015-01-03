@@ -57,8 +57,8 @@ class Plot(BaseLaTeXClass):
         if self.coordinates is not None:
             string += ' coordinates {\n'
 
-            for c in self.coordinates:
-                string += '(' + str(c[0]) + ',' + str(c[1]) + ')\n'
+            for x, y in self.coordinates:
+                string += '(' + str(x) + ',' + str(y) + ')\n'
             string += '};\n\n'
 
         elif self.func is not None:
