@@ -10,7 +10,7 @@
 """
 
 from .utils import dumps_list
-from .base_classes import BaseLaTeXContainer
+from .base_classes import BaseLaTeXNamedContainer
 from .package import Package
 from .command import Command
 
@@ -28,18 +28,16 @@ def get_table_width(table_spec):
     return sum(spec_counter[l] for l in column_letters)
 
 
-class Table(BaseLaTeXContainer):
+class Table(BaseLaTeXNamedContainer):
 
     """A class that represents a table."""
 
-    def __init__(self, table_spec, data=None, pos=None, packages=None):
-        self.table_type = 'tabular'
-        self.table_spec = table_spec
-        self.pos = pos
-
+    def __init__(self, table_spec, data=None, pos=None, table_type='tabular',
+                 **kwargs):
         self.width = get_table_width(table_spec)
 
-        super().__init__(data=data, packages=packages)
+        super().__init__(table_type, data=data, options=pos,
+                         argument=table_spec, **kwargs)
 
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table"""
@@ -87,29 +85,14 @@ class Table(BaseLaTeXContainer):
             for i in range(size):
                 self.add_empty_row()
 
-    def dumps(self):
-        """Represents the document as a string in LaTeX syntax."""
-        string = r'\begin{' + self.table_type + '}'
-
-        if self.pos is not None:
-            string += '[' + self.pos + ']'
-
-        string += '{' + self.table_spec + '}\n'
-
-        string += super().dumps()
-
-        string += r'\end{' + self.table_type + '}'
-
-        return string
-
 
 class Tabu(Table):
 
     """A class that represents a tabu (more flexible table)"""
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, packages=[Package('tabu')], **kwargs)
-        self.table_type = 'tabu'
+        super().__init__(*args, table_type='tabu', packages=[Package('tabu')],
+                         **kwargs)
 
 
 class LongTable(Table):
@@ -117,8 +100,8 @@ class LongTable(Table):
     """A class that represents a longtable (multipage table)"""
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, packages=[Package('longtable')], **kwargs)
-        self.table_type = 'longtable'
+        super().__init__(*args, table_type='longtable',
+                         packages=[Package('longtable')], **kwargs)
 
 
 class LongTabu(Table):
@@ -127,5 +110,5 @@ class LongTabu(Table):
 
     def __init__(self, *args, **kwargs):
         packages = [Package('tabu'), Package('longtable')]
-        super().__init__(*args, packages=packages, **kwargs)
-        self.table_type = 'longtabu'
+        super().__init__(*args, table_type='longtabu', packages=packages,
+                         **kwargs)

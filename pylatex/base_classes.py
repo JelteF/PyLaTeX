@@ -75,23 +75,24 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
     """A base class for containers with one of a basic begin end syntax"""
 
-    def __init__(self, name, options=None, **kwargs):
+    def __init__(self, name, options=None, argument=None, **kwargs):
         self.name = name
         self.options = options
+        self.argument = argument
 
         super().__init__(**kwargs)
 
     def dumps(self):
         """Represents the named container as a string in LaTeX syntax."""
-        string = r'\begin{' + self.name + '}\n'
-
+        string = r'\begin{' + self.name + '}'
         if self.options is not None:
             string += '[' + self.options + ']'
+        if self.argument is not None:
+            string += '{' + self.argument + '}'
+        string += '\n'
 
-        string += dumps_list(self)
+        string += super().dumps()
 
-        string += r'\end{' + self.name + '}\n'
-
-        super().dumps()
+        string += r'\end{' + self.name + '}'
 
         return string
