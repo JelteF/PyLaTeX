@@ -12,6 +12,7 @@
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
 from .package import Package
+from .command import Command
 
 from collections import Counter
 import re
@@ -49,7 +50,7 @@ class Table(BaseLaTeXContainer):
                 start = 1
             elif end is None:
                 end = self.width
-            self.append(r'\cline{' + str(start) + '-' + str(end) + '}')
+            self.append(Command('cline', str(start) + '-' + str(end)))
 
     def add_empty_row(self):
         """Add an empty row to the table"""
@@ -63,7 +64,7 @@ class Table(BaseLaTeXContainer):
         """
         Add a multicolumn of width size to the table, with cell content content
         """
-        self.append(r'\multicolumn{%d}{%s}{%s}' % (size, align, content))
+        self.append(Command('multicolumn', arguments=(size, align, content)))
         if cells is not None:
             self.add_row(cells)
         else:
@@ -74,7 +75,7 @@ class Table(BaseLaTeXContainer):
         """
         Add a multirow of height size to the table, with cell content content
         """
-        self.append(r'\multirow{%d}{%s}{%s}' % (size, align, content))
+        self.append(Command('multirow', arguments=(size, align, content)))
         self.packages.add(Package('multirow'))
         if cells is not None:
             for i, row in enumerate(cells):

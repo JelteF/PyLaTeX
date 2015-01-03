@@ -11,13 +11,17 @@
 
 import subprocess
 from .package import Package
+from .command import Command
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
 
 
 class Document(BaseLaTeXContainer):
 
-    """A class that contains a full latex document."""
+    """
+    A class that contains a full latex document. If needed, you can append
+    stuff to the preamble or the packages if needed.
+    """
 
     def __init__(self, filename='default_filename', documentclass='article',
                  fontenc='T1', inputenc='utf8', author=None, title=None,
@@ -30,12 +34,14 @@ class Document(BaseLaTeXContainer):
         inputenc = Package('inputenc', option=inputenc)
         packages = [fontenc, inputenc, Package('lmodern')]
 
+        self.preamble = []
+
         if title is not None:
-            packages.append(Package(title, base='title'))
+            self.preamble.append(Command('title', title))
         if author is not None:
-            packages.append(Package(author, base='author'))
+            self.preamble.append(Command('author', author))
         if date is not None:
-            packages.append(Package(date, base='date'))
+            self.preamble.append(Command('date', date))
 
         super().__init__(data, packages=packages)
 
@@ -47,11 +53,13 @@ class Document(BaseLaTeXContainer):
 
         document += r'\end{document}'
 
+        # Needed to propagate the packages
         super().dumps()
 
         head = r'\documentclass{' + self.documentclass + '}'
 
         head += self.dumps_packages()
+        head += dumps_list(self.preamble)
 
         return head + document
 
