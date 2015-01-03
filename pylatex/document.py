@@ -28,7 +28,10 @@ class Document(BaseLaTeXContainer):
                  date=None, data=None):
         self.filename = filename
 
-        self.documentclass = documentclass
+        if isinstance(documentclass, Command):
+            self.documentclass = documentclass
+        else:
+            self.documentclass = Command('documentclass', documentclass)
 
         fontenc = Package('fontenc', option=fontenc)
         inputenc = Package('inputenc', option=inputenc)
@@ -56,7 +59,7 @@ class Document(BaseLaTeXContainer):
         # Needed to propagate the packages
         super().dumps()
 
-        head = r'\documentclass{' + self.documentclass + '}'
+        head = self.documentclass.dumps()
 
         head += self.dumps_packages()
         head += dumps_list(self.preamble)
