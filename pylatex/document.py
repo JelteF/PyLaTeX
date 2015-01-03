@@ -52,15 +52,11 @@ class Document(BaseLaTeXContainer):
         """Represents the document as a string in LaTeX syntax."""
         document = r'\begin{document}'
 
-        document += dumps_list(self)
+        document += super().dumps()
 
         document += r'\end{document}'
 
-        # Needed to propagate the packages
-        super().dumps()
-
         head = self.documentclass.dumps()
-
         head += self.dumps_packages()
         head += dumps_list(self.preamble)
 

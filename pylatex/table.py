@@ -96,11 +96,10 @@ class Table(BaseLaTeXContainer):
 
         string += '{' + self.table_spec + '}\n'
 
-        string += dumps_list(self)
+        string += super().dumps()
 
         string += r'\end{' + self.table_type + '}'
 
-        super().dumps()
         return string
 
 
