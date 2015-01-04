@@ -63,3 +63,8 @@ def italic(s):
     Source: http://stackoverflow.com/a/16264094/2570866
     """
     return r'\textit{' + s + '}'
+
+
+def verbatim(s, delimiter='|'):
+    """Returns the string verbatim."""
+    return r'\verb' + delimiter + s + delimiter
