@@ -11,6 +11,7 @@
 
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
+from .command import Command
 
 
 class SectionBase(BaseLaTeXContainer):
@@ -31,8 +32,9 @@ class SectionBase(BaseLaTeXContainer):
         else:
             num = ''
 
-        base = '\\' + self.__class__.__name__.lower() + num
-        string = base + '{' + self.title + '}\n' + dumps_list(self)
+        section_type = self.__class__.__name__.lower()
+        string = Command(section_type + num, self.title).dumps()
+        string += dumps_list(self)
 
         super().dumps()
         return string

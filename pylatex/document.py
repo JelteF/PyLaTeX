@@ -10,67 +10,41 @@
 """
 
 import subprocess
-
 from .package import Package
+from .command import Command
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
-from .arguments import Arguments
-
-
-class DocumentClass(BaseLaTeXContainer):
-    """
-    Represents the LaTex ``\documentclass`` command.
-    ::
-        >>> DocumentClass().dumps()
-        '\documentclass{article}'
-        >>> DocumentClass('report', Arguments('12pt', 'a4paper', 'twoside')).dumps()
-        '\\documentclass[12pt,a4paper,twoside]{report}'
-    """
-
-    def __init__(self, class_name='article', options=None):
-        """
-        Creates a LaTex ``\documentclass`` command with the specified document class and options.
-
-        :param class_name: The name of the LaTex document class to be used
-        :type class_name: String
-        :param options: The options to pass to the ``\documentclass`` command
-        :type options: pylatex.arguments.Arguments
-        """
-        self.class_name = Arguments(class_name)
-        if isinstance(options, Arguments):
-            self.options = options
-        else:
-            self.options = Arguments()
-        self.options.optional = True
-
-    def dumps(self):
-        return '\\documentclass{options}{classname}'.format(options=self.options.dumps(),
-                                                            classname=self.class_name.dumps())
 
 
 class Document(BaseLaTeXContainer):
-    """A class that contains a full latex document."""
 
-    def __init__(self, filename='default_filename', documentclass=None,
+    """
+    A class that contains a full latex document. If needed, you can append
+    stuff to the preamble or the packages if needed.
+    """
+
+    def __init__(self, filename='default_filename', documentclass='article',
                  fontenc='T1', inputenc='utf8', author=None, title=None,
                  date=None, data=None):
         self.filename = filename
 
-        if isinstance(documentclass, DocumentClass):
+        if isinstance(documentclass, Command):
             self.documentclass = documentclass
         else:
-            self.documentclass = DocumentClass()
+            self.documentclass = Command('documentclass', documentclass)
 
         fontenc = Package('fontenc', option=fontenc)
         inputenc = Package('inputenc', option=inputenc)
         packages = [fontenc, inputenc, Package('lmodern')]
 
+        self.preamble = []
+
         if title is not None:
-            packages.append(Package(title, base='title'))
+            self.preamble.append(Command('title', title))
         if author is not None:
-            packages.append(Package(author, base='author'))
+            self.preamble.append(Command('author', author))
         if date is not None:
-            packages.append(Package(date, base='date'))
+            self.preamble.append(Command('date', date))
 
         super().__init__(data, packages=packages)
 
@@ -78,15 +52,13 @@ class Document(BaseLaTeXContainer):
         """Represents the document as a string in LaTeX syntax."""
         document = r'\begin{document}'
 
-        document += dumps_list(self)
+        document += super().dumps()
 
         document += r'\end{document}'
 
-        super().dumps()
-
         head = self.documentclass.dumps()
-
         head += self.dumps_packages()
+        head += dumps_list(self.preamble)
 
         return head + document
 
@@ -101,7 +73,7 @@ class Document(BaseLaTeXContainer):
         self.generate_tex()
 
         command = 'pdflatex --jobname="' + self.filename + '" "' + \
-                  self.filename + '.tex"'
+            self.filename + '.tex"'
 
         subprocess.check_call(command, shell=True)
 

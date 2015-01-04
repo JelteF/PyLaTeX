@@ -12,10 +12,12 @@
 import numpy as np
 from pylatex.base_classes import BaseLaTeXClass
 from pylatex.package import Package
+from pylatex.command import Command
 
 
-def format_vec(name):
-    return r'\mathbf{' + name + '}'
+class VectorName(Command):
+    def __init__(self, name):
+        super().__init__('mathbf', argument=name)
 
 
 class Matrix(BaseLaTeXClass):

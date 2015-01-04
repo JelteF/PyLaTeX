@@ -35,6 +35,14 @@ def escape_latex(s):
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
+def fix_filename(filename):
+    """Latex has problems if there are one or more points in the filename,
+    thus 'abc.def.jpg' will be changed to '{abc.def}.jpg
+    """
+    parts = filename.split('.')
+    return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
+
+
 def dumps_list(l, escape=False, token='\n'):
     """Dumps a list that can contain anything"""
     return token.join(_latex_item_to_string(i, escape) for i in l)
@@ -63,3 +71,8 @@ def italic(s):
     Source: http://stackoverflow.com/a/16264094/2570866
     """
     return r'\textit{' + s + '}'
+
+
+def verbatim(s, delimiter='|'):
+    """Returns the string verbatim."""
+    return r'\verb' + delimiter + s + delimiter

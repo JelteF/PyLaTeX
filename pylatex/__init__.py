@@ -15,3 +15,4 @@ from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table
 from .pgfplots import TikZ, Axis, Plot
+from .graphics import Figure
