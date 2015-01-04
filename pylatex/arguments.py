@@ -13,18 +13,27 @@ from .base_classes import BaseLaTeXClass
 
 class Arguments(BaseLaTeXClass):
     """
-        Class implementing generic latex options, it supports normal positional options, as well as key-value pairs.
+    A class implementing LaTex arguments. It supports normal positional arguments, as well as key-value pairs. Arguments
+    can be rendered optional within square brackets ``[]`` or required within braces ``{}``.
+    ::
+        >>> args = Arguments('a', 'b', 'c')
+        >>> args.dumps()
+        '{a,b,c}'
+        >>> args.optional = True
+        >>> args.dumps()
+        '[a,b,c]'
+        >>> args = Arguments('clip', width=50, height='25em', trim='1 2 3 4')
+        >>> args.optional = True
+        >>> args.dumps()
+        '[clip,trim=1 2 3 4,width=50,height=25em]'
 
-        :type optional: bool
+    :param optional: Specifies whether this arguments are optional or not
+    :type optional: bool
     """
 
-    def __init__(self, *args, **kwargs):
-        """
+    optional = False
 
-        :param args:
-        :param kwargs:
-        """
-        self.optional = False
+    def __init__(self, *args, **kwargs):
         self._positional_args = list(args)
         self._key_value_args = dict(kwargs)
         super().__init__(packages=None)
@@ -33,7 +42,8 @@ class Arguments(BaseLaTeXClass):
         """
         Represents the arguments as a string in LaTeX syntax to be appended to a command.
 
-        :return:
+        :return: The rendered arguments
+        :rtype: str
         """
         args = []
         args.extend(self._positional_args)
@@ -45,6 +55,3 @@ class Arguments(BaseLaTeXClass):
         else:
             string = '{{{args}}}'.format(args=','.join(args))
         return string
-
-    def dump(self, file_):
-        file_.write(self.dumps())
