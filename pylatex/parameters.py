@@ -39,10 +39,13 @@ class Parameters(BaseLaTeXClass):
         super().__init__(packages=None)
 
     def __key(self):
-        return self.optional, self.list()
+        return self.optional, tuple(self.list())
 
     def __eq__(self, other):
         return self.__key() == other.__key()
+
+    def __hash__(self):
+        return hash(self.__key())
 
     def dumps(self):
         """
