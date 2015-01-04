@@ -3,7 +3,7 @@
     pylatex.arguments
     ~~~~~~~
 
-    This module implements the class that deals with tables.
+    This module implements the class that deals with arguments.
 
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
@@ -18,7 +18,7 @@ class Arguments(BaseLaTeXClass):
     ::
         >>> args = Arguments('a', 'b', 'c')
         >>> args.dumps()
-        '{a,b,c}'
+        '{a}{b}{c}'
         >>> args.optional = True
         >>> args.dumps()
         '[a,b,c]'
@@ -53,5 +53,5 @@ class Arguments(BaseLaTeXClass):
         if self.optional:
             string = '[{args}]'.format(args=','.join(args))
         else:
-            string = '{{{args}}}'.format(args=','.join(args))
+            string = '{{{args}}}'.format(args='}{'.join(args))
         return string
