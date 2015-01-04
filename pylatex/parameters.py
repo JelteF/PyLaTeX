@@ -58,9 +58,9 @@ class Parameters(BaseLaTeXClass):
         if len(params) <= 0:
             return ''
         if self.optional:
-            string = '[{args}]'.format(args=','.join(params))  # TODO str conversion
+            string = '[{args}]'.format(args=','.join(list(map(str, params))))
         else:
-            string = '{{{args}}}'.format(args='}{'.join(params))  # TODO str conversion
+            string = '{{{args}}}'.format(args='}{'.join(list(map(str, params))))
         return string
 
     def list(self):
@@ -71,14 +71,12 @@ class Parameters(BaseLaTeXClass):
 
 
 class Options(Parameters):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.optional = True
 
 
 class Arguments(Parameters):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.optional = False
