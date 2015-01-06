@@ -11,11 +11,11 @@ doc = Document()
 doc.packages.append(Package('geometry', options=['tmargin=1cm',
                                                  'lmargin=10cm']))
 
-with doc.create(Section('The simple stuff')) as section:
-    section.append('Some regular text and some ' + italic('italic text. '))
-    section.append(escape_latex('\nAlso some crazy characters: $&#{}'))
-    with doc.create(Subsection('Math that is incorrect')) as math:
-        math.append(Math(data=['2*3', '=', 9]))
+with doc.create(Section('The simple stuff')):
+    doc.append('Some regular text and some ' + italic('italic text. '))
+    doc.append(escape_latex('\nAlso some crazy characters: $&#{}'))
+    with doc.create(Subsection('Math that is incorrect')):
+        doc.append(Math(data=['2*3', '=', 9]))
 
     with doc.create(Subsection('Table of something')):
         with doc.create(Table('rc|cl')) as table:
@@ -30,9 +30,9 @@ M = np.matrix([[2, 3, 4],
                [0, 0, 1],
                [0, 0, 2]])
 
-with doc.create(Section('The fancy stuff')) as section:
-    with doc.create(Subsection('Correct matrix equations')) as matrices:
-        matrices.append(Math(data=[Matrix(M), Matrix(a), '=', Matrix(M*a)]))
+with doc.create(Section('The fancy stuff')):
+    with doc.create(Subsection('Correct matrix equations')):
+        doc.append(Math(data=[Matrix(M), Matrix(a), '=', Matrix(M*a)]))
 
     with doc.create(Subsection('Beautiful graphs')):
         with doc.create(TikZ()):

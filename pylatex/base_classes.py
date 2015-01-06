@@ -51,7 +51,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
             data = []
 
         self.data = data
-        self._cur_obj = self #to implement create
+        self.real_data = data  # Always the data of this instance
 
         super().__init__(packages=packages)
 
@@ -73,14 +73,13 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         return dumps_list(self.packages)
 
     @contextmanager
-    def create(self, object):
+    def create(self, child):
         """Add a latex object to current container, context-manager style"""
-        prev_obj = self._cur_obj
-        self._cur_obj = object # so we don't have to keep track of the current object
-        yield object # allows with ... as to be used as well
-        self._cur_obj = prev_obj
-        self._cur_obj.append(object)
-
+        prev_data = self.data
+        self.data = child.data  # This way append works appends to the child
+        yield child  # allows with ... as to be used as well
+        self.data = prev_data
+        self.append(child)
 
 
 class BaseLaTeXNamedContainer(BaseLaTeXContainer):
