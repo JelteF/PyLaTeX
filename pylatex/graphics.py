@@ -29,8 +29,8 @@ class Figure(BaseLaTeXNamedContainer):
         if placement is not None:
             self.append(placement)
 
-        self.append(Command('includegraphics', option='width=' + width,
-                            argument=fix_filename(filename)))
+        self.append(Command('includegraphics', options='width=' + width,
+                            arguments=fix_filename(filename)))
 
     def add_caption(self, caption):
         """Add a caption to the figure"""

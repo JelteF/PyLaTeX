@@ -9,41 +9,40 @@
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
-
+from .parameters import Arguments, Options
 from .base_classes import BaseLaTeXClass
-from .utils import dumps_list
 
 
 class Command(BaseLaTeXClass):
+    """
+    A class that represents a command
+    ::
+        >>> Command('documentclass', options=Options('12pt', 'a4paper', 'twoside'), arguments='article').dumps()
+        '\\documentclass[12pt,a4paper,twoside]{article}'
 
-    """A class that represents a command"""
+    """
 
-    def __init__(self, command, argument=None, arguments=None, option=None,
-                 options=None, **kwargs):
+    def __init__(self, command, arguments=None, options=None, packages=None):
         self.command = command
 
-        if argument is None and arguments is None:
-            self.arguments = []
-        elif arguments is None:
-            self.arguments = [argument]
-        elif argument is None:
+        if isinstance(arguments, Arguments):
             self.arguments = arguments
+        elif arguments is not None:
+            self.arguments = Arguments(arguments)
         else:
-            raise ValueError("argument and arguments can not both have a "
-                             "value")
+            self.arguments = Arguments()
 
-        if option is None and options is None:
-            self.options = []
-        elif options is None:
-            self.options = [option]
-        elif option is None:
+        if isinstance(options, Options):
             self.options = options
+        elif options is not None:
+            self.options = Options(options)
         else:
-            raise ValueError("option and options can not both have a value")
-        super().__init__(kwargs)
+            self.options = Options()
+
+        super().__init__(packages)
 
     def __key(self):
-        return (self.command, tuple(self.arguments), tuple(self.options))
+        return self.command, self.arguments, self.options
 
     def __eq__(self, other):
         return self.__key() == other.__key()
@@ -53,14 +52,6 @@ class Command(BaseLaTeXClass):
 
     def dumps(self):
         """Represents the command as a string in LaTeX syntax."""
-        if len(self.options) == 0:
-            options = ''
-        else:
-            options = '[' + dumps_list(self.options, token=',') + ']'
-
-        if len(self.arguments) == 0:
-            arguments = ''
-        else:
-            arguments = '{' + dumps_list(self.arguments, token='}{') + '}'
-
-        return '\\' + self.command + options + arguments + '\n'
+        return '\\{command}{options}{arguments}'.\
+            format(command=self.command, options=self.options.dumps(),
+                   arguments=self.arguments.dumps())

@@ -9,6 +9,7 @@
     :license: MIT, see License for more details.
 """
 
+import os
 import subprocess
 from .package import Package
 from .command import Command
@@ -31,11 +32,13 @@ class Document(BaseLaTeXContainer):
         if isinstance(documentclass, Command):
             self.documentclass = documentclass
         else:
-            self.documentclass = Command('documentclass', documentclass)
+            self.documentclass = Command('documentclass',
+                                         arguments=documentclass)
 
-        fontenc = Package('fontenc', option=fontenc)
-        inputenc = Package('inputenc', option=inputenc)
-        packages = [fontenc, inputenc, Package('lmodern')]
+        fontenc = Package('fontenc', options=fontenc)
+        inputenc = Package('inputenc', options=inputenc)
+        lmodern = Package('lmodern')
+        packages = [fontenc, inputenc, lmodern]
 
         self.preamble = []
 
@@ -50,17 +53,17 @@ class Document(BaseLaTeXContainer):
 
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
-        document = r'\begin{document}'
+        document = r'\begin{document}' + os.linesep
 
-        document += super().dumps()
+        document += super().dumps() + os.linesep
 
-        document += r'\end{document}'
+        document += r'\end{document}' + os.linesep
 
-        head = self.documentclass.dumps()
-        head += self.dumps_packages()
-        head += dumps_list(self.preamble)
+        head = self.documentclass.dumps() + os.linesep
+        head += self.dumps_packages() + os.linesep
+        head += dumps_list(self.preamble) + os.linesep
 
-        return head + document
+        return head + os.linesep + document
 
     def generate_tex(self):
         """Generates a .tex file."""
