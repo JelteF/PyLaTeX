@@ -17,7 +17,7 @@ class Command(BaseLaTeXClass):
     """
     A class that represents a command
     ::
-        >>> Command('documentclass', options=Options('12pt', 'a4paper', 'twoside'), arguments=Arguments('article')).dumps()
+        >>> Command('documentclass', options=Options('12pt', 'a4paper', 'twoside'), arguments='article').dumps()
         '\\documentclass[12pt,a4paper,twoside]{article}'
 
     """
@@ -52,6 +52,6 @@ class Command(BaseLaTeXClass):
 
     def dumps(self):
         """Represents the command as a string in LaTeX syntax."""
-        return '\\{command}{options}{arguments}'.format(command=self.command,
-                                                        options=self.options.dumps(),
-                                                        arguments=self.arguments.dumps())
+        return '\\{command}{options}{arguments}'.\
+            format(command=self.command, options=self.options.dumps(),
+                   arguments=self.arguments.dumps())

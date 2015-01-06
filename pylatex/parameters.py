@@ -3,7 +3,8 @@
     pylatex.arguments
     ~~~~~~~
 
-    This module implements the classes that deal with parameters, in particular with options and arguments.
+    This module implements the classes that deal with parameters, in particular
+    with options and arguments.
 
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
@@ -13,8 +14,10 @@ from .base_classes import BaseLaTeXClass
 
 class Parameters(BaseLaTeXClass):
     """
-    A class implementing LaTex parameters. It supports normal positional parameters, as well as key-value pairs.
-    Parameters can be rendered optional within square brackets ``[]`` or required within braces ``{}``.
+    A class implementing LaTex parameters. It supports normal positional
+    parameters, as well as key-value pairs.
+    Parameters can be rendered optional within square brackets ``[]`` or
+    required within braces ``{}``.
     ::
         >>> args = Parameters('a', 'b', 'c')
         >>> args.dumps()
@@ -52,7 +55,8 @@ class Parameters(BaseLaTeXClass):
 
     def dumps(self):
         """
-        Represents the parameters as a string in LaTeX syntax to be appended to a command.
+        Represents the parameters as a string in LaTeX syntax to be appended to
+        a command.
 
         :return: The rendered parameters
         :rtype: str
@@ -61,15 +65,16 @@ class Parameters(BaseLaTeXClass):
         if len(params) <= 0:
             return ''
         if self.optional:
-            string = '[{args}]'.format(args=','.join(list(map(str, params))))
+            string = '[{args}]'.format(args=','.join(map(str, params)))
         else:
-            string = '{{{args}}}'.format(args='}{'.join(list(map(str, params))))
+            string = '{{{args}}}'.format(args='}{'.join(map(str, params)))
         return string
 
     def list(self):
         params = []
         params.extend(self._positional_args)
-        params.extend(['{k}={v}'.format(k=k, v=v) for k, v in self._key_value_args.items()])
+        params.extend(['{k}={v}'.format(k=k, v=v) for k, v in
+                       self._key_value_args.items()])
         return params
 
 
