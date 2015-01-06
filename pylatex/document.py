@@ -13,7 +13,6 @@ import os
 import subprocess
 from .package import Package
 from .command import Command
-from .parameters import Arguments, Options
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
 
@@ -33,10 +32,11 @@ class Document(BaseLaTeXContainer):
         if isinstance(documentclass, Command):
             self.documentclass = documentclass
         else:
-            self.documentclass = Command('documentclass', arguments=Arguments(documentclass))
+            self.documentclass = Command('documentclass',
+                                         arguments=documentclass)
 
-        fontenc = Package('fontenc', options=Options(fontenc))
-        inputenc = Package('inputenc', options=Options(inputenc))
+        fontenc = Package('fontenc', options=fontenc)
+        inputenc = Package('inputenc', options=inputenc)
         lmodern = Package('lmodern')
         packages = [fontenc, inputenc, lmodern]
 

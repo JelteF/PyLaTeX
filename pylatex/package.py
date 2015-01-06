@@ -10,7 +10,6 @@
 """
 
 from .command import Command
-from .parameters import Arguments
 
 
 class Package(Command):
@@ -18,4 +17,4 @@ class Package(Command):
     """A class that represents a package."""
 
     def __init__(self, name, base='usepackage', options=None):
-        super().__init__(base, arguments=Arguments(name), options=options)
+        super().__init__(base, arguments=name, options=options)

@@ -27,11 +27,15 @@ class Command(BaseLaTeXClass):
 
         if isinstance(arguments, Arguments):
             self.arguments = arguments
+        elif arguments is not None:
+            self.arguments = Arguments(arguments)
         else:
             self.arguments = Arguments()
 
         if isinstance(options, Options):
             self.options = options
+        elif options is not None:
+            self.options = Options(options)
         else:
             self.options = Options()
 

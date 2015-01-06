@@ -34,6 +34,9 @@ class Parameters(BaseLaTeXClass):
     optional = False
 
     def __init__(self, *args, **kwargs):
+        if len(args) == 1 and hasattr(args[0], '__iter__') and\
+                not isinstance(args[0], str):
+            args = args[0]
         self._positional_args = list(args)
         self._key_value_args = dict(kwargs)
         super().__init__(packages=None)
