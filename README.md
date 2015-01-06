@@ -1,32 +1,37 @@
 PyLaTeX
 =======
 
-PyLaTeX is a Python library for creating LaTeX files. The goal of this library
-is being an easy, but extensible interface between Python and LaTeX.
+PyLaTeX is a Python library for creating and compiling LaTeX files. The goal of
+this library is being an easy, but extensible interface between Python and
+LaTeX.
 
 
 ### Features
 
-The library contains some basic features I have had the need for so far.
-Currently those are:
-
 - Document generation and compilation
-- Section, table, math and package classes
+- Section, table, math, figure and package classes
 - A matrix class that can compile NumPy ndarrays and matrices to LaTeX
-- An escape function
-- Bold and italic functions
-- Every class has a dump method, which writes the output to a filepointer
+- Very exstensible base classes that you can use to easily add new features
+- Contextmanager style class hierarchy
+- Functionality to escape special LaTeX characters
+- Bold, italic and verbatim functions
+- Every class has a dump method, which writes the output to a filepointer this
+    way you can use snippets in in normal LaTeX files using `\input`
 
 Everything else you want you can still add to the document by adding LaTeX
-formatted strings instead of classes or regular strings.
+formatted strings to the container class you want it to be in.
 
 
 ### Dependencies
 
 - Python 3.x or Python 2.7
+- ordered-set
+
+#### Optional dependencies
+
 - pdflatex (only if you want to compile the tex file)
 - NumPy (only if you want to convert it's matrixes)
-- ordered-set
+- awkwardduet (only if you want to compile to python 2 source code yourself)
 
 
 ### Installation
@@ -99,30 +104,34 @@ doc.generate_pdf()
 ```
 
 This code will generate this:
+
 ![Generated PDF by PyLaTeX](https://raw.github.com/JelteF/PyLaTeX/master/docs/static/screenshot.png)
 
 
 ### Future development
 
-I will keep adding functionality I need to this library, an interface for
-graphics and math will probably be added in a future version.
+I will keep adding functionality I need to this library.
 
-If you add a feature yourself, or fix a bug, please send a pull request.
+If you add a feature yourself, or fix a bug, please send a pull request. The
+code is not very difficult and mostly speaks for itself. If you have a question
+just let me know.
 
-You can submit issues, but it will not be my priority to fix them. My job and
-education are a bit higher on the priority list.
-
+You can submit issues and I will probably respond quite quick. However, it might
+take a lot more time for me to fix something. I also have a job, education and a
+personal life to worry about. If you want something done try to fix it yourself
+as well. Accepting pull requests costs way less time.
 
 ### Support
 
 This library is being developed in and for Python 3. Because of a conversion
 script the current version also works in Python 2.7. For future versions, no
-such promise will be made. Uncompatible Python 3 features will not be headed to
-keep supporting Python 2.7.
+such promise will be made. Python 3 features that are useful but incompatible
+with Python 2 will be used. If you find a bug for Python 2 and it is fixable
+without ugly hacks feel free to send a pull request.
 
 The platform this library is developed for is Linux. I have no intention to
-write fixes or test for platform specific bugs. Pull requests that fix those
-are always welcome though.
+write fixes or test for platform specific bugs with every update. Pull requests
+that fix those issues are always welcome though.
 
 
 ### Copyright and License
