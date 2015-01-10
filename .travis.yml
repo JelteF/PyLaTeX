@@ -3,9 +3,9 @@ python:
     - '3.3'
     - '3.4'
 before_install:
+    - sudo add-apt-repository ppa:texlive-backports/ppa
     - sudo apt-get update
-    - wget https://github.com/scottkosty/install-tl-ubuntu/raw/master/install-tl-ubuntu && chmod +x ./install-tl-ubuntu
 install:
-    - sudo ./install-tl-ubuntu
+    - sudo apt-get install texlive-latex-extra texlive-pictures
     - pip install .
 script: ./testall.sh
