@@ -67,9 +67,8 @@ class Document(BaseLaTeXContainer):
 
     def generate_tex(self):
         """Generates a .tex file."""
-        newf = open(self.filename + '.tex', 'w')
-        self.dump(newf)
-        newf.close()
+        with open(self.filename + '.tex', 'w') as newf:
+            self.dump(newf)
 
     def generate_pdf(self, clean=True):
         """Generates a pdf"""
