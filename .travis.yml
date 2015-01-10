@@ -2,7 +2,9 @@ language: python
 python:
     - '3.3'
     - '3.4'
+before_install:
+    - sudo apt-get update
 install:
-    - apt-get install texlive-latex-extra
+    - sudo apt-get install texlive-latex-extra
     - pip install .
 script: ./testall.sh
