@@ -17,7 +17,7 @@ from pylatex.command import Command
 
 class VectorName(Command):
     def __init__(self, name):
-        super().__init__('mathbf', argument=name)
+        super().__init__('mathbf', arguments=name)
 
 
 class Matrix(BaseLaTeXClass):
