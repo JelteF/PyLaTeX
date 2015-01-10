@@ -5,6 +5,6 @@ python:
 before_install:
     - sudo apt-get update
 install:
-    - sudo apt-get install texlive-latex-extra
+    - sudo apt-get install texlive-latex-extra texlive-pictures
     - pip install .
 script: ./testall.sh
