@@ -10,8 +10,8 @@ install:
     - wget https://launchpad.net/awkwardduet/1.1/1.1a4/+download/awkwardduet-1.1a4.tar.gz
     - tar -xzvf awkwardduet-1.1a4.tar.gz
     - cd awkwardduet-1.1a4
-    - sudo apt-get install python3.4
-    - sudo python3.4 setup.py install
+    - sudo apt-get install python3
+    - sudo python3 setup.py install
     - cd ..
     - ./convert_to_py2.sh
     - pip install .
