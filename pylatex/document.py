@@ -26,8 +26,9 @@ class Document(BaseLaTeXContainer):
 
     def __init__(self, filename='default_filename', documentclass='article',
                  fontenc='T1', inputenc='utf8', author=None, title=None,
-                 date=None, data=None):
+                 date=None, data=None, maketitle=False):
         self.filename = filename
+        self.maketitle = maketitle
 
         if isinstance(documentclass, Command):
             self.documentclass = documentclass
@@ -54,6 +55,9 @@ class Document(BaseLaTeXContainer):
     def dumps(self):
         """Represents the document as a string in LaTeX syntax."""
         document = r'\begin{document}' + os.linesep
+
+        if self.maketitle:
+            document += r'\maketitle' + os.linesep
 
         document += super().dumps() + os.linesep
 
