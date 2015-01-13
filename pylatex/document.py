@@ -85,5 +85,6 @@ class Document(BaseLaTeXContainer):
 
         if clean:
             subprocess.call('rm "' + self.filename + '.aux" "' +
+                            self.filename + '.out" "' +
                             self.filename + '.log" "' +
                             self.filename + '.tex"', shell=True)
