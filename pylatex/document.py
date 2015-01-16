@@ -25,8 +25,8 @@ class Document(BaseLaTeXContainer):
     """
 
     def __init__(self, filename='default_filename', documentclass='article',
-                 fontenc='T1', inputenc='utf8', author=None, title=None,
-                 date=None, data=None, maketitle=False):
+                 fontenc='T1', inputenc='utf8', author='', title='',
+                 date='', data=None, maketitle=False):
         self.filename = filename
         self.maketitle = maketitle
 
@@ -43,12 +43,9 @@ class Document(BaseLaTeXContainer):
 
         self.preamble = []
 
-        if title is not None:
-            self.preamble.append(Command('title', title))
-        if author is not None:
-            self.preamble.append(Command('author', author))
-        if date is not None:
-            self.preamble.append(Command('date', date))
+        self.preamble.append(Command('title', title))
+        self.preamble.append(Command('author', author))
+        self.preamble.append(Command('date', date))
 
         super().__init__(data, packages=packages)
 
