@@ -27,7 +27,6 @@ class Document(BaseLaTeXContainer):
     def __init__(self, documentclass='article', fontenc='T1', inputenc='utf8', 
                  author='', title='', date='', data=None, maketitle=False):
         """
-            :param filename: the filename used to save the document
             :param documentclass: the LaTeX class of the document
             :param fontenc: the option for the fontenc package
             :param inputenc: the option for the inputenc package
@@ -35,7 +34,7 @@ class Document(BaseLaTeXContainer):
             :param title: the title of the document
             :param date: the date of the document
             :param data: 
-            :param maketitle: whether `\maketitle` command is added or not.
+            :param maketitle: whether `\maketitle` command is activated or not.
             
             :type filename: str
             :type documentclass: str or :class:`command.Command` instance
@@ -108,14 +107,14 @@ class Document(BaseLaTeXContainer):
             :type filename: str
             :type clean: bool
         """
-        self.generate_tex()
+        self.generate_tex(filename)
 
         command = 'pdflatex --jobname="' + filename + '" "' + filename + '.tex"'
 
         subprocess.check_call(command, shell=True)
 
         if clean:
-            subprocess.call('rm "' + filename + '.aux" "' +
-                            filename + '.out" "' +
-                            filename + '.log" "' +
-                            filename + '.tex"', shell=True)
+            subprocess.call('rm "' + filename + '.aux"', shell=True)
+            subprocess.call('rm "' + filename + '.log"', shell=True)
+            subprocess.call('rm "' + filename + '.tex"', shell=True)
+            subprocess.call('rm "' + filename + '.out"', shell=True)
