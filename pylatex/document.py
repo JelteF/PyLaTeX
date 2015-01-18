@@ -24,9 +24,11 @@ class Document(BaseLaTeXContainer):
     stuff to the preamble or the packages.
     """
 
-    def __init__(self, documentclass='article', fontenc='T1', inputenc='utf8', 
+    def __init__(self, default_filename='default_filename', 
+                 documentclass='article', fontenc='T1', inputenc='utf8', 
                  author='', title='', date='', data=None, maketitle=False):
         """
+            :param default_filename: the default filename to save files
             :param documentclass: the LaTeX class of the document
             :param fontenc: the option for the fontenc package
             :param inputenc: the option for the inputenc package
@@ -36,7 +38,7 @@ class Document(BaseLaTeXContainer):
             :param data: 
             :param maketitle: whether `\maketitle` command is activated or not.
             
-            :type filename: str
+            :type default_filename: str
             :type documentclass: str or :class:`command.Command` instance
             :type fontenc: str
             :type inputenc: str
@@ -46,6 +48,7 @@ class Document(BaseLaTeXContainer):
             :type data: list
             :type maketitle: bool
         """
+        self.default_filename = default_filename
         self.maketitle = maketitle
 
         if isinstance(documentclass, Command):
@@ -87,17 +90,19 @@ class Document(BaseLaTeXContainer):
 
         return head + os.linesep + document
 
-    def generate_tex(self, filename):
+    def generate_tex(self, filename=''):
         """Generates a .tex file.
         
             :param filename: the name of the file
         
             :type filename: str
         """
+        filename = self.select_filename(filename)
+        
         with open(filename + '.tex', 'w') as newf:
             self.dump(newf)
 
-    def generate_pdf(self, filename, clean=True):
+    def generate_pdf(self, filename='', clean=True):
         """Generates a .pdf file.
             
             :param filename: the name of the file
@@ -107,6 +112,8 @@ class Document(BaseLaTeXContainer):
             :type filename: str
             :type clean: bool
         """
+        filename = self.select_filename(filename)
+        
         self.generate_tex(filename)
 
         command = 'pdflatex --jobname="' + filename + '" "' + filename + '.tex"'
@@ -118,3 +125,18 @@ class Document(BaseLaTeXContainer):
             subprocess.call('rm "' + filename + '.log"', shell=True)
             subprocess.call('rm "' + filename + '.tex"', shell=True)
             subprocess.call('rm "' + filename + '.out"', shell=True)
+            
+    def select_filename(self, filename):
+        """Makes a choice between `filename` and `self.default_filename`.
+        
+            :param filename: the filename to be compared with 
+            `self.default_filename`
+        
+            :type filename: str
+            
+            :rtype: str
+        """
+        if filename == '':
+            return self.default_filename
+        else:
+            return filename

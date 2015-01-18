@@ -18,22 +18,22 @@ def fill_document(doc):
 
 if __name__ == '__main__':
     # Basic document
-    doc = Document()
+    doc = Document('basic')
     fill_document(doc)
     
-    doc.generate_pdf("basic")
-    doc.generate_tex("basic")
-    
-    # Add stuff to the document
-    doc.append(Section('A second section'))
-    doc.append('Some text.')
-    
-    doc.generate_pdf("basic2")
-    tex = doc.dumps() # The document as string in LaTeX syntax
+    doc.generate_pdf()
+    doc.generate_tex()
     
     # Document with `\maketitle` command activated
     doc = Document(author='Author', date='01/01/01', title='Title', 
                    maketitle=True)
     fill_document(doc)
     
-    doc.generate_pdf("basic_maketitle", clean=False)
+    doc.generate_pdf('basic_maketitle', clean=False)
+    
+    # Add stuff to the document
+    doc.append(Section('A second section'))
+    doc.append('Some text.')
+    
+    doc.generate_pdf('basic_maketitle2')
+    tex = doc.dumps() # The document as string in LaTeX syntax
