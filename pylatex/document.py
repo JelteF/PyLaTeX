@@ -20,14 +20,33 @@ from .base_classes import BaseLaTeXContainer
 class Document(BaseLaTeXContainer):
 
     """
-    A class that contains a full latex document. If needed, you can append
-    stuff to the preamble or the packages if needed.
+    A class that contains a full LaTeX document. If needed, you can append
+    stuff to the preamble or the packages.
     """
 
-    def __init__(self, filename='default_filename', documentclass='article',
-                 fontenc='T1', inputenc='utf8', author='', title='',
-                 date='', data=None, maketitle=False):
-        self.filename = filename
+    def __init__(self, documentclass='article', fontenc='T1', inputenc='utf8', 
+                 author='', title='', date='', data=None, maketitle=False):
+        """
+            :param filename: the filename used to save the document
+            :param documentclass: the LaTeX class of the document
+            :param fontenc: the option for the fontenc package
+            :param inputenc: the option for the inputenc package
+            :param author: the author of the document
+            :param title: the title of the document
+            :param date: the date of the document
+            :param data: 
+            :param maketitle: whether `\maketitle` command is added or not.
+            
+            :type filename: str
+            :type documentclass: str or :class:`command.Command` instance
+            :type fontenc: str
+            :type inputenc: str
+            :type author: str
+            :type title: str
+            :type date: str
+            :type data: list
+            :type maketitle: bool
+        """
         self.maketitle = maketitle
 
         if isinstance(documentclass, Command):
@@ -50,7 +69,10 @@ class Document(BaseLaTeXContainer):
         super().__init__(data, packages=packages)
 
     def dumps(self):
-        """Represents the document as a string in LaTeX syntax."""
+        """Represents the document as a string in LaTeX syntax.
+        
+            :rtype: str
+        """
         document = r'\begin{document}' + os.linesep
 
         if self.maketitle:
@@ -66,22 +88,34 @@ class Document(BaseLaTeXContainer):
 
         return head + os.linesep + document
 
-    def generate_tex(self):
-        """Generates a .tex file."""
-        with open(self.filename + '.tex', 'w') as newf:
+    def generate_tex(self, filename):
+        """Generates a .tex file.
+        
+            :param filename: the name of the file
+        
+            :type filename: str
+        """
+        with open(filename + '.tex', 'w') as newf:
             self.dump(newf)
 
-    def generate_pdf(self, clean=True):
-        """Generates a pdf"""
+    def generate_pdf(self, filename, clean=True):
+        """Generates a .pdf file.
+            
+            :param filename: the name of the file
+            :param clean: whether non-pdf files created by `pdflatex` must be 
+            removed or not
+            
+            :type filename: str
+            :type clean: bool
+        """
         self.generate_tex()
 
-        command = 'pdflatex --jobname="' + self.filename + '" "' + \
-            self.filename + '.tex"'
+        command = 'pdflatex --jobname="' + filename + '" "' + filename + '.tex"'
 
         subprocess.check_call(command, shell=True)
 
         if clean:
-            subprocess.call('rm "' + self.filename + '.aux" "' +
-                            self.filename + '.out" "' +
-                            self.filename + '.log" "' +
-                            self.filename + '.tex"', shell=True)
+            subprocess.call('rm "' + filename + '.aux" "' +
+                            filename + '.out" "' +
+                            filename + '.log" "' +
+                            filename + '.tex"', shell=True)
