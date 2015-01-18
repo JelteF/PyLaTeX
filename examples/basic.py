@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from pylatex import Document, Section, Subsection
 from pylatex.utils import italic, escape_latex
 
