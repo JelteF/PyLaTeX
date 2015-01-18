@@ -12,9 +12,20 @@
 from .command import Command
 
 
+
 class Package(Command):
 
     """A class that represents a package."""
 
     def __init__(self, name, base='usepackage', options=None):
+        """
+            :param name: 
+            :param base: 
+            :param options: 
+            
+            :type name: 
+            :type base: 
+            :type options: 
+        """
+        
         super().__init__(base, arguments=name, options=options)

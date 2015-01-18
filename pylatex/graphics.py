@@ -15,17 +15,37 @@ from .package import Package
 from .command import Command
 
 
+
 class Figure(BaseLaTeXNamedContainer):
 
     """A class that represents a Graphic."""
 
     def __init__(self, data=None, position=None):
+        """
+            :param data: 
+            :param position: 
+            
+            :type data: 
+            :type position: 
+        """
+        
         packages = [Package('graphicx')]
         super().__init__('figure', data=data, packages=packages,
                          options=position)
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
+        """Adds an image.
+        
+            :param filename: 
+            :param width: 
+            :param placement: 
+            
+            :type filename: 
+            :type width: 
+            :type placement: 
+        """
+        
         if placement is not None:
             self.append(placement)
 
@@ -36,5 +56,11 @@ class Figure(BaseLaTeXNamedContainer):
                             arguments=fix_filename(filename)))
 
     def add_caption(self, caption):
-        """Add a caption to the figure"""
+        """Adds a caption to the figure.
+        
+           :param caption: 
+           
+           :type caption: 
+        """
+        
         self.append(Command('caption', caption))

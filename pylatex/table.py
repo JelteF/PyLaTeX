@@ -18,7 +18,17 @@ from collections import Counter
 import re
 
 
+
 def get_table_width(table_spec):
+    """
+        :param table_spec: 
+        
+        :type table_spec: str
+        
+        :return: 
+        :rtype: int
+    """
+    
     column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
 
     # Remove things like {\bfseries}
@@ -34,13 +44,33 @@ class Table(BaseLaTeXNamedContainer):
 
     def __init__(self, table_spec, data=None, pos=None, table_type='tabular',
                  **kwargs):
+        """
+            :param table_spec: 
+            :param data: 
+            :param pos: 
+            :param table_type: 
+            
+            :type table_spec: 
+            :type data: 
+            :type pos: 
+            :type table_type: 
+        """
+        
         self.width = get_table_width(table_spec)
 
         super().__init__(table_type, data=data, options=pos,
                          argument=table_spec, **kwargs)
 
     def add_hline(self, start=None, end=None):
-        """Add a horizontal line to the table"""
+        """Adds a horizontal line to the table.
+        
+            :param start: 
+            :param end: 
+            
+            :type start: 
+            :type end: 
+        """
+        
         if start is None and end is None:
             self.append(r'\hline')
         else:
@@ -48,21 +78,44 @@ class Table(BaseLaTeXNamedContainer):
                 start = 1
             elif end is None:
                 end = self.width
+                
             self.append(Command('cline', str(start) + '-' + str(end)))
 
     def add_empty_row(self):
-        """Add an empty row to the table"""
+        """Adds an empty row to the table."""
+        
         self.append((self.width - 1) * '&' + r'\\')
 
     def add_row(self, cells, escape=False):
-        """Add a row of cells to the table"""
+        """Adds a row of cells to the table.
+        
+            :param cells: 
+            :param escape: 
+            
+            :type cells: 
+            :type escape: 
+        """
+        
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 
     def add_multicolumn(self, size, align, content, cells=None, escape=False):
+        """Adds a multicolumn of width size to the table, with cell content.
+        
+            :param size: 
+            :param align: 
+            :param content: 
+            :param cells: 
+            :param escape: 
+            
+            :type size: 
+            :type align: 
+            :type content: 
+            :type cells: 
+            :type escape: 
         """
-        Add a multicolumn of width size to the table, with cell content content
-        """
+        
         self.append(Command('multicolumn', arguments=(size, align, content)))
+        
         if cells is not None:
             self.add_row(cells)
         else:
@@ -70,15 +123,31 @@ class Table(BaseLaTeXNamedContainer):
 
     def add_multirow(self, size, align, content, hlines=True, cells=None,
                      escape=False):
+        """Adds a multirow of height size to the table, with cell content.
+        
+            :param size: 
+            :param align: 
+            :param content: 
+            :param hlines: 
+            :param cells: 
+            :param escape: 
+            
+            :type size: 
+            :type align: 
+            :type content: 
+            :type hlines: 
+            :type cells: 
+            :type escape: 
         """
-        Add a multirow of height size to the table, with cell content content
-        """
+        
         self.append(Command('multirow', arguments=(size, align, content)))
         self.packages.add(Package('multirow'))
+        
         if cells is not None:
             for i, row in enumerate(cells):
                 if hlines and i:
                     self.add_hline(2)
+                    
                 self.append('&')
                 self.add_row(row)
         else:
@@ -110,5 +179,6 @@ class LongTabu(Table):
 
     def __init__(self, *args, **kwargs):
         packages = [Package('tabu'), Package('longtable')]
+        
         super().__init__(*args, table_type='longtabu', packages=packages,
                          **kwargs)

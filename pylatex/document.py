@@ -17,6 +17,7 @@ from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
 
 
+
 class Document(BaseLaTeXContainer):
 
     """
@@ -48,6 +49,7 @@ class Document(BaseLaTeXContainer):
             :type data: list
             :type maketitle: bool
         """
+        
         self.default_filename = default_filename
         self.maketitle = maketitle
 
@@ -73,8 +75,10 @@ class Document(BaseLaTeXContainer):
     def dumps(self):
         """Represents the document as a string in LaTeX syntax.
         
+            :return: 
             :rtype: str
         """
+        
         document = r'\begin{document}' + os.linesep
 
         if self.maketitle:
@@ -97,6 +101,7 @@ class Document(BaseLaTeXContainer):
         
             :type filename: str
         """
+        
         filename = self.select_filename(filename)
         
         with open(filename + '.tex', 'w') as newf:
@@ -112,6 +117,7 @@ class Document(BaseLaTeXContainer):
             :type filename: str
             :type clean: bool
         """
+        
         filename = self.select_filename(filename)
         
         self.generate_tex(filename)
@@ -134,8 +140,10 @@ class Document(BaseLaTeXContainer):
         
             :type filename: str
             
+            :return: The selected filename
             :rtype: str
         """
+        
         if filename == '':
             return self.default_filename
         else:

@@ -15,13 +15,32 @@ from pylatex.package import Package
 from pylatex.command import Command
 
 
+
 class VectorName(Command):
     def __init__(self, name):
+        """
+            :param name: 
+            
+            :type name: 
+        """
+        
         super().__init__('mathbf', arguments=name)
 
 
 class Matrix(BaseLaTeXClass):
     def __init__(self, matrix, name='', mtype='p', alignment=None):
+        """
+            :param matrix: 
+            :param name: 
+            :param mtype: 
+            :param alignment: 
+            
+            :type matrix: 
+            :type name: 
+            :type mtype: 
+            :type alignment: 
+        """
+        
         self.mtype = mtype
         self.matrix = matrix
         self.alignment = alignment
@@ -30,6 +49,10 @@ class Matrix(BaseLaTeXClass):
         super().__init__(packages=[Package('amsmath')])
 
     def dumps(self):
+        """
+            :rtype: str
+        """
+        
         string = r'\begin{'
         mtype = self.mtype + 'matrix'
 

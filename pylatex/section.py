@@ -14,18 +14,33 @@ from .base_classes import BaseLaTeXContainer
 from .command import Command
 
 
+
 class SectionBase(BaseLaTeXContainer):
 
     """A class that is the base for all section type classes"""
 
     def __init__(self, title, numbering=True, data=None):
+        """
+            :param title: 
+            :param numbering: 
+            :param data: 
+            
+            :type title: 
+            :type numbering: 
+            :type data: 
+        """
+        
         self.title = title
         self.numbering = numbering
 
         super().__init__(data)
 
     def dumps(self):
-        """Represents the section as a string in LaTeX syntax."""
+        """Represents the section as a string in LaTeX syntax.
+        
+            :return: 
+            :rtype: str
+        """
 
         if not self.numbering:
             num = '*'
@@ -37,6 +52,7 @@ class SectionBase(BaseLaTeXContainer):
         string += dumps_list(self)
 
         super().dumps()
+        
         return string
 
 
