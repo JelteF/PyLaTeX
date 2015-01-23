@@ -50,10 +50,10 @@ class Table(BaseLaTeXNamedContainer):
             :param pos: 
             :param table_type: 
             
-            :type table_spec: 
-            :type data: 
-            :type pos: 
-            :type table_type: 
+            :type table_spec: str
+            :type data: list
+            :type pos: list
+            :type table_type: str
         """
         
         self.width = get_table_width(table_spec)
@@ -67,8 +67,8 @@ class Table(BaseLaTeXNamedContainer):
             :param start: 
             :param end: 
             
-            :type start: 
-            :type end: 
+            :type start: int
+            :type end: int
         """
         
         if start is None and end is None:
@@ -92,8 +92,8 @@ class Table(BaseLaTeXNamedContainer):
             :param cells: 
             :param escape: 
             
-            :type cells: 
-            :type escape: 
+            :type cells: tuple
+            :type escape: bool
         """
         
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
@@ -107,11 +107,11 @@ class Table(BaseLaTeXNamedContainer):
             :param cells: 
             :param escape: 
             
-            :type size: 
-            :type align: 
-            :type content: 
-            :type cells: 
-            :type escape: 
+            :type size: int
+            :type align: str
+            :type content: str
+            :type cells: tuple
+            :type escape: bool
         """
         
         self.append(Command('multicolumn', arguments=(size, align, content)))
@@ -132,12 +132,12 @@ class Table(BaseLaTeXNamedContainer):
             :param cells: 
             :param escape: 
             
-            :type size: 
-            :type align: 
-            :type content: 
-            :type hlines: 
-            :type cells: 
-            :type escape: 
+            :type size: int
+            :type align: str
+            :type content: str
+            :type hlines: bool
+            :type cells: tuple
+            :type escape: bool
         """
         
         self.append(Command('multirow', arguments=(size, align, content)))

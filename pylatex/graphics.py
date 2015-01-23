@@ -25,8 +25,8 @@ class Figure(BaseLaTeXNamedContainer):
             :param data: 
             :param position: 
             
-            :type data: 
-            :type position: 
+            :type data: list
+            :type position: str
         """
         
         packages = [Package('graphicx')]
@@ -41,9 +41,9 @@ class Figure(BaseLaTeXNamedContainer):
             :param width: 
             :param placement: 
             
-            :type filename: 
-            :type width: 
-            :type placement: 
+            :type filename: str
+            :type width: str
+            :type placement: str
         """
         
         if placement is not None:
@@ -60,7 +60,7 @@ class Figure(BaseLaTeXNamedContainer):
         
            :param caption: 
            
-           :type caption: 
+           :type caption: str
         """
         
         self.append(Command('caption', caption))

@@ -24,7 +24,7 @@ class TikZ(BaseLaTeXNamedContainer):
         """
             :param data: 
             
-            :type data: 
+            :type data: list
         """
         
         packages = [Package('tikz')]
@@ -41,8 +41,8 @@ class Axis(BaseLaTeXNamedContainer):
             :param data: 
             :param options: 
             
-            :type data: 
-            :type options: 
+            :type data: list
+            :type options: list
         """
         
         packages = [Package('pgfplots'), Command('pgfplotsset',
@@ -62,10 +62,10 @@ class Plot(BaseLaTeXClass):
             :param coordinates: 
             :param options: 
             
-            :type name: 
-            :type func: 
-            :type coordinates: 
-            :type options: 
+            :type name: str
+            :type func: str
+            :type coordinates: list
+            :type options: list
         """
         
         self.name = name

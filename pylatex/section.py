@@ -25,9 +25,9 @@ class SectionBase(BaseLaTeXContainer):
             :param numbering: 
             :param data: 
             
-            :type title: 
-            :type numbering: 
-            :type data: 
+            :type title: str
+            :type numbering: bool
+            :type data: list
         """
         
         self.title = title

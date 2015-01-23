@@ -32,8 +32,8 @@ class Command(BaseLaTeXClass):
             
             :type command: str
             :type arguments: str
-            :type options: 
-            :type packages: 
+            :type options: list or :class:`parameters.Options` instance
+            :type packages: list
         """
         
         self.command = command

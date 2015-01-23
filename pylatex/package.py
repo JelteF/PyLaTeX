@@ -23,9 +23,9 @@ class Package(Command):
             :param base: 
             :param options: 
             
-            :type name: 
-            :type base: 
-            :type options: 
+            :type name: str
+            :type base: str
+            :type options: list
         """
         
         super().__init__(base, arguments=name, options=options)

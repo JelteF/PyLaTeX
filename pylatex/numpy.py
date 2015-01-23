@@ -21,7 +21,7 @@ class VectorName(Command):
         """
             :param name: 
             
-            :type name: 
+            :type name: str
         """
         
         super().__init__('mathbf', arguments=name)
@@ -35,10 +35,10 @@ class Matrix(BaseLaTeXClass):
             :param mtype: 
             :param alignment: 
             
-            :type matrix: 
-            :type name: 
-            :type mtype: 
-            :type alignment: 
+            :type matrix: :class:`numpy.matrix` instance
+            :type name: str
+            :type mtype: str
+            :type alignment: str
         """
         
         self.mtype = mtype
@@ -80,4 +80,5 @@ class Matrix(BaseLaTeXClass):
         string += r'\end{' + mtype + '}'
 
         super().dumps()
+        
         return string

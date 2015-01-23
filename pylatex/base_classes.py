@@ -143,9 +143,9 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
             :param options: 
             :param argument: 
             
-            :type name: 
-            :type options: 
-            :type argument: 
+            :type name: str
+            :type options: list
+            :type argument: str
         """
         
         self.name = name

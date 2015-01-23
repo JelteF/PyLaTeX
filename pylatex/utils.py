@@ -34,7 +34,7 @@ def escape_latex(s):
         
         :param s: 
         
-        :type s: 
+        :type s: str
         
         :return: 
         :rtype: str
@@ -49,7 +49,7 @@ def fix_filename(filename):
     
         :param filename: 
         
-        :type filename: 
+        :type filename: str
         
         :return: 
         :rtype: str
@@ -67,9 +67,9 @@ def dumps_list(l, escape=False, token='\n'):
         :param escape: 
         :param token: 
         
-        :type l: 
-        :type escape: 
-        :type token: 
+        :type l: list
+        :type escape: bool
+        :type token: str
         
         :return: 
         :rtype: str
@@ -84,8 +84,8 @@ def _latex_item_to_string(i, escape=False):
         :param i: 
         :param escape: 
         
-        :type i: 
-        :type escape: 
+        :type i: object
+        :type escape: bool
         
         :return: 
         :rtype: str
@@ -106,7 +106,7 @@ def bold(s):
     
         :param s: 
         
-        :type s: 
+        :type s: str
         
         :return: 
         :rtype: str
@@ -122,7 +122,7 @@ def italic(s):
     
         :param s: 
         
-        :type s: 
+        :type s: str
         
         :return: 
         :rtype: str
@@ -137,8 +137,8 @@ def verbatim(s, delimiter='|'):
         :param s: 
         :param delimiter: 
         
-        :type s: 
-        :type delimiter: 
+        :type s: str
+        :type delimiter: str
         
         :return: 
         :rtype: str

@@ -8,8 +8,8 @@ class Math(BaseLaTeXContainer):
             :param data: 
             :param inline: 
             
-            :type data: 
-            :type inline: 
+            :type data: list
+            :type inline: bool
         """
         
         self.inline = inline
@@ -26,4 +26,5 @@ class Math(BaseLaTeXContainer):
             string = '$$' + super().dumps(token=' ') + '$$\n'
 
         super().dumps()
+        
         return string

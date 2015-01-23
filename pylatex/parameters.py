@@ -9,10 +9,13 @@
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
+
 from .base_classes import BaseLaTeXClass
 
 
+
 class Parameters(BaseLaTeXClass):
+
     """
     A class implementing LaTex parameters. It supports normal positional
     parameters, as well as key-value pairs.
@@ -91,7 +94,11 @@ class Parameters(BaseLaTeXClass):
         return string
 
     def list(self):
-        """TODO"""
+        """TODO
+        
+            :return: 
+            :rtype: list
+        """
         
         params = []
         params.extend(self._positional_args)
@@ -102,6 +109,9 @@ class Parameters(BaseLaTeXClass):
 
 
 class Options(Parameters):
+
+    """TODO"""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -109,6 +119,9 @@ class Options(Parameters):
 
 
 class Arguments(Parameters):
+
+    """TODO"""
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
