@@ -9,10 +9,13 @@
     :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
+
 from .base_classes import BaseLaTeXClass
 
 
+
 class Parameters(BaseLaTeXClass):
+
     """
     A class implementing LaTex parameters. It supports normal positional
     parameters, as well as key-value pairs.
@@ -40,51 +43,86 @@ class Parameters(BaseLaTeXClass):
         if len(args) == 1 and hasattr(args[0], '__iter__') and\
                 not isinstance(args[0], str):
             args = args[0]
+            
         self._positional_args = list(args)
         self._key_value_args = dict(kwargs)
+        
         super().__init__(packages=None)
 
     def __key(self):
+        """
+            :return: 
+            :rtype: tuple
+        """
+        
         return self.optional, tuple(self.list())
 
     def __eq__(self, other):
+        """
+            :return: 
+            :rtype: bool
+        """
+        
         return self.__key() == other.__key()
 
     def __hash__(self):
+        """
+            :return: 
+            :rtype: int
+        """
+        
         return hash(self.__key())
 
     def dumps(self):
-        """
-        Represents the parameters as a string in LaTeX syntax to be appended to
-        a command.
+        """Represents the parameters as a string in LaTeX syntax to be appended 
+        to a command.
 
-        :return: The rendered parameters
-        :rtype: str
+            :return: The rendered parameters
+            :rtype: str
         """
+        
         params = self.list()
+        
         if len(params) <= 0:
             return ''
+            
         if self.optional:
             string = '[{args}]'.format(args=','.join(map(str, params)))
         else:
             string = '{{{args}}}'.format(args='}{'.join(map(str, params)))
+            
         return string
 
     def list(self):
+        """TODO
+        
+            :return: 
+            :rtype: list
+        """
+        
         params = []
         params.extend(self._positional_args)
         params.extend(['{k}={v}'.format(k=k, v=v) for k, v in
                        self._key_value_args.items()])
+                       
         return params
 
 
 class Options(Parameters):
+
+    """TODO"""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
         self.optional = True
 
 
 class Arguments(Parameters):
+
+    """TODO"""
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
         self.optional = False
