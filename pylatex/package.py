@@ -25,7 +25,7 @@ class Package(Command):
             
             :type name: str
             :type base: str
-            :type options: list
+            :type options: str or list or :class:`parameters.Options` instance
         """
         
         super().__init__(base, arguments=name, options=options)

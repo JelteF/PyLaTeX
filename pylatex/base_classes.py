@@ -144,7 +144,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
             :param argument: 
             
             :type name: str
-            :type options: list
+            :type options: str or list or :class:`parameters.Options` instance
             :type argument: str
         """
         

@@ -31,8 +31,8 @@ class Command(BaseLaTeXClass):
             :param packages: 
             
             :type command: str
-            :type arguments: str
-            :type options: list or :class:`parameters.Options` instance
+            :type arguments: str or list or :class:`parameters.Arguments` instance
+            :type options: str or list or :class:`parameters.Options` instance
             :type packages: list
         """
         

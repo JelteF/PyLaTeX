@@ -42,7 +42,7 @@ class Axis(BaseLaTeXNamedContainer):
             :param options: 
             
             :type data: list
-            :type options: list
+            :type options: str or list or :class:`parameters.Options` instance
         """
         
         packages = [Package('pgfplots'), Command('pgfplotsset',
@@ -65,7 +65,7 @@ class Plot(BaseLaTeXClass):
             :type name: str
             :type func: str
             :type coordinates: list
-            :type options: list
+            :type options: str or list or :class:`parameters.Options` instance
         """
         
         self.name = name
