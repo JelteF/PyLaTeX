@@ -18,9 +18,9 @@ _latex_special_chars = {
     '_':  r'\_',
     '{':  r'\{',
     '}':  r'\}',
-    '~':  r'\lettertilde{}',
-    '^':  r'\letterhat{}',
-    '\\': r'\letterbackslash{}',
+    '~':  r'\textasciitilde{}',
+    '^':  r'\^{}',
+    '\\': r'\textbackslash{}',
     '\n': r'\\\\',
 }
 
