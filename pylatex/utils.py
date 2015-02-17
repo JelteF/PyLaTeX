@@ -22,6 +22,7 @@ _latex_special_chars = {
     '^':  r'\^{}',
     '\\': r'\textbackslash{}',
     '\n': r'\\\\',
+    '-':  r'{-}',
 }
 
 
