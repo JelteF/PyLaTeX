@@ -21,7 +21,7 @@ _latex_special_chars = {
     '~':  r'\textasciitilde{}',
     '^':  r'\^{}',
     '\\': r'\textbackslash{}',
-    '\n': r'\\\\',
+    '\n': r'\\',
     '-':  r'{-}',
 }
 
