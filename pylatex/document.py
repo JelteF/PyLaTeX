@@ -13,7 +13,7 @@ import os
 import subprocess
 from .package import Package
 from .command import Command
-from .utils import dumps_list
+from .utils import dumps_list, rm_tmp
 from .base_classes import BaseLaTeXContainer
 
 
@@ -131,7 +131,9 @@ class Document(BaseLaTeXContainer):
             subprocess.call('rm "' + filename + '.log"', shell=True)
             subprocess.call('rm "' + filename + '.tex"', shell=True)
             subprocess.call('rm "' + filename + '.out"', shell=True)
-
+        
+        rm_tmp()
+        
     def select_filename(self, filename):
         """Makes a choice between `filename` and `self.default_filename`.
 
