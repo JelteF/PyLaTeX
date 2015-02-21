@@ -25,11 +25,6 @@ class Figure(BaseLaTeXNamedContainer):
 
     def __init__(self, data=None, position=None):
         """
-        :param data:
-        :param position:
-
-        :type data: list
-        :type position: str
         :param data: 
         :param position: 
         
