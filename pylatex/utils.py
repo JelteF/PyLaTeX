@@ -57,7 +57,10 @@ def fix_filename(filename):
     
     parts = filename.split('.')
     
-    return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
+    if len(parts[0:-1]):
+        return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
+    else:
+        return filename
 
 
 def dumps_list(l, escape=False, token='\n'):
