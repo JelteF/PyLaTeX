@@ -18,10 +18,11 @@ _latex_special_chars = {
     '_':  r'\_',
     '{':  r'\{',
     '}':  r'\}',
-    '~':  r'\lettertilde{}',
-    '^':  r'\letterhat{}',
-    '\\': r'\letterbackslash{}',
-    '\n': r'\\\\',
+    '~':  r'\textasciitilde{}',
+    '^':  r'\^{}',
+    '\\': r'\textbackslash{}',
+    '\n': r'\\',
+    '-':  r'{-}',
 }
 
 
