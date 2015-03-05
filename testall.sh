@@ -6,3 +6,7 @@ for f in {tests,examples}/*.py; do
         exit 1
     fi
 done
+
+if [ "$1" = 'clean' ]; then
+    rm *.pdf *.log *.aux *.tex
+fi
