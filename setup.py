@@ -172,6 +172,13 @@ if sys.version_info[0] == 3:
 else:
     source_dir = 'python2_source'
 
+extras = {
+    'matrices': ['numpy'],
+    'matplotlib': ['matplotlib'],
+}
+
+extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
+
 setup(name='PyLaTeX',
       version='0.6.1',
       author='Jelte Fennema',
@@ -183,9 +190,7 @@ setup(name='PyLaTeX',
       url='https://github.com/JelteF/PyLaTeX',
       license='MIT',
       install_requires=['ordered-set'],
-      extras_require={
-          'all': ['numpy']
-      },
+      extras_require=extras,
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
