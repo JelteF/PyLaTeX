@@ -22,13 +22,13 @@ class Figure(BaseLaTeXNamedContainer):
 
     def __init__(self, data=None, position=None):
         """
-            :param data: 
-            :param position: 
-            
+            :param data:
+            :param position:
+
             :type data: list
             :type position: str
         """
-        
+
         packages = [Package('graphicx')]
         super().__init__('figure', data=data, packages=packages,
                          options=position)
@@ -36,16 +36,16 @@ class Figure(BaseLaTeXNamedContainer):
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
         """Adds an image.
-        
-            :param filename: 
-            :param width: 
-            :param placement: 
-            
+
+            :param filename:
+            :param width:
+            :param placement:
+
             :type filename: str
             :type width: str
             :type placement: str
         """
-        
+
         if placement is not None:
             self.append(placement)
 
@@ -57,10 +57,10 @@ class Figure(BaseLaTeXNamedContainer):
 
     def add_caption(self, caption):
         """Adds a caption to the figure.
-        
-           :param caption: 
-           
+
+           :param caption:
+
            :type caption: str
         """
-        
+
         self.append(Command('caption', caption))

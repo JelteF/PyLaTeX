@@ -21,15 +21,15 @@ class SectionBase(BaseLaTeXContainer):
 
     def __init__(self, title, numbering=True, data=None):
         """
-            :param title: 
-            :param numbering: 
-            :param data: 
-            
+            :param title:
+            :param numbering:
+            :param data:
+
             :type title: str
             :type numbering: bool
             :type data: list
         """
-        
+
         self.title = title
         self.numbering = numbering
 
@@ -37,8 +37,8 @@ class SectionBase(BaseLaTeXContainer):
 
     def dumps(self):
         """Represents the section as a string in LaTeX syntax.
-        
-            :return: 
+
+            :return:
             :rtype: str
         """
 
@@ -52,7 +52,7 @@ class SectionBase(BaseLaTeXContainer):
         string += dumps_list(self)
 
         super().dumps()
-        
+
         return string
 
 

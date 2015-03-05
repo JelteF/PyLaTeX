@@ -22,13 +22,13 @@ class TikZ(BaseLaTeXNamedContainer):
 
     def __init__(self, data=None):
         """
-            :param data: 
-            
+            :param data:
+
             :type data: list
         """
-        
+
         packages = [Package('tikz')]
-        
+
         super().__init__('tikzpicture', data=data, packages=packages)
 
 
@@ -38,13 +38,13 @@ class Axis(BaseLaTeXNamedContainer):
 
     def __init__(self, data=None, options=None):
         """
-            :param data: 
-            :param options: 
-            
+            :param data:
+            :param options:
+
             :type data: list
             :type options: str or list or :class:`parameters.Options` instance
         """
-        
+
         packages = [Package('pgfplots'), Command('pgfplotsset',
                                                  'compat=newest')]
 
@@ -57,17 +57,17 @@ class Plot(BaseLaTeXClass):
 
     def __init__(self, name=None, func=None, coordinates=None, options=None):
         """
-            :param name: 
-            :param func: 
-            :param coordinates: 
-            :param options: 
-            
+            :param name:
+            :param func:
+            :param coordinates:
+            :param options:
+
             :type name: str
             :type func: str
             :type coordinates: list
             :type options: str or list or :class:`parameters.Options` instance
         """
-        
+
         self.name = name
         self.func = func
         self.coordinates = coordinates
@@ -80,11 +80,11 @@ class Plot(BaseLaTeXClass):
 
     def dumps(self):
         """Represents the plot as a string in LaTeX syntax.
-        
-            :return: 
+
+            :return:
             :rtype: str
         """
-        
+
         string = Command('addplot', options=self.options).dumps()
 
         if self.coordinates is not None:

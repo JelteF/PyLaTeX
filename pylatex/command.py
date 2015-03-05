@@ -25,17 +25,17 @@ class Command(BaseLaTeXClass):
 
     def __init__(self, command, arguments=None, options=None, packages=None):
         """
-            :param command: 
-            :param arguments: 
-            :param options: 
-            :param packages: 
-            
+            :param command:
+            :param arguments:
+            :param options:
+            :param packages:
+
             :type command: str
             :type arguments: str or list or :class:`parameters.Arguments` instance
             :type options: str or list or :class:`parameters.Options` instance
             :type packages: list
         """
-        
+
         self.command = command
 
         if isinstance(arguments, Arguments):
@@ -56,39 +56,39 @@ class Command(BaseLaTeXClass):
 
     def __key(self):
         """
-            :return: 
+            :return:
             :rtype: tuple
         """
-        
+
         return self.command, self.arguments, self.options
 
     def __eq__(self, other):
         """
             :param other: A command
-            
+
             :type other: :class:`command.Command` instance
-            
-            :return: 
+
+            :return:
             :rtype: bool
         """
-        
+
         return self.__key() == other.__key()
 
     def __hash__(self):
         """
-            :return: 
+            :return:
             :rtype: int
         """
-        
+
         return hash(self.__key())
 
     def dumps(self):
         """Represents the command as a string in LaTeX syntax.
-        
-            :return: 
+
+            :return:
             :rtype: str
         """
-        
+
         return '\\{command}{options}{arguments}'.\
             format(command=self.command, options=self.options.dumps(),
                    arguments=self.arguments.dumps())
