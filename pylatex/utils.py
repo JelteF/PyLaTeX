@@ -58,10 +58,12 @@ def fix_filename(filename):
     
     parts = filename.split('.')
     
-    if len(parts[0:-1]):
-        return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
-    else:
+    try:
+        parts[1]
+    except IndexError: # No points
         return filename
+    else:
+        return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
 
 
 def dumps_list(l, escape=False, token='\n'):
