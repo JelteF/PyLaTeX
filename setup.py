@@ -183,6 +183,9 @@ setup(name='PyLaTeX',
       url='https://github.com/JelteF/PyLaTeX',
       license='MIT',
       install_requires=['ordered-set'],
+      extras_require={
+          'all': ['numpy']
+      },
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
