@@ -23,7 +23,7 @@ class Figure(BaseLaTeXNamedContainer):
 
     """A class that represents a Graphic."""
 
-    def __init__(self, data=None, position=None):
+    def __init__(self, data=None, position=None, seperate_paragraph=True):
         """
         :param data:
         :param position:
@@ -32,14 +32,17 @@ class Figure(BaseLaTeXNamedContainer):
         :type position: str
         :param data: 
         :param position: 
+        :param seperate_paragraph: 
         
         :type data: list
         :type position: str
+        :type seperate_paragraph: bool
         """
 
         packages = [Package('graphicx')]
         super().__init__('figure', data=data, packages=packages,
-                         options=position)
+                         options=position, 
+                         seperate_paragraph=seperate_paragraph)
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
@@ -76,8 +79,8 @@ class Figure(BaseLaTeXNamedContainer):
 class Plt(Figure):
     """A class that represents a plot created with matplotlib."""
     
-    def __init__(self, data=None, position=None):
-        Figure.__init__(self, data, position)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
     
     def _save_plot(self, plt):
         """Saves the plot.
