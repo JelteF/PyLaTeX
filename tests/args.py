@@ -14,6 +14,8 @@ from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
 from pylatex.utils import (escape_latex, fix_filename, dumps_list, bold, 
                            italic, verbatim)
+                           
+matplotlib.use('Agg') # Not to use X server. For TravisCI.
 
 
 
