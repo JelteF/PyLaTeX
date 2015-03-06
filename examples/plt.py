@@ -4,6 +4,8 @@ import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Plt
 
+matplotlib.use('Agg') # Not to use X server. For TravisCI.
+
 
 
 if __name__ == '__main__':
