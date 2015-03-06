@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import matplotlib
+matplotlib.use('Agg') # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Plt
