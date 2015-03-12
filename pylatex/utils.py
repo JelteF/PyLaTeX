@@ -58,7 +58,7 @@ def fix_filename(filename):
 
     parts = filename.split('.')
 
-    if len(parts[0:-1]):
+    if len(parts) > 2:
         return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
     else:
         return filename
