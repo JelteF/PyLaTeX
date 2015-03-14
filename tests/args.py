@@ -6,9 +6,12 @@
 """
 
 import numpy as np
+import matplotlib
+matplotlib.use('Agg') # Not to use X server. For TravisCI.
+import matplotlib.pyplot as pyplot
 
 from pylatex import (Document, Section, Math, Table, Figure, Package, TikZ, 
-                    Axis, Plot)
+                    Axis, Plot, Plt)
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
 from pylatex.utils import (escape_latex, fix_filename, dumps_list, bold, 
@@ -54,14 +57,25 @@ t.add_multirow(size=3, align='*', content='Multirow', hlines=True, cells=None,
                escape=False)
 
 # Command
-c = Command('documentclass', arguments=None, options=None, packages=None)
+c = Command(command='documentclass', arguments=None, options=None, packages=None)
 
 # Figure
 f = Figure(data=None, position=None)
 
 f.add_image(filename='', width=r'0.8\textwidth', placement=r'\centering')
 
-f.add_caption('')
+f.add_caption(caption='')
+
+# Plt
+plot = Plt(data=None, position=None)
+
+x = [0, 1, 2, 3, 4, 5, 6]
+y = [15, 2, 7, 1, 5, 6, 9]
+
+pyplot.plot(x, y)
+
+plot.add_plot(plt=pyplot, width=r'0.8\textwidth', placement=r'\centering')
+plot.add_caption(caption='I am a caption.')
 
 # Numpy
 v = VectorName(name='')
