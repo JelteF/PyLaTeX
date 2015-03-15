@@ -107,7 +107,7 @@ class Document(BaseLaTeXContainer):
         with open(filename + '.tex', 'w') as newf:
             self.dump(newf)
 
-    def generate_pdf(self, filename='', clean=True):
+    def generate_pdf(self, filename='', clean=True, compiler='pdflatex'):
         """Generates a .pdf file.
 
             :param filename: the name of the file
@@ -122,7 +122,8 @@ class Document(BaseLaTeXContainer):
 
         self.generate_tex(filename)
 
-        command = 'pdflatex --jobname="' + filename + '" "' + filename + '.tex"'
+        command = compiler + ' --jobname="' + filename + '" "' + \
+            filename + '.tex"'
 
         subprocess.check_call(command, shell=True)
 
