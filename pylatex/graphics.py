@@ -30,10 +30,10 @@ class Figure(BaseLaTeXNamedContainer):
 
         :type data: list
         :type position: str
-        :param data: 
-        :param position: 
-        :param seperate_paragraph: 
-        
+        :param data:
+        :param position:
+        :param seperate_paragraph:
+
         :type data: list
         :type position: str
         :type seperate_paragraph: bool
@@ -41,17 +41,17 @@ class Figure(BaseLaTeXNamedContainer):
 
         packages = [Package('graphicx')]
         super().__init__('figure', data=data, packages=packages,
-                         options=position, 
+                         options=position,
                          seperate_paragraph=seperate_paragraph)
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
         """Adds an image.
-        
-        :param filename: 
-        :param width: 
-        :param placement: 
-        
+
+        :param filename:
+        :param width:
+        :param placement:
+
         :type filename: str
         :type width: str
         :type placement: str
@@ -68,56 +68,56 @@ class Figure(BaseLaTeXNamedContainer):
 
     def add_caption(self, caption):
         """Adds a caption to the figure.
-        
-        :param caption: 
+
+        :param caption:
         :type caption: str
         """
 
         self.append(Command('caption', caption))
-        
-        
+
+
 class Plt(Figure):
     """A class that represents a plot created with matplotlib."""
-    
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-    
+
     def _save_plot(self, plt):
         """Saves the plot.
-        
+
         :param plt: matplotlib.pyplot
         :type plt: module
-        
+
         :return: The basename with which the plot has been saved.
         :rtype: str
         """
-        
+
         make_tmp()
-        
+
         basename = os.path.join(tmp_path, "plot")
         filename = "{}.pdf".format(basename)
-        
+
         while os.path.isfile(filename):
             basename += "t"
             filename = "{}.pdf".format(basename)
-            
+
         plt.savefig(filename)
-        
+
         return basename
-        
-    def add_plot(self, plt, width=r'0.8\textwidth', 
+
+    def add_plot(self, plt, width=r'0.8\textwidth',
                  placement=r'\centering'):
         """Adds a plot.
-        
+
         :param plt: matplotlib.pyplot
         :param width: The width of the plot.
         :param placement: The placement of the plot.
-        
+
         :type plt: module
         :type width: str
         :type placement: str
         """
-        
+
         filename = self._save_plot(plt)
-        
-        self.add_image(filename, width, placement)       
+
+        self.add_image(filename, width, placement)
