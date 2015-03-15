@@ -28,6 +28,7 @@ _latex_special_chars = {
     '\\': r'\textbackslash{}',
     '\n': r'\\',
     '-':  r'{-}',
+    '\xA0': '~',  # Non-breaking space
 }
 
 tmp_path = os.path.normpath(

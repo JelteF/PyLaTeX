@@ -18,6 +18,7 @@ _ (underscore)
 ^ (caret)
 \\ (backslash)
 --- (three minuses)
+a\xA0a (non breaking space)
 ''')
 
 section.append(text)
