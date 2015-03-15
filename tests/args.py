@@ -1,31 +1,34 @@
 #!/usr/bin/python
 
 """
-    Calls functions with all available arguments to check whether they still 
+    Calls functions with all available arguments to check whether they still
     exist. An error from this file means that the public API has been changed.
 """
 
 import numpy as np
+import matplotlib
+matplotlib.use('Agg') # Not to use X server. For TravisCI.
+import matplotlib.pyplot as pyplot
 
-from pylatex import (Document, Section, Math, Table, Figure, Package, TikZ, 
-                    Axis, Plot)
+from pylatex import (Document, Section, Math, Table, Figure, Package, TikZ,
+                    Axis, Plot, Plt)
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
-from pylatex.utils import (escape_latex, fix_filename, dumps_list, bold, 
+from pylatex.utils import (escape_latex, fix_filename, dumps_list, bold,
                            italic, verbatim)
 
 
 
 # Document
 doc = Document(
-    default_filename='default_filename', 
-    documentclass='article', 
-    fontenc='T1', 
-    inputenc='utf8', 
-    author='', 
-    title='', 
-    date='', 
-    data=None, 
+    default_filename='default_filename',
+    documentclass='article',
+    fontenc='T1',
+    inputenc='utf8',
+    author='',
+    title='',
+    date='',
+    data=None,
     maketitle=False
 )
 
@@ -47,21 +50,32 @@ t.add_hline(start=None, end=None)
 
 t.add_row(cells=(1, 2), escape=False)
 
-t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None, 
+t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None,
                   escape=False)
-                  
+
 t.add_multirow(size=3, align='*', content='Multirow', hlines=True, cells=None,
                escape=False)
 
 # Command
-c = Command('documentclass', arguments=None, options=None, packages=None)
+c = Command(command='documentclass', arguments=None, options=None, packages=None)
 
 # Figure
 f = Figure(data=None, position=None)
 
 f.add_image(filename='', width=r'0.8\textwidth', placement=r'\centering')
 
-f.add_caption('')
+f.add_caption(caption='')
+
+# Plt
+plot = Plt(data=None, position=None)
+
+x = [0, 1, 2, 3, 4, 5, 6]
+y = [15, 2, 7, 1, 5, 6, 9]
+
+pyplot.plot(x, y)
+
+plot.add_plot(plt=pyplot, width=r'0.8\textwidth', placement=r'\centering')
+plot.add_caption(caption='I am a caption.')
 
 # Numpy
 v = VectorName(name='')
@@ -75,9 +89,9 @@ m = Matrix(matrix=M, name='', mtype='p', alignment=None)
 p = Package(name='', base='usepackage', options=None)
 
 # PGFPlots
-tikz = TikZ(data=None) 
+tikz = TikZ(data=None)
 
-a = Axis(data=None, options=None) 
+a = Axis(data=None, options=None)
 
 p = Plot(name=None, func=None, coordinates=None, options=None)
 

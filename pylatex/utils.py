@@ -10,6 +10,11 @@
     :license: MIT, see License for more details.
 """
 
+import os.path
+import shutil
+
+
+
 _latex_special_chars = {
     '&':  r'\&',
     '%':  r'\%',
@@ -24,6 +29,16 @@ _latex_special_chars = {
     '\n': r'\\',
     '-':  r'{-}',
 }
+
+tmp_path = os.path.normpath(
+    os.path.join(
+        os.path.dirname(
+            os.path.realpath(__file__)
+        ),
+        "..",
+        "tmp"
+    )
+)
 
 
 def escape_latex(s):
@@ -149,3 +164,16 @@ def verbatim(s, delimiter='|'):
     """
 
     return r'\verb' + delimiter + s + delimiter
+
+
+def make_tmp():
+    """Creates the tmp directory if it doesn't exist."""
+
+    if not os.path.exists(tmp_path):
+        os.makedirs(tmp_path)
+
+def rm_tmp():
+    """Removes the tmp directory."""
+
+    if os.path.exists(tmp_path):
+        shutil.rmtree(tmp_path)
