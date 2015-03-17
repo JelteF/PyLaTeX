@@ -48,8 +48,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix package delegation with duplicate packages
 
 [unreleased]: https://github.com/JelteF/PyLaTeX/compare/v0.6.1...HEAD
-[v0.6.1]: https://github.com/JelteF/PyLaTeX/compare/v0.6...v0.6.1
-[v0.6]: https://github.com/JelteF/PyLaTeX/compare/v0.5...v0.6
-[v0.5]: https://github.com/JelteF/PyLaTeX/compare/v0.4.2...v0.5
-[v0.4.2]: https://github.com/JelteF/PyLaTeX/compare/v0.4.1...v0.4.2
-[v0.4.1]: https://github.com/JelteF/PyLaTeX/compare/68ddef6bc43a5dff42105c3a38068d87d99d049f...v0.4.1
+[0.6.1]: https://github.com/JelteF/PyLaTeX/compare/v0.6...v0.6.1
+[0.6]: https://github.com/JelteF/PyLaTeX/compare/v0.5...v0.6
+[0.5]: https://github.com/JelteF/PyLaTeX/compare/v0.4.2...v0.5
+[0.4.2]: https://github.com/JelteF/PyLaTeX/compare/v0.4.1...v0.4.2
+[0.4.1]: https://github.com/JelteF/PyLaTeX/compare/68ddef6bc43a5dff42105c3a38068d87d99d049f...v0.4.1
