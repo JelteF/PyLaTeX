@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
+## [0.7.0] - 17-03-2015
 ### Added
 - Matplotlib support
 - Quite a bit of basic docstrings
@@ -47,7 +49,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Fix package delegation with duplicate packages
 
-[unreleased]: https://github.com/JelteF/PyLaTeX/compare/v0.6.1...HEAD
+[unreleased]: https://github.com/JelteF/PyLaTeX/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/JelteF/PyLaTeX/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/JelteF/PyLaTeX/compare/v0.6...v0.6.1
 [0.6]: https://github.com/JelteF/PyLaTeX/compare/v0.5...v0.6
 [0.5]: https://github.com/JelteF/PyLaTeX/compare/v0.4.2...v0.5

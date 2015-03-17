@@ -11,7 +11,7 @@ Features
 --------
 
 - Document generation and compilation
-- Section, table, math, figure and package classes
+- Section, table, math, figure, matplotlib and package classes
 - A matrix class that can compile NumPy ndarrays and matrices to LaTeX
 - Very exstensible base classes that you can use to easily add new features
 - Contextmanager style class hierarchy
@@ -180,7 +180,7 @@ extras = {
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
 
 setup(name='PyLaTeX',
-      version='0.6.1',
+      version='0.7.0',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
