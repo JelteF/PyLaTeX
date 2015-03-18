@@ -11,3 +11,6 @@ assert fix_filename(fname) == fname
 
 fname = "aa.a.a"
 assert fix_filename(fname) == "{aa.a}.a"
+
+fname = "abc.def.fgh.ijk"
+assert fix_filename(fname) == "{abc.def.fgh}.ijk"
