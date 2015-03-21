@@ -15,6 +15,8 @@ If you want you can also do these things and they are appreciated:
 - If you add new arguments to something, add them to the args test. That way I
     will know when the external API is changed.
 - If you fix something, add a test so it won't break again.
+- Add your addition, change or fix to the changelog so it will be mentioned in
+    the next release.
 
 It would be nice if you would do these things. But to be fair, I don't do it
 all the time either.
