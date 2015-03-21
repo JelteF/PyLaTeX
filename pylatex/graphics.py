@@ -103,7 +103,7 @@ class Plt(Figure):
 
         plt.savefig(filename)
 
-        return basename
+        return filename
 
     def add_plot(self, plt, width=r'0.8\textwidth',
                  placement=r'\centering'):
