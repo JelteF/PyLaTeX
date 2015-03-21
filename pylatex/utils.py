@@ -60,7 +60,7 @@ def escape_latex(s):
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
-def fix_filename(filename):
+def fix_filename(path):
     """Latex has problems if there are one or more points in the filename,
     thus 'abc.def.jpg' will be changed to '{abc.def}.jpg
 
@@ -72,12 +72,17 @@ def fix_filename(filename):
         :rtype: str
     """
 
-    parts = filename.split('.')
+    path_parts = path.split('/')
+    dir_parts = path_parts[:-1]
 
-    if len(parts) > 2:
-        return '{' + '.'.join(parts[0:-1]) + '}.' + parts[-1]
-    else:
-        return filename
+    filename = path_parts[-1]
+    file_parts = filename.split('.')
+
+    if len(file_parts) > 2:
+        filename = '{' + '.'.join(file_parts[0:-1]) + '}.' + file_parts[-1]
+
+    dir_parts.append(filename)
+    return '/'.join(dir_parts)
 
 
 def dumps_list(l, escape=False, token='\n'):
