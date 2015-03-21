@@ -175,6 +175,7 @@ else:
 extras = {
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
+    'testing': ['flake8'],
 }
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
