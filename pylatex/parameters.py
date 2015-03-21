@@ -13,7 +13,6 @@
 from .base_classes import BaseLaTeXClass
 
 
-
 class Parameters(BaseLaTeXClass):
 
     """

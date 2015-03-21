@@ -1,7 +1,6 @@
 from .base_classes import BaseLaTeXContainer
 
 
-
 class Math(BaseLaTeXContainer):
     def __init__(self, data=None, inline=False):
         """

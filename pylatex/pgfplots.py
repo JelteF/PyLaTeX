@@ -15,7 +15,6 @@ from pylatex.package import Package
 from pylatex.command import Command
 
 
-
 class TikZ(BaseLaTeXNamedContainer):
 
     """Basic TikZ container class."""

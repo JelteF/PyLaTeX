@@ -14,7 +14,6 @@ from .base_classes import BaseLaTeXContainer
 from .command import Command
 
 
-
 class SectionBase(BaseLaTeXContainer):
 
     """A class that is the base for all section type classes"""

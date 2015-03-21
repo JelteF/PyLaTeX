@@ -18,7 +18,6 @@ from collections import Counter
 import re
 
 
-
 def get_table_width(table_spec):
     """
         :param table_spec:

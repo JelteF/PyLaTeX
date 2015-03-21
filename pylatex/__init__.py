@@ -9,10 +9,10 @@
     :license: MIT, see License for more details.
 """
 
-from .document import Document
-from .math import Math
-from .package import Package
-from .section import Section, Subsection, Subsubsection
-from .table import Table
-from .pgfplots import TikZ, Axis, Plot
-from .graphics import Figure, Plt
+from .document import Document  # noqa
+from .math import Math  # noqa
+from .package import Package  # noqa
+from .section import Section, Subsection, Subsubsection  # noqa
+from .table import Table  # noqa
+from .pgfplots import TikZ, Axis, Plot  # noqa
+from .graphics import Figure, Plt  # noqa

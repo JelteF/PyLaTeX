@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
 import matplotlib
-matplotlib.use('Agg') # Not to use X server. For TravisCI.
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Plt
-
 
 
 if __name__ == '__main__':

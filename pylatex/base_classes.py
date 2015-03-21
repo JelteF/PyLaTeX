@@ -16,7 +16,6 @@ from pylatex.utils import dumps_list
 from contextlib import contextmanager
 
 
-
 class BaseLaTeXClass:
 
     """A class that has some basic functions for LaTeX functions."""
@@ -168,7 +167,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
         string = ''
 
-        if self.seperate_paragraph  or self.begin_paragraph:
+        if self.seperate_paragraph or self.begin_paragraph:
             string += '\n\n'
 
         string += r'\begin{' + self.name + '}'

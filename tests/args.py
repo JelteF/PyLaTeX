@@ -7,16 +7,15 @@
 
 import numpy as np
 import matplotlib
-matplotlib.use('Agg') # Not to use X server. For TravisCI.
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
-from pylatex import (Document, Section, Math, Table, Figure, Package, TikZ,
-                    Axis, Plot, Plt)
+from pylatex import Document, Section, Math, Table, Figure, Package, TikZ, \
+    Axis, Plot, Plt
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
-from pylatex.utils import (escape_latex, fix_filename, dumps_list, bold,
-                           italic, verbatim)
-
+from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
+    italic, verbatim
 
 
 # Document
@@ -57,8 +56,8 @@ t.add_multirow(size=3, align='*', content='Multirow', hlines=True, cells=None,
                escape=False)
 
 # Command
-c = Command(command='documentclass', arguments=None, options=None, packages=None)
-
+c = Command(command='documentclass', arguments=None, options=None,
+            packages=None)
 # Figure
 f = Figure(data=None, position=None)
 
@@ -107,4 +106,3 @@ bold(s='')
 italic(s='')
 
 verbatim(s='', delimiter='|')
-

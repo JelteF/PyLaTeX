@@ -10,13 +10,11 @@
 """
 
 import os.path
-from os import makedirs
 
 from .utils import fix_filename, tmp_path, make_tmp
 from .base_classes import BaseLaTeXNamedContainer
 from .package import Package
 from .command import Command
-
 
 
 class Figure(BaseLaTeXNamedContainer):

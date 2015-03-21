@@ -12,7 +12,6 @@
 from .command import Command
 
 
-
 class Package(Command):
 
     """A class that represents a package."""

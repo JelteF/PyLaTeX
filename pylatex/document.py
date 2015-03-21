@@ -17,7 +17,6 @@ from .utils import dumps_list, rm_tmp
 from .base_classes import BaseLaTeXContainer
 
 
-
 class Document(BaseLaTeXContainer):
 
     """

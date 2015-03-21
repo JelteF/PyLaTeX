@@ -15,7 +15,6 @@ from pylatex.package import Package
 from pylatex.command import Command
 
 
-
 class VectorName(Command):
     def __init__(self, name):
         """

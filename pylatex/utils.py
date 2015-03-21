@@ -14,7 +14,6 @@ import os.path
 import shutil
 
 
-
 _latex_special_chars = {
     '&':  r'\&',
     '%':  r'\%',
@@ -177,6 +176,7 @@ def make_tmp():
 
     if not os.path.exists(tmp_path):
         os.makedirs(tmp_path)
+
 
 def rm_tmp():
     """Removes the tmp directory."""

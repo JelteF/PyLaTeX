@@ -13,12 +13,13 @@ from .parameters import Arguments, Options
 from .base_classes import BaseLaTeXClass
 
 
-
 class Command(BaseLaTeXClass):
     """
     A class that represents a command
     ::
-        >>> Command('documentclass', options=Options('12pt', 'a4paper', 'twoside'), arguments='article').dumps()
+        >>> Command('documentclass',
+        >>>         options=Options('12pt', 'a4paper', 'twoside'),
+        >>>         arguments='article').dumps()
         '\\documentclass[12pt,a4paper,twoside]{article}'
 
     """
@@ -31,7 +32,8 @@ class Command(BaseLaTeXClass):
             :param packages:
 
             :type command: str
-            :type arguments: str or list or :class:`parameters.Arguments` instance
+            :type arguments: str or list or :class:`parameters.Arguments` \
+                instance
             :type options: str or list or :class:`parameters.Options` instance
             :type packages: list
         """
