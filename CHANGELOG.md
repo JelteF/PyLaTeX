@@ -3,9 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+### Added
+- Contributing guidelines.
+
 ### Changed
 - The non keyword argument for filename is now called path instead of filename
     to show it can also be used with paths.
+- Travis now checks for Flake8 errors.
 
 ### Fixed
 - Fix a bug in Plt and one in fix_filename that caused an error when using them
