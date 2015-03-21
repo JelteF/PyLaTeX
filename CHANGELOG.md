@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+### Changed
+- The non keyword argument for filename is now called path instead of filename
+    to show it can also be used with paths.
+
+### Fixed
+- Fix a bug in Plt and one in fix_filename that caused an error when using them
+    with some filenames (dots in directories and a file without an extension)
 
 ## [0.7.0] - 17-03-2015
 ### Added
