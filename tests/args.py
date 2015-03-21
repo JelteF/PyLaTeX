@@ -98,7 +98,7 @@ p = Plot(name=None, func=None, coordinates=None, options=None)
 # Utils
 escape_latex(s='')
 
-fix_filename(filename='')
+fix_filename(path='')
 
 dumps_list(l=[], escape=False, token='\n')
 
