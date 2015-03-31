@@ -11,7 +11,7 @@ matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Math, Table, Figure, Package, TikZ, \
-    Axis, Plot, Plt
+    Axis, Plot, Plt, Itemize, Enumerate, Description
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
@@ -106,3 +106,16 @@ bold(s='')
 italic(s='')
 
 verbatim(s='', delimiter='|')
+
+# Lists
+itemize = Itemize()
+itemize.add_item("item")
+itemize.append("append")
+
+enum = Enumerate()
+enum.add_item("item")
+enum.append("append")
+
+desc = Description()
+desc.add_item("label", "item")
+desc.append("append")
