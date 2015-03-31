@@ -13,6 +13,25 @@
 from .base_classes import BaseLaTeXNamedContainer
 
 
+<<<<<<< HEAD
+=======
+def Item(s, label=None):
+    u"""Returns the string itemized.
+
+        :param s:
+
+        :type s: str
+
+        :return:
+        :rtype: str
+    """
+    if label:
+        return r'\item[' + label + ']{' + s + '}'
+
+    return r'\item{' + s + '}'
+
+
+>>>>>>> 15f72299515a28204d91fdce896d642add07a383
 class List(BaseLaTeXNamedContainer):
 
     """A class that represents a list."""
@@ -33,6 +52,7 @@ class List(BaseLaTeXNamedContainer):
         super().__init__(list_type, data=data, options=pos,
                          argument=list_spec, **kwargs)
 
+<<<<<<< HEAD
     def _item(self, label=None):
         """ Begin an item block. """
         if label:
@@ -49,6 +69,16 @@ class List(BaseLaTeXNamedContainer):
         """
         self.append(self._item())
         self.append(s)
+=======
+    def add_item(self, item):
+        """ Adds an item to the list.
+
+            :param item:
+
+            :type item: string
+        """
+        self.append(Item(item))
+>>>>>>> 15f72299515a28204d91fdce896d642add07a383
 
 
 class Enumerate(List):
@@ -75,6 +105,7 @@ class Description(List):
         super(Description, self).__init__(*args, list_type='description',
                                           **kwargs)
 
+<<<<<<< HEAD
     def add_item(self, label, s):
         """ Adds an item to the list.
 
@@ -86,3 +117,15 @@ class Description(List):
         """
         self.append(self._item(label))
         self.append(s)
+=======
+    def add_item(self, label, item):
+        """ Adds an item to the list.
+
+            :param label:
+            :param item:
+
+            :type label: string
+            :type item: string
+        """
+        self.append(Item(item, label))
+>>>>>>> 15f72299515a28204d91fdce896d642add07a383

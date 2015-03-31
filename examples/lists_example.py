@@ -17,11 +17,18 @@ doc = Document()
 # \end{itemize}
 
 with doc.create(Section('"Itemize" list')):
+<<<<<<< HEAD
     with doc.create(Itemize()) as itemize:
         itemize.add_item("the first item")
         itemize.add_item("the second item")
         itemize.add_item("the third etc")
         itemize.append("\\ldots")  # you can append to existing items
+=======
+    with doc.create(Itemize()) as enum:
+        enum.add_item("the first item")
+        enum.add_item("the second item")
+        enum.add_item("the third etc \\ldots")
+>>>>>>> 15f72299515a28204d91fdce896d642add07a383
 
 # create a numbered "enumerate" list like the below:
 # \begin{enumerate}
@@ -44,9 +51,16 @@ with doc.create(Section('"Enumerate" list')):
 # \end{description}
 
 with doc.create(Section('"Description" list')):
+<<<<<<< HEAD
     with doc.create(Description()) as desc:
         desc.add_item("First", "The first item")
         desc.add_item("Second", "The second item")
         desc.add_item("Third", "The third etc \\ldots")
+=======
+    with doc.create(Description()) as enum:
+        enum.add_item("First", "The first item")
+        enum.add_item("Second", "The second item")
+        enum.add_item("Third", "The third etc \\ldots")
+>>>>>>> 15f72299515a28204d91fdce896d642add07a383
 
 doc.generate_pdf()
