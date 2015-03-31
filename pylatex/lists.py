@@ -3,14 +3,13 @@
     pylatex.lists
     ~~~~~~~
 
-    This module implements the class that deals with latex List objects, 
+    This module implements the class that deals with latex List objects
     specifically Enumerate and Itemize.
 
     :copyright: (c) 2015 by Sean McLemon.
     :license: MIT, see License for more details.
 """
 
-from .command import Command
 from .base_classes import BaseLaTeXNamedContainer
 
 
@@ -25,16 +24,17 @@ def Item(s, label=None):
         :rtype: str
     """
     if label:
-        return r'\item['+ label + ']{' + s + '}'
+        return r'\item[' + label + ']{' + s + '}'
 
     return r'\item{' + s + '}'
+
 
 class List(BaseLaTeXNamedContainer):
 
     """A class that represents a list."""
 
-    def __init__(self, list_spec=None, data=None, pos=None, list_type="enumerate",
-                 **kwargs):
+    def __init__(self, list_spec=None, data=None, pos=None,
+                 list_type="enumerate", **kwargs):
         """
             :param list_spec:
             :param list_type:
@@ -80,7 +80,8 @@ class Description(List):
     """ A class that represents a description list """
 
     def __init__(self, *args, **kwargs):
-        super(Description, self).__init__(*args, list_type='description', **kwargs)
+        super(Description, self).__init__(*args, list_type='description',
+                                          **kwargs)
 
     def add_item(self, label, item):
         """ Adds an item to the list.

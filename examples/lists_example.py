@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Test for list structures in PyLaTeX. 
+# Test for list structures in PyLaTeX.
 # More info @ http://en.wikibooks.org/wiki/LaTeX/List_Structures
 
 from pylatex import Document, Section, Itemize, Enumerate, Description
@@ -49,4 +49,3 @@ with doc.create(Section('"Description" list')):
         enum.add_item("Third", "The third etc \\ldots")
 
 doc.generate_pdf()
-
