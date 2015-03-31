@@ -37,6 +37,11 @@ formatted strings to the container class you want it to be in.
 ### Installation
 `pip install pylatex`
 
+### Contributing
+Read
+[CONTRIBUTING.md](https://github.com/JelteF/PyLaTeX/blob/master/CONTRIBUTING.md)
+for tips and rules when you want to contribute.
+
 
 ### Examples
 
