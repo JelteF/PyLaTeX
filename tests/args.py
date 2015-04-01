@@ -109,13 +109,13 @@ verbatim(s='', delimiter='|')
 
 # Lists
 itemize = Itemize()
-itemize.add_item("item")
+itemize.add_item(s="item")
 itemize.append("append")
 
 enum = Enumerate()
-enum.add_item("item")
+enum.add_item(s="item")
 enum.append("append")
 
 desc = Description()
-desc.add_item("label", "item")
+desc.add_item(label="label", s="item")
 desc.append("append")
