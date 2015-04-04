@@ -27,6 +27,7 @@ If you don't do these two things Travis will catch you anyway.
 If you want you can also do these things and they are appreciated:
 
 - If you add something new, show it off with an **example**.
+- If you add or update an example, add the generated PDF files in the `examples/pdf` directory.
 - If you add new arguments, function or classes, add them to
     `tests/args.py` without forgetting to name the arguments. That way I will know when the external API is changed
     later on.
