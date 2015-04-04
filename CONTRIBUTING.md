@@ -28,7 +28,7 @@ If you want you can also do these things and they are appreciated:
 
 - If you add something new, show it off with an **example**.
 - If you add new arguments, function or classes, add them to
-    `tests/arguments.py`. That way I will know when the external API is changed
+    `tests/args.py` without forgetting to name the arguments. That way I will know when the external API is changed
     later on.
 - If you fix something, add a **test** so it won't break again.
 - Add your addition, change or fix to the **changelog** so it will be mentioned
