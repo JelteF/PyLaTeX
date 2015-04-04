@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Added
 - List classes (enumerate, itemize, description)
+- Arguments for plt.savefig
 
 
 ## [0.7.1]
