@@ -127,10 +127,11 @@ class Document(BaseLaTeXContainer):
         subprocess.check_call(command, shell=True)
 
         if clean:
-            subprocess.call('rm "' + filename + '.aux"', shell=True)
-            subprocess.call('rm "' + filename + '.log"', shell=True)
-            subprocess.call('rm "' + filename + '.tex"', shell=True)
-            subprocess.call('rm "' + filename + '.out"', shell=True)
+            for ext in ['aux', 'log', 'out', 'tex']:
+                try:
+                    os.remove(filename + '.' + ext)
+                except FileNotFoundError:
+                    pass
 
         rm_tmp()
 

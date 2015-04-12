@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
 
+### Fixed
+- Make cleanup of files Windows compatible
 
 ## [0.7.1]
 ### Added
