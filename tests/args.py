@@ -28,7 +28,21 @@ doc = Document(
     title='',
     date='',
     data=None,
-    maketitle=False
+    maketitle=False,
+    packages=[
+        Package('fontenc', options=['T1']),
+        Package('inputenc', options=['utf8']),
+        Package('babel', options=['english']),
+        Package('mathtools'),
+        Package('geometry', options=[
+            'left=2cm',
+            'right=2cm',
+            'top=2cm',
+            'bottom=2cm',
+            'bindingoffset=0cm'
+        ]),
+        Package('breqn')
+    ]
 )
 
 doc.append('Some text.')
