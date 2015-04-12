@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
 ## [Unreleased][unreleased]
 ### Added
 - List classes (enumerate, itemize, description)
@@ -9,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Make cleanup of files Windows compatible
+
 
 ## [0.7.1]
 ### Added
@@ -23,6 +25,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix a bug in Plt and one in fix_filename that caused an error when using them
     with some filenames (dots in directories and a file without an extension)
 
+
 ## [0.7.0] - 17-03-2015
 ### Added
 - Matplotlib support
@@ -35,6 +38,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Fix a lot of bugs in the `escape_latex` function
+
 
 ## [0.6.1] - 11-01-2015
 ### Added
@@ -67,6 +71,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Fix package delegation with duplicate packages
+
 
 [unreleased]: https://github.com/JelteF/PyLaTeX/compare/v0.7.1...HEAD
 [0.7.1]: https://github.com/JelteF/PyLaTeX/compare/v0.7.0...v0.7.1
