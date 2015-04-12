@@ -42,14 +42,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Bug in VectorName
 
 
-## [0.6.0] - 07-01-2015
+## [0.6] - 07-01-2015
 ### Added
 - Figure class
 - Command and Parameter classes
 - `with` statement support
 
 
-## [0.5.0] - 02-06-2014
+## [0.5] - 02-06-2014
 ### Added
 - Python 2.7 support
 
