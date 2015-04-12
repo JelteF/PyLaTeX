@@ -80,7 +80,7 @@ class Plt(Figure):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    def _save_plot(self, plt):
+    def _save_plot(self, plt, *args, **kwargs):
         """Saves the plot.
 
         :param plt: matplotlib.pyplot
@@ -99,12 +99,12 @@ class Plt(Figure):
             basename += "t"
             filename = "{}.pdf".format(basename)
 
-        plt.savefig(filename)
+        plt.savefig(filename, *args, **kwargs)
 
         return filename
 
     def add_plot(self, plt, width=r'0.8\textwidth',
-                 placement=r'\centering'):
+                 placement=r'\centering', *args, **kwargs):
         """Adds a plot.
 
         :param plt: matplotlib.pyplot
@@ -116,6 +116,6 @@ class Plt(Figure):
         :type placement: str
         """
 
-        filename = self._save_plot(plt)
+        filename = self._save_plot(plt, *args, **kwargs)
 
         self.add_image(filename, width, placement)
