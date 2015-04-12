@@ -131,7 +131,7 @@ class Document(BaseLaTeXContainer):
             for ext in ['aux', 'log', 'out', 'tex']:
                 try:
                     os.remove(filename + '.' + ext)
-                except IOError as e:
+                except (OSError, IOError) as e:
                     # Use FileNotFoundError when python 2 is dropped
                     if e.errno != errno.ENOENT:
                         raise
