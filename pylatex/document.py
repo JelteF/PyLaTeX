@@ -26,7 +26,7 @@ class Document(BaseLaTeXContainer):
 
     def __init__(self, default_filename='default_filename',
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 author='', title='', date='', data=None, maketitle=False):
+                 author='', title='', date='', data=None, maketitle=False, packages=None):
         """
             :param default_filename: the default filename to save files
             :param documentclass: the LaTeX class of the document
@@ -58,10 +58,11 @@ class Document(BaseLaTeXContainer):
             self.documentclass = Command('documentclass',
                                          arguments=documentclass)
 
-        fontenc = Package('fontenc', options=fontenc)
-        inputenc = Package('inputenc', options=inputenc)
-        lmodern = Package('lmodern')
-        packages = [fontenc, inputenc, lmodern]
+        if packages is None:
+            fontenc = Package('fontenc', options=fontenc)
+            inputenc = Package('inputenc', options=inputenc)
+            lmodern = Package('lmodern')
+            packages = [fontenc, inputenc, lmodern]
 
         self.preamble = []
 
