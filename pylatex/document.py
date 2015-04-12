@@ -11,6 +11,7 @@
 
 import os
 import subprocess
+import errno
 from .package import Package
 from .command import Command
 from .utils import dumps_list, rm_tmp
@@ -130,8 +131,10 @@ class Document(BaseLaTeXContainer):
             for ext in ['aux', 'log', 'out', 'tex']:
                 try:
                     os.remove(filename + '.' + ext)
-                except FileNotFoundError:
-                    pass
+                except IOError as e:
+                    # Use FileNotFoundError when python 2 is dropped
+                    if e.errno != errno.ENOENT:
+                        raise
 
         rm_tmp()
 
