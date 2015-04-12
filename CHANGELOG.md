@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Make cleanup of files Windows compatible
+- Filenames can be paths (`foo/bar/my_pdf`).
 
 
 ## [0.7.1]

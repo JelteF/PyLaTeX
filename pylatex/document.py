@@ -119,11 +119,17 @@ class Document(BaseLaTeXContainer):
         """
 
         filename = self.select_filename(filename)
+        filename = os.path.join('.', filename)
 
-        self.generate_tex(filename)
+        cur_dir = os.getcwd()
+        dest_dir = os.path.dirname(filename)
+        basename = os.path.basename(filename)
+        os.chdir(dest_dir)
 
-        command = compiler + ' --jobname="' + filename + '" "' + \
-            filename + '.tex"'
+        self.generate_tex(basename)
+
+        command = compiler + ' --jobname="' + basename + '" "' + \
+            basename + '.tex"'
 
         subprocess.check_call(command, shell=True)
 
@@ -136,7 +142,13 @@ class Document(BaseLaTeXContainer):
                     if e.errno != errno.ENOENT:
                         raise
 
+            subprocess.call('rm "' + basename + '.aux"', shell=True)
+            subprocess.call('rm "' + basename + '.log"', shell=True)
+            subprocess.call('rm "' + basename + '.tex"', shell=True)
+            subprocess.call('rm "' + basename + '.out"', shell=True)
+
         rm_tmp()
+        os.chdir(cur_dir)
 
     def select_filename(self, filename):
         """Makes a choice between `filename` and `self.default_filename`.
