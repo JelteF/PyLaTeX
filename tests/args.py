@@ -20,7 +20,7 @@ from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
 
 # Document
 doc = Document(
-    default_filename='default_filename',
+    default_filepath='default_filepath',
     documentclass='article',
     fontenc='T1',
     inputenc='utf8',
@@ -33,8 +33,8 @@ doc = Document(
 
 doc.append('Some text.')
 
-doc.generate_tex(filename='')
-doc.generate_pdf(filename='', clean=True)
+doc.generate_tex(filepath='')
+doc.generate_pdf(filepath='', clean=True)
 
 # SectionBase
 s = Section(title='', numbering=True, data=None)

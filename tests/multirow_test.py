@@ -2,7 +2,7 @@
 
 from pylatex import Document, Section, Subsection, Table
 
-doc = Document(default_filename="multirow")
+doc = Document("multirow")
 section = Section('Multirow Test')
 
 test1 = Subsection('Multicol')
