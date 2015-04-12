@@ -1,5 +1,6 @@
-PyLaTeX
+PyLaTeX [![Travis](https://img.shields.io/travis/JelteF/PyLaTeX.svg)]()
 =======
+
 
 PyLaTeX is a Python library for creating and compiling LaTeX files. The goal of
 this library is being an easy, but extensible interface between Python and
