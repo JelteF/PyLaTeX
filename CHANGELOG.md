@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Added
 - List classes (enumerate, itemize, description)
-
+- The list of packages for the constructor of the Document class.
 
 ## [0.7.1]
 ### Added
