@@ -141,11 +141,6 @@ class Document(BaseLaTeXContainer):
                     if e.errno != errno.ENOENT:
                         raise
 
-            subprocess.call('rm "' + basename + '.aux"', shell=True)
-            subprocess.call('rm "' + basename + '.log"', shell=True)
-            subprocess.call('rm "' + basename + '.tex"', shell=True)
-            subprocess.call('rm "' + basename + '.out"', shell=True)
-
         rm_tmp()
         os.chdir(cur_dir)
 
