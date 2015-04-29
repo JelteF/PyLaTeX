@@ -74,6 +74,65 @@ class Figure(BaseLaTeXNamedContainer):
         self.append(Command('caption', caption))
 
 
+class SubFigure(BaseLaTeXNamedContainer):
+
+    """A Class that represents a subfigure from the subcaption package"""
+
+    def __init__(self, data=None, position=None,
+                 width=r'0.45\linewidth', seperate_paragraph=False):
+        """
+        :param data:
+        :param position:
+
+        :type data: list
+        :type position: str
+        :param data:
+        :param position:
+        :param seperate_paragraph:
+
+        :type data: list
+        :type position: str
+        :type seperate_paragraph: bool
+        """
+
+        packages = [Package('subcaption')]
+
+        super().__init__('subfigure', data=data, packages=packages,
+                         options=position,
+                         argument=width,
+                         seperate_paragraph=seperate_paragraph)
+
+    def add_image(self, filename, width=r'\linewidth',
+                  placement=None):
+        """Adds an image.
+
+        :param filename:
+        :param width:
+        :param placement:
+
+        :type filename: str
+        :type width: str
+        :type placement: str
+        """
+
+        if placement is not None:
+            self.append(placement)
+        if width is not None:
+            width = 'width=' + str(width)
+
+        self.append(Command('includegraphics', options=width,
+                            arguments=fix_filename(filename)))
+
+    def add_caption(self, caption):
+        """Adds a caption to the figure
+
+        :param caption:
+        :type caption: str
+        """
+
+        self.append(Command('caption', caption))
+
+
 class Plt(Figure):
     """A class that represents a plot created with matplotlib."""
 

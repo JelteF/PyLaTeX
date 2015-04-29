@@ -10,7 +10,7 @@ import matplotlib
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
-from pylatex import Document, Section, Math, Table, Figure, Package, TikZ, \
+from pylatex import Document, Section, Math, Table, Figure, SubFigure, Package, TikZ, \
     Axis, Plot, Plt, Itemize, Enumerate, Description
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
@@ -64,6 +64,15 @@ f = Figure(data=None, position=None)
 f.add_image(filename='', width=r'0.8\textwidth', placement=r'\centering')
 
 f.add_caption(caption='')
+
+# Subfigure
+s = SubFigure(data=None, position=None,
+              width=r'0.45\linewidth', seperate_paragraph=False)
+
+s.add_image(filename='', width='r\linewidth',
+            placement=None)
+
+s.add_caption(caption='')
 
 # Plt
 plot = Plt(data=None, position=None)

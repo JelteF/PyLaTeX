@@ -4,9 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+
 ### Added
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
+- SubFigure class for use with subcaption package
 
 ### Fixed
 - Make cleanup of files Windows compatible
