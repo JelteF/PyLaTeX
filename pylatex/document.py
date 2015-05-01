@@ -103,7 +103,7 @@ class Document(BaseLaTeXContainer):
 
         filepath = self.select_filepath(filepath)
 
-        with open(filepath + '.tex', 'w') as newf:
+        with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
             self.dump(newf)
 
     def generate_pdf(self, filepath='', clean=True, compiler='pdflatex'):
