@@ -7,9 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
+- MultiColumn and MultiRow classes for generalized table layouts.
 
 ### Fixed
 - Make cleanup of files Windows compatible
+- Filenames can be paths (`foo/bar/my_pdf`).
+- Replace `filename` by `filepath` in the names of the arguments.
 
 
 ## [0.7.1]

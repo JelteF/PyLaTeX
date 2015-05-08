@@ -3,7 +3,7 @@
 from pylatex import Document, Section
 from pylatex.utils import escape_latex
 
-doc = Document(default_filename="utils_escape_latex")
+doc = Document("utils_escape_latex")
 section = Section('Escape LaTeX characters test')
 
 text = escape_latex('''\

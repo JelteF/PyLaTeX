@@ -13,7 +13,7 @@ from .document import Document  # noqa
 from .math import Math  # noqa
 from .package import Package  # noqa
 from .section import Section, Subsection, Subsubsection  # noqa
-from .table import Table  # noqa
+from .table import Table, MultiColumn, MultiRow  # noqa
 from .pgfplots import TikZ, Axis, Plot  # noqa
 from .graphics import Figure, Plt  # noqa
 from .lists import Enumerate, Itemize, Description  # noqa

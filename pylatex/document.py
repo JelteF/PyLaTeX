@@ -25,11 +25,11 @@ class Document(BaseLaTeXContainer):
     stuff to the preamble or the packages.
     """
 
-    def __init__(self, default_filename='default_filename',
+    def __init__(self, default_filepath='default_filepath',
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  author='', title='', date='', data=None, maketitle=False):
         """
-            :param default_filename: the default filename to save files
+            :param default_filepath: the default path to save files
             :param documentclass: the LaTeX class of the document
             :param fontenc: the option for the fontenc package
             :param inputenc: the option for the inputenc package
@@ -39,7 +39,7 @@ class Document(BaseLaTeXContainer):
             :param data:
             :param maketitle: whether `\maketitle` command is activated or not.
 
-            :type default_filename: str
+            :type default_filepath: str
             :type documentclass: str or :class:`command.Command` instance
             :type fontenc: str
             :type inputenc: str
@@ -50,7 +50,7 @@ class Document(BaseLaTeXContainer):
             :type maketitle: bool
         """
 
-        self.default_filename = default_filename
+        self.default_filepath = default_filepath
         self.maketitle = maketitle
 
         if isinstance(documentclass, Command):
@@ -94,63 +94,69 @@ class Document(BaseLaTeXContainer):
 
         return head + os.linesep + document
 
-    def generate_tex(self, filename=''):
+    def generate_tex(self, filepath=''):
         """Generates a .tex file.
 
-            :param filename: the name of the file
-
-            :type filename: str
+        :param filepath: the name of the file
+        :type filepath: str
         """
 
-        filename = self.select_filename(filename)
+        filepath = self.select_filepath(filepath)
 
-        with open(filename + '.tex', 'w') as newf:
+        with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
             self.dump(newf)
 
-    def generate_pdf(self, filename='', clean=True, compiler='pdflatex'):
+    def generate_pdf(self, filepath='', clean=True, compiler='pdflatex'):
         """Generates a .pdf file.
 
-            :param filename: the name of the file
+            :param filepath: the name of the file
             :param clean: whether non-pdf files created by `pdflatex` must be
             removed or not
 
-            :type filename: str
+            :type filepath: str
             :type clean: bool
         """
 
-        filename = self.select_filename(filename)
+        filepath = self.select_filepath(filepath)
+        filepath = os.path.join('.', filepath)
 
-        self.generate_tex(filename)
+        cur_dir = os.getcwd()
+        dest_dir = os.path.dirname(filepath)
+        basename = os.path.basename(filepath)
+        os.chdir(dest_dir)
 
-        command = compiler + ' --jobname="' + filename + '" "' + \
-            filename + '.tex"'
+        self.generate_tex(basename)
+
+        command = compiler + ' --jobname="' + basename + '" "' + \
+            basename + '.tex"'
 
         subprocess.check_call(command, shell=True)
 
         if clean:
             for ext in ['aux', 'log', 'out', 'tex']:
                 try:
-                    os.remove(filename + '.' + ext)
+                    os.remove(basename + '.' + ext)
                 except (OSError, IOError) as e:
                     # Use FileNotFoundError when python 2 is dropped
                     if e.errno != errno.ENOENT:
                         raise
 
         rm_tmp()
+        os.chdir(cur_dir)
 
-    def select_filename(self, filename):
-        """Makes a choice between `filename` and `self.default_filename`.
+    def select_filepath(self, filepath):
+        """Makes a choice between `filepath` and `self.default_filepath`.
 
-            :param filename: the filename to be compared with
-            `self.default_filename`
+            :param filepath: the filepath to be compared with
+            `self.default_filepath`
 
-            :type filename: str
+            :type filepath: str
 
-            :return: The selected filename
+            :return: The selected filepath
             :rtype: str
         """
 
-        if filename == '':
-            return self.default_filename
+        if filepath == '':
+            return self.default_filepath
         else:
-            return filename
+            return filepath
