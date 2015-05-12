@@ -102,6 +102,8 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
 
         for item in self.data:
             if isinstance(item, BaseLaTeXClass):
+                if isinstance(item, BaseLaTeXContainer):
+                    item.propegate_packages()
                 for p in item.packages:
                     self.packages.add(p)
 
