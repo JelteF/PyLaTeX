@@ -11,6 +11,7 @@
 
 from .utils import dumps_list
 from .base_classes import BaseLaTeXContainer
+from .command import Command
 
 
 class SectionBase(BaseLaTeXContainer):
@@ -18,23 +19,39 @@ class SectionBase(BaseLaTeXContainer):
     """A class that is the base for all section type classes"""
 
     def __init__(self, title, numbering=True, data=None):
+        """
+            :param title:
+            :param numbering:
+            :param data:
+
+            :type title: str
+            :type numbering: bool
+            :type data: list
+        """
+
         self.title = title
         self.numbering = numbering
 
         super().__init__(data)
 
     def dumps(self):
-        """Represents the section as a string in LaTeX syntax."""
+        """Represents the section as a string in LaTeX syntax.
+
+            :return:
+            :rtype: str
+        """
 
         if not self.numbering:
             num = '*'
         else:
             num = ''
 
-        base = '\\' + self.__class__.__name__.lower() + num
-        string = base + '{' + self.title + '}\n' + dumps_list(self)
+        section_type = self.__class__.__name__.lower()
+        string = Command(section_type + num, self.title).dumps()
+        string += dumps_list(self)
 
         super().dumps()
+
         return string
 
 

@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from pylatex import Document, Section, Subsection, Table, Math
-from pylatex.numpy import Matrix, format_vec
+from pylatex import Document, Section, Subsection, Math
+from pylatex.numpy import Matrix, VectorName
 
 
 a = np.array([[100, 10, 20]]).T
@@ -13,7 +13,7 @@ section = Section('Numpy tests')
 subsection = Subsection('Array')
 
 vec = Matrix(a)
-vec_name = format_vec('a')
+vec_name = VectorName('a')
 math = Math(data=[vec_name, '=', vec])
 
 subsection.append(math)

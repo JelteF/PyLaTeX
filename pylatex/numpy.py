@@ -12,14 +12,34 @@
 import numpy as np
 from pylatex.base_classes import BaseLaTeXClass
 from pylatex.package import Package
+from pylatex.command import Command
 
 
-def format_vec(name):
-    return r'\mathbf{' + name + '}'
+class VectorName(Command):
+    def __init__(self, name):
+        """
+            :param name:
+
+            :type name: str
+        """
+
+        super().__init__('mathbf', arguments=name)
 
 
 class Matrix(BaseLaTeXClass):
     def __init__(self, matrix, name='', mtype='p', alignment=None):
+        """
+            :param matrix:
+            :param name:
+            :param mtype:
+            :param alignment:
+
+            :type matrix: :class:`numpy.matrix` instance
+            :type name: str
+            :type mtype: str
+            :type alignment: str
+        """
+
         self.mtype = mtype
         self.matrix = matrix
         self.alignment = alignment
@@ -28,6 +48,10 @@ class Matrix(BaseLaTeXClass):
         super().__init__(packages=[Package('amsmath')])
 
     def dumps(self):
+        """
+            :rtype: str
+        """
+
         string = r'\begin{'
         mtype = self.mtype + 'matrix'
 
@@ -55,4 +79,5 @@ class Matrix(BaseLaTeXClass):
         string += r'\end{' + mtype + '}'
 
         super().dumps()
+
         return string
