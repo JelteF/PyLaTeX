@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
+- Command line argument for ./testall.sh to supply a custom python command
 
 ### Fixed
 - Make cleanup of files Windows compatible
