@@ -138,7 +138,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
     def __init__(self, name, options=None, argument=None,
                  seperate_paragraph=False, begin_paragraph=False,
-                 end_paragrpaph=False, **kwargs):
+                 end_paragraph=False, **kwargs):
         """
             :param name:
             :param options:
@@ -154,7 +154,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
         self.argument = argument
         self.seperate_paragraph = seperate_paragraph
         self.begin_paragraph = begin_paragraph
-        self.end_paragrpaph = end_paragrpaph
+        self.end_paragraph = end_paragraph
 
         super().__init__(**kwargs)
 
@@ -184,7 +184,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
         string += '\n' + r'\end{' + self.name + '}'
 
-        if self.seperate_paragraph or self.end_paragrpaph:
+        if self.seperate_paragraph or self.end_paragraph:
             string += '\n\n'
 
         return string
