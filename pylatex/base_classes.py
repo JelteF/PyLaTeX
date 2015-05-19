@@ -148,7 +148,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
     """A base class for containers with one of a basic begin end syntax"""
 
-    def __init__(self, name, options=None, argument=None,
+    def __init__(self, options=None, argument=None,
                  seperate_paragraph=False, begin_paragraph=False,
                  end_paragraph=False, **kwargs):
         """
@@ -161,7 +161,9 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
             :type argument: str
         """
 
-        self.name = name
+        if not hasattr(self, 'container_name'):
+            self.container_name = self.__class__.__name__.lower()
+
         self.options = options
         self.argument = argument
         self.seperate_paragraph = seperate_paragraph
@@ -182,7 +184,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
         if self.seperate_paragraph or self.begin_paragraph:
             string += '\n\n'
 
-        string += r'\begin{' + self.name + '}'
+        string += r'\begin{' + self.container_name + '}'
 
         if self.options is not None:
             string += '[' + self.options + ']'
@@ -194,7 +196,7 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
         string += super().dumps()
 
-        string += '\n' + r'\end{' + self.name + '}'
+        string += '\n' + r'\end{' + self.container_name + '}'
 
         if self.seperate_paragraph or self.end_paragraph:
             string += '\n\n'

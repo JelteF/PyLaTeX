@@ -19,6 +19,8 @@ class TikZ(BaseLaTeXNamedContainer):
 
     """Basic TikZ container class."""
 
+    container_name = 'tikzpicture'
+
     def __init__(self, data=None):
         """
             :param data:
@@ -28,7 +30,7 @@ class TikZ(BaseLaTeXNamedContainer):
 
         packages = [Package('tikz')]
 
-        super().__init__('tikzpicture', data=data, packages=packages)
+        super().__init__(data=data, packages=packages)
 
 
 class Axis(BaseLaTeXNamedContainer):
@@ -47,7 +49,7 @@ class Axis(BaseLaTeXNamedContainer):
         packages = [Package('pgfplots'), Command('pgfplotsset',
                                                  'compat=newest')]
 
-        super().__init__('axis', data=data, options=options, packages=packages)
+        super().__init__(data=data, options=options, packages=packages)
 
 
 class Plot(BaseLaTeXClass):

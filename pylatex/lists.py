@@ -17,8 +17,7 @@ class List(BaseLaTeXNamedContainer):
 
     """A class that represents a list."""
 
-    def __init__(self, list_spec=None, data=None, pos=None,
-                 list_type="enumerate", **kwargs):
+    def __init__(self, list_spec=None, data=None, pos=None, **kwargs):
         """
             :param list_spec:
             :param list_type:
@@ -30,8 +29,7 @@ class List(BaseLaTeXNamedContainer):
             :type data: list
             :type pos: list
         """
-        super().__init__(list_type, data=data, options=pos,
-                         argument=list_spec, **kwargs)
+        super().__init__(data=data, options=pos, argument=list_spec, **kwargs)
 
     def _item(self, label=None):
         """ Begin an item block. """
@@ -55,25 +53,15 @@ class Enumerate(List):
 
     """ A class that represents an enumerate list """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, list_type='enumerate', **kwargs)
-
 
 class Itemize(List):
 
     """ A class that represents an itemize list """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, list_type='itemize', **kwargs)
-
 
 class Description(List):
 
     """ A class that represents a description list """
-
-    def __init__(self, *args, **kwargs):
-        super(Description, self).__init__(*args, list_type='description',
-                                          **kwargs)
 
     def add_item(self, label, s):
         """ Adds an item to the list.

@@ -39,7 +39,7 @@ class Figure(BaseLaTeXNamedContainer):
         """
 
         packages = [Package('graphicx')]
-        super().__init__('figure', data=data, packages=packages,
+        super().__init__(data=data, packages=packages,
                          options=position,
                          seperate_paragraph=seperate_paragraph)
 
@@ -98,7 +98,7 @@ class SubFigure(BaseLaTeXNamedContainer):
 
         packages = [Package('subcaption')]
 
-        super().__init__('subfigure', data=data, packages=packages,
+        super().__init__(data=data, packages=packages,
                          options=position,
                          argument=width,
                          seperate_paragraph=seperate_paragraph)
@@ -136,6 +136,8 @@ class SubFigure(BaseLaTeXNamedContainer):
 
 class Plt(Figure):
     """A class that represents a plot created with matplotlib."""
+
+    container_name = 'figure'
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

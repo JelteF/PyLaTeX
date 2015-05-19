@@ -13,6 +13,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - The generate_tex method is now usable in every class, this makes making
     snippets even easier.
 
+### Changed
+- BaseLaTeXNamedContainer now uses the name of the class as the default
+    container_name
+
 ### Fixed
 - Propagate packages recursively add packages of sub containers
 - Make cleanup of files Windows compatible

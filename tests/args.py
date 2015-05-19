@@ -43,7 +43,7 @@ s = Section(title='', numbering=True, data=None)
 m = Math(data=None, inline=False)
 
 # Table
-t = Table(table_spec='|c|c|', data=None, pos=None, table_type='tabular')
+t = Table(table_spec='|c|c|', data=None, pos=None)
 
 t.add_hline(start=None, end=None)
 
