@@ -7,4 +7,3 @@
     generating pdfs than the code in this repo
 - Add generate_tex to BaseLaTeXClass so it can be used to create snippets in an
     easier way.
-- Use the tempfile module to save matplotlib plots in
