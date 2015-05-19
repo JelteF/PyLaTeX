@@ -2,7 +2,7 @@
 # This script runs flake8 to test for pep8 compliance and executes all the examples and tests
 # run as: testall.sh [-p COMMAND] [clean]
 # Optional positional arguments
-#       clean: cleans up the latex files generated
+#      -c: cleans up the latex files generated
 # Optional named arguments:
 #      -p COMMAND: the python command that should be used, e.g. ./testall.sh -p python3
 #
@@ -11,10 +11,21 @@
 python="python"
 
 # Check if a command line argument was provided as an input argument.
-while getopts ":p:" opt; do
+while getopts ":p:ch" opt; do
   case $opt in
     p)
       python=$OPTARG
+      ;;
+    c)
+      clean=TRUE
+      ;;
+    h)
+      echo This runs all the tests and examples and checks for pep8 compliance
+      echo
+      echo Options:
+      echo '   -c            cleans up the latex and pdf files generated'
+      echo '   -p COMMAND    the python command that should be used to run the tests'
+      exit 0
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -49,6 +60,6 @@ for f in $main_folder/{tests,examples}/*.py; do
     fi
 done
 
-if [ "${@:$OPTIND:1}" = 'clean' ]; then
+if [ "$clean" = 'TRUE' ]; then
     rm *.pdf *.log *.aux *.tex
 fi
