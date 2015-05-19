@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
 - SubFigure class for use with subcaption package
+- Command line argument for ./testall.sh to supply a custom python command
 
 ### Fixed
 - Propagate packages recursively add packages of sub containers
