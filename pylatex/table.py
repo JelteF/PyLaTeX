@@ -16,6 +16,7 @@ from .command import Command
 
 from collections import Counter
 import re
+from warnings import warn
 
 
 def get_table_width(table_spec):
@@ -159,6 +160,11 @@ class Table(Tabular):
     """A legacy name for the class that represents a tabular."""
 
     container_name = 'tabular'
+
+    def __init__(self, *args, **kwargs):
+        warn('Table is going te be deprecated in favor of Tabular',
+             PendingDeprecationWarning)
+        super().__init__(*args, **kwargs)
 
 
 class Tabu(TableBase):

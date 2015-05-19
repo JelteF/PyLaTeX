@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from pylatex import Document, Section, Subsection, Table
+from pylatex import Document, Section, Subsection, Tabular
 
 doc = Document("multirow")
 section = Section('Multirow Test')
@@ -8,7 +8,7 @@ section = Section('Multirow Test')
 test1 = Subsection('Multicol')
 test2 = Subsection('Multirow')
 
-table1 = Table('|c|c|')
+table1 = Tabular('|c|c|')
 table1.add_hline()
 table1.add_multicolumn(2, '|c|', 'Multicol')
 table1.add_hline()
@@ -17,7 +17,7 @@ table1.add_hline()
 table1.add_row((3, 4))
 table1.add_hline()
 
-table2 = Table('|c|c|c|')
+table2 = Tabular('|c|c|c|')
 table2.add_hline()
 table2.add_multirow(3, '*', 'Multirow', cells=((1, 2), (3, 4), (5, 6)))
 table2.add_hline()

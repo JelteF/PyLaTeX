@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from pylatex import Document, Section, Subsection, Table, Math, TikZ, Axis, \
+from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
     Plot, Figure, Package
 from pylatex.numpy import Matrix
 from pylatex.utils import italic, escape_latex
@@ -18,7 +18,7 @@ with doc.create(Section('The simple stuff')):
         doc.append(Math(data=['2*3', '=', 9]))
 
     with doc.create(Subsection('Table of something')):
-        with doc.create(Table('rc|cl')) as table:
+        with doc.create(Tabular('rc|cl')) as table:
             table.add_hline()
             table.add_row((1, 2, 3, 4))
             table.add_hline(1, 2)

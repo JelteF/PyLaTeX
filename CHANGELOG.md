@@ -16,6 +16,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - BaseLaTeXNamedContainer now uses the name of the class as the default
     container_name
+- The `Table` object is going to be deprecated in favor of the better named
+    `Tabular` object. This will take a couple of releases.
 
 ### Fixed
 - Propagate packages recursively add packages of sub containers
