@@ -11,7 +11,7 @@ matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Math, Table, Figure, Package, TikZ, \
-    Axis, Plot, Plt, Itemize, Enumerate, Description
+    Axis, Plot, Plt, Itemize, Enumerate, Description, MultiColumn, MultiRow
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
@@ -52,8 +52,15 @@ t.add_row(cells=(1, 2), escape=False)
 t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None,
                   escape=False)
 
+
 t.add_multirow(size=3, align='*', content='Multirow', hlines=True, cells=None,
                escape=False)
+
+# MultiColumn/MultiRow.
+t.add_row((MultiColumn(size=2, align='|c|', content='MultiColumn'),))
+
+t.add_row((MultiRow(size=2, width='*', content='MultiRow'),))
+
 
 # Command
 c = Command(command='documentclass', arguments=None, options=None,

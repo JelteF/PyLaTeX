@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
+- MultiColumn and MultiRow classes for generalized table layouts.
 
 ### Fixed
 - Propagate packages recursively add packages of sub containers
