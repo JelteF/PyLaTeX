@@ -15,5 +15,5 @@ from .package import Package  # noqa
 from .section import Section, Subsection, Subsubsection  # noqa
 from .table import Table  # noqa
 from .pgfplots import TikZ, Axis, Plot  # noqa
-from .graphics import Figure, Plt  # noqa
+from .graphics import Figure, SubFigure, Plt  # noqa
 from .lists import Enumerate, Itemize, Description  # noqa
