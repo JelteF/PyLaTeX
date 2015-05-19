@@ -95,16 +95,7 @@ class Document(BaseLaTeXContainer):
         return head + os.linesep + document
 
     def generate_tex(self, filepath=''):
-        """Generates a .tex file.
-
-        :param filepath: the name of the file
-        :type filepath: str
-        """
-
-        filepath = self.select_filepath(filepath)
-
-        with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
-            self.dump(newf)
+        super().generate_tex(self.select_filepath(filepath))
 
     def generate_pdf(self, filepath='', clean=True, compiler='pdflatex'):
         """Generates a .pdf file.

@@ -45,6 +45,16 @@ class BaseLaTeXClass:
 
         file_.write(self.dumps())
 
+    def generate_tex(self, filepath):
+        """Generates a .tex file.
+
+        :param filepath: the name of the file (without .tex)
+        :type filepath: str
+        """
+
+        with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
+            self.dump(newf)
+
     def dumps_packages(self):
         """Represents the packages needed as a string in LaTeX syntax.
 

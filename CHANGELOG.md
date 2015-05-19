@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Arguments for plt.savefig
 - SubFigure class for use with subcaption package
 - Command line argument for ./testall.sh to supply a custom python command
+- The generate_tex method is now usable in every class, this makes making
+    snippets even easier.
 
 ### Fixed
 - Propagate packages recursively add packages of sub containers
