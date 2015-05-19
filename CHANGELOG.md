@@ -18,6 +18,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     container_name
 - The `Table` object is going to be deprecated in favor of the better named
     `Tabular` object. This will take a couple of releases.
+- Allow the data keyword argument of containers to be a single item instead of a
+    list. If this is the case it will be wrapped in a list on initialization.
 
 ### Fixed
 - Propagate packages recursively add packages of sub containers

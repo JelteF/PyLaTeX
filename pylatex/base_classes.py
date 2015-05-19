@@ -84,12 +84,16 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
             :param data:
             :param packages: :class:`pylatex.Package` instances
 
-            :type data: list
+            :type data: list, str or pylatex class instance
             :type packages: list
         """
 
         if data is None:
             data = []
+        elif not isinstance(data, list):
+            # If the data is not already a list make it a list, otherwise list
+            # operations will not work
+            data = [data]
 
         self.data = data
         self.real_data = data  # Always the data of this instance
