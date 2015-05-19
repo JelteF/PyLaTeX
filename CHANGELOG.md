@@ -18,6 +18,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Replace `filename` by `filepath` in the names of the arguments.
 - Matplotlib support now uses the tmpfile module, this fixes permission issues
     with the badly previously badly located tmp directory.
+- The temp directory is only removed in generate_pdf when cleaning is
+    enabled
 
 
 ## [0.7.1]
