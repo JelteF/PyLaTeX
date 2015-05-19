@@ -141,7 +141,7 @@ class Document(BaseLaTeXContainer):
                     if e.errno != errno.ENOENT:
                         raise
 
-        rm_tmp()
+            rm_tmp()
         os.chdir(cur_dir)
 
     def select_filepath(self, filepath):
