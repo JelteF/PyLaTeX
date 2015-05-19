@@ -14,7 +14,7 @@ import subprocess
 import errno
 from .package import Package
 from .command import Command
-from .utils import dumps_list, rm_tmp
+from .utils import dumps_list, rm_temp_dir
 from .base_classes import BaseLaTeXContainer
 
 
@@ -141,7 +141,7 @@ class Document(BaseLaTeXContainer):
                     if e.errno != errno.ENOENT:
                         raise
 
-            rm_tmp()
+            rm_temp_dir()
         os.chdir(cur_dir)
 
     def select_filepath(self, filepath):

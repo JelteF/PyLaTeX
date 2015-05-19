@@ -12,6 +12,7 @@
 
 import os.path
 import shutil
+import tempfile
 
 
 _latex_special_chars = {
@@ -30,13 +31,10 @@ _latex_special_chars = {
     '\xA0': '~',  # Non-breaking space
 }
 
-tmp_path = os.path.normpath(
+_tmp_path = os.path.abspath(
     os.path.join(
-        os.path.dirname(
-            os.path.realpath(__file__)
-        ),
-        "..",
-        "tmp"
+        tempfile.gettempdir(),
+        "pylatex"
     )
 )
 
@@ -171,15 +169,16 @@ def verbatim(s, delimiter='|'):
     return r'\verb' + delimiter + s + delimiter
 
 
-def make_tmp():
+def make_temp_dir():
     """Creates the tmp directory if it doesn't exist."""
 
-    if not os.path.exists(tmp_path):
-        os.makedirs(tmp_path)
+    if not os.path.exists(_tmp_path):
+        os.makedirs(_tmp_path)
+    return _tmp_path
 
 
-def rm_tmp():
+def rm_temp_dir():
     """Removes the tmp directory."""
 
-    if os.path.exists(tmp_path):
-        shutil.rmtree(tmp_path)
+    if os.path.exists(_tmp_path):
+        shutil.rmtree(_tmp_path)

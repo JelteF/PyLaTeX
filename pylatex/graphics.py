@@ -11,10 +11,11 @@
 
 import os.path
 
-from .utils import fix_filename, tmp_path, make_tmp
+from .utils import fix_filename, make_temp_dir
 from .base_classes import BaseLaTeXNamedContainer
 from .package import Package
 from .command import Command
+import uuid
 
 
 class Figure(BaseLaTeXNamedContainer):
@@ -149,14 +150,9 @@ class Plt(Figure):
         :rtype: str
         """
 
-        make_tmp()
+        tmp_path = make_temp_dir()
 
-        basename = os.path.join(tmp_path, "plot")
-        filename = "{}.pdf".format(basename)
-
-        while os.path.isfile(filename):
-            basename += "t"
-            filename = "{}.pdf".format(basename)
+        filename = os.path.join(tmp_path, str(uuid.uuid4()) + '.pdf')
 
         plt.savefig(filename, *args, **kwargs)
 
