@@ -33,7 +33,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     enabled
 
 
-## [0.7.1]
+## [0.7.1] - 21-03-2015
 ### Added
 - Contributing guidelines.
 
