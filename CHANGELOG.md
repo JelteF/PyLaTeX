@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.8.0] - 23-05-2015
 ### Added
 - List classes (enumerate, itemize, description)
 - Arguments for plt.savefig
@@ -94,7 +95,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix package delegation with duplicate packages
 
 
-[unreleased]: https://github.com/JelteF/PyLaTeX/compare/v0.7.1...HEAD
+[unreleased]: https://github.com/JelteF/PyLaTeX/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/JelteF/PyLaTeX/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/JelteF/PyLaTeX/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/JelteF/PyLaTeX/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/JelteF/PyLaTeX/compare/v0.6...v0.6.1

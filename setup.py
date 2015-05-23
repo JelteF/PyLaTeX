@@ -181,7 +181,7 @@ extras = {
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
 
 setup(name='PyLaTeX',
-      version='0.7.1',
+      version='0.8.0',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files',
