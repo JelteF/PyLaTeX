@@ -10,7 +10,8 @@
 """
 
 from .utils import dumps_list
-from .base_classes import BaseLaTeXNamedContainer
+from .base_classes import BaseLaTeXClass, BaseLaTeXContainer, \
+    BaseLaTeXNamedContainer
 from .package import Package
 from .command import Command
 
@@ -36,6 +37,81 @@ def get_table_width(table_spec):
     spec_counter = Counter(cleaner_spec)
 
     return sum(spec_counter[l] for l in column_letters)
+
+
+class MultiColumn(BaseLaTeXContainer):
+
+    """A class that represents a multicolumn inside of a table."""
+
+    def __init__(self, size, align='|c|', data=None):
+        """
+            :param size:
+            :param align:
+            :param data:
+
+            :type size: int
+            :type align: str
+            :type data: str or list
+        """
+
+        self.size = size
+        self.align = align
+
+        super().__init__(data)
+
+    def dumps(self):
+        """Represents the multicolumn as a string in LaTeX syntax.
+
+            :return:
+            :rtype: str
+        """
+
+        multicolumn_type = self.__class__.__name__.lower()
+        args = [self.size, self.align, dumps_list(self.data)]
+        string = Command(multicolumn_type, args).dumps()
+        string += dumps_list(self)
+
+        super().dumps()
+
+        return string
+
+
+class MultiRow(BaseLaTeXContainer):
+
+    """A class that represents a multirow in a table."""
+
+    def __init__(self, size, width='*', data=None):
+        """
+            :param size:
+            :param width:
+            :param data:
+
+            :type size: int
+            :type width: str
+            :type data: str or list
+        """
+
+        self.size = size
+        self.width = width
+
+        packages = [Package('multirow')]
+        super().__init__(data, packages=packages)
+
+    def dumps(self):
+        """Represents the multirow as a string in LaTeX syntax.
+
+            :return:
+            :rtype: str
+        """
+
+        multirow_type = self.__class__.__name__.lower()
+        args = [self.size, self.width, dumps_list(self.data)]
+        string = Command(multirow_type, args).dumps()
+        string += dumps_list(self)
+
+        super().dumps()
+
+        return string
 
 
 class TableBase(BaseLaTeXNamedContainer):
@@ -90,6 +166,12 @@ class TableBase(BaseLaTeXNamedContainer):
             :type cells: tuple
             :type escape: bool
         """
+
+        # Propegate packages used in cells
+        for c in cells:
+            if isinstance(c, BaseLaTeXClass):
+                for p in c.packages:
+                    self.packages.add(p)
 
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 

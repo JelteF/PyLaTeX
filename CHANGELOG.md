@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Command line argument for ./testall.sh to supply a custom python command
 - The generate_tex method is now usable in every class, this makes making
     snippets even easier.
+- MultiColumn and MultiRow classes for generalized table layouts.
 
 ### Changed
 - BaseLaTeXNamedContainer now uses the name of the class as the default
