@@ -6,6 +6,7 @@
 """
 
 import numpy as np
+import quantities as pq
 import matplotlib
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
@@ -15,6 +16,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     MultiColumn, MultiRow
 from pylatex.command import Command
 from pylatex.numpy import Matrix, VectorName
+from pylatex.quantities import Quantity
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim
 
@@ -100,6 +102,10 @@ M = np.matrix([[2, 3, 4],
                [0, 0, 1],
                [0, 0, 2]])
 m = Matrix(matrix=M, name='', mtype='p', alignment=None)
+
+# Quantities
+q1 = Quantity(quantity=1*pq.kg)
+q2 = Quantity(quantity=1*pq.kg, format_cb=lambda x: str(int(x)))
 
 # Package
 p = Package(name='', base='usepackage', options=None)

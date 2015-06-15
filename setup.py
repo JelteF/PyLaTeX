@@ -175,6 +175,7 @@ else:
 extras = {
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
+    'quantities': ['quantities'],
     'testing': ['flake8', 'pep8-naming'],
 }
 
