@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pylatex.command module &mdash; PyLaTeX 0.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pylatex.command">
+<span id="pylatex-command-module"></span><h1>pylatex.command module<a class="headerlink" href="#module-pylatex.command" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pylatex-command">
+<h2>pylatex.command<a class="headerlink" href="#pylatex-command" title="Permalink to this headline">¶</a></h2>
+<p>This module implements a class that implements a latex command. This can be
+used directly or it can be inherrited to make an easier interface to it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2014 by Jelte Fennema.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see License for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="pylatex.command.Command">
+<em class="property">class </em><code class="descclassname">pylatex.command.</code><code class="descname">Command</code><span class="sig-paren">(</span><em>command</em>, <em>arguments=None</em>, <em>options=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.command.Command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass" title="pylatex.base_classes.BaseLaTeXClass"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXClass</span></code></a></p>
+<p>A class that represents a command</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;documentclass&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">options</span><span class="o">=</span><span class="n">Options</span><span class="p">(</span><span class="s">&#39;12pt&#39;</span><span class="p">,</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span> <span class="s">&#39;twoside&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">arguments</span><span class="o">=</span><span class="s">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;\documentclass[12pt,a4paper,twoside]{article}&#39;</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pylatex.command.Command.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.command.Command.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the command as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pylatex.command module</a><ul>
+<li><a class="reference internal" href="#pylatex-command">pylatex.command</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pylatex.command.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Jelte Fennema.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.5</a>
+      
+      |
+      <a href="_sources/pylatex.command.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

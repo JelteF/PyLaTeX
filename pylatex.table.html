@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pylatex.table module &mdash; PyLaTeX 0.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pylatex.table">
+<span id="pylatex-table-module"></span><h1>pylatex.table module<a class="headerlink" href="#module-pylatex.table" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pylatex-table">
+<h2>pylatex.table<a class="headerlink" href="#pylatex-table" title="Permalink to this headline">¶</a></h2>
+<p>This module implements the class that deals with tables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2014 by Jelte Fennema.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see License for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="pylatex.table.LongTable">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTable</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.TableBase" title="pylatex.table.TableBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.TableBase</span></code></a></p>
+<p>A class that represents a longtable (multipage table)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.LongTabu">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Table" title="pylatex.table.Table"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Table</span></code></a></p>
+<p>A class that represents a longtabu (more flexible multipage table)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.MultiColumn">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='|c|'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
+<p>A class that represents a multicolumn inside of a table.</p>
+<dl class="method">
+<dt id="pylatex.table.MultiColumn.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the multicolumn as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.MultiRow">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>width='*'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
+<p>A class that represents a multirow in a table.</p>
+<dl class="method">
+<dt id="pylatex.table.MultiRow.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiRow.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the multirow as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.Table">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Table</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
+<p>A legacy name for the class that represents a tabular.</p>
+<dl class="attribute">
+<dt id="pylatex.table.Table.container_name">
+<code class="descname">container_name</code><em class="property"> = 'tabular'</em><a class="headerlink" href="#pylatex.table.Table.container_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.TableBase">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">TableBase</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXNamedContainer" title="pylatex.base_classes.BaseLaTeXNamedContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXNamedContainer</span></code></a></p>
+<dl class="method">
+<dt id="pylatex.table.TableBase.add_empty_row">
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an empty row to the table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.table.TableBase.add_hline">
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_hline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a horizontal line to the table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>start</strong> (<em>int</em>) &#8211; </li>
+<li><strong>end</strong> (<em>int</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.table.TableBase.add_multicolumn">
+<code class="descname">add_multicolumn</code><span class="sig-paren">(</span><em>size</em>, <em>align</em>, <em>content</em>, <em>cells=None</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_multicolumn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a multicolumn of width size to the table, with cell content.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<em>int</em>) &#8211; </li>
+<li><strong>align</strong> (<em>str</em>) &#8211; </li>
+<li><strong>content</strong> (<em>str</em>) &#8211; </li>
+<li><strong>cells</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>escape</strong> (<em>bool</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.table.TableBase.add_multirow">
+<code class="descname">add_multirow</code><span class="sig-paren">(</span><em>size</em>, <em>align</em>, <em>content</em>, <em>hlines=True</em>, <em>cells=None</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_multirow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a multirow of height size to the table, with cell content.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<em>int</em>) &#8211; </li>
+<li><strong>align</strong> (<em>str</em>) &#8211; </li>
+<li><strong>content</strong> (<em>str</em>) &#8211; </li>
+<li><strong>hlines</strong> (<em>bool</em>) &#8211; </li>
+<li><strong>cells</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>escape</strong> (<em>bool</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.table.TableBase.add_row">
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a row of cells to the table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cells</strong> (<em>tuple</em>) &#8211; </li>
+<li><strong>escape</strong> (<em>bool</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.Tabu">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Tabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.TableBase" title="pylatex.table.TableBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.TableBase</span></code></a></p>
+<p>A class that represents a tabu (more flexible table)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.Tabular">
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Tabular</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Tabular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.TableBase" title="pylatex.table.TableBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.TableBase</span></code></a></p>
+<p>A class that represents a tabular.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pylatex.table.get_table_width">
+<code class="descclassname">pylatex.table.</code><code class="descname">get_table_width</code><span class="sig-paren">(</span><em>table_spec</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.get_table_width" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_spec</strong> (<em>str</em>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pylatex.table module</a><ul>
+<li><a class="reference internal" href="#pylatex-table">pylatex.table</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pylatex.table.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Jelte Fennema.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.5</a>
+      
+      |
+      <a href="_sources/pylatex.table.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

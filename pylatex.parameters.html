@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pylatex.parameters module &mdash; PyLaTeX 0.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pylatex.parameters">
+<span id="pylatex-parameters-module"></span><h1>pylatex.parameters module<a class="headerlink" href="#module-pylatex.parameters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pylatex-arguments">
+<h2>pylatex.arguments<a class="headerlink" href="#pylatex-arguments" title="Permalink to this headline">¶</a></h2>
+<p>This module implements the classes that deal with parameters, in particular
+with options and arguments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2014 by Jelte Fennema.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">MIT, see License for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="pylatex.parameters.Arguments">
+<em class="property">class </em><code class="descclassname">pylatex.parameters.</code><code class="descname">Arguments</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.parameters.Parameters" title="pylatex.parameters.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Parameters</span></code></a></p>
+<p>TODO</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.parameters.Options">
+<em class="property">class </em><code class="descclassname">pylatex.parameters.</code><code class="descname">Options</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.parameters.Parameters" title="pylatex.parameters.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Parameters</span></code></a></p>
+<p>TODO</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.parameters.Parameters">
+<em class="property">class </em><code class="descclassname">pylatex.parameters.</code><code class="descname">Parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass" title="pylatex.base_classes.BaseLaTeXClass"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXClass</span></code></a></p>
+<p>A class implementing LaTex parameters. It supports normal positional
+parameters, as well as key-value pairs.
+Parameters can be rendered optional within square brackets <code class="docutils literal"><span class="pre">[]</span></code> or
+required within braces <code class="docutils literal"><span class="pre">{}</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;{a}{b}{c}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">optional</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;[a,b,c]&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="s">&#39;clip&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s">&#39;25em&#39;</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="s">&#39;1 2 3 4&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">optional</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;[clip,trim=1 2 3 4,width=50,height=25em]&#39;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optional</strong> (<em>bool</em>) &#8211; Specifies whether this parameters are optional or not</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pylatex.parameters.Parameters.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Parameters.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the parameters as a string in LaTeX syntax to be appended
+to a command.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">return:</th><td class="field-body">The rendered parameters</td>
+</tr>
+<tr class="field-even field"><th class="field-name">rtype:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.parameters.Parameters.list">
+<code class="descname">list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Parameters.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.parameters.Parameters.optional">
+<code class="descname">optional</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.parameters.Parameters.optional" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pylatex.parameters module</a><ul>
+<li><a class="reference internal" href="#pylatex-arguments">pylatex.arguments</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pylatex.parameters.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Jelte Fennema.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.5</a>
+      
+      |
+      <a href="_sources/pylatex.parameters.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
