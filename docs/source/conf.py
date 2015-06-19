@@ -80,6 +80,9 @@ language = None
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
 
+autodoc_member_order = 'bysource'
+autodoc_default_flags = ['members', 'undoc-members', 'show-inheritance']
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = []
