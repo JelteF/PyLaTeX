@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pylatex.utils
-    ~~~~~~~
+    ~~~~~~~~~~~~~
 
     This module implements some simple functions with all kinds of
     functionality.

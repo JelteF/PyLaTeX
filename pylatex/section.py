@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pylatex.section
-    ~~~~~~~
+    ~~~~~~~~~~~~~~~
 
     This module implements the class that deals with sections.
 

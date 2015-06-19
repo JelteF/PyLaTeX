@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pylatex.lists
-    ~~~~~~~
+    ~~~~~~~~~~~~~
 
     This module implements the class that deals with latex List objects
     specifically Enumerate and Itemize.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pylatex.arguments
-    ~~~~~~~
+    ~~~~~~~~~~~~~~~~~
 
     This module implements the classes that deal with parameters, in particular
     with options and arguments.
@@ -20,17 +20,17 @@ class Parameters(BaseLaTeXClass):
     parameters, as well as key-value pairs.
     Parameters can be rendered optional within square brackets ``[]`` or
     required within braces ``{}``.
-    ::
-        >>> args = Parameters('a', 'b', 'c')
-        >>> args.dumps()
-        '{a}{b}{c}'
-        >>> args.optional = True
-        >>> args.dumps()
-        '[a,b,c]'
-        >>> args = Parameters('clip', width=50, height='25em', trim='1 2 3 4')
-        >>> args.optional = True
-        >>> args.dumps()
-        '[clip,trim=1 2 3 4,width=50,height=25em]'
+
+    >>> args = Parameters('a', 'b', 'c')
+    >>> args.dumps()
+    '{a}{b}{c}'
+    >>> args.optional = True
+    >>> args.dumps()
+    '[a,b,c]'
+    >>> args = Parameters('clip', width=50, height='25em', trim='1 2 3 4')
+    >>> args.optional = True
+    >>> args.dumps()
+    '[clip,trim=1 2 3 4,width=50,height=25em]'
 
     :param optional: Specifies whether this parameters are optional or not
     :type optional: bool

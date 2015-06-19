@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     pylatex.document
-    ~~~~~~~
+    ~~~~~~~~~~~~~~~~
 
     This module implements the class that deals with the full document.
 
@@ -102,7 +102,7 @@ class Document(BaseLaTeXContainer):
 
             :param filepath: the name of the file
             :param clean: whether non-pdf files created by `pdflatex` must be
-            removed or not
+                removed or not
 
             :type filepath: str
             :type clean: bool
@@ -139,7 +139,7 @@ class Document(BaseLaTeXContainer):
         """Makes a choice between `filepath` and `self.default_filepath`.
 
             :param filepath: the filepath to be compared with
-            `self.default_filepath`
+                `self.default_filepath`
 
             :type filepath: str
 
