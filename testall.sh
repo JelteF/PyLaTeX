@@ -65,9 +65,11 @@ if [ "$clean" = 'TRUE' ]; then
 fi
 
 
-echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
-cd docs
-make clean
-if ! sphinx-build -b html -d build/doctrees/ source build/html -nW; then
-    exit 1
+if [ "$python_version" = '3' ]; then
+    echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
+    cd docs
+    make clean
+    if ! sphinx-build -b html -d build/doctrees/ source build/html -nW; then
+        exit 1
+    fi
 fi
