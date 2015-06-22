@@ -173,6 +173,7 @@ else:
     source_dir = 'python2_source'
 
 extras = {
+    'docs': ['sphinx'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'testing': ['flake8', 'pep8-naming'],
