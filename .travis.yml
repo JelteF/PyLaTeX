@@ -15,5 +15,5 @@ install:
     - cd ..
     - ./convert_to_py2.sh
     - pip install -e .[all]
-    - sudo apt-get install texlive-latex-extra texlive-pictures
+    - sudo apt-get install texlive-latex-extra texlive-pictures texlive-science
 script: ./testall.sh
