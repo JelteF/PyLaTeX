@@ -1,0 +1,1 @@
+.. automodule:: quantities_ex

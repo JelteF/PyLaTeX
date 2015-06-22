@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pylatex.graphics &mdash; PyLaTeX 0.8.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
+        <link rel="up" title="API reference" href="../api.html"/>
+        <link rel="next" title="pylatex.lists" href="pylatex.lists.html"/>
+        <link rel="prev" title="pylatex.document" href="pylatex.document.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> PyLaTeX
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example.html">Readme example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lists_example.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/plt.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/quantities_ex.html">Quantities example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/subfigure.html">Subfigure example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PyLaTeX</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../api.html">API reference</a> &raquo;</li>
+      
+    <li>pylatex.graphics</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pylatex/pylatex.graphics.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <span class="target" id="module-pylatex.graphics"></span><div class="section" id="pylatex-graphics">
+<h1>pylatex.graphics<a class="headerlink" href="#pylatex-graphics" title="Permalink to this headline">¶</a></h1>
+<p>This module implements the class that deals with graphics.</p>
+<dl class="class">
+<dt id="pylatex.graphics.Figure">
+<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">Figure</code><span class="sig-paren">(</span><em>data=None</em>, <em>position=None</em>, <em>seperate_paragraph=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXNamedContainer" title="pylatex.base_classes.BaseLaTeXNamedContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXNamedContainer</span></code></a></p>
+<p>A class that represents a Graphic.</p>
+<dl class="method">
+<dt id="pylatex.graphics.Figure.add_image">
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure.add_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an image.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.graphics.Figure.add_caption">
+<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure.add_caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a caption to the figure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>caption</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.graphics.SubFigure">
+<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>data=None</em>, <em>position=None</em>, <em>width='0.45\linewidth'</em>, <em>seperate_paragraph=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXNamedContainer" title="pylatex.base_classes.BaseLaTeXNamedContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXNamedContainer</span></code></a></p>
+<p>A Class that represents a subfigure from the subcaption package</p>
+<dl class="method">
+<dt id="pylatex.graphics.SubFigure.add_image">
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an image.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.graphics.SubFigure.add_caption">
+<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure.add_caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a caption to the figure</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>caption</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.graphics.Plt">
+<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">Plt</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Plt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.graphics.Figure" title="pylatex.graphics.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.graphics.Figure</span></code></a></p>
+<p>A class that represents a plot created with matplotlib.</p>
+<dl class="attribute">
+<dt id="pylatex.graphics.Plt.container_name">
+<code class="descname">container_name</code><em class="property"> = 'figure'</em><a class="headerlink" href="#pylatex.graphics.Plt.container_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pylatex.graphics.Plt.add_plot">
+<code class="descname">add_plot</code><span class="sig-paren">(</span><em>plt</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Plt.add_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a plot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>plt</strong> (<a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#module-matplotlib.pyplot" title="(in Matplotlib v1.4.3)"><em>matplotlib.pyplot</em></a>) &#8211; The matplotlib.pyplot module</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The width of the plot.</li>
+<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The placement of the plot.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pylatex.lists.html" class="btn btn-neutral float-right" title="pylatex.lists" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pylatex.document.html" class="btn btn-neutral" title="pylatex.document" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jelte Fennema.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

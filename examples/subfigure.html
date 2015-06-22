@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Subfigure example &mdash; PyLaTeX 0.8.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
+        <link rel="up" title="Examples" href="../examples.html"/>
+        <link rel="next" title="API reference" href="../api.html"/>
+        <link rel="prev" title="Quantities example" href="quantities_ex.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> PyLaTeX
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html">Readme example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists_example.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plt.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Subfigure example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.command.html">pylatex.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.document.html">pylatex.document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.lists.html">pylatex.lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.math.html">pylatex.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.section.html">pylatex.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.utils.html">pylatex.utils</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PyLaTeX</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      
+    <li>Subfigure example</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/subfigure.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <span class="target" id="module-subfigure"></span><div class="section" id="subfigure-example">
+<h1>Subfigure example<a class="headerlink" href="#subfigure-example" title="Permalink to this headline">¶</a></h1>
+<p>This example shows subfigure functionality.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">SubFigure</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">default_filepath</span><span class="o">=</span><span class="s">&#39;subfigures&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;Showing subfigures&#39;</span><span class="p">)):</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;h!&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">kittens</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">SubFigure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span>
+                                      <span class="n">width</span><span class="o">=</span><span class="s">r&#39;0.45\linewidth&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">left_kitten</span><span class="p">:</span>
+
+                <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="s">&#39;docs/static/kitten.jpg&#39;</span><span class="p">,</span>
+                                      <span class="n">width</span><span class="o">=</span><span class="s">r&#39;\linewidth&#39;</span><span class="p">)</span>
+                <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;Kitten on the left&#39;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">SubFigure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span>
+                            <span class="n">width</span><span class="o">=</span><span class="s">r&#39;0.45\linewidth&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">right_kitten</span><span class="p">:</span>
+
+                <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="s">&#39;docs/static/kitten.jpg&#39;</span><span class="p">,</span>
+                                       <span class="n">width</span><span class="o">=</span><span class="s">r&#39;\linewidth&#39;</span><span class="p">)</span>
+                <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;Kitten on the right&#39;</span><span class="p">)</span>
+            <span class="n">kittens</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&quot;Two kittens&quot;</span><span class="p">)</span>
+
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api.html" class="btn btn-neutral float-right" title="API reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quantities_ex.html" class="btn btn-neutral" title="Quantities example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jelte Fennema.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
