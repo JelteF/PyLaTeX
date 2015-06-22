@@ -23,6 +23,11 @@ Everything else you want you can still add to the document by adding LaTeX
 formatted strings to the container class you want it to be in.
 
 
+### Documentation
+Currently the documentation is being worked on. It is clearly not finished yet,
+but the current version can be found at https://jeltef.github.io/PyLaTeX/.
+
+
 ### Dependencies
 
 - Python 3.x or Python 2.7
