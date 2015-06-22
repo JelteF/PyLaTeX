@@ -145,8 +145,8 @@ class Plt(Figure):
     def _save_plot(self, plt, *args, **kwargs):
         """Saves the plot.
 
-        :param plt: matplotlib.pyplot
-        :type plt: module
+        :param plt: The matplotlib.pyplot module
+        :type plt: matplotlib.pyplot
 
         :return: The basename with which the plot has been saved.
         :rtype: str
@@ -164,11 +164,11 @@ class Plt(Figure):
                  placement=r'\centering', *args, **kwargs):
         """Adds a plot.
 
-        :param plt: matplotlib.pyplot
+        :param plt: The matplotlib.pyplot module
         :param width: The width of the plot.
         :param placement: The placement of the plot.
 
-        :type plt: module
+        :type plt: matplotlib.pyplot
         :type width: str
         :type placement: str
         """

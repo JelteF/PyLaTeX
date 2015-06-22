@@ -37,6 +37,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -113,6 +114,9 @@ modindex_common_prefix = ['pylatex.']
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+intersphinx_mapping = {'python': ('https://docs.python.org/3.4', None),
+                       'matplotlib': ('http://matplotlib.org/', None)}
 
 
 # -- Options for HTML output ----------------------------------------------

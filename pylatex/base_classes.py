@@ -40,7 +40,7 @@ class BaseLaTeXClass:
 
             :param file_: The file object in which to save the data
 
-            :type file_: file object
+            :type file_: io.TextIOBase
         """
 
         file_.write(self.dumps())
@@ -69,7 +69,7 @@ class BaseLaTeXClass:
 
             :param file_: The file object in which to save the data
 
-            :type file_: file object
+            :type file_: io.TextIOBase
         """
 
         file_.write(self.dumps_packages())
