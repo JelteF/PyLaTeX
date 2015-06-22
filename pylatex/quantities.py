@@ -6,8 +6,8 @@
     This module implements the classes that deals with quantities objects.
     It requires the latex package SIunitx.
 
-    :copyright: (c) 2015 by Björn Dahlgren.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2015 by Björn Dahlgren.
+        :license: MIT, see License for more details.
 """
 
 from operator import itemgetter

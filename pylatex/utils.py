@@ -6,8 +6,8 @@
     This module implements some simple functions with all kinds of
     functionality.
 
-    :copyright: (c) 2014 by Jelte Fennema.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
 """
 
 import os.path

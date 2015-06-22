@@ -6,8 +6,8 @@
     This module implements the class that deals with latex List objects
     specifically Enumerate and Itemize.
 
-    :copyright: (c) 2015 by Sean McLemon.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2015 by Sean McLemon.
+        :license: MIT, see License for more details.
 """
 
 from .base_classes import BaseLaTeXNamedContainer

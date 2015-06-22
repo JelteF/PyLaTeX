@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+    pylatex.math
+    ~~~~~~~~~~~~
+
+    This module implements the class that deals with math.
+
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
+"""
+
 from .base_classes import BaseLaTeXContainer
 
 

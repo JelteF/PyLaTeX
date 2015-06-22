@@ -1,5 +1,19 @@
 #!/usr/bin/python
+"""
+    Matplotlib example
+    ~~~~~~~~~~~~~~~~~~
 
+    This example shows matplotlib functionality.
+
+    .. literalinclude:: /../../examples/plt.py
+        :start-after: begin-doc-include
+        :lines: 10-
+
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
+"""
+
+# begin-doc-include
 import matplotlib
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot

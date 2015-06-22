@@ -6,8 +6,8 @@
     This module implements a class that implements a latex command. This can be
     used directly or it can be inherrited to make an easier interface to it.
 
-    :copyright: (c) 2014 by Jelte Fennema.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
 """
 from .parameters import Arguments, Options
 from .base_classes import BaseLaTeXClass

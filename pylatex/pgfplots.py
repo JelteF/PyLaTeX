@@ -5,8 +5,8 @@
 
     This module implements the classes used to show plots.
 
-    :copyright: (c) 2014 by Jelte Fennema.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
 """
 
 

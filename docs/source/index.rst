@@ -10,6 +10,7 @@ Welcome to PyLaTeX's documentation!
     :maxdepth: 1
     :glob:
 
+    examples
     api
 
 

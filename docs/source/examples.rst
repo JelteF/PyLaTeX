@@ -1,9 +1,9 @@
-API reference
-=============
+Examples
+========
 
 .. toctree::
     :maxdepth: 1
     :glob:
 
-    pylatex/*
+    examples/*
 

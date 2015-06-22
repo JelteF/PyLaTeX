@@ -6,8 +6,8 @@
     This module implements the classes that deal with parameters, in particular
     with options and arguments.
 
-    :copyright: (c) 2014 by Jelte Fennema.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
 """
 
 from .base_classes import BaseLaTeXClass

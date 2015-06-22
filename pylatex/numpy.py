@@ -5,8 +5,8 @@
 
     This module implements the classes that deals with numpy objects.
 
-    :copyright: (c) 2014 by Jelte Fennema.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
 """
 
 import numpy as np

@@ -6,8 +6,8 @@
     This module implements base classes with inheritable functions for other
     LaTeX classes.
 
-    :copyright: (c) 2014 by Jelte Fennema.
-    :license: MIT, see License for more details.
+    ..  :copyright: (c) 2014 by Jelte Fennema.
+        :license: MIT, see License for more details.
 """
 
 from collections import UserList

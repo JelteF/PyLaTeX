@@ -1,0 +1,1 @@
+.. automodule:: numpy_ex
