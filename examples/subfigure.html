@@ -73,6 +73,19 @@
           
           
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#plain-latex-strings">Plain LaTeX strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#the-classes">The classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#the-simplest-base-class">The simplest base class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#the-options-arguments-and-command-class">The Options, Arguments and Command class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#containers">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#escaping">Escaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#the-document-class">The Document class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#extending-pylatex">Extending PyLaTeX</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="basic.html#the-code">The code</a></li>
@@ -128,6 +141,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
 </ul>
 
           
@@ -167,8 +181,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="module-subfigure">
-<span id="subfigure-example"></span><h1>Subfigure example<a class="headerlink" href="#module-subfigure" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-examples.subfigure">
+<span id="subfigure-example"></span><h1>Subfigure example<a class="headerlink" href="#module-examples.subfigure" title="Permalink to this headline">¶</a></h1>
 <p>This example shows subfigure functionality.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
@@ -177,8 +191,7 @@
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">default_filepath</span><span class="o">=</span><span class="s">&#39;subfigures&#39;</span><span class="p">)</span>
-    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span>
-                                  <span class="s">&#39;../docs/static/kitten.jpg&#39;</span><span class="p">)</span>
+    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s">&#39;kitten.jpg&#39;</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;Showing subfigures&#39;</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;h!&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">kittens</span><span class="p">:</span>

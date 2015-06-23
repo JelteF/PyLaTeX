@@ -1,6 +1,6 @@
 Matplotlib example
 ==================
-.. automodule:: matplotlib_ex
+.. automodule:: examples.matplotlib_ex
 
 The code
 --------

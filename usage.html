@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>Library usage &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html"/> 
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html"/>
+        <link rel="next" title="Examples" href="examples.html"/>
+        <link rel="prev" title="PyLaTeX" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -55,7 +57,7 @@
 
         
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -69,18 +71,18 @@
         
           
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Library usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#plain-latex-strings">Plain LaTeX strings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#the-classes">The classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#the-simplest-base-class">The simplest base class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#the-options-arguments-and-command-class">The Options, Arguments and Command class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#containers">Containers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#escaping">Escaping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="usage.html#the-document-class">The Document class</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Library usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plain-latex-strings">Plain LaTeX strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-classes">The classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-simplest-base-class">The simplest base class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-options-arguments-and-command-class">The Options, Arguments and Command class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#containers">Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#escaping">Escaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-document-class">The Document class</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#extending-pylatex">Extending PyLaTeX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extending-pylatex">Extending PyLaTeX</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -163,8 +165,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>Library usage</li>
       <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/usage.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -172,22 +178,78 @@
 </div>
           <div role="main" class="document">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="library-usage">
+<h1>Library usage<a class="headerlink" href="#library-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plain-latex-strings">
+<h2>Plain LaTeX strings<a class="headerlink" href="#plain-latex-strings" title="Permalink to this headline">¶</a></h2>
+<p>The one thing to remember before we start with the actual library is that LaTeX
+is just a text format. PyLaTeX contains classes and functions to make
+generating LaTeX formatted text easy, but it&#8217;s basically a nice wrapper around
+string manipulations. This is why all the functions and classes that are
+supplied by this library support normal strings as input. If at any point a
+LaTeX feature that you need is not supported by this library, you can just make
+a string with the LaTeX syntax you need and that string can simply be mixed in
+with all the classes supplied by this library.</p>
+</div>
+<div class="section" id="the-classes">
+<h2>The classes<a class="headerlink" href="#the-classes" title="Permalink to this headline">¶</a></h2>
+<p>Strings are not really the strength of this library however. Creating all the
+LaTeX formatted strings by simply concatenating strings would mean lots of
+typing. That is why this library contains classes that can simply be used to
+generate those strings.</p>
+<div class="section" id="the-simplest-base-class">
+<h3>The simplest base class<a class="headerlink" href="#the-simplest-base-class" title="Permalink to this headline">¶</a></h3>
+<p>All the different LaTeX classes have some stuff in common. That is why the
+<a class="reference internal" href="pylatex/pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass" title="pylatex.base_classes.BaseLaTeXClass"><code class="xref py py-class docutils literal"><span class="pre">BaseLaTeXClass</span></code></a> exists. This class defines an
+interface and some methods that can be used in any of the classes. One of these
+methods is the <a class="reference internal" href="pylatex/pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass.dumps" title="pylatex.base_classes.BaseLaTeXClass.dumps"><code class="xref py py-meth docutils literal"><span class="pre">dumps()</span></code></a> method,
+which returns the LaTeX formatted string representation of the class. Another
+useful one, when generating snippets is the
+<a class="reference internal" href="pylatex/pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass.generate_tex" title="pylatex.base_classes.BaseLaTeXClass.generate_tex"><code class="xref py py-meth docutils literal"><span class="pre">generate_tex()</span></code></a> method, which
+writes the output of <a class="reference internal" href="pylatex/pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass.dumps" title="pylatex.base_classes.BaseLaTeXClass.dumps"><code class="xref py py-meth docutils literal"><span class="pre">dumps()</span></code></a> to a
+file with the supplied filename.</p>
+</div>
+<div class="section" id="the-options-arguments-and-command-class">
+<h3>The Options, Arguments and Command class<a class="headerlink" href="#the-options-arguments-and-command-class" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="containers">
+<h3>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h3>
+<p>Containers are a very important part of the library. All the containers are
+simply lists of latex elements. That is why they also support indexing and
+appending.</p>
+</div>
+<div class="section" id="escaping">
+<h3>Escaping<a class="headerlink" href="#escaping" title="Permalink to this headline">¶</a></h3>
+<p>Because LaTeX formatted strings are supported, just like all these classes, an
+important feature is to be able to escape special LaTeX symbols in a user
+supplied string. This is where the escape_latex function comes in.</p>
+</div>
+<div class="section" id="the-document-class">
+<h3>The Document class<a class="headerlink" href="#the-document-class" title="Permalink to this headline">¶</a></h3>
+<p>One of the most important container classes is the
+<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-class docutils literal"><span class="pre">Document</span></code></a> class.</p>
+</div>
+</div>
+<div class="section" id="extending-pylatex">
+<h2>Extending PyLaTeX<a class="headerlink" href="#extending-pylatex" title="Permalink to this headline">¶</a></h2>
+<p>Because of all the base classes supplied by PyLaTeX, it is very easy to extend
+its support in LaTeX features. Just pick one of the existing (base) classes
+that fits best and extend that with the needed functionality.</p>
+</div>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="PyLaTeX" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -225,7 +287,6 @@
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -241,14 +302,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

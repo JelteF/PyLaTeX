@@ -1,6 +1,6 @@
 Basic example
 =============
-.. automodule:: basic
+.. automodule:: examples.basic
 
 The code
 --------

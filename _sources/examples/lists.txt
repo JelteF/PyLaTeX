@@ -1,6 +1,6 @@
 Lists example
 =============
-.. automodule:: lists
+.. automodule:: examples.lists
 
 The code
 --------

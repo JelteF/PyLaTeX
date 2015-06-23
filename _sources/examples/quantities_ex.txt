@@ -1,6 +1,6 @@
 Quantities example
 ==================
-.. automodule:: quantities_ex
+.. automodule:: examples.quantities_ex
 
 The code
 --------

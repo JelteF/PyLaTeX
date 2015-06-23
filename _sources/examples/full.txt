@@ -1,6 +1,6 @@
 Full example
 ============
-.. automodule:: full
+.. automodule:: examples.full
 
 The code
 --------

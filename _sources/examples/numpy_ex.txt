@@ -1,6 +1,6 @@
 Numpy example
 =============
-.. automodule:: numpy_ex
+.. automodule:: examples.numpy_ex
 
 The code
 --------

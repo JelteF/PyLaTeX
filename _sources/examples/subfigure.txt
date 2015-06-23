@@ -1,6 +1,6 @@
 Subfigure example
 =================
-.. automodule:: subfigure
+.. automodule:: examples.subfigure
 
 The code
 --------
