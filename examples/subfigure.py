@@ -12,8 +12,7 @@ import os
 
 if __name__ == '__main__':
     doc = Document(default_filepath='subfigures')
-    image_filename = os.path.join(os.path.dirname(__file__),
-                                  '../docs/static/kitten.jpg')
+    image_filename = os.path.join(os.path.dirname(__file__), 'kitten.jpg')
 
     with doc.create(Section('Showing subfigures')):
         with doc.create(Figure(position='h!')) as kittens:

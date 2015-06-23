@@ -16,8 +16,7 @@ from pylatex.utils import italic, escape_latex
 import os
 
 if __name__ == '__main__':
-    image_filename = os.path.join(os.path.dirname(__file__),
-                                  '../docs/static/kitten.jpg')
+    image_filename = os.path.join(os.path.dirname(__file__), 'kitten.jpg')
 
     doc = Document()
     doc.packages.append(Package('geometry', options=['tmargin=1cm',
