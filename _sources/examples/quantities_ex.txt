@@ -1,1 +1,14 @@
+Quantities example
+==================
 .. automodule:: quantities_ex
+
+The code
+--------
+.. literalinclude:: /../../examples/quantities_ex.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/quantities_ex.pdf.png
+
+    quantities_ex.pdf

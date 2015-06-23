@@ -74,13 +74,41 @@
           
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../examples/basic.html">Basic example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/example.html">Readme example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/lists_example.html">Lists example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/plt.html">Matplotlib example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/quantities_ex.html">Quantities example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basic.html">Basic example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/basic.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/basic.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/full.html">Full example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/full.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/full.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lists.html">Lists example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lists.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lists.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/matplotlib_ex.html">Matplotlib example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/quantities_ex.html">Quantities example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/quantities_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/quantities_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/subfigure.html">Subfigure example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/subfigure.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/subfigure.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
@@ -92,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
@@ -145,7 +173,8 @@
 <dl class="function">
 <dt id="pylatex.table.get_table_width">
 <code class="descclassname">pylatex.table.</code><code class="descname">get_table_width</code><span class="sig-paren">(</span><em>table_spec</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.get_table_width" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Calculate the width of a table based on its spec.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -164,10 +193,25 @@
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='|c|'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
 <p>A class that represents a multicolumn inside of a table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
+<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>TODO:
+type of data can also be list</p>
 <dl class="method">
 <dt id="pylatex.table.MultiColumn.dumps">
 <code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents the multicolumn as a string in LaTeX syntax.</p>
+<dd><p>Represent the multicolumn as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -187,10 +231,25 @@
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>width='*'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
 <p>A class that represents a multirow in a table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>TODO:
+type of data can also be list</p>
 <dl class="method">
 <dt id="pylatex.table.MultiRow.dumps">
 <code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiRow.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents the multirow as a string in LaTeX syntax.</p>
+<dd><p>Represent the multirow as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -209,10 +268,24 @@
 <dt id="pylatex.table.TableBase">
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">TableBase</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXNamedContainer" title="pylatex.base_classes.BaseLaTeXNamedContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXNamedContainer</span></code></a></p>
+<p>A class that is used as a base for all table classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>table_spec</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
+<li><strong>pos</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="pylatex.table.TableBase.add_hline">
 <code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_hline" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a horizontal line to the table.</p>
+<dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -230,13 +303,13 @@
 <dl class="method">
 <dt id="pylatex.table.TableBase.add_empty_row">
 <code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_empty_row" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds an empty row to the table.</p>
+<dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.TableBase.add_row">
 <code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_row" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a row of cells to the table.</p>
+<dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -254,7 +327,7 @@
 <dl class="method">
 <dt id="pylatex.table.TableBase.add_multicolumn">
 <code class="descname">add_multicolumn</code><span class="sig-paren">(</span><em>size</em>, <em>align</em>, <em>content</em>, <em>cells=None</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_multicolumn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a multicolumn of width size to the table, with cell content.</p>
+<dd><p>Add a multicolumn of width size to the table, with cell content.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -275,7 +348,7 @@
 <dl class="method">
 <dt id="pylatex.table.TableBase.add_multirow">
 <code class="descname">add_multirow</code><span class="sig-paren">(</span><em>size</em>, <em>align</em>, <em>content</em>, <em>hlines=True</em>, <em>cells=None</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.TableBase.add_multirow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a multirow of height size to the table, with cell content.</p>
+<dd><p>Add a multirow of height size to the table, with cell content.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -319,21 +392,21 @@
 <dt id="pylatex.table.Tabu">
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Tabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.TableBase" title="pylatex.table.TableBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.TableBase</span></code></a></p>
-<p>A class that represents a tabu (more flexible table)</p>
+<p>A class that represents a tabu (more flexible table).</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.table.LongTable">
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTable</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.TableBase" title="pylatex.table.TableBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.TableBase</span></code></a></p>
-<p>A class that represents a longtable (multipage table)</p>
+<p>A class that represents a longtable (multipage table).</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.table.LongTabu">
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.Table" title="pylatex.table.Table"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Table</span></code></a></p>
-<p>A class that represents a longtabu (more flexible multipage table)</p>
+<p>A class that represents a longtabu (more flexible multipage table).</p>
 </dd></dl>
 
 </div>

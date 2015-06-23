@@ -74,13 +74,41 @@
           
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../examples/basic.html">Basic example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/example.html">Readme example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/lists_example.html">Lists example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/plt.html">Matplotlib example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/quantities_ex.html">Quantities example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basic.html">Basic example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/basic.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/basic.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/full.html">Full example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/full.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/full.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lists.html">Lists example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lists.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lists.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/matplotlib_ex.html">Matplotlib example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/quantities_ex.html">Quantities example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/quantities_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/quantities_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/subfigure.html">Subfigure example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/subfigure.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/subfigure.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
@@ -92,7 +120,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
@@ -146,10 +174,24 @@
 <dt id="pylatex.math.Math">
 <em class="property">class </em><code class="descclassname">pylatex.math.</code><code class="descname">Math</code><span class="sig-paren">(</span><em>data=None</em>, <em>inline=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.math.Math" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
+<p>A class representing a math environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
+<li><strong>inline</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="pylatex.math.Math.dumps">
 <code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.math.Math.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Return a LaTeX formatted string representing the object.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">

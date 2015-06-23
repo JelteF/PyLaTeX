@@ -1,0 +1,17 @@
+Matplotlib example
+==================
+.. automodule:: matplotlib_ex
+
+The code
+--------
+.. literalinclude:: /../../examples/matplotlib_ex.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/matplotlib_ex-dpi.pdf.png
+
+    matplotlib_ex-dpi.pdf
+.. figure:: /_static/examples/matplotlib_ex-facecolor.pdf.png
+
+    matplotlib_ex-facecolor.pdf

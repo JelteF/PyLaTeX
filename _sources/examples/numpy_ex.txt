@@ -1,1 +1,14 @@
+Numpy example
+=============
 .. automodule:: numpy_ex
+
+The code
+--------
+.. literalinclude:: /../../examples/numpy_ex.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/numpy_ex.pdf.png
+
+    numpy_ex.pdf

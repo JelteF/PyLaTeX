@@ -1,0 +1,14 @@
+Lists example
+=============
+.. automodule:: lists
+
+The code
+--------
+.. literalinclude:: /../../examples/lists.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/lists.pdf.png
+
+    lists.pdf

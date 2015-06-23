@@ -33,7 +33,7 @@
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Subfigure example" href="subfigure.html"/>
-        <link rel="prev" title="Matplotlib example" href="plt.html"/> 
+        <link rel="prev" title="Numpy example" href="numpy_ex.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -74,13 +74,41 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html">Readme example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lists_example.html">Lists example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plt.html">Matplotlib example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Quantities example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Quantities example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="subfigure.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subfigure.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
@@ -92,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.section.html">pylatex.section</a></li>
@@ -139,9 +167,11 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-quantities_ex"></span><div class="section" id="quantities-example">
-<h1>Quantities example<a class="headerlink" href="#quantities-example" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-quantities_ex">
+<span id="quantities-example"></span><h1>Quantities example<a class="headerlink" href="#module-quantities_ex" title="Permalink to this headline">¶</a></h1>
 <p>This example shows quantities functionality.</p>
+<div class="section" id="the-code">
+<h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantities</span> <span class="kn">as</span> <span class="nn">pq</span>
 
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Math</span>
@@ -153,17 +183,25 @@
     <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Scalars&#39;</span><span class="p">)</span>
 
     <span class="n">G</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">Newtonian_constant_of_gravitation</span>
-    <span class="n">moon_earth_distance</span> <span class="o">=</span> <span class="mi">384400</span><span class="o">*</span><span class="n">pq</span><span class="o">.</span><span class="n">km</span>
+    <span class="n">moon_earth_distance</span> <span class="o">=</span> <span class="mi">384400</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">km</span>
     <span class="n">moon_mass</span> <span class="o">=</span> <span class="mf">7.34767309e22</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">kg</span>
     <span class="n">earth_mass</span> <span class="o">=</span> <span class="mf">5.972e24</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">kg</span>
-    <span class="n">moon_earth_force</span> <span class="o">=</span> <span class="n">G</span><span class="o">*</span><span class="n">moon_mass</span><span class="o">*</span><span class="n">earth_mass</span><span class="o">/</span><span class="n">moon_earth_distance</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">moon_earth_force</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">moon_mass</span> <span class="o">*</span> <span class="n">earth_mass</span> <span class="o">/</span> <span class="n">moon_earth_distance</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">q1</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">moon_earth_force</span><span class="o">.</span><span class="n">rescale</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">newton</span><span class="p">))</span>
     <span class="n">math</span> <span class="o">=</span> <span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;F=&#39;</span><span class="p">,</span> <span class="n">q1</span><span class="p">])</span>
     <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
     <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">()</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;quantities_ex&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="the-generated-pdfs">
+<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<img alt="../_images/quantities_ex.pdf.png" src="../_images/quantities_ex.pdf.png" />
+<p class="caption"><span class="caption-text">quantities_ex.pdf</span></p>
+</div>
 </div>
 </div>
 
@@ -176,7 +214,7 @@
         <a href="subfigure.html" class="btn btn-neutral float-right" title="Subfigure example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="plt.html" class="btn btn-neutral" title="Matplotlib example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="numpy_ex.html" class="btn btn-neutral" title="Numpy example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

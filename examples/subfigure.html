@@ -74,13 +74,41 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html">Readme example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lists_example.html">Lists example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plt.html">Matplotlib example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quantities_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quantities_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Subfigure example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
@@ -92,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.section.html">pylatex.section</a></li>
@@ -139,32 +167,45 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-subfigure"></span><div class="section" id="subfigure-example">
-<h1>Subfigure example<a class="headerlink" href="#subfigure-example" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-subfigure">
+<span id="subfigure-example"></span><h1>Subfigure example<a class="headerlink" href="#module-subfigure" title="Permalink to this headline">¶</a></h1>
 <p>This example shows subfigure functionality.</p>
+<div class="section" id="the-code">
+<h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">SubFigure</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">default_filepath</span><span class="o">=</span><span class="s">&#39;subfigures&#39;</span><span class="p">)</span>
+    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span>
+                                  <span class="s">&#39;../docs/static/kitten.jpg&#39;</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;Showing subfigures&#39;</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;h!&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">kittens</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">SubFigure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span>
                                       <span class="n">width</span><span class="o">=</span><span class="s">r&#39;0.45\linewidth&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">left_kitten</span><span class="p">:</span>
 
-                <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="s">&#39;docs/static/kitten.jpg&#39;</span><span class="p">,</span>
+                <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span>
                                       <span class="n">width</span><span class="o">=</span><span class="s">r&#39;\linewidth&#39;</span><span class="p">)</span>
                 <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;Kitten on the left&#39;</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">SubFigure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span>
                             <span class="n">width</span><span class="o">=</span><span class="s">r&#39;0.45\linewidth&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">right_kitten</span><span class="p">:</span>
 
-                <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="s">&#39;docs/static/kitten.jpg&#39;</span><span class="p">,</span>
+                <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span>
                                        <span class="n">width</span><span class="o">=</span><span class="s">r&#39;\linewidth&#39;</span><span class="p">)</span>
                 <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;Kitten on the right&#39;</span><span class="p">)</span>
             <span class="n">kittens</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&quot;Two kittens&quot;</span><span class="p">)</span>
 
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="the-generated-pdfs">
+<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<img alt="../_images/subfigures.pdf.png" src="../_images/subfigures.pdf.png" />
+<p class="caption"><span class="caption-text">subfigures.pdf</span></p>
+</div>
 </div>
 </div>
 

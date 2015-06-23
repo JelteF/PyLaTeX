@@ -1,1 +1,20 @@
+Basic example
+=============
 .. automodule:: basic
+
+The code
+--------
+.. literalinclude:: /../../examples/basic.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/basic.pdf.png
+
+    basic.pdf
+.. figure:: /_static/examples/basic_maketitle.pdf.png
+
+    basic_maketitle.pdf
+.. figure:: /_static/examples/basic_maketitle2.pdf.png
+
+    basic_maketitle2.pdf

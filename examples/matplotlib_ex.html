@@ -32,8 +32,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Quantities example" href="quantities_ex.html"/>
-        <link rel="prev" title="Numpy example" href="numpy_ex.html"/> 
+        <link rel="next" title="Numpy example" href="numpy_ex.html"/>
+        <link rel="prev" title="Lists example" href="lists.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -74,13 +74,41 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html">Readme example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lists_example.html">Lists example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Matplotlib example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Matplotlib example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quantities_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quantities_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="subfigure.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subfigure.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
@@ -92,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.section.html">pylatex.section</a></li>
@@ -130,7 +158,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/examples/plt.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/examples/matplotlib_ex.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -139,9 +167,11 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-plt"></span><div class="section" id="matplotlib-example">
-<h1>Matplotlib example<a class="headerlink" href="#matplotlib-example" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-matplotlib_ex">
+<span id="matplotlib-example"></span><h1>Matplotlib example<a class="headerlink" href="#module-matplotlib_ex" title="Permalink to this headline">¶</a></h1>
 <p>This example shows matplotlib functionality.</p>
+<div class="section" id="the-code">
+<h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">&#39;Agg&#39;</span><span class="p">)</span>  <span class="c"># Not to use X server. For TravisCI.</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
@@ -175,9 +205,21 @@
 
     <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    <span class="n">main</span><span class="p">(</span><span class="s">&#39;plt_dpi&#39;</span><span class="p">,</span> <span class="s">r&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-    <span class="n">main</span><span class="p">(</span><span class="s">&#39;plt_facecolor&#39;</span><span class="p">,</span> <span class="s">r&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="s">&#39;matplotlib_ex-dpi&#39;</span><span class="p">,</span> <span class="s">r&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="s">&#39;matplotlib_ex-facecolor&#39;</span><span class="p">,</span> <span class="s">r&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="the-generated-pdfs">
+<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<img alt="../_images/matplotlib_ex-dpi.pdf.png" src="../_images/matplotlib_ex-dpi.pdf.png" />
+<p class="caption"><span class="caption-text">matplotlib_ex-dpi.pdf</span></p>
+</div>
+<div class="figure" id="id2">
+<img alt="../_images/matplotlib_ex-facecolor.pdf.png" src="../_images/matplotlib_ex-facecolor.pdf.png" />
+<p class="caption"><span class="caption-text">matplotlib_ex-facecolor.pdf</span></p>
+</div>
 </div>
 </div>
 
@@ -187,10 +229,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="quantities_ex.html" class="btn btn-neutral float-right" title="Quantities example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="numpy_ex.html" class="btn btn-neutral float-right" title="Numpy example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="numpy_ex.html" class="btn btn-neutral" title="Numpy example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="lists.html" class="btn btn-neutral" title="Lists example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

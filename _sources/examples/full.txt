@@ -1,0 +1,14 @@
+Full example
+============
+.. automodule:: full
+
+The code
+--------
+.. literalinclude:: /../../examples/full.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/full.pdf.png
+
+    full.pdf

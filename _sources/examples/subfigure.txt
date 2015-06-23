@@ -1,1 +1,14 @@
+Subfigure example
+=================
 .. automodule:: subfigure
+
+The code
+--------
+.. literalinclude:: /../../examples/subfigure.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/subfigures.pdf.png
+
+    subfigures.pdf

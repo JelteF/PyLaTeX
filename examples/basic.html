@@ -32,7 +32,7 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Readme example" href="example.html"/>
+        <link rel="next" title="Full example" href="full.html"/>
         <link rel="prev" title="Examples" href="../examples.html"/> 
 
   
@@ -74,13 +74,41 @@
           
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Basic example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html">Readme example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lists_example.html">Lists example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plt.html">Matplotlib example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Basic example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="full.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lists.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quantities_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quantities_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="subfigure.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subfigure.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
@@ -92,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.section.html">pylatex.section</a></li>
@@ -139,18 +167,20 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-basic"></span><div class="section" id="basic-example">
-<h1>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-basic">
+<span id="basic-example"></span><h1>Basic example<a class="headerlink" href="#module-basic" title="Permalink to this headline">¶</a></h1>
 <p>This example shows matplotlib functionality.</p>
+<div class="section" id="the-code">
+<h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span>
 <span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span><span class="p">,</span> <span class="n">escape_latex</span>
 
 
 <span class="k">def</span> <span class="nf">fill_document</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Adds a section, a subsection and some text to the document.</span>
+    <span class="sd">&quot;&quot;&quot;Add a section, a subsection and some text to the document.</span>
 
-<span class="sd">        :param doc: the document</span>
-<span class="sd">        :type doc: :class:`pylatex.document.Document` instance</span>
+<span class="sd">    :param doc: the document</span>
+<span class="sd">    :type doc: :class:`pylatex.document.Document` instance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;A section&#39;</span><span class="p">)):</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Some regular text and some &#39;</span> <span class="o">+</span> <span class="n">italic</span><span class="p">(</span><span class="s">&#39;italic text. &#39;</span><span class="p">))</span>
@@ -183,6 +213,22 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="the-generated-pdfs">
+<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<img alt="../_images/basic.pdf.png" src="../_images/basic.pdf.png" />
+<p class="caption"><span class="caption-text">basic.pdf</span></p>
+</div>
+<div class="figure" id="id2">
+<img alt="../_images/basic_maketitle.pdf.png" src="../_images/basic_maketitle.pdf.png" />
+<p class="caption"><span class="caption-text">basic_maketitle.pdf</span></p>
+</div>
+<div class="figure" id="id3">
+<img alt="../_images/basic_maketitle2.pdf.png" src="../_images/basic_maketitle2.pdf.png" />
+<p class="caption"><span class="caption-text">basic_maketitle2.pdf</span></p>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -190,7 +236,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="example.html" class="btn btn-neutral float-right" title="Readme example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="full.html" class="btn btn-neutral float-right" title="Full example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../examples.html" class="btn btn-neutral" title="Examples" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
