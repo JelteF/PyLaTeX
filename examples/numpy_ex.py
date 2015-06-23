@@ -1,16 +1,13 @@
 #!/usr/bin/python
 """
-    Numpy example
-    ~~~~~~~~~~~~~~~~~
+This example shows numpy functionality.
 
-    This example shows numpy functionality.
+.. literalinclude:: /../../examples/numpy_ex.py
+    :start-after: begin-doc-include
+    :lines: 10-
 
-    .. literalinclude:: /../../examples/numpy_ex.py
-        :start-after: begin-doc-include
-        :lines: 10-
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 # begin-doc-include

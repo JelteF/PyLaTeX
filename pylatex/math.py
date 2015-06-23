@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.math
-    ~~~~~~~~~~~~
+This module implements the class that deals with math.
 
-    This module implements the class that deals with math.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 from .base_classes import BaseLaTeXContainer
 
 
 class Math(BaseLaTeXContainer):
+
+    """A class representing a math environment.
+
+    :param data:
+    :param inline:
+
+    :type data: list
+    :type inline: bool
+    """
+
     def __init__(self, data=None, inline=False):
-        """
-            :param data:
-            :param inline:
-
-            :type data: list
-            :type inline: bool
-        """
-
         self.inline = inline
         super().__init__(data)
 
     def dumps(self):
-        """
-            :rtype: str
+        """Return a LaTeX formatted string representing the object.
+
+        :rtype: str
         """
 
         if self.inline:

@@ -1,8 +1,11 @@
 #!/usr/bin/python
 
 """
-    Calls functions with all available arguments to check whether they still
-    exist. An error from this file means that the public API has been changed.
+Test to check when arguments of functions get changed.
+
+This test calls functions with all available arguments to check whether they
+still exist. An error from this file means that the public API has been
+changed.
 """
 
 import numpy as np

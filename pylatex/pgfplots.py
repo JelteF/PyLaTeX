@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.pgfplots
-    ~~~~~~~~~~~~~~~~
+This module implements the classes used to show plots.
 
-    This module implements the classes used to show plots.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 
@@ -17,16 +14,16 @@ from pylatex.command import Command
 
 class TikZ(BaseLaTeXNamedContainer):
 
-    """Basic TikZ container class."""
+    """Basic TikZ container class.
+
+    :param data:
+
+    :type data: list
+    """
 
     container_name = 'tikzpicture'
 
     def __init__(self, data=None):
-        """
-            :param data:
-
-            :type data: list
-        """
 
         packages = [Package('tikz')]
 
@@ -35,17 +32,16 @@ class TikZ(BaseLaTeXNamedContainer):
 
 class Axis(BaseLaTeXNamedContainer):
 
-    """PGFPlots axis container class, this contains plots."""
+    """PGFPlots axis container class, this contains plots.
+
+    :param data:
+    :param options:
+
+    :type data: list
+    :type options: str
+    """
 
     def __init__(self, data=None, options=None):
-        """
-            :param data:
-            :param options:
-
-            :type data: list
-            :type options: str or list or :class:`parameters.Options` instance
-        """
-
         packages = [Package('pgfplots'), Command('pgfplotsset',
                                                  'compat=newest')]
 
@@ -54,21 +50,25 @@ class Axis(BaseLaTeXNamedContainer):
 
 class Plot(BaseLaTeXClass):
 
-    """PGFPlot normal plot."""
+    """A class representing a PGFPlot.
+
+    :param name:
+    :param func:
+    :param coordinates:
+    :param options:
+
+    :type name: str
+    :type func: str
+    :type coordinates: list
+    :type options: str
+
+    TODO:
+
+    options type can also be list or :class:`pylatex.parameters.Options`
+    instance
+    """
 
     def __init__(self, name=None, func=None, coordinates=None, options=None):
-        """
-            :param name:
-            :param func:
-            :param coordinates:
-            :param options:
-
-            :type name: str
-            :type func: str
-            :type coordinates: list
-            :type options: str or list or :class:`parameters.Options` instance
-        """
-
         self.name = name
         self.func = func
         self.coordinates = coordinates
@@ -80,10 +80,10 @@ class Plot(BaseLaTeXClass):
         super().__init__(packages=packages)
 
     def dumps(self):
-        """Represents the plot as a string in LaTeX syntax.
+        """Represent the plot as a string in LaTeX syntax.
 
-            :return:
-            :rtype: str
+        :return:
+        :rtype: str
         """
 
         string = Command('addplot', options=self.options).dumps()

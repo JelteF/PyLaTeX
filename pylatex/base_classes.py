@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.base_classes
-    ~~~~~~~~~~~~~~~~~~~~
+This module implements LaTeX base classes that can be subclassed.
 
-    This module implements base classes with inheritable functions for other
-    LaTeX classes.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 from collections import UserList
@@ -18,14 +14,15 @@ from contextlib import contextmanager
 
 class BaseLaTeXClass:
 
-    """A class that has some basic functions for LaTeX functions."""
+    """A class that has some basic functions for LaTeX functions.
+
+    :param packages: :class:`pylatex.package.Package` instances
+
+    :type packages: list
+
+    """
 
     def __init__(self, packages=None):
-        """
-            :param packages: :class:`pylatex.Package` instances
-
-            :type packages: list
-        """
 
         if packages is None:
             packages = []
@@ -33,20 +30,24 @@ class BaseLaTeXClass:
         self.packages = OrderedSet(packages)
 
     def dumps(self):
-        """Represents the class as a string in LaTeX syntax."""
+        """Represent the class as a string in LaTeX syntax.
+
+        This method should be implemented by any class that subclasses this
+        class.
+        """
 
     def dump(self, file_):
-        """Writes the LaTeX representation of the class to a file.
+        """Write the LaTeX representation of the class to a file.
 
-            :param file_: The file object in which to save the data
+        :param file_: The file object in which to save the data
 
-            :type file_: io.TextIOBase
+        :type file_: io.TextIOBase
         """
 
         file_.write(self.dumps())
 
     def generate_tex(self, filepath):
-        """Generates a .tex file.
+        """Generate a .tex file.
 
         :param filepath: the name of the file (without .tex)
         :type filepath: str
@@ -56,20 +57,20 @@ class BaseLaTeXClass:
             self.dump(newf)
 
     def dumps_packages(self):
-        """Represents the packages needed as a string in LaTeX syntax.
+        """Represent the packages needed as a string in LaTeX syntax.
 
-            :return:
-            :rtype: list
+        :return:
+        :rtype: list
         """
 
         return dumps_list(self.packages)
 
     def dump_packages(self, file_):
-        """Writes the LaTeX representation of the packages to a file.
+        """Write the LaTeX representation of the packages to a file.
 
-            :param file_: The file object in which to save the data
+        :param file_: The file object in which to save the data
 
-            :type file_: io.TextIOBase
+        :type file_: io.TextIOBase
         """
 
         file_.write(self.dumps_packages())
@@ -77,16 +78,18 @@ class BaseLaTeXClass:
 
 class BaseLaTeXContainer(BaseLaTeXClass, UserList):
 
-    """A base class that can cointain other LaTeX content."""
+    """A base class that can cointain other LaTeX content.
+
+    :param data:
+    :param packages: :class:`pylatex.package.Package` instances
+
+    :type data: list
+    :type packages: list
+    """
+
+    # TODO: Find a way to document multiple types, in this case str as well
 
     def __init__(self, data=None, packages=None):
-        """
-            :param data:
-            :param packages: :class:`pylatex.Package` instances
-
-            :type data: list, str or pylatex class instance
-            :type packages: list
-        """
 
         if data is None:
             data = []
@@ -101,10 +104,10 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         super().__init__(packages=packages)
 
     def dumps(self, **kwargs):
-        """Represents the container as a string in LaTeX syntax.
+        """Represent the container as a string in LaTeX syntax.
 
-            :return:
-            :rtype: list
+        :return:
+        :rtype: list
         """
 
         self.propegate_packages()
@@ -112,7 +115,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         return dumps_list(self, **kwargs)
 
     def propegate_packages(self):
-        """Makes sure packages get propegated."""
+        """Make sure packages get propegated."""
 
         for item in self.data:
             if isinstance(item, BaseLaTeXClass):
@@ -122,10 +125,10 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
                     self.packages.add(p)
 
     def dumps_packages(self):
-        """Represents the packages needed as a string in LaTeX syntax.
+        """Represent the packages needed as a string in LaTeX syntax.
 
-            :return:
-            :rtype: list
+        :return:
+        :rtype: list
         """
 
         self.propegate_packages()
@@ -136,7 +139,7 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
     def create(self, child):
         """Add a LaTeX object to current container, context-manager style.
 
-            :param child: An object to be added to the current container
+        :param child: An object to be added to the current container
         """
 
         prev_data = self.data
@@ -150,21 +153,20 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
 
 class BaseLaTeXNamedContainer(BaseLaTeXContainer):
 
-    """A base class for containers with one of a basic begin end syntax"""
+    """A base class for containers with a basic begin end syntax.
+
+    :param name:
+    :param options:
+    :param argument:
+
+    :type name: str
+    :type options: str or list or :class:`pylatex.parameters.Options` instance
+    :type argument: str
+    """
 
     def __init__(self, options=None, argument=None,
                  seperate_paragraph=False, begin_paragraph=False,
                  end_paragraph=False, **kwargs):
-        """
-            :param name:
-            :param options:
-            :param argument:
-
-            :type name: str
-            :type options: str or list or :class:`parameters.Options` instance
-            :type argument: str
-        """
-
         if not hasattr(self, 'container_name'):
             self.container_name = self.__class__.__name__.lower()
 
@@ -177,10 +179,10 @@ class BaseLaTeXNamedContainer(BaseLaTeXContainer):
         super().__init__(**kwargs)
 
     def dumps(self):
-        """Represents the named container as a string in LaTeX syntax.
+        """Represent the named container as a string in LaTeX syntax.
 
-            :return:
-            :rtype: str
+        :return:
+        :rtype: str
         """
 
         string = ''

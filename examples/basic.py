@@ -1,16 +1,13 @@
 #!/usr/bin/python
 """
-    Basic example
-    ~~~~~~~~~~~~~
+This example shows matplotlib functionality.
 
-    This example shows matplotlib functionality.
+.. literalinclude:: /../../examples/basic.py
+    :start-after: begin-doc-include
+    :lines: 8-
 
-    .. literalinclude:: /../../examples/basic.py
-        :start-after: begin-doc-include
-        :lines: 10-
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 # begin-doc-include
@@ -19,10 +16,10 @@ from pylatex.utils import italic, escape_latex
 
 
 def fill_document(doc):
-    """Adds a section, a subsection and some text to the document.
+    """Add a section, a subsection and some text to the document.
 
-        :param doc: the document
-        :type doc: :class:`pylatex.document.Document` instance
+    :param doc: the document
+    :type doc: :class:`pylatex.document.Document` instance
     """
     with doc.create(Section('A section')):
         doc.append('Some regular text and some ' + italic('italic text. '))

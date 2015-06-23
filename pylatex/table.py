@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.table
-    ~~~~~~~~~~~~~
+This module implements the class that deals with tables.
 
-    This module implements the class that deals with tables.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 from .utils import dumps_list
@@ -21,13 +18,14 @@ from warnings import warn
 
 
 def get_table_width(table_spec):
-    """
-        :param table_spec:
+    """Calculate the width of a table based on its spec.
 
-        :type table_spec: str
+    :param table_spec:
 
-        :return:
-        :rtype: int
+    :type table_spec: str
+
+    :return:
+    :rtype: int
     """
 
     column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
@@ -41,29 +39,31 @@ def get_table_width(table_spec):
 
 class MultiColumn(BaseLaTeXContainer):
 
-    """A class that represents a multicolumn inside of a table."""
+    """A class that represents a multicolumn inside of a table.
+
+    :param size:
+    :param align:
+    :param data:
+
+    :type size: int
+    :type align: str
+    :type data: str
+
+    TODO:
+    type of data can also be list
+    """
 
     def __init__(self, size, align='|c|', data=None):
-        """
-            :param size:
-            :param align:
-            :param data:
-
-            :type size: int
-            :type align: str
-            :type data: str or list
-        """
-
         self.size = size
         self.align = align
 
         super().__init__(data)
 
     def dumps(self):
-        """Represents the multicolumn as a string in LaTeX syntax.
+        """Represent the multicolumn as a string in LaTeX syntax.
 
-            :return:
-            :rtype: str
+        :return:
+        :rtype: str
         """
 
         multicolumn_type = self.__class__.__name__.lower()
@@ -78,19 +78,21 @@ class MultiColumn(BaseLaTeXContainer):
 
 class MultiRow(BaseLaTeXContainer):
 
-    """A class that represents a multirow in a table."""
+    """A class that represents a multirow in a table.
+
+    :param size:
+    :param width:
+    :param data:
+
+    :type size: int
+    :type width: str
+    :type data: str
+
+    TODO:
+    type of data can also be list
+    """
 
     def __init__(self, size, width='*', data=None):
-        """
-            :param size:
-            :param width:
-            :param data:
-
-            :type size: int
-            :type width: str
-            :type data: str or list
-        """
-
         self.size = size
         self.width = width
 
@@ -98,10 +100,10 @@ class MultiRow(BaseLaTeXContainer):
         super().__init__(data, packages=packages)
 
     def dumps(self):
-        """Represents the multirow as a string in LaTeX syntax.
+        """Represent the multirow as a string in LaTeX syntax.
 
-            :return:
-            :rtype: str
+        :return:
+        :rtype: str
         """
 
         multirow_type = self.__class__.__name__.lower()
@@ -116,30 +118,31 @@ class MultiRow(BaseLaTeXContainer):
 
 class TableBase(BaseLaTeXNamedContainer):
 
+    """A class that is used as a base for all table classes.
+
+    :param table_spec:
+    :param data:
+    :param pos:
+
+    :type table_spec: str
+    :type data: list
+    :type pos: list
+    """
+
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
-        """
-            :param table_spec:
-            :param data:
-            :param pos:
-
-            :type table_spec: str
-            :type data: list
-            :type pos: list
-        """
-
         self.width = get_table_width(table_spec)
 
         super().__init__(data=data, options=pos,
                          argument=table_spec, **kwargs)
 
     def add_hline(self, start=None, end=None):
-        """Adds a horizontal line to the table.
+        """Add a horizontal line to the table.
 
-            :param start:
-            :param end:
+        :param start:
+        :param end:
 
-            :type start: int
-            :type end: int
+        :type start: int
+        :type end: int
         """
 
         if start is None and end is None:
@@ -153,18 +156,18 @@ class TableBase(BaseLaTeXNamedContainer):
             self.append(Command('cline', str(start) + '-' + str(end)))
 
     def add_empty_row(self):
-        """Adds an empty row to the table."""
+        """Add an empty row to the table."""
 
         self.append((self.width - 1) * '&' + r'\\')
 
     def add_row(self, cells, escape=False):
-        """Adds a row of cells to the table.
+        """Add a row of cells to the table.
 
-            :param cells:
-            :param escape:
+        :param cells:
+        :param escape:
 
-            :type cells: tuple
-            :type escape: bool
+        :type cells: tuple
+        :type escape: bool
         """
 
         # Propegate packages used in cells
@@ -176,19 +179,19 @@ class TableBase(BaseLaTeXNamedContainer):
         self.append(dumps_list(cells, escape=escape, token='&') + r'\\')
 
     def add_multicolumn(self, size, align, content, cells=None, escape=False):
-        """Adds a multicolumn of width size to the table, with cell content.
+        """Add a multicolumn of width size to the table, with cell content.
 
-            :param size:
-            :param align:
-            :param content:
-            :param cells:
-            :param escape:
+        :param size:
+        :param align:
+        :param content:
+        :param cells:
+        :param escape:
 
-            :type size: int
-            :type align: str
-            :type content: str
-            :type cells: tuple
-            :type escape: bool
+        :type size: int
+        :type align: str
+        :type content: str
+        :type cells: tuple
+        :type escape: bool
         """
 
         self.append(Command('multicolumn', arguments=(size, align, content)))
@@ -200,21 +203,21 @@ class TableBase(BaseLaTeXNamedContainer):
 
     def add_multirow(self, size, align, content, hlines=True, cells=None,
                      escape=False):
-        """Adds a multirow of height size to the table, with cell content.
+        """Add a multirow of height size to the table, with cell content.
 
-            :param size:
-            :param align:
-            :param content:
-            :param hlines:
-            :param cells:
-            :param escape:
+        :param size:
+        :param align:
+        :param content:
+        :param hlines:
+        :param cells:
+        :param escape:
 
-            :type size: int
-            :type align: str
-            :type content: str
-            :type hlines: bool
-            :type cells: tuple
-            :type escape: bool
+        :type size: int
+        :type align: str
+        :type content: str
+        :type hlines: bool
+        :type cells: tuple
+        :type escape: bool
         """
 
         self.append(Command('multirow', arguments=(size, align, content)))
@@ -251,7 +254,7 @@ class Table(Tabular):
 
 class Tabu(TableBase):
 
-    """A class that represents a tabu (more flexible table)"""
+    """A class that represents a tabu (more flexible table)."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, packages=[Package('tabu')], **kwargs)
@@ -259,7 +262,7 @@ class Tabu(TableBase):
 
 class LongTable(TableBase):
 
-    """A class that represents a longtable (multipage table)"""
+    """A class that represents a longtable (multipage table)."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, packages=[Package('longtable')], **kwargs)
@@ -267,7 +270,7 @@ class LongTable(TableBase):
 
 class LongTabu(Table):
 
-    """A class that represents a longtabu (more flexible multipage table)"""
+    """A class that represents a longtabu (more flexible multipage table)."""
 
     def __init__(self, *args, **kwargs):
         packages = [Package('tabu'), Package('longtable')]

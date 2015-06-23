@@ -1,16 +1,13 @@
 #!/usr/bin/python
 """
-    Readme example
-    ~~~~~~~~~~~~~~
+This example shows matplotlib functionality.
 
-    This example shows matplotlib functionality.
+.. literalinclude:: /../../examples/example.py
+    :start-after: begin-doc-include
+    :lines: 10-
 
-    .. literalinclude:: /../../examples/example.py
-        :start-after: begin-doc-include
-        :lines: 10-
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 # begin-doc-include
@@ -47,7 +44,7 @@ if __name__ == '__main__':
 
     with doc.create(Section('The fancy stuff')):
         with doc.create(Subsection('Correct matrix equations')):
-            doc.append(Math(data=[Matrix(M), Matrix(a), '=', Matrix(M*a)]))
+            doc.append(Math(data=[Matrix(M), Matrix(a), '=', Matrix(M * a)]))
 
         with doc.create(Subsection('Beautiful graphs')):
             with doc.create(TikZ()):

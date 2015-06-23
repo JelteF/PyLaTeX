@@ -84,6 +84,22 @@ language = None
 autodoc_member_order = 'bysource'
 autodoc_default_flags = []
 
+
+def autodoc_add_module_title(app, what, name, obj, options, lines):
+    """Add a title to module docstrings."""
+    if what == 'module':
+        if not name.startswith('pylatex'):
+            name = name.capitalize() + ' example'
+
+        lines.insert(0, len(name) * '=')
+        lines.insert(0, name)
+
+
+def setup(app):
+    """Connect autodoc event to custom handler."""
+    app.connect('autodoc-process-docstring', autodoc_add_module_title)
+
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = []
@@ -115,8 +131,13 @@ modindex_common_prefix = ['pylatex.']
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3.4', None),
-                       'matplotlib': ('http://matplotlib.org/', None)}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3.4', None),
+    'matplotlib': ('http://matplotlib.org/', None),
+    'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+    'quantities': ('https://pythonhosted.org/quantities/',
+                   'quantities-inv.txt'),
+}
 
 
 # -- Options for HTML output ----------------------------------------------

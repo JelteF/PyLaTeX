@@ -1,16 +1,13 @@
 #!/usr/bin/python
 """
-    Subfigure example
-    ~~~~~~~~~~~~~~~~~
+This example shows subfigure functionality.
 
-    This example shows subfigure functionality.
+.. literalinclude:: /../../examples/subfigure.py
+    :start-after: begin-doc-include
+    :lines: 10-
 
-    .. literalinclude:: /../../examples/subfigure.py
-        :start-after: begin-doc-include
-        :lines: 10-
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 # begin-doc-include

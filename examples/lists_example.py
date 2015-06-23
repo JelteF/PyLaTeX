@@ -1,17 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-    Lists example
-    ~~~~~~~~~~~~~
+This example shows list functionality.
 
-    This example shows list functionality.
+.. literalinclude:: /../../examples/lists_example.py
+    :start-after: begin-doc-include
+    :lines: 11-
 
-    .. literalinclude:: /../../examples/lists_example.py
-        :start-after: begin-doc-include
-        :lines: 11-
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 # begin-doc-include

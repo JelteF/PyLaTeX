@@ -38,14 +38,18 @@ while getopts ":p:ch" opt; do
   esac
 done
 
-# Check code guidelines
-echo -e '\e[32mChecking for code style errors \e[0m'
-if ! flake8 pylatex examples tests; then
-    exit 1
-fi
 
 # Run the examples and tests
 python_version=$($python --version |& sed 's|Python \(.\).*|\1|g')
+
+if [ "$python_version" = '3' ]; then
+    # Check code guidelines
+    echo -e '\e[32mChecking for code style errors \e[0m'
+    if ! flake8 pylatex examples tests; then
+        exit 1
+    fi
+fi
+
 
 if [ "$python_version" = '2' ]; then
     main_folder=python2_source

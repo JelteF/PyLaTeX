@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.utils
-    ~~~~~~~~~~~~~
+This module implements some simple utility functions.
 
-    This module implements some simple functions with all kinds of
-    functionality.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 import os.path
@@ -16,18 +12,18 @@ import tempfile
 
 
 _latex_special_chars = {
-    '&':  r'\&',
-    '%':  r'\%',
-    '$':  r'\$',
-    '#':  r'\#',
-    '_':  r'\_',
-    '{':  r'\{',
-    '}':  r'\}',
-    '~':  r'\textasciitilde{}',
-    '^':  r'\^{}',
+    '&': r'\&',
+    '%': r'\%',
+    '$': r'\$',
+    '#': r'\#',
+    '_': r'\_',
+    '{': r'\{',
+    '}': r'\}',
+    '~': r'\textasciitilde{}',
+    '^': r'\^{}',
     '\\': r'\textbackslash{}',
     '\n': r'\\',
-    '-':  r'{-}',
+    '-': r'{-}',
     '\xA0': '~',  # Non-breaking space
 }
 
@@ -46,27 +42,29 @@ def escape_latex(s):
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
 
-        :param s:
+    :param s:
 
-        :type s: str
+    :type s: str
 
-        :return:
-        :rtype: str
+    :return:
+    :rtype: str
     """
 
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
 def fix_filename(path):
-    """Latex has problems if there are one or more points in the filename,
-    thus 'abc.def.jpg' will be changed to '{abc.def}.jpg
+    """Fix filenames for use in LaTeX.
 
-        :param filename:
+    Latex has problems if there are one or more points in the filename, thus
+    'abc.def.jpg' will be changed to '{abc.def}.jpg'
 
-        :type filename: str
+    :param filename:
 
-        :return:
-        :rtype: str
+    :type filename: str
+
+    :return:
+    :rtype: str
     """
 
     path_parts = path.split('/')
@@ -83,34 +81,34 @@ def fix_filename(path):
 
 
 def dumps_list(l, escape=False, token='\n'):
-    """Dumps a list that can contain anything.
+    """Try to generate a LaTeX string of a list that can contain anything.
 
-        :param l:
-        :param escape:
-        :param token:
+    :param l:
+    :param escape:
+    :param token:
 
-        :type l: list
-        :type escape: bool
-        :type token: str
+    :type l: list
+    :type escape: bool
+    :type token: str
 
-        :return:
-        :rtype: str
+    :return:
+    :rtype: str
     """
 
     return token.join(_latex_item_to_string(i, escape) for i in l)
 
 
 def _latex_item_to_string(i, escape=False):
-    """Uses the render method when possible, otherwise uses str.
+    """Use the render method when possible, otherwise uses str.
 
-        :param i:
-        :param escape:
+    :param i:
+    :param escape:
 
-        :type i: object
-        :type escape: bool
+    :type i: object
+    :type escape: bool
 
-        :return:
-        :rtype: str
+    :return:
+    :rtype: str
     """
 
     if hasattr(i, 'dumps'):
@@ -122,7 +120,7 @@ def _latex_item_to_string(i, escape=False):
 
 
 def bold(s):
-    """Returns the string bold.
+    """Return the string bold.
 
     Source: http://stackoverflow.com/a/16264094/2570866
 
@@ -138,39 +136,39 @@ def bold(s):
 
 
 def italic(s):
-    """Returns the string italicized.
+    """Return the string italicized.
 
     Source: http://stackoverflow.com/a/16264094/2570866
 
-        :param s:
+    :param s:
 
-        :type s: str
+    :type s: str
 
-        :return:
-        :rtype: str
+    :return:
+    :rtype: str
     """
 
     return r'\textit{' + s + '}'
 
 
 def verbatim(s, delimiter='|'):
-    """Returns the string verbatim.
+    """Return the string verbatim.
 
-        :param s:
-        :param delimiter:
+    :param s:
+    :param delimiter:
 
-        :type s: str
-        :type delimiter: str
+    :type s: str
+    :type delimiter: str
 
-        :return:
-        :rtype: str
+    :return:
+    :rtype: str
     """
 
     return r'\verb' + delimiter + s + delimiter
 
 
 def make_temp_dir():
-    """Creates the tmp directory if it doesn't exist."""
+    """Create the tmp directory if it doesn't exist."""
 
     if not os.path.exists(_tmp_path):
         os.makedirs(_tmp_path)
@@ -178,7 +176,7 @@ def make_temp_dir():
 
 
 def rm_temp_dir():
-    """Removes the tmp directory."""
+    """Remove the tmp directory."""
 
     if os.path.exists(_tmp_path):
         shutil.rmtree(_tmp_path)

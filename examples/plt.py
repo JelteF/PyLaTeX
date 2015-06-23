@@ -1,16 +1,13 @@
 #!/usr/bin/python
 """
-    Matplotlib example
-    ~~~~~~~~~~~~~~~~~~
+This example shows matplotlib functionality.
 
-    This example shows matplotlib functionality.
+.. literalinclude:: /../../examples/plt.py
+    :start-after: begin-doc-include
+    :lines: 10-
 
-    .. literalinclude:: /../../examples/plt.py
-        :start-after: begin-doc-include
-        :lines: 10-
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 # begin-doc-include

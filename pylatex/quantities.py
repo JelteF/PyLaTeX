@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.quantities
-    ~~~~~~~~~~~~~~~~~~
+This module implements the classes that deals with quantities objects.
 
-    This module implements the classes that deals with quantities objects.
-    It requires the latex package SIunitx.
+It requires the latex package SIunitx.
 
-    ..  :copyright: (c) 2015 by Björn Dahlgren.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2015 by Björn Dahlgren.
+    :license: MIT, see License for more details.
 """
 
 from operator import itemgetter
@@ -37,14 +35,17 @@ def _dimensionality_to_siunitx(dim):
 
 
 class Quantity(Command):
-    def __init__(self, quantity, format_cb=None):
-        """
-            :param quantity:
-            :param fmtstr:
 
-            :type quantity: :class:`quantities.Quantity` instance
-            :type fmtstr: callable
-        """
+    """A class representing quantities.
+
+    :param quantity:
+    :param fmtstr:
+
+    :type quantity: :class:`quantities.Quantity` instance
+    :type fmtstr: callable
+    """
+
+    def __init__(self, quantity, format_cb=None):
         self.quantity = quantity
         if format_cb is None:
             magnitude_str = np.array_str(quantity.magnitude)

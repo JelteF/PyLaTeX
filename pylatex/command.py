@@ -1,44 +1,43 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.command
-    ~~~~~~~~~~~~~~~
+This module implements a class that implements a latex command.
 
-    This module implements a class that implements a latex command. This can be
-    used directly or it can be inherrited to make an easier interface to it.
+This can be used directly or it can be inherrited to make an easier interface
+to it.
 
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
+
 from .parameters import Arguments, Options
 from .base_classes import BaseLaTeXClass
 
 
 class Command(BaseLaTeXClass):
-    """
-    A class that represents a command
+
+    r"""
+    A class that represents a command.
+
+    :param command:
+    :param arguments:
+    :param options:
+    :param packages:
+
+    :type command: str
+    :type arguments: str or list or :class:`pylatex.parameters.Arguments` \
+        instance
+    :type options: str or list or :class:`pylatex.parameters.Options` instance
+    :type packages: list
+
 
     >>> Command('documentclass',
     >>>         options=Options('12pt', 'a4paper', 'twoside'),
     >>>         arguments='article').dumps()
-    '\\documentclass[12pt,a4paper,twoside]{article}'
-
+    '\documentclass[12pt,a4paper,twoside]{article}'
 
     """
 
     def __init__(self, command, arguments=None, options=None, packages=None):
-        """
-            :param command:
-            :param arguments:
-            :param options:
-            :param packages:
-
-            :type command: str
-            :type arguments: str or list or :class:`parameters.Arguments` \
-                instance
-            :type options: str or list or :class:`parameters.Options` instance
-            :type packages: list
-        """
-
         self.command = command
 
         if isinstance(arguments, Arguments):
@@ -58,38 +57,42 @@ class Command(BaseLaTeXClass):
         super().__init__(packages)
 
     def __key(self):
-        """
-            :return:
-            :rtype: tuple
+        """Return a hashable key, representing the command.
+
+        :return:
+        :rtype: tuple
         """
 
         return self.command, self.arguments, self.options
 
     def __eq__(self, other):
-        """
-            :param other: A command
+        """Compare two commands.
 
-            :type other: :class:`command.Command` instance
+        :param other: A command
 
-            :return:
-            :rtype: bool
+        :type other: :class:`command.Command` instance
+
+        :return:
+        :rtype: bool
         """
+        # TODO: check if types match
 
         return self.__key() == other.__key()
 
     def __hash__(self):
-        """
-            :return:
-            :rtype: int
+        """Return hash of the command.
+
+        :return:
+        :rtype: int
         """
 
         return hash(self.__key())
 
     def dumps(self):
-        """Represents the command as a string in LaTeX syntax.
+        """Represent the command as a string in LaTeX syntax.
 
-            :return:
-            :rtype: str
+        :return:
+        :rtype: str
         """
 
         return '\\{command}{options}{arguments}'.\

@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.numpy
-    ~~~~~~~~~~~~~
+This module implements the classes that deals with numpy objects.
 
-    This module implements the classes that deals with numpy objects.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 import numpy as np
@@ -16,30 +13,34 @@ from pylatex.command import Command
 
 
 class VectorName(Command):
+
+    """A class representing a named vector.
+
+    :param name:
+
+    :type name: str
+    """
+
     def __init__(self, name):
-        """
-            :param name:
-
-            :type name: str
-        """
-
         super().__init__('mathbf', arguments=name)
 
 
 class Matrix(BaseLaTeXClass):
+
+    """A class representing a matrix.
+
+    :param matrix:
+    :param name:
+    :param mtype:
+    :param alignment:
+
+    :type matrix: :class:`numpy.ndarray` instance
+    :type name: str
+    :type mtype: str
+    :type alignment: str
+    """
+
     def __init__(self, matrix, name='', mtype='p', alignment=None):
-        """
-            :param matrix:
-            :param name:
-            :param mtype:
-            :param alignment:
-
-            :type matrix: :class:`numpy.matrix` instance
-            :type name: str
-            :type mtype: str
-            :type alignment: str
-        """
-
         self.mtype = mtype
         self.matrix = matrix
         self.alignment = alignment
@@ -48,8 +49,9 @@ class Matrix(BaseLaTeXClass):
         super().__init__(packages=[Package('amsmath')])
 
     def dumps(self):
-        """
-            :rtype: str
+        """Return a string representin the matrix in LaTeX syntax.
+
+        :rtype: str
         """
 
         string = r'\begin{'

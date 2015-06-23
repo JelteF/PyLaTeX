@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.arguments
-    ~~~~~~~~~~~~~~~~~
+This module implements the classes that deal with parameters.
 
-    This module implements the classes that deal with parameters, in particular
-    with options and arguments.
+In particular it implements options and arguments.
 
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 from .base_classes import BaseLaTeXClass
@@ -16,8 +14,9 @@ from .base_classes import BaseLaTeXClass
 class Parameters(BaseLaTeXClass):
 
     """
-    A class implementing LaTex parameters. It supports normal positional
-    parameters, as well as key-value pairs.
+    A class implementing LaTex parameters.
+
+    It supports normal positional parameters, as well as key-value pairs.
     Parameters can be rendered optional within square brackets ``[]`` or
     required within braces ``{}``.
 
@@ -49,35 +48,40 @@ class Parameters(BaseLaTeXClass):
         super().__init__(packages=None)
 
     def __key(self):
-        """
-            :return:
-            :rtype: tuple
+        """Generate a unique hashable key representing the parameter object.
+
+        :return:
+        :rtype: tuple
         """
 
         return self.optional, tuple(self.list())
 
     def __eq__(self, other):
+        """Compare two parameters.
+
+        :return:
+        :rtype: bool
         """
-            :return:
-            :rtype: bool
-        """
+        # TODO: Check if type is the same
 
         return self.__key() == other.__key()
 
     def __hash__(self):
-        """
-            :return:
-            :rtype: int
+        """Generate a hash of the parameters.
+
+        :return:
+        :rtype: int
         """
 
         return hash(self.__key())
 
     def dumps(self):
-        """Represents the parameters as a string in LaTeX syntax to be appended
-        to a command.
+        """Represent the parameters as a string in LaTeX syntax.
 
-            :return: The rendered parameters
-            :rtype: str
+        This is to be appended to a command.
+
+        :return: The rendered parameters
+        :rtype: str
         """
 
         params = self.list()
@@ -93,10 +97,10 @@ class Parameters(BaseLaTeXClass):
         return string
 
     def list(self):
-        """TODO
+        """TODO.
 
-            :return:
-            :rtype: list
+        :return:
+        :rtype: list
         """
 
         params = []
@@ -109,7 +113,7 @@ class Parameters(BaseLaTeXClass):
 
 class Options(Parameters):
 
-    """TODO"""
+    """TODO."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -119,7 +123,7 @@ class Options(Parameters):
 
 class Arguments(Parameters):
 
-    """TODO"""
+    """TODO."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

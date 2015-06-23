@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.section
-    ~~~~~~~~~~~~~~~
+This module implements the class that deals with sections.
 
-    This module implements the class that deals with sections.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 from .utils import dumps_list
@@ -16,29 +13,28 @@ from .command import Command
 
 class SectionBase(BaseLaTeXContainer):
 
-    """A class that is the base for all section type classes"""
+    """A class that is the base for all section type classes.
+
+    :param title:
+    :param numbering:
+    :param data:
+
+    :type title: str
+    :type numbering: bool
+    :type data: list
+    """
 
     def __init__(self, title, numbering=True, data=None):
-        """
-            :param title:
-            :param numbering:
-            :param data:
-
-            :type title: str
-            :type numbering: bool
-            :type data: list
-        """
-
         self.title = title
         self.numbering = numbering
 
         super().__init__(data)
 
     def dumps(self):
-        """Represents the section as a string in LaTeX syntax.
+        """Represent the section as a string in LaTeX syntax.
 
-            :return:
-            :rtype: str
+        :return:
+        :rtype: str
         """
 
         if not self.numbering:

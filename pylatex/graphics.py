@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    pylatex.graphics
-    ~~~~~~~~~~~~~~~~
+This module implements the class that deals with graphics.
 
-    This module implements the class that deals with graphics.
-
-    ..  :copyright: (c) 2014 by Jelte Fennema.
-        :license: MIT, see License for more details.
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
 """
 
 import os.path
@@ -20,24 +17,23 @@ import uuid
 
 class Figure(BaseLaTeXNamedContainer):
 
-    """A class that represents a Graphic."""
+    """A class that represents a Graphic.
+
+    :param data:
+    :param position:
+
+    :type data: list
+    :type position: str
+    :param data:
+    :param position:
+    :param seperate_paragraph:
+
+    :type data: list
+    :type position: str
+    :type seperate_paragraph: bool
+    """
 
     def __init__(self, data=None, position=None, seperate_paragraph=True):
-        """
-        :param data:
-        :param position:
-
-        :type data: list
-        :type position: str
-        :param data:
-        :param position:
-        :param seperate_paragraph:
-
-        :type data: list
-        :type position: str
-        :type seperate_paragraph: bool
-        """
-
         packages = [Package('graphicx')]
         super().__init__(data=data, packages=packages,
                          options=position,
@@ -45,7 +41,7 @@ class Figure(BaseLaTeXNamedContainer):
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
-        """Adds an image.
+        """Add an image.to the figure.
 
         :param filename:
         :param width:
@@ -66,7 +62,7 @@ class Figure(BaseLaTeXNamedContainer):
                             arguments=fix_filename(filename)))
 
     def add_caption(self, caption):
-        """Adds a caption to the figure.
+        """Add a caption to the figure.
 
         :param caption:
         :type caption: str
@@ -77,25 +73,24 @@ class Figure(BaseLaTeXNamedContainer):
 
 class SubFigure(BaseLaTeXNamedContainer):
 
-    """A Class that represents a subfigure from the subcaption package"""
+    """A class that represents a subfigure from the subcaption package.
+
+    :param data:
+    :param position:
+
+    :type data: list
+    :type position: str
+    :param data:
+    :param position:
+    :param seperate_paragraph:
+
+    :type data: list
+    :type position: str
+    :type seperate_paragraph: bool
+    """
 
     def __init__(self, data=None, position=None,
                  width=r'0.45\linewidth', seperate_paragraph=False):
-        """
-        :param data:
-        :param position:
-
-        :type data: list
-        :type position: str
-        :param data:
-        :param position:
-        :param seperate_paragraph:
-
-        :type data: list
-        :type position: str
-        :type seperate_paragraph: bool
-        """
-
         packages = [Package('subcaption')]
 
         super().__init__(data=data, packages=packages,
@@ -105,7 +100,7 @@ class SubFigure(BaseLaTeXNamedContainer):
 
     def add_image(self, filename, width=r'\linewidth',
                   placement=None):
-        """Adds an image.
+        """Add an image to the subfigure.
 
         :param filename:
         :param width:
@@ -125,7 +120,7 @@ class SubFigure(BaseLaTeXNamedContainer):
                             arguments=fix_filename(filename)))
 
     def add_caption(self, caption):
-        """Adds a caption to the figure
+        """Add a caption to the figure.
 
         :param caption:
         :type caption: str
@@ -135,6 +130,7 @@ class SubFigure(BaseLaTeXNamedContainer):
 
 
 class Plt(Figure):
+
     """A class that represents a plot created with matplotlib."""
 
     container_name = 'figure'
@@ -143,7 +139,7 @@ class Plt(Figure):
         super().__init__(**kwargs)
 
     def _save_plot(self, plt, *args, **kwargs):
-        """Saves the plot.
+        """Save the plot.
 
         :param plt: The matplotlib.pyplot module
         :type plt: matplotlib.pyplot
@@ -162,7 +158,7 @@ class Plt(Figure):
 
     def add_plot(self, plt, width=r'0.8\textwidth',
                  placement=r'\centering', *args, **kwargs):
-        """Adds a plot.
+        """Add a plot.
 
         :param plt: The matplotlib.pyplot module
         :param width: The width of the plot.
