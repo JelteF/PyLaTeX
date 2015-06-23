@@ -55,4 +55,4 @@ if __name__ == '__main__':
             desc.add_item("Second", "The second item")
             desc.add_item("Third", "The third etc \\ldots")
 
-    doc.generate_pdf()
+    doc.generate_pdf('lists')

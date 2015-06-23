@@ -19,12 +19,16 @@ while getopts ":p:ch" opt; do
     c)
       clean=TRUE
       ;;
+    d)
+      nodoc=TRUE
+      ;;
     h)
       echo This runs all the tests and examples and checks for pep8 compliance
       echo
       echo Options:
       echo '   -c            cleans up the latex and pdf files generated'
       echo '   -p COMMAND    the python command that should be used to run the tests'
+      echo "   -d            don't execute the doc tests, they can take long"
       exit 0
       ;;
     \?)
@@ -69,9 +73,10 @@ if [ "$clean" = 'TRUE' ]; then
 fi
 
 
-if [ "$python_version" = '3' ]; then
+if [ "$python_version" = '3' -a "$nodoc" != 'TRUE' ]; then
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
+    ./create_doc_files.sh
     make clean
     if ! sphinx-build -b html -d build/doctrees/ source build/html -nW; then
         exit 1

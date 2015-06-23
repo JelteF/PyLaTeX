@@ -13,8 +13,12 @@ from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
     Plot, Figure, Package
 from pylatex.numpy import Matrix
 from pylatex.utils import italic, escape_latex
+import os
 
 if __name__ == '__main__':
+    image_filename = os.path.join(os.path.dirname(__file__),
+                                  '../docs/static/kitten.jpg')
+
     doc = Document()
     doc.packages.append(Package('geometry', options=['tmargin=1cm',
                                                      'lmargin=10cm']))
@@ -64,7 +68,7 @@ if __name__ == '__main__':
 
         with doc.create(Subsection('Cute kitten pictures')):
             with doc.create(Figure(position='h!')) as kitten_pic:
-                kitten_pic.add_image('docs/static/kitten.jpg', width='120px')
+                kitten_pic.add_image(image_filename, width='120px')
                 kitten_pic.add_caption('Look it\'s on its back')
 
-    doc.generate_pdf()
+    doc.generate_pdf('full')

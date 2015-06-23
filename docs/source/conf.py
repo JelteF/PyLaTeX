@@ -87,13 +87,7 @@ autodoc_default_flags = []
 
 def autodoc_add_module_title(app, what, name, obj, options, lines):
     """Add a title to module docstrings."""
-    if what == 'module':
-        if not name.startswith('pylatex'):
-            if name.endswith('_ex'):
-                name = name[:-3]
-
-            name = name.capitalize() + ' example'
-
+    if what == 'module' and name.startswith('pylatex'):
         lines.insert(0, len(name) * '=')
         lines.insert(0, name)
 

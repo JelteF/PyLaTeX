@@ -40,5 +40,5 @@ if __name__ == '__main__':
 
     pyplot.plot(x, y)
 
-    main('plt_dpi', r'1\textwidth', dpi=300)
-    main('plt_facecolor', r'0.5\textwidth', facecolor='b')
+    main('matplotlib_ex-dpi', r'1\textwidth', dpi=300)
+    main('matplotlib_ex-facecolor', r'0.5\textwidth', facecolor='b')
