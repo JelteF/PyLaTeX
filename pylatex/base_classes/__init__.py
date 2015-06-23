@@ -3,6 +3,8 @@
 from .latex_object import LatexObject
 from .containers import Container, Environment
 from .command import Command, Options, Arguments
+from .table import TabularBase
+from .section import SectionBase
 
 
 # Old names of the base classes for backwards compatibility

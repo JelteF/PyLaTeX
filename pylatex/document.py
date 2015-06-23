@@ -9,9 +9,9 @@ This module implements the class that deals with the full document.
 import os
 import subprocess
 import errno
+from .base_classes import Container, Command
 from .package import Package
 from .utils import dumps_list, rm_temp_dir
-from .base_classes import Container, Command
 
 
 class Document(Container):
