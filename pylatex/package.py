@@ -6,7 +6,7 @@ This module implements the class that deals with packages.
     :license: MIT, see License for more details.
 """
 
-from .command import Command
+from .base_classes import Command
 
 
 class Package(Command):

@@ -8,10 +8,10 @@ These lists are specifically enumerate, itemize and description.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import BaseLaTeXNamedContainer
+from .base_classes import Environment
 
 
-class List(BaseLaTeXNamedContainer):
+class List(Environment):
 
     """A class that represents a list.
 

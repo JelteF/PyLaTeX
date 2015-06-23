@@ -1,5 +1,4 @@
-from pylatex import Document, Section, Subsection
-from pylatex.command import Command
+from pylatex import Document, Section, Subsection, Command
 
 doc = Document()
 sub_sec1 = Subsection('Only a single string', data='Some words')

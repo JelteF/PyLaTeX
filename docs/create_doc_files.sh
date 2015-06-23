@@ -9,6 +9,8 @@ rm -rf source/_static/examples/*
 sphinx-apidoc -o source/pylatex/ ../pylatex/ $ARGS
 echo Removing file source/pylatex/pylatex.rst
 rm source/pylatex/pylatex.rst
+echo Removing file source/pylatex/pylatex.base_classes.rst
+rm source/pylatex/pylatex.base_classes.rst
 
 for f in ../examples/*.py; do
     name=`echo $f | cut -d'/' -f3 | cut -d'.' -f1`

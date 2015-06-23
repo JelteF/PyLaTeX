@@ -23,14 +23,16 @@ generate those strings.
 The simplest base class
 ~~~~~~~~~~~~~~~~~~~~~~~
 All the different LaTeX classes have some stuff in common. That is why the
-:py:class:`~pylatex.base_classes.BaseLaTeXClass` exists. This class defines an
-interface and some methods that can be used in any of the classes. One of these
-methods is the :py:meth:`~pylatex.base_classes.BaseLaTeXClass.dumps` method,
-which returns the LaTeX formatted string representation of the class. Another
-useful one, when generating snippets is the
-:py:meth:`~pylatex.base_classes.BaseLaTeXClass.generate_tex` method, which
-writes the output of :py:meth:`~pylatex.base_classes.BaseLaTeXClass.dumps` to a
-file with the supplied filename.
+:py:class:`~pylatex.base_classes.latex_object.LatexObject` exists. This class
+defines an interface and some methods that can be used in any of the classes.
+One of these methods is the
+:py:meth:`~pylatex.base_classes.latex_object.LatexObject.dumps` method, which
+returns the LaTeX formatted string representation of the class. Another useful
+one, when generating snippets is the
+:py:meth:`~pylatex.base_classes.latex_object.LatexObject.generate_tex` method,
+which writes the output of
+:py:meth:`~pylatex.base_classes.latex_object.LatexObject.dumps` to a file with
+the supplied filename.
 
 
 The Options, Arguments and Command class

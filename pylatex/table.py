@@ -7,10 +7,8 @@ This module implements the class that deals with tables.
 """
 
 from .utils import dumps_list
-from .base_classes import BaseLaTeXClass, BaseLaTeXContainer, \
-    BaseLaTeXNamedContainer
+from .base_classes import LatexObject, Container, Environment, Command
 from .package import Package
-from .command import Command
 
 from collections import Counter
 import re
@@ -37,7 +35,7 @@ def get_table_width(table_spec):
     return sum(spec_counter[l] for l in column_letters)
 
 
-class MultiColumn(BaseLaTeXContainer):
+class MultiColumn(Container):
 
     """A class that represents a multicolumn inside of a table.
 
@@ -76,7 +74,7 @@ class MultiColumn(BaseLaTeXContainer):
         return string
 
 
-class MultiRow(BaseLaTeXContainer):
+class MultiRow(Container):
 
     """A class that represents a multirow in a table.
 
@@ -116,7 +114,7 @@ class MultiRow(BaseLaTeXContainer):
         return string
 
 
-class TableBase(BaseLaTeXNamedContainer):
+class TableBase(Environment):
 
     """A class that is used as a base for all table classes.
 
@@ -172,7 +170,7 @@ class TableBase(BaseLaTeXNamedContainer):
 
         # Propegate packages used in cells
         for c in cells:
-            if isinstance(c, BaseLaTeXClass):
+            if isinstance(c, LatexObject):
                 for p in c.packages:
                     self.packages.add(p)
 

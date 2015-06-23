@@ -7,78 +7,19 @@ This module implements LaTeX base classes that can be subclassed.
 """
 
 from collections import UserList
-from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
 from contextlib import contextmanager
+from pylatex.base_classes import LatexObject
 
 
-class BaseLaTeXClass:
+class Container(LatexObject, UserList):
 
-    """A class that has some basic functions for LaTeX functions.
+    """A base class that groups multiple LaTeX classes.
 
-    :param packages: :class:`pylatex.package.Package` instances
-
-    :type packages: list
-
-    """
-
-    def __init__(self, packages=None):
-
-        if packages is None:
-            packages = []
-
-        self.packages = OrderedSet(packages)
-
-    def dumps(self):
-        """Represent the class as a string in LaTeX syntax.
-
-        This method should be implemented by any class that subclasses this
-        class.
-        """
-
-    def dump(self, file_):
-        """Write the LaTeX representation of the class to a file.
-
-        :param file_: The file object in which to save the data
-
-        :type file_: io.TextIOBase
-        """
-
-        file_.write(self.dumps())
-
-    def generate_tex(self, filepath):
-        """Generate a .tex file.
-
-        :param filepath: the name of the file (without .tex)
-        :type filepath: str
-        """
-
-        with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
-            self.dump(newf)
-
-    def dumps_packages(self):
-        """Represent the packages needed as a string in LaTeX syntax.
-
-        :return:
-        :rtype: list
-        """
-
-        return dumps_list(self.packages)
-
-    def dump_packages(self, file_):
-        """Write the LaTeX representation of the packages to a file.
-
-        :param file_: The file object in which to save the data
-
-        :type file_: io.TextIOBase
-        """
-
-        file_.write(self.dumps_packages())
-
-
-class BaseLaTeXContainer(BaseLaTeXClass, UserList):
-
-    """A base class that can cointain other LaTeX content.
+    This class should be subclassed when a LaTeX class has content that is
+    variable of variable length. It subclasses UserList, so it holds a list
+    of elements that can simply be accessed by using normal list functionality,
+    like indexing or appending.
 
     :param data:
     :param packages: :class:`pylatex.package.Package` instances
@@ -118,8 +59,8 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         """Make sure packages get propegated."""
 
         for item in self.data:
-            if isinstance(item, BaseLaTeXClass):
-                if isinstance(item, BaseLaTeXContainer):
+            if isinstance(item, LatexObject):
+                if isinstance(item, Container):
                     item.propegate_packages()
                 for p in item.packages:
                     self.packages.add(p)
@@ -151,16 +92,30 @@ class BaseLaTeXContainer(BaseLaTeXClass, UserList):
         self.append(child)
 
 
-class BaseLaTeXNamedContainer(BaseLaTeXContainer):
+class Environment(Container):
 
-    """A base class for containers with a basic begin end syntax.
+    r"""A base class for LaTeX environments.
+
+    This class implements the basics of a LaTeX environment. A LaTeX
+    environment looks like this:
+
+    .. code-block:: latex
+
+        \begin{environment_name}
+            Some content that is in the environment
+        \end{environment_name}
+
+    The text that is used in the place of environment_name is by defalt the
+    name of the class in lowercase. However, this default can be overridden by
+    setting the environment_name class variable when declaring the class.
 
     :param name:
     :param options:
     :param argument:
 
     :type name: str
-    :type options: str or list or :class:`pylatex.parameters.Options` instance
+    :type options: str or list or \
+        :class:`~pylatex.base_classes.command.Options` instance
     :type argument: str
     """
 

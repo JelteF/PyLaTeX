@@ -7,12 +7,11 @@ This module implements the classes used to show plots.
 """
 
 
-from pylatex.base_classes import BaseLaTeXClass, BaseLaTeXNamedContainer
+from pylatex.base_classes import LatexObject, Environment, Command
 from pylatex.package import Package
-from pylatex.command import Command
 
 
-class TikZ(BaseLaTeXNamedContainer):
+class TikZ(Environment):
 
     """Basic TikZ container class.
 
@@ -30,7 +29,7 @@ class TikZ(BaseLaTeXNamedContainer):
         super().__init__(data=data, packages=packages)
 
 
-class Axis(BaseLaTeXNamedContainer):
+class Axis(Environment):
 
     """PGFPlots axis container class, this contains plots.
 
@@ -48,9 +47,9 @@ class Axis(BaseLaTeXNamedContainer):
         super().__init__(data=data, options=options, packages=packages)
 
 
-class Plot(BaseLaTeXClass):
+class Plot(LatexObject):
 
-    """A class representing a PGFPlot.
+    r"""A class representing a PGFPlot.
 
     :param name:
     :param func:
@@ -64,8 +63,8 @@ class Plot(BaseLaTeXClass):
 
     TODO:
 
-    options type can also be list or :class:`pylatex.parameters.Options`
-    instance
+    options type can also be list or
+        :class:`~pylatex.base_classes.command.Options` instance
     """
 
     def __init__(self, name=None, func=None, coordinates=None, options=None):

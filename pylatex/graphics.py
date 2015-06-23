@@ -9,13 +9,12 @@ This module implements the class that deals with graphics.
 import os.path
 
 from .utils import fix_filename, make_temp_dir
-from .base_classes import BaseLaTeXNamedContainer
+from .base_classes import Environment, Command
 from .package import Package
-from .command import Command
 import uuid
 
 
-class Figure(BaseLaTeXNamedContainer):
+class Figure(Environment):
 
     """A class that represents a Graphic.
 
@@ -71,7 +70,7 @@ class Figure(BaseLaTeXNamedContainer):
         self.append(Command('caption', caption))
 
 
-class SubFigure(BaseLaTeXNamedContainer):
+class SubFigure(Environment):
 
     """A class that represents a subfigure from the subcaption package.
 

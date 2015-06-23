@@ -7,11 +7,11 @@ This module implements the class that deals with sections.
 """
 
 from .utils import dumps_list
-from .base_classes import BaseLaTeXContainer
-from .command import Command
+from .base_classes import Container, Command
 
 
-class SectionBase(BaseLaTeXContainer):
+# TODO move base class to base_classe submodule
+class SectionBase(Container):
 
     """A class that is the base for all section type classes.
 

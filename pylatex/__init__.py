@@ -1,3 +1,5 @@
+# flake8: noqa
+
 """
 A library for creating Latex files.
 
@@ -5,11 +7,12 @@ A library for creating Latex files.
     :license: MIT, see License for more details.
 """
 
-from .document import Document  # noqa
-from .math import Math  # noqa
-from .package import Package  # noqa
-from .section import Section, Subsection, Subsubsection  # noqa
-from .table import Table, MultiColumn, MultiRow, Tabular  # noqa
-from .pgfplots import TikZ, Axis, Plot  # noqa
-from .graphics import Figure, SubFigure, Plt  # noqa
-from .lists import Enumerate, Itemize, Description  # noqa
+from .document import Document
+from .math import Math
+from .package import Package
+from .section import Section, Subsection, Subsubsection
+from .table import Table, MultiColumn, MultiRow, Tabular
+from .pgfplots import TikZ, Axis, Plot
+from .graphics import Figure, SubFigure, Plt
+from .lists import Enumerate, Itemize, Description
+from .base_classes import Command

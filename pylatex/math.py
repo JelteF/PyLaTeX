@@ -6,10 +6,10 @@ This module implements the class that deals with math.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import BaseLaTeXContainer
+from .base_classes import Container
 
 
-class Math(BaseLaTeXContainer):
+class Math(Container):
 
     """A class representing a math environment.
 

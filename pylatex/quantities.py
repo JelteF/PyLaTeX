@@ -12,7 +12,7 @@ from operator import itemgetter
 
 import numpy as np
 
-from pylatex.command import Command
+from .base_classes import Command
 from pylatex.package import Package
 
 

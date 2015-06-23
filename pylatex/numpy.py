@@ -7,9 +7,8 @@ This module implements the classes that deals with numpy objects.
 """
 
 import numpy as np
-from pylatex.base_classes import BaseLaTeXClass
+from .base_classes import LatexObject, Command
 from pylatex.package import Package
-from pylatex.command import Command
 
 
 class VectorName(Command):
@@ -25,7 +24,7 @@ class VectorName(Command):
         super().__init__('mathbf', arguments=name)
 
 
-class Matrix(BaseLaTeXClass):
+class Matrix(LatexObject):
 
     """A class representing a matrix.
 

@@ -10,12 +10,11 @@ import os
 import subprocess
 import errno
 from .package import Package
-from .command import Command
 from .utils import dumps_list, rm_temp_dir
-from .base_classes import BaseLaTeXContainer
+from .base_classes import Container, Command
 
 
-class Document(BaseLaTeXContainer):
+class Document(Container):
 
     r"""
     A class that contains a full LaTeX document.
@@ -33,7 +32,8 @@ class Document(BaseLaTeXContainer):
     :param maketitle: whether `\\maketitle` command is activated or not.
 
     :type default_filepath: str
-    :type documentclass: str or :class:`pylatex.command.Command` instance
+    :type documentclass: str or :class:`~pylatex.base_classes.command.Command`
+        instance
     :type fontenc: str
     :type inputenc: str
     :type author: str
