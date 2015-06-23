@@ -11,6 +11,11 @@ rm source/pylatex/pylatex.rst
 
 for f in ../examples/*.py; do
     name=`echo $f | cut -d'/' -f3 | cut -d'.' -f1`
-    echo Creating file source/examples/${name}.rst
-    echo .. automodule:: $name > source/examples/${name}.rst
+    rst=source/examples/${name}.rst
+    echo Creating file ${rst}
+    echo .. automodule:: $name > $rst
+    echo >> $rst
+    echo ".. literalinclude:: /../$f" >> $rst
+    echo "    :start-after: begin-doc-include" >> $rst
+
 done

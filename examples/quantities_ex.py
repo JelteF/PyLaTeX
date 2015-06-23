@@ -2,10 +2,6 @@
 """
 This example shows quantities functionality.
 
-.. literalinclude:: /../../examples/quantities_ex.py
-    :start-after: begin-doc-include
-    :lines: 10-
-
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """

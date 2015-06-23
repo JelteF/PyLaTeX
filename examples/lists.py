@@ -3,10 +3,6 @@
 """
 This example shows list functionality.
 
-.. literalinclude:: /../../examples/lists_example.py
-    :start-after: begin-doc-include
-    :lines: 11-
-
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """

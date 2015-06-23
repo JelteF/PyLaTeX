@@ -2,10 +2,6 @@
 """
 This example shows matplotlib functionality.
 
-.. literalinclude:: /../../examples/basic.py
-    :start-after: begin-doc-include
-    :lines: 8-
-
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
