@@ -49,5 +49,5 @@ venv2
 
 # Ignore generated doc files
 docs/source/examples
-docs/source/docs
+docs/source/pylatex
 docs/source/_static/examples
