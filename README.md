@@ -1,4 +1,4 @@
-PyLaTeX [![Travis](https://img.shields.io/travis/JelteF/PyLaTeX.svg)]()
+PyLaTeX [![Travis](https://img.shields.io/travis/JelteF/PyLaTeX.svg)](https://travis-ci.org/JelteF/PyLaTeX)
 =======
 
 
