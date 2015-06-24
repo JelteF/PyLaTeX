@@ -32,7 +32,7 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Numpy example" href="numpy_ex.html"/>
+        <link rel="next" title="Multirow example" href="multirow.html"/>
         <link rel="prev" title="Lists example" href="lists.html"/> 
 
   
@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
@@ -188,9 +198,9 @@
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">&#39;Agg&#39;</span><span class="p">)</span>  <span class="c"># Not to use X server. For TravisCI.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Package</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Plt</span>
+<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Package</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">MatplotlibFigure</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -202,8 +212,8 @@
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;I am a section&#39;</span><span class="p">)):</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Take a look at this beautiful plot:&#39;</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Plt</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;htbp&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">plot</span><span class="p">:</span>
-            <span class="n">plot</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="n">pyplot</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">MatplotlibFigure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;htbp&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">plot</span><span class="p">:</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">plot</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;I am a caption.&#39;</span><span class="p">)</span>
 
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Created using matplotlib.&#39;</span><span class="p">)</span>
@@ -217,7 +227,7 @@
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 
-    <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
     <span class="n">main</span><span class="p">(</span><span class="s">&#39;matplotlib_ex-dpi&#39;</span><span class="p">,</span> <span class="s">r&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
     <span class="n">main</span><span class="p">(</span><span class="s">&#39;matplotlib_ex-facecolor&#39;</span><span class="p">,</span> <span class="s">r&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
@@ -243,7 +253,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="numpy_ex.html" class="btn btn-neutral float-right" title="Numpy example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="multirow.html" class="btn btn-neutral float-right" title="Multirow example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="lists.html" class="btn btn-neutral" title="Lists example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.graphics</a></li>
@@ -186,24 +196,9 @@
 <p>This module implements the class that deals with graphics.</p>
 <dl class="class">
 <dt id="pylatex.graphics.Figure">
-<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">Figure</code><span class="sig-paren">(</span><em>data=None</em>, <em>position=None</em>, <em>seperate_paragraph=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXNamedContainer" title="pylatex.base_classes.BaseLaTeXNamedContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXNamedContainer</span></code></a></p>
-<p>A class that represents a Graphic.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>data</strong> &#8211; </li>
-<li><strong>position</strong> &#8211; </li>
-<li><strong>seperate_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">Figure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.float.html#pylatex.base_classes.float.Float" title="pylatex.base_classes.float.Float"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.float.Float</span></code></a></p>
+<p>A class that represents a Figure environment.</p>
 <dl class="method">
 <dt id="pylatex.graphics.Figure.add_image">
 <code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure.add_image" title="Permalink to this definition">¶</a></dt>
@@ -223,33 +218,19 @@
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="pylatex.graphics.Figure.add_caption">
-<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure.add_caption" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a caption to the figure.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>caption</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.graphics.SubFigure">
-<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>data=None</em>, <em>position=None</em>, <em>width='0.45\linewidth'</em>, <em>seperate_paragraph=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXNamedContainer" title="pylatex.base_classes.BaseLaTeXNamedContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXNamedContainer</span></code></a></p>
+<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>data=None</em>, <em>position=None</em>, <em>width='0.45\linewidth'</em>, <em>seperate_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.graphics.Figure" title="pylatex.graphics.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.graphics.Figure</span></code></a></p>
 <p>A class that represents a subfigure from the subcaption package.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
+<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
 <li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
 <li><strong>data</strong> &#8211; </li>
 <li><strong>position</strong> &#8211; </li>
@@ -278,35 +259,21 @@
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="pylatex.graphics.SubFigure.add_caption">
-<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure.add_caption" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a caption to the figure.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>caption</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.graphics.Plt">
-<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">Plt</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Plt" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.graphics.MatplotlibFigure">
+<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">MatplotlibFigure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.MatplotlibFigure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.graphics.Figure" title="pylatex.graphics.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.graphics.Figure</span></code></a></p>
 <p>A class that represents a plot created with matplotlib.</p>
 <dl class="attribute">
-<dt id="pylatex.graphics.Plt.container_name">
-<code class="descname">container_name</code><em class="property"> = 'figure'</em><a class="headerlink" href="#pylatex.graphics.Plt.container_name" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.graphics.MatplotlibFigure.container_name">
+<code class="descname">container_name</code><em class="property"> = 'figure'</em><a class="headerlink" href="#pylatex.graphics.MatplotlibFigure.container_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pylatex.graphics.Plt.add_plot">
-<code class="descname">add_plot</code><span class="sig-paren">(</span><em>plt</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Plt.add_plot" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.graphics.MatplotlibFigure.add_plot">
+<code class="descname">add_plot</code><span class="sig-paren">(</span><em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.MatplotlibFigure.add_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a plot.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

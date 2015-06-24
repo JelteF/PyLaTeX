@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.base_classes &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.base_classes.containers &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
-        <link rel="next" title="pylatex.command" href="pylatex.command.html"/>
-        <link rel="prev" title="API reference" href="../api.html"/> 
+        <link rel="next" title="pylatex.base_classes.float" href="pylatex.base_classes.float.html"/>
+        <link rel="prev" title="pylatex.base_classes.command" href="pylatex.base_classes.command.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
@@ -168,11 +178,11 @@
       
           <li><a href="../api.html">API reference</a> &raquo;</li>
       
-    <li>pylatex.base_classes</li>
+    <li>pylatex.base_classes.containers</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pylatex/pylatex.base_classes.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pylatex/pylatex.base_classes.containers.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -181,110 +191,33 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-pylatex.base_classes"></span><div class="section" id="pylatex-base-classes">
-<h1>pylatex.base_classes<a class="headerlink" href="#pylatex-base-classes" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="module-pylatex.base_classes.containers"></span><div class="section" id="pylatex-base-classes-containers">
+<h1>pylatex.base_classes.containers<a class="headerlink" href="#pylatex-base-classes-containers" title="Permalink to this headline">¶</a></h1>
 <p>This module implements LaTeX base classes that can be subclassed.</p>
 <dl class="class">
-<dt id="pylatex.base_classes.BaseLaTeXClass">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.</code><code class="descname">BaseLaTeXClass</code><span class="sig-paren">(</span><em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXClass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.4/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
-<p>A class that has some basic functions for LaTeX functions.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>packages</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">pylatex.package.Package</span></code></a> instances</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXClass.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXClass.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the class as a string in LaTeX syntax.</p>
-<p>This method should be implemented by any class that subclasses this
-class.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXClass.dump">
-<code class="descname">dump</code><span class="sig-paren">(</span><em>file_</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXClass.dump" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write the LaTeX representation of the class to a file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/io.html#io.TextIOBase" title="(in Python v3.4)"><em>io.TextIOBase</em></a>) &#8211; The file object in which to save the data</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXClass.generate_tex">
-<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXClass.generate_tex" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate a .tex file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the name of the file (without .tex)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXClass.dumps_packages">
-<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXClass.dumps_packages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the packages needed as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list">list</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXClass.dump_packages">
-<code class="descname">dump_packages</code><span class="sig-paren">(</span><em>file_</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXClass.dump_packages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write the LaTeX representation of the packages to a file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/io.html#io.TextIOBase" title="(in Python v3.4)"><em>io.TextIOBase</em></a>) &#8211; The file object in which to save the data</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.base_classes.BaseLaTeXContainer">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.</code><code class="descname">BaseLaTeXContainer</code><span class="sig-paren">(</span><em>data=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXContainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.BaseLaTeXClass" title="pylatex.base_classes.BaseLaTeXClass"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXClass</span></code></a>, <a class="reference external" href="https://docs.python.org/3.4/library/collections.html#collections.UserList" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">collections.UserList</span></code></a></p>
-<p>A base class that can cointain other LaTeX content.</p>
+<dt id="pylatex.base_classes.containers.Container">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.containers.</code><code class="descname">Container</code><span class="sig-paren">(</span><em>data=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a>, <a class="reference external" href="https://docs.python.org/3.4/library/collections.html#collections.UserList" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">collections.UserList</span></code></a></p>
+<p>A base class that groups multiple LaTeX classes.</p>
+<p>This class should be subclassed when a LaTeX class has content that is
+variable of variable length. It subclasses UserList, so it holds a list
+of elements that can simply be accessed by using normal list functionality,
+like indexing or appending.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>packages</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">pylatex.package.Package</span></code></a> instances</li>
+<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
+<li><strong>packages</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">pylatex.package.Package</span></code></a> instances</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXContainer.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXContainer.dumps" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.containers.Container.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the container as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -292,21 +225,21 @@ class.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list">list</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXContainer.propegate_packages">
-<code class="descname">propegate_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXContainer.propegate_packages" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.containers.Container.propegate_packages">
+<code class="descname">propegate_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.propegate_packages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make sure packages get propegated.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXContainer.dumps_packages">
-<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXContainer.dumps_packages" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.containers.Container.dumps_packages">
+<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps_packages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the packages needed as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -314,15 +247,15 @@ class.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list">list</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXContainer.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXContainer.create" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.containers.Container.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a LaTeX object to current container, context-manager style.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -337,17 +270,27 @@ class.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.base_classes.BaseLaTeXNamedContainer">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.</code><code class="descname">BaseLaTeXNamedContainer</code><span class="sig-paren">(</span><em>options=None</em>, <em>argument=None</em>, <em>seperate_paragraph=False</em>, <em>begin_paragraph=False</em>, <em>end_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXNamedContainer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
-<p>A base class for containers with a basic begin end syntax.</p>
+<dt id="pylatex.base_classes.containers.Environment">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.containers.</code><code class="descname">Environment</code><span class="sig-paren">(</span><em>options=None</em>, <em>argument=None</em>, <em>seperate_paragraph=False</em>, <em>begin_paragraph=False</em>, <em>end_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
+<p>A base class for LaTeX environments.</p>
+<p>This class implements the basics of a LaTeX environment. A LaTeX
+environment looks like this:</p>
+<div class="highlight-latex"><div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>environment<span class="nb">_</span>name<span class="nb">}</span>
+    Some content that is in the environment
+<span class="k">\end</span><span class="nb">{</span>environment<span class="nb">_</span>name<span class="nb">}</span>
+</pre></div>
+</div>
+<p>The text that is used in the place of environment_name is by defalt the
+name of the class in lowercase. However, this default can be overridden by
+setting the environment_name class variable when declaring the class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>options</strong> (str or list or <a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Options" title="pylatex.parameters.Options"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Options</span></code></a> instance) &#8211; </li>
+<li><strong>options</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-class docutils literal"><span class="pre">Options</span></code></a> instance) &#8211; </li>
 <li><strong>argument</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
 </ul>
 </td>
@@ -355,8 +298,8 @@ class.</p>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pylatex.base_classes.BaseLaTeXNamedContainer.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.BaseLaTeXNamedContainer.dumps" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.containers.Environment.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the named container as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -380,10 +323,10 @@ class.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pylatex.command.html" class="btn btn-neutral float-right" title="pylatex.command" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pylatex.base_classes.float.html" class="btn btn-neutral float-right" title="pylatex.base_classes.float" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../api.html" class="btn btn-neutral" title="API reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.base_classes.command.html" class="btn btn-neutral" title="pylatex.base_classes.command" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,0 +1,4 @@
+.. automodule:: pylatex.base_classes.section
+    :members:
+    :undoc-members:
+    :show-inheritance:

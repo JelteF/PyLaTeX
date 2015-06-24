@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
@@ -187,7 +197,7 @@
 <dl class="class">
 <dt id="pylatex.document.Document">
 <em class="property">class </em><code class="descclassname">pylatex.document.</code><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>author=''</em>, <em>title=''</em>, <em>date=''</em>, <em>data=None</em>, <em>maketitle=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
 <p>If needed, you can append stuff to the preamble or the packages.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -196,13 +206,14 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>default_filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the default path to save files</li>
-<li><strong>documentclass</strong> (str or <a class="reference internal" href="pylatex.command.html#pylatex.command.Command" title="pylatex.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.command.Command</span></code></a> instance) &#8211; the LaTeX class of the document</li>
+<li><strong>documentclass</strong> (str or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">Command</span></code></a>
+instance) &#8211; the LaTeX class of the document</li>
 <li><strong>fontenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the option for the fontenc package</li>
 <li><strong>inputenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the option for the inputenc package</li>
 <li><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the author of the document</li>
 <li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the title of the document</li>
 <li><strong>date</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the date of the document</li>
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
+<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
 <li><strong>maketitle</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; whether <cite>\maketitle</cite> command is activated or not.</li>
 </ul>
 </td>
@@ -232,7 +243,7 @@
 
 <dl class="method">
 <dt id="pylatex.document.Document.generate_pdf">
-<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=''</em>, <em>clean=True</em>, <em>compiler='pdflatex'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=''</em>, <em>clean=True</em>, <em>compiler='pdflatex'</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a pdf file from the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -242,6 +253,7 @@
 <li><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the name of the file</li>
 <li><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; whether non-pdf files created by <cite>pdflatex</cite> must be
 removed or not</li>
+<li><strong>silent</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; whether to hide compiler output</li>
 </ul>
 </td>
 </tr>

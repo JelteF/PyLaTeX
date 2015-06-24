@@ -33,7 +33,7 @@
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.document" href="pylatex.document.html"/>
-        <link rel="prev" title="pylatex.base_classes" href="pylatex.base_classes.html"/> 
+        <link rel="prev" title="pylatex.base_classes.table" href="pylatex.base_classes.table.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
@@ -183,52 +193,7 @@
             
   <span class="target" id="module-pylatex.command"></span><div class="section" id="pylatex-command">
 <h1>pylatex.command<a class="headerlink" href="#pylatex-command" title="Permalink to this headline">¶</a></h1>
-<p>This module implements a class that implements a latex command.</p>
-<p>This can be used directly or it can be inherrited to make an easier interface
-to it.</p>
-<dl class="class">
-<dt id="pylatex.command.Command">
-<em class="property">class </em><code class="descclassname">pylatex.command.</code><code class="descname">Command</code><span class="sig-paren">(</span><em>command</em>, <em>arguments=None</em>, <em>options=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.command.Command" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass" title="pylatex.base_classes.BaseLaTeXClass"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXClass</span></code></a></p>
-<p>A class that represents a command.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Arguments" title="pylatex.parameters.Arguments"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Arguments</span></code></a> instance) &#8211; </li>
-<li><strong>options</strong> (str or list or <a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Options" title="pylatex.parameters.Options"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Options</span></code></a> instance) &#8211; </li>
-<li><strong>packages</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;documentclass&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>        <span class="n">options</span><span class="o">=</span><span class="n">Options</span><span class="p">(</span><span class="s">&#39;12pt&#39;</span><span class="p">,</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span> <span class="s">&#39;twoside&#39;</span><span class="p">),</span>
-<span class="gp">&gt;&gt;&gt; </span>        <span class="n">arguments</span><span class="o">=</span><span class="s">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
-<span class="go">&#39;\documentclass[12pt,a4paper,twoside]{article}&#39;</span>
-</pre></div>
-</div>
-<dl class="method">
-<dt id="pylatex.command.Command.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.command.Command.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the command as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
+<p>Stub command module for backwards compatibility.</p>
 </div>
 
 
@@ -240,7 +205,7 @@ to it.</p>
         <a href="pylatex.document.html" class="btn btn-neutral float-right" title="pylatex.document" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.base_classes.html" class="btn btn-neutral" title="pylatex.base_classes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.base_classes.table.html" class="btn btn-neutral" title="pylatex.base_classes.table" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

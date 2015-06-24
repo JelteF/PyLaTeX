@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
@@ -188,8 +198,7 @@
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantities</span> <span class="kn">as</span> <span class="nn">pq</span>
 
-<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Math</span>
-<span class="kn">from</span> <span class="nn">pylatex.quantities</span> <span class="kn">import</span> <span class="n">Quantity</span>
+<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Quantity</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>

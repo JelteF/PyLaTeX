@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
@@ -183,61 +193,25 @@
             
   <span class="target" id="module-pylatex.section"></span><div class="section" id="pylatex-section">
 <h1>pylatex.section<a class="headerlink" href="#pylatex-section" title="Permalink to this headline">¶</a></h1>
-<p>This module implements the class that deals with sections.</p>
-<dl class="class">
-<dt id="pylatex.section.SectionBase">
-<em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">SectionBase</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.SectionBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXContainer" title="pylatex.base_classes.BaseLaTeXContainer"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXContainer</span></code></a></p>
-<p>A class that is the base for all section type classes.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.parameters.html#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list"><em>list</em></a>) &#8211; </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="pylatex.section.SectionBase.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.SectionBase.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the section as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
+<p>This module implements the section type classes.</p>
 <dl class="class">
 <dt id="pylatex.section.Section">
 <em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">Section</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Section" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.section.SectionBase" title="pylatex.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.SectionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase" title="pylatex.base_classes.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.section.SectionBase</span></code></a></p>
 <p>A class that represents a section.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.section.Subsection">
 <em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">Subsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Subsection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.section.SectionBase" title="pylatex.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.SectionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase" title="pylatex.base_classes.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.section.SectionBase</span></code></a></p>
 <p>A class that represents a subsection.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.section.Subsubsection">
 <em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">Subsubsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Subsubsection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.section.SectionBase" title="pylatex.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.SectionBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase" title="pylatex.base_classes.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.section.SectionBase</span></code></a></p>
 <p>A class that represents a subsubsection.</p>
 </dd></dl>
 

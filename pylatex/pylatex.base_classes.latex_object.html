@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.numpy &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.base_classes.latex_object &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
-        <link rel="next" title="pylatex.package" href="pylatex.package.html"/>
-        <link rel="prev" title="pylatex.math" href="pylatex.math.html"/> 
+        <link rel="next" title="pylatex.base_classes.section" href="pylatex.base_classes.section.html"/>
+        <link rel="prev" title="pylatex.base_classes.float" href="pylatex.base_classes.float.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -133,7 +133,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.base_classes.latex_object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
@@ -141,7 +141,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
@@ -178,11 +178,11 @@
       
           <li><a href="../api.html">API reference</a> &raquo;</li>
       
-    <li>pylatex.numpy</li>
+    <li>pylatex.base_classes.latex_object</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pylatex/pylatex.numpy.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pylatex/pylatex.base_classes.latex_object.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,9 +191,96 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-pylatex.numpy"></span><div class="section" id="pylatex-numpy">
-<h1>pylatex.numpy<a class="headerlink" href="#pylatex-numpy" title="Permalink to this headline">¶</a></h1>
-<p>Stub numpy module for backwards compatibility.</p>
+  <span class="target" id="module-pylatex.base_classes.latex_object"></span><div class="section" id="pylatex-base-classes-latex-object">
+<h1>pylatex.base_classes.latex_object<a class="headerlink" href="#pylatex-base-classes-latex-object" title="Permalink to this headline">¶</a></h1>
+<p>This module implements the base LaTeX object.</p>
+<dl class="class">
+<dt id="pylatex.base_classes.latex_object.LatexObject">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.latex_object.</code><code class="descname">LatexObject</code><span class="sig-paren">(</span><em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.4/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>The class that every other LaTeX class is a subclass of.</p>
+<p>This class implements the main methods that every LaTeX object needs. For
+conversion to LaTeX formatted strings it implements the dumps, dump and
+generate_tex methods. It also provides the methods that can be used to
+represent the packages needed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>packages</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a> of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">Package</span></code></a>
+instances) &#8211; <p>:</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pylatex.base_classes.latex_object.LatexObject.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the class as a string in LaTeX syntax.</p>
+<p>This method should be implemented by any class that subclasses this
+class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.latex_object.LatexObject.dump">
+<code class="descname">dump</code><span class="sig-paren">(</span><em>file_w</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the LaTeX representation of the class to a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_w</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/io.html#io.TextIOBase" title="(in Python v3.4)"><em>io.TextIOBase</em></a>) &#8211; The file object in which to save the data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.latex_object.LatexObject.generate_tex">
+<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.generate_tex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a .tex file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the name of the file (without .tex)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.latex_object.LatexObject.dumps_packages">
+<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the packages needed as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.latex_object.LatexObject.dump_packages">
+<code class="descname">dump_packages</code><span class="sig-paren">(</span><em>file_w</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dump_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the LaTeX representation of the packages to a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_w</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/io.html#io.TextIOBase" title="(in Python v3.4)"><em>io.TextIOBase</em></a>) &#8211; The file object in which to save the data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -202,10 +289,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pylatex.package.html" class="btn btn-neutral float-right" title="pylatex.package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pylatex.base_classes.section.html" class="btn btn-neutral float-right" title="pylatex.base_classes.section" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.math.html" class="btn btn-neutral" title="pylatex.math" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.base_classes.float.html" class="btn btn-neutral" title="pylatex.base_classes.float" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

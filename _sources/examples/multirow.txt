@@ -1,0 +1,14 @@
+Multirow example
+================
+.. automodule:: examples.multirow
+
+The code
+--------
+.. literalinclude:: /../../examples/multirow.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/multirow.pdf.png
+
+    multirow.pdf

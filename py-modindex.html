@@ -33,10 +33,6 @@
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html"/>
  
 
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
 
 
   
@@ -111,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -129,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
@@ -205,9 +211,40 @@
      <tr class="cap" id="cap-b"><td></td><td>
        <strong>b</strong></td><td></td></tr>
      <tr>
-       <td></td>
+       <td><img src="_static/minus.png" class="toggler"
+              id="toggle-1" style="display: none" alt="-" /></td>
        <td>
-       <a href="pylatex/pylatex.base_classes.html#module-pylatex.base_classes"><code class="xref">pylatex.base_classes</code></a></td><td>
+       <code class="xref">pylatex.base_classes</code></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="pylatex/pylatex.base_classes.command.html#module-pylatex.base_classes.command"><code class="xref">pylatex.base_classes.command</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="pylatex/pylatex.base_classes.containers.html#module-pylatex.base_classes.containers"><code class="xref">pylatex.base_classes.containers</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="pylatex/pylatex.base_classes.float.html#module-pylatex.base_classes.float"><code class="xref">pylatex.base_classes.float</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="pylatex/pylatex.base_classes.latex_object.html#module-pylatex.base_classes.latex_object"><code class="xref">pylatex.base_classes.latex_object</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="pylatex/pylatex.base_classes.section.html#module-pylatex.base_classes.section"><code class="xref">pylatex.base_classes.section</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="pylatex/pylatex.base_classes.table.html#module-pylatex.base_classes.table"><code class="xref">pylatex.base_classes.table</code></a></td><td>
        <em></em></td></tr>
      <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
      <tr class="cap" id="cap-c"><td></td><td>
@@ -230,41 +267,46 @@
        <strong>e</strong></td><td></td></tr>
      <tr>
        <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
+              id="toggle-2" style="display: none" alt="-" /></td>
        <td>
        <code class="xref">examples</code></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/basic.html#module-examples.basic"><code class="xref">examples.basic</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/full.html#module-examples.full"><code class="xref">examples.full</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/lists.html#module-examples.lists"><code class="xref">examples.lists</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/matplotlib_ex.html#module-examples.matplotlib_ex"><code class="xref">examples.matplotlib_ex</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
+       <td></td>
+       <td>&nbsp;&nbsp;&nbsp;
+       <a href="examples/multirow.html#module-examples.multirow"><code class="xref">examples.multirow</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/numpy_ex.html#module-examples.numpy_ex"><code class="xref">examples.numpy_ex</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/quantities_ex.html#module-examples.quantities_ex"><code class="xref">examples.quantities_ex</code></a></td><td>
        <em></em></td></tr>
-     <tr class="cg-1">
+     <tr class="cg-2">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
        <a href="examples/subfigure.html#module-examples.subfigure"><code class="xref">examples.subfigure</code></a></td><td>

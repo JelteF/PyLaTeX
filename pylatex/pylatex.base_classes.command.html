@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.table &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.base_classes.command &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
-        <link rel="next" title="pylatex.utils" href="pylatex.utils.html"/>
-        <link rel="prev" title="pylatex.section" href="pylatex.section.html"/> 
+        <link rel="next" title="pylatex.base_classes.containers" href="pylatex.base_classes.containers.html"/>
+        <link rel="prev" title="API reference" href="../api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -130,7 +130,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.base_classes.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
@@ -147,7 +147,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
@@ -178,11 +178,11 @@
       
           <li><a href="../api.html">API reference</a> &raquo;</li>
       
-    <li>pylatex.table</li>
+    <li>pylatex.base_classes.command</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pylatex/pylatex.table.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pylatex/pylatex.base_classes.command.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,38 +191,45 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-pylatex.table"></span><div class="section" id="pylatex-table">
-<h1>pylatex.table<a class="headerlink" href="#pylatex-table" title="Permalink to this headline">¶</a></h1>
-<p>This module implements the class that deals with tables.</p>
+  <span class="target" id="module-pylatex.base_classes.command"></span><div class="section" id="pylatex-base-classes-command">
+<h1>pylatex.base_classes.command<a class="headerlink" href="#pylatex-base-classes-command" title="Permalink to this headline">¶</a></h1>
+<p>This module implements a class that implements a latex command.</p>
+<p>This can be used directly or it can be inherrited to make an easier interface
+to it.</p>
 <dl class="class">
-<dt id="pylatex.table.MultiColumn">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='|c|'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
-<p>A class that represents a multicolumn inside of a table.</p>
+<dt id="pylatex.base_classes.command.Command">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.command.</code><code class="descname">Command</code><span class="sig-paren">(</span><em>command</em>, <em>arguments=None</em>, <em>options=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
+<p>A class that represents a LaTeX command.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
-<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Name of the command ueaue</li>
+<li><strong>arguments</strong> (None, str, list or             <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-class docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments of the command</li>
+<li><strong>options</strong> (None, str, list or             <a class="reference internal" href="#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-class docutils literal"><span class="pre">Options</span></code></a>) &#8211; Arguments of the command</li>
+<li><strong>packages</strong> (list of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; A list of the packages that this command requires</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>TODO:
-type of data can also be list</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;documentclass&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">options</span><span class="o">=</span><span class="n">Options</span><span class="p">(</span><span class="s">&#39;12pt&#39;</span><span class="p">,</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span> <span class="s">&#39;twoside&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">arguments</span><span class="o">=</span><span class="s">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;\documentclass[12pt,a4paper,twoside]{article}&#39;</span>
+</pre></div>
+</div>
 <dl class="method">
-<dt id="pylatex.table.MultiColumn.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the multicolumn as a string in LaTeX syntax.</p>
+<dt id="pylatex.base_classes.command.Command.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Command.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the command as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The LaTeX formatted command</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
 </tr>
@@ -233,81 +240,85 @@ type of data can also be list</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.table.MultiRow">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>width='*'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
-<p>A class that represents a multirow in a table.</p>
+<dt id="pylatex.base_classes.command.Parameters">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.command.</code><code class="descname">Parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
+<p>A class implementing LaTex parameters.</p>
+<p>It supports normal positional parameters, as well as key-value pairs.
+Parameters can be rendered optional within square brackets <code class="docutils literal"><span class="pre">[]</span></code> or
+required within braces <code class="docutils literal"><span class="pre">{}</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;{a}{b}{c}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">optional</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;[a,b,c]&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="s">&#39;clip&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s">&#39;25em&#39;</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="s">&#39;1 2 3 4&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">optional</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;[clip,trim=1 2 3 4,width=50,height=25em]&#39;</span>
+</pre></div>
+</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
-<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optional</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Specifies whether this parameters are optional or not</td>
 </tr>
 </tbody>
 </table>
-<p>TODO:
-type of data can also be list</p>
-<dl class="method">
-<dt id="pylatex.table.MultiRow.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiRow.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the multirow as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.table.Tabular">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Tabular</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Tabular" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
-<p>A class that represents a tabular.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.table.Table">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Table</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
-<p>A legacy name for the class that represents a tabular.</p>
 <dl class="attribute">
-<dt id="pylatex.table.Table.container_name">
-<code class="descname">container_name</code><em class="property"> = 'tabular'</em><a class="headerlink" href="#pylatex.table.Table.container_name" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.command.Parameters.optional">
+<code class="descname">optional</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.base_classes.command.Parameters.optional" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="pylatex.base_classes.command.Parameters.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Parameters.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the parameters as a string in LaTeX syntax.</p>
+<p>This is to be appended to a command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The rendered parameters</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.command.Parameters.list">
+<code class="descname">list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Parameters.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.table.Tabu">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">Tabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
-<p>A class that represents a tabu (more flexible table).</p>
+<dt id="pylatex.base_classes.command.Options">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.command.</code><code class="descname">Options</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.command.Parameters" title="pylatex.base_classes.command.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Parameters</span></code></a></p>
+<p>TODO: write some stuff about Options.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.table.LongTable">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTable</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
-<p>A class that represents a longtable (multipage table).</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.table.LongTabu">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Table" title="pylatex.table.Table"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Table</span></code></a></p>
-<p>A class that represents a longtabu (more flexible multipage table).</p>
+<dt id="pylatex.base_classes.command.Arguments">
+<em class="property">class </em><code class="descclassname">pylatex.base_classes.command.</code><code class="descname">Arguments</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.command.Parameters" title="pylatex.base_classes.command.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Parameters</span></code></a></p>
+<p>TODO: write some stuff about Arguments.</p>
 </dd></dl>
 
 </div>
@@ -318,10 +329,10 @@ type of data can also be list</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pylatex.utils.html" class="btn btn-neutral float-right" title="pylatex.utils" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pylatex.base_classes.containers.html" class="btn btn-neutral float-right" title="pylatex.base_classes.containers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.section.html" class="btn btn-neutral" title="pylatex.section" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../api.html" class="btn btn-neutral" title="API reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

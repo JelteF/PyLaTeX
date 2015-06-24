@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
@@ -183,90 +193,7 @@
             
   <span class="target" id="module-pylatex.parameters"></span><div class="section" id="pylatex-parameters">
 <h1>pylatex.parameters<a class="headerlink" href="#pylatex-parameters" title="Permalink to this headline">¶</a></h1>
-<p>This module implements the classes that deal with parameters.</p>
-<p>In particular it implements options and arguments.</p>
-<dl class="class">
-<dt id="pylatex.parameters.Parameters">
-<em class="property">class </em><code class="descclassname">pylatex.parameters.</code><code class="descname">Parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.html#pylatex.base_classes.BaseLaTeXClass" title="pylatex.base_classes.BaseLaTeXClass"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.BaseLaTeXClass</span></code></a></p>
-<p>A class implementing LaTex parameters.</p>
-<p>It supports normal positional parameters, as well as key-value pairs.
-Parameters can be rendered optional within square brackets <code class="docutils literal"><span class="pre">[]</span></code> or
-required within braces <code class="docutils literal"><span class="pre">{}</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
-<span class="go">&#39;{a}{b}{c}&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">optional</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
-<span class="go">&#39;[a,b,c]&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="s">&#39;clip&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s">&#39;25em&#39;</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="s">&#39;1 2 3 4&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">optional</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
-<span class="go">&#39;[clip,trim=1 2 3 4,width=50,height=25em]&#39;</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>optional</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Specifies whether this parameters are optional or not</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="pylatex.parameters.Parameters.optional">
-<code class="descname">optional</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.parameters.Parameters.optional" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pylatex.parameters.Parameters.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Parameters.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the parameters as a string in LaTeX syntax.</p>
-<p>This is to be appended to a command.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The rendered parameters</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.parameters.Parameters.list">
-<code class="descname">list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Parameters.list" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#pylatex.parameters.Parameters.list" title="pylatex.parameters.Parameters.list">list</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.parameters.Options">
-<em class="property">class </em><code class="descclassname">pylatex.parameters.</code><code class="descname">Options</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Options" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.parameters.Parameters" title="pylatex.parameters.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Parameters</span></code></a></p>
-<p>TODO.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.parameters.Arguments">
-<em class="property">class </em><code class="descclassname">pylatex.parameters.</code><code class="descname">Arguments</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.parameters.Arguments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.parameters.Parameters" title="pylatex.parameters.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.parameters.Parameters</span></code></a></p>
-<p>TODO.</p>
-</dd></dl>
-
+<p>Stub parameters module for backwards compatibility.</p>
 </div>
 
 

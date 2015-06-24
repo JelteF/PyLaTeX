@@ -107,6 +107,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../examples/matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/multirow.html">Multirow example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/multirow.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
@@ -125,7 +130,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.html">pylatex.base_classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
@@ -188,14 +198,14 @@
 <dl class="class">
 <dt id="pylatex.quantities.Quantity">
 <em class="property">class </em><code class="descclassname">pylatex.quantities.</code><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.command.html#pylatex.command.Command" title="pylatex.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.command.Command</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Command</span></code></a></p>
 <p>A class representing quantities.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>quantity</strong> (<a class="reference external" href="https://pythonhosted.org/quantities/user/tutorial.html#quantities.Quantity" title="(in quantities v0.10.0)"><code class="xref py py-class docutils literal"><span class="pre">quantities.Quantity</span></code></a> instance) &#8211; </li>
+<li><strong>quantity</strong> (<a class="reference external" href="https://pythonhosted.org/quantities/user/tutorial.html#quantities.quantity.Quantity" title="(in quantities v0.10.0)"><code class="xref py py-class docutils literal"><span class="pre">quantities.quantity.Quantity</span></code></a> instance) &#8211; </li>
 <li><strong>fmtstr</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#callable" title="(in Python v3.4)"><em>callable</em></a>) &#8211; </li>
 </ul>
 </td>

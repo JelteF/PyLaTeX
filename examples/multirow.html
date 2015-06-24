@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numpy example &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>Multirow example &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Quantities example" href="quantities_ex.html"/>
-        <link rel="prev" title="Multirow example" href="multirow.html"/> 
+        <link rel="next" title="Numpy example" href="numpy_ex.html"/>
+        <link rel="prev" title="Matplotlib example" href="matplotlib_ex.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -107,14 +107,14 @@
 <li class="toctree-l3"><a class="reference internal" href="matplotlib_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="multirow.html#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="multirow.html#the-generated-pdfs">The generated pdfs</a></li>
-</ul>
-</li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Numpy example</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Multirow example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a><ul>
@@ -178,11 +178,11 @@
       
           <li><a href="../examples.html">Examples</a> &raquo;</li>
       
-    <li>Numpy example</li>
+    <li>Multirow example</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/examples/numpy_ex.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/examples/multirow.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,56 +191,19 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="module-examples.numpy_ex">
-<span id="numpy-example"></span><h1>Numpy example<a class="headerlink" href="#module-examples.numpy_ex" title="Permalink to this headline">¶</a></h1>
-<p>This example shows numpy functionality.</p>
+  <div class="section" id="module-examples.multirow">
+<span id="multirow-example"></span><h1>Multirow example<a class="headerlink" href="#module-examples.multirow" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">VectorName</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
-
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
-    <span class="n">section</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="s">&#39;Numpy tests&#39;</span><span class="p">)</span>
-    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Array&#39;</span><span class="p">)</span>
-
-    <span class="n">vec</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="n">vec_name</span> <span class="o">=</span> <span class="n">VectorName</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
-    <span class="n">math</span> <span class="o">=</span> <span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">vec_name</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="n">vec</span><span class="p">])</span>
-
-    <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
-    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
-
-    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Matrix&#39;</span><span class="p">)</span>
-    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
-    <span class="n">matrix</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">mtype</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
-    <span class="n">math</span> <span class="o">=</span> <span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;M=&#39;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">])</span>
-
-    <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
-    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
-
-    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Product&#39;</span><span class="p">)</span>
-
-    <span class="n">math</span> <span class="o">=</span> <span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="n">vec_name</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">a</span><span class="p">)])</span>
-    <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
-
-    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
-
-    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;numpy_ex&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre>
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-generated-pdfs">
 <h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
 <div class="figure" id="id1">
-<img alt="../_images/numpy_ex.pdf.png" src="../_images/numpy_ex.pdf.png" />
-<p class="caption"><span class="caption-text">numpy_ex.pdf</span></p>
+<img alt="../_images/multirow.pdf.png" src="../_images/multirow.pdf.png" />
+<p class="caption"><span class="caption-text">multirow.pdf</span></p>
 </div>
 </div>
 </div>
@@ -251,10 +214,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="quantities_ex.html" class="btn btn-neutral float-right" title="Quantities example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="numpy_ex.html" class="btn btn-neutral float-right" title="Numpy example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="multirow.html" class="btn btn-neutral" title="Multirow example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="matplotlib_ex.html" class="btn btn-neutral" title="Matplotlib example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
