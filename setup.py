@@ -167,18 +167,21 @@ if sys.version_info[:2] <= (2, 6):
         "Python version."
     )
 
-if sys.version_info[0] == 3:
-    source_dir = '.'
-else:
-    source_dir = 'python2_source'
-
 extras = {
     'docs': ['sphinx'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
-    'testing': ['flake8', 'pep8-naming', 'flake8_docstrings', 'nose']
+    'testing': ['flake8', 'pep8-naming', 'flake8_docstrings', 'nose'],
+    'convert_to_py2': ['3to2'],
 }
+
+if sys.version_info[0] == 3:
+    source_dir = '.'
+else:
+    source_dir = 'python2_source'
+    del extras['convert_to_py2']
+
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
 
