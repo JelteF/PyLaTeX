@@ -8,9 +8,10 @@ This module implements the base LaTeX object.
 
 from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
+from abc import abstractmethod, ABCMeta
 
 
-class LatexObject:
+class LatexObject(metaclass=ABCMeta):
 
     """The class that every other LaTeX class is a subclass of.
 
@@ -32,13 +33,13 @@ class LatexObject:
 
         self.packages = OrderedSet(packages)
 
+    @abstractmethod
     def dumps(self):
         """Represent the class as a string in LaTeX syntax.
 
         This method should be implemented by any class that subclasses this
         class.
         """
-        # TODO: Raise not implemented exception
 
     def dump(self, file_):
         """Write the LaTeX representation of the class to a file.
