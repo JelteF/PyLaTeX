@@ -20,9 +20,10 @@ class LatexObject(metaclass=ABCMeta):
     generate_tex methods. It also provides the methods that can be used to
     represent the packages needed.
 
-    :param packages: :class:`pylatex.package.Package` instances
+    :param packages: :
 
-    :type packages: list
+    :type packages: :class:`list` of :class:`~pylatex.package.Package`
+        instances
 
     """
 

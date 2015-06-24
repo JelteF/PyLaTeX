@@ -31,7 +31,6 @@ sys.path.insert(0, os.path.abspath('../../'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'numpydoc',
     'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
@@ -39,8 +38,11 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosummary',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.napoleon',
 ]
 
+napoleon_include_special_with_doc = False
 numpydoc_show_inherited_class_members = False
 numpydoc_class_members_toctree = False
 
