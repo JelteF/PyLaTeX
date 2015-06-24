@@ -21,124 +21,138 @@ from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim
 
 
-# Document
-doc = Document(
-    default_filepath='default_filepath',
-    documentclass='article',
-    fontenc='T1',
-    inputenc='utf8',
-    author='',
-    title='',
-    date='',
-    data=None,
-    maketitle=False
-)
+def test_document():
+    doc = Document(
+        default_filepath='default_filepath',
+        documentclass='article',
+        fontenc='T1',
+        inputenc='utf8',
+        author='',
+        title='',
+        date='',
+        data=None,
+        maketitle=False
+    )
 
-doc.append('Some text.')
+    doc.append('Some text.')
 
-doc.generate_tex(filepath='')
-doc.generate_pdf(filepath='', clean=True)
-
-# SectionBase
-s = Section(title='', numbering=True, data=None)
-
-# Math
-m = Math(data=None, inline=False)
-
-# Tabular
-t = Tabular(table_spec='|c|c|', data=None, pos=None)
-
-t.add_hline(start=None, end=None)
-
-t.add_row(cells=(1, 2), escape=False)
-
-t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None,
-                  escape=False)
+    doc.generate_tex(filepath='')
+    doc.generate_pdf(filepath='', clean=True)
 
 
-t.add_multirow(size=3, align='*', content='Multirow', hlines=True, cells=None,
-               escape=False)
-
-# MultiColumn/MultiRow.
-t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),))
-
-t.add_row((MultiRow(size=2, width='*', data='MultiRow'),))
+def test_section():
+    Section(title='', numbering=True, data=None)
 
 
-# Command
-c = Command(command='documentclass', arguments=None, options=None,
+def test_math():
+    Math(data=None, inline=False)
+
+    VectorName(name='')
+
+    # Numpy
+    m = np.matrix([[2, 3, 4],
+                   [0, 0, 1],
+                   [0, 0, 2]])
+
+    Matrix(matrix=m, name='', mtype='p', alignment=None)
+
+
+def test_table():
+    # Tabular
+    t = Tabular(table_spec='|c|c|', data=None, pos=None)
+
+    t.add_hline(start=None, end=None)
+
+    t.add_row(cells=(1, 2), escape=False)
+
+    t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None,
+                      escape=False)
+
+    t.add_multirow(size=3, align='*', content='Multirow', hlines=True,
+                   cells=None, escape=False)
+
+    # MultiColumn/MultiRow.
+    t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),))
+
+    t.add_row((MultiRow(size=2, width='*', data='MultiRow'),))
+
+
+def test_command():
+    Command(command='documentclass', arguments=None, options=None,
             packages=None)
-# Figure
-f = Figure(data=None, position=None)
 
-f.add_image(filename='', width=r'0.8\textwidth', placement=r'\centering')
 
-f.add_caption(caption='')
+def test_graphics():
+    f = Figure(data=None, position=None)
 
-# Subfigure
-s = SubFigure(data=None, position=None,
-              width=r'0.45\linewidth', seperate_paragraph=False)
+    f.add_image(filename='', width=r'0.8\textwidth', placement=r'\centering')
 
-s.add_image(filename='', width='r\linewidth',
-            placement=None)
+    f.add_caption(caption='')
 
-s.add_caption(caption='')
+    # Subfigure
+    s = SubFigure(data=None, position=None,
+                  width=r'0.45\linewidth', seperate_paragraph=False)
 
-# Plt
-plot = MatplotlibFigure(data=None, position=None)
+    s.add_image(filename='', width='r\linewidth',
+                placement=None)
 
-x = [0, 1, 2, 3, 4, 5, 6]
-y = [15, 2, 7, 1, 5, 6, 9]
+    s.add_caption(caption='')
 
-pyplot.plot(x, y)
+    # Matplotlib
+    plot = MatplotlibFigure(data=None, position=None)
 
-plot.add_plot(width=r'0.8\textwidth', placement=r'\centering')
-plot.add_caption(caption='I am a caption.')
+    x = [0, 1, 2, 3, 4, 5, 6]
+    y = [15, 2, 7, 1, 5, 6, 9]
 
-# Numpy
-v = VectorName(name='')
+    pyplot.plot(x, y)
 
-M = np.matrix([[2, 3, 4],
-               [0, 0, 1],
-               [0, 0, 2]])
-m = Matrix(matrix=M, name='', mtype='p', alignment=None)
+    plot.add_plot(width=r'0.8\textwidth', placement=r'\centering')
+    plot.add_caption(caption='I am a caption.')
 
-# Quantities
-q1 = Quantity(quantity=1*pq.kg)
-q2 = Quantity(quantity=1*pq.kg, format_cb=lambda x: str(int(x)))
+    # Quantities
+    Quantity(quantity=1*pq.kg)
+    Quantity(quantity=1*pq.kg, format_cb=lambda x: str(int(x)))
 
-# Package
-p = Package(name='', base='usepackage', options=None)
 
-# PGFPlots
-tikz = TikZ(data=None)
+def test_package():
+    # Package
+    Package(name='', base='usepackage', options=None)
 
-a = Axis(data=None, options=None)
 
-p = Plot(name=None, func=None, coordinates=None, options=None)
+def test_tikz():
+    # PGFPlots
+    TikZ(data=None)
 
-# Utils
-escape_latex(s='')
+    Axis(data=None, options=None)
 
-fix_filename(path='')
+    Plot(name=None, func=None, coordinates=None, options=None)
 
-dumps_list(l=[], escape=False, token='\n')
 
-bold(s='')
+def test_lists():
+    # Lists
+    itemize = Itemize()
+    itemize.add_item(s="item")
+    itemize.append("append")
 
-italic(s='')
+    enum = Enumerate()
+    enum.add_item(s="item")
+    enum.append("append")
 
-verbatim(s='', delimiter='|')
+    desc = Description()
+    desc.add_item(label="label", s="item")
+    desc.append("append")
 
-# Lists
-itemize = Itemize()
-itemize.add_item(s="item")
-itemize.append("append")
 
-enum = Enumerate()
-enum.add_item(s="item")
-enum.append("append")
+def test_utils():
+    # Utils
+    escape_latex(s='')
 
-desc = Description()
-desc.add_item(label="label", s="item")
-desc.append("append")
+    fix_filename(path='')
+
+    dumps_list(l=[], escape=False, token='\n')
+
+    bold(s='')
+
+    italic(s='')
+
+    verbatim(s='', delimiter='|')

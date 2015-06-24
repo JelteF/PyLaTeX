@@ -61,12 +61,19 @@ else
     main_folder=.
 fi
 
-for f in $main_folder/{tests,examples}/*.py; do
+
+echo -e '\e[32mTesting tests directory\e[0m'
+if ! nosetests tests/*; then
+    exit 1
+fi
+
+for f in $main_folder/examples/*.py; do
     echo -e '\e[32mTesting '$f'\e[0m'
     if ! $python $f; then
         exit 1
     fi
 done
+
 
 if [ "$clean" = 'TRUE' ]; then
     rm *.pdf *.log *.aux *.tex

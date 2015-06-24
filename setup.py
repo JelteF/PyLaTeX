@@ -177,7 +177,7 @@ extras = {
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
-    'testing': ['flake8', 'pep8-naming', 'flake8_docstrings'],
+    'testing': ['flake8', 'pep8-naming', 'flake8_docstrings', 'nose'],
 }
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
