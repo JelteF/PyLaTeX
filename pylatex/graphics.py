@@ -8,35 +8,21 @@ This module implements the class that deals with graphics.
 
 import os.path
 
-from .utils import fix_filename, make_temp_dir
-from .base_classes import Environment, Command
+from .utils import fix_filename, make_temp_dir, _merge_packages_into_kwargs
+from .base_classes import Command, Float
 from .package import Package
 import uuid
 
 
-class Figure(Environment):
+class Figure(Float):
 
-    """A class that represents a Graphic.
+    """A class that represents a Figure environment."""
 
-    :param data:
-    :param position:
-
-    :type data: list
-    :type position: str
-    :param data:
-    :param position:
-    :param seperate_paragraph:
-
-    :type data: list
-    :type position: str
-    :type seperate_paragraph: bool
-    """
-
-    def __init__(self, data=None, position=None, seperate_paragraph=True):
+    def __init__(self, *args, **kwargs):
         packages = [Package('graphicx')]
-        super().__init__(data=data, packages=packages,
-                         options=position,
-                         seperate_paragraph=seperate_paragraph)
+        _merge_packages_into_kwargs(packages, kwargs)
+
+        super().__init__(*args, **kwargs)
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
@@ -60,17 +46,8 @@ class Figure(Environment):
         self.append(Command('includegraphics', options=width,
                             arguments=fix_filename(filename)))
 
-    def add_caption(self, caption):
-        """Add a caption to the figure.
 
-        :param caption:
-        :type caption: str
-        """
-
-        self.append(Command('caption', caption))
-
-
-class SubFigure(Environment):
+class SubFigure(Figure):
 
     """A class that represents a subfigure from the subcaption package.
 
@@ -88,14 +65,14 @@ class SubFigure(Environment):
     :type seperate_paragraph: bool
     """
 
-    def __init__(self, data=None, position=None,
-                 width=r'0.45\linewidth', seperate_paragraph=False):
+    def __init__(self, data=None, position=None, width=r'0.45\linewidth',
+                 seperate_paragraph=False, **kwargs):
         packages = [Package('subcaption')]
 
         super().__init__(data=data, packages=packages,
-                         options=position,
+                         position=position,
                          argument=width,
-                         seperate_paragraph=seperate_paragraph)
+                         seperate_paragraph=seperate_paragraph, **kwargs)
 
     def add_image(self, filename, width=r'\linewidth',
                   placement=None):
@@ -110,27 +87,15 @@ class SubFigure(Environment):
         :type placement: str
         """
 
-        if placement is not None:
-            self.append(placement)
-        if width is not None:
-            width = 'width=' + str(width)
-
-        self.append(Command('includegraphics', options=width,
-                            arguments=fix_filename(filename)))
-
-    def add_caption(self, caption):
-        """Add a caption to the figure.
-
-        :param caption:
-        :type caption: str
-        """
-
-        self.append(Command('caption', caption))
+        super().add_image(filename, width=width, placement=placement)
 
 
 class Plt(Figure):
 
     """A class that represents a plot created with matplotlib."""
+
+    # TODO: Rename this class
+    # TODO: Make an equivalent class for subfigure plots
 
     container_name = 'figure'
 
@@ -167,6 +132,8 @@ class Plt(Figure):
         :type width: str
         :type placement: str
         """
+        # TODO: Make default width and placement linked to the figure class
+        # TODO: Add args and kwargs explanation
 
         filename = self._save_plot(plt, *args, **kwargs)
 
