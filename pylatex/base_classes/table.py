@@ -54,7 +54,7 @@ class TabularBase(Environment):
         self.width = get_table_width(table_spec)
 
         super().__init__(data=data, options=pos,
-                         argument=table_spec, **kwargs)
+                         arguments=table_spec, **kwargs)
 
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table.
