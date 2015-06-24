@@ -3,7 +3,7 @@
 #### Some tips
 
 - Install all the development dependencies by running `pip install -e .[all]
-    -r docs_requirements.txt` when
+    -r dev_requirements.txt` when
 you are in your local fork.
 - To learn how to squash commits, read this
     [blog](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html).
