@@ -111,7 +111,7 @@ class Environment(Container):
 
     :param name:
     :param options:
-    :param argument:
+    :param arguments:
 
     :type name: str
     :type options: str or list or \
@@ -119,14 +119,28 @@ class Environment(Container):
     :type argument: str
     """
 
-    def __init__(self, options=None, argument=None,
+    def __init__(self, options=None, arguments=None,
                  seperate_paragraph=False, begin_paragraph=False,
                  end_paragraph=False, **kwargs):
+        from pylatex.parameters import Arguments, Options
+
         if not hasattr(self, 'container_name'):
             self.container_name = self.__class__.__name__.lower()
 
-        self.options = options
-        self.argument = argument
+        if isinstance(arguments, Arguments):
+            self.arguments = arguments
+        elif arguments is not None:
+            self.arguments = Arguments(arguments)
+        else:
+            self.arguments = Arguments()
+
+        if isinstance(options, Options):
+            self.options = options
+        elif options is not None:
+            self.options = Options(options)
+        else:
+            self.options = Options()
+
         self.seperate_paragraph = seperate_paragraph
         self.begin_paragraph = begin_paragraph
         self.end_paragraph = end_paragraph
@@ -147,11 +161,9 @@ class Environment(Container):
 
         string += r'\begin{' + self.container_name + '}'
 
-        if self.options is not None:
-            string += '[' + self.options + ']'
+        string += self.options.dumps()
 
-        if self.argument is not None:
-            string += '{' + self.argument + '}'
+        string += self.arguments.dumps()
 
         string += '\n'
 
