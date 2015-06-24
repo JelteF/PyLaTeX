@@ -26,6 +26,8 @@ been moved an renamed.
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
+- An unfinished Quantity class that can be used in conjunction with the
+    quantitities package. https://pythonhosted.org/quantities/
 
 ## [0.8.0] - 23-05-2015
 ### Added
