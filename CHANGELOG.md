@@ -23,6 +23,9 @@ been moved an renamed.
     also doesn't take a plt argument anymore. The plt module is now imported
     when a `MatplotlibFigure` figure is instantiated.
 
+- Compiling is more secure now and it doesn't show output unless an error occurs
+    or explicitly specified.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.

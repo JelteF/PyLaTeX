@@ -94,15 +94,18 @@ class Document(Container):
     def generate_tex(self, filepath=''):
         super().generate_tex(self.select_filepath(filepath))
 
-    def generate_pdf(self, filepath='', clean=True, compiler='pdflatex'):
+    def generate_pdf(self, filepath='', clean=True, compiler='pdflatex',
+                     silent=True):
         """Generate a pdf file from the document.
 
         :param filepath: the name of the file
         :param clean: whether non-pdf files created by `pdflatex` must be
             removed or not
+        :param silent: whether to hide compiler output
 
         :type filepath: str
         :type clean: bool
+        :type silent: bool
         """
 
         filepath = self.select_filepath(filepath)
@@ -115,10 +118,17 @@ class Document(Container):
 
         self.generate_tex(basename)
 
-        command = compiler + ' --interaction=nonstopmode --jobname="' + \
-            basename + '" "' + basename + '.tex"'
+        command = [compiler, '--interaction', 'nonstopmode',
+                   '--jobname', basename, basename + '.tex']
 
-        subprocess.check_call(command, shell=True)
+        try:
+            output = subprocess.check_output(command)
+        except subprocess.CalledProcessError as e:
+            print(e.output.decode())
+            raise e
+        else:
+            if not silent:
+                print(output.decode())
 
         if clean:
             for ext in ['aux', 'log', 'out', 'tex']:
