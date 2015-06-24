@@ -14,26 +14,27 @@ from .latex_object import LatexObject
 
 class Command(LatexObject):
 
-    r"""
-    A class that represents a command.
+    """
+    A class that represents a LaTeX command.
 
-    :param command:
-    :param arguments:
-    :param options:
-    :param packages:
-
-    :type command: str
-    :type arguments: str or list or
-        :class:`~pylatex.base_classes.command.Arguments` instance
-    :type options: str or list or
-        :class:`~pylatex.base_classes.command.Options` instance
-    :type packages: list
+    Args
+    ----
+    command: str
+        Name of the command ueaue
+    arguments: None, str, list or \
+            :class:`~pylatex.base_classes.command.Arguments`
+        Arguments of the command
+    options: None, str, list or \
+            :class:`~pylatex.base_classes.command.Options`
+        Arguments of the command
+    packages: list of :class:`~pylatex.package.Package` instances
+        A list of the packages that this command requires
 
 
     >>> Command('documentclass',
     >>>         options=Options('12pt', 'a4paper', 'twoside'),
     >>>         arguments='article').dumps()
-    '\documentclass[12pt,a4paper,twoside]{article}'
+    '\\documentclass[12pt,a4paper,twoside]{article}'
 
     """
 
@@ -68,22 +69,28 @@ class Command(LatexObject):
     def __eq__(self, other):
         """Compare two commands.
 
-        :param other: A command
+        Args
+        ----
+        other: :class:`~pylatex.base_classes.command.Command` instance
+            The command to compare this command to
 
-        :type other: :class:`command.Command` instance
 
-        :return:
-        :rtype: bool
+        Returns
+        -------
+        bool:
+            If the two instances are equal
         """
         # TODO: check if types match
 
         return self.__key() == other.__key()
 
     def __hash__(self):
-        """Return hash of the command.
+        """Calculate the hash of a command.
 
-        :return:
-        :rtype: int
+        Returns
+        -------
+        int:
+            The hash of the command
         """
 
         return hash(self.__key())
@@ -91,8 +98,10 @@ class Command(LatexObject):
     def dumps(self):
         """Represent the command as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
+            The LaTeX formatted command
         """
 
         return '\\{command}{options}{arguments}'.\
@@ -204,7 +213,7 @@ class Parameters(LatexObject):
 
 class Options(Parameters):
 
-    """TODO."""
+    """TODO: write some stuff about Options."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -214,7 +223,7 @@ class Options(Parameters):
 
 class Arguments(Parameters):
 
-    """TODO."""
+    """TODO: write some stuff about Arguments."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -20,9 +20,10 @@ class LatexObject(metaclass=ABCMeta):
     generate_tex methods. It also provides the methods that can be used to
     represent the packages needed.
 
-    :param packages: :class:`pylatex.package.Package` instances
+    :param packages: :
 
-    :type packages: list
+    :type packages: :class:`list` of :class:`~pylatex.package.Package`
+        instances
 
     """
 
@@ -41,15 +42,15 @@ class LatexObject(metaclass=ABCMeta):
         class.
         """
 
-    def dump(self, file_):
+    def dump(self, file_w):
         """Write the LaTeX representation of the class to a file.
 
-        :param file_: The file object in which to save the data
+        :param file_w: The file object in which to save the data
 
-        :type file_: io.TextIOBase
+        :type file_w: io.TextIOBase
         """
 
-        file_.write(self.dumps())
+        file_w.write(self.dumps())
 
     def generate_tex(self, filepath):
         """Generate a .tex file.
@@ -70,12 +71,12 @@ class LatexObject(metaclass=ABCMeta):
 
         return dumps_list(self.packages)
 
-    def dump_packages(self, file_):
+    def dump_packages(self, file_w):
         """Write the LaTeX representation of the packages to a file.
 
-        :param file_: The file object in which to save the data
+        :param file_w: The file object in which to save the data
 
-        :type file_: io.TextIOBase
+        :type file_w: io.TextIOBase
         """
 
-        file_.write(self.dumps_packages())
+        file_w.write(self.dumps_packages())
