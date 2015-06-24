@@ -90,19 +90,21 @@ class SubFigure(Figure):
         super().add_image(filename, width=width, placement=placement)
 
 
-class Plt(Figure):
+class MatplotlibFigure(Figure):
 
     """A class that represents a plot created with matplotlib."""
 
-    # TODO: Rename this class
     # TODO: Make an equivalent class for subfigure plots
 
     container_name = 'figure'
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        import matplotlib.pyplot as plt
+        self._plt = plt
 
-    def _save_plot(self, plt, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def _save_plot(self, *args, **kwargs):
         """Save the plot.
 
         :param plt: The matplotlib.pyplot module
@@ -116,11 +118,11 @@ class Plt(Figure):
 
         filename = os.path.join(tmp_path, str(uuid.uuid4()) + '.pdf')
 
-        plt.savefig(filename, *args, **kwargs)
+        self._plt.savefig(filename, *args, **kwargs)
 
         return filename
 
-    def add_plot(self, plt, width=r'0.8\textwidth',
+    def add_plot(self, width=r'0.8\textwidth',
                  placement=r'\centering', *args, **kwargs):
         """Add a plot.
 
@@ -135,6 +137,6 @@ class Plt(Figure):
         # TODO: Make default width and placement linked to the figure class
         # TODO: Add args and kwargs explanation
 
-        filename = self._save_plot(plt, *args, **kwargs)
+        filename = self._save_plot(*args, **kwargs)
 
         self.add_image(filename, width, placement)

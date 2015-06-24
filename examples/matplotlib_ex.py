@@ -9,9 +9,9 @@ This example shows matplotlib functionality.
 # begin-doc-include
 import matplotlib
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
-import matplotlib.pyplot as pyplot
+import matplotlib.pyplot as plt
 
-from pylatex import Document, Package, Section, Plt
+from pylatex import Document, Package, Section, MatplotlibFigure
 
 
 def main(fname, width, *args, **kwargs):
@@ -23,8 +23,8 @@ def main(fname, width, *args, **kwargs):
     with doc.create(Section('I am a section')):
         doc.append('Take a look at this beautiful plot:')
 
-        with doc.create(Plt(position='htbp')) as plot:
-            plot.add_plot(pyplot, width=width, *args, **kwargs)
+        with doc.create(MatplotlibFigure(position='htbp')) as plot:
+            plot.add_plot(width=width, *args, **kwargs)
             plot.add_caption('I am a caption.')
 
         doc.append('Created using matplotlib.')
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     x = [0, 1, 2, 3, 4, 5, 6]
     y = [15, 2, 7, 1, 5, 6, 9]
 
-    pyplot.plot(x, y)
+    plt.plot(x, y)
 
     main('matplotlib_ex-dpi', r'1\textwidth', dpi=300)
     main('matplotlib_ex-facecolor', r'0.5\textwidth', facecolor='b')

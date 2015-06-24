@@ -13,6 +13,6 @@ from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular
 from .pgfplots import TikZ, Axis, Plot
-from .graphics import Figure, SubFigure, Plt
+from .graphics import Figure, SubFigure, MatplotlibFigure
 from .lists import Enumerate, Itemize, Description
 from .base_classes import Command
