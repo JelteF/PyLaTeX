@@ -4,6 +4,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+This realease will bring some great changes. The whole package has been
+refactored and actual documentation has been added. Because of this, things have
+been moved an renamed.
+
+### Changed
+- The base_classes submodule has been split into multiple sub-submodules.
+- The old baseclasses have been renamed as well. They now have easier names that
+    better show their purpose.
+- The command and parameters submodules have been merged into one command
+    submodule in the base_classes submodule.
+- The numpy classes have been moved to the math submodule.
+- For all of the previous changes the old submodules and names should still work
+    during the transition period, but they will be removed before the final
+    release.
+
+- The `Plt` class has been renamed to `MatplotlibFigure`. Its `add_plot` method
+    also doesn't take a plt argument anymore. The plt module is now imported
+    when a `MatplotlibFigure` figure is instantiated.
+
+### Added
+- Lots of documentation!!!!!
+- A float environment base class.
 
 ## [0.8.0] - 23-05-2015
 ### Added
