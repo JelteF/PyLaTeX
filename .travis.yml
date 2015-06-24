@@ -8,7 +8,8 @@ before_install:
     - sudo apt-get update
 install:
     - sudo apt-get install python3 python3-setuptools
-    - pip install -e .[all] -r dev_requirements.txt
+    - pip install 3to2
     - ./convert_to_py2.sh
+    - pip install -e .[all] -r dev_requirements.txt
     - sudo apt-get install texlive-latex-extra texlive-pictures texlive-science
 script: ./testall.sh
