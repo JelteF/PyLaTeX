@@ -57,6 +57,7 @@ fi
 
 if [ "$python_version" = '2' ]; then
     main_folder=python2_source
+    cd $main_folder
 else
     main_folder=.
 fi
@@ -65,6 +66,10 @@ fi
 echo -e '\e[32mTesting tests directory\e[0m'
 if ! nosetests tests/*; then
     exit 1
+fi
+
+if [ "$python_version" = '2' ]; then
+    cd ..
 fi
 
 for f in $main_folder/examples/*.py; do
