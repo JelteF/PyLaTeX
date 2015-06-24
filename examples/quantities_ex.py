@@ -9,8 +9,7 @@ This example shows quantities functionality.
 # begin-doc-include
 import quantities as pq
 
-from pylatex import Document, Section, Subsection, Math
-from pylatex.quantities import Quantity
+from pylatex import Document, Section, Subsection, Math, Quantity
 
 if __name__ == '__main__':
     doc = Document()

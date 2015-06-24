@@ -176,7 +176,7 @@ extras = {
     'docs': ['sphinx'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
-    'quantities': ['quantities'],
+    'quantities': ['quantities', 'numpy'],
     'testing': ['flake8', 'pep8-naming', 'flake8_docstrings'],
 }
 

@@ -15,4 +15,5 @@ from .table import Table, MultiColumn, MultiRow, Tabular
 from .pgfplots import TikZ, Axis, Plot
 from .graphics import Figure, SubFigure, MatplotlibFigure
 from .lists import Enumerate, Itemize, Description
+from .quantities import Quantity
 from .base_classes import Command

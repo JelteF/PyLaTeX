@@ -16,8 +16,7 @@ import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, MatplotlibFigure, Itemize, Enumerate, \
-    Description, MultiColumn, MultiRow, Command, Matrix, VectorName
-from pylatex.quantities import Quantity
+    Description, MultiColumn, MultiRow, Command, Matrix, VectorName, Quantity
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim
 

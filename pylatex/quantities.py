@@ -10,8 +10,6 @@ It requires the latex package SIunitx.
 
 from operator import itemgetter
 
-import numpy as np
-
 from .base_classes import Command
 from pylatex.package import Package
 
@@ -46,6 +44,8 @@ class Quantity(Command):
     """
 
     def __init__(self, quantity, format_cb=None):
+        import numpy as np
+
         self.quantity = quantity
         if format_cb is None:
             magnitude_str = np.array_str(quantity.magnitude)
