@@ -9,8 +9,7 @@ This example shows numpy functionality.
 # begin-doc-include
 import numpy as np
 
-from pylatex import Document, Section, Subsection, Math
-from pylatex.numpy import Matrix, VectorName
+from pylatex import Document, Section, Subsection, Math, Matrix, VectorName
 
 if __name__ == '__main__':
     a = np.array([[100, 10, 20]]).T

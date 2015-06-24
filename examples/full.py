@@ -10,8 +10,7 @@ This example shows matplotlib functionality.
 import numpy as np
 
 from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
-    Plot, Figure, Package
-from pylatex.numpy import Matrix
+    Plot, Figure, Package, Matrix
 from pylatex.utils import italic, escape_latex
 import os
 

@@ -8,7 +8,7 @@ A library for creating Latex files.
 """
 
 from .document import Document
-from .math import Math
+from .math import Math, VectorName, Matrix
 from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular
