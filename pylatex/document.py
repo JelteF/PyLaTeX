@@ -115,7 +115,7 @@ class Document(Container):
 
         self.generate_tex(basename)
 
-        command = compiler + '--interaction=nonestop --jobname="' + \
+        command = compiler + ' --interaction=nonstopmode --jobname="' + \
             basename + '" "' + basename + '.tex"'
 
         subprocess.check_call(command, shell=True)
