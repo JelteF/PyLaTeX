@@ -116,7 +116,8 @@ class Environment(Container):
     :type name: str
     :type options: str or list or \
         :class:`~pylatex.base_classes.command.Options` instance
-    :type argument: str
+    :type argument: str or list or \
+        :class:`~pylatex.base_classes.command.Arguments` instance
     """
 
     def __init__(self, options=None, arguments=None,
