@@ -67,10 +67,17 @@ class Plot(LatexObject):
         :class:`~pylatex.base_classes.command.Options` instance
     """
 
-    def __init__(self, name=None, func=None, coordinates=None, options=None):
+    def __init__(
+            self,
+            name=None,
+            func=None,
+            coordinates=None,
+            error_bar=None,
+            options=None):
         self.name = name
         self.func = func
         self.coordinates = coordinates
+        self.error_bar = error_bar
         self.options = options
 
         packages = [Package('pgfplots'), Command('pgfplotsset',
@@ -90,8 +97,18 @@ class Plot(LatexObject):
         if self.coordinates is not None:
             string += ' coordinates {\n'
 
-            for x, y in self.coordinates:
-                string += '(' + str(x) + ',' + str(y) + ')\n'
+            if self.error_bar is None:
+                for x, y in self.coordinates:
+                    # ie: "(x,y)"
+                    string += '(' + str(x) + ',' + str(y) + ')\n'
+
+            else:
+                for (x, y), (e_x, e_y) in zip(self.coordinates,
+                                              self.error_bar):
+                    # ie: "(x,y) +- (e_x,e_y)"
+                    string += '(' + str(x) + ',' + str(y) + \
+                        ') +- (' + str(e_x) + ',' + str(e_y) + ')\n'
+
             string += '};\n\n'
 
         elif self.func is not None:
