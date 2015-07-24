@@ -12,7 +12,7 @@ LaTeX.
 - Document generation and compilation
 - Section, table, math, figure, matplotlib and package classes
 - A matrix class that can compile NumPy ndarrays and matrices to LaTeX
-- Very exstensible base classes that you can use to easily add new features
+- Very extensible base classes that you can use to easily add new features
 - Contextmanager style class hierarchy
 - Functionality to escape special LaTeX characters
 - Bold, italic and verbatim functions
