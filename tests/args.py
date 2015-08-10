@@ -125,7 +125,7 @@ def test_tikz():
 
     Axis(data=None, options=None)
 
-    Plot(name=None, func=None, coordinates=None, options=None)
+    Plot(name=None, func=None, coordinates=None, error_bar=None, options=None)
 
 
 def test_lists():
