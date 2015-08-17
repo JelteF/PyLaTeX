@@ -63,7 +63,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! nosetests tests/*; then
+if ! nosetests3 tests/*; then
     exit 1
 fi
 
