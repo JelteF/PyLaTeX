@@ -20,7 +20,7 @@ class Command(LatexObject):
     Args
     ----
     command: str
-        Name of the command ueaue
+        Name of the command
     arguments: None, str, list or \
             :class:`~pylatex.base_classes.command.Arguments`
         Arguments of the command
