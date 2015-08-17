@@ -1,1 +1,0 @@
-git+https://github.com/numpy/numpydoc.git@16ef04c
