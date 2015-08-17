@@ -51,17 +51,17 @@ class Container(LatexObject, UserList):
         :rtype: list
         """
 
-        self.propegate_packages()
+        self._propagate_packages()
 
         return dumps_list(self, **kwargs)
 
-    def propegate_packages(self):
-        """Make sure packages get propegated."""
+    def _propagate_packages(self):
+        """Make sure packages get propagated."""
 
         for item in self.data:
             if isinstance(item, LatexObject):
                 if isinstance(item, Container):
-                    item.propegate_packages()
+                    item._propagate_packages()
                 for p in item.packages:
                     self.packages.add(p)
 
@@ -72,7 +72,7 @@ class Container(LatexObject, UserList):
         :rtype: list
         """
 
-        self.propegate_packages()
+        self._propagate_packages()
 
         return dumps_list(self.packages)
 

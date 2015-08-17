@@ -26,6 +26,10 @@ been moved an renamed.
 - Compiling is more secure now and it doesn't show output unless an error occurs
     or explicitly specified.
 
+- The internal method `propegate_packages` has been spelled correctly and made
+    "internal" by adding an underscore in front of the name, resulting in
+    `_propagate_packages`
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
