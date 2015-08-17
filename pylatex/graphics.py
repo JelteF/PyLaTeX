@@ -71,7 +71,7 @@ class SubFigure(Figure):
 
         super().__init__(data=data, packages=packages,
                          position=position,
-                         argument=width,
+                         arguments=width,
                          seperate_paragraph=seperate_paragraph, **kwargs)
 
     def add_image(self, filename, width=r'\linewidth',
