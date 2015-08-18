@@ -93,43 +93,54 @@ def fix_filename(path):
     return '/'.join(dir_parts)
 
 
-def dumps_list(l, escape=False, token='\n'):
+def dumps_list(l, escape=False, token='\n', mapper=None):
     """Try to generate a LaTeX string of a list that can contain anything.
 
-    :param l:
-    :param escape:
-    :param token:
+    Args
+    ----
+    l: list
+        List of things that should be dumped
+    escape: bool
+        Do the list entries need to be escaped
+    token: str
+        The string that is added between the entries of the list
+    mapper: callable
+        A function that should be called on all entries of the list after
+        converting them to a string, for instance bold
 
-    :type l: list
-    :type escape: bool
-    :type token: str
+    Returns
+    -------
+    str
+        The string representation of l
 
-    :return:
-    :rtype: str
     """
 
-    return token.join(_latex_item_to_string(i, escape) for i in l)
+    return token.join(_latex_item_to_string(i, escape, mapper) for i in l)
 
 
-def _latex_item_to_string(i, escape=False):
+def _latex_item_to_string(item, escape=False, post_convert=None):
     """Use the render method when possible, otherwise uses str.
 
-    :param i:
+    :param item:
     :param escape:
 
-    :type i: object
+    :type item: object
     :type escape: bool
 
     :return:
     :rtype: str
     """
 
-    if hasattr(i, 'dumps'):
-        return i.dumps()
-    elif escape:
-        return str(escape_latex(i))
+    if hasattr(item, 'dumps'):
+        s = item.dumps()
+    else:
+        s = str(item)
+        if escape:
+            s = escape_latex(s)
 
-    return str(i)
+    if post_convert:
+        return post_convert(s)
+    return s
 
 
 def bold(s):
