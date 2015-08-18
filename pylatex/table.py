@@ -45,7 +45,6 @@ class MultiColumn(Container):
         multicolumn_type = self.__class__.__name__.lower()
         args = [self.size, self.align, dumps_list(self.data)]
         string = Command(multicolumn_type, args).dumps()
-        string += dumps_list(self)
 
         super().dumps()
 
@@ -85,7 +84,6 @@ class MultiRow(Container):
         multirow_type = self.__class__.__name__.lower()
         args = [self.size, self.width, dumps_list(self.data)]
         string = Command(multirow_type, args).dumps()
-        string += dumps_list(self)
 
         super().dumps()
 
