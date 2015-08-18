@@ -125,7 +125,7 @@ class LongTable(TabularBase):
         super().__init__(*args, packages=[Package('longtable')], **kwargs)
 
 
-class LongTabu(Table):
+class LongTabu(TabularBase):
 
     """A class that represents a longtabu (more flexible multipage table)."""
 
