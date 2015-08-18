@@ -29,7 +29,7 @@ class MultiColumn(Container):
     type of data can also be list
     """
 
-    def __init__(self, size, align='|c|', data=None):
+    def __init__(self, size, align='c', data=None):
         self.size = size
         self.align = align
 

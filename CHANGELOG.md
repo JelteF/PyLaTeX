@@ -30,6 +30,9 @@ been moved an renamed.
     "internal" by adding an underscore in front of the name, resulting in
     `_propagate_packages`
 
+- The default allignment of a multicolumn is not `c` instead of `|c|`, since
+    vertical lines in tables are ugly most of the time.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
