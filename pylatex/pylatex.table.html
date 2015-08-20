@@ -74,16 +74,16 @@
           
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../usage.html#plain-latex-strings">Plain LaTeX strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#understanding-pylatex">Understanding PyLaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../usage.html#the-classes">The classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../usage.html#the-simplest-base-class">The simplest base class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage.html#the-options-arguments-and-command-class">The Options, Arguments and Command class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage.html#containers">Containers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage.html#escaping">Escaping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage.html#the-document-class">The Document class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#containers-documents">Containers / Documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#tables-images-math-etc">Tables, Images, Math, etc.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#commands-options-and-arguments">Commands, Options, and Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage.html#formatting-strings">Formatting Strings</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../usage.html#extending-pylatex">Extending PyLaTeX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage.html#plain-latex-strings">Plain LaTeX Strings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
@@ -115,6 +115,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/numpy_ex.html">Numpy example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/own_commands_ex.html">Own commands example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/own_commands_ex.html#the-code">The code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/own_commands_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/quantities_ex.html">Quantities example</a><ul>
@@ -196,7 +201,7 @@
 <p>This module implements the class that deals with tables.</p>
 <dl class="class">
 <dt id="pylatex.table.MultiColumn">
-<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='|c|'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='c'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A class that represents a multicolumn inside of a table.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -306,7 +311,7 @@ type of data can also be list</p>
 <dl class="class">
 <dt id="pylatex.table.LongTabu">
 <em class="property">class </em><code class="descclassname">pylatex.table.</code><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Table" title="pylatex.table.Table"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Table</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
 <p>A class that represents a longtabu (more flexible multipage table).</p>
 </dd></dl>
 

@@ -1,0 +1,14 @@
+Own commands example
+====================
+.. automodule:: examples.own_commands_ex
+
+The code
+--------
+.. literalinclude:: /../../examples/own_commands_ex.py
+    :start-after: begin-doc-include
+
+The generated pdfs
+------------------
+.. figure:: /_static/examples/own_commands_ex.pdf.png
+
+    own_commands_ex.pdf
