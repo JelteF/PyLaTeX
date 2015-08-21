@@ -41,6 +41,7 @@ class Command(LatexObject):
     def __init__(self, command, arguments=None, options=None, packages=None):
         self.command = command
 
+        # TODO: Make this a function that can be used twice
         if isinstance(arguments, Arguments):
             self.arguments = arguments
         elif arguments is not None:
@@ -114,9 +115,13 @@ class Parameters(LatexObject):
     """
     A class implementing LaTex parameters.
 
+    TODO: Rewrite this since it should never be used separately, this class is
+    only supposed to be inherrited
+
     It supports normal positional parameters, as well as key-value pairs.
     Parameters can be rendered optional within square brackets ``[]`` or
     required within braces ``{}``.
+
 
     >>> args = Parameters('a', 'b', 'c')
     >>> args.dumps()
@@ -132,10 +137,6 @@ class Parameters(LatexObject):
     :param optional: Specifies whether this parameters are optional or not
     :type optional: bool
     """
-
-    optional = False
-    # TODO: Rewrite this in a way such that the optional boolean is not needed
-    # in this class
 
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and hasattr(args[0], '__iter__') and\
@@ -154,7 +155,7 @@ class Parameters(LatexObject):
         :rtype: tuple
         """
 
-        return self.optional, tuple(self.list())
+        return tuple(self.list())
 
     def __eq__(self, other):
         """Compare two parameters.
@@ -175,13 +176,21 @@ class Parameters(LatexObject):
 
         return hash(self.__key())
 
-    def dumps(self):
-        """Represent the parameters as a string in LaTeX syntax.
+    def _format_contents(self, prefix, separater, suffix):
+        """Format the parameters.
 
-        This is to be appended to a command.
+        The formatting is dono using the three arguments suplied to this
+        function.
 
-        :return: The rendered parameters
-        :rtype: str
+        Arguments
+        ---------
+        prefix: str
+        separater: str
+        suffix: str
+
+        Returns
+        -------
+        str
         """
 
         params = self.list()
@@ -189,18 +198,18 @@ class Parameters(LatexObject):
         if len(params) <= 0:
             return ''
 
-        if self.optional:
-            string = '[{args}]'.format(args=','.join(map(str, params)))
-        else:
-            string = '{{{args}}}'.format(args='}{'.join(map(str, params)))
+        string = prefix + separater.join(map(str, params)) + suffix
 
         return string
 
     def list(self):
         """TODO.
 
-        :return:
-        :rtype: list
+        TODO: Make private method
+
+        Returns
+        -------
+        list
         """
 
         params = []
@@ -215,17 +224,31 @@ class Options(Parameters):
 
     """TODO: write some stuff about Options."""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def dumps(self):
+        """Represent the parameters as a string in LaTeX syntax.
 
-        self.optional = True
+        This is to be appended to a command.
+
+        Returns
+        -------
+        str
+        """
+
+        return self._format_contents('[', ',', ']')
 
 
 class Arguments(Parameters):
 
     """TODO: write some stuff about Arguments."""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def dumps(self):
+        """Represent the parameters as a string in LaTeX syntax.
 
-        self.optional = False
+        This is to be appended to a command.
+
+        Returns
+        -------
+        str
+        """
+
+        return self._format_contents('{', '}{', '}')
