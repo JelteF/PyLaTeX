@@ -37,18 +37,32 @@ _tmp_path = os.path.abspath(
 
 
 def escape_latex(s):
-    """Escape characters that are special in latex.
+    r"""Escape characters that are special in latex.
 
-    Sources:
+    Parameters
+    ----------
+    s : str
+        The string to be escaped.
+
+    Returns
+    -------
+    str
+        The string, with special characters in latex escaped.
+
+    Examples
+    --------
+    >>> escape_latex("Total cost: $30,000")
+    'Total cost: \$30,000'
+    >>> escape_latex("Issue #5 occurs in 30% of all cases")
+    'Issue \#5 occurs in 30\% of all cases'
+    >>> print(escape_latex("Total cost: $30,000"))
+
+
+    References
+    ----------
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
 
-    :param s:
-
-    :type s: str
-
-    :return:
-    :rtype: str
     """
 
     return ''.join(_latex_special_chars.get(c, c) for c in s)
@@ -73,12 +87,25 @@ def fix_filename(path):
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
 
-    :param filename:
+    Parameters
+    ----------
+    filename : str
+        The filen name to be changed.
 
-    :type filename: str
+    Returns
+    -------
+    str
+        The new filename.
 
-    :return:
-    :rtype: str
+    Examples
+    --------
+    >>> fix_filename("foo.bar.pdf")
+    '{foo.bar}.pdf'
+    >>> fix_filename("/etc/local/foo.bar.pdf")
+    '/etc/local/{foo.bar}.pdf'
+    >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
+    '/etc/local/foo.bar.baz/document.pdf'
+
     """
 
     path_parts = path.split('/')
@@ -95,16 +122,16 @@ def fix_filename(path):
 
 
 def dumps_list(l, escape=False, token='\n', mapper=None):
-    """Try to generate a LaTeX string of a list that can contain anything.
+    r"""Try to generate a LaTeX string of a list that can contain anything.
 
-    Args
-    ----
-    l: list
-        List of things that should be dumped
-    escape: bool
-        Do the list entries need to be escaped
-    token: str
-        The string that is added between the entries of the list
+    Parameters
+    ----------
+    l : list
+        A list of objects to be converted into a single string.
+    escape : bool
+        Whether to escape special LaTeX characters in converted text.
+    token : str
+        The token (default is a newline) to separate objects in the list.
     mapper: callable
         A function that should be called on all entries of the list after
         converting them to a string, for instance bold
@@ -112,8 +139,22 @@ def dumps_list(l, escape=False, token='\n', mapper=None):
     Returns
     -------
     str
-        The string representation of l
+        A single LaTeX string.
 
+    Examples
+    --------
+    >>> dumps_list([r"\textbf{Test}", r"\nth{4}"])
+    '\\textbf{Test}\n\\nth{4}'
+    >>> print(dumps_list([r"\textbf{Test}", r"\nth{4}"]))
+    \textbf{Test}
+    \nth{4}
+    >>> print(pylatex.utils.dumps_list(["There are", 4, "lights!"]))
+    There are
+    4
+    lights!
+    >>> print(dumps_list(["$100%", "True"], escape=True))
+    \$100\%
+    True
     """
 
     return token.join(_latex_item_to_string(i, escape, mapper) for i in l)
@@ -145,55 +186,109 @@ def _latex_item_to_string(item, escape=False, post_convert=None):
 
 
 def bold(s):
-    """Return the string bold.
+    r"""Make a string appear bold in LaTeX formatting.
 
-    Source: http://stackoverflow.com/a/16264094/2570866
+    bold() wraps a given string in the LaTeX command \textbf{}.
 
-        :param s:
+    Parameters
+    ----------
+    s : str
+        The string to be formatted.
 
-        :type s: str
+    Returns
+    -------
+    str
+        The formatted string.
 
-        :return:
-        :rtype: str
+    Examples
+    --------
+
+    >>> bold("hello")
+    '\\textbf{hello}'
+    >>> print(bold("hello"))
+    \textbf{hello}
+
     """
 
     return r'\textbf{' + s + '}'
 
 
 def italic(s):
-    """Return the string italicized.
+    r"""Make a string appear italicized in LaTeX formatting.
 
-    Source: http://stackoverflow.com/a/16264094/2570866
+    italic() wraps a given string in the LaTeX command \textit{}.
 
-    :param s:
+    Parameters
+    ----------
+    s : str
+        The string to be formatted.
 
-    :type s: str
+    Returns
+    -------
+    str
+        The formatted string.
 
-    :return:
-    :rtype: str
+    Examples
+    --------
+    >>> italic("hello")
+    '\\textit{hello}'
+    >>> print(italic("hello"))
+    \textit{hello}
+
     """
 
     return r'\textit{' + s + '}'
 
 
 def verbatim(s, delimiter='|'):
-    """Return the string verbatim.
+    r"""Make the string verbatim.
 
-    :param s:
-    :param delimiter:
+    Wraps the given string in a \verb LaTeX command.
 
-    :type s: str
-    :type delimiter: str
+    Parameters
+    ----------
+    s : str
+        The string to be formatted.
+    delimiter : str
+        How to designate the verbatim text (default is a pipe | )
 
-    :return:
-    :rtype: str
+    Returns
+    -------
+    str
+        The formatted string.
+
+    Examples
+    --------
+    >>> verbatim(r"\renewcommand{}")
+    '\\verb|\\renewcommand{}|'
+    >>> print(verbatim(r"\renewcommand{}"))
+    \verb|\renewcommand{}|
+    >>> print(verbatim('pi|pe', '!'))
+    \verb!pi|pe!
+
     """
 
     return r'\verb' + delimiter + s + delimiter
 
 
 def make_temp_dir():
-    """Create the tmp directory if it doesn't exist."""
+    """Create a temporary directory if it doesn't exist.
+
+    Directories created by this functionn follow the format specified
+    by ``_tmp_path`` and are a pylatex subdirectory within
+    a standard ``tempfile`` tempdir.
+
+    Returns
+    -------
+    str
+        The absolute filepath to the created temporary directory.
+
+    Examples
+    --------
+    >>> make_temp_dir()
+    '/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex'
+
+    """
 
     if not os.path.exists(_tmp_path):
         os.makedirs(_tmp_path)
@@ -201,7 +296,7 @@ def make_temp_dir():
 
 
 def rm_temp_dir():
-    """Remove the tmp directory."""
+    """Remove the temporary directory specified in ``_tmp_path``."""
 
     if os.path.exists(_tmp_path):
         shutil.rmtree(_tmp_path)
