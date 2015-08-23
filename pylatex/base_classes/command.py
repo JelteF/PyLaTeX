@@ -155,7 +155,7 @@ class Parameters(LatexObject):
         :rtype: tuple
         """
 
-        return tuple(self.list())
+        return tuple(self._list_args_kwargs())
 
     def __eq__(self, other):
         """Compare two parameters.
@@ -192,7 +192,7 @@ class Parameters(LatexObject):
         str
         """
 
-        params = self.list()
+        params = self._list_args_kwargs()
 
         if len(params) <= 0:
             return ''
@@ -201,10 +201,8 @@ class Parameters(LatexObject):
 
         return string
 
-    def list(self):
+    def _list_args_kwargs(self):
         """TODO.
-
-        TODO: Make private method
 
         Returns
         -------

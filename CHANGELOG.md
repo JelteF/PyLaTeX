@@ -33,6 +33,8 @@ been moved an renamed.
 - The default allignment of a multicolumn is not `c` instead of `|c|`, since
     vertical lines in tables are ugly most of the time.
 
+- Make the list method of `Parameters` a private method.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
