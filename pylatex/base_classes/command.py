@@ -41,22 +41,20 @@ class Command(LatexObject):
     def __init__(self, command, arguments=None, options=None, packages=None):
         self.command = command
 
-        # TODO: Make this a function that can be used twice
-        if isinstance(arguments, Arguments):
-            self.arguments = arguments
-        elif arguments is not None:
-            self.arguments = Arguments(arguments)
-        else:
-            self.arguments = Arguments()
-
-        if isinstance(options, Options):
-            self.options = options
-        elif options is not None:
-            self.options = Options(options)
-        else:
-            self.options = Options()
+        self._set_parameters(arguments, 'arguments')
+        self._set_parameters(options, 'options')
 
         super().__init__(packages)
+
+    def _set_parameters(self, parameters, argument_type):
+        parameter_cls = Arguments if argument_type == 'arguments' else Options
+
+        if parameters is None:
+            parameters = parameter_cls()
+        elif not isinstance(parameters, parameter_cls):
+            parameters = parameter_cls(parameters)
+
+        setattr(self, argument_type, parameters)
 
     def __key(self):
         """Return a hashable key, representing the command.
