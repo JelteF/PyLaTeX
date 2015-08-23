@@ -94,8 +94,6 @@ class MatplotlibFigure(Figure):
 
     """A class that represents a plot created with matplotlib."""
 
-    # TODO: Make an equivalent class for subfigure plots
-
     container_name = 'figure'
 
     def __init__(self, *args, **kwargs):
@@ -145,3 +143,7 @@ class MatplotlibFigure(Figure):
         filename = self._save_plot(*args, **kwargs)
 
         self.add_image(filename, **add_image_kwargs)
+
+
+class MatplotlibSubFigure(SubFigure, MatplotlibFigure):
+    container_name = 'subfigure'

@@ -46,6 +46,7 @@ been moved an renamed.
     quantitities package. https://pythonhosted.org/quantities/
 - Allow supplying a mapper function to dumps\_list and the add\_row method for
     tabular like objects.
+- A MatplotlibSubFigure class.
 
 ## [0.8.0] - 23-05-2015
 ### Added
