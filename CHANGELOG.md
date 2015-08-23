@@ -35,6 +35,8 @@ been moved an renamed.
 
 - Make the list method of `Parameters` a private method.
 
+- Make the `get_table_width` function private.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.

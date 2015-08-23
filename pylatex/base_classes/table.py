@@ -15,7 +15,7 @@ from collections import Counter
 import re
 
 
-def get_table_width(table_spec):
+def _get_table_width(table_spec):
     """Calculate the width of a table based on its spec.
 
     :param table_spec:
@@ -25,8 +25,6 @@ def get_table_width(table_spec):
     :return:
     :rtype: int
     """
-
-    # TODO make this function private
 
     column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
 
@@ -51,7 +49,7 @@ class TabularBase(Environment):
     """
 
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
-        self.width = get_table_width(table_spec)
+        self.width = _get_table_width(table_spec)
 
         super().__init__(data=data, options=pos,
                          arguments=table_spec, **kwargs)
