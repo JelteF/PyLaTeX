@@ -79,9 +79,11 @@ class Command(LatexObject):
         bool:
             If the two instances are equal
         """
-        # TODO: check if types match
 
-        return self.__key() == other.__key()
+        if isinstance(other, Command):
+            return self.__key() == other.__key()
+
+        return False
 
     def __hash__(self):
         """Calculate the hash of a command.
@@ -161,9 +163,8 @@ class Parameters(LatexObject):
         :return:
         :rtype: bool
         """
-        # TODO: Check if type is the same
 
-        return self.__key() == other.__key()
+        return type(self) == type(other) and self.__key() == other.__key()
 
     def __hash__(self):
         """Generate a hash of the parameters.
