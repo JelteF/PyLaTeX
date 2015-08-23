@@ -122,21 +122,26 @@ class MatplotlibFigure(Figure):
 
         return filename
 
-    def add_plot(self, width=r'0.8\textwidth',
-                 placement=r'\centering', *args, **kwargs):
+    def add_plot(self, *args, **kwargs):
         """Add a plot.
 
-        :param plt: The matplotlib.pyplot module
-        :param width: The width of the plot.
-        :param placement: The placement of the plot.
-
-        :type plt: matplotlib.pyplot
-        :type width: str
-        :type placement: str
+        Args
+        ----
+        args:
+            Arguments passed to plt.savefig for displaying the plot.
+        kwargs:
+            Keyword arguments passed to plt.savefig for displaying the plot. In
+            case these contain ``width`` or ``placement``, they will be used
+            for the same purpose as in the add_image command. Namely the width
+            and placement of the generated plot in the LaTeX document.
         """
-        # TODO: Make default width and placement linked to the figure class
-        # TODO: Add args and kwargs explanation
+
+        add_image_kwargs = {}
+
+        for key in ('width', 'placement'):
+            if key in kwargs:
+                add_image_kwargs[key] = kwargs.pop(key)
 
         filename = self._save_plot(*args, **kwargs)
 
-        self.add_image(filename, width, placement)
+        self.add_image(filename, **add_image_kwargs)

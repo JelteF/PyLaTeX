@@ -37,6 +37,8 @@ been moved an renamed.
 
 - Make the `get_table_width` function private.
 
+- Make `width` and `placement` keyword only arguments for the `add_plot` method.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
