@@ -7,10 +7,8 @@ This module implements the class that deals with tables.
 """
 
 from .utils import dumps_list
-from .base_classes import Container, Command, TabularBase
+from .base_classes import Container, Command, TabularBase, Float
 from .package import Package
-
-from warnings import warn
 
 
 class MultiColumn(Container):
@@ -95,16 +93,8 @@ class Tabular(TabularBase):
     """A class that represents a tabular."""
 
 
-class Table(Tabular):
-
-    """A legacy name for the class that represents a tabular."""
-
-    container_name = 'tabular'
-
-    def __init__(self, *args, **kwargs):
-        warn('Table is going te be deprecated in favor of Tabular',
-             PendingDeprecationWarning)
-        super().__init__(*args, **kwargs)
+class Table(Float):
+    """A class that represents a table float."""
 
 
 class Tabu(TabularBase):

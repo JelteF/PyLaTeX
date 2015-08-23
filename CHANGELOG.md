@@ -39,6 +39,10 @@ been moved an renamed.
 
 - Make `width` and `placement` keyword only arguments for the `add_plot` method.
 
+- The old `Table` class is renamed to `Tabular`. A new `Table` class has been
+    created that represents the `table` LaTeX environment, which can be used to
+    create a floating table.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
