@@ -94,6 +94,7 @@ class Tabular(TabularBase):
 
 
 class Table(Float):
+
     """A class that represents a table float."""
 
 
