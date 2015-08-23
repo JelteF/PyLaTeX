@@ -59,8 +59,9 @@ class Command(LatexObject):
     def __key(self):
         """Return a hashable key, representing the command.
 
-        :return:
-        :rtype: tuple
+        Returns
+        -------
+        tuple
         """
 
         return self.command, self.arguments, self.options
@@ -151,8 +152,9 @@ class Parameters(LatexObject):
     def __key(self):
         """Generate a unique hashable key representing the parameter object.
 
-        :return:
-        :rtype: tuple
+        Returns
+        -------
+        tuple
         """
 
         return tuple(self._list_args_kwargs())
@@ -160,8 +162,9 @@ class Parameters(LatexObject):
     def __eq__(self, other):
         """Compare two parameters.
 
-        :return:
-        :rtype: bool
+        Returns
+        -------
+        bool
         """
 
         return type(self) == type(other) and self.__key() == other.__key()
@@ -169,8 +172,9 @@ class Parameters(LatexObject):
     def __hash__(self):
         """Generate a hash of the parameters.
 
-        :return:
-        :rtype: int
+        Returns
+        -------
+        int
         """
 
         return hash(self.__key())
