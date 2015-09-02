@@ -7,6 +7,7 @@ This module implements some simple utility functions.
 """
 
 import os.path
+import pylatex.base_classes
 import shutil
 import tempfile
 
@@ -131,7 +132,7 @@ def _latex_item_to_string(item, escape=False, post_convert=None):
     :rtype: str
     """
 
-    if hasattr(item, 'dumps'):
+    if isinstance(item, pylatex.base_classes.LatexObject):
         s = item.dumps()
     else:
         s = str(item)
