@@ -63,7 +63,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! nosetests tests/*; then
+if ! $python $(which nosetests) tests/*; then
     exit 1
 fi
 
@@ -88,7 +88,7 @@ if [ "$python_version" = '3' -a "$nodoc" != 'TRUE' ]; then
     cd docs
     ./create_doc_files.sh -p $python
     make clean
-    if ! sphinx-build -b html -d build/doctrees/ source build/html -nW; then
+    if ! $python $(which sphinx-build) -b html -d build/doctrees/ source build/html -nW; then
         exit 1
     fi
 fi
