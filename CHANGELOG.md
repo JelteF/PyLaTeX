@@ -45,6 +45,8 @@ been moved an renamed.
 
 - Fixed a bug in the `document` class, that lead to an error if a filepath without basename was provided.
 
+- Fixed the testall.sh script such that sphinx and nosetests get called with the correct python version.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
