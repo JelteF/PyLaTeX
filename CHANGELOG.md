@@ -43,6 +43,8 @@ been moved an renamed.
     created that represents the `table` LaTeX environment, which can be used to
     create a floating table.
 
+- Fixed a bug in the `document` class, that lead to an error if a filepath without basename was provided.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
