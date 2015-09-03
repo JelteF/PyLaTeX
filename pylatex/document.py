@@ -114,6 +114,10 @@ class Document(Container):
         cur_dir = os.getcwd()
         dest_dir = os.path.dirname(filepath)
         basename = os.path.basename(filepath)
+
+        if basename == '':
+            basename = 'default_basename'
+
         os.chdir(dest_dir)
 
         self.generate_tex(basename)
@@ -157,4 +161,7 @@ class Document(Container):
         if filepath == '':
             return self.default_filepath
         else:
+            if os.path.basename(filepath) == '':
+                filepath = os.path.join(filepath, os.path.basename(
+                    self.default_filepath))
             return filepath

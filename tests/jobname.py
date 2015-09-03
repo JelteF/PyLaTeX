@@ -22,5 +22,15 @@ def test():
     doc.generate_pdf()
 
     assert os.path.isfile(path + '.pdf')
+    shutil.rmtree(folder)
+
+    folder = 'tmp_jobname2'
+    os.makedirs(folder)
+    path = os.path.join(folder, 'jobname_test_dir2')
+
+    doc = Document(path, title='Jobname test dir', maketitle=True)
+    doc.generate_pdf(os.path.join(folder, ''))
+
+    assert os.path.isfile(path + '.pdf')
 
     shutil.rmtree(folder)
