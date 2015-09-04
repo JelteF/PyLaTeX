@@ -62,15 +62,22 @@ else
     main_folder=.
 fi
 
-echo -e '\e[32mTesting tests directory\e[0m'
-if ! nosetests tests/*; then
-    exit 1
+echo -e '\e[32mRunning all tests...\e[0m'
+if [ "$python_version" = '2' ]; then
+    if ! nosetests tests/*; then
+        exit 1
+    fi
+else
+    if ! nosetests3 tests/*; then
+        exit 1
+    fi
 fi
 
 if [ "$python_version" = '2' ]; then
     cd ..
 fi
 
+echo -e '\e[32mChecking examples...\e[0m'
 for f in $main_folder/examples/*.py; do
     echo -e '\e[32mTesting '$f'\e[0m'
     if ! $python $f; then
@@ -84,7 +91,7 @@ fi
 
 
 if [ "$python_version" = '3' -a "$nodoc" != 'TRUE' ]; then
-    echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
+    echo -e '\e[32mChecking for errors in docs and docstrings and build documentation\e[0m'
     cd docs
     ./create_doc_files.sh -p $python
     make clean
