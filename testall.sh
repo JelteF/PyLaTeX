@@ -63,12 +63,12 @@ else
 fi
 
 echo -e '\e[32mRunning all tests...\e[0m'
-if [ "$python_version" = '2' ]; then
-    if ! nosetests tests/*; then
+if [ "$python" = 'python3' ]; then
+    if ! nosetests3 tests/*; then
         exit 1
     fi
 else
-    if ! nosetests3 tests/*; then
+    if ! nosetests tests/*; then
         exit 1
     fi
 fi
