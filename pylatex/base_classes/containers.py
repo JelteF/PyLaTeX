@@ -122,7 +122,7 @@ class Environment(Container):
 
     def __init__(self, options=None, arguments=None,
                  seperate_paragraph=False, begin_paragraph=False,
-                 end_paragraph=False, **kwargs):
+                 end_paragraph=False, omit_if_empty=False, **kwargs):
         from pylatex.parameters import Arguments, Options
 
         if not hasattr(self, 'container_name'):
@@ -145,6 +145,7 @@ class Environment(Container):
         self.seperate_paragraph = seperate_paragraph
         self.begin_paragraph = begin_paragraph
         self.end_paragraph = end_paragraph
+        self.omit_if_empty = omit_if_empty
 
         super().__init__(**kwargs)
 
@@ -154,6 +155,10 @@ class Environment(Container):
         :return:
         :rtype: str
         """
+
+        content = super().dumps()
+        if not content.strip() and self.omit_if_empty:
+            return ''
 
         string = ''
 
@@ -168,7 +173,7 @@ class Environment(Container):
 
         string += '\n'
 
-        string += super().dumps()
+        string += content
 
         string += '\n' + r'\end{' + self.container_name + '}'
 

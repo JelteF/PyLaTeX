@@ -27,7 +27,8 @@ class List(Environment):
     """
 
     def __init__(self, list_spec=None, data=None, pos=None, **kwargs):
-        super().__init__(data=data, options=pos, arguments=list_spec, **kwargs)
+        super().__init__(data=data, options=pos, arguments=list_spec,
+                         omit_if_empty=True, **kwargs)
 
     def _item(self, label=None):
         """Begin an item block."""
