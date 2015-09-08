@@ -14,6 +14,10 @@ from .base_classes import Environment, Command
 class List(Environment):
     """A base class that represents a list."""
 
+    #: List environments cause compile errors when they do not contain items.
+    #: This is why they are ommited fully if they are empty.
+    omit_if_empty = True
+
     def add_item(self, s):
         """Add an item to the list.
 

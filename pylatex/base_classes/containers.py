@@ -127,6 +127,10 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
+    #: Set to true if this full container should be equivalent to an empty
+    #: string if it has no content.
+    omit_if_empty = False
+
     def __init__(self, *, options=None, arguments=None, **kwargs):
         r"""
         Args
@@ -152,6 +156,10 @@ class Environment(Container):
             A LaTeX string representing the environment.
         """
 
+        content = self.dumps_content()
+        if not content.strip() and self.omit_if_empty:
+            return ''
+
         string = ''
 
         # Something other than None needs to be used as extra arguments, that
@@ -165,7 +173,9 @@ class Environment(Container):
                         extra_arguments=extra_arguments)
         string += begin.dumps() + '\n'
 
-        string += self.dumps_content() + '\n'
+        string += content
+
+        string += content + '\n'
 
         string += Command('end', self.latex_name).dumps()
 
