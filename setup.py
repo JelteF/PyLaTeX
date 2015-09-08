@@ -155,6 +155,7 @@ Copyright 2014 Jelte Fennema, under `the MIT license
 
 try:
     from setuptools import setup
+    from setuptools.command.install import install as _install
 except ImportError:
     from distutils.core import setup
 import sys
@@ -185,6 +186,25 @@ else:
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
 
+
+try:
+    # Automatically convert the source from Python 3 to Python 2 if we need to.
+    class install(_install):
+        if source_dir == 'python2_source':
+            import imp
+            try:
+                imp.find_module('lib3to2')
+                import subprocess
+                import os
+                converter = os.path.dirname(os.path.realpath(__file__)) \
+                    + '/convert_to_py2.sh'
+                subprocess.call([converter])
+            except ImportError:
+                raise ImportError('3to2 needs to be present on the system')
+except NameError:
+    class install():
+        pass
+
 setup(name='PyLaTeX',
       version='0.8.0',
       author='Jelte Fennema',
@@ -197,6 +217,7 @@ setup(name='PyLaTeX',
       license='MIT',
       install_requires=['ordered-set'],
       extras_require=extras,
+      cmdclass={'install': install},
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
