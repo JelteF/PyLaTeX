@@ -18,12 +18,13 @@ class LatexObject(metaclass=ABCMeta):
     This class implements the main methods that every LaTeX object needs. For
     conversion to LaTeX formatted strings it implements the dumps, dump and
     generate_tex methods. It also provides the methods that can be used to
-    represent the packages needed.
+    represent the packages required by the LatexObject.
 
-    :param packages: :
 
-    :type packages: :class:`list` of :class:`~pylatex.package.Package`
-        instances
+    Args
+    ----
+    packages: :class:`list` of :class:`~pylatex.package.Package` instances
+        Packages that are required by this LaTeX class.
 
     """
 
@@ -45,9 +46,11 @@ class LatexObject(metaclass=ABCMeta):
     def dump(self, file_w):
         """Write the LaTeX representation of the class to a file.
 
-        :param file_w: The file object in which to save the data
+        Args
+        ----
+        file_w: io.TextIOBase
+            The file object in which to save the data
 
-        :type file_w: io.TextIOBase
         """
 
         file_w.write(self.dumps())
@@ -55,8 +58,10 @@ class LatexObject(metaclass=ABCMeta):
     def generate_tex(self, filepath):
         """Generate a .tex file.
 
-        :param filepath: the name of the file (without .tex)
-        :type filepath: str
+        Args
+        ----
+        filepath: str
+            The name of the file (without .tex)
         """
 
         with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
@@ -65,8 +70,9 @@ class LatexObject(metaclass=ABCMeta):
     def dumps_packages(self):
         """Represent the packages needed as a string in LaTeX syntax.
 
-        :return:
-        :rtype: list
+        Returns
+        -------
+        list
         """
 
         return dumps_list(self.packages)
@@ -74,9 +80,9 @@ class LatexObject(metaclass=ABCMeta):
     def dump_packages(self, file_w):
         """Write the LaTeX representation of the packages to a file.
 
-        :param file_w: The file object in which to save the data
+        file_w: io.TextIOBase
+            The file object in which to save the data
 
-        :type file_w: io.TextIOBase
         """
 
         file_w.write(self.dumps_packages())

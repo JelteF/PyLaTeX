@@ -14,21 +14,21 @@ from pylatex.base_classes import LatexObject
 
 class Container(LatexObject, UserList):
 
-    """A base class that groups multiple LaTeX classes.
+    r"""A base class that groups multiple LaTeX classes.
 
-    This class should be subclassed when a LaTeX class has content that is
-    variable of variable length. It subclasses UserList, so it holds a list
-    of elements that can simply be accessed by using normal list functionality,
-    like indexing or appending.
+    This class should be subclassed when a LaTeX class has content that is of
+    variable length. It subclasses UserList, so it holds a list of elements
+    that can simply be accessed by using normal list functionality, like
+    indexing or appending.
 
-    :param data:
-    :param packages: :class:`pylatex.package.Package` instances
+    Args
+    ----
+    data: list, :class:`~pylatex.base_classes.latex_object.LatexObject` or \
+            something that can be converted to a string
+        The content with which the container is initialized
+    packages: list of :class:`pylatex.package.Package` instances
 
-    :type data: list
-    :type packages: list
     """
-
-    # TODO: Find a way to document multiple types, in this case str as well
 
     def __init__(self, data=None, packages=None):
 
@@ -45,11 +45,22 @@ class Container(LatexObject, UserList):
         super().__init__(packages=packages)
 
     def dumps(self, **kwargs):
-        """Represent the container as a string in LaTeX syntax.
+        r"""Represent the container as a string in LaTeX syntax.
 
-        :return:
-        :rtype: list
+        Args
+        ----
+        \*\*kwargs:
+            Arguments that can be passed to
+            :func:`~pylatex.utils.dumps_list`
+
+
+        Returns
+        -------
+        string:
+            A LaTeX string representing the container
         """
+
+        # TODO: Propagate the kwargs for dumps in subclass dumps methods.
 
         self._propagate_packages()
 
@@ -66,10 +77,12 @@ class Container(LatexObject, UserList):
                     self.packages.add(p)
 
     def dumps_packages(self):
-        """Represent the packages needed as a string in LaTeX syntax.
+        r"""Represent the packages needed as a string in LaTeX syntax.
 
-        :return:
-        :rtype: list
+        Returns
+        -------
+        string:
+            A LaTeX string representing the packages of the container
         """
 
         self._propagate_packages()
@@ -80,7 +93,10 @@ class Container(LatexObject, UserList):
     def create(self, child):
         """Add a LaTeX object to current container, context-manager style.
 
-        :param child: An object to be added to the current container
+        Args
+        ----
+        child: :class:`~pylatex.base_classes.containers.Container`
+            An object to be added to the current container
         """
 
         prev_data = self.data
@@ -109,20 +125,26 @@ class Environment(Container):
     name of the class in lowercase. However, this default can be overridden by
     setting the environment_name class variable when declaring the class.
 
-    :param name:
-    :param options:
-    :param arguments:
+    Args
+    ----
+    options: str or list or  :class:`~pylatex.base_classes.command.Options`
+        Options to be added to the ``\begin`` command
 
-    :type name: str
-    :type options: str or list or \
-        :class:`~pylatex.base_classes.command.Options` instance
-    :type argument: str or list or \
-        :class:`~pylatex.base_classes.command.Arguments` instance
+    arguments: str or list or :class:`~pylatex.base_classes.command.Arguments`
+        Arguments to be added to the ``\begin`` command
+    begin_paragraph: bool
+        Start a new paragraph before this environment.
+    end_paragraph: bool
+        Start a new paragraph after this environment.
+    seperate_paragraph: bool
+        Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
+        effectively placing this element in its own paragraph.
     """
 
-    def __init__(self, options=None, arguments=None,
-                 seperate_paragraph=False, begin_paragraph=False,
-                 end_paragraph=False, **kwargs):
+    # TODO: Rename seperate_paragraph to separate_paragraph
+
+    def __init__(self, options=None, arguments=None, begin_paragraph=False,
+                 end_paragraph=False, seperate_paragraph=False, **kwargs):
         from pylatex.parameters import Arguments, Options
 
         if not hasattr(self, 'container_name'):
@@ -149,10 +171,12 @@ class Environment(Container):
         super().__init__(**kwargs)
 
     def dumps(self):
-        """Represent the named container as a string in LaTeX syntax.
+        """Represent the environment as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        string:
+            A LaTeX string representing the environment.
         """
 
         string = ''
