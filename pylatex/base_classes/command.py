@@ -114,29 +114,10 @@ class Command(LatexObject):
 class Parameters(LatexObject):
 
     """
-    A class implementing LaTex parameters.
+    The base class used by `~Options` and `~Arguments`.
 
-    TODO: Rewrite this since it should never be used separately, this class is
-    only supposed to be inherrited
-
-    It supports normal positional parameters, as well as key-value pairs.
-    Parameters can be rendered optional within square brackets ``[]`` or
-    required within braces ``{}``.
-
-
-    >>> args = Parameters('a', 'b', 'c')
-    >>> args.dumps()
-    '{a}{b}{c}'
-    >>> args.optional = True
-    >>> args.dumps()
-    '[a,b,c]'
-    >>> args = Parameters('clip', width=50, height='25em', trim='1 2 3 4')
-    >>> args.optional = True
-    >>> args.dumps()
-    '[clip,trim=1 2 3 4,width=50,height=25em]'
-
-    :param optional: Specifies whether this parameters are optional or not
-    :type optional: bool
+    This class should probably never be used on its own and inhereting from it
+    is only useful if a class like `~Options` or `~Arguments` is needed again.
     """
 
     def __init__(self, *args, **kwargs):
@@ -223,7 +204,23 @@ class Parameters(LatexObject):
 
 class Options(Parameters):
 
-    """TODO: write some stuff about Options."""
+    """A class implementing LaTex options for a command.
+
+    It supports normal positional parameters, as well as key-value pairs.
+    Options are the part of a command located between the square brackets
+    (``[]``). The positional parameters will be outputted in order and will
+    appear before the key-value-pairs. The key value-pairs won't be outputted
+    in the order in which they were entered
+
+
+    Examples
+    --------
+    >>> args = Options('a', 'b', 'c').dumps()
+    '[a,b,c]'
+    >>> Options('clip', width=50, height='25em', trim='1 2 3 4').dumps()
+    '[clip,trim=1 2 3 4,width=50,height=25em]'
+
+    """
 
     def dumps(self):
         """Represent the parameters as a string in LaTeX syntax.
@@ -240,7 +237,24 @@ class Options(Parameters):
 
 class Arguments(Parameters):
 
-    """TODO: write some stuff about Arguments."""
+    """A class implementing LaTex arguments for a command.
+
+    It supports normal positional parameters, as well as key-value pairs.
+    Arguments are the part of a command located between the curly braces
+    (``{}``). The positional parameters will be outputted in order and will
+    appear before the key-value-pairs. The key value-pairs won't be outputted
+    in the order in which they were entered
+
+
+    Examples
+    --------
+    >>> args = Arguments('a', 'b', 'c').dumps()
+    '{a}{b}{c}'
+    >>> args = Arguments('clip', width=50, height='25em').dumps()
+    >>> args.dumps()
+    '{clip}{width=50}{height=25em}'
+
+    """
 
     def dumps(self):
         """Represent the parameters as a string in LaTeX syntax.
