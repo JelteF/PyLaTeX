@@ -29,11 +29,10 @@ class Document(Container):
     :param title: the title of the document
     :param date: the date of the document
     :param data:
-    :param maketitle: whether `\\maketitle` command is activated or not.
+    :param maketitle: whether ``\maketitle`` command is activated or not.
 
     :type default_filepath: str
-    :type documentclass: str or :class:`~pylatex.base_classes.command.Command`
-        instance
+    :type documentclass: str or `~.Command`
     :type fontenc: str
     :type inputenc: str
     :type author: str
@@ -99,7 +98,7 @@ class Document(Container):
         """Generate a pdf file from the document.
 
         :param filepath: the name of the file
-        :param clean: whether non-pdf files created by `pdflatex` must be
+        :param clean: whether non-pdf files created by ``pdflatex`` must be
             removed or not
         :param silent: whether to hide compiler output
 
@@ -147,16 +146,18 @@ class Document(Container):
         os.chdir(cur_dir)
 
     def select_filepath(self, filepath):
-        """Make a choice between `filepath` and `self.default_filepath`.
+        """Make a choice between ``filepath`` and ``self.default_filepath``.
 
         :param filepath: the filepath to be compared with
-            `self.default_filepath`
+            ``self.default_filepath``
 
         :type filepath: str
 
         :return: The selected filepath
         :rtype: str
         """
+
+        # TODO: Make this method private
 
         if filepath == '':
             return self.default_filepath

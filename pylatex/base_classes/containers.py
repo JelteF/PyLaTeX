@@ -23,7 +23,7 @@ class Container(LatexObject, UserList):
 
     Args
     ----
-    data: list, :class:`~pylatex.base_classes.latex_object.LatexObject` or \
+    data: list, `~.LatexObject` or \
             something that can be converted to a string
         The content with which the container is initialized
     packages: list of :class:`pylatex.package.Package` instances

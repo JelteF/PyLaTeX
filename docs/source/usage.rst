@@ -37,7 +37,7 @@ generating LaTeX snippets, you will likely want to enclose your code inside a
 Document.
 
 Additionally, a number of :py:mod:`~pylatex.section` containers are available,
-which correspond to the standard `\\section` commands of LaTeX. As with
+which correspond to the standard ``\\section`` commands of LaTeX. As with
 documents, these can be appended to. A :py:class:`~pylatex.section.Section` can
 further include a :py:class:`~pylatex.section.Subsection` or a
 :py:class:`~pylatex.section.Subsubsection` object.
@@ -52,7 +52,7 @@ Commands, Options, and Arguments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Although PyLaTeX has implemented many useful commands, it is easy to create a
 custom command with the :py:class:`~pylatex.base_classes.command.Command`
-class.  Commands can be supplied with `{}` arguments or `[]` options, with
+class.  Commands can be supplied with ``{}`` arguments or ``[]`` options, with
 either a single option as a string, or multiple options in a list.
 
 Additionally, Options and Arguments can be placed in an
