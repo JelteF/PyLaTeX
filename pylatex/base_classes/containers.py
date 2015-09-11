@@ -160,6 +160,7 @@ class Environment(Container):
         if self.seperate_paragraph or self.begin_paragraph:
             string += '\n\n'
 
+        # TODO: Use the Command class for this
         string += r'\begin{' + self.container_name + '}'
 
         string += self.options.dumps()
