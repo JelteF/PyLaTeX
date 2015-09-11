@@ -63,8 +63,7 @@ class Plot(LatexObject):
 
     TODO:
 
-    options type can also be list or
-        :class:`~pylatex.base_classes.command.Options` instance
+    options type can also be list or `~.Options` instance
     """
 
     def __init__(

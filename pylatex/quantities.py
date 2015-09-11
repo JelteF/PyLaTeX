@@ -39,7 +39,7 @@ class Quantity(Command):
     :param quantity:
     :param fmtstr:
 
-    :type quantity: :class:`quantities.quantity.Quantity` instance
+    :type quantity: `quantities.quantity.Quantity` instance
     :type fmtstr: callable
     """
 

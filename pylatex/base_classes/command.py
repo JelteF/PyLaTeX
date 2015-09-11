@@ -22,12 +22,12 @@ class Command(LatexObject):
     command: str
         Name of the command
     arguments: None, str, list or \
-            :class:`~pylatex.base_classes.command.Arguments`
+            `~.Arguments`
         Arguments of the command
     options: None, str, list or \
-            :class:`~pylatex.base_classes.command.Options`
+            `~.Options`
         Arguments of the command
-    packages: list of :class:`~pylatex.package.Package` instances
+    packages: list of `~.Package` instances
         A list of the packages that this command requires
 
 
@@ -71,7 +71,7 @@ class Command(LatexObject):
 
         Args
         ----
-        other: :class:`~pylatex.base_classes.command.Command` instance
+        other: `~.Command` instance
             The command to compare this command to
 
 

@@ -23,10 +23,9 @@ class Container(LatexObject, UserList):
 
     Args
     ----
-    data: list, `~.LatexObject` or \
-            something that can be converted to a string
+    data: list, `~.LatexObject` or something that can be converted to a string
         The content with which the container is initialized
-    packages: list of :class:`pylatex.package.Package` instances
+    packages: list of `~.Package` instances
 
     """
 
@@ -50,8 +49,7 @@ class Container(LatexObject, UserList):
         Args
         ----
         \*\*kwargs:
-            Arguments that can be passed to
-            :func:`~pylatex.utils.dumps_list`
+            Arguments that can be passed to `~.dumps_list`
 
 
         Returns
@@ -95,7 +93,7 @@ class Container(LatexObject, UserList):
 
         Args
         ----
-        child: :class:`~pylatex.base_classes.containers.Container`
+        child: `~.Container`
             An object to be added to the current container
         """
 
@@ -127,10 +125,10 @@ class Environment(Container):
 
     Args
     ----
-    options: str or list or  :class:`~pylatex.base_classes.command.Options`
+    options: str or list or  `~.Options`
         Options to be added to the ``\begin`` command
 
-    arguments: str or list or :class:`~pylatex.base_classes.command.Arguments`
+    arguments: str or list or `~.Arguments`
         Arguments to be added to the ``\begin`` command
     begin_paragraph: bool
         Start a new paragraph before this environment.

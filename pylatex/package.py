@@ -23,7 +23,7 @@ class Package(Command):
     """
 
     # TODO: Fix multiple types in this case for options:
-    # str or list or :class:`pylatex.parameters.Options` instance
+    # str or list or `~.Options` instance
 
     def __init__(self, name, base='usepackage', options=None):
         super().__init__(base, arguments=name, options=options)

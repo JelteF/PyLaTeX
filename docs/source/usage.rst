@@ -17,7 +17,7 @@ objects, or custom `~.Command` objects.
 
 Classes can be part of a single document, or can act as pieces on their own.
 With the `~.LatexObject.dumps` method, most classes can return their
-LaTeX-formatted code, and with the `~LatexObject.generate_tex` method, this
+LaTeX-formatted code, and with the `~.LatexObject.generate_tex` method, this
 code can be written to a file.
 
 Containers / Documents

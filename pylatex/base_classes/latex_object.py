@@ -23,7 +23,7 @@ class LatexObject(metaclass=ABCMeta):
 
     Args
     ----
-    packages: :class:`list` of :class:`~pylatex.package.Package` instances
+    packages: :class:`list` of `~.Package` instances
         Packages that are required by this LaTeX class.
 
     """

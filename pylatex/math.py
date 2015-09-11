@@ -63,7 +63,7 @@ class Matrix(LatexObject):
     :param mtype:
     :param alignment:
 
-    :type matrix: :class:`numpy.ndarray` instance
+    :type matrix: `numpy.ndarray` instance
     :type name: str
     :type mtype: str
     :type alignment: str
