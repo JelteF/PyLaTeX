@@ -156,6 +156,7 @@ def dumps_list(l, escape=False, token='\n', mapper=None):
     \$100\%
     True
     """
+    # TODO: Mapper should be used in this function directly
 
     return token.join(_latex_item_to_string(i, escape, mapper) for i in l)
 
@@ -163,14 +164,19 @@ def dumps_list(l, escape=False, token='\n', mapper=None):
 def _latex_item_to_string(item, escape=False, post_convert=None):
     """Use the render method when possible, otherwise uses str.
 
-    :param item:
-    :param escape:
+    Args
+    ----
+    item: object
+        An object that needs to be converted to a string
+    escape: bool
+        Flag that indicates if escaping is needed
+    post_convert: callable
+        Function that should be called when returning the stringified object
 
-    :type item: object
-    :type escape: bool
-
-    :return:
-    :rtype: str
+    Returns
+    -------
+    str
+        Latex
     """
 
     if isinstance(item, pylatex.base_classes.LatexObject):
