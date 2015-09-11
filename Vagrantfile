@@ -61,12 +61,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   echo Starting provisioning...
   sudo apt-get update
   sudo apt-get install -y build-essential
-  sudo apt-get install -y texlive-full
+  sudo apt-get install -y texlive
+  # texlive-science contains the SIunitx LaTeX package which is needed for quantities.py
+  sudo apt-get install -y texlive-science
   sudo apt-get install -y imagemagick
   sudo apt-get install -y python3-pip
   sudo apt-get build-dep -y python-matplotlib
   pip3 install -e /vagrant[all]
-  sudo echo -e "Cd into /vagrant and execute \"./testall.sh -p python3\" to run tests." > /etc/motd.tail
+  echo 'You can now cd into /vagrant and execute "./testall.sh -p python3" to run PyLaTeX tests.' | sudo tee --append /etc/update-motd.d/100-pylatex-info
   echo Provisioning finished.
 
   echo Running unit tests and generate docs...
