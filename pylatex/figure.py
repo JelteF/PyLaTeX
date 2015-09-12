@@ -28,6 +28,8 @@ class Figure(Float):
                   placement=r'\centering'):
         """Add an image to the figure.
 
+        Args
+        ----
         filename: str
             Filename of the image.
         width: str
@@ -123,6 +125,8 @@ class SubFigure(Figure):
                   placement=None):
         """Add an image to the subfigure.
 
+        Args
+        ----
         filename: str
             Filename of the image.
         width: str
