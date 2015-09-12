@@ -11,19 +11,18 @@ from .base_classes import Command
 
 class Package(Command):
 
-    """A class that represents a package.
+    """A class that represents a package."""
 
-    :param name:
-    :param base:
-    :param options:
+    def __init__(self, name, options=None):
+        """.
 
-    :type name: str
-    :type base: str
-    :type options: str
-    """
+        Args
+        ----
+        name: str
+            Name of the package.
+        options: `str`, `list` or `~.Options`
+            Options of the package.
 
-    # TODO: Fix multiple types in this case for options:
-    # str or list or `~.Options` instance
+        """
 
-    def __init__(self, name, base='usepackage', options=None):
-        super().__init__(base, arguments=name, options=options)
+        super().__init__('usepackage', arguments=name, options=options)

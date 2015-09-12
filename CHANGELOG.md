@@ -57,6 +57,9 @@ been moved an renamed.
 
 - Removed unused `name` argument of the Matrix class.
 
+- Removed base keyword argument of the `Package` class. `Command` should be used
+    when changing of the base is needed.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.

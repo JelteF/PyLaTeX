@@ -112,7 +112,7 @@ def test_quantities():
 
 def test_package():
     # Package
-    Package(name='', base='usepackage', options=None)
+    Package(name='', options=None)
 
 
 def test_tikz():
