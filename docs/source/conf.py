@@ -88,7 +88,7 @@ language = None
 # today_fmt = '%B %d, %Y'
 
 autodoc_member_order = 'bysource'
-autodoc_default_flags = []
+autodoc_default_flags = ['inherited-members']
 
 
 def autodoc_add_module_title(app, what, name, obj, options, lines):

@@ -35,6 +35,24 @@ rm source/pylatex/pylatex.rst
 echo Removing file source/pylatex/pylatex.base_classes.rst
 rm source/pylatex/pylatex.base_classes.rst
 
+LATEX_OBJECT_MEMBERS='dump, generate_tex, dumps_packages, dump_packages'
+
+LATEX_CONTAINER_MEMBERS='create, dumps'
+
+USER_LIST_MEMBERS='append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort'
+
+for f in source/pylatex/*.rst; do
+    if [[ "$f" != *latex_object.rst ]]; then
+        if [[ "$f" == *containers.rst ]]; then
+            echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
+                "$USER_LIST_MEMBERS" >> $f
+        else
+            echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
+                "$USER_LIST_MEMBERS, $LATEX_CONTAINER_MEMBERS" >> $f
+        fi
+    fi
+done
+
 for f in ../examples/*.py; do
     name=`echo $f | cut -d'/' -f3 | cut -d'.' -f1`
     rst=source/examples/${name}.rst
