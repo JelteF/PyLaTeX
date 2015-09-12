@@ -11,7 +11,7 @@
 python="python"
 
 # Check if a command line argument was provided as an input argument.
-while getopts ":p:ch" opt; do
+while getopts ":p:cdh" opt; do
   case $opt in
     p)
       python=$OPTARG
