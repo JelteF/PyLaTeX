@@ -103,6 +103,8 @@ def test_graphics():
     plot.add_plot(width=r'0.8\textwidth', placement=r'\centering')
     plot.add_caption(caption='I am a caption.')
 
+
+def test_quantities():
     # Quantities
     Quantity(quantity=1*pq.kg)
     Quantity(quantity=1*pq.kg, format_cb=lambda x: str(int(x)))
