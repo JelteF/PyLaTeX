@@ -65,12 +65,6 @@ def test_table():
 
     t.add_row(cells=(1, 2), escape=False)
 
-    t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None,
-                      escape=False)
-
-    t.add_multirow(size=3, align='*', content='Multirow', hlines=True,
-                   cells=None, escape=False)
-
     # MultiColumn/MultiRow.
     t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),))
 

@@ -8,7 +8,6 @@ This module implements the base class for table classes.
 
 from . import LatexObject, Environment, Command
 from ..utils import dumps_list
-from ..package import Package
 
 
 from collections import Counter
@@ -97,59 +96,3 @@ class TabularBase(Environment):
 
         self.append(dumps_list(cells, escape=escape, token='&', mapper=mapper)
                     + r'\\')
-
-    def add_multicolumn(self, size, align, content, cells=None, escape=False):
-        """Add a multicolumn of width size to the table, with cell content.
-
-        :param size:
-        :param align:
-        :param content:
-        :param cells:
-        :param escape:
-
-        :type size: int
-        :type align: str
-        :type content: str
-        :type cells: tuple
-        :type escape: bool
-        """
-
-        self.append(Command('multicolumn', arguments=(size, align, content)))
-
-        if cells is not None:
-            self.add_row(cells)
-        else:
-            self.append(r'\\')
-
-    def add_multirow(self, size, align, content, hlines=True, cells=None,
-                     escape=False):
-        """Add a multirow of height size to the table, with cell content.
-
-        :param size:
-        :param align:
-        :param content:
-        :param hlines:
-        :param cells:
-        :param escape:
-
-        :type size: int
-        :type align: str
-        :type content: str
-        :type hlines: bool
-        :type cells: tuple
-        :type escape: bool
-        """
-
-        self.append(Command('multirow', arguments=(size, align, content)))
-        self.packages.add(Package('multirow'))
-
-        if cells is not None:
-            for i, row in enumerate(cells):
-                if hlines and i:
-                    self.add_hline(2)
-
-                self.append('&')
-                self.add_row(row)
-        else:
-            for i in range(size):
-                self.add_empty_row()
