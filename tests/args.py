@@ -15,8 +15,8 @@ matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
-    Package, TikZ, Axis, Plot, MatplotlibFigure, Itemize, Enumerate, \
-    Description, MultiColumn, MultiRow, Command, Matrix, VectorName, Quantity
+    Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
+    MultiRow, Command, Matrix, VectorName, Quantity
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim
 
@@ -99,7 +99,7 @@ def test_graphics():
     s.add_caption(caption='')
 
     # Matplotlib
-    plot = MatplotlibFigure(data=None, position=None)
+    plot = Figure(data=None, position=None)
 
     x = [0, 1, 2, 3, 4, 5, 6]
     y = [15, 2, 7, 1, 5, 6, 9]

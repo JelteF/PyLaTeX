@@ -19,9 +19,9 @@ been moved an renamed.
     during the transition period, but they will be removed before the final
     release.
 
-- The `Plt` class has been renamed to `MatplotlibFigure`. Its `add_plot` method
+- The `Plt` class has been merged with the `Figure` class. Its `add_plot` method
     also doesn't take a plt argument anymore. The plt module is now imported
-    when a `MatplotlibFigure` figure is instantiated.
+    when the `add_plot` method is used.
 
 - Compiling is more secure now and it doesn't show output unless an error occurs
     or explicitly specified.

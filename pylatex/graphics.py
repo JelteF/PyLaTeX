@@ -46,6 +46,50 @@ class Figure(Float):
         self.append(Command('includegraphics', options=width,
                             arguments=fix_filename(filename)))
 
+    def _save_plot(self, *args, **kwargs):
+        """Save the plot.
+
+        :param plt: The matplotlib.pyplot module
+        :type plt: matplotlib.pyplot
+
+        :return: The basename with which the plot has been saved.
+        :rtype: str
+        """
+
+        import matplotlib.pyplot as plt
+
+        tmp_path = make_temp_dir()
+
+        filename = os.path.join(tmp_path, str(uuid.uuid4()) + '.pdf')
+
+        plt.savefig(filename, *args, **kwargs)
+
+        return filename
+
+    def add_plot(self, *args, **kwargs):
+        """Add a plot.
+
+        Args
+        ----
+        args:
+            Arguments passed to plt.savefig for displaying the plot.
+        kwargs:
+            Keyword arguments passed to plt.savefig for displaying the plot. In
+            case these contain ``width`` or ``placement``, they will be used
+            for the same purpose as in the add_image command. Namely the width
+            and placement of the generated plot in the LaTeX document.
+        """
+
+        add_image_kwargs = {}
+
+        for key in ('width', 'placement'):
+            if key in kwargs:
+                add_image_kwargs[key] = kwargs.pop(key)
+
+        filename = self._save_plot(*args, **kwargs)
+
+        self.add_image(filename, **add_image_kwargs)
+
 
 class SubFigure(Figure):
 
@@ -88,62 +132,3 @@ class SubFigure(Figure):
         """
 
         super().add_image(filename, width=width, placement=placement)
-
-
-class MatplotlibFigure(Figure):
-
-    """A class that represents a plot created with matplotlib."""
-
-    container_name = 'figure'
-
-    def __init__(self, *args, **kwargs):
-        import matplotlib.pyplot as plt
-        self._plt = plt
-
-        super().__init__(*args, **kwargs)
-
-    def _save_plot(self, *args, **kwargs):
-        """Save the plot.
-
-        :param plt: The matplotlib.pyplot module
-        :type plt: matplotlib.pyplot
-
-        :return: The basename with which the plot has been saved.
-        :rtype: str
-        """
-
-        tmp_path = make_temp_dir()
-
-        filename = os.path.join(tmp_path, str(uuid.uuid4()) + '.pdf')
-
-        self._plt.savefig(filename, *args, **kwargs)
-
-        return filename
-
-    def add_plot(self, *args, **kwargs):
-        """Add a plot.
-
-        Args
-        ----
-        args:
-            Arguments passed to plt.savefig for displaying the plot.
-        kwargs:
-            Keyword arguments passed to plt.savefig for displaying the plot. In
-            case these contain ``width`` or ``placement``, they will be used
-            for the same purpose as in the add_image command. Namely the width
-            and placement of the generated plot in the LaTeX document.
-        """
-
-        add_image_kwargs = {}
-
-        for key in ('width', 'placement'):
-            if key in kwargs:
-                add_image_kwargs[key] = kwargs.pop(key)
-
-        filename = self._save_plot(*args, **kwargs)
-
-        self.add_image(filename, **add_image_kwargs)
-
-
-class MatplotlibSubFigure(SubFigure, MatplotlibFigure):
-    container_name = 'subfigure'
