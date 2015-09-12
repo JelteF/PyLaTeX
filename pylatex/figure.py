@@ -26,15 +26,15 @@ class Figure(Float):
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
-        """Add an image.to the figure.
+        """Add an image to the figure.
 
-        :param filename:
-        :param width:
-        :param placement:
+        filename: str
+            Filename of the image.
+        width: str
+            Width of the image in LaTeX terms.
+        placement: str
+            Placement of the figure, `None` is also accepted.
 
-        :type filename: str
-        :type width: str
-        :type placement: str
         """
 
         if placement is not None:
@@ -49,11 +49,10 @@ class Figure(Float):
     def _save_plot(self, *args, **kwargs):
         """Save the plot.
 
-        :param plt: The matplotlib.pyplot module
-        :type plt: matplotlib.pyplot
-
-        :return: The basename with which the plot has been saved.
-        :rtype: str
+        Returns
+        -------
+        str
+            The basename with which the plot has been saved.
         """
 
         import matplotlib.pyplot as plt
@@ -67,7 +66,10 @@ class Figure(Float):
         return filename
 
     def add_plot(self, *args, **kwargs):
-        """Add a plot.
+        """Add the current Matplotlib plot to the figure.
+
+        The plot that gets added is the one that would normally be shown when
+        using ``plt.show()``.
 
         Args
         ----
@@ -93,28 +95,26 @@ class Figure(Float):
 
 class SubFigure(Figure):
 
-    """A class that represents a subfigure from the subcaption package.
+    """A class that represents a subfigure from the subcaption package."""
 
-    :param data:
-    :param position:
+    def __init__(self, width=r'0.45\linewidth', seperate_paragraph=False,
+                 *args, **kwargs):
+        """.
 
-    :type data: list
-    :type position: str
-    :param data:
-    :param position:
-    :param seperate_paragraph:
+        Args
+        ----
+        width: str
+            Width of the subfigure itself. It needs a width because it is
+            inside another figure.
+        seperate_paragraph: bool
+            By default a subfigure is not on its own paragraph since that looks
+            weird inside another figure.
 
-    :type data: list
-    :type position: str
-    :type seperate_paragraph: bool
-    """
+        """
 
-    def __init__(self, position=None, width=r'0.45\linewidth',
-                 seperate_paragraph=False, *args, **kwargs):
         packages = [Package('subcaption')]
 
         super().__init__(packages=packages,
-                         position=position,
                          arguments=width,
                          seperate_paragraph=seperate_paragraph,
                          *args, **kwargs)
@@ -123,13 +123,12 @@ class SubFigure(Figure):
                   placement=None):
         """Add an image to the subfigure.
 
-        :param filename:
-        :param width:
-        :param placement:
-
-        :type filename: str
-        :type width: str
-        :type placement: str
+        filename: str
+            Filename of the image.
+        width: str
+            Width of the image in LaTeX terms.
+        placement: str
+            Placement of the figure, `None` is also accepted.
         """
 
         super().add_image(filename, width=width, placement=placement)
