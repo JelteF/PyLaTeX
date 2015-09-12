@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 This module implements the classes that deals with quantities objects.
 
 It requires the latex package SIunitx.
 
 ..  :copyright: (c) 2015 by Björn Dahlgren.
     :license: MIT, see License for more details.
-"""
+'''
 
 from operator import itemgetter
 
@@ -34,14 +34,14 @@ def _dimensionality_to_siunitx(dim):
 
 class Quantity(Command):
 
-    """A class representing quantities.
+    '''A class representing quantities.
 
     :param quantity:
     :param fmtstr:
 
     :type quantity: `quantities.quantity.Quantity` instance
     :type fmtstr: callable
-    """
+    '''
 
     def __init__(self, quantity, format_cb=None):
         import numpy as np

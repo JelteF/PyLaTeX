@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 This module implements the class that deals with sections.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-"""
+'''
 
 
 from . import Container, Command
@@ -13,10 +13,10 @@ from ..utils import dumps_list
 
 class SectionBase(Container):
 
-    """A class that is the base for all section type classes."""
+    '''A class that is the base for all section type classes.'''
 
     def __init__(self, title, numbering=True, *args, **kwargs):
-        """.
+        '''.
 
         Args
         ----
@@ -25,7 +25,7 @@ class SectionBase(Container):
         numbering: bool
             Add a number before the section title.
 
-        """
+        '''
 
         self.title = title
         self.numbering = numbering
@@ -33,13 +33,13 @@ class SectionBase(Container):
         super().__init__(*args, **kwargs)
 
     def dumps(self):
-        """Represent the section as a string in LaTeX syntax.
+        '''Represent the section as a string in LaTeX syntax.
 
         Returns
         -------
         str
 
-        """
+        '''
 
         if not self.numbering:
             num = '*'

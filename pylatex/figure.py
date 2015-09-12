@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 This module implements the class that deals with graphics.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-"""
+'''
 
 import os.path
 
@@ -16,7 +16,7 @@ import uuid
 
 class Figure(Float):
 
-    """A class that represents a Figure environment."""
+    '''A class that represents a Figure environment.'''
 
     def __init__(self, *args, **kwargs):
         packages = [Package('graphicx')]
@@ -26,7 +26,7 @@ class Figure(Float):
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
-        """Add an image.to the figure.
+        '''Add an image.to the figure.
 
         :param filename:
         :param width:
@@ -35,7 +35,7 @@ class Figure(Float):
         :type filename: str
         :type width: str
         :type placement: str
-        """
+        '''
 
         if placement is not None:
             self.append(placement)
@@ -47,14 +47,14 @@ class Figure(Float):
                             arguments=fix_filename(filename)))
 
     def _save_plot(self, *args, **kwargs):
-        """Save the plot.
+        '''Save the plot.
 
         :param plt: The matplotlib.pyplot module
         :type plt: matplotlib.pyplot
 
         :return: The basename with which the plot has been saved.
         :rtype: str
-        """
+        '''
 
         import matplotlib.pyplot as plt
 
@@ -67,7 +67,7 @@ class Figure(Float):
         return filename
 
     def add_plot(self, *args, **kwargs):
-        """Add a plot.
+        '''Add a plot.
 
         Args
         ----
@@ -78,7 +78,7 @@ class Figure(Float):
             case these contain ``width`` or ``placement``, they will be used
             for the same purpose as in the add_image command. Namely the width
             and placement of the generated plot in the LaTeX document.
-        """
+        '''
 
         add_image_kwargs = {}
 
@@ -93,7 +93,7 @@ class Figure(Float):
 
 class SubFigure(Figure):
 
-    """A class that represents a subfigure from the subcaption package.
+    '''A class that represents a subfigure from the subcaption package.
 
     :param data:
     :param position:
@@ -107,7 +107,7 @@ class SubFigure(Figure):
     :type data: list
     :type position: str
     :type seperate_paragraph: bool
-    """
+    '''
 
     def __init__(self, position=None, width=r'0.45\linewidth',
                  seperate_paragraph=False, *args, **kwargs):
@@ -121,7 +121,7 @@ class SubFigure(Figure):
 
     def add_image(self, filename, width=r'\linewidth',
                   placement=None):
-        """Add an image to the subfigure.
+        '''Add an image to the subfigure.
 
         :param filename:
         :param width:
@@ -130,6 +130,6 @@ class SubFigure(Figure):
         :type filename: str
         :type width: str
         :type placement: str
-        """
+        '''
 
         super().add_image(filename, width=width, placement=placement)

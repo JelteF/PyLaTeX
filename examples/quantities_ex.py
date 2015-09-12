@@ -1,10 +1,10 @@
 #!/usr/bin/python
-"""
+'''
 This example shows quantities functionality.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-"""
+'''
 
 # begin-doc-include
 import quantities as pq

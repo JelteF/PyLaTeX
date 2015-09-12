@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 This module implements some simple utility functions.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-"""
+'''
 
 import os.path
 import pylatex.base_classes
@@ -37,7 +37,7 @@ _tmp_path = os.path.abspath(
 
 
 def escape_latex(s):
-    r"""Escape characters that are special in latex.
+    r'''Escape characters that are special in latex.
 
     Parameters
     ----------
@@ -63,17 +63,17 @@ def escape_latex(s):
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
 
-    """
+    '''
 
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
 def _merge_packages_into_kwargs(new_packages, kwargs):
-    """Merge packages into keyword arguments that were passed to __init__.
+    '''Merge packages into keyword arguments that were passed to __init__.
 
     This is mostly useful when a class that adds packages itself can be
     inheritted afterwards.
-    """
+    '''
 
     if 'packages' in kwargs and kwargs['packages'] is not None:
         kwargs['packages'] = new_packages + kwargs['packages']
@@ -82,7 +82,7 @@ def _merge_packages_into_kwargs(new_packages, kwargs):
 
 
 def fix_filename(path):
-    """Fix filenames for use in LaTeX.
+    '''Fix filenames for use in LaTeX.
 
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
@@ -106,7 +106,7 @@ def fix_filename(path):
     >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
     '/etc/local/foo.bar.baz/document.pdf'
 
-    """
+    '''
 
     path_parts = path.split('/')
     dir_parts = path_parts[:-1]
@@ -122,7 +122,7 @@ def fix_filename(path):
 
 
 def dumps_list(l, escape=False, token='\n', mapper=None):
-    r"""Try to generate a LaTeX string of a list that can contain anything.
+    r'''Try to generate a LaTeX string of a list that can contain anything.
 
     Parameters
     ----------
@@ -155,14 +155,14 @@ def dumps_list(l, escape=False, token='\n', mapper=None):
     >>> print(dumps_list(["$100%", "True"], escape=True))
     \$100\%
     True
-    """
+    '''
     # TODO: Mapper should be used in this function directly
 
     return token.join(_latex_item_to_string(i, escape, mapper) for i in l)
 
 
 def _latex_item_to_string(item, escape=False, post_convert=None):
-    """Use the render method when possible, otherwise uses str.
+    '''Use the render method when possible, otherwise uses str.
 
     Args
     ----
@@ -177,7 +177,7 @@ def _latex_item_to_string(item, escape=False, post_convert=None):
     -------
     str
         Latex
-    """
+    '''
 
     if isinstance(item, pylatex.base_classes.LatexObject):
         s = item.dumps()
@@ -192,7 +192,7 @@ def _latex_item_to_string(item, escape=False, post_convert=None):
 
 
 def bold(s):
-    r"""Make a string appear bold in LaTeX formatting.
+    r'''Make a string appear bold in LaTeX formatting.
 
     bold() wraps a given string in the LaTeX command \textbf{}.
 
@@ -214,13 +214,13 @@ def bold(s):
     >>> print(bold("hello"))
     \textbf{hello}
 
-    """
+    '''
 
     return r'\textbf{' + s + '}'
 
 
 def italic(s):
-    r"""Make a string appear italicized in LaTeX formatting.
+    r'''Make a string appear italicized in LaTeX formatting.
 
     italic() wraps a given string in the LaTeX command \textit{}.
 
@@ -241,13 +241,13 @@ def italic(s):
     >>> print(italic("hello"))
     \textit{hello}
 
-    """
+    '''
 
     return r'\textit{' + s + '}'
 
 
 def verbatim(s, delimiter='|'):
-    r"""Make the string verbatim.
+    r'''Make the string verbatim.
 
     Wraps the given string in a \verb LaTeX command.
 
@@ -272,13 +272,13 @@ def verbatim(s, delimiter='|'):
     >>> print(verbatim('pi|pe', '!'))
     \verb!pi|pe!
 
-    """
+    '''
 
     return r'\verb' + delimiter + s + delimiter
 
 
 def make_temp_dir():
-    """Create a temporary directory if it doesn't exist.
+    '''Create a temporary directory if it doesn't exist.
 
     Directories created by this functionn follow the format specified
     by ``_tmp_path`` and are a pylatex subdirectory within
@@ -294,7 +294,7 @@ def make_temp_dir():
     >>> make_temp_dir()
     '/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex'
 
-    """
+    '''
 
     if not os.path.exists(_tmp_path):
         os.makedirs(_tmp_path)
@@ -302,7 +302,7 @@ def make_temp_dir():
 
 
 def rm_temp_dir():
-    """Remove the temporary directory specified in ``_tmp_path``."""
+    '''Remove the temporary directory specified in ``_tmp_path``.'''
 
     if os.path.exists(_tmp_path):
         shutil.rmtree(_tmp_path)

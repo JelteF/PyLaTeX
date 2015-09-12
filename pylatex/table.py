@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 This module implements the class that deals with tables.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-"""
+'''
 
 from .utils import dumps_list
 from .base_classes import Container, Command, TabularBase, Float
@@ -13,7 +13,7 @@ from .package import Package
 
 class MultiColumn(Container):
 
-    """A class that represents a multicolumn inside of a table.
+    '''A class that represents a multicolumn inside of a table.
 
     :param size:
     :param align:
@@ -25,7 +25,7 @@ class MultiColumn(Container):
 
     TODO:
     type of data can also be list
-    """
+    '''
 
     def __init__(self, size, align='c', data=None):
         self.size = size
@@ -34,11 +34,11 @@ class MultiColumn(Container):
         super().__init__(data)
 
     def dumps(self):
-        """Represent the multicolumn as a string in LaTeX syntax.
+        '''Represent the multicolumn as a string in LaTeX syntax.
 
         :return:
         :rtype: str
-        """
+        '''
 
         multicolumn_type = self.__class__.__name__.lower()
         args = [self.size, self.align, dumps_list(self.data)]
@@ -51,7 +51,7 @@ class MultiColumn(Container):
 
 class MultiRow(Container):
 
-    """A class that represents a multirow in a table.
+    '''A class that represents a multirow in a table.
 
     :param size:
     :param width:
@@ -63,7 +63,7 @@ class MultiRow(Container):
 
     TODO:
     type of data can also be list
-    """
+    '''
 
     def __init__(self, size, width='*', data=None):
         self.size = size
@@ -73,11 +73,11 @@ class MultiRow(Container):
         super().__init__(data, packages=packages)
 
     def dumps(self):
-        """Represent the multirow as a string in LaTeX syntax.
+        '''Represent the multirow as a string in LaTeX syntax.
 
         :return:
         :rtype: str
-        """
+        '''
 
         multirow_type = self.__class__.__name__.lower()
         args = [self.size, self.width, dumps_list(self.data)]
@@ -90,17 +90,17 @@ class MultiRow(Container):
 
 class Tabular(TabularBase):
 
-    """A class that represents a tabular."""
+    '''A class that represents a tabular.'''
 
 
 class Table(Float):
 
-    """A class that represents a table float."""
+    '''A class that represents a table float.'''
 
 
 class Tabu(TabularBase):
 
-    """A class that represents a tabu (more flexible table)."""
+    '''A class that represents a tabu (more flexible table).'''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, packages=[Package('tabu')], **kwargs)
@@ -108,7 +108,7 @@ class Tabu(TabularBase):
 
 class LongTable(TabularBase):
 
-    """A class that represents a longtable (multipage table)."""
+    '''A class that represents a longtable (multipage table).'''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, packages=[Package('longtable')], **kwargs)
@@ -116,7 +116,7 @@ class LongTable(TabularBase):
 
 class LongTabu(TabularBase):
 
-    """A class that represents a longtabu (more flexible multipage table)."""
+    '''A class that represents a longtabu (more flexible multipage table).'''
 
     def __init__(self, *args, **kwargs):
         packages = [Package('tabu'), Package('longtable')]
