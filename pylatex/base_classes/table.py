@@ -17,12 +17,16 @@ import re
 def _get_table_width(table_spec):
     """Calculate the width of a table based on its spec.
 
-    :param table_spec:
+    Args
+    ----
+    table_spec: str
+        The LaTeX column specification for a table.
 
-    :type table_spec: str
 
-    :return:
-    :rtype: int
+    Returns
+    -------
+    int
+        The width of a table which uses the specification supplied.
     """
 
     column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
@@ -38,13 +42,16 @@ class TabularBase(Environment):
 
     """A class that is used as a base for all table classes.
 
-    :param table_spec:
-    :param data:
-    :param pos:
+    Args
+    ----
+    table_spec: str
+        A string that represents how many columns a table should have and if it
+        should contain vertical lines and where.
+    pos: list
 
-    :type table_spec: str
-    :type data: list
-    :type pos: list
+    References
+    ----------
+    https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
     """
 
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
@@ -56,11 +63,12 @@ class TabularBase(Environment):
     def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table.
 
-        :param start:
-        :param end:
-
-        :type start: int
-        :type end: int
+        Args
+        ----
+        start: int
+            At what cell the line should begin
+        end: int
+            At what cell the line should end
         """
 
         if start is None and end is None:
@@ -81,11 +89,12 @@ class TabularBase(Environment):
     def add_row(self, cells, escape=False, mapper=None):
         """Add a row of cells to the table.
 
-        :param cells:
-        :param escape:
-
-        :type cells: tuple
-        :type escape: bool
+        Args
+        ----
+        cells: iterable, such as a `list` or `tuple`
+            Each element of the iterable will become a the content of cell.
+        escape: bool
+            Escape special LaTeX syntax inside the cells.
         """
 
         # Propegate packages used in cells
