@@ -120,7 +120,7 @@ class Parameters(LatexObject):
     """
 
     def __init__(self, *args, **kwargs):
-        """.
+        r""".
 
         Args
         ----
