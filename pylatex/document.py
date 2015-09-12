@@ -21,30 +21,31 @@ class Document(Container):
 
     If needed, you can append stuff to the preamble or the packages.
 
-    :param default_filepath: the default path to save files
-    :param documentclass: the LaTeX class of the document
-    :param fontenc: the option for the fontenc package
-    :param inputenc: the option for the inputenc package
-    :param author: the author of the document
-    :param title: the title of the document
-    :param date: the date of the document
-    :param data:
-    :param maketitle: whether ``\maketitle`` command is activated or not.
-
-    :type default_filepath: str
-    :type documentclass: str or `~.Command`
-    :type fontenc: str
-    :type inputenc: str
-    :type author: str
-    :type title: str
-    :type date: str
-    :type data: list
-    :type maketitle: bool
+    Args
+    ----
+    default_filepath: str
+        The default path to save files.
+    documentclass: str or `~.Command`
+        The LaTeX class of the document.
+    fontenc: str
+        The option for the fontenc package.
+    inputenc: str
+        The option for the inputenc package.
+    author: str
+        The author of the document.
+    title: str
+        The title of the document.
+    date: str
+        The date of the document.
+    maketitle: bool
+        Whether ``\maketitle`` command is activated or not.
+    data: list
+        Initial content of the document.
     """
 
     def __init__(self, default_filepath='default_filepath',
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 author='', title='', date='', data=None, maketitle=False):
+                 author='', title='', date='', maketitle=False, data=None):
 
         self.default_filepath = default_filepath
         self.maketitle = maketitle
@@ -71,8 +72,9 @@ class Document(Container):
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
         """
 
         document = r'\begin{document}' + os.linesep
@@ -91,20 +93,30 @@ class Document(Container):
         return head + os.linesep + document
 
     def generate_tex(self, filepath=''):
+        """Generate a .tex file for the document.
+
+        Args
+        ----
+        filepath: str
+            The name of the file (without .tex), if this is not supplied the
+            default filepath attribute is used as the path.
+        """
+
+        # TODO: Use None as the default for filepath instead of ''
         super().generate_tex(self.select_filepath(filepath))
 
     def generate_pdf(self, filepath='', clean=True, compiler='pdflatex',
                      silent=True):
         """Generate a pdf file from the document.
 
-        :param filepath: the name of the file
-        :param clean: whether non-pdf files created by ``pdflatex`` must be
-            removed or not
-        :param silent: whether to hide compiler output
-
-        :type filepath: str
-        :type clean: bool
-        :type silent: bool
+        Args
+        ----
+        filepath: str
+            The name of the file (without .pdf)
+        clean: bool
+            Whether non-pdf files created by ``pdflatex`` must be removed
+        silent: bool
+            Whether to hide compiler output
         """
 
         filepath = self.select_filepath(filepath)
@@ -148,13 +160,15 @@ class Document(Container):
     def select_filepath(self, filepath):
         """Make a choice between ``filepath`` and ``self.default_filepath``.
 
-        :param filepath: the filepath to be compared with
-            ``self.default_filepath``
+        Args
+        ----
+        filepath: str
+            the filepath to be compared with ``self.default_filepath``
 
-        :type filepath: str
-
-        :return: The selected filepath
-        :rtype: str
+        Returns
+        -------
+        str
+            The selected filepath
         """
 
         # TODO: Make this method private
