@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from pylatex import Document, Section
-from pylatex.graphics import Figure
+from pylatex.figure import Figure
 import os
 
 

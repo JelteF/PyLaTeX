@@ -47,6 +47,9 @@ been moved an renamed.
 
 - Fixed the testall.sh script such that sphinx and nosetests get called with the correct python version.
 
+- The graphics submodule has been renamed to figure.
+
+
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
     removed in favor of the much more robust and easier to use`MultiRow` and
