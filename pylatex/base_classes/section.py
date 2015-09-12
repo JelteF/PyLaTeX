@@ -15,26 +15,28 @@ class SectionBase(Container):
 
     """A class that is the base for all section type classes.
 
-    :param title:
-    :param numbering:
-    :param data:
+    Args
+    ----
+    title: str
+        The section title.
+    numbering: bool
+        Add a number before the section title.
 
-    :type title: str
-    :type numbering: bool
-    :type data: list
     """
 
-    def __init__(self, title, numbering=True, data=None):
+    def __init__(self, title, numbering=True, *args, **kwargs):
         self.title = title
         self.numbering = numbering
 
-        super().__init__(data)
+        super().__init__(*args, **kwargs)
 
     def dumps(self):
         """Represent the section as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
+
         """
 
         if not self.numbering:
