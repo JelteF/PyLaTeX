@@ -55,6 +55,8 @@ been moved an renamed.
     removed in favor of the much more robust and easier to use`MultiRow` and
     `MultiColumn` classes.
 
+- Removed unused `name` argument of the Matrix class.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.

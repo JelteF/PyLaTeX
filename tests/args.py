@@ -54,7 +54,7 @@ def test_math():
                    [0, 0, 1],
                    [0, 0, 2]])
 
-    Matrix(matrix=m, name='', mtype='p', alignment=None)
+    Matrix(matrix=m, mtype='p', alignment=None)
 
 
 def test_table():
