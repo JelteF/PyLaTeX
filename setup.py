@@ -155,9 +155,13 @@ Copyright 2014 Jelte Fennema, under `the MIT license
 
 try:
     from setuptools import setup
+    from setuptools.command.install import install
 except ImportError:
     from distutils.core import setup
 import sys
+import os
+import subprocess
+import errno
 
 
 if sys.version_info[:2] <= (2, 6):
@@ -180,10 +184,33 @@ if sys.version_info[0] == 3:
     source_dir = '.'
 else:
     source_dir = 'python2_source'
-    del extras['convert_to_py2']
 
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
+
+
+# Automatically convert the source from Python 3 to Python 2 if we need to.
+class CustomInstall(install):
+    def run(self):
+        if source_dir == 'python2_source':
+            try:
+                # Check if 3to2 exists
+                subprocess.check_output(['3to2', '--help'])
+            except OSError as e:
+                if e.errno != errno.ENOENT:
+                    raise e
+                if not os.path.exists(os.path.join(source_dir, 'pylatex')):
+                    raise ImportError('3to2 needs to be installed before '
+                                      'installing when PyLaTeX for Python 2.7 '
+                                      'when it is not installed using one of '
+                                      'the pip releases.')
+            else:
+                converter = os.path.dirname(os.path.realpath(__file__)) \
+                    + '/convert_to_py2.sh'
+                print(converter)
+                subprocess.check_call([converter])
+
+        install.run(self)
 
 setup(name='PyLaTeX',
       version='0.8.0',
@@ -197,6 +224,7 @@ setup(name='PyLaTeX',
       license='MIT',
       install_requires=['ordered-set'],
       extras_require=extras,
+      cmdclass={'install': CustomInstall},
       classifiers=[
           'Development Status :: 4 - Beta',
           'Environment :: Console',
