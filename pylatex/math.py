@@ -60,7 +60,7 @@ class VectorName(Command):
 
 class Matrix(LatexObject):
 
-    """A class representing a matrix.
+    r"""A class representing a matrix.
 
     Args
     ----
@@ -68,12 +68,8 @@ class Matrix(LatexObject):
         The matrix to display
     mtype: str
         What kind of brackets are used around the matrix. The different options
-        and their brackets are:
-            * p, ( )
-            * b, [ ]
-            * B, { }
-            * v, | |
-            * V, || ||
+        and their corresponding brackets are:
+        p = ( ), b = [ ], B = { }, v = \| \|, V = \|\| \|\|
     alignment: str
         How to align the content of the cells in the matrix. This is ``c`` by
         default.
