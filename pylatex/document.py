@@ -16,36 +16,39 @@ from .utils import dumps_list, rm_temp_dir
 
 class Document(Container):
 
-    r"""
+    """
     A class that contains a full LaTeX document.
 
     If needed, you can append stuff to the preamble or the packages.
 
-    Args
-    ----
-    default_filepath: str
-        The default path to save files.
-    documentclass: str or `~.Command`
-        The LaTeX class of the document.
-    fontenc: str
-        The option for the fontenc package.
-    inputenc: str
-        The option for the inputenc package.
-    author: str
-        The author of the document.
-    title: str
-        The title of the document.
-    date: str
-        The date of the document.
-    maketitle: bool
-        Whether ``\maketitle`` command is activated or not.
-    data: list
-        Initial content of the document.
     """
 
     def __init__(self, default_filepath='default_filepath',
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  author='', title='', date='', maketitle=False, data=None):
+        r""".
+
+        Args
+        ----
+        default_filepath: str
+            The default path to save files.
+        documentclass: str or `~.Command`
+            The LaTeX class of the document.
+        fontenc: str
+            The option for the fontenc package.
+        inputenc: str
+            The option for the inputenc package.
+        author: str
+            The author of the document.
+        title: str
+            The title of the document.
+        date: str
+            The date of the document.
+        maketitle: bool
+            Whether ``\maketitle`` command is activated or not.
+        data: list
+            Initial content of the document.
+        """
 
         self.default_filepath = default_filepath
         self.maketitle = maketitle

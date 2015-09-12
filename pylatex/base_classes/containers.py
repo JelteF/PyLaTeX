@@ -14,22 +14,25 @@ from pylatex.base_classes import LatexObject
 
 class Container(LatexObject, UserList):
 
-    r"""A base class that groups multiple LaTeX classes.
+    """A base class that groups multiple LaTeX classes.
 
     This class should be subclassed when a LaTeX class has content that is of
     variable length. It subclasses UserList, so it holds a list of elements
     that can simply be accessed by using normal list functionality, like
     indexing or appending.
 
-    Args
-    ----
-    data: list, `~.LatexObject` or something that can be converted to a string
-        The content with which the container is initialized
-    packages: list of `~.Package` instances
-
     """
 
     def __init__(self, data=None, packages=None):
+        r""".
+
+        Args
+        ----
+        data: list, `~.LatexObject` or something that can be converted to a \
+                string
+            The content with which the container is initialized
+        packages: list of `~.Package` instances
+        """
 
         if data is None:
             data = []
@@ -122,27 +125,30 @@ class Environment(Container):
     The text that is used in the place of environment_name is by defalt the
     name of the class in lowercase. However, this default can be overridden by
     setting the environment_name class variable when declaring the class.
-
-    Args
-    ----
-    options: str or list or  `~.Options`
-        Options to be added to the ``\begin`` command
-
-    arguments: str or list or `~.Arguments`
-        Arguments to be added to the ``\begin`` command
-    begin_paragraph: bool
-        Start a new paragraph before this environment.
-    end_paragraph: bool
-        Start a new paragraph after this environment.
-    seperate_paragraph: bool
-        Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
-        effectively placing this element in its own paragraph.
     """
 
     # TODO: Rename seperate_paragraph to separate_paragraph
 
     def __init__(self, options=None, arguments=None, begin_paragraph=False,
                  end_paragraph=False, seperate_paragraph=False, **kwargs):
+        r""".
+
+        Args
+        ----
+        options: str or list or  `~.Options`
+            Options to be added to the ``\begin`` command
+
+        arguments: str or list or `~.Arguments`
+            Arguments to be added to the ``\begin`` command
+        begin_paragraph: bool
+            Start a new paragraph before this environment.
+        end_paragraph: bool
+            Start a new paragraph after this environment.
+        seperate_paragraph: bool
+            Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
+            effectively placing this element in its own paragraph.
+        """
+
         from pylatex.parameters import Arguments, Options
 
         if not hasattr(self, 'container_name'):

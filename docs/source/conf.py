@@ -89,18 +89,26 @@ language = None
 
 autodoc_member_order = 'bysource'
 autodoc_default_flags = ['inherited-members']
+autoclass_content = 'both'
 
 
-def autodoc_add_module_title(app, what, name, obj, options, lines):
-    """Add a title to module docstrings."""
+def auto_change_docstring(app, what, name, obj, options, lines):
+    """Make some automatic changes to docstrings.
+
+    Add a title to module docstrings and remove first lines that only have a
+    single dot.
+    """
     if what == 'module' and name.startswith('pylatex'):
         lines.insert(0, len(name) * '=')
         lines.insert(0, name)
 
+    if lines[0].strip() == '.':
+        lines.pop(0)
+
 
 def setup(app):
     """Connect autodoc event to custom handler."""
-    app.connect('autodoc-process-docstring', autodoc_add_module_title)
+    app.connect('autodoc-process-docstring', auto_change_docstring)
 
 
 # List of patterns, relative to source directory, that match files and

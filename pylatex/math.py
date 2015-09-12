@@ -12,17 +12,19 @@ from pylatex.package import Package
 
 class Math(Container):
 
-    """A class representing a math environment.
-
-    Args
-    ----
-    data: list
-        Content of the math container.
-    inline: bool
-        If the math should be displayed inline or not.
-    """
+    """A class representing a math environment."""
 
     def __init__(self, data=None, inline=False):
+        """.
+
+        Args
+        ----
+        data: list
+            Content of the math container.
+        inline: bool
+            If the math should be displayed inline or not.
+        """
+
         self.inline = inline
         super().__init__(data)
 
@@ -47,43 +49,46 @@ class Math(Container):
 
 class VectorName(Command):
 
-    """A class representing a named vector.
-
-    Args
-    ----
-    name: str
-        Name of the vector
-
-    """
+    """A class representing a named vector."""
 
     def __init__(self, name):
+        """.
+
+        Args
+        ----
+        name: str
+            Name of the vector
+        """
+
         super().__init__('mathbf', arguments=name)
 
 
 class Matrix(LatexObject):
 
-    r"""A class representing a matrix.
-
-    Args
-    ----
-    matrix: `numpy.ndarray` instance
-        The matrix to display
-    mtype: str
-        What kind of brackets are used around the matrix. The different options
-        and their corresponding brackets are:
-        p = ( ), b = [ ], B = { }, v = \| \|, V = \|\| \|\|
-    alignment: str
-        How to align the content of the cells in the matrix. This is ``c`` by
-        default.
-
-    References
-    ----------
-        * https://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_and_arrays
-    """
+    """A class representing a matrix."""
 
     # TODO: Convert this to an environment
 
     def __init__(self, matrix, mtype='p', alignment=None):
+        r""".
+
+        Args
+        ----
+        matrix: `numpy.ndarray` instance
+            The matrix to display
+        mtype: str
+            What kind of brackets are used around the matrix. The different
+            options and their corresponding brackets are:
+            p = ( ), b = [ ], B = { }, v = \| \|, V = \|\| \|\|
+        alignment: str
+            How to align the content of the cells in the matrix. This is ``c``
+            by default.
+
+        References
+        ----------
+        * https://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_and_arrays
+        """
+
         import numpy as np
         self._np = np
 

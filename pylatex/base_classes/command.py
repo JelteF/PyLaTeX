@@ -14,22 +14,8 @@ from .latex_object import LatexObject
 
 class Command(LatexObject):
 
-    """
+    r"""
     A class that represents a LaTeX command.
-
-    Args
-    ----
-    command: str
-        Name of the command
-    arguments: None, str, list or \
-            `~.Arguments`
-        Arguments of the command
-    options: None, str, list or \
-            `~.Options`
-        Arguments of the command
-    packages: list of `~.Package` instances
-        A list of the packages that this command requires
-
 
     >>> Command('documentclass',
     >>>         options=Options('12pt', 'a4paper', 'twoside'),
@@ -39,6 +25,20 @@ class Command(LatexObject):
     """
 
     def __init__(self, command, arguments=None, options=None, packages=None):
+        """.
+
+        Args
+        ----
+        command: str
+            Name of the command
+        arguments: None, str, list or `~.Arguments`
+            Arguments of the command
+        options: None, str, list or `~.Options`
+            Arguments of the command
+        packages: list of `~.Package` instances
+            A list of the packages that this command requires
+        """
+
         self.command = command
 
         self._set_parameters(arguments, 'arguments')
@@ -113,14 +113,23 @@ class Command(LatexObject):
 
 class Parameters(LatexObject):
 
-    """
-    The base class used by `~Options` and `~Arguments`.
+    """The base class used by `~Options` and `~Arguments`.
 
     This class should probably never be used on its own and inhereting from it
     is only useful if a class like `~Options` or `~Arguments` is needed again.
     """
 
     def __init__(self, *args, **kwargs):
+        """.
+
+        Args
+        ----
+        \*args:
+            Positional parameters
+        \*\*kwargs:
+            Keyword parameters
+        """
+
         if len(args) == 1 and hasattr(args[0], '__iter__') and\
                 not isinstance(args[0], str):
             args = args[0]

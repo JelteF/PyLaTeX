@@ -13,18 +13,20 @@ from ..utils import dumps_list
 
 class SectionBase(Container):
 
-    """A class that is the base for all section type classes.
-
-    Args
-    ----
-    title: str
-        The section title.
-    numbering: bool
-        Add a number before the section title.
-
-    """
+    """A class that is the base for all section type classes."""
 
     def __init__(self, title, numbering=True, *args, **kwargs):
+        """.
+
+        Args
+        ----
+        title: str
+            The section title.
+        numbering: bool
+            Add a number before the section title.
+
+        """
+
         self.title = title
         self.numbering = numbering
 

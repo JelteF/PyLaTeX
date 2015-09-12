@@ -40,21 +40,23 @@ def _get_table_width(table_spec):
 
 class TabularBase(Environment):
 
-    """A class that is used as a base for all table classes.
-
-    Args
-    ----
-    table_spec: str
-        A string that represents how many columns a table should have and if it
-        should contain vertical lines and where.
-    pos: list
-
-    References
-    ----------
-    https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
-    """
+    """A class that is used as a base for all table classes."""
 
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
+        """.
+
+        Args
+        ----
+        table_spec: str
+            A string that represents how many columns a table should have and
+            if it should contain vertical lines and where.
+        pos: list
+
+        References
+        ----------
+        * https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
+        """
+
         self.width = _get_table_width(table_spec)
 
         super().__init__(data=data, options=pos,

@@ -19,16 +19,17 @@ class LatexObject(metaclass=ABCMeta):
     conversion to LaTeX formatted strings it implements the dumps, dump and
     generate_tex methods. It also provides the methods that can be used to
     represent the packages required by the LatexObject.
-
-
-    Args
-    ----
-    packages: :class:`list` of `~.Package` instances
-        Packages that are required by this LaTeX class.
-
     """
 
     def __init__(self, packages=None):
+        """.
+
+        Args
+        ----
+        packages: :class:`list` of `~.Package` instances
+            Packages that are required by this LaTeX class.
+
+        """
 
         if packages is None:
             packages = []
