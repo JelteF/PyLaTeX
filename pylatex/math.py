@@ -14,6 +14,8 @@ class Math(Container):
 
     """A class representing a math environment.
 
+    Args
+    ----
     data: list
         Content of the math container.
     inline: bool
