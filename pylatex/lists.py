@@ -13,37 +13,28 @@ from .base_classes import Environment
 
 class List(Environment):
 
-    """A class that represents a list.
+    """A base class that represents a list."""
 
-    :param list_spec:
-    :param list_type:
-    :param data:
-    :param pos:
+    def __init__(self, list_spec=None, pos=None, **kwargs):
+        """.
 
-    :type list_spec: str
-    :type list_type: str
-    :type data: list
-    :type pos: list
-    """
+        Args
+        ----
+        list_spec: str
+        pos: list
 
-    def __init__(self, list_spec=None, data=None, pos=None, **kwargs):
-        super().__init__(data=data, options=pos, arguments=list_spec, **kwargs)
-
-    def _item(self, label=None):
-        """Begin an item block."""
-        if label:
-            return r'\item[' + label + '] '
-
-        return r'\item '
+        """
+        super().__init__(options=pos, arguments=list_spec, **kwargs)
 
     def add_item(self, s):
         """Add an item to the list.
 
-        :param s:
-
-        :type s: string
+        Args
+        ----
+        s: str or `~.LatexObject`
+            The item itself.
         """
-        self.append(self._item())
+        self.append(r'\item')
         self.append(s)
 
 
@@ -64,11 +55,12 @@ class Description(List):
     def add_item(self, label, s):
         """Add an item to the list.
 
-        :param label:
-        :param s:
-
-        :type label: string
-        :type s: string
+        Args
+        ----
+        label: str
+            Description of the item.
+        s: str or `~.LatexObject`
+            The item itself.
         """
-        self.append(self._item(label))
+        self.append(r'\item[' + label + ']')
         self.append(s)
