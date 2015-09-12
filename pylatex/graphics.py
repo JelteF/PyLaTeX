@@ -109,14 +109,15 @@ class SubFigure(Figure):
     :type seperate_paragraph: bool
     """
 
-    def __init__(self, data=None, position=None, width=r'0.45\linewidth',
-                 seperate_paragraph=False, **kwargs):
+    def __init__(self, position=None, width=r'0.45\linewidth',
+                 seperate_paragraph=False, *args, **kwargs):
         packages = [Package('subcaption')]
 
-        super().__init__(data=data, packages=packages,
+        super().__init__(packages=packages,
                          position=position,
                          arguments=width,
-                         seperate_paragraph=seperate_paragraph, **kwargs)
+                         seperate_paragraph=seperate_paragraph,
+                         *args, **kwargs)
 
     def add_image(self, filename, width=r'\linewidth',
                   placement=None):

@@ -13,31 +13,32 @@ class Float(Environment):
 
     """A class that represents a floating environment.
 
-    :param data:
-    :param position:
+    Args
+    ----
+    position: str
+        Define the positioning of a floating environment, for instance ``'h'``.
+        See the references for more information
+    seperate_paragraph: bool
+        By default floats are positioned inside a separate paragraph. Setting
+        this to option to `False` will change that.
 
-    :type data: list
-    :type position: str
-    :param data:
-    :param position:
-    :param seperate_paragraph:
-
-    :type data: list
-    :type position: str
-    :type seperate_paragraph: bool
+    References
+    ----------
+        * https://www.sharelatex.com/learn/Positioning_of_Figures
     """
 
-    def __init__(self, data=None, position=None, seperate_paragraph=True,
-                 **kwargs):
+    def __init__(self, position=None, seperate_paragraph=True, **kwargs):
 
-        super().__init__(data=data, options=position,
+        super().__init__(options=position,
                          seperate_paragraph=seperate_paragraph, **kwargs)
 
     def add_caption(self, caption):
         """Add a caption to the float.
 
-        :param caption:
-        :type caption: str
+        Args
+        ----
+        caption: str
+            The text of the caption.
         """
 
         self.append(Command('caption', caption))
