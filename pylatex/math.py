@@ -14,11 +14,10 @@ class Math(Container):
 
     """A class representing a math environment.
 
-    :param data:
-    :param inline:
-
-    :type data: list
-    :type inline: bool
+    data: list
+        Content of the math container.
+    inline: bool
+        If the math should be displayed inline or not.
     """
 
     def __init__(self, data=None, inline=False):
@@ -28,7 +27,10 @@ class Math(Container):
     def dumps(self):
         """Return a LaTeX formatted string representing the object.
 
-        :rtype: str
+        Returns
+        -------
+        str
+
         """
 
         if self.inline:
@@ -45,9 +47,11 @@ class VectorName(Command):
 
     """A class representing a named vector.
 
-    :param name:
+    Args
+    ----
+    name: str
+        Name of the vector
 
-    :type name: str
     """
 
     def __init__(self, name):
@@ -58,32 +62,45 @@ class Matrix(LatexObject):
 
     """A class representing a matrix.
 
-    :param matrix:
-    :param name:
-    :param mtype:
-    :param alignment:
+    Args
+    ----
+    matrix: `numpy.ndarray` instance
+        The matrix to display
+    mtype: str
+        What kind of brackets are used around the matrix. The different options
+        and their brackets are:
+            * p, ( )
+            * b, [ ]
+            * B, { }
+            * v, | |
+            * V, || ||
+    alignment: str
+        How to align the content of the cells in the matrix. This is ``c`` by
+        default.
 
-    :type matrix: `numpy.ndarray` instance
-    :type name: str
-    :type mtype: str
-    :type alignment: str
+    References
+    ----------
+        * https://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_and_arrays
     """
 
-    def __init__(self, matrix, name='', mtype='p', alignment=None):
+    # TODO: Convert this to an environment
+
+    def __init__(self, matrix, mtype='p', alignment=None):
         import numpy as np
         self._np = np
 
         self.mtype = mtype
         self.matrix = matrix
         self.alignment = alignment
-        self.name = name
 
         super().__init__(packages=[Package('amsmath')])
 
     def dumps(self):
         """Return a string representin the matrix in LaTeX syntax.
 
-        :rtype: str
+        Returns
+        -------
+        str
         """
 
         string = r'\begin{'
