@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This module implements the classes used to show plots.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 
 from pylatex.base_classes import LatexObject, Environment, Command
@@ -13,12 +13,12 @@ from pylatex.package import Package
 
 class TikZ(Environment):
 
-    '''Basic TikZ container class.
+    """Basic TikZ container class.
 
     :param data:
 
     :type data: list
-    '''
+    """
 
     container_name = 'tikzpicture'
 
@@ -31,14 +31,14 @@ class TikZ(Environment):
 
 class Axis(Environment):
 
-    '''PGFPlots axis container class, this contains plots.
+    """PGFPlots axis container class, this contains plots.
 
     :param data:
     :param options:
 
     :type data: list
     :type options: str
-    '''
+    """
 
     def __init__(self, data=None, options=None):
         packages = [Package('pgfplots'), Command('pgfplotsset',
@@ -49,7 +49,7 @@ class Axis(Environment):
 
 class Plot(LatexObject):
 
-    r'''A class representing a PGFPlot.
+    r"""A class representing a PGFPlot.
 
     :param name:
     :param func:
@@ -64,7 +64,7 @@ class Plot(LatexObject):
     TODO:
 
     options type can also be list or `~.Options` instance
-    '''
+    """
 
     def __init__(
             self,
@@ -85,11 +85,11 @@ class Plot(LatexObject):
         super().__init__(packages=packages)
 
     def dumps(self):
-        '''Represent the plot as a string in LaTeX syntax.
+        """Represent the plot as a string in LaTeX syntax.
 
         :return:
         :rtype: str
-        '''
+        """
 
         string = Command('addplot', options=self.options).dumps()
 

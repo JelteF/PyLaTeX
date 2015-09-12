@@ -1,4 +1,4 @@
-'''
+"""
 PyLaTeX
 -------
 
@@ -151,7 +151,7 @@ Copyright and License
 Copyright 2014 Jelte Fennema, under `the MIT license
 <https://github.com/JelteF/PyLaTeX/blob/master/LICENSE>`_.
 
-'''
+"""
 
 try:
     from setuptools import setup

@@ -1,10 +1,10 @@
 #!/usr/bin/python
-'''
+"""
 How to represent your own LaTeX commands and environments in PyLaTeX.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 # begin-doc-include
 from pylatex.base_classes import BaseLaTeXNamedContainer
@@ -15,12 +15,12 @@ from pylatex import Document, Section
 
 class ExampleEnvironment(BaseLaTeXNamedContainer):
 
-    '''
+    """
     A class representing a custom LaTeX environment.
 
     This class represents a custom LaTeX environment named
     ``exampleEnvironment``.
-    '''
+    """
 
     container_name = 'exampleEnvironment'
 
@@ -33,12 +33,12 @@ class ExampleEnvironment(BaseLaTeXNamedContainer):
 
 class ExampleCommand(Command):
 
-    '''
+    """
     A class representing a custom LaTeX command.
 
     This class represents a custom LaTeX command named
     ``exampleCommand``.
-    '''
+    """
 
     def __init__(self, options=None, arguments=None):
         packages = [Package('color')]
@@ -51,10 +51,10 @@ class ExampleCommand(Command):
 doc = Document()
 with doc.create(Section('Custom commands')):
     doc.append(
-        '''
+        """
         The following is a demonstration of a custom \\LaTeX
         command with a couple of parameters.
-        ''')
+        """)
 
     # Define the new command
     new_comm = Command('newcommand{\\exampleCommand}', options=3,
@@ -68,10 +68,10 @@ with doc.create(Section('Custom commands')):
 
 with doc.create(Section('Custom environments')):
     doc.append(
-        '''
+        """
         The following is a demonstration of a custom \\LaTeX
         environment using the mdframed package.
-        ''')
+        """)
 
     # Define a style for our box
     mdf_style_definition = Command('mdfdefinestyle',

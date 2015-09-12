@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This module implements LaTeX base classes that can be subclassed.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 from collections import UserList
 from pylatex.utils import dumps_list
@@ -14,17 +14,17 @@ from pylatex.base_classes import LatexObject
 
 class Container(LatexObject, UserList):
 
-    '''A base class that groups multiple LaTeX classes.
+    """A base class that groups multiple LaTeX classes.
 
     This class should be subclassed when a LaTeX class has content that is of
     variable length. It subclasses UserList, so it holds a list of elements
     that can simply be accessed by using normal list functionality, like
     indexing or appending.
 
-    '''
+    """
 
     def __init__(self, data=None, packages=None):
-        r'''.
+        r""".
 
         Args
         ----
@@ -32,7 +32,7 @@ class Container(LatexObject, UserList):
                 string
             The content with which the container is initialized
         packages: list of `~.Package` instances
-        '''
+        """
 
         if data is None:
             data = []
@@ -47,7 +47,7 @@ class Container(LatexObject, UserList):
         super().__init__(packages=packages)
 
     def dumps(self, **kwargs):
-        r'''Represent the container as a string in LaTeX syntax.
+        r"""Represent the container as a string in LaTeX syntax.
 
         Args
         ----
@@ -59,7 +59,7 @@ class Container(LatexObject, UserList):
         -------
         string:
             A LaTeX string representing the container
-        '''
+        """
 
         # TODO: Propagate the kwargs for dumps in subclass dumps methods.
 
@@ -68,7 +68,7 @@ class Container(LatexObject, UserList):
         return dumps_list(self, **kwargs)
 
     def _propagate_packages(self):
-        '''Make sure packages get propagated.'''
+        """Make sure packages get propagated."""
 
         for item in self.data:
             if isinstance(item, LatexObject):
@@ -78,13 +78,13 @@ class Container(LatexObject, UserList):
                     self.packages.add(p)
 
     def dumps_packages(self):
-        r'''Represent the packages needed as a string in LaTeX syntax.
+        r"""Represent the packages needed as a string in LaTeX syntax.
 
         Returns
         -------
         string:
             A LaTeX string representing the packages of the container
-        '''
+        """
 
         self._propagate_packages()
 
@@ -92,13 +92,13 @@ class Container(LatexObject, UserList):
 
     @contextmanager
     def create(self, child):
-        '''Add a LaTeX object to current container, context-manager style.
+        """Add a LaTeX object to current container, context-manager style.
 
         Args
         ----
         child: `~.Container`
             An object to be added to the current container
-        '''
+        """
 
         prev_data = self.data
         self.data = child.data  # This way append works appends to the child
@@ -111,7 +111,7 @@ class Container(LatexObject, UserList):
 
 class Environment(Container):
 
-    r'''A base class for LaTeX environments.
+    r"""A base class for LaTeX environments.
 
     This class implements the basics of a LaTeX environment. A LaTeX
     environment looks like this:
@@ -125,13 +125,13 @@ class Environment(Container):
     The text that is used in the place of environment_name is by defalt the
     name of the class in lowercase. However, this default can be overridden by
     setting the environment_name class variable when declaring the class.
-    '''
+    """
 
     # TODO: Rename seperate_paragraph to separate_paragraph
 
     def __init__(self, options=None, arguments=None, begin_paragraph=False,
                  end_paragraph=False, seperate_paragraph=False, **kwargs):
-        r'''.
+        r""".
 
         Args
         ----
@@ -147,7 +147,7 @@ class Environment(Container):
         seperate_paragraph: bool
             Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
             effectively placing this element in its own paragraph.
-        '''
+        """
 
         from pylatex.parameters import Arguments, Options
 
@@ -175,13 +175,13 @@ class Environment(Container):
         super().__init__(**kwargs)
 
     def dumps(self):
-        '''Represent the environment as a string in LaTeX syntax.
+        """Represent the environment as a string in LaTeX syntax.
 
         Returns
         -------
         string:
             A LaTeX string representing the environment.
-        '''
+        """
 
         string = ''
 

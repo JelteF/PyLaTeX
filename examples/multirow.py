@@ -1,10 +1,10 @@
 #!/usr/bin/python
-'''
+"""
 This example shows how multirow and multicolumns can be used.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 # begin-doc-include
 from pylatex import Document, Section, Subsection, Tabular, MultiColumn,\

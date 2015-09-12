@@ -1,11 +1,11 @@
 # flake8: noqa
 
-'''
+"""
 A library for creating Latex files.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 from .document import Document
 from .math import Math, VectorName, Matrix

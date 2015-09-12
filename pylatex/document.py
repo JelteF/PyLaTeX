@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This module implements the class that deals with the full document.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 import os
 import subprocess
@@ -16,17 +16,17 @@ from .utils import dumps_list, rm_temp_dir
 
 class Document(Container):
 
-    '''
+    """
     A class that contains a full LaTeX document.
 
     If needed, you can append stuff to the preamble or the packages.
 
-    '''
+    """
 
     def __init__(self, default_filepath='default_filepath',
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  author='', title='', date='', maketitle=False, data=None):
-        r'''.
+        r""".
 
         Args
         ----
@@ -48,7 +48,7 @@ class Document(Container):
             Whether ``\maketitle`` command is activated or not.
         data: list
             Initial content of the document.
-        '''
+        """
 
         self.default_filepath = default_filepath
         self.maketitle = maketitle
@@ -73,12 +73,12 @@ class Document(Container):
         super().__init__(data, packages=packages)
 
     def dumps(self):
-        '''Represent the document as a string in LaTeX syntax.
+        """Represent the document as a string in LaTeX syntax.
 
         Returns
         -------
         str
-        '''
+        """
 
         document = r'\begin{document}' + os.linesep
 
@@ -96,21 +96,21 @@ class Document(Container):
         return head + os.linesep + document
 
     def generate_tex(self, filepath=''):
-        '''Generate a .tex file for the document.
+        """Generate a .tex file for the document.
 
         Args
         ----
         filepath: str
             The name of the file (without .tex), if this is not supplied the
             default filepath attribute is used as the path.
-        '''
+        """
 
         # TODO: Use None as the default for filepath instead of ''
         super().generate_tex(self.select_filepath(filepath))
 
     def generate_pdf(self, filepath='', clean=True, compiler='pdflatex',
                      silent=True):
-        '''Generate a pdf file from the document.
+        """Generate a pdf file from the document.
 
         Args
         ----
@@ -120,7 +120,7 @@ class Document(Container):
             Whether non-pdf files created by ``pdflatex`` must be removed
         silent: bool
             Whether to hide compiler output
-        '''
+        """
 
         filepath = self.select_filepath(filepath)
         filepath = os.path.join('.', filepath)
@@ -161,7 +161,7 @@ class Document(Container):
         os.chdir(cur_dir)
 
     def select_filepath(self, filepath):
-        '''Make a choice between ``filepath`` and ``self.default_filepath``.
+        """Make a choice between ``filepath`` and ``self.default_filepath``.
 
         Args
         ----
@@ -172,7 +172,7 @@ class Document(Container):
         -------
         str
             The selected filepath
-        '''
+        """
 
         # TODO: Make this method private
 

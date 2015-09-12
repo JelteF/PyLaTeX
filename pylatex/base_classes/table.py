@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This module implements the base class for table classes.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
-'''
+"""
 
 from . import LatexObject, Environment, Command
 from ..utils import dumps_list
@@ -15,7 +15,7 @@ import re
 
 
 def _get_table_width(table_spec):
-    '''Calculate the width of a table based on its spec.
+    """Calculate the width of a table based on its spec.
 
     Args
     ----
@@ -27,7 +27,7 @@ def _get_table_width(table_spec):
     -------
     int
         The width of a table which uses the specification supplied.
-    '''
+    """
 
     column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
 
@@ -40,10 +40,10 @@ def _get_table_width(table_spec):
 
 class TabularBase(Environment):
 
-    '''A class that is used as a base for all table classes.'''
+    """A class that is used as a base for all table classes."""
 
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
-        '''.
+        """.
 
         Args
         ----
@@ -55,7 +55,7 @@ class TabularBase(Environment):
         References
         ----------
         * https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
-        '''
+        """
 
         self.width = _get_table_width(table_spec)
 
@@ -63,7 +63,7 @@ class TabularBase(Environment):
                          arguments=table_spec, **kwargs)
 
     def add_hline(self, start=None, end=None):
-        '''Add a horizontal line to the table.
+        """Add a horizontal line to the table.
 
         Args
         ----
@@ -71,7 +71,7 @@ class TabularBase(Environment):
             At what cell the line should begin
         end: int
             At what cell the line should end
-        '''
+        """
 
         if start is None and end is None:
             self.append(r'\hline')
@@ -84,12 +84,12 @@ class TabularBase(Environment):
             self.append(Command('cline', str(start) + '-' + str(end)))
 
     def add_empty_row(self):
-        '''Add an empty row to the table.'''
+        """Add an empty row to the table."""
 
         self.append((self.width - 1) * '&' + r'\\')
 
     def add_row(self, cells, escape=False, mapper=None):
-        '''Add a row of cells to the table.
+        """Add a row of cells to the table.
 
         Args
         ----
@@ -97,7 +97,7 @@ class TabularBase(Environment):
             Each element of the iterable will become a the content of cell.
         escape: bool
             Escape special LaTeX syntax inside the cells.
-        '''
+        """
 
         # Propegate packages used in cells
         for c in cells:
