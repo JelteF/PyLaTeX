@@ -13,34 +13,29 @@ from pylatex.package import Package
 
 class TikZ(Environment):
 
-    """Basic TikZ container class.
-
-    :param data:
-
-    :type data: list
-    """
+    """Basic TikZ container class."""
 
     container_name = 'tikzpicture'
 
-    def __init__(self, data=None):
+    def __init__(self, **kwargs):
 
         packages = [Package('tikz')]
 
-        super().__init__(data=data, packages=packages)
+        super().__init__(packages=packages, *kwargs)
 
 
 class Axis(Environment):
 
-    """PGFPlots axis container class, this contains plots.
-
-    :param data:
-    :param options:
-
-    :type data: list
-    :type options: str
-    """
+    """PGFPlots axis container class, this contains plots."""
 
     def __init__(self, data=None, options=None):
+        """.
+
+        Args
+        ----
+        options: str, list or `~.Options`
+            Options to format the axis environment.
+        """
         packages = [Package('pgfplots'), Command('pgfplotsset',
                                                  'compat=newest')]
 
@@ -49,30 +44,24 @@ class Axis(Environment):
 
 class Plot(LatexObject):
 
-    r"""A class representing a PGFPlot.
+    """A class representing a PGFPlot."""
 
-    :param name:
-    :param func:
-    :param coordinates:
-    :param options:
+    def __init__(self, name=None, func=None, coordinates=None,
+                 error_bar=None, options=None):
+        """.
 
-    :type name: str
-    :type func: str
-    :type coordinates: list
-    :type options: str
+        Args
+        ----
+        name: str
+            Name of the plot.
+        func: str
+            A function that should be plotted.
+        coordinates: list
+            A list of exact coordinates tat should be plotted.
 
-    TODO:
+        options: str, list or `~.Options`
+        """
 
-    options type can also be list or `~.Options` instance
-    """
-
-    def __init__(
-            self,
-            name=None,
-            func=None,
-            coordinates=None,
-            error_bar=None,
-            options=None):
         self.name = name
         self.func = func
         self.coordinates = coordinates
@@ -87,8 +76,9 @@ class Plot(LatexObject):
     def dumps(self):
         """Represent the plot as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
         """
 
         string = Command('addplot', options=self.options).dumps()
