@@ -41,14 +41,14 @@ LATEX_CONTAINER_MEMBERS='create, dumps'
 
 USER_LIST_MEMBERS='append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort'
 
-for f in source/pylatex/*.rst; do
-    if [[ "$f" != *latex_object.rst ]]; then
-        if [[ "$f" == *containers.rst ]]; then
+for rst in source/pylatex/*.rst; do
+    if [[ "$rst" != *latex_object.rst ]]; then
+        if [[ "$rst" == *containers.rst ]]; then
             echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
-                "$USER_LIST_MEMBERS" >> $f
+                "$USER_LIST_MEMBERS" >> $rst
         else
             echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
-                "$USER_LIST_MEMBERS, $LATEX_CONTAINER_MEMBERS" >> $f
+                "$USER_LIST_MEMBERS, $LATEX_CONTAINER_MEMBERS" >> $rst
         fi
     fi
 done
@@ -59,6 +59,8 @@ for f in ../examples/*.py; do
     $python gen_example_title.py "$name" > $rst
     echo Creating file ${rst}
     echo .. automodule:: examples.$name >> $rst
+    echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
+        "$USER_LIST_MEMBERS, $LATEX_CONTAINER_MEMBERS" >> $rst
     echo >> $rst
 
     echo The code >> $rst
