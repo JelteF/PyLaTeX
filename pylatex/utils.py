@@ -156,12 +156,14 @@ def dumps_list(l, escape=False, token='\n', mapper=None):
     \$100\%
     True
     """
-    # TODO: Mapper should be used in this function directly
+    strings = (_latex_item_to_string(i, escape) for i in l)
+    if mapper is not None:
+        strings = (mapper(s) for s in strings)
 
-    return token.join(_latex_item_to_string(i, escape, mapper) for i in l)
+    return token.join(strings)
 
 
-def _latex_item_to_string(item, escape=False, post_convert=None):
+def _latex_item_to_string(item, escape=False):
     """Use the render method when possible, otherwise uses str.
 
     Args
@@ -170,8 +172,6 @@ def _latex_item_to_string(item, escape=False, post_convert=None):
         An object that needs to be converted to a string
     escape: bool
         Flag that indicates if escaping is needed
-    post_convert: callable
-        Function that should be called when returning the stringified object
 
     Returns
     -------
@@ -180,14 +180,12 @@ def _latex_item_to_string(item, escape=False, post_convert=None):
     """
 
     if isinstance(item, pylatex.base_classes.LatexObject):
-        s = item.dumps()
+        return item.dumps()
     else:
         s = str(item)
         if escape:
             s = escape_latex(s)
 
-    if post_convert:
-        return post_convert(s)
     return s
 
 
