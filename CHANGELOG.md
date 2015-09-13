@@ -59,6 +59,8 @@ been moved an renamed.
     the classname. To change the default for a class you should set
     `_latex_name`
 
+- Made `Document.select_filepath` private.
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are

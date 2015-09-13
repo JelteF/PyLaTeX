@@ -106,7 +106,7 @@ class Document(Container):
         """
 
         # TODO: Use None as the default for filepath instead of ''
-        super().generate_tex(self.select_filepath(filepath))
+        super().generate_tex(self._select_filepath(filepath))
 
     def generate_pdf(self, filepath='', clean=True, compiler='pdflatex',
                      silent=True):
@@ -122,7 +122,7 @@ class Document(Container):
             Whether to hide compiler output
         """
 
-        filepath = self.select_filepath(filepath)
+        filepath = self._select_filepath(filepath)
         filepath = os.path.join('.', filepath)
 
         cur_dir = os.getcwd()
@@ -160,7 +160,7 @@ class Document(Container):
             rm_temp_dir()
         os.chdir(cur_dir)
 
-    def select_filepath(self, filepath):
+    def _select_filepath(self, filepath):
         """Make a choice between ``filepath`` and ``self.default_filepath``.
 
         Args
