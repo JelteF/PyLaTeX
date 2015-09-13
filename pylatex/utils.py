@@ -59,7 +59,7 @@ def escape_latex(s):
 
 
     References
-    ----
+    ----------
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
 
