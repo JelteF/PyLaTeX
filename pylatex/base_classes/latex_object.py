@@ -97,6 +97,8 @@ class LatexObject(metaclass=ABCMeta):
     def dump_packages(self, file_w):
         """Write the LaTeX representation of the packages to a file.
 
+        Args
+        ----
         file_w: io.TextIOBase
             The file object in which to save the data
 
