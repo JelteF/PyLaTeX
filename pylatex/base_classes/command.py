@@ -196,7 +196,7 @@ class Parameters(LatexObject):
         return string
 
     def _list_args_kwargs(self):
-        """TODO.
+        """Make a list of strings representing al parameters.
 
         Returns
         -------
