@@ -49,6 +49,8 @@ been moved an renamed.
 
 - The graphics submodule has been renamed to figure.
 
+- The pgfplots submodule has been renamed to tikz.
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
