@@ -54,6 +54,11 @@ been moved an renamed.
 - Rename the `seperate_paragraph` keyword argument to the correctly spelled
     `separate_paragraph`.
 
+- The `container_name` attribute has been changed to `latex_name` so it can be
+    used more than containers. By default it is still the lowercase version of
+    the classname. To change the default for a class you should set
+    `_latex_name`
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are

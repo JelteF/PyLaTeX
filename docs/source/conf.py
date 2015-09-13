@@ -102,7 +102,7 @@ def auto_change_docstring(app, what, name, obj, options, lines):
         lines.insert(0, len(name) * '=')
         lines.insert(0, name)
 
-    if lines[0].strip() == '.':
+    if len(lines) and lines[0].strip() == '.':
         lines.pop(0)
 
 

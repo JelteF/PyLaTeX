@@ -15,7 +15,7 @@ class TikZ(Environment):
 
     """Basic TikZ container class."""
 
-    container_name = 'tikzpicture'
+    _latex_name = 'tikzpicture'
 
     def __init__(self, **kwargs):
 

@@ -21,6 +21,8 @@ class LatexObject(metaclass=ABCMeta):
     represent the packages required by the LatexObject.
     """
 
+    _latex_name = None
+
     def __init__(self, packages=None):
         """.
 
@@ -35,6 +37,20 @@ class LatexObject(metaclass=ABCMeta):
             packages = []
 
         self.packages = OrderedSet(packages)
+
+    @property
+    def latex_name(self):
+        """The name of the class used in LaTeX.
+
+        It can be `None` when the class doesn't have a name.
+        """
+        if self._latex_name is not None:
+            return self._latex_name
+        return self.__class__.__name__.lower()
+
+    @latex_name.setter
+    def latex_name(self, value):
+        self._latex_name = value
 
     @abstractmethod
     def dumps(self):

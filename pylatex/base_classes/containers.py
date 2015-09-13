@@ -149,9 +149,6 @@ class Environment(Container):
 
         from pylatex.parameters import Arguments, Options
 
-        if not hasattr(self, 'container_name'):
-            self.container_name = self.__class__.__name__.lower()
-
         if isinstance(arguments, Arguments):
             self.arguments = arguments
         elif arguments is not None:
@@ -187,7 +184,7 @@ class Environment(Container):
             string += '\n\n'
 
         # TODO: Use the Command class for this
-        string += r'\begin{' + self.container_name + '}'
+        string += r'\begin{' + self.latex_name + '}'
 
         string += self.options.dumps()
 
@@ -197,7 +194,7 @@ class Environment(Container):
 
         string += super().dumps()
 
-        string += '\n' + r'\end{' + self.container_name + '}'
+        string += '\n' + r'\end{' + self.latex_name + '}'
 
         if self.separate_paragraph or self.end_paragraph:
             string += '\n\n'

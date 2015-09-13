@@ -7,13 +7,13 @@ How to represent your own LaTeX commands and environments in PyLaTeX.
 """
 
 # begin-doc-include
-from pylatex.base_classes import BaseLaTeXNamedContainer
+from pylatex.base_classes import Environment
 from pylatex.parameters import Arguments
 from pylatex.package import Package, Command
 from pylatex import Document, Section
 
 
-class ExampleEnvironment(BaseLaTeXNamedContainer):
+class ExampleEnvironment(Environment):
 
     """
     A class representing a custom LaTeX environment.
@@ -22,7 +22,7 @@ class ExampleEnvironment(BaseLaTeXNamedContainer):
     ``exampleEnvironment``.
     """
 
-    container_name = 'exampleEnvironment'
+    _latex_name = 'exampleEnvironment'
 
     def __init__(self, options=None, arguments=None):
         packages = [Package('mdframed')]
