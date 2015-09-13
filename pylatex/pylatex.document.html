@@ -32,7 +32,7 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
-        <link rel="next" title="pylatex.graphics" href="pylatex.graphics.html"/>
+        <link rel="next" title="pylatex.figure" href="pylatex.figure.html"/>
         <link rel="prev" title="pylatex.command" href="pylatex.command.html"/> 
 
   
@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -201,7 +204,7 @@
 <p>This module implements the class that deals with the full document.</p>
 <dl class="class">
 <dt id="pylatex.document.Document">
-<em class="property">class </em><code class="descclassname">pylatex.document.</code><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>author=''</em>, <em>title=''</em>, <em>date=''</em>, <em>data=None</em>, <em>maketitle=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>author=''</em>, <em>title=''</em>, <em>date=''</em>, <em>maketitle=False</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
 <p>If needed, you can append stuff to the preamble or the packages.</p>
@@ -210,42 +213,20 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>default_filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the default path to save files</li>
-<li><strong>documentclass</strong> (str or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">Command</span></code></a>
-instance) &#8211; the LaTeX class of the document</li>
-<li><strong>fontenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the option for the fontenc package</li>
-<li><strong>inputenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the option for the inputenc package</li>
-<li><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the author of the document</li>
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the title of the document</li>
-<li><strong>date</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the date of the document</li>
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>maketitle</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; whether <cite>\maketitle</cite> command is activated or not.</li>
+<li><strong>default_filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The default path to save files.</li>
+<li><strong>documentclass</strong> (str or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a>) &#8211; The LaTeX class of the document.</li>
+<li><strong>fontenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The option for the fontenc package.</li>
+<li><strong>inputenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The option for the inputenc package.</li>
+<li><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The author of the document.</li>
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The title of the document.</li>
+<li><strong>date</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The date of the document.</li>
+<li><strong>maketitle</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Whether <code class="docutils literal"><span class="pre">\maketitle</span></code> command is activated or not.</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; Initial content of the document.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="pylatex.document.Document.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the document as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.document.Document.generate_tex">
-<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=''</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
 <dt id="pylatex.document.Document.generate_pdf">
 <code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=''</em>, <em>clean=True</em>, <em>compiler='pdflatex'</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
@@ -255,31 +236,11 @@ instance) &#8211; the LaTeX class of the document</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the name of the file</li>
-<li><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; whether non-pdf files created by <cite>pdflatex</cite> must be
-removed or not</li>
-<li><strong>silent</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; whether to hide compiler output</li>
+<li><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The name of the file (without .pdf)</li>
+<li><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Whether non-pdf files created by <code class="docutils literal"><span class="pre">pdflatex</span></code> must be removed</li>
+<li><strong>silent</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Whether to hide compiler output</li>
 </ul>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.document.Document.select_filepath">
-<code class="descname">select_filepath</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.select_filepath" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a choice between <cite>filepath</cite> and <cite>self.default_filepath</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the filepath to be compared with
-<cite>self.default_filepath</cite></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The selected filepath</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
 </tr>
 </tbody>
 </table>
@@ -295,7 +256,7 @@ removed or not</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pylatex.graphics.html" class="btn btn-neutral float-right" title="pylatex.graphics" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pylatex.figure.html" class="btn btn-neutral float-right" title="pylatex.figure" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pylatex.command.html" class="btn btn-neutral" title="pylatex.command" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

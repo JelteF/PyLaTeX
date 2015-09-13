@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.graphics &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.figure &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.graphics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -183,11 +186,11 @@
       
           <li><a href="../api.html">API reference</a> &raquo;</li>
       
-    <li>pylatex.graphics</li>
+    <li>pylatex.figure</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pylatex/pylatex.graphics.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pylatex/pylatex.figure.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -196,28 +199,65 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-pylatex.graphics"></span><div class="section" id="pylatex-graphics">
-<h1>pylatex.graphics<a class="headerlink" href="#pylatex-graphics" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="module-pylatex.figure"></span><div class="section" id="pylatex-figure">
+<h1>pylatex.figure<a class="headerlink" href="#pylatex-figure" title="Permalink to this headline">¶</a></h1>
 <p>This module implements the class that deals with graphics.</p>
 <dl class="class">
-<dt id="pylatex.graphics.Figure">
-<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">Figure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.figure.Figure">
+<em class="property">class </em><code class="descname">Figure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.float.html#pylatex.base_classes.float.Float" title="pylatex.base_classes.float.Float"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.float.Float</span></code></a></p>
 <p>A class that represents a Figure environment.</p>
 <dl class="method">
-<dt id="pylatex.graphics.Figure.add_image">
-<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.Figure.add_image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add an image.to the figure.</p>
+<dt id="pylatex.figure.Figure.add_image">
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure.add_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an image to the figure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Filename of the image.</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Width of the image in LaTeX terms.</li>
+<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Placement of the figure, <a class="reference external" href="https://docs.python.org/3.4/library/constants.html#None" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> is also accepted.</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.figure.Figure.add_plot">
+<code class="descname">add_plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure.add_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the current Matplotlib plot to the figure.</p>
+<p>The plot that gets added is the one that would normally be shown when
+using <code class="docutils literal"><span class="pre">plt.show()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> &#8211; Arguments passed to plt.savefig for displaying the plot.</li>
+<li><strong>kwargs</strong> &#8211; Keyword arguments passed to plt.savefig for displaying the plot. In
+case these contain <code class="docutils literal"><span class="pre">width</span></code> or <code class="docutils literal"><span class="pre">placement</span></code>, they will be used
+for the same purpose as in the add_image command. Namely the width
+and placement of the generated plot in the LaTeX document.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.figure.Figure.add_caption">
+<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure.add_caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a caption to the float.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>caption</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The text of the caption.</td>
 </tr>
 </tbody>
 </table>
@@ -226,37 +266,36 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.graphics.SubFigure">
-<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>data=None</em>, <em>position=None</em>, <em>width='0.45\linewidth'</em>, <em>seperate_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.graphics.Figure" title="pylatex.graphics.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.graphics.Figure</span></code></a></p>
+<dt id="pylatex.figure.SubFigure">
+<em class="property">class </em><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>width='0.45\linewidth'</em>, <em>separate_paragraph=False</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.SubFigure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.figure.Figure" title="pylatex.figure.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.figure.Figure</span></code></a></p>
 <p>A class that represents a subfigure from the subcaption package.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>data</strong> &#8211; </li>
-<li><strong>position</strong> &#8211; </li>
-<li><strong>seperate_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Width of the subfigure itself. It needs a width because it is
+inside another figure.</li>
+<li><strong>separate_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; By default a subfigure is not on its own paragraph since that looks
+weird inside another figure.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pylatex.graphics.SubFigure.add_image">
-<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.figure.SubFigure.add_image">
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an image to the subfigure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Filename of the image.</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Width of the image in LaTeX terms.</li>
+<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Placement of the figure, <a class="reference external" href="https://docs.python.org/3.4/library/constants.html#None" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> is also accepted.</li>
 </ul>
 </td>
 </tr>
@@ -264,30 +303,36 @@
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="pylatex.figure.SubFigure.add_caption">
+<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.SubFigure.add_caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a caption to the float.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>caption</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The text of the caption.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="class">
-<dt id="pylatex.graphics.MatplotlibFigure">
-<em class="property">class </em><code class="descclassname">pylatex.graphics.</code><code class="descname">MatplotlibFigure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.MatplotlibFigure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pylatex.graphics.Figure" title="pylatex.graphics.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.graphics.Figure</span></code></a></p>
-<p>A class that represents a plot created with matplotlib.</p>
-<dl class="attribute">
-<dt id="pylatex.graphics.MatplotlibFigure.container_name">
-<code class="descname">container_name</code><em class="property"> = 'figure'</em><a class="headerlink" href="#pylatex.graphics.MatplotlibFigure.container_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="method">
-<dt id="pylatex.graphics.MatplotlibFigure.add_plot">
-<code class="descname">add_plot</code><span class="sig-paren">(</span><em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.graphics.MatplotlibFigure.add_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a plot.</p>
+<dt id="pylatex.figure.SubFigure.add_plot">
+<code class="descname">add_plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.SubFigure.add_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the current Matplotlib plot to the figure.</p>
+<p>The plot that gets added is the one that would normally be shown when
+using <code class="docutils literal"><span class="pre">plt.show()</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>plt</strong> (<a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#module-matplotlib.pyplot" title="(in Matplotlib v1.4.3)"><em>matplotlib.pyplot</em></a>) &#8211; The matplotlib.pyplot module</li>
-<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The width of the plot.</li>
-<li><strong>placement</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The placement of the plot.</li>
+<li><strong>args</strong> &#8211; Arguments passed to plt.savefig for displaying the plot.</li>
+<li><strong>kwargs</strong> &#8211; Keyword arguments passed to plt.savefig for displaying the plot. In
+case these contain <code class="docutils literal"><span class="pre">width</span></code> or <code class="docutils literal"><span class="pre">placement</span></code>, they will be used
+for the same purpose as in the add_image command. Namely the width
+and placement of the generated plot in the LaTeX document.</li>
 </ul>
 </td>
 </tr>

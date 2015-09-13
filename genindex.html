@@ -141,20 +141,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -217,61 +220,135 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.base_classes.float.html#pylatex.base_classes.float.Float.add_caption">add_caption() (pylatex.base_classes.float.Float method)</a>
-  </dt>
-
-      
-  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_empty_row">add_empty_row() (pylatex.base_classes.table.TabularBase method)</a>
-  </dt>
-
-      
-  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_hline">add_hline() (pylatex.base_classes.table.TabularBase method)</a>
-  </dt>
-
-      
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.Figure.add_image">add_image() (pylatex.graphics.Figure method)</a>
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_caption">add_caption() (Figure method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.SubFigure.add_image">(pylatex.graphics.SubFigure method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.float.html#pylatex.base_classes.float.Float.add_caption">(Float method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure.add_caption">(SubFigure method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Table.add_caption">(Table method)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.Description.add_item">add_item() (pylatex.lists.Description method)</a>
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.add_empty_row">add_empty_row() (LongTable method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.List.add_item">(pylatex.lists.List method)</a>
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.add_empty_row">(LongTabu method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Tabu.add_empty_row">(Tabu method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Tabular.add_empty_row">(Tabular method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_empty_row">(TabularBase method)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_multicolumn">add_multicolumn() (pylatex.base_classes.table.TabularBase method)</a>
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.add_hline">add_hline() (LongTable method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.add_hline">(LongTabu method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Tabu.add_hline">(Tabu method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Tabular.add_hline">(Tabular method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_hline">(TabularBase method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_image">add_image() (Figure method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure.add_image">(SubFigure method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.Description.add_item">add_item() (Description method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.Enumerate.add_item">(Enumerate method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.Itemize.add_item">(Itemize method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.List.add_item">(List method)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_multirow">add_multirow() (pylatex.base_classes.table.TabularBase method)</a>
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_plot">add_plot() (Figure method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure.add_plot">(SubFigure method)</a>
+  </dt>
+
+      </dl></dd>
       
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.MatplotlibFigure.add_plot">add_plot() (pylatex.graphics.MatplotlibFigure method)</a>
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.add_row">add_row() (LongTable method)</a>
   </dt>
 
-      
-  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_row">add_row() (pylatex.base_classes.table.TabularBase method)</a>
+      <dd><dl>
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.add_row">(LongTabu method)</a>
   </dt>
 
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Tabu.add_row">(Tabu method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Tabular.add_row">(Tabular method)</a>
+  </dt>
+
+        
+  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase.add_row">(TabularBase method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments">Arguments (class in pylatex.base_classes.command)</a>
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.pgfplots.html#pylatex.pgfplots.Axis">Axis (class in pylatex.pgfplots)</a>
+  <dt><a href="pylatex/pylatex.tikz.html#pylatex.tikz.Axis">Axis (class in pylatex.tikz)</a>
   </dt>
 
   </dl></td>
@@ -301,23 +378,15 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.MatplotlibFigure.container_name">container_name (pylatex.graphics.MatplotlibFigure attribute)</a>
+  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container.create">create() (Container method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="pylatex/pylatex.pgfplots.html#pylatex.pgfplots.TikZ.container_name">(pylatex.pgfplots.TikZ attribute)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.table.html#pylatex.table.Table.container_name">(pylatex.table.Table attribute)</a>
+  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment.create">(Environment method)</a>
   </dt>
 
       </dl></dd>
-      
-  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container.create">create() (pylatex.base_classes.containers.Container method)</a>
-  </dt>
-
   </dl></td>
 </tr></table>
 
@@ -333,62 +402,26 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dump">dump() (pylatex.base_classes.latex_object.LatexObject method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dump">dump() (LatexObject method)</a>
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dump_packages">dump_packages() (pylatex.base_classes.latex_object.LatexObject method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dump_packages">dump_packages() (LatexObject method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command.dumps">dumps() (pylatex.base_classes.command.Command method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container.dumps">dumps() (Container method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.dumps">(pylatex.base_classes.command.Parameters method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment.dumps">(Environment method)</a>
   </dt>
 
         
-  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container.dumps">(pylatex.base_classes.containers.Container method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment.dumps">(pylatex.base_classes.containers.Environment method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dumps">(pylatex.base_classes.latex_object.LatexObject method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase.dumps">(pylatex.base_classes.section.SectionBase method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.document.html#pylatex.document.Document.dumps">(pylatex.document.Document method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.math.html#pylatex.math.Math.dumps">(pylatex.math.Math method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.math.html#pylatex.math.Matrix.dumps">(pylatex.math.Matrix method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.pgfplots.html#pylatex.pgfplots.Plot.dumps">(pylatex.pgfplots.Plot method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.table.html#pylatex.table.MultiColumn.dumps">(pylatex.table.MultiColumn method)</a>
-  </dt>
-
-        
-  <dt><a href="pylatex/pylatex.table.html#pylatex.table.MultiRow.dumps">(pylatex.table.MultiRow method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dumps">(LatexObject method)</a>
   </dt>
 
       </dl></dd>
@@ -397,15 +430,9 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container.dumps_packages">dumps_packages() (pylatex.base_classes.containers.Container method)</a>
+  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dumps_packages">dumps_packages() (LatexObject method)</a>
   </dt>
 
-      <dd><dl>
-        
-  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dumps_packages">(pylatex.base_classes.latex_object.LatexObject method)</a>
-  </dt>
-
-      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -425,6 +452,14 @@
   </dt>
 
       
+  <dt><a href="examples/own_commands_ex.html#examples.own_commands_ex.ExampleCommand">ExampleCommand (class in examples.own_commands_ex)</a>
+  </dt>
+
+      
+  <dt><a href="examples/own_commands_ex.html#examples.own_commands_ex.ExampleEnvironment">ExampleEnvironment (class in examples.own_commands_ex)</a>
+  </dt>
+
+      
   <dt><a href="examples/basic.html#module-examples.basic">examples.basic (module)</a>
   </dt>
 
@@ -432,12 +467,12 @@
   <dt><a href="examples/full.html#module-examples.full">examples.full (module)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="examples/lists.html#module-examples.lists">examples.lists (module)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="examples/matplotlib_ex.html#module-examples.matplotlib_ex">examples.matplotlib_ex (module)</a>
   </dt>
@@ -469,15 +504,19 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.Figure">Figure (class in pylatex.graphics)</a>
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.Figure">Figure (class in pylatex.figure)</a>
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.utils.html#pylatex.utils.fix_filename">fix_filename() (in module pylatex.utils)</a>
+  <dt><a href="examples/basic.html#examples.basic.fill_document">fill_document() (in module examples.basic)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="pylatex/pylatex.utils.html#pylatex.utils.fix_filename">fix_filename() (in module pylatex.utils)</a>
+  </dt>
+
       
   <dt><a href="pylatex/pylatex.base_classes.float.html#pylatex.base_classes.float.Float">Float (class in pylatex.base_classes.float)</a>
   </dt>
@@ -489,23 +528,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf">generate_pdf() (pylatex.document.Document method)</a>
+  <dt><a href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf">generate_pdf() (Document method)</a>
   </dt>
 
-      
-  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.generate_tex">generate_tex() (pylatex.base_classes.latex_object.LatexObject method)</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="pylatex/pylatex.document.html#pylatex.document.Document.generate_tex">(pylatex.document.Document method)</a>
-  </dt>
-
-      </dl></dd>
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.base_classes.table.html#pylatex.base_classes.table.get_table_width">get_table_width() (in module pylatex.base_classes.table)</a>
+  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.generate_tex">generate_tex() (LatexObject method)</a>
   </dt>
 
   </dl></td>
@@ -531,15 +560,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.latex_name">latex_name (LatexObject attribute)</a>
+  </dt>
+
+      
   <dt><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject">LatexObject (class in pylatex.base_classes.latex_object)</a>
   </dt>
 
       
   <dt><a href="pylatex/pylatex.lists.html#pylatex.lists.List">List (class in pylatex.lists)</a>
-  </dt>
-
-      
-  <dt><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list">list() (pylatex.base_classes.command.Parameters method)</a>
   </dt>
 
   </dl></td>
@@ -567,15 +596,11 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.MatplotlibFigure">MatplotlibFigure (class in pylatex.graphics)</a>
+  <dt><a href="pylatex/pylatex.math.html#pylatex.math.Matrix">Matrix (class in pylatex.math)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="pylatex/pylatex.math.html#pylatex.math.Matrix">Matrix (class in pylatex.math)</a>
-  </dt>
-
       
   <dt><a href="pylatex/pylatex.table.html#pylatex.table.MultiColumn">MultiColumn (class in pylatex.table)</a>
   </dt>
@@ -589,12 +614,6 @@
 
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.optional">optional (pylatex.base_classes.command.Parameters attribute)</a>
-  </dt>
-
-  </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Options">Options (class in pylatex.base_classes.command)</a>
@@ -615,7 +634,7 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.pgfplots.html#pylatex.pgfplots.Plot">Plot (class in pylatex.pgfplots)</a>
+  <dt><a href="pylatex/pylatex.tikz.html#pylatex.tikz.Plot">Plot (class in pylatex.tikz)</a>
   </dt>
 
       
@@ -653,7 +672,7 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="pylatex/pylatex.graphics.html#module-pylatex.graphics">pylatex.graphics (module)</a>
+  <dt><a href="pylatex/pylatex.figure.html#module-pylatex.figure">pylatex.figure (module)</a>
   </dt>
 
       
@@ -677,10 +696,6 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.pgfplots.html#module-pylatex.pgfplots">pylatex.pgfplots (module)</a>
-  </dt>
-
-      
   <dt><a href="pylatex/pylatex.quantities.html#module-pylatex.quantities">pylatex.quantities (module)</a>
   </dt>
 
@@ -690,6 +705,10 @@
 
       
   <dt><a href="pylatex/pylatex.table.html#module-pylatex.table">pylatex.table (module)</a>
+  </dt>
+
+      
+  <dt><a href="pylatex/pylatex.tikz.html#module-pylatex.tikz">pylatex.tikz (module)</a>
   </dt>
 
       
@@ -731,15 +750,11 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.document.html#pylatex.document.Document.select_filepath">select_filepath() (pylatex.document.Document method)</a>
+  <dt><a href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure">SubFigure (class in pylatex.figure)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="pylatex/pylatex.graphics.html#pylatex.graphics.SubFigure">SubFigure (class in pylatex.graphics)</a>
-  </dt>
-
       
   <dt><a href="pylatex/pylatex.section.html#pylatex.section.Subsection">Subsection (class in pylatex.section)</a>
   </dt>
@@ -773,7 +788,7 @@
   </dt>
 
       
-  <dt><a href="pylatex/pylatex.pgfplots.html#pylatex.pgfplots.TikZ">TikZ (class in pylatex.pgfplots)</a>
+  <dt><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZ">TikZ (class in pylatex.tikz)</a>
   </dt>
 
   </dl></td>

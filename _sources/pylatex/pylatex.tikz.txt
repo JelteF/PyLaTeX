@@ -1,4 +1,4 @@
-.. automodule:: pylatex.base_classes.float
+.. automodule:: pylatex.tikz
     :members:
     :undoc-members:
     :show-inheritance:

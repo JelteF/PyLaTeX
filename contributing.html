@@ -115,7 +115,7 @@
 <li class="toctree-l3"><a class="reference internal" href="examples/numpy_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="examples/own_commands_ex.html">Own_commands example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/own_commands_ex.html">Own commands example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="examples/own_commands_ex.html#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="examples/own_commands_ex.html#the-generated-pdfs">The generated pdfs</a></li>
 </ul>
@@ -141,20 +141,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">How to contribute</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -196,6 +199,19 @@
 <h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
 <p>This section needs to be filled. For now, see the <a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> file in the
 git repository.</p>
+<div class="section" id="vagrant-support">
+<h2>Vagrant support<a class="headerlink" href="#vagrant-support" title="Permalink to this headline">¶</a></h2>
+<p>If you don&#8217;t want to manually setup a suitable development environment in
+order to contribute, PyLaTeX comes with a ready-made Vagrantfile. Vagrant
+will launch and configure a small virtual machine with all necessary
+tools for you, so that you can start working with PyLaTeX right away.</p>
+<p>With Vagrant already installed, you can start the virtual machine with
+<code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> and then use <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> to ssh into it. Your source
+files will be located under <code class="docutils literal"><span class="pre">/vagrant</span></code>.
+To run all unit tests and build the documentation run
+<code class="docutils literal"><span class="pre">$</span> <span class="pre">./testall.sh</span> <span class="pre">-p</span> <span class="pre">python3</span> <span class="pre">-c</span></code> from that directory.</p>
+<p>You can download or read more about Vagrant on <a class="reference external" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a>.</p>
+</div>
 </div>
 
 

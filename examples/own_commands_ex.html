@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pylatex/pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -199,15 +202,31 @@
   <div class="section" id="module-examples.own_commands_ex">
 <span id="own-commands-example"></span><h1>Own commands example<a class="headerlink" href="#module-examples.own_commands_ex" title="Permalink to this headline">¶</a></h1>
 <p>How to represent your own LaTeX commands and environments in PyLaTeX.</p>
+<dl class="class">
+<dt id="examples.own_commands_ex.ExampleEnvironment">
+<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>options=None</em>, <em>arguments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class representing a custom LaTeX environment.</p>
+<p>This class represents a custom LaTeX environment named
+<code class="docutils literal"><span class="pre">exampleEnvironment</span></code>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="examples.own_commands_ex.ExampleCommand">
+<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>options=None</em>, <em>arguments=None</em><span class="sig-paren">)</span><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class representing a custom LaTeX command.</p>
+<p>This class represents a custom LaTeX command named
+<code class="docutils literal"><span class="pre">exampleCommand</span></code>.</p>
+</dd></dl>
+
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex.base_classes</span> <span class="kn">import</span> <span class="n">BaseLaTeXNamedContainer</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex.base_classes</span> <span class="kn">import</span> <span class="n">Environment</span>
 <span class="kn">from</span> <span class="nn">pylatex.parameters</span> <span class="kn">import</span> <span class="n">Arguments</span>
 <span class="kn">from</span> <span class="nn">pylatex.package</span> <span class="kn">import</span> <span class="n">Package</span><span class="p">,</span> <span class="n">Command</span>
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span>
 
 
-<span class="k">class</span> <span class="nc">ExampleEnvironment</span><span class="p">(</span><span class="n">BaseLaTeXNamedContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ExampleEnvironment</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class representing a custom LaTeX environment.</span>
@@ -216,7 +235,7 @@
 <span class="sd">    ``exampleEnvironment``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">container_name</span> <span class="o">=</span> <span class="s">&#39;exampleEnvironment&#39;</span>
+    <span class="n">_latex_name</span> <span class="o">=</span> <span class="s">&#39;exampleEnvironment&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="n">Package</span><span class="p">(</span><span class="s">&#39;mdframed&#39;</span><span class="p">)]</span>

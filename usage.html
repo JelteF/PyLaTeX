@@ -142,20 +142,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex/pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -205,32 +208,25 @@ turn, LaTeX code can be used to generate a document, or can be exported as-is.</
 <div class="section" id="the-classes">
 <h2>The classes<a class="headerlink" href="#the-classes" title="Permalink to this headline">¶</a></h2>
 <p>PyLaTeX uses a set of classes to turn LaTeX document generation into a set of
-pythonic components. For example, a <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-class docutils literal"><span class="pre">Document</span></code></a>
-might be comprised of <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">Section</span></code></a> objects, which in
-turn might have <a class="reference internal" href="pylatex/pylatex.lists.html#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> objects,
-<a class="reference internal" href="pylatex/pylatex.graphics.html#pylatex.graphics.Figure" title="pylatex.graphics.Figure"><code class="xref py py-class docutils literal"><span class="pre">Figure</span></code></a> objects, or custom
-<a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">Command</span></code></a> objects.</p>
+pythonic components. For example, a <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> might be comprised of
+<a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-obj docutils literal"><span class="pre">Section</span></code></a> objects, which in turn might have <a class="reference internal" href="pylatex/pylatex.lists.html#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-obj docutils literal"><span class="pre">List</span></code></a> objects, <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure" title="pylatex.figure.Figure"><code class="xref py py-obj docutils literal"><span class="pre">Figure</span></code></a>
+objects, or custom <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a> objects.</p>
 <p>Classes can be part of a single document, or can act as pieces on their own.
-With the <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dumps" title="pylatex.base_classes.latex_object.LatexObject.dumps"><code class="xref py py-meth docutils literal"><span class="pre">dumps()</span></code></a>
-method, most classes can return their LaTeX-formatted code, and with the
-<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.generate_tex" title="pylatex.base_classes.latex_object.LatexObject.generate_tex"><code class="xref py py-meth docutils literal"><span class="pre">generate_tex()</span></code></a> method,
-this code can be written to a file.</p>
+With the <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.dumps" title="pylatex.base_classes.latex_object.LatexObject.dumps"><code class="xref py py-obj docutils literal"><span class="pre">dumps</span></code></a> method, most classes can return their
+LaTeX-formatted code, and with the <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.generate_tex" title="pylatex.base_classes.latex_object.LatexObject.generate_tex"><code class="xref py py-obj docutils literal"><span class="pre">generate_tex</span></code></a> method, this
+code can be written to a file.</p>
 <div class="section" id="containers-documents">
 <h3>Containers / Documents<a class="headerlink" href="#containers-documents" title="Permalink to this headline">¶</a></h3>
-<p>A <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">Container</span></code></a> is an object that
-groups other LaTeX classes. Containers function like lists; they can be indexed
-and appended to.</p>
-<p>One of the most important container classes is the
-<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-class docutils literal"><span class="pre">Document</span></code></a> class. Documents create a full LaTeX
-document that can create a PDF file with
-<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf" title="pylatex.document.Document.generate_pdf"><code class="xref py py-meth docutils literal"><span class="pre">generate_pdf()</span></code></a> . Unless you are only
-generating LaTeX snippets, you will likely want to enclose your code inside a
-Document.</p>
-<p>Additionally, a number of <a class="reference internal" href="pylatex/pylatex.section.html#module-pylatex.section" title="pylatex.section"><code class="xref py py-mod docutils literal"><span class="pre">section</span></code></a> containers are available,
-which correspond to the standard <cite>\section</cite> commands of LaTeX. As with
-documents, these can be appended to. A <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">Section</span></code></a> can
-further include a <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Subsection" title="pylatex.section.Subsection"><code class="xref py py-class docutils literal"><span class="pre">Subsection</span></code></a> or a
-<a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Subsubsection" title="pylatex.section.Subsubsection"><code class="xref py py-class docutils literal"><span class="pre">Subsubsection</span></code></a> object.</p>
+<p>A <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a> is an object that groups other LaTeX classes. Containers
+function like lists; they can be indexed and appended to.</p>
+<p>One of the most important container classes is the <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> class.
+Documents create a full LaTeX document that can create a PDF file with
+<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf" title="pylatex.document.Document.generate_pdf"><code class="xref py py-obj docutils literal"><span class="pre">generate_pdf</span></code></a> . Unless you are only generating LaTeX snippets, you will
+likely want to enclose your code inside a Document.</p>
+<p>Additionally, a number of <a class="reference internal" href="pylatex/pylatex.section.html#module-pylatex.section" title="pylatex.section"><code class="xref py py-obj docutils literal"><span class="pre">section</span></code></a> containers are available, which
+correspond to the standard <code class="docutils literal"><span class="pre">\section</span></code> commands of LaTeX. As with documents,
+these can be appended to. A <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-obj docutils literal"><span class="pre">Section</span></code></a> can further include a <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Subsection" title="pylatex.section.Subsection"><code class="xref py py-obj docutils literal"><span class="pre">Subsection</span></code></a> or
+a <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Subsubsection" title="pylatex.section.Subsubsection"><code class="xref py py-obj docutils literal"><span class="pre">Subsubsection</span></code></a> object.</p>
 </div>
 <div class="section" id="tables-images-math-etc">
 <h3>Tables, Images, Math, etc.<a class="headerlink" href="#tables-images-math-etc" title="Permalink to this headline">¶</a></h3>
@@ -241,20 +237,18 @@ information on a specific environment.</p>
 <div class="section" id="commands-options-and-arguments">
 <h3>Commands, Options, and Arguments<a class="headerlink" href="#commands-options-and-arguments" title="Permalink to this headline">¶</a></h3>
 <p>Although PyLaTeX has implemented many useful commands, it is easy to create a
-custom command with the <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">Command</span></code></a>
-class.  Commands can be supplied with <cite>{}</cite> arguments or <cite>[]</cite> options, with
-either a single option as a string, or multiple options in a list.</p>
-<p>Additionally, Options and Arguments can be placed in an
-<a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-class docutils literal"><span class="pre">Options</span></code></a> object or a
-<a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-class docutils literal"><span class="pre">Arguments</span></code></a> object.</p>
+custom command with the <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a> class.  Commands can be supplied with
+<code class="docutils literal"><span class="pre">{}</span></code> arguments or <code class="docutils literal"><span class="pre">[]</span></code> options, with either a single option as a string, or
+multiple options in a list.</p>
+<p>Additionally, Options and Arguments can be placed in an <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a> object or a
+<a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a> object.</p>
 </div>
 <div class="section" id="formatting-strings">
 <h3>Formatting Strings<a class="headerlink" href="#formatting-strings" title="Permalink to this headline">¶</a></h3>
-<p>A number of functions are available in <a class="reference internal" href="pylatex/pylatex.utils.html#module-pylatex.utils" title="pylatex.utils"><code class="xref py py-mod docutils literal"><span class="pre">utils</span></code></a> that are
-helpful in formatting text. For example, <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.escape_latex" title="pylatex.utils.escape_latex"><code class="xref py py-func docutils literal"><span class="pre">escape_latex()</span></code></a>
-can be used on a string to escape special characters in LaTeX (e.g. $, #, %).
-And <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.bold" title="pylatex.utils.bold"><code class="xref py py-func docutils literal"><span class="pre">bold()</span></code></a> and <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.italic" title="pylatex.utils.italic"><code class="xref py py-func docutils literal"><span class="pre">italic()</span></code></a> format
-text appropriately.</p>
+<p>A number of functions are available in <a class="reference internal" href="pylatex/pylatex.utils.html#module-pylatex.utils" title="pylatex.utils"><code class="xref py py-obj docutils literal"><span class="pre">utils</span></code></a> that are helpful in formatting
+text. For example, <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.escape_latex" title="pylatex.utils.escape_latex"><code class="xref py py-obj docutils literal"><span class="pre">escape_latex</span></code></a> can be used on a string to escape special
+characters in LaTeX (e.g. $, #, %).  And <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.bold" title="pylatex.utils.bold"><code class="xref py py-obj docutils literal"><span class="pre">bold</span></code></a> and <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.italic" title="pylatex.utils.italic"><code class="xref py py-obj docutils literal"><span class="pre">italic</span></code></a> format text
+appropriately.</p>
 </div>
 </div>
 <div class="section" id="extending-pylatex">
@@ -262,11 +256,10 @@ text appropriately.</p>
 <p>Because of all the base classes supplied by PyLaTeX, it is very easy to extend
 its support in LaTeX features. Just pick one of the existing (base) classes
 that fits best and extend that with the needed functionality.</p>
-<p>All LaTeX objects come from
-<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">LatexObject</span></code></a> , but it may be more
-useful an object as one of its base subclasses, like an
-<a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">Environment</span></code></a> or a command. Consult
-the API documentation to see the variety of base classes available for use.</p>
+<p>All LaTeX objects come from <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> , but it may be more useful an
+object as one of its base subclasses, like an <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a> or a command.
+Consult the API documentation to see the variety of base classes available for
+use.</p>
 </div>
 <div class="section" id="plain-latex-strings">
 <h2>Plain LaTeX Strings<a class="headerlink" href="#plain-latex-strings" title="Permalink to this headline">¶</a></h2>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.pgfplots &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.tikz &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
-        <link rel="next" title="pylatex.quantities" href="pylatex.quantities.html"/>
-        <link rel="prev" title="pylatex.parameters" href="pylatex.parameters.html"/> 
+        <link rel="next" title="pylatex.utils" href="pylatex.utils.html"/>
+        <link rel="prev" title="pylatex.table" href="pylatex.table.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -183,11 +186,11 @@
       
           <li><a href="../api.html">API reference</a> &raquo;</li>
       
-    <li>pylatex.pgfplots</li>
+    <li>pylatex.tikz</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pylatex/pylatex.pgfplots.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pylatex/pylatex.tikz.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -196,51 +199,34 @@
 </div>
           <div role="main" class="document">
             
-  <span class="target" id="module-pylatex.pgfplots"></span><div class="section" id="pylatex-pgfplots">
-<h1>pylatex.pgfplots<a class="headerlink" href="#pylatex-pgfplots" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="module-pylatex.tikz"></span><div class="section" id="pylatex-tikz">
+<h1>pylatex.tikz<a class="headerlink" href="#pylatex-tikz" title="Permalink to this headline">¶</a></h1>
 <p>This module implements the classes used to show plots.</p>
 <dl class="class">
-<dt id="pylatex.pgfplots.TikZ">
-<em class="property">class </em><code class="descclassname">pylatex.pgfplots.</code><code class="descname">TikZ</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.pgfplots.TikZ" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.tikz.TikZ">
+<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>Basic TikZ container class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="pylatex.pgfplots.TikZ.container_name">
-<code class="descname">container_name</code><em class="property"> = 'tikzpicture'</em><a class="headerlink" href="#pylatex.pgfplots.TikZ.container_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.pgfplots.Axis">
-<em class="property">class </em><code class="descclassname">pylatex.pgfplots.</code><code class="descname">Axis</code><span class="sig-paren">(</span><em>data=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.pgfplots.Axis" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.tikz.Axis">
+<em class="property">class </em><code class="descname">Axis</code><span class="sig-paren">(</span><em>data=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.tikz.Axis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>PGFPlots axis container class, this contains plots.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> (str, list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to format the axis environment.</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="class">
-<dt id="pylatex.pgfplots.Plot">
-<em class="property">class </em><code class="descclassname">pylatex.pgfplots.</code><code class="descname">Plot</code><span class="sig-paren">(</span><em>name=None</em>, <em>func=None</em>, <em>coordinates=None</em>, <em>error_bar=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.pgfplots.Plot" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.tikz.Plot">
+<em class="property">class </em><code class="descname">Plot</code><span class="sig-paren">(</span><em>name=None</em>, <em>func=None</em>, <em>coordinates=None</em>, <em>error_bar=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.tikz.Plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
 <p>A class representing a PGFPlot.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -248,36 +234,15 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>coordinates</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Name of the plot.</li>
+<li><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; A function that should be plotted.</li>
+<li><strong>coordinates</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; A list of exact coordinates tat should be plotted.</li>
+<li><strong>options</strong> (str, list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; </li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>TODO:</p>
-<dl class="docutils">
-<dt>options type can also be list or</dt>
-<dd><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-class docutils literal"><span class="pre">Options</span></code></a> instance</dd>
-</dl>
-<dl class="method">
-<dt id="pylatex.pgfplots.Plot.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.pgfplots.Plot.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the plot as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -288,10 +253,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pylatex.quantities.html" class="btn btn-neutral float-right" title="pylatex.quantities" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pylatex.utils.html" class="btn btn-neutral float-right" title="pylatex.utils" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.parameters.html" class="btn btn-neutral" title="pylatex.parameters" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.table.html" class="btn btn-neutral" title="pylatex.table" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -201,23 +204,28 @@
 <p>This module implements the base LaTeX object.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.latex_object.LatexObject">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.latex_object.</code><code class="descname">LatexObject</code><span class="sig-paren">(</span><em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LatexObject</code><span class="sig-paren">(</span><em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.4/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>The class that every other LaTeX class is a subclass of.</p>
 <p>This class implements the main methods that every LaTeX object needs. For
 conversion to LaTeX formatted strings it implements the dumps, dump and
 generate_tex methods. It also provides the methods that can be used to
-represent the packages needed.</p>
+represent the packages required by the LatexObject.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>packages</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a> of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">Package</span></code></a>
-instances) &#8211; <p>:</p>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>packages</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a> of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; Packages that are required by this LaTeX class.</td>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.base_classes.latex_object.LatexObject.latex_name">
+<code class="descname">latex_name</code><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.latex_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the class used in LaTeX.</p>
+<p>It can be <a class="reference external" href="https://docs.python.org/3.4/library/constants.html#None" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> when the class doesn&#8217;t have a name.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.dumps">
 <code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps" title="Permalink to this definition">¶</a></dt>
@@ -248,7 +256,7 @@ class.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; the name of the file (without .tex)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The name of the file (without .tex)</td>
 </tr>
 </tbody>
 </table>
@@ -264,7 +272,7 @@ class.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)">list</a></td>
 </tr>
 </tbody>
 </table>

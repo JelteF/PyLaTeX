@@ -33,7 +33,7 @@
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="How to contribute" href="../contributing.html"/>
-        <link rel="prev" title="pylatex.table" href="pylatex.table.html"/> 
+        <link rel="prev" title="pylatex.tikz" href="pylatex.tikz.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -201,33 +204,38 @@
 <p>This module implements some simple utility functions.</p>
 <dl class="function">
 <dt id="pylatex.utils.escape_latex">
-<code class="descclassname">pylatex.utils.</code><code class="descname">escape_latex</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.escape_latex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">escape_latex</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.escape_latex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escape characters that are special in latex.</p>
-<dl class="docutils">
-<dt>Sources:</dt>
-<dd><ul class="first last simple">
-<li><a class="reference external" href="http://tex.stackexchange.com/a/34586/43228">http://tex.stackexchange.com/a/34586/43228</a></li>
-<li><a class="reference external" href="http://stackoverflow.com/a/16264094/2570866">http://stackoverflow.com/a/16264094/2570866</a></li>
-</ul>
-</dd>
-</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be escaped.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The string, with special characters in latex escaped.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">escape_latex</span><span class="p">(</span><span class="s">&quot;Total cost: $30,000&quot;</span><span class="p">)</span>
+<span class="go">&#39;Total cost: \$30,000&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">escape_latex</span><span class="p">(</span><span class="s">&quot;Issue #5 occurs in 30</span><span class="si">% o</span><span class="s">f all cases&quot;</span><span class="p">)</span>
+<span class="go">&#39;Issue \#5 occurs in 30\% of all cases&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">escape_latex</span><span class="p">(</span><span class="s">&quot;Total cost: $30,000&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://tex.stackexchange.com/a/34586/43228">http://tex.stackexchange.com/a/34586/43228</a></li>
+<li><a class="reference external" href="http://stackoverflow.com/a/16264094/2570866">http://stackoverflow.com/a/16264094/2570866</a></li>
+</ul>
 </dd></dl>
 
 <dl class="function">
 <dt id="pylatex.utils.fix_filename">
-<code class="descclassname">pylatex.utils.</code><code class="descname">fix_filename</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.fix_filename" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fix_filename</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.fix_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fix filenames for use in LaTeX.</p>
 <p>Latex has problems if there are one or more points in the filename, thus
 &#8216;abc.def.jpg&#8217; will be changed to &#8216;{abc.def}.jpg&#8217;</p>
@@ -235,34 +243,43 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The filen name to be changed.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The new filename.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fix_filename</span><span class="p">(</span><span class="s">&quot;foo.bar.pdf&quot;</span><span class="p">)</span>
+<span class="go">&#39;{foo.bar}.pdf&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fix_filename</span><span class="p">(</span><span class="s">&quot;/etc/local/foo.bar.pdf&quot;</span><span class="p">)</span>
+<span class="go">&#39;/etc/local/{foo.bar}.pdf&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fix_filename</span><span class="p">(</span><span class="s">&quot;/etc/local/foo.bar.baz/document.pdf&quot;</span><span class="p">)</span>
+<span class="go">&#39;/etc/local/foo.bar.baz/document.pdf&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pylatex.utils.dumps_list">
-<code class="descclassname">pylatex.utils.</code><code class="descname">dumps_list</code><span class="sig-paren">(</span><em>l</em>, <em>escape=False</em>, <em>token='\n'</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.dumps_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dumps_list</code><span class="sig-paren">(</span><em>l</em>, <em>escape=False</em>, <em>token='\n'</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.dumps_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try to generate a LaTeX string of a list that can contain anything.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>l</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; List of things that should be dumped</li>
-<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Do the list entries need to be escaped</li>
-<li><strong>token</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string that is added between the entries of the list</li>
+<li><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; A list of objects to be converted into a single string.</li>
+<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Whether to escape special LaTeX characters in converted text.</li>
+<li><strong>token</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The token (default is a newline) to separate objects in the list.</li>
 <li><strong>mapper</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#callable" title="(in Python v3.4)"><em>callable</em></a>) &#8211; A function that should be called on all entries of the list after
 converting them to a string, for instance bold</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The string representation of l</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A single LaTeX string.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></p>
@@ -270,65 +287,91 @@ converting them to a string, for instance bold</li>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dumps_list</span><span class="p">([</span><span class="s">r&quot;\textbf{Test}&quot;</span><span class="p">,</span> <span class="s">r&quot;\nth{4}&quot;</span><span class="p">])</span>
+<span class="go">&#39;\\textbf{Test}\n\\nth{4}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dumps_list</span><span class="p">([</span><span class="s">r&quot;\textbf{Test}&quot;</span><span class="p">,</span> <span class="s">r&quot;\nth{4}&quot;</span><span class="p">]))</span>
+<span class="go">\textbf{Test}</span>
+<span class="go">\nth{4}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pylatex</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">dumps_list</span><span class="p">([</span><span class="s">&quot;There are&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&quot;lights!&quot;</span><span class="p">]))</span>
+<span class="go">There are</span>
+<span class="go">4</span>
+<span class="go">lights!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dumps_list</span><span class="p">([</span><span class="s">&quot;$100%&quot;</span><span class="p">,</span> <span class="s">&quot;True&quot;</span><span class="p">],</span> <span class="n">escape</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">\$100\%</span>
+<span class="go">True</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pylatex.utils.bold">
-<code class="descclassname">pylatex.utils.</code><code class="descname">bold</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.bold" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the string bold.</p>
-<p>Source: <a class="reference external" href="http://stackoverflow.com/a/16264094/2570866">http://stackoverflow.com/a/16264094/2570866</a></p>
-<blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">param s:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">type s:</th><td class="field-body">str</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">return:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">rtype:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-</dd></dl>
-
-<dl class="function">
-<dt id="pylatex.utils.italic">
-<code class="descclassname">pylatex.utils.</code><code class="descname">italic</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.italic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the string italicized.</p>
-<p>Source: <a class="reference external" href="http://stackoverflow.com/a/16264094/2570866">http://stackoverflow.com/a/16264094/2570866</a></p>
+<code class="descname">bold</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.bold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a string appear bold in LaTeX formatting.</p>
+<p>bold() wraps a given string in the LaTeX command textbf{}.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The formatted string.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bold</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="go">&#39;\\textbf{hello}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">\textbf{hello}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pylatex.utils.italic">
+<code class="descname">italic</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.italic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a string appear italicized in LaTeX formatting.</p>
+<p>italic() wraps a given string in the LaTeX command textit{}.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The formatted string.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">italic</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="go">&#39;\\textit{hello}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">italic</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="go">\textit{hello}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pylatex.utils.verbatim">
-<code class="descclassname">pylatex.utils.</code><code class="descname">verbatim</code><span class="sig-paren">(</span><em>s</em>, <em>delimiter='|'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.verbatim" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the string verbatim.</p>
+<code class="descname">verbatim</code><span class="sig-paren">(</span><em>s</em>, <em>delimiter='|'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.verbatim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make the string verbatim.</p>
+<p>Wraps the given string in a verb LaTeX command.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>delimiter</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
+<li><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</li>
+<li><strong>delimiter</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; How to designate the verbatim text (default is a pipe | )</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The formatted string.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></p>
@@ -336,18 +379,45 @@ converting them to a string, for instance bold</li>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">verbatim</span><span class="p">(</span><span class="s">r&quot;\renewcommand{}&quot;</span><span class="p">)</span>
+<span class="go">&#39;\\verb|\\renewcommand{}|&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">verbatim</span><span class="p">(</span><span class="s">r&quot;\renewcommand{}&quot;</span><span class="p">))</span>
+<span class="go">\verb|\renewcommand{}|</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">verbatim</span><span class="p">(</span><span class="s">&#39;pi|pe&#39;</span><span class="p">,</span> <span class="s">&#39;!&#39;</span><span class="p">))</span>
+<span class="go">\verb!pi|pe!</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pylatex.utils.make_temp_dir">
-<code class="descclassname">pylatex.utils.</code><code class="descname">make_temp_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.make_temp_dir" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create the tmp directory if it doesn&#8217;t exist.</p>
+<code class="descname">make_temp_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.make_temp_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a temporary directory if it doesn&#8217;t exist.</p>
+<p>Directories created by this functionn follow the format specified
+by <code class="docutils literal"><span class="pre">_tmp_path</span></code> and are a pylatex subdirectory within
+a standard <code class="docutils literal"><span class="pre">tempfile</span></code> tempdir.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The absolute filepath to the created temporary directory.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">make_temp_dir</span><span class="p">()</span>
+<span class="go">&#39;/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="pylatex.utils.rm_temp_dir">
-<code class="descclassname">pylatex.utils.</code><code class="descname">rm_temp_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.rm_temp_dir" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove the tmp directory.</p>
+<code class="descname">rm_temp_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.rm_temp_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the temporary directory specified in <code class="docutils literal"><span class="pre">_tmp_path</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -361,7 +431,7 @@ converting them to a string, for instance bold</li>
         <a href="../contributing.html" class="btn btn-neutral float-right" title="How to contribute" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.table.html" class="btn btn-neutral" title="pylatex.table" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.tikz.html" class="btn btn-neutral" title="pylatex.tikz" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -201,23 +204,59 @@
 <p>This module implements the section type classes.</p>
 <dl class="class">
 <dt id="pylatex.section.Section">
-<em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">Section</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Section" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Section</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase" title="pylatex.base_classes.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.section.SectionBase</span></code></a></p>
 <p>A class that represents a section.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.section.Subsection">
-<em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">Subsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Subsection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Subsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Subsection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase" title="pylatex.base_classes.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.section.SectionBase</span></code></a></p>
 <p>A class that represents a subsection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.section.Subsubsection">
-<em class="property">class </em><code class="descclassname">pylatex.section.</code><code class="descname">Subsubsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Subsubsection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Subsubsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.section.Subsubsection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.section.html#pylatex.base_classes.section.SectionBase" title="pylatex.base_classes.section.SectionBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.section.SectionBase</span></code></a></p>
 <p>A class that represents a subsubsection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

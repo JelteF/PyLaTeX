@@ -143,20 +143,23 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -201,20 +204,21 @@
 <p>This module implements LaTeX base classes that can be subclassed.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.containers.Container">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.containers.</code><code class="descname">Container</code><span class="sig-paren">(</span><em>data=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Container</code><span class="sig-paren">(</span><em>data=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a>, <a class="reference external" href="https://docs.python.org/3.4/library/collections.html#collections.UserList" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">collections.UserList</span></code></a></p>
 <p>A base class that groups multiple LaTeX classes.</p>
-<p>This class should be subclassed when a LaTeX class has content that is
-variable of variable length. It subclasses UserList, so it holds a list
-of elements that can simply be accessed by using normal list functionality,
-like indexing or appending.</p>
+<p>This class should be subclassed when a LaTeX class has content that is of
+variable length. It subclasses UserList, so it holds a list of elements
+that can simply be accessed by using normal list functionality, like
+indexing or appending.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>packages</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-class docutils literal"><span class="pre">pylatex.package.Package</span></code></a> instances</li>
+<li><strong>data</strong> (list, <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> or something that can be converted to a ) &#8211; string
+The content with which the container is initialized</li>
+<li><strong>packages</strong> (list of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -228,25 +232,11 @@ like indexing or appending.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> &#8211; Arguments that can be passed to <a class="reference internal" href="pylatex.utils.html#pylatex.utils.dumps_list" title="pylatex.utils.dumps_list"><code class="xref py py-obj docutils literal"><span class="pre">dumps_list</span></code></a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A LaTeX string representing the container</td>
 </tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.containers.Container.dumps_packages">
-<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps_packages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the packages needed as a string in LaTeX syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list">list</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/string.html#module-string" title="(in Python v3.4)">string</a></td>
 </tr>
 </tbody>
 </table>
@@ -260,7 +250,7 @@ like indexing or appending.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>child</strong> &#8211; An object to be added to the current container</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>child</strong> (<a class="reference internal" href="#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a>) &#8211; An object to be added to the current container</td>
 </tr>
 </tbody>
 </table>
@@ -270,7 +260,7 @@ like indexing or appending.</p>
 
 <dl class="class">
 <dt id="pylatex.base_classes.containers.Environment">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.containers.</code><code class="descname">Environment</code><span class="sig-paren">(</span><em>options=None</em>, <em>arguments=None</em>, <em>seperate_paragraph=False</em>, <em>begin_paragraph=False</em>, <em>end_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Environment</code><span class="sig-paren">(</span><em>options=None</em>, <em>arguments=None</em>, <em>begin_paragraph=False</em>, <em>end_paragraph=False</em>, <em>separate_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A base class for LaTeX environments.</p>
 <p>This class implements the basics of a LaTeX environment. A LaTeX
@@ -288,25 +278,42 @@ setting the environment_name class variable when declaring the class.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>options</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-class docutils literal"><span class="pre">Options</span></code></a> instance) &#8211; </li>
-<li><strong>arguments</strong> &#8211; </li>
+<li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>begin_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Start a new paragraph before this environment.</li>
+<li><strong>end_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Start a new paragraph after this environment.</li>
+<li><strong>separate_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Same as enabling <code class="docutils literal"><span class="pre">begin_paragraph</span></code> and <code class="docutils literal"><span class="pre">end_paragraph</span></code>, so
+effectively placing this element in its own paragraph.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pylatex.base_classes.containers.Environment.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represent the named container as a string in LaTeX syntax.</p>
+<dt id="pylatex.base_classes.containers.Environment.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a LaTeX object to current container, context-manager style.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>child</strong> (<a class="reference internal" href="#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a>) &#8211; An object to be added to the current container</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.containers.Environment.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the environment as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A LaTeX string representing the environment.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/string.html#module-string" title="(in Python v3.4)">string</a></td>
 </tr>
 </tbody>
 </table>

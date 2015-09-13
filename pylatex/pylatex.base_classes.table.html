@@ -143,20 +143,23 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.graphics.html">pylatex.graphics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.pgfplots.html">pylatex.pgfplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -199,27 +202,9 @@
   <span class="target" id="module-pylatex.base_classes.table"></span><div class="section" id="pylatex-base-classes-table">
 <h1>pylatex.base_classes.table<a class="headerlink" href="#pylatex-base-classes-table" title="Permalink to this headline">¶</a></h1>
 <p>This module implements the base class for table classes.</p>
-<dl class="function">
-<dt id="pylatex.base_classes.table.get_table_width">
-<code class="descclassname">pylatex.base_classes.table.</code><code class="descname">get_table_width</code><span class="sig-paren">(</span><em>table_spec</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.get_table_width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the width of a table based on its spec.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_spec</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)">int</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="class">
 <dt id="pylatex.base_classes.table.TabularBase">
-<em class="property">class </em><code class="descclassname">pylatex.base_classes.table.</code><code class="descname">TabularBase</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">TabularBase</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that is used as a base for all table classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -227,14 +212,18 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>table_spec</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>data</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
-<li><strong>pos</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters.list" title="pylatex.base_classes.command.Parameters.list"><em>list</em></a>) &#8211; </li>
+<li><strong>table_spec</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; A string that represents how many columns a table should have and
+if it should contain vertical lines and where.</li>
+<li><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; </li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment">https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment</a></li>
+</ul>
 <dl class="method">
 <dt id="pylatex.base_classes.table.TabularBase.add_hline">
 <code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.add_hline" title="Permalink to this definition">¶</a></dt>
@@ -244,8 +233,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
-<li><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
+<li><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; At what cell the line should begin</li>
+<li><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; At what cell the line should end</li>
 </ul>
 </td>
 </tr>
@@ -268,51 +257,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>cells</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#tuple" title="(in Python v3.4)"><em>tuple</em></a>) &#8211; </li>
-<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.table.TabularBase.add_multicolumn">
-<code class="descname">add_multicolumn</code><span class="sig-paren">(</span><em>size</em>, <em>align</em>, <em>content</em>, <em>cells=None</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.add_multicolumn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a multicolumn of width size to the table, with cell content.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
-<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>content</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>cells</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#tuple" title="(in Python v3.4)"><em>tuple</em></a>) &#8211; </li>
-<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="pylatex.base_classes.table.TabularBase.add_multirow">
-<code class="descname">add_multirow</code><span class="sig-paren">(</span><em>size</em>, <em>align</em>, <em>content</em>, <em>hlines=True</em>, <em>cells=None</em>, <em>escape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.add_multirow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a multirow of height size to the table, with cell content.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; </li>
-<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>content</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; </li>
-<li><strong>hlines</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
-<li><strong>cells</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#tuple" title="(in Python v3.4)"><em>tuple</em></a>) &#8211; </li>
-<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; </li>
+<li><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#tuple" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</li>
+<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Escape special LaTeX syntax inside the cells.</li>
 </ul>
 </td>
 </tr>
