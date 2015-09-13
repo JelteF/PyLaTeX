@@ -6,28 +6,27 @@ This module implements the class that deals with tables.
     :license: MIT, see License for more details.
 """
 
-from .utils import dumps_list
 from .base_classes import Container, Command, TabularBase, Float
 from .package import Package
 
 
 class MultiColumn(Container):
 
-    """A class that represents a multicolumn inside of a table.
-
-    :param size:
-    :param align:
-    :param data:
-
-    :type size: int
-    :type align: str
-    :type data: str
-
-    TODO:
-    type of data can also be list
-    """
+    """A class that represents a multicolumn inside of a table."""
 
     def __init__(self, size, align='c', data=None):
+        """.
+
+        Args
+        ----
+        size: int
+            The amount of columns that this cell should fill.
+        align: str
+            How to align the content of the cell.
+        data: str, list or `~.LatexObject`
+            The content of the cell.
+        """
+
         self.size = size
         self.align = align
 
@@ -36,35 +35,34 @@ class MultiColumn(Container):
     def dumps(self):
         """Represent the multicolumn as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
         """
 
-        args = [self.size, self.align, dumps_list(self.data)]
+        args = [self.size, self.align, super().dumps()]
         string = Command(self.latex_name, args).dumps()
-
-        super().dumps()
 
         return string
 
 
 class MultiRow(Container):
 
-    """A class that represents a multirow in a table.
-
-    :param size:
-    :param width:
-    :param data:
-
-    :type size: int
-    :type width: str
-    :type data: str
-
-    TODO:
-    type of data can also be list
-    """
+    """A class that represents a multirow in a table."""
 
     def __init__(self, size, width='*', data=None):
+        """.
+
+        Args
+        ----
+        size: int
+            The amount of rows that this cell should fill.
+        align: str
+            How to align the content of the cell.
+        data: str, list or `~.LatexObject`
+            The content of the cell.
+        """
+
         self.size = size
         self.width = width
 
@@ -74,14 +72,13 @@ class MultiRow(Container):
     def dumps(self):
         """Represent the multirow as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
         """
 
-        args = [self.size, self.width, dumps_list(self.data)]
+        args = [self.size, self.width, super().dumps()]
         string = Command(self.latex_name, args).dumps()
-
-        super().dumps()
 
         return string
 
