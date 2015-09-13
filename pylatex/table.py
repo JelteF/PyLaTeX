@@ -40,9 +40,8 @@ class MultiColumn(Container):
         :rtype: str
         """
 
-        multicolumn_type = self.__class__.__name__.lower()
         args = [self.size, self.align, dumps_list(self.data)]
-        string = Command(multicolumn_type, args).dumps()
+        string = Command(self.latex_name, args).dumps()
 
         super().dumps()
 
@@ -79,9 +78,8 @@ class MultiRow(Container):
         :rtype: str
         """
 
-        multirow_type = self.__class__.__name__.lower()
         args = [self.size, self.width, dumps_list(self.data)]
-        string = Command(multirow_type, args).dumps()
+        string = Command(self.latex_name, args).dumps()
 
         super().dumps()
 
