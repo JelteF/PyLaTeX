@@ -39,8 +39,8 @@ _tmp_path = os.path.abspath(
 def escape_latex(s):
     r"""Escape characters that are special in latex.
 
-    Parameters
-    ----------
+    Args
+    ----
     s : str
         The string to be escaped.
 
@@ -59,7 +59,7 @@ def escape_latex(s):
 
 
     References
-    ----------
+    ----
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
 
@@ -87,8 +87,8 @@ def fix_filename(path):
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
 
-    Parameters
-    ----------
+    Args
+    ----
     filename : str
         The filen name to be changed.
 
@@ -124,8 +124,8 @@ def fix_filename(path):
 def dumps_list(l, escape=False, token='\n', mapper=None):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
-    Parameters
-    ----------
+    Args
+    ----
     l : list
         A list of objects to be converted into a single string.
     escape : bool
@@ -196,8 +196,8 @@ def bold(s):
 
     bold() wraps a given string in the LaTeX command \textbf{}.
 
-    Parameters
-    ----------
+    Args
+    ----
     s : str
         The string to be formatted.
 
@@ -224,8 +224,8 @@ def italic(s):
 
     italic() wraps a given string in the LaTeX command \textit{}.
 
-    Parameters
-    ----------
+    Args
+    ----
     s : str
         The string to be formatted.
 
@@ -251,8 +251,8 @@ def verbatim(s, delimiter='|'):
 
     Wraps the given string in a \verb LaTeX command.
 
-    Parameters
-    ----------
+    Args
+    ----
     s : str
         The string to be formatted.
     delimiter : str
