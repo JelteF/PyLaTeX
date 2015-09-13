@@ -127,10 +127,8 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
-    # TODO: Rename seperate_paragraph to separate_paragraph
-
     def __init__(self, options=None, arguments=None, begin_paragraph=False,
-                 end_paragraph=False, seperate_paragraph=False, **kwargs):
+                 end_paragraph=False, separate_paragraph=False, **kwargs):
         r""".
 
         Args
@@ -144,7 +142,7 @@ class Environment(Container):
             Start a new paragraph before this environment.
         end_paragraph: bool
             Start a new paragraph after this environment.
-        seperate_paragraph: bool
+        separate_paragraph: bool
             Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
             effectively placing this element in its own paragraph.
         """
@@ -168,7 +166,7 @@ class Environment(Container):
         else:
             self.options = Options()
 
-        self.seperate_paragraph = seperate_paragraph
+        self.separate_paragraph = separate_paragraph
         self.begin_paragraph = begin_paragraph
         self.end_paragraph = end_paragraph
 
@@ -185,7 +183,7 @@ class Environment(Container):
 
         string = ''
 
-        if self.seperate_paragraph or self.begin_paragraph:
+        if self.separate_paragraph or self.begin_paragraph:
             string += '\n\n'
 
         # TODO: Use the Command class for this
@@ -201,7 +199,7 @@ class Environment(Container):
 
         string += '\n' + r'\end{' + self.container_name + '}'
 
-        if self.seperate_paragraph or self.end_paragraph:
+        if self.separate_paragraph or self.end_paragraph:
             string += '\n\n'
 
         return string

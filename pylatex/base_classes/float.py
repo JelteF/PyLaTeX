@@ -13,7 +13,7 @@ class Float(Environment):
 
     """A class that represents a floating environment."""
 
-    def __init__(self, position=None, seperate_paragraph=True, **kwargs):
+    def __init__(self, position=None, separate_paragraph=True, **kwargs):
         """.
 
         Args
@@ -21,7 +21,7 @@ class Float(Environment):
         position: str
             Define the positioning of a floating environment, for instance
             ``'h'``. See the references for more information.
-        seperate_paragraph: bool
+        separate_paragraph: bool
             By default floats are positioned inside a separate paragraph.
             Setting this to option to `False` will change that.
 
@@ -31,7 +31,7 @@ class Float(Environment):
         """
 
         super().__init__(options=position,
-                         seperate_paragraph=seperate_paragraph, **kwargs)
+                         separate_paragraph=separate_paragraph, **kwargs)
 
     def add_caption(self, caption):
         """Add a caption to the float.

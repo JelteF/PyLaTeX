@@ -99,7 +99,7 @@ class SubFigure(Figure):
 
     """A class that represents a subfigure from the subcaption package."""
 
-    def __init__(self, width=r'0.45\linewidth', seperate_paragraph=False,
+    def __init__(self, width=r'0.45\linewidth', separate_paragraph=False,
                  *args, **kwargs):
         """.
 
@@ -108,7 +108,7 @@ class SubFigure(Figure):
         width: str
             Width of the subfigure itself. It needs a width because it is
             inside another figure.
-        seperate_paragraph: bool
+        separate_paragraph: bool
             By default a subfigure is not on its own paragraph since that looks
             weird inside another figure.
 
@@ -118,7 +118,7 @@ class SubFigure(Figure):
 
         super().__init__(packages=packages,
                          arguments=width,
-                         seperate_paragraph=seperate_paragraph,
+                         separate_paragraph=separate_paragraph,
                          *args, **kwargs)
 
     def add_image(self, filename, width=r'\linewidth',

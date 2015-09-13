@@ -51,6 +51,9 @@ been moved an renamed.
 
 - The pgfplots submodule has been renamed to tikz.
 
+- Rename the `seperate_paragraph` keyword argument to the correctly spelled
+    `separate_paragraph`.
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
