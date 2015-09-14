@@ -36,7 +36,7 @@ echo Removing file source/pylatex/pylatex.base_classes.rst
 rm source/pylatex/pylatex.base_classes.rst
 
 LATEX_DOCUMENT_HIDES='dump, dumps_packages, dump_packages, latex_name'
-LATEX_OBJECT_MEMBERS="generate_tex $LATEX_DOCUMENT_HIDES"
+LATEX_OBJECT_MEMBERS="generate_tex, $LATEX_DOCUMENT_HIDES"
 
 
 LATEX_CONTAINER_MEMBERS='create, dumps'
