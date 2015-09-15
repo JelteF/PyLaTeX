@@ -80,20 +80,20 @@ class Document(Container):
         str
         """
 
-        document = r'\begin{document}' + os.linesep
+        document = r'\begin{document}' + '\n'
 
         if self.maketitle:
-            document += r'\maketitle' + os.linesep
+            document += r'\maketitle' + '\n'
 
-        document += self.dumps_content() + os.linesep
+        document += self.dumps_content() + '\n'
 
-        document += r'\end{document}' + os.linesep
+        document += r'\end{document}' + '\n'
 
-        head = self.documentclass.dumps() + os.linesep
-        head += self.dumps_packages() + os.linesep
-        head += dumps_list(self.preamble) + os.linesep
+        head = self.documentclass.dumps() + '\n'
+        head += self.dumps_packages() + '\n'
+        head += dumps_list(self.preamble) + '\n'
 
-        return head + os.linesep + document
+        return head + '\n' + document
 
     def generate_tex(self, filepath=''):
         """Generate a .tex file for the document.
