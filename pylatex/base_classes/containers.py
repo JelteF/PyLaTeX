@@ -63,8 +63,6 @@ class Container(LatexObject, UserList):
 
         # TODO: Propagate the kwargs for dumps in subclass dumps methods.
 
-        self._propagate_packages()
-
         return dumps_list(self, **kwargs)
 
     def _propagate_packages(self):
