@@ -14,40 +14,58 @@ from .latex_object import LatexObject
 
 class Command(LatexObject):
 
-    r"""
-    A class that represents a LaTeX command.
+    """A class that represents a LaTeX command."""
 
-    >>> Command('documentclass',
-    >>>         options=Options('12pt', 'a4paper', 'twoside'),
-    >>>         arguments='article').dumps()
-    '\\documentclass[12pt,a4paper,twoside]{article}'
-
-    """
-
-    def __init__(self, command, arguments=None, options=None, packages=None):
-        """.
+    def __init__(self, command, arguments=None, options=None,
+                 extra_arguments=None, packages=None):
+        r""".
 
         Args
         ----
         command: str
             Name of the command
         arguments: None, str, list or `~.Arguments`
-            Arguments of the command
+            The main arguments of the command.
         options: None, str, list or `~.Options`
-            Arguments of the command
+            Options of the command. These are placed in front of the arguments.
+        extra_arguments: None, str, list or `~.Arguments`
+            Extra arguments for the command. When these are supplied the
+            options will be placed before them instead of before the normal
+            arguments. This allows for a way of having one or more arguments
+            before the options.
         packages: list of `~.Package` instances
             A list of the packages that this command requires
+
+        Examples
+        --------
+        >>> Command('documentclass',
+        >>>         options=Options('12pt', 'a4paper', 'twoside'),
+        >>>         arguments='article').dumps()
+        '\\documentclass[12pt,a4paper,twoside]{article}'
+        >>> Command('com')
+        '\\com'
+        >>> Command('com', 'first')
+        '\\com{first}'
+        >>> Command('com', 'first', 'option')
+        '\\com[option]{first}'
+        >>> Command('com', 'first', 'option', 'second')
+        '\\com{first}[option]{second}'
+
         """
 
         self.command = command
 
         self._set_parameters(arguments, 'arguments')
         self._set_parameters(options, 'options')
+        if extra_arguments is None:
+            self.extra_arguments = None
+        else:
+            self._set_parameters(extra_arguments, 'extra_arguments')
 
         super().__init__(packages)
 
     def _set_parameters(self, parameters, argument_type):
-        parameter_cls = Arguments if argument_type == 'arguments' else Options
+        parameter_cls = Options if argument_type == 'options' else Arguments
 
         if parameters is None:
             parameters = parameter_cls()
@@ -64,7 +82,7 @@ class Command(LatexObject):
         tuple
         """
 
-        return self.command, self.arguments, self.options
+        return self.command, self.arguments, self.options, self.extra_arguments
 
     def __eq__(self, other):
         """Compare two commands.
@@ -106,9 +124,19 @@ class Command(LatexObject):
             The LaTeX formatted command
         """
 
-        return '\\{command}{options}{arguments}'.\
-            format(command=self.command, options=self.options.dumps(),
-                   arguments=self.arguments.dumps())
+        options = self.options.dumps()
+        arguments = self.arguments.dumps()
+
+        if self.extra_arguments is None:
+            return r'\{command}{options}{arguments}'\
+                .format(command=self.command, options=options,
+                        arguments=arguments)
+
+        extra_arguments = self.extra_arguments.dumps()
+
+        return r'\{command}{arguments}{options}{extra_arguments}'\
+            .format(command=self.command, arguments=arguments, options=options,
+                    extra_arguments=extra_arguments)
 
 
 class Parameters(LatexObject):

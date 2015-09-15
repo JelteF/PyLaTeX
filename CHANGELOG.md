@@ -91,6 +91,8 @@ been moved an renamed.
     tabular like objects.
 - A MatplotlibSubFigure class.
 
+- An `extra_arguments` argument to `Command`. See docs for description.
+
 ## [0.8.0] - 23-05-2015
 ### Added
 - List classes (enumerate, itemize, description)
