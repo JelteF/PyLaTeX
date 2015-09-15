@@ -9,12 +9,12 @@ This module implements the class that deals with the full document.
 import os
 import subprocess
 import errno
-from .base_classes import Container, Command
+from .base_classes import Environment, Command
 from .package import Package
 from .utils import dumps_list, rm_temp_dir
 
 
-class Document(Container):
+class Document(Environment):
 
     r"""
     A class that contains a full LaTeX document.
@@ -69,17 +69,11 @@ class Document(Container):
         str
         """
 
-        document = r'\begin{document}' + '\n'
-
-        document += self.dumps_content() + '\n'
-
-        document += r'\end{document}' + '\n'
-
         head = self.documentclass.dumps() + '\n'
         head += self.dumps_packages() + '\n'
         head += dumps_list(self.preamble) + '\n'
 
-        return head + '\n' + document
+        return head + '\n' + super().dumps()
 
     def generate_tex(self, filepath=''):
         """Generate a .tex file for the document.
@@ -159,8 +153,6 @@ class Document(Container):
         str
             The selected filepath
         """
-
-        # TODO: Make this method private
 
         if filepath == '':
             return self.default_filepath
