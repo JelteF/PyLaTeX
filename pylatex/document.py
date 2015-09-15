@@ -63,7 +63,7 @@ class Document(Environment):
 
         self.preamble = []
 
-        super().__init__(data, packages=packages)
+        super().__init__(data=data, packages=packages)
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.
