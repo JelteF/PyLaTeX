@@ -16,16 +16,18 @@ from .utils import dumps_list, rm_temp_dir
 
 class Document(Container):
 
-    """
+    r"""
     A class that contains a full LaTeX document.
 
     If needed, you can append stuff to the preamble or the packages.
+    For instance, if you need to use ``\maketitle`` you can add the title,
+    author and date commands to the preamble to make it work.
 
     """
 
     def __init__(self, default_filepath='default_filepath',
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 author='', title='', date='', maketitle=False, data=None):
+                 data=None):
         r""".
 
         Args
@@ -38,20 +40,11 @@ class Document(Container):
             The option for the fontenc package.
         inputenc: str
             The option for the inputenc package.
-        author: str
-            The author of the document.
-        title: str
-            The title of the document.
-        date: str
-            The date of the document.
-        maketitle: bool
-            Whether ``\maketitle`` command is activated or not.
         data: list
             Initial content of the document.
         """
 
         self.default_filepath = default_filepath
-        self.maketitle = maketitle
 
         if isinstance(documentclass, Command):
             self.documentclass = documentclass
@@ -66,10 +59,6 @@ class Document(Container):
 
         self.preamble = []
 
-        self.preamble.append(Command('title', title))
-        self.preamble.append(Command('author', author))
-        self.preamble.append(Command('date', date))
-
         super().__init__(data, packages=packages)
 
     def dumps(self):
@@ -81,9 +70,6 @@ class Document(Container):
         """
 
         document = r'\begin{document}' + '\n'
-
-        if self.maketitle:
-            document += r'\maketitle' + '\n'
 
         document += self.dumps_content() + '\n'
 

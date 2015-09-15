@@ -77,6 +77,11 @@ been moved an renamed.
 - Removed base keyword argument of the `Package` class. `Command` should be used
     when changing of the base is needed.
 
+- Removed the `title`, `author`, `date` and `maketitle` arguments from the
+    `Document` constructor. They were from a time when it was not possible to
+    change the preamble, which is now very easy. They are not so commonly used
+    that they should be part of the main `Document` object.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.

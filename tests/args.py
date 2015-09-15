@@ -27,11 +27,7 @@ def test_document():
         documentclass='article',
         fontenc='T1',
         inputenc='utf8',
-        author='',
-        title='',
-        date='',
         data=None,
-        maketitle=False
     )
 
     doc.append('Some text.')

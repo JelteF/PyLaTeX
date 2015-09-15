@@ -7,7 +7,7 @@ This example shows matplotlib functionality.
 """
 
 # begin-doc-include
-from pylatex import Document, Section, Subsection
+from pylatex import Document, Section, Subsection, Command
 from pylatex.utils import italic, escape_latex
 
 
@@ -33,8 +33,13 @@ if __name__ == '__main__':
     doc.generate_tex()
 
     # Document with `\maketitle` command activated
-    doc = Document(author='Author', date='01/01/01', title='Title',
-                   maketitle=True)
+    doc = Document()
+
+    doc.preamble.append(Command('title', 'Awesome Title'))
+    doc.preamble.append(Command('author', 'Anonymous author'))
+    doc.preamble.append(Command('date', r'\today'))
+    doc.append(r'\maketitle')
+
     fill_document(doc)
 
     doc.generate_pdf('basic_maketitle', clean=False)
