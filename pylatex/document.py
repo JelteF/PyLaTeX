@@ -27,7 +27,7 @@ class Document(Environment):
 
     def __init__(self, default_filepath='default_filepath',
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 data=None):
+                 lmodern=True, data=None):
         r""".
 
         Args
@@ -40,6 +40,9 @@ class Document(Environment):
             The option for the fontenc package.
         inputenc: str
             The option for the inputenc package.
+        lmodern: bool
+            Use the Latin Modern font. This is a font that contains more glyphs
+            than the standard LaTeX font.
         data: list
             Initial content of the document.
         """
@@ -54,7 +57,8 @@ class Document(Environment):
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
-        lmodern = Package('lmodern')
+        if lmodern:
+            lmodern = Package('lmodern')
         packages = [fontenc, inputenc, lmodern]
 
         self.preamble = []

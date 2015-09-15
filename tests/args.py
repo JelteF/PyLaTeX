@@ -27,6 +27,7 @@ def test_document():
         documentclass='article',
         fontenc='T1',
         inputenc='utf8',
+        lmodern=True,
         data=None,
     )
 
