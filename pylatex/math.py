@@ -6,7 +6,7 @@ This module implements the classes that deal with math.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import LatexObject, Command, Container
+from .base_classes import Command, Container, Environment
 from pylatex.package import Package
 
 
@@ -58,11 +58,9 @@ class VectorName(Command):
         super().__init__('mathbf', arguments=name)
 
 
-class Matrix(LatexObject):
+class Matrix(Environment):
 
     """A class representing a matrix."""
-
-    # TODO: Convert this to an environment
 
     def __init__(self, matrix, mtype='p', alignment=None):
         r""".
@@ -84,38 +82,30 @@ class Matrix(LatexObject):
         * https://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_and_arrays
         """
 
-        import numpy as np
-        self._np = np
+        import numpy  # noqa, Sanity check if numpy is installed
 
-        self.mtype = mtype
         self.matrix = matrix
-        self.alignment = alignment
 
-        super().__init__(packages=[Package('amsmath')])
+        self.latex_name = mtype + 'matrix'
+        if alignment is not None:
+            self.latex_name += '*'
 
-    def dumps(self):
-        """Return a string representin the matrix in LaTeX syntax.
+        super().__init__(packages=[Package('amsmath')], arguments=alignment)
+
+    def dumps_content(self):
+        """Return a string representing the matrix in LaTeX syntax.
 
         Returns
         -------
         str
         """
 
-        string = r'\begin{'
-        mtype = self.mtype + 'matrix'
+        import numpy as np
 
-        if self.alignment is not None:
-            mtype += '*'
-            alignment = '{' + self.alignment + '}'
-        else:
-            alignment = ''
-
-        string += mtype + '}' + alignment
-        string += '\n'
-
+        string = ''
         shape = self.matrix.shape
 
-        for (y, x), value in self._np.ndenumerate(self.matrix):
+        for (y, x), value in np.ndenumerate(self.matrix):
             if x:
                 string += '&'
             string += str(value)
@@ -125,8 +115,6 @@ class Matrix(LatexObject):
 
         string += '\n'
 
-        string += r'\end{' + mtype + '}'
-
-        super().dumps()
+        super().dumps_content()
 
         return string
