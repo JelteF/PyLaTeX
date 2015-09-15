@@ -9,7 +9,8 @@ This module implements LaTeX base classes that can be subclassed.
 from collections import UserList
 from pylatex.utils import dumps_list
 from contextlib import contextmanager
-from pylatex.base_classes import LatexObject
+from .latex_object import LatexObject
+from .command import Command, Arguments
 
 
 class Container(LatexObject, UserList):
@@ -145,21 +146,8 @@ class Environment(Container):
             effectively placing this element in its own paragraph.
         """
 
-        from pylatex.parameters import Arguments, Options
-
-        if isinstance(arguments, Arguments):
-            self.arguments = arguments
-        elif arguments is not None:
-            self.arguments = Arguments(arguments)
-        else:
-            self.arguments = Arguments()
-
-        if isinstance(options, Options):
-            self.options = options
-        elif options is not None:
-            self.options = Options(options)
-        else:
-            self.options = Options()
+        self.options = options
+        self.arguments = arguments
 
         self.separate_paragraph = separate_paragraph
         self.begin_paragraph = begin_paragraph
@@ -181,18 +169,20 @@ class Environment(Container):
         if self.separate_paragraph or self.begin_paragraph:
             string += '\n\n'
 
-        # TODO: Use the Command class for this
-        string += r'\begin{' + self.latex_name + '}'
+        # Something other than None needs to be used as extra argumets, that
+        # way the options end up behind the latex_name argument.
+        if self.arguments is None:
+            extra_arguments = Arguments()
+        else:
+            extra_arguments = self.arguments
 
-        string += self.options.dumps()
+        begin = Command('begin', self.latex_name, self.options,
+                        extra_arguments)
+        string += begin.dumps() + '\n'
 
-        string += self.arguments.dumps()
+        string += self.dumps_content() + '\n'
 
-        string += '\n'
-
-        string += self.dumps_content()
-
-        string += '\n' + r'\end{' + self.latex_name + '}'
+        string += Command('end', self.latex_name).dumps()
 
         if self.separate_paragraph or self.end_paragraph:
             string += '\n\n'
