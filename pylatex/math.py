@@ -38,8 +38,8 @@ class Math(Container):
         """
 
         if self.inline:
-            return '$' + super().dumps(token=' ') + '$'
-        return '$$' + super().dumps(token=' ') + '$$\n'
+            return '$' + self.dumps_content(token=' ') + '$'
+        return '$$' + self.dumps_content(token=' ') + '$$\n'
 
 
 class VectorName(Command):

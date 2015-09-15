@@ -39,7 +39,7 @@ LATEX_DOCUMENT_HIDES='dump, dumps_packages, dump_packages, latex_name'
 LATEX_OBJECT_MEMBERS="generate_tex, $LATEX_DOCUMENT_HIDES"
 
 
-LATEX_CONTAINER_MEMBERS='create, dumps'
+LATEX_CONTAINER_MEMBERS='create, dumps, dumps_content'
 
 
 USER_LIST_MEMBERS='append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort'

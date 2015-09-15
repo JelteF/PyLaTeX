@@ -46,7 +46,7 @@ class Container(LatexObject, UserList):
 
         super().__init__(packages=packages)
 
-    def dumps(self, **kwargs):
+    def dumps_content(self, **kwargs):
         r"""Represent the container as a string in LaTeX syntax.
 
         Args
@@ -174,7 +174,7 @@ class Environment(Container):
 
         Returns
         -------
-        string:
+        str
             A LaTeX string representing the environment.
         """
 
@@ -192,7 +192,7 @@ class Environment(Container):
 
         string += '\n'
 
-        string += super().dumps()
+        string += self.dumps_content()
 
         string += '\n' + r'\end{' + self.latex_name + '}'
 

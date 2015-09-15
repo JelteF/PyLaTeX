@@ -85,7 +85,7 @@ class Document(Container):
         if self.maketitle:
             document += r'\maketitle' + os.linesep
 
-        document += super().dumps() + os.linesep
+        document += self.dumps_content() + os.linesep
 
         document += r'\end{document}' + os.linesep
 

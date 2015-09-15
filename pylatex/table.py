@@ -40,7 +40,7 @@ class MultiColumn(Container):
         str
         """
 
-        args = [self.size, self.align, super().dumps()]
+        args = [self.size, self.align, self.dumps_content()]
         string = Command(self.latex_name, args).dumps()
 
         return string
@@ -77,7 +77,7 @@ class MultiRow(Container):
         str
         """
 
-        args = [self.size, self.width, super().dumps()]
+        args = [self.size, self.width, self.dumps_content()]
         string = Command(self.latex_name, args).dumps()
 
         return string

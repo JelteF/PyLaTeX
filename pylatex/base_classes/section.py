@@ -8,7 +8,6 @@ This module implements the class that deals with sections.
 
 
 from . import Container, Command
-from ..utils import dumps_list
 
 
 class SectionBase(Container):
@@ -40,6 +39,7 @@ class SectionBase(Container):
         str
 
         """
+        # TODO: Use latex_name
 
         if not self.numbering:
             num = '*'
@@ -48,8 +48,6 @@ class SectionBase(Container):
 
         section_type = self.__class__.__name__.lower()
         string = Command(section_type + num, self.title).dumps()
-        string += dumps_list(self)
-
-        super().dumps()
+        string += self.dumps_content()
 
         return string

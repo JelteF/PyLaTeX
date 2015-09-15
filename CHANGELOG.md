@@ -61,6 +61,11 @@ been moved an renamed.
 
 - Made `Document.select_filepath` private.
 
+- `Container` now has a `dumps_content` method, which dumps it content instead
+    of a dumps method. This allows to override just that method when subclassing
+    `Environment` so you can do dump in some special inside the environment,
+    while still keeping the `\begin` and `\end` stuff provided by `Environment`.
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
