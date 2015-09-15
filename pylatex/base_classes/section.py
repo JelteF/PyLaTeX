@@ -39,15 +39,13 @@ class SectionBase(Container):
         str
 
         """
-        # TODO: Use latex_name
 
         if not self.numbering:
             num = '*'
         else:
             num = ''
 
-        section_type = self.__class__.__name__.lower()
-        string = Command(section_type + num, self.title).dumps()
+        string = Command(self.latex_name + num, self.title).dumps()
         string += self.dumps_content()
 
         return string
