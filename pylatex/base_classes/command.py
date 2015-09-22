@@ -33,8 +33,6 @@ class Command(LatexObject):
             options will be placed before them instead of before the normal
             arguments. This allows for a way of having one or more arguments
             before the options.
-        packages: list of `~.Package` instances
-            A list of the packages that this command requires
 
         Examples
         --------
@@ -62,7 +60,10 @@ class Command(LatexObject):
         else:
             self._set_parameters(extra_arguments, 'extra_arguments')
 
-        super().__init__(packages)
+        if packages is not None:
+            self.packages = packages
+
+        super().__init__()
 
     def _set_parameters(self, parameters, argument_type):
         parameter_cls = Options if argument_type == 'options' else Arguments
@@ -165,7 +166,7 @@ class Parameters(LatexObject):
         self._positional_args = list(args)
         self._key_value_args = dict(kwargs)
 
-        super().__init__(packages=None)
+        super().__init__()
 
     def __key(self):
         """Generate a unique hashable key representing the parameter object.

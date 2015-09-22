@@ -8,7 +8,7 @@ This module implements the class that deals with graphics.
 
 import os.path
 
-from .utils import fix_filename, make_temp_dir, _merge_packages_into_kwargs
+from .utils import fix_filename, make_temp_dir
 from .base_classes import Command, Float
 from .package import Package
 import uuid
@@ -18,11 +18,7 @@ class Figure(Float):
 
     """A class that represents a Figure environment."""
 
-    def __init__(self, *args, **kwargs):
-        packages = [Package('graphicx')]
-        _merge_packages_into_kwargs(packages, kwargs)
-
-        super().__init__(*args, **kwargs)
+    packages = [Package('graphicx')]
 
     def add_image(self, filename, width=r'0.8\textwidth',
                   placement=r'\centering'):
@@ -99,6 +95,8 @@ class SubFigure(Figure):
 
     """A class that represents a subfigure from the subcaption package."""
 
+    packages = [Package('subcaption')]
+
     def __init__(self, width=r'0.45\linewidth', separate_paragraph=False,
                  *args, **kwargs):
         """.
@@ -114,10 +112,7 @@ class SubFigure(Figure):
 
         """
 
-        packages = [Package('subcaption')]
-
-        super().__init__(packages=packages,
-                         arguments=width,
+        super().__init__(arguments=width,
                          separate_paragraph=separate_paragraph,
                          *args, **kwargs)
 

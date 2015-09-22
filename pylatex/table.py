@@ -50,6 +50,8 @@ class MultiRow(Container):
 
     """A class that represents a multirow in a table."""
 
+    packages = [Package('multirow')]
+
     def __init__(self, size, width='*', data=None):
         """.
 
@@ -66,8 +68,7 @@ class MultiRow(Container):
         self.size = size
         self.width = width
 
-        packages = [Package('multirow')]
-        super().__init__(data, packages=packages)
+        super().__init__(data)
 
     def dumps(self):
         """Represent the multirow as a string in LaTeX syntax.
@@ -97,23 +98,16 @@ class Tabu(TabularBase):
 
     """A class that represents a tabu (more flexible table)."""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, packages=[Package('tabu')], **kwargs)
+    packages = [Package('tabu')]
 
 
 class LongTable(TabularBase):
 
     """A class that represents a longtable (multipage table)."""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, packages=[Package('longtable')], **kwargs)
+    packages = [Package('longtable')]
 
 
-class LongTabu(TabularBase):
+class LongTabu(LongTable, Tabu):
 
     """A class that represents a longtabu (more flexible multipage table)."""
-
-    def __init__(self, *args, **kwargs):
-        packages = [Package('tabu'), Package('longtable')]
-
-        super().__init__(*args, packages=packages, **kwargs)

@@ -24,7 +24,7 @@ class Container(LatexObject, UserList):
 
     """
 
-    def __init__(self, data=None, packages=None):
+    def __init__(self, data=None):
         r""".
 
         Args
@@ -32,7 +32,6 @@ class Container(LatexObject, UserList):
         data: list, `~.LatexObject` or something that can be converted to a \
                 string
             The content with which the container is initialized
-        packages: list of `~.Package` instances
         """
 
         if data is None:
@@ -45,7 +44,7 @@ class Container(LatexObject, UserList):
         self.data = data
         self.real_data = data  # Always the data of this instance
 
-        super().__init__(packages=packages)
+        super().__init__()
 
     def dumps_content(self, **kwargs):
         r"""Represent the container as a string in LaTeX syntax.
@@ -87,6 +86,7 @@ class Container(LatexObject, UserList):
 
         self._propagate_packages()
 
+        # TODO: Use super call here
         return dumps_list(self.packages)
 
     @contextmanager

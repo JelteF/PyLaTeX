@@ -62,6 +62,8 @@ class Matrix(Environment):
 
     """A class representing a matrix."""
 
+    packages = [Package('amsmath')]
+
     def __init__(self, matrix, mtype='p', alignment=None):
         r""".
 
@@ -90,7 +92,7 @@ class Matrix(Environment):
         if alignment is not None:
             self.latex_name += '*'
 
-        super().__init__(packages=[Package('amsmath')], arguments=alignment)
+        super().__init__(arguments=alignment)
 
     def dumps_content(self):
         """Return a string representing the matrix in LaTeX syntax.

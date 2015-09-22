@@ -59,11 +59,11 @@ class Document(Environment):
         inputenc = Package('inputenc', options=inputenc)
         if lmodern:
             lmodern = Package('lmodern')
-        packages = [fontenc, inputenc, lmodern]
+        self.packages |= [fontenc, inputenc, lmodern]
 
         self.preamble = []
 
-        super().__init__(data=data, packages=packages)
+        super().__init__(data=data)
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.

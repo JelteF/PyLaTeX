@@ -43,6 +43,8 @@ class Quantity(Command):
     :type fmtstr: callable
     """
 
+    packages = [Package('siunitx')]
+
     def __init__(self, quantity, format_cb=None):
         import numpy as np
 
@@ -52,5 +54,4 @@ class Quantity(Command):
         else:
             magnitude_str = format_cb(quantity.magnitude)
         unit_str = _dimensionality_to_siunitx(quantity.dimensionality)
-        super().__init__(command='SI', arguments=(magnitude_str, unit_str),
-                         packages=[Package('siunitx')])
+        super().__init__(command='SI', arguments=(magnitude_str, unit_str))

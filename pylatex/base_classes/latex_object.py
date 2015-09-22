@@ -11,7 +11,23 @@ from pylatex.utils import dumps_list
 from abc import abstractmethod, ABCMeta
 
 
-class LatexObject(metaclass=ABCMeta):
+class _CreatePackages(ABCMeta):
+    def __init__(cls, name, bases, d):  # noqa
+        packages = OrderedSet()
+
+        for b in bases:
+            if hasattr(b, 'packages'):
+                packages |= b.packages
+
+        if 'packages' in d:
+            packages |= d['packages']
+
+        cls.packages = packages
+
+        super().__init__(name, bases, d)
+
+
+class LatexObject(metaclass=_CreatePackages):
 
     """The class that every other LaTeX class is a subclass of.
 
@@ -23,20 +39,11 @@ class LatexObject(metaclass=ABCMeta):
 
     _latex_name = None
 
-    def __init__(self, packages=None):
-        """.
-
-        Args
-        ----
-        packages: :class:`list` of `~.Package` instances
-            Packages that are required by this LaTeX class.
-
-        """
-
-        if packages is None:
-            packages = []
-
-        self.packages = OrderedSet(packages)
+    def __init__(self):
+        # TODO: only create a copy of packages when it will
+        # Create a copy of the packages attribute, so changing it in an
+        # instance will not change the class default.
+        self.packages = self.packages.copy()
 
     @property
     def latex_name(self):

@@ -66,6 +66,10 @@ been moved an renamed.
     `Environment` so you can do dump in some special inside the environment,
     while still keeping the `\begin` and `\end` stuff provided by `Environment`.
 
+- When subclassing a class and special LaTeX packages are needed, you now have
+    to specify the packages class attribute instead of passing packages along
+    with the `__init__` method.
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are

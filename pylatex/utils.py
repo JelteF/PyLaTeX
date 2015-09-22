@@ -68,19 +68,6 @@ def escape_latex(s):
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
 
-def _merge_packages_into_kwargs(new_packages, kwargs):
-    """Merge packages into keyword arguments that were passed to __init__.
-
-    This is mostly useful when a class that adds packages itself can be
-    inheritted afterwards.
-    """
-
-    if 'packages' in kwargs and kwargs['packages'] is not None:
-        kwargs['packages'] = new_packages + kwargs['packages']
-    else:
-        kwargs['packages'] = new_packages
-
-
 def fix_filename(path):
     """Fix filenames for use in LaTeX.
 

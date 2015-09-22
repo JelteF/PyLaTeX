@@ -16,17 +16,14 @@ class TikZ(Environment):
     """Basic TikZ container class."""
 
     _latex_name = 'tikzpicture'
-
-    def __init__(self, **kwargs):
-
-        packages = [Package('tikz')]
-
-        super().__init__(packages=packages, *kwargs)
+    packages = [Package('tikz')]
 
 
 class Axis(Environment):
 
     """PGFPlots axis container class, this contains plots."""
+
+    packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
 
     def __init__(self, data=None, options=None):
         """.
@@ -36,15 +33,16 @@ class Axis(Environment):
         options: str, list or `~.Options`
             Options to format the axis environment.
         """
-        packages = [Package('pgfplots'), Command('pgfplotsset',
-                                                 'compat=newest')]
 
-        super().__init__(data=data, options=options, packages=packages)
+        # TODO: Move data behind options
+        super().__init__(data=data, options=options)
 
 
 class Plot(LatexObject):
 
     """A class representing a PGFPlot."""
+
+    packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
 
     def __init__(self, name=None, func=None, coordinates=None,
                  error_bar=None, options=None):
@@ -68,10 +66,7 @@ class Plot(LatexObject):
         self.error_bar = error_bar
         self.options = options
 
-        packages = [Package('pgfplots'), Command('pgfplotsset',
-                                                 'compat=newest')]
-
-        super().__init__(packages=packages)
+        super().__init__()
 
     def dumps(self):
         """Represent the plot as a string in LaTeX syntax.

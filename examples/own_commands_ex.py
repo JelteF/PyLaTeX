@@ -23,12 +23,7 @@ class ExampleEnvironment(Environment):
     """
 
     _latex_name = 'exampleEnvironment'
-
-    def __init__(self, options=None, arguments=None):
-        packages = [Package('mdframed')]
-
-        super().__init__(options=options, arguments=arguments,
-                         packages=packages)
+    packages = [Package('mdframed')]
 
 
 class ExampleCommand(Command):
