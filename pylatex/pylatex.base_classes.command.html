@@ -206,29 +206,42 @@
 to it.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.command.Command">
-<em class="property">class </em><code class="descname">Command</code><span class="sig-paren">(</span><em>command</em>, <em>arguments=None</em>, <em>options=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Command" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Command</code><span class="sig-paren">(</span><em>command</em>, <em>arguments=None</em>, <em>options=None</em>, <em>extra_arguments=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.command.Command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
 <p>A class that represents a LaTeX command.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;documentclass&#39;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>        <span class="n">options</span><span class="o">=</span><span class="n">Options</span><span class="p">(</span><span class="s">&#39;12pt&#39;</span><span class="p">,</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span> <span class="s">&#39;twoside&#39;</span><span class="p">),</span>
-<span class="gp">&gt;&gt;&gt; </span>        <span class="n">arguments</span><span class="o">=</span><span class="s">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
-<span class="go">&#39;\\documentclass[12pt,a4paper,twoside]{article}&#39;</span>
-</pre></div>
-</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Name of the command</li>
-<li><strong>arguments</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments of the command</li>
-<li><strong>options</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Arguments of the command</li>
+<li><strong>arguments</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; The main arguments of the command.</li>
+<li><strong>options</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options of the command. These are placed in front of the arguments.</li>
+<li><strong>extra_arguments</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Extra arguments for the command. When these are supplied the
+options will be placed before them instead of before the normal
+arguments. This allows for a way of having one or more arguments
+before the options.</li>
 <li><strong>packages</strong> (list of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; A list of the packages that this command requires</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;documentclass&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">options</span><span class="o">=</span><span class="n">Options</span><span class="p">(</span><span class="s">&#39;12pt&#39;</span><span class="p">,</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span> <span class="s">&#39;twoside&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">arguments</span><span class="o">=</span><span class="s">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;\\documentclass[12pt,a4paper,twoside]{article}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com{first}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;option&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com[option]{first}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;option&#39;</span><span class="p">,</span> <span class="s">&#39;second&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com{first}[option]{second}&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">

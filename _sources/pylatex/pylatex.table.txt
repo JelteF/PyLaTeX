@@ -2,4 +2,4 @@
     :members:
     :undoc-members:
     :show-inheritance:
-    :exclude-members: generate_tex, dump, dumps_packages, dump_packages, latex_name, append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort, create, dumps
+    :exclude-members: generate_tex, dump, dumps_packages, dump_packages, latex_name, append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort, create, dumps, dumps_content

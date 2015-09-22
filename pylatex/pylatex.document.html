@@ -204,10 +204,12 @@
 <p>This module implements the class that deals with the full document.</p>
 <dl class="class">
 <dt id="pylatex.document.Document">
-<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>author=''</em>, <em>title=''</em>, <em>date=''</em>, <em>maketitle=False</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
+<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>lmodern=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
-<p>If needed, you can append stuff to the preamble or the packages.</p>
+<p>If needed, you can append stuff to the preamble or the packages.
+For instance, if you need to use <code class="docutils literal"><span class="pre">\maketitle</span></code> you can add the title,
+author and date commands to the preamble to make it work.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -217,10 +219,8 @@
 <li><strong>documentclass</strong> (str or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a>) &#8211; The LaTeX class of the document.</li>
 <li><strong>fontenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The option for the fontenc package.</li>
 <li><strong>inputenc</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The option for the inputenc package.</li>
-<li><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The author of the document.</li>
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The title of the document.</li>
-<li><strong>date</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The date of the document.</li>
-<li><strong>maketitle</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Whether <code class="docutils literal"><span class="pre">\maketitle</span></code> command is activated or not.</li>
+<li><strong>lmodern</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Use the Latin Modern font. This is a font that contains more glyphs
+than the standard LaTeX font.</li>
 <li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; Initial content of the document.</li>
 </ul>
 </td>
@@ -286,6 +286,24 @@ default filepath attribute is used as the path.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>child</strong> (<a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a>) &#8211; An object to be added to the current container</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.document.Document.dumps_content">
+<code class="descname">dumps_content</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.document.Document.dumps_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the container as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> &#8211; Arguments that can be passed to <a class="reference internal" href="pylatex.utils.html#pylatex.utils.dumps_list" title="pylatex.utils.dumps_list"><code class="xref py py-obj docutils literal"><span class="pre">dumps_list</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A LaTeX string representing the container</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/string.html#module-string" title="(in Python v3.4)">string</a></td>
 </tr>
 </tbody>
 </table>

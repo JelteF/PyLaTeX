@@ -218,7 +218,7 @@
 
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Command</span>
 <span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span><span class="p">,</span> <span class="n">escape_latex</span>
 
 
@@ -244,8 +244,13 @@
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_tex</span><span class="p">()</span>
 
     <span class="c"># Document with `\maketitle` command activated</span>
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="s">&#39;Author&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s">&#39;01/01/01&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Title&#39;</span><span class="p">,</span>
-                   <span class="n">maketitle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
+
+    <span class="n">doc</span><span class="o">.</span><span class="n">preamble</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;Awesome Title&#39;</span><span class="p">))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">preamble</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;author&#39;</span><span class="p">,</span> <span class="s">&#39;Anonymous author&#39;</span><span class="p">))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">preamble</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;date&#39;</span><span class="p">,</span> <span class="s">r&#39;\today&#39;</span><span class="p">))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">r&#39;\maketitle&#39;</span><span class="p">)</span>
+
     <span class="n">fill_document</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
 
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;basic_maketitle&#39;</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>

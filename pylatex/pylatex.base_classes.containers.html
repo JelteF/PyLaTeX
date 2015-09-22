@@ -225,8 +225,8 @@ The content with which the container is initialized</li>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pylatex.base_classes.containers.Container.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps" title="Permalink to this definition">¶</a></dt>
+<dt id="pylatex.base_classes.containers.Container.dumps_content">
+<code class="descname">dumps_content</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps_content" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the container as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -254,6 +254,14 @@ The content with which the container is initialized</li>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.base_classes.containers.Container.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the class as a string in LaTeX syntax.</p>
+<p>This method should be implemented by any class that subclasses this
+class.</p>
 </dd></dl>
 
 </dd></dl>
@@ -304,6 +312,24 @@ effectively placing this element in its own paragraph.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="pylatex.base_classes.containers.Environment.dumps_content">
+<code class="descname">dumps_content</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the container as a string in LaTeX syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> &#8211; Arguments that can be passed to <a class="reference internal" href="pylatex.utils.html#pylatex.utils.dumps_list" title="pylatex.utils.dumps_list"><code class="xref py py-obj docutils literal"><span class="pre">dumps_list</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A LaTeX string representing the container</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/string.html#module-string" title="(in Python v3.4)">string</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pylatex.base_classes.containers.Environment.dumps">
 <code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the environment as a string in LaTeX syntax.</p>
@@ -313,7 +339,7 @@ effectively placing this element in its own paragraph.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A LaTeX string representing the environment.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/string.html#module-string" title="(in Python v3.4)">string</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
 </tr>
 </tbody>
 </table>
