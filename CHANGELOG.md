@@ -21,7 +21,8 @@ been moved an renamed.
 
 - The `Plt` class has been merged with the `Figure` class. Its `add_plot` method
     also doesn't take a plt argument anymore. The plt module is now imported
-    when the `add_plot` method is used.
+    when the `add_plot` method is used. This also allows for adding plots in
+    the `SubFigure` class.
 
 - Compiling is more secure now and it doesn't show output unless an error occurs
     or explicitly specified.
@@ -93,7 +94,6 @@ been moved an renamed.
     quantitities package. https://pythonhosted.org/quantities/
 - Allow supplying a mapper function to dumps\_list and the add\_row method for
     tabular like objects.
-- A MatplotlibSubFigure class.
 
 - An `extra_arguments` argument to `Command`. See docs for description.
 
