@@ -61,7 +61,7 @@ class Command(LatexObject):
             self._set_parameters(extra_arguments, 'extra_arguments')
 
         if packages is not None:
-            self.packages = packages
+            self.packages |= packages
 
         super().__init__()
 
