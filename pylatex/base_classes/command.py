@@ -33,6 +33,8 @@ class Command(LatexObject):
             options will be placed before them instead of before the normal
             arguments. This allows for a way of having one or more arguments
             before the options.
+        packages: list of `~.Package` instances
+            A list of the packages that this command requires
 
         Examples
         --------
