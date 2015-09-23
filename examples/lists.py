@@ -10,7 +10,8 @@ This example shows list functionality.
 # begin-doc-include
 # Test for list structures in PyLaTeX.
 # More info @ http://en.wikibooks.org/wiki/LaTeX/List_Structures
-from pylatex import Document, Section, Itemize, Enumerate, Description
+from pylatex import Document, Section, Itemize, Enumerate, Description, \
+    Command, NoEscape
 
 if __name__ == '__main__':
     doc = Document()
@@ -27,7 +28,8 @@ if __name__ == '__main__':
             itemize.add_item("the first item")
             itemize.add_item("the second item")
             itemize.add_item("the third etc")
-            itemize.append("\\ldots")  # you can append to existing items
+            # you can append to existing items
+            itemize.append(Command("ldots"))
 
     # create a numbered "enumerate" list like the below:
     # \begin{enumerate}
@@ -40,7 +42,7 @@ if __name__ == '__main__':
         with doc.create(Enumerate()) as enum:
             enum.add_item("the first item")
             enum.add_item("the second item")
-            enum.add_item("the third etc \\ldots")
+            enum.add_item(NoEscape("the third etc \\ldots"))
 
     # create a labelled "description" list like the below:
     # \begin{description}
@@ -53,6 +55,6 @@ if __name__ == '__main__':
         with doc.create(Description()) as desc:
             desc.add_item("First", "The first item")
             desc.add_item("Second", "The second item")
-            desc.add_item("Third", "The third etc \\ldots")
+            desc.add_item("Third", NoEscape("The third etc \\ldots"))
 
     doc.generate_pdf('lists')

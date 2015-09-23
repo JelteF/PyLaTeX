@@ -36,6 +36,23 @@ _tmp_path = os.path.abspath(
 )
 
 
+class NoEscape(str):
+
+    """
+    A simple string class that is not escaped.
+
+    When a `.NoEscape` string is added to another `.NoEscape` string it will
+    produce a `.NoEscape` string. If it is added to normal string it will
+    produce a normal string.
+    """
+
+    def __add__(self, right):
+        s = super().__add__(right)
+        if isinstance(right, NoEscape):
+            return NoEscape(s)
+        return s
+
+
 def escape_latex(s):
     r"""Escape characters that are special in latex.
 
@@ -64,6 +81,9 @@ def escape_latex(s):
         * http://stackoverflow.com/a/16264094/2570866
 
     """
+
+    if isinstance(s, NoEscape):
+        return s
 
     return ''.join(_latex_special_chars.get(c, c) for c in s)
 
@@ -108,7 +128,7 @@ def fix_filename(path):
     return '/'.join(dir_parts)
 
 
-def dumps_list(l, escape=False, token='\n', mapper=None):
+def dumps_list(l, escape=True, token='\n', mapper=None):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
@@ -147,7 +167,7 @@ def dumps_list(l, escape=False, token='\n', mapper=None):
     if mapper is not None:
         strings = (mapper(s) for s in strings)
 
-    return token.join(strings)
+    return NoEscape(token.join(strings))
 
 
 def _latex_item_to_string(item, escape=False):
@@ -168,15 +188,16 @@ def _latex_item_to_string(item, escape=False):
 
     if isinstance(item, pylatex.base_classes.LatexObject):
         return item.dumps()
-    else:
-        s = str(item)
-        if escape:
-            s = escape_latex(s)
+    elif not isinstance(item, str):
+        item = str(item)
 
-    return s
+    if escape:
+        item = escape_latex(item)
+
+    return item
 
 
-def bold(s):
+def bold(s, escape=True):
     r"""Make a string appear bold in LaTeX formatting.
 
     bold() wraps a given string in the LaTeX command \textbf{}.
@@ -185,6 +206,8 @@ def bold(s):
     ----
     s : str
         The string to be formatted.
+    escape: bool
+        If true the bold text will be escaped
 
     Returns
     -------
@@ -201,10 +224,13 @@ def bold(s):
 
     """
 
-    return r'\textbf{' + s + '}'
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\textbf{' + s + '}')
 
 
-def italic(s):
+def italic(s, escape=True):
     r"""Make a string appear italicized in LaTeX formatting.
 
     italic() wraps a given string in the LaTeX command \textit{}.
@@ -213,6 +239,8 @@ def italic(s):
     ----
     s : str
         The string to be formatted.
+    escape: bool
+        If true the italic text will be escaped
 
     Returns
     -------
@@ -227,8 +255,10 @@ def italic(s):
     \textit{hello}
 
     """
+    if escape:
+        s = escape_latex(s)
 
-    return r'\textit{' + s + '}'
+    return NoEscape(r'\textit{' + s + '}')
 
 
 def verbatim(s, delimiter='|'):
@@ -259,7 +289,7 @@ def verbatim(s, delimiter='|'):
 
     """
 
-    return r'\verb' + delimiter + s + delimiter
+    return NoEscape(r'\verb' + delimiter + s + delimiter)
 
 
 def make_temp_dir():

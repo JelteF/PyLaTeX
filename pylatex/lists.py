@@ -8,7 +8,7 @@ These lists are specifically enumerate, itemize and description.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment
+from .base_classes import Environment, Command
 
 
 class List(Environment):
@@ -34,7 +34,7 @@ class List(Environment):
         s: str or `~.LatexObject`
             The item itself.
         """
-        self.append(r'\item')
+        self.append(Command('item'))
         self.append(s)
 
 
@@ -62,5 +62,5 @@ class Description(List):
         s: str or `~.LatexObject`
             The item itself.
         """
-        self.append(r'\item[' + label + ']')
+        self.append(Command('item', options=label))
         self.append(s)

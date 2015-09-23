@@ -8,7 +8,7 @@ This module implements the class that deals with graphics.
 
 import os.path
 
-from .utils import fix_filename, make_temp_dir
+from .utils import fix_filename, make_temp_dir, NoEscape
 from .base_classes import Command, Float
 from .package import Package
 import uuid
@@ -21,7 +21,7 @@ class Figure(Float):
     packages = [Package('graphicx')]
 
     def add_image(self, filename, width=r'0.8\textwidth',
-                  placement=r'\centering'):
+                  placement=NoEscape(r'\centering')):
         """Add an image to the figure.
 
         Args

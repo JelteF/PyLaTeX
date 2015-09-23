@@ -10,6 +10,7 @@ to it.
 """
 
 from .latex_object import LatexObject
+from ..utils import dumps_list
 
 
 class CommandBase(LatexObject):
@@ -185,6 +186,8 @@ class Parameters(LatexObject):
     is only useful if a class like `~Options` or `~Arguments` is needed again.
     """
 
+    escape = False
+
     def __init__(self, *args, **kwargs):
         r""".
 
@@ -235,16 +238,16 @@ class Parameters(LatexObject):
 
         return hash(self.__key())
 
-    def _format_contents(self, prefix, separater, suffix):
+    def _format_contents(self, prefix, separator, suffix):
         """Format the parameters.
 
-        The formatting is dono using the three arguments suplied to this
+        The formatting is done using the three arguments suplied to this
         function.
 
         Arguments
         ---------
         prefix: str
-        separater: str
+        separator: str
         suffix: str
 
         Returns
@@ -257,7 +260,8 @@ class Parameters(LatexObject):
         if len(params) <= 0:
             return ''
 
-        string = prefix + separater.join(map(str, params)) + suffix
+        string = prefix + dumps_list(params, escape=self.escape,
+                                     token=separator) + suffix
 
         return string
 

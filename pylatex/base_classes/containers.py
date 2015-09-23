@@ -24,6 +24,8 @@ class Container(LatexObject, UserList):
 
     """
 
+    content_separator = '\n'
+
     def __init__(self, data=None):
         r""".
 
@@ -61,9 +63,8 @@ class Container(LatexObject, UserList):
             A LaTeX string representing the container
         """
 
-        # TODO: Propagate the kwargs for dumps in subclass dumps methods.
-
-        return dumps_list(self, **kwargs)
+        return dumps_list(self, escape=self.escape,
+                          token=self.content_separator, **kwargs)
 
     def _propagate_packages(self):
         """Make sure packages get propagated."""

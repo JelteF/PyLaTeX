@@ -7,7 +7,7 @@ This module implements the base class for table classes.
 """
 
 from . import LatexObject, Environment, Command
-from ..utils import dumps_list
+from ..utils import dumps_list, NoEscape
 
 
 from collections import Counter
@@ -74,7 +74,7 @@ class TabularBase(Environment):
         """
 
         if start is None and end is None:
-            self.append(r'\hline')
+            self.append(NoEscape(r'\hline'))
         else:
             if start is None:
                 start = 1
@@ -86,18 +86,19 @@ class TabularBase(Environment):
     def add_empty_row(self):
         """Add an empty row to the table."""
 
-        self.append((self.width - 1) * '&' + r'\\')
+        self.append(NoEscape((self.width - 1) * '&' + r'\\'))
 
-    def add_row(self, cells, escape=False, mapper=None):
+    def add_row(self, cells, escape=None, mapper=None):
         """Add a row of cells to the table.
 
         Args
         ----
         cells: iterable, such as a `list` or `tuple`
             Each element of the iterable will become a the content of cell.
-        escape: bool
-            Escape special LaTeX syntax inside the cells.
         """
+
+        if escape is None:
+            escape = self.escape
 
         # Propegate packages used in cells
         for c in cells:
@@ -106,4 +107,4 @@ class TabularBase(Environment):
                     self.packages.add(p)
 
         self.append(dumps_list(cells, escape=escape, token='&', mapper=mapper)
-                    + r'\\')
+                    + NoEscape(r'\\'))

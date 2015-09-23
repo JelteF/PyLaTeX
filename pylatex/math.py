@@ -14,6 +14,8 @@ class Math(Container):
 
     """A class representing a math environment."""
 
+    content_separator = ' '
+
     def __init__(self, data=None, inline=False):
         """.
 
@@ -38,8 +40,8 @@ class Math(Container):
         """
 
         if self.inline:
-            return '$' + self.dumps_content(token=' ') + '$'
-        return '$$' + self.dumps_content(token=' ') + '$$\n'
+            return '$' + self.dumps_content() + '$'
+        return '$$' + self.dumps_content() + '$$\n'
 
 
 class VectorName(Command):

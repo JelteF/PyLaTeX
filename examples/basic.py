@@ -8,7 +8,7 @@ This example shows matplotlib functionality.
 
 # begin-doc-include
 from pylatex import Document, Section, Subsection, Command
-from pylatex.utils import italic, escape_latex
+from pylatex.utils import italic
 
 
 def fill_document(doc):
@@ -18,10 +18,11 @@ def fill_document(doc):
     :type doc: :class:`pylatex.document.Document` instance
     """
     with doc.create(Section('A section')):
-        doc.append('Some regular text and some ' + italic('italic text. '))
+        doc.append('Some regular text and some ')
+        doc.append(italic('italic text. '))
 
         with doc.create(Subsection('A subsection')):
-            doc.append(escape_latex('Also some crazy characters: $&#{}'))
+            doc.append('Also some crazy characters: $&#{}')
 
 
 if __name__ == '__main__':

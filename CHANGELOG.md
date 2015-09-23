@@ -71,6 +71,9 @@ been moved an renamed.
     to specify the packages class attribute instead of passing packages along
     with the `__init__` method.
 
+- Content of subclasses of `Container` is now automatically escaped. Content of
+    `Arguments` or `Options` is not escaped by default.
+
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
@@ -99,6 +102,9 @@ been moved an renamed.
 
 - Add `CommandBase`, which can be easily subclassed for a command that is used
     more than once.
+
+- Add `NoEscape` string class, which can be used to make sure a raw LaTeX string
+    is not escaped.
 
 ## [0.8.0] - 23-05-2015
 ### Added

@@ -39,6 +39,8 @@ class LatexObject(metaclass=_CreatePackages):
 
     _latex_name = None
 
+    escape = True
+
     def __init__(self):
         # TODO: only create a copy of packages when it will
         # Create a copy of the packages attribute, so changing it in an

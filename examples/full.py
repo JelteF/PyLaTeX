@@ -11,7 +11,7 @@ import numpy as np
 
 from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
     Plot, Figure, Package, Matrix
-from pylatex.utils import italic, escape_latex
+from pylatex.utils import italic
 import os
 
 if __name__ == '__main__':
@@ -22,8 +22,9 @@ if __name__ == '__main__':
                                                      'lmargin=10cm']))
 
     with doc.create(Section('The simple stuff')):
-        doc.append('Some regular text and some ' + italic('italic text. '))
-        doc.append(escape_latex('\nAlso some crazy characters: $&#{}'))
+        doc.append('Some regular text and some')
+        doc.append(italic('italic text. '))
+        doc.append('\nAlso some crazy characters: $&#{}')
         with doc.create(Subsection('Math that is incorrect')):
             doc.append(Math(data=['2*3', '=', 9]))
 
