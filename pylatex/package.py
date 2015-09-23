@@ -6,12 +6,14 @@ This module implements the class that deals with packages.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Command
+from .base_classes import CommandBase
 
 
-class Package(Command):
+class Package(CommandBase):
 
     """A class that represents a package."""
+
+    _latex_name = 'usepackage'
 
     def __init__(self, name, options=None):
         """.
@@ -25,4 +27,4 @@ class Package(Command):
 
         """
 
-        super().__init__('usepackage', arguments=name, options=options)
+        super().__init__(arguments=name, options=options)

@@ -97,6 +97,9 @@ been moved an renamed.
 
 - An `extra_arguments` argument to `Command`. See docs for description.
 
+- Add `CommandBase`, which can be easily subclassed for a command that is used
+    more than once.
+
 ## [0.8.0] - 23-05-2015
 ### Added
 - List classes (enumerate, itemize, description)

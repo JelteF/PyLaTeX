@@ -14,6 +14,8 @@ class MultiColumn(Container):
 
     """A class that represents a multicolumn inside of a table."""
 
+    # TODO: Make this subclass CommandBase and Container
+
     def __init__(self, size, align='c', data=None):
         """.
 
@@ -49,6 +51,8 @@ class MultiColumn(Container):
 class MultiRow(Container):
 
     """A class that represents a multirow in a table."""
+
+    # TODO: Make this subclass CommandBase and Container
 
     packages = [Package('multirow')]
 

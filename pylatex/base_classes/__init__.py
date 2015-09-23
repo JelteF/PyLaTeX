@@ -2,7 +2,7 @@
 
 from .latex_object import LatexObject
 from .containers import Container, Environment
-from .command import Command, Options, Arguments
+from .command import CommandBase, Command, Options, Arguments
 from .table import TabularBase
 from .section import SectionBase
 from .float import Float

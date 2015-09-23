@@ -12,18 +12,21 @@ to it.
 from .latex_object import LatexObject
 
 
-class Command(LatexObject):
+class CommandBase(LatexObject):
 
-    """A class that represents a LaTeX command."""
+    """A class that represents a LaTeX command.
 
-    def __init__(self, command, arguments=None, options=None,
-                 extra_arguments=None, packages=None):
+    The name of this class (when lowercased) will be the name of this command.
+    To supply a different name set the ``_latex_name`` attribute.
+
+    """
+
+    def __init__(self, arguments=None, options=None,
+                 extra_arguments=None):
         r""".
 
         Args
         ----
-        command: str
-            Name of the command
         arguments: None, str, list or `~.Arguments`
             The main arguments of the command.
         options: None, str, list or `~.Options`
@@ -33,27 +36,8 @@ class Command(LatexObject):
             options will be placed before them instead of before the normal
             arguments. This allows for a way of having one or more arguments
             before the options.
-        packages: list of `~.Package` instances
-            A list of the packages that this command requires
-
-        Examples
-        --------
-        >>> Command('documentclass',
-        >>>         options=Options('12pt', 'a4paper', 'twoside'),
-        >>>         arguments='article').dumps()
-        '\\documentclass[12pt,a4paper,twoside]{article}'
-        >>> Command('com')
-        '\\com'
-        >>> Command('com', 'first')
-        '\\com{first}'
-        >>> Command('com', 'first', 'option')
-        '\\com[option]{first}'
-        >>> Command('com', 'first', 'option', 'second')
-        '\\com{first}[option]{second}'
 
         """
-
-        self.command = command
 
         self._set_parameters(arguments, 'arguments')
         self._set_parameters(options, 'options')
@@ -61,9 +45,6 @@ class Command(LatexObject):
             self.extra_arguments = None
         else:
             self._set_parameters(extra_arguments, 'extra_arguments')
-
-        if packages is not None:
-            self.packages |= packages
 
         super().__init__()
 
@@ -85,7 +66,8 @@ class Command(LatexObject):
         tuple
         """
 
-        return self.command, self.arguments, self.options, self.extra_arguments
+        return (self.latex_name, self.arguments, self.options,
+                self.extra_arguments)
 
     def __eq__(self, other):
         """Compare two commands.
@@ -132,14 +114,67 @@ class Command(LatexObject):
 
         if self.extra_arguments is None:
             return r'\{command}{options}{arguments}'\
-                .format(command=self.command, options=options,
+                .format(command=self.latex_name, options=options,
                         arguments=arguments)
 
         extra_arguments = self.extra_arguments.dumps()
 
         return r'\{command}{arguments}{options}{extra_arguments}'\
-            .format(command=self.command, arguments=arguments, options=options,
-                    extra_arguments=extra_arguments)
+            .format(command=self.latex_name, arguments=arguments,
+                    options=options, extra_arguments=extra_arguments)
+
+
+class Command(CommandBase):
+
+    """A class that represents a LaTeX command.
+
+    This class is meant for one-off commands. When a command of the same type
+    is used multiple times it is better to subclass `.CommandBase`.
+    """
+
+    def __init__(self, command=None, arguments=None, options=None,
+                 extra_arguments=None, packages=None):
+        r""".
+
+        Args
+        ----
+        command: str
+            Name of the command
+        arguments: None, str, list or `~.Arguments`
+            The main arguments of the command.
+        options: None, str, list or `~.Options`
+            Options of the command. These are placed in front of the arguments.
+        extra_arguments: None, str, list or `~.Arguments`
+            Extra arguments for the command. When these are supplied the
+            options will be placed before them instead of before the normal
+            arguments. This allows for a way of having one or more arguments
+            before the options.
+        packages: list of `~.Package` instances
+            A list of the packages that this command requires
+
+        Examples
+        --------
+        >>> Command('documentclass',
+        >>>         options=Options('12pt', 'a4paper', 'twoside'),
+        >>>         arguments='article').dumps()
+        '\\documentclass[12pt,a4paper,twoside]{article}'
+        >>> Command('com')
+        '\\com'
+        >>> Command('com', 'first')
+        '\\com{first}'
+        >>> Command('com', 'first', 'option')
+        '\\com[option]{first}'
+        >>> Command('com', 'first', 'option', 'second')
+        '\\com{first}[option]{second}'
+
+        """
+
+        self.latex_name = command
+
+        if packages is not None:
+            self.packages |= packages
+
+        super().__init__(arguments, options, extra_arguments)
 
 
 class Parameters(LatexObject):
