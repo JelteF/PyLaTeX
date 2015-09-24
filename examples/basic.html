@@ -219,7 +219,7 @@
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Command</span>
-<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span><span class="p">,</span> <span class="n">escape_latex</span>
+<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span>
 
 
 <span class="k">def</span> <span class="nf">fill_document</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
@@ -229,10 +229,11 @@
 <span class="sd">    :type doc: :class:`pylatex.document.Document` instance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;A section&#39;</span><span class="p">)):</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Some regular text and some &#39;</span> <span class="o">+</span> <span class="n">italic</span><span class="p">(</span><span class="s">&#39;italic text. &#39;</span><span class="p">))</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Some regular text and some &#39;</span><span class="p">)</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">italic</span><span class="p">(</span><span class="s">&#39;italic text. &#39;</span><span class="p">))</span>
 
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;A subsection&#39;</span><span class="p">)):</span>
-            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">escape_latex</span><span class="p">(</span><span class="s">&#39;Also some crazy characters: $&amp;#{}&#39;</span><span class="p">))</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Also some crazy characters: $&amp;#{}&#39;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>

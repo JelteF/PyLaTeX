@@ -206,7 +206,8 @@
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># Test for list structures in PyLaTeX.</span>
 <span class="c"># More info @ http://en.wikibooks.org/wiki/LaTeX/List_Structures</span>
-<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Itemize</span><span class="p">,</span> <span class="n">Enumerate</span><span class="p">,</span> <span class="n">Description</span>
+<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Itemize</span><span class="p">,</span> <span class="n">Enumerate</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> \
+    <span class="n">Command</span><span class="p">,</span> <span class="n">NoEscape</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
@@ -223,7 +224,8 @@
             <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the first item&quot;</span><span class="p">)</span>
             <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the second item&quot;</span><span class="p">)</span>
             <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the third etc&quot;</span><span class="p">)</span>
-            <span class="n">itemize</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">)</span>  <span class="c"># you can append to existing items</span>
+            <span class="c"># you can append to existing items</span>
+            <span class="n">itemize</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s">&quot;ldots&quot;</span><span class="p">))</span>
 
     <span class="c"># create a numbered &quot;enumerate&quot; list like the below:</span>
     <span class="c"># \begin{enumerate}</span>
@@ -236,7 +238,7 @@
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Enumerate</span><span class="p">())</span> <span class="k">as</span> <span class="n">enum</span><span class="p">:</span>
             <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the first item&quot;</span><span class="p">)</span>
             <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the second item&quot;</span><span class="p">)</span>
-            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the third etc </span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">)</span>
+            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span><span class="s">&quot;the third etc </span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">))</span>
 
     <span class="c"># create a labelled &quot;description&quot; list like the below:</span>
     <span class="c"># \begin{description}</span>
@@ -249,7 +251,7 @@
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Description</span><span class="p">())</span> <span class="k">as</span> <span class="n">desc</span><span class="p">:</span>
             <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;First&quot;</span><span class="p">,</span> <span class="s">&quot;The first item&quot;</span><span class="p">)</span>
             <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;Second&quot;</span><span class="p">,</span> <span class="s">&quot;The second item&quot;</span><span class="p">)</span>
-            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;Third&quot;</span><span class="p">,</span> <span class="s">&quot;The third etc </span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">)</span>
+            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;Third&quot;</span><span class="p">,</span> <span class="n">NoEscape</span><span class="p">(</span><span class="s">&quot;The third etc </span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">))</span>
 
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;lists&#39;</span><span class="p">)</span>
 </pre></div>

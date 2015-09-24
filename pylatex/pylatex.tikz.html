@@ -204,9 +204,40 @@
 <p>This module implements the classes used to show plots.</p>
 <dl class="class">
 <dt id="pylatex.tikz.TikZ">
-<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>options=None</em>, <em>arguments=None</em>, <em>begin_paragraph=False</em>, <em>end_paragraph=False</em>, <em>separate_paragraph=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>Basic TikZ container class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>begin_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Start a new paragraph before this environment.</li>
+<li><strong>end_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Start a new paragraph after this environment.</li>
+<li><strong>separate_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Same as enabling <code class="docutils literal"><span class="pre">begin_paragraph</span></code> and <code class="docutils literal"><span class="pre">end_paragraph</span></code>, so
+effectively placing this element in its own paragraph.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.tikz.TikZ.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet([&lt;pylatex.package.Package object at 0x7fa840557550&gt;])</em><a class="headerlink" href="#pylatex.tikz.TikZ.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.tikz.TikZ.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.tikz.TikZ.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.tikz.TikZ.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.tikz.TikZ.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -222,6 +253,21 @@
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.tikz.Axis.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet([&lt;pylatex.package.Package object at 0x7fa8405d7a20&gt;, &lt;pylatex.base_classes.command.Command object at 0x7fa8405b79e8&gt;])</em><a class="headerlink" href="#pylatex.tikz.Axis.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.tikz.Axis.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.tikz.Axis.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.tikz.Axis.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.tikz.Axis.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -243,6 +289,16 @@
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.tikz.Plot.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet([&lt;pylatex.package.Package object at 0x7fa8405b7780&gt;, &lt;pylatex.base_classes.command.Command object at 0x7fa8405b75f8&gt;])</em><a class="headerlink" href="#pylatex.tikz.Plot.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.tikz.Plot.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.tikz.Plot.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>

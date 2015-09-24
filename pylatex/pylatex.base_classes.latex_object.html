@@ -204,21 +204,23 @@
 <p>This module implements the base LaTeX object.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.latex_object.LatexObject">
-<em class="property">class </em><code class="descname">LatexObject</code><span class="sig-paren">(</span><em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LatexObject</code><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.4/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>The class that every other LaTeX class is a subclass of.</p>
 <p>This class implements the main methods that every LaTeX object needs. For
 conversion to LaTeX formatted strings it implements the dumps, dump and
 generate_tex methods. It also provides the methods that can be used to
 represent the packages required by the LatexObject.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>packages</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a> of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; Packages that are required by this LaTeX class.</td>
-</tr>
-</tbody>
-</table>
+<dl class="attribute">
+<dt id="pylatex.base_classes.latex_object.LatexObject.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.latex_object.LatexObject.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet()</em><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
 <dt id="pylatex.base_classes.latex_object.LatexObject.latex_name">
 <code class="descname">latex_name</code><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.latex_name" title="Permalink to this definition">¶</a></dt>

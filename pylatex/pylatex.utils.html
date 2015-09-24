@@ -202,6 +202,342 @@
   <span class="target" id="module-pylatex.utils"></span><div class="section" id="pylatex-utils">
 <h1>pylatex.utils<a class="headerlink" href="#pylatex-utils" title="Permalink to this headline">¶</a></h1>
 <p>This module implements some simple utility functions.</p>
+<dl class="class">
+<dt id="pylatex.utils.NoEscape">
+<em class="property">class </em><code class="descname">NoEscape</code><a class="headerlink" href="#pylatex.utils.NoEscape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a></p>
+<p>A simple string class that is not escaped.</p>
+<p>When a <a class="reference internal" href="#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string is added to another <a class="reference internal" href="#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string it will
+produce a <a class="reference internal" href="#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string. If it is added to normal string it will
+produce a normal string.</p>
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.capitalize">
+<code class="descname">capitalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.capitalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a capitalized version of S, i.e. make the first character
+have upper case and the rest lower case.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.casefold">
+<code class="descname">casefold</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.casefold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a version of S suitable for caseless comparisons.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.center">
+<code class="descname">center</code><span class="sig-paren">(</span><em>width</em><span class="optional">[</span>, <em>fillchar</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return S centered in a string of length width. Padding is
+done using the specified fill character (default is a space)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>encoding='utf-8'</em>, <em>errors='strict'</em><span class="sig-paren">)</span> &rarr; bytes<a class="headerlink" href="#pylatex.utils.NoEscape.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode S using the codec registered for encoding. Default encoding
+is &#8216;utf-8&#8217;. errors may be given to set a different error
+handling scheme. Default is &#8216;strict&#8217; meaning that encoding errors raise
+a UnicodeEncodeError. Other possible values are &#8216;ignore&#8217;, &#8216;replace&#8217; and
+&#8216;xmlcharrefreplace&#8217; as well as any other name registered with
+codecs.register_error that can handle UnicodeEncodeErrors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.endswith">
+<code class="descname">endswith</code><span class="sig-paren">(</span><em>suffix</em><span class="optional">[</span>, <em>start</em><span class="optional">[</span>, <em>end</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.endswith" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if S ends with the specified suffix, False otherwise.
+With optional start, test S beginning at that position.
+With optional end, stop comparing S at that position.
+suffix can also be a tuple of strings to try.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.expandtabs">
+<code class="descname">expandtabs</code><span class="sig-paren">(</span><em>tabsize=8</em><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.expandtabs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of S where all tab characters are expanded using spaces.
+If tabsize is not given, a tab size of 8 characters is assumed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.find">
+<code class="descname">find</code><span class="sig-paren">(</span><em>sub</em><span class="optional">[</span>, <em>start</em><span class="optional">[</span>, <em>end</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &rarr; int<a class="headerlink" href="#pylatex.utils.NoEscape.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the lowest index in S where substring sub is found,
+such that sub is contained within S[start:end].  Optional
+arguments start and end are interpreted as in slice notation.</p>
+<p>Return -1 on failure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.format">
+<code class="descname">format</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a formatted version of S, using substitutions from args and kwargs.
+The substitutions are identified by braces (&#8216;{&#8216; and &#8216;}&#8217;).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.format_map">
+<code class="descname">format_map</code><span class="sig-paren">(</span><em>mapping</em><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.format_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a formatted version of S, using substitutions from mapping.
+The substitutions are identified by braces (&#8216;{&#8216; and &#8216;}&#8217;).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isalnum">
+<code class="descname">isalnum</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isalnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all characters in S are alphanumeric
+and there is at least one character in S, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isalpha">
+<code class="descname">isalpha</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isalpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all characters in S are alphabetic
+and there is at least one character in S, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isdecimal">
+<code class="descname">isdecimal</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isdecimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if there are only decimal characters in S,
+False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isdigit">
+<code class="descname">isdigit</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isdigit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all characters in S are digits
+and there is at least one character in S, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isidentifier">
+<code class="descname">isidentifier</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isidentifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if S is a valid identifier according
+to the language definition.</p>
+<p>Use keyword.iskeyword() to test for reserved identifiers
+such as &#8220;def&#8221; and &#8220;class&#8221;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.islower">
+<code class="descname">islower</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.islower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all cased characters in S are lowercase and there is
+at least one cased character in S, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isnumeric">
+<code class="descname">isnumeric</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isnumeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if there are only numeric characters in S,
+False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isprintable">
+<code class="descname">isprintable</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isprintable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all characters in S are considered
+printable in repr() or S is empty, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isspace">
+<code class="descname">isspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all characters in S are whitespace
+and there is at least one character in S, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.istitle">
+<code class="descname">istitle</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.istitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if S is a titlecased string and there is at least one
+character in S, i.e. upper- and titlecase characters may only
+follow uncased characters and lowercase characters only cased ones.
+Return False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.isupper">
+<code class="descname">isupper</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.isupper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if all cased characters in S are uppercase and there is
+at least one cased character in S, False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.join">
+<code class="descname">join</code><span class="sig-paren">(</span><em>iterable</em><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string which is the concatenation of the strings in the
+iterable.  The separator between elements is S.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.ljust">
+<code class="descname">ljust</code><span class="sig-paren">(</span><em>width</em><span class="optional">[</span>, <em>fillchar</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.ljust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return S left-justified in a Unicode string of length width. Padding is
+done using the specified fill character (default is a space).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.lower">
+<code class="descname">lower</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.lower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the string S converted to lowercase.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.lstrip">
+<code class="descname">lstrip</code><span class="sig-paren">(</span><span class="optional">[</span><em>chars</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.lstrip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the string S with leading whitespace removed.
+If chars is given and not None, remove characters in chars instead.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.maketrans">
+<code class="descname">maketrans</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.NoEscape.maketrans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a translation table usable for str.translate().</p>
+<p>If there is only one argument, it must be a dictionary mapping Unicode
+ordinals (integers) or characters to Unicode ordinals, strings or None.
+Character keys will be then converted to ordinals.
+If there are two arguments, they must be strings of equal length, and
+in the resulting dictionary, each character in x will be mapped to the
+character at the same position in y. If there is a third argument, it
+must be a string, whose characters will be mapped to None in the result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.partition">
+<code class="descname">partition</code><span class="sig-paren">(</span><em>sep) -&gt; (head</em>, <em>sep</em>, <em>tail</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.NoEscape.partition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for the separator sep in S, and return the part before it,
+the separator itself, and the part after it.  If the separator is not
+found, return S and two empty strings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.replace">
+<code class="descname">replace</code><span class="sig-paren">(</span><em>old</em>, <em>new</em><span class="optional">[</span>, <em>count</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of S with all occurrences of substring
+old replaced by new.  If the optional argument count is
+given, only the first count occurrences are replaced.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.rfind">
+<code class="descname">rfind</code><span class="sig-paren">(</span><em>sub</em><span class="optional">[</span>, <em>start</em><span class="optional">[</span>, <em>end</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &rarr; int<a class="headerlink" href="#pylatex.utils.NoEscape.rfind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the highest index in S where substring sub is found,
+such that sub is contained within S[start:end].  Optional
+arguments start and end are interpreted as in slice notation.</p>
+<p>Return -1 on failure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.rindex">
+<code class="descname">rindex</code><span class="sig-paren">(</span><em>sub</em><span class="optional">[</span>, <em>start</em><span class="optional">[</span>, <em>end</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &rarr; int<a class="headerlink" href="#pylatex.utils.NoEscape.rindex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like S.rfind() but raise ValueError when the substring is not found.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.rjust">
+<code class="descname">rjust</code><span class="sig-paren">(</span><em>width</em><span class="optional">[</span>, <em>fillchar</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.rjust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return S right-justified in a string of length width. Padding is
+done using the specified fill character (default is a space).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.rpartition">
+<code class="descname">rpartition</code><span class="sig-paren">(</span><em>sep) -&gt; (head</em>, <em>sep</em>, <em>tail</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.NoEscape.rpartition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for the separator sep in S, starting at the end of S, and return
+the part before it, the separator itself, and the part after it.  If the
+separator is not found, return two empty strings and S.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.rsplit">
+<code class="descname">rsplit</code><span class="sig-paren">(</span><em>sep=None</em>, <em>maxsplit=-1</em><span class="sig-paren">)</span> &rarr; list of strings<a class="headerlink" href="#pylatex.utils.NoEscape.rsplit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the words in S, using sep as the
+delimiter string, starting at the end of the string and
+working to the front.  If maxsplit is given, at most maxsplit
+splits are done. If sep is not specified, any whitespace string
+is a separator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.rstrip">
+<code class="descname">rstrip</code><span class="sig-paren">(</span><span class="optional">[</span><em>chars</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.rstrip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the string S with trailing whitespace removed.
+If chars is given and not None, remove characters in chars instead.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.split">
+<code class="descname">split</code><span class="sig-paren">(</span><em>sep=None</em>, <em>maxsplit=-1</em><span class="sig-paren">)</span> &rarr; list of strings<a class="headerlink" href="#pylatex.utils.NoEscape.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the words in S, using sep as the
+delimiter string.  If maxsplit is given, at most maxsplit
+splits are done. If sep is not specified or is None, any
+whitespace string is a separator and empty strings are
+removed from the result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.splitlines">
+<code class="descname">splitlines</code><span class="sig-paren">(</span><span class="optional">[</span><em>keepends</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; list of strings<a class="headerlink" href="#pylatex.utils.NoEscape.splitlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the lines in S, breaking at line boundaries.
+Line breaks are not included in the resulting list unless keepends
+is given and true.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.startswith">
+<code class="descname">startswith</code><span class="sig-paren">(</span><em>prefix</em><span class="optional">[</span>, <em>start</em><span class="optional">[</span>, <em>end</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#pylatex.utils.NoEscape.startswith" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if S starts with the specified prefix, False otherwise.
+With optional start, test S beginning at that position.
+With optional end, stop comparing S at that position.
+prefix can also be a tuple of strings to try.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.strip">
+<code class="descname">strip</code><span class="sig-paren">(</span><span class="optional">[</span><em>chars</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.strip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the string S with leading and trailing
+whitespace removed.
+If chars is given and not None, remove characters in chars instead.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.swapcase">
+<code class="descname">swapcase</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.swapcase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of S with uppercase characters converted to lowercase
+and vice versa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.title">
+<code class="descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a titlecased version of S, i.e. words start with title case
+characters, all remaining cased characters have lower case.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.translate">
+<code class="descname">translate</code><span class="sig-paren">(</span><em>table</em><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the string S, where all characters have been mapped
+through the given translation table, which must be a mapping of
+Unicode ordinals to Unicode ordinals, strings, or None.
+Unmapped characters are left untouched. Characters mapped to None
+are deleted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.upper">
+<code class="descname">upper</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.upper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of S converted to uppercase.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.utils.NoEscape.zfill">
+<code class="descname">zfill</code><span class="sig-paren">(</span><em>width</em><span class="sig-paren">)</span> &rarr; str<a class="headerlink" href="#pylatex.utils.NoEscape.zfill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pad a numeric string S with zeros on the left, to fill a field
+of the specified width. The string S is never truncated.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="function">
 <dt id="pylatex.utils.escape_latex">
 <code class="descname">escape_latex</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.escape_latex" title="Permalink to this definition">¶</a></dt>
@@ -264,7 +600,7 @@
 
 <dl class="function">
 <dt id="pylatex.utils.dumps_list">
-<code class="descname">dumps_list</code><span class="sig-paren">(</span><em>l</em>, <em>escape=False</em>, <em>token='\n'</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.dumps_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dumps_list</code><span class="sig-paren">(</span><em>l</em>, <em>escape=True</em>, <em>token='\n'</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.dumps_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try to generate a LaTeX string of a list that can contain anything.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -306,18 +642,24 @@ converting them to a string, for instance bold</li>
 
 <dl class="function">
 <dt id="pylatex.utils.bold">
-<code class="descname">bold</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.bold" title="Permalink to this definition">¶</a></dt>
+<code class="descname">bold</code><span class="sig-paren">(</span><em>s</em>, <em>escape=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.bold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a string appear bold in LaTeX formatting.</p>
 <p>bold() wraps a given string in the LaTeX command textbf{}.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</li>
+<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; If true the bold text will be escaped</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The formatted string.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The formatted string.</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -332,18 +674,24 @@ converting them to a string, for instance bold</li>
 
 <dl class="function">
 <dt id="pylatex.utils.italic">
-<code class="descname">italic</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.italic" title="Permalink to this definition">¶</a></dt>
+<code class="descname">italic</code><span class="sig-paren">(</span><em>s</em>, <em>escape=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.utils.italic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a string appear italicized in LaTeX formatting.</p>
 <p>italic() wraps a given string in the LaTeX command textit{}.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; The string to be formatted.</li>
+<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; If true the italic text will be escaped</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The formatted string.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The formatted string.</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)">str</a></p>
+</td>
 </tr>
 </tbody>
 </table>

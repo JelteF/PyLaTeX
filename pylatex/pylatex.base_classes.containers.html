@@ -204,7 +204,7 @@
 <p>This module implements LaTeX base classes that can be subclassed.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.containers.Container">
-<em class="property">class </em><code class="descname">Container</code><span class="sig-paren">(</span><em>data=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Container</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a>, <a class="reference external" href="https://docs.python.org/3.4/library/collections.html#collections.UserList" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">collections.UserList</span></code></a></p>
 <p>A base class that groups multiple LaTeX classes.</p>
 <p>This class should be subclassed when a LaTeX class has content that is of
@@ -215,15 +215,16 @@ indexing or appending.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>data</strong> (list, <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> or something that can be converted to a ) &#8211; string
-The content with which the container is initialized</li>
-<li><strong>packages</strong> (list of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; </li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (list, <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> or something that can be converted to a ) &#8211; string
+The content with which the container is initialized</td>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Container.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.base_classes.containers.Container.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pylatex.base_classes.containers.Container.dumps_content">
 <code class="descname">dumps_content</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Container.dumps_content" title="Permalink to this definition">¶</a></dt>
@@ -264,6 +265,16 @@ The content with which the container is initialized</li>
 class.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Container.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.base_classes.containers.Container.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Container.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet()</em><a class="headerlink" href="#pylatex.base_classes.containers.Container.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -297,6 +308,11 @@ effectively placing this element in its own paragraph.</li>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Environment.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.base_classes.containers.Environment.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pylatex.base_classes.containers.Environment.create">
 <code class="descname">create</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.containers.Environment.create" title="Permalink to this definition">¶</a></dt>
@@ -328,6 +344,16 @@ effectively placing this element in its own paragraph.</li>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Environment.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.base_classes.containers.Environment.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Environment.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet()</em><a class="headerlink" href="#pylatex.base_classes.containers.Environment.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="pylatex.base_classes.containers.Environment.dumps">

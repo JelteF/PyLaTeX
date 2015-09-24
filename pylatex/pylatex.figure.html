@@ -204,9 +204,32 @@
 <p>This module implements the class that deals with graphics.</p>
 <dl class="class">
 <dt id="pylatex.figure.Figure">
-<em class="property">class </em><code class="descname">Figure</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Figure</code><span class="sig-paren">(</span><em>position=None</em>, <em>separate_paragraph=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.float.html#pylatex.base_classes.float.Float" title="pylatex.base_classes.float.Float"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.float.Float</span></code></a></p>
 <p>A class that represents a Figure environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Define the positioning of a floating environment, for instance
+<code class="docutils literal"><span class="pre">'h'</span></code>. See the references for more information.</li>
+<li><strong>separate_paragraph</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; By default floats are positioned inside a separate paragraph.
+Setting this to option to <a class="reference external" href="https://docs.python.org/3.4/library/constants.html#False" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> will change that.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.sharelatex.com/learn/Positioning_of_Figures">https://www.sharelatex.com/learn/Positioning_of_Figures</a></li>
+</ul>
+<dl class="attribute">
+<dt id="pylatex.figure.Figure.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet([&lt;pylatex.package.Package object at 0x7fa8404dd320&gt;])</em><a class="headerlink" href="#pylatex.figure.Figure.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pylatex.figure.Figure.add_image">
 <code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.Figure.add_image" title="Permalink to this definition">¶</a></dt>
@@ -263,6 +286,16 @@ and placement of the generated plot in the LaTeX document.</li>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="pylatex.figure.Figure.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.figure.Figure.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.figure.Figure.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.figure.Figure.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -284,6 +317,11 @@ weird inside another figure.</li>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.figure.SubFigure.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet([&lt;pylatex.package.Package object at 0x7fa8404dd320&gt;, &lt;pylatex.package.Package object at 0x7fa8404dd630&gt;])</em><a class="headerlink" href="#pylatex.figure.SubFigure.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pylatex.figure.SubFigure.add_image">
 <code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.figure.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
@@ -339,6 +377,16 @@ and placement of the generated plot in the LaTeX document.</li>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.figure.SubFigure.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.figure.SubFigure.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.figure.SubFigure.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.figure.SubFigure.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

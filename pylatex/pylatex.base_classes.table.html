@@ -250,21 +250,32 @@ if it should contain vertical lines and where.</li>
 
 <dl class="method">
 <dt id="pylatex.base_classes.table.TabularBase.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=False</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#tuple" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</li>
-<li><strong>escape</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Escape special LaTeX syntax inside the cells.</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#tuple" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.table.TabularBase.content_separator">
+<code class="descname">content_separator</code><em class="property"> = '\n'</em><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.content_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.table.TabularBase.escape">
+<code class="descname">escape</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.escape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.base_classes.table.TabularBase.packages">
+<code class="descname">packages</code><em class="property"> = OrderedSet()</em><a class="headerlink" href="#pylatex.base_classes.table.TabularBase.packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
