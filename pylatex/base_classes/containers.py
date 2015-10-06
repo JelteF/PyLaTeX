@@ -127,8 +127,17 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
-    def __init__(self, options=None, arguments=None, begin_paragraph=False,
-                 end_paragraph=False, separate_paragraph=False, **kwargs):
+    #: Start a new paragraph before this environment.
+    begin_paragraph = False
+
+    #: Start a new paragraph after this environment.
+    end_paragraph = False
+
+    #: Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
+    #: effectively placing this element in its own paragraph.
+    separate_paragraph = False
+
+    def __init__(self, options=None, arguments=None, **kwargs):
         r""".
 
         Args
@@ -138,21 +147,10 @@ class Environment(Container):
 
         arguments: str or list or `~.Arguments`
             Arguments to be added to the ``\begin`` command
-        begin_paragraph: bool
-            Start a new paragraph before this environment.
-        end_paragraph: bool
-            Start a new paragraph after this environment.
-        separate_paragraph: bool
-            Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
-            effectively placing this element in its own paragraph.
         """
 
         self.options = options
         self.arguments = arguments
-
-        self.separate_paragraph = separate_paragraph
-        self.begin_paragraph = begin_paragraph
-        self.end_paragraph = end_paragraph
 
         super().__init__(**kwargs)
 

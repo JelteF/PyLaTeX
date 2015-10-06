@@ -81,8 +81,7 @@ def test_graphics():
     f.add_caption(caption='')
 
     # Subfigure
-    s = SubFigure(data=None, position=None,
-                  width=r'0.45\linewidth', separate_paragraph=False)
+    s = SubFigure(data=None, position=None, width=r'0.45\linewidth')
 
     s.add_image(filename='', width='r\linewidth',
                 placement=None)

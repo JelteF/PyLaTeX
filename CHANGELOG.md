@@ -76,6 +76,8 @@ been moved an renamed.
 - Content of subclasses of `Container` is now automatically escaped. Content of
     `Arguments` or `Options` is not escaped by default.
 
+- Made `separate_paragraph`, `begin_paragraph` and `end_paragraph` class
+    attributes instead of instance attributes.
 
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are

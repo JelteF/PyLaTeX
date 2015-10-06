@@ -13,7 +13,11 @@ class Float(Environment):
 
     """A class that represents a floating environment."""
 
-    def __init__(self, position=None, separate_paragraph=True, **kwargs):
+    #: By default floats are positioned inside a separate paragraph.
+    #: Setting this to option to `False` will change that.
+    separate_paragraph = True
+
+    def __init__(self, position=None, **kwargs):
         """.
 
         Args
@@ -21,17 +25,13 @@ class Float(Environment):
         position: str
             Define the positioning of a floating environment, for instance
             ``'h'``. See the references for more information.
-        separate_paragraph: bool
-            By default floats are positioned inside a separate paragraph.
-            Setting this to option to `False` will change that.
 
         References
         ----------
             * https://www.sharelatex.com/learn/Positioning_of_Figures
         """
 
-        super().__init__(options=position,
-                         separate_paragraph=separate_paragraph, **kwargs)
+        super().__init__(options=position, **kwargs)
 
     def add_caption(self, caption):
         """Add a caption to the float.
