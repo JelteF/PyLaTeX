@@ -106,9 +106,46 @@ def auto_change_docstring(app, what, name, obj, options, lines):
         lines.pop(0)
 
 
+def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
+                                   options):
+    cls = namespace.split('.')[-1]
+
+    members = {
+        'object': ['dump', 'dumps_packages', 'dump_packages', 'latex_name',
+                   'escape', 'generate_tex', 'packages'],
+        'container': ['create', 'dumps', 'dumps_content', 'begin_paragraph',
+                      'end_paragraph', 'separate_paragraph',
+                      'content_separator'],
+        'userlist': ['append', 'clear', 'copy', 'count', 'extend', 'index',
+                     'insert', 'pop', 'remove', 'reverse', 'sort'],
+    }
+
+    members['all'] = list(set([req for reqs in members.values() for req in
+                               reqs]))
+
+    if name in members['all']:
+        skip = True
+
+        if cls == 'LatexObject':
+            return False
+
+        if cls in ('Container', 'Environment') and \
+                name in members['container']:
+            return False
+
+        if cls == 'Document' and name == 'generate_tex':
+            return False
+
+    if name == 'separate_paragraph' and cls in ('SubFigure', 'Float'):
+        return False
+
+    return skip
+
+
 def setup(app):
     """Connect autodoc event to custom handler."""
     app.connect('autodoc-process-docstring', auto_change_docstring)
+    app.connect('autodoc-skip-member', autodoc_allow_most_inheritance)
 
 
 # List of patterns, relative to source directory, that match files and

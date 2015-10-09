@@ -35,38 +35,12 @@ rm source/pylatex/pylatex.rst
 echo Removing file source/pylatex/pylatex.base_classes.rst
 rm source/pylatex/pylatex.base_classes.rst
 
-LATEX_DOCUMENT_HIDES='dump, dumps_packages, dump_packages, latex_name'
-LATEX_OBJECT_MEMBERS="generate_tex, $LATEX_DOCUMENT_HIDES"
-
-
-LATEX_CONTAINER_MEMBERS='create, dumps, dumps_content'
-
-
-USER_LIST_MEMBERS='append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort'
-
-for rst in source/pylatex/*.rst; do
-    if [[ "$rst" != *latex_object.rst ]]; then
-        if [[ "$rst" == *containers.rst ]]; then
-            echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
-                "$USER_LIST_MEMBERS" >> $rst
-        elif [[ "$rst" == *document.rst ]]; then
-            echo "    :exclude-members: $LATEX_DOCUMENT_HIDES," \
-                "$USER_LIST_MEMBERS" >> $rst
-        else
-            echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
-                "$USER_LIST_MEMBERS, $LATEX_CONTAINER_MEMBERS" >> $rst
-        fi
-    fi
-done
-
 for f in ../examples/*.py; do
     name=`echo $f | cut -d'/' -f3 | cut -d'.' -f1`
     rst=source/examples/${name}.rst
     $python gen_example_title.py "$name" > $rst
     echo Creating file ${rst}
     echo .. automodule:: examples.$name >> $rst
-    echo "    :exclude-members: $LATEX_OBJECT_MEMBERS," \
-        "$USER_LIST_MEMBERS, $LATEX_CONTAINER_MEMBERS" >> $rst
     echo >> $rst
 
     echo The code >> $rst

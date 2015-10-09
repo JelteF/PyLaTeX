@@ -133,7 +133,7 @@ class Environment(Container):
     #: Start a new paragraph after this environment.
     end_paragraph = False
 
-    #: Same as enabling ``begin_paragraph`` and ``end_paragraph``, so
+    #: Same as enabling `begin_paragraph` and `end_paragraph`, so
     #: effectively placing this element in its own paragraph.
     separate_paragraph = False
 
