@@ -140,6 +140,10 @@ def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
     if name == 'separate_paragraph' and cls in ('SubFigure', 'Float'):
         return False
 
+    # Ignore all functions of NoEscape, since it is inherited
+    if cls == 'NoEscape':
+        return True
+
     return skip
 
 
