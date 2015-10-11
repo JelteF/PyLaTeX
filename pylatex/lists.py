@@ -12,7 +12,6 @@ from .base_classes import Environment, Command
 
 
 class List(Environment):
-
     """A base class that represents a list."""
 
     def __init__(self, list_spec=None, pos=None, **kwargs):
@@ -39,17 +38,14 @@ class List(Environment):
 
 
 class Enumerate(List):
-
     """A class that represents an enumerate list."""
 
 
 class Itemize(List):
-
     """A class that represents an itemize list."""
 
 
 class Description(List):
-
     """A class that represents a description list."""
 
     def add_item(self, label, s):

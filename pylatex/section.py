@@ -11,15 +11,12 @@ from .base_classes import SectionBase
 
 
 class Section(SectionBase):
-
     """A class that represents a section."""
 
 
 class Subsection(SectionBase):
-
     """A class that represents a subsection."""
 
 
 class Subsubsection(SectionBase):
-
     """A class that represents a subsubsection."""

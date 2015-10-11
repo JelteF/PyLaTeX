@@ -15,7 +15,6 @@ import uuid
 
 
 class Figure(Float):
-
     """A class that represents a Figure environment."""
 
     packages = [Package('graphicx')]
@@ -92,7 +91,6 @@ class Figure(Float):
 
 
 class SubFigure(Figure):
-
     """A class that represents a subfigure from the subcaption package."""
 
     packages = [Package('subcaption')]

@@ -14,7 +14,6 @@ from ..utils import dumps_list
 
 
 class CommandBase(LatexObject):
-
     """A class that represents a LaTeX command.
 
     The name of this class (when lowercased) will be the name of this command.
@@ -126,7 +125,6 @@ class CommandBase(LatexObject):
 
 
 class Command(CommandBase):
-
     """A class that represents a LaTeX command.
 
     This class is meant for one-off commands. When a command of the same type
@@ -179,7 +177,6 @@ class Command(CommandBase):
 
 
 class Parameters(LatexObject):
-
     """The base class used by `~Options` and `~Arguments`.
 
     This class should probably never be used on its own and inhereting from it
@@ -282,7 +279,6 @@ class Parameters(LatexObject):
 
 
 class Options(Parameters):
-
     """A class implementing LaTex options for a command.
 
     It supports normal positional parameters, as well as key-value pairs.
@@ -315,7 +311,6 @@ class Options(Parameters):
 
 
 class Arguments(Parameters):
-
     """A class implementing LaTex arguments for a command.
 
     It supports normal positional parameters, as well as key-value pairs.

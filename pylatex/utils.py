@@ -37,7 +37,6 @@ _tmp_path = os.path.abspath(
 
 
 class NoEscape(str):
-
     """
     A simple string class that is not escaped.
 

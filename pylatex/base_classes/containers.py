@@ -14,7 +14,6 @@ from .command import Command, Arguments
 
 
 class Container(LatexObject, UserList):
-
     """A base class that groups multiple LaTeX classes.
 
     This class should be subclassed when a LaTeX class has content that is of
@@ -110,7 +109,6 @@ class Container(LatexObject, UserList):
 
 
 class Environment(Container):
-
     r"""A base class for LaTeX environments.
 
     This class implements the basics of a LaTeX environment. A LaTeX

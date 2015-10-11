@@ -10,7 +10,6 @@ from . import Environment, Command
 
 
 class Float(Environment):
-
     """A class that represents a floating environment."""
 
     #: By default floats are positioned inside a separate paragraph.
