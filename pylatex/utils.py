@@ -45,6 +45,17 @@ class NoEscape(str):
     produce a normal string.
     """
 
+    def __init__(self, string):
+        """.
+
+        Args
+        ----
+        string: str
+            The content of the `NoEscape` string.
+        """
+
+        super().__init__()
+
     def __add__(self, right):
         s = super().__add__(right)
         if isinstance(right, NoEscape):
