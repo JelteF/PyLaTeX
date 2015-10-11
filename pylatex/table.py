@@ -11,7 +11,6 @@ from .package import Package
 
 
 class MultiColumn(Container):
-
     """A class that represents a multicolumn inside of a table."""
 
     # TODO: Make this subclass CommandBase and Container
@@ -49,7 +48,6 @@ class MultiColumn(Container):
 
 
 class MultiRow(Container):
-
     """A class that represents a multirow in a table."""
 
     # TODO: Make this subclass CommandBase and Container
@@ -89,29 +87,24 @@ class MultiRow(Container):
 
 
 class Tabular(TabularBase):
-
     """A class that represents a tabular."""
 
 
 class Table(Float):
-
     """A class that represents a table float."""
 
 
 class Tabu(TabularBase):
-
     """A class that represents a tabu (more flexible table)."""
 
     packages = [Package('tabu')]
 
 
 class LongTable(TabularBase):
-
     """A class that represents a longtable (multipage table)."""
 
     packages = [Package('longtable')]
 
 
 class LongTabu(LongTable, Tabu):
-
     """A class that represents a longtabu (more flexible multipage table)."""

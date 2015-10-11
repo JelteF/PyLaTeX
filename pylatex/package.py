@@ -10,7 +10,6 @@ from .base_classes import CommandBase
 
 
 class Package(CommandBase):
-
     """A class that represents a package."""
 
     _latex_name = 'usepackage'

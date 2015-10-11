@@ -11,7 +11,6 @@ from . import Container, Command
 
 
 class SectionBase(Container):
-
     """A class that is the base for all section type classes."""
 
     def __init__(self, title, numbering=True, *args, **kwargs):

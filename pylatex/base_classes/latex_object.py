@@ -28,7 +28,6 @@ class _CreatePackages(ABCMeta):
 
 
 class LatexObject(metaclass=_CreatePackages):
-
     """The class that every other LaTeX class is a subclass of.
 
     This class implements the main methods that every LaTeX object needs. For

@@ -33,7 +33,6 @@ def _dimensionality_to_siunitx(dim):
 
 
 class Quantity(Command):
-
     """A class representing quantities.
 
     :param quantity:

@@ -15,7 +15,6 @@ from .utils import dumps_list, rm_temp_dir
 
 
 class Document(Environment):
-
     r"""
     A class that contains a full LaTeX document.
 

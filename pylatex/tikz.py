@@ -12,7 +12,6 @@ from pylatex.package import Package
 
 
 class TikZ(Environment):
-
     """Basic TikZ container class."""
 
     _latex_name = 'tikzpicture'
@@ -20,7 +19,6 @@ class TikZ(Environment):
 
 
 class Axis(Environment):
-
     """PGFPlots axis container class, this contains plots."""
 
     packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
@@ -39,7 +37,6 @@ class Axis(Environment):
 
 
 class Plot(LatexObject):
-
     """A class representing a PGFPlot."""
 
     packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]

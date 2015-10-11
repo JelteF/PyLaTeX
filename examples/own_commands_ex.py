@@ -15,7 +15,6 @@ from pylatex.utils import NoEscape
 
 
 class ExampleEnvironment(Environment):
-
     """
     A class representing a custom LaTeX environment.
 
@@ -28,7 +27,6 @@ class ExampleEnvironment(Environment):
 
 
 class ExampleCommand(CommandBase):
-
     """
     A class representing a custom LaTeX command.
 

@@ -11,7 +11,6 @@ from pylatex.package import Package
 
 
 class Math(Container):
-
     """A class representing a math environment."""
 
     content_separator = ' '
@@ -45,7 +44,6 @@ class Math(Container):
 
 
 class VectorName(Command):
-
     """A class representing a named vector."""
 
     def __init__(self, name):
@@ -61,7 +59,6 @@ class VectorName(Command):
 
 
 class Matrix(Environment):
-
     """A class representing a matrix."""
 
     packages = [Package('amsmath')]
