@@ -94,10 +94,14 @@ autoclass_content = 'both'
 
 
 def auto_change_docstring(app, what, name, obj, options, lines):
-    """Make some automatic changes to docstrings.
+    r"""Make some automatic changes to docstrings.
 
-    Add a title to module docstrings and remove first lines that only have a
-    single dot.
+    Things this function does are:
+
+        - Add a title to module docstrings
+        - Remove first lines that only have a single dot. (used in __init__
+            methods)
+        - Merge lines that end with a '\' with the next line.
     """
     if what == 'module' and name.startswith('pylatex'):
         lines.insert(0, len(name) * '=')
@@ -105,6 +109,12 @@ def auto_change_docstring(app, what, name, obj, options, lines):
 
     if len(lines) and lines[0].strip() == '.':
         lines.pop(0)
+
+    hits = 0
+    for i, line in enumerate(lines.copy()):
+        if line.endswith('\\'):
+            lines[i - hits] += lines.pop(i + 1 - hits)
+            hits += 1
 
 
 def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
