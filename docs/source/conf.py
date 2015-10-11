@@ -40,6 +40,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.extlinks',
     'sphinx.ext.napoleon',
+    'sphinx.ext.linkcode',
 ]
 
 napoleon_include_special_with_doc = False
@@ -146,6 +147,18 @@ def setup(app):
     """Connect autodoc event to custom handler."""
     app.connect('autodoc-process-docstring', auto_change_docstring)
     app.connect('autodoc-skip-member', autodoc_allow_most_inheritance)
+
+
+def linkcode_resolve(domain, info):
+    """A simple function to find matching source code."""
+    module = info['module']
+    # fullname = info['fullname']
+
+    base_url = 'https://github.com/JelteF/PyLaTeX/blob/master/'
+
+    filename = module.replace('.', '/') + '.py'
+
+    return base_url + filename
 
 
 # List of patterns, relative to source directory, that match files and
