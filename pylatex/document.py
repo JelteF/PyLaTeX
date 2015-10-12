@@ -98,7 +98,7 @@ class Document(Environment):
         ----
         filepath: str
             The name of the file (without .pdf), if it is `None` the
-            `default_filepath` attribute will be used.
+            ``default_filepath`` attribute will be used.
         clean: bool
             Whether non-pdf files created by ``pdflatex`` must be removed.
         silent: bool
