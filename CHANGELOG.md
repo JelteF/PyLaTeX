@@ -79,6 +79,10 @@ been moved an renamed.
 - Made `separate_paragraph`, `begin_paragraph` and `end_paragraph` class
     attributes instead of instance attributes.
 
+- The default of the `filepath` argument for the `Document.generate_pdf` and
+    `Document.generate_tex` have been changed to `None`. The response to the
+    default is not changed, so this is a fairly invisible change.
+
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
     removed in favor of the much more robust and easier to use`MultiRow` and

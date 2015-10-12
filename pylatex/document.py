@@ -78,7 +78,7 @@ class Document(Environment):
 
         return head + '\n' + super().dumps()
 
-    def generate_tex(self, filepath=''):
+    def generate_tex(self, filepath=None):
         """Generate a .tex file for the document.
 
         Args
@@ -88,19 +88,19 @@ class Document(Environment):
             default filepath attribute is used as the path.
         """
 
-        # TODO: Use None as the default for filepath instead of ''
         super().generate_tex(self._select_filepath(filepath))
 
-    def generate_pdf(self, filepath='', clean=True, compiler='pdflatex',
+    def generate_pdf(self, filepath=None, clean=True, compiler='pdflatex',
                      silent=True):
         """Generate a pdf file from the document.
 
         Args
         ----
         filepath: str
-            The name of the file (without .pdf)
+            The name of the file (without .pdf), if it is `None` the
+            `default_filepath` attribute will be used.
         clean: bool
-            Whether non-pdf files created by ``pdflatex`` must be removed
+            Whether non-pdf files created by ``pdflatex`` must be removed.
         silent: bool
             Whether to hide compiler output
         """
@@ -157,7 +157,7 @@ class Document(Environment):
             The selected filepath
         """
 
-        if filepath == '':
+        if filepath is None:
             return self.default_filepath
         else:
             if os.path.basename(filepath) == '':
