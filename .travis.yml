@@ -9,6 +9,6 @@ before_install:
 install:
     - sudo apt-get install python3 python3-setuptools
     - pip install 3to2
-    - pip install -e .[all] -r dev_requirements.txt
+    - pip install -r dev_requirements.txt
     - sudo apt-get install texlive-latex-extra texlive-pictures texlive-science
 script: ./testall.sh
