@@ -83,6 +83,9 @@ been moved an renamed.
     `Document.generate_tex` have been changed to `None`. The response to the
     default is not changed, so this is a fairly invisible change.
 
+- Moved `separate_paragraph`, `begin_paragraph` and `end_paragraph` attributes
+    to `LatexObject`.
+
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
     removed in favor of the much more robust and easier to use`MultiRow` and

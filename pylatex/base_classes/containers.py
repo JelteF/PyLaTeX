@@ -125,16 +125,6 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
-    #: Start a new paragraph before this environment.
-    begin_paragraph = False
-
-    #: Start a new paragraph after this environment.
-    end_paragraph = False
-
-    #: Same as enabling `begin_paragraph` and `end_paragraph`, so
-    #: effectively placing this element in its own paragraph.
-    separate_paragraph = False
-
     def __init__(self, options=None, arguments=None, **kwargs):
         r""".
 
@@ -163,9 +153,6 @@ class Environment(Container):
 
         string = ''
 
-        if self.separate_paragraph or self.begin_paragraph:
-            string += '\n\n'
-
         # Something other than None needs to be used as extra argumets, that
         # way the options end up behind the latex_name argument.
         if self.arguments is None:
@@ -180,8 +167,5 @@ class Environment(Container):
         string += self.dumps_content() + '\n'
 
         string += Command('end', self.latex_name).dumps()
-
-        if self.separate_paragraph or self.end_paragraph:
-            string += '\n\n'
 
         return string

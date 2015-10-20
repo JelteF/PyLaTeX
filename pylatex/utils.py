@@ -138,7 +138,7 @@ def fix_filename(path):
     return '/'.join(dir_parts)
 
 
-def dumps_list(l, escape=True, token='\n', mapper=None):
+def dumps_list(l, escape=True, token='\n', mapper=None, as_content=True):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
@@ -152,6 +152,9 @@ def dumps_list(l, escape=True, token='\n', mapper=None):
     mapper: callable
         A function that should be called on all entries of the list after
         converting them to a string, for instance bold
+    as_content: bool
+        Indicates whether the items in the list should be dumped using
+        `~.LatexObject.dumps_as_content`
 
     Returns
     -------
@@ -173,14 +176,14 @@ def dumps_list(l, escape=True, token='\n', mapper=None):
     \$100\%
     True
     """
-    strings = (_latex_item_to_string(i, escape) for i in l)
+    strings = (_latex_item_to_string(i, escape, as_content) for i in l)
     if mapper is not None:
         strings = (mapper(s) for s in strings)
 
     return NoEscape(token.join(strings))
 
 
-def _latex_item_to_string(item, escape=False):
+def _latex_item_to_string(item, escape=False, as_content=False):
     """Use the render method when possible, otherwise uses str.
 
     Args
@@ -189,6 +192,9 @@ def _latex_item_to_string(item, escape=False):
         An object that needs to be converted to a string
     escape: bool
         Flag that indicates if escaping is needed
+    as_content: bool
+        Indicates whether the item should be dumped using
+        `~.LatexObject.dumps_as_content`
 
     Returns
     -------
@@ -197,7 +203,10 @@ def _latex_item_to_string(item, escape=False):
     """
 
     if isinstance(item, pylatex.base_classes.LatexObject):
-        return item.dumps()
+        if as_content:
+            return item.dumps_as_content()
+        else:
+            return item.dumps()
     elif not isinstance(item, str):
         item = str(item)
 

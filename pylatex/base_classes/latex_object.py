@@ -40,6 +40,16 @@ class LatexObject(metaclass=_CreatePackages):
 
     escape = True
 
+    #: Start a new paragraph before this environment.
+    begin_paragraph = False
+
+    #: Start a new paragraph after this environment.
+    end_paragraph = False
+
+    #: Same as enabling `begin_paragraph` and `end_paragraph`, so
+    #: effectively placing this element in its own paragraph.
+    separate_paragraph = False
+
     def __init__(self):
         # TODO: only create a copy of packages when it will
         # Create a copy of the packages attribute, so changing it in an
@@ -113,3 +123,24 @@ class LatexObject(metaclass=_CreatePackages):
         """
 
         file_w.write(self.dumps_packages())
+
+    def dumps_as_content(self):
+        """Create a string representation of the object as content.
+
+        This is currently only used to add new lines before and after the
+        output of the dumps function. These can be added or removed by changing
+        the `begin_paragraph`, `end_paragraph` and `separate_paragraph`
+        attributes of the class.
+        """
+
+        string = ''
+
+        if self.separate_paragraph or self.begin_paragraph:
+            string += '\n\n'
+
+        string += self.dumps()
+
+        if self.separate_paragraph or self.end_paragraph:
+            string += '\n\n'
+
+        return string

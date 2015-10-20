@@ -123,10 +123,11 @@ def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
 
     members = {
         'object': ['dump', 'dumps_packages', 'dump_packages', 'latex_name',
-                   'escape', 'generate_tex', 'packages'],
-        'container': ['create', 'dumps', 'dumps_content', 'begin_paragraph',
-                      'end_paragraph', 'separate_paragraph',
-                      'content_separator'],
+                   'escape', 'generate_tex', 'packages', 'dumps_as_content',
+                   'end_paragraph', 'separate_paragraph', 'content_separator'],
+
+        'container': ['create', 'dumps', 'dumps_content', 'begin_paragraph'],
+
         'userlist': ['append', 'clear', 'copy', 'count', 'extend', 'index',
                      'insert', 'pop', 'remove', 'reverse', 'sort'],
     }
