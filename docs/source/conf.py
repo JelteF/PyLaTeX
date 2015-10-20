@@ -164,16 +164,54 @@ def setup(app):
     app.connect('autodoc-skip-member', autodoc_allow_most_inheritance)
 
 
+import inspect
+
+
 def linkcode_resolve(domain, info):
     """A simple function to find matching source code."""
-    module = info['module']
-    # fullname = info['fullname']
+    module_name = info['module']
+    fullname = info['fullname']
+    attribute_name = fullname.split('.')[-1]
 
     base_url = 'https://github.com/JelteF/PyLaTeX/blob/master/'
 
-    filename = module.replace('.', '/') + '.py'
+    filename = module_name.replace('.', '/') + '.py'
+    module = sys.modules.get(module_name)
 
-    return base_url + filename
+    # Get the actual object
+    try:
+        actual_object = module
+        for obj in fullname.split('.'):
+            parent = actual_object
+            actual_object = getattr(actual_object, obj)
+    except AttributeError:
+        return None
+
+    # Fix property methods by using their getter method
+    if isinstance(actual_object, property):
+        actual_object = actual_object.fget
+
+    # Try to get the linenumber of the object
+    try:
+        source, start_line = inspect.getsourcelines(actual_object)
+    except TypeError:
+        # If it can not be found, try to find it anyway in the parents its
+        # source code
+        parent_source, parent_start_line = inspect.getsourcelines(parent)
+        for i, line in enumerate(parent_source):
+            if line.strip().startswith(attribute_name):
+                start_line = parent_start_line + i
+                end_line = start_line
+                break
+        else:
+            return None
+
+    else:
+        end_line = start_line + len(source) - 1
+
+    line_anchor = '#L%d-L%d' % (start_line, end_line)
+
+    return base_url + filename + line_anchor
 
 
 # List of patterns, relative to source directory, that match files and
