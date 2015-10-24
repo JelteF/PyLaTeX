@@ -86,8 +86,7 @@ class Container(LatexObject, UserList):
 
         self._propagate_packages()
 
-        # TODO: Use super call here
-        return dumps_list(self.packages)
+        return super().dumps_packages()
 
     @contextmanager
     def create(self, child):
