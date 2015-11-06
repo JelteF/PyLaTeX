@@ -14,6 +14,10 @@ class Package(CommandBase):
 
     _latex_name = 'usepackage'
 
+    _repr_attributes_mapping = {
+        'name': 'arguments',
+    }
+
     def __init__(self, name, options=None):
         """.
 

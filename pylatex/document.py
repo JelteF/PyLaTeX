@@ -56,6 +56,10 @@ class Document(Environment):
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
+        # These variables are used for
+        self._fontenc = fontenc
+        self._inputenc = inputenc
+        self._lmodern = inputenc
         if lmodern:
             lmodern = Package('lmodern')
         self.packages |= [fontenc, inputenc, lmodern]

@@ -41,6 +41,11 @@ def _get_table_width(table_spec):
 class TabularBase(Environment):
     """A class that is used as a base for all table classes."""
 
+    _repr_attributes_mapping = {
+        'table_spec': 'arguments',
+        'pos': 'options',
+    }
+
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
         """.
 

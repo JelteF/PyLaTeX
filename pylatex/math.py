@@ -46,6 +46,10 @@ class Math(Container):
 class VectorName(Command):
     """A class representing a named vector."""
 
+    _repr_attributes_mapping = {
+        'name': 'arguments',
+    }
+
     def __init__(self, name):
         """.
 
@@ -62,6 +66,10 @@ class Matrix(Environment):
     """A class representing a matrix."""
 
     packages = [Package('amsmath')]
+
+    _repr_attributes_mapping = {
+        'alignment': 'arguments',
+    }
 
     def __init__(self, matrix, mtype='p', alignment=None):
         r""".
@@ -88,6 +96,7 @@ class Matrix(Environment):
         self.matrix = matrix
 
         self.latex_name = mtype + 'matrix'
+        self._mtype = mtype
         if alignment is not None:
             self.latex_name += '*'
 

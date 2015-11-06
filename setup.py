@@ -172,19 +172,22 @@ if sys.version_info[:2] <= (2, 6):
         "Python version."
     )
 
+dependencies = ['ordered-set']
+
 extras = {
     'docs': ['sphinx'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
     'testing': ['flake8', 'pep8-naming', 'flake8_docstrings', 'nose'],
-    'convert_to_py2': ['3to2'],
+    'convert_to_py2': ['3to2', 'future'],
 }
 
 if sys.version_info[0] == 3:
     source_dir = '.'
 else:
     source_dir = 'python2_source'
+    dependencies.append('future')
 
 PY2_CONVERTED = False
 
@@ -210,13 +213,14 @@ def convert_to_py2():
         try:
             # Check if 3to2 exists
             subprocess.check_output(['3to2', '--help'])
+            subprocess.check_output(['pasteurize', '--help'])
         except OSError as e:
             if e.errno != errno.ENOENT:
                 raise e
             if not os.path.exists(os.path.join(source_dir, 'pylatex')):
-                raise ImportError('3to2 needs to be installed before '
-                                  'installing when PyLaTeX for Python 2.7 '
-                                  'when it is not installed using one of '
+                raise ImportError('3to2 and future need to be installed '
+                                  'before installing when PyLaTeX for Python '
+                                  '2.7 when it is not installed using one of '
                                   'the pip releases.')
         else:
             converter = os.path.dirname(os.path.realpath(__file__)) \
@@ -236,7 +240,7 @@ setup(name='PyLaTeX',
       packages=['pylatex', 'pylatex.base_classes'],
       url='https://github.com/JelteF/PyLaTeX',
       license='MIT',
-      install_requires=['ordered-set'],
+      install_requires=dependencies,
       extras_require=extras,
       cmdclass={
           'install': CustomInstall,

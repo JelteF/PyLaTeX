@@ -47,6 +47,10 @@ class Container(LatexObject, UserList):
 
         super().__init__()
 
+    @property
+    def _repr_attributes(self):
+        return super()._repr_attributes + ['real_data']
+
     def dumps_content(self, **kwargs):
         r"""Represent the container as a string in LaTeX syntax.
 

@@ -5,4 +5,5 @@
 
 mkdir -p python2_source
 cp -R pylatex tests examples python2_source
-3to2 python2_source -wn --no-diffs -f collections -f all
+3to2 python2_source -wn --no-diffs -f collections -f all -x imports -x imports2 -x print
+pasteurize python2_source -wn --no-diffs -f all

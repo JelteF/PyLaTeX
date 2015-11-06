@@ -48,6 +48,7 @@ class Quantity(Command):
         import numpy as np
 
         self.quantity = quantity
+        self._format_cb = format_cb
         if format_cb is None:
             magnitude_str = np.array_str(quantity.magnitude)
         else:

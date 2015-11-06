@@ -14,6 +14,11 @@ from .base_classes import Environment, Command
 class List(Environment):
     """A base class that represents a list."""
 
+    _repr_attributes_mapping = {
+        'list_spec': 'arguments',
+        'pos': 'options',
+    }
+
     def __init__(self, list_spec=None, pos=None, **kwargs):
         """.
 
@@ -23,6 +28,7 @@ class List(Environment):
         pos: list
 
         """
+        # TODO: Remove useles list_spec and pos arguments
         super().__init__(options=pos, arguments=list_spec, **kwargs)
 
     def add_item(self, s):

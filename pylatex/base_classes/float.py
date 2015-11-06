@@ -16,6 +16,10 @@ class Float(Environment):
     #: Setting this to option to `False` will change that.
     separate_paragraph = True
 
+    _repr_attributes_mapping = {
+        'position': 'options',
+    }
+
     def __init__(self, position=None, **kwargs):
         """.
 

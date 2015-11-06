@@ -9,6 +9,8 @@ This module implements the base LaTeX object.
 from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
 from abc import abstractmethod, ABCMeta
+from reprlib import recursive_repr
+from inspect import getargspec
 
 
 class _CreatePackages(ABCMeta):
@@ -38,6 +40,13 @@ class LatexObject(metaclass=_CreatePackages):
 
     _latex_name = None
 
+    #: Set this to an itterable to override the list of default repr
+    #: attributes.
+    _repr_attributes_override = None
+    #: Set this to a dict to change some of the default repr attributes to
+    #: other attributes. The key is the old one, the value the new one.
+    _repr_attributes_mapping = None
+
     escape = True
 
     #: Start a new paragraph before this environment.
@@ -55,6 +64,40 @@ class LatexObject(metaclass=_CreatePackages):
         # Create a copy of the packages attribute, so changing it in an
         # instance will not change the class default.
         self.packages = self.packages.copy()
+
+    @recursive_repr()
+    def __repr__(self):
+        """Create a printable representation of the object."""
+
+        return self.__class__.__name__ + '(' + \
+            ', '.join(map(repr, self._repr_values)) + ')'
+
+    @property
+    def _repr_values(self):
+        """Return values that are to be shown in repr string."""
+        def getattr_better(obj, field):
+            try:
+                return getattr(obj, field)
+            except AttributeError as e:
+                try:
+                    getattr(obj, '_' + field)
+                except AttributeError:
+                    raise e
+
+        return (getattr_better(self, attr) for attr in self._repr_attributes)
+
+    @property
+    def _repr_attributes(self):
+        """Return attributes that should be part of the repr string."""
+        if self._repr_attributes_override is None:
+            # Default to init arguments
+            attrs = getargspec(self.__init__).args[1:]
+            mapping = self._repr_attributes_mapping
+            if mapping:
+                attrs = [mapping[a] if a in mapping else a for a in attrs]
+            return attrs
+
+        return self._repr_attributes_override
 
     @property
     def latex_name(self):

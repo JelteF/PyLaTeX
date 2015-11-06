@@ -99,6 +99,10 @@ class SubFigure(Figure):
     #: weird inside another figure.
     separate_paragraph = False
 
+    _repr_attributes_mapping = {
+        'width': 'arguments',
+    }
+
     def __init__(self, width=r'0.45\linewidth', *args, **kwargs):
         """.
 

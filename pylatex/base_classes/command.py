@@ -131,6 +131,8 @@ class Command(CommandBase):
     is used multiple times it is better to subclass `.CommandBase`.
     """
 
+    _repr_attributes_mapping = {'command': 'latex_name'}
+
     def __init__(self, command=None, arguments=None, options=None,
                  extra_arguments=None, packages=None):
         r""".

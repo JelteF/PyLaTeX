@@ -117,6 +117,9 @@ been moved an renamed.
 - Add `NoEscape` string class, which can be used to make sure a raw LaTeX string
     is not escaped.
 
+- A `__repr__` method, so printing LaTeX objects gives more useful information
+    now.
+
 ## [0.8.0] - 23-05-2015
 ### Added
 - List classes (enumerate, itemize, description)
