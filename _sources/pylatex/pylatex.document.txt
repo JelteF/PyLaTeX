@@ -2,4 +2,3 @@
     :members:
     :undoc-members:
     :show-inheritance:
-    :exclude-members: dump, dumps_packages, dump_packages, latex_name, append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort
