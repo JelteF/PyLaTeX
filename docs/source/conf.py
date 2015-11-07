@@ -246,7 +246,7 @@ modindex_common_prefix = ['pylatex.']
 todo_include_todos = True
 
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3.4', None),
+    'python': ('https://docs.python.org/3', None),
     'matplotlib': ('http://matplotlib.org/', None),
     'numpy': ('https://docs.scipy.org/doc/numpy/', None),
     'quantities': ('https://pythonhosted.org/quantities/',
