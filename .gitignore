@@ -51,3 +51,5 @@ venv2
 docs/source/examples
 docs/source/pylatex
 docs/source/_static/examples
+
+docs/gh-pages
