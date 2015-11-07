@@ -101,6 +101,9 @@ been moved an renamed.
     change the preamble, which is now very easy. They are not so commonly used
     that they should be part of the main `Document` object.
 
+- Removed useless list class constructor arguments for list_spec and pos. These
+    were probably copied from the `Tabular` class.
+
 ### Added
 - Lots of documentation!!!!!
 - A float environment base class.
