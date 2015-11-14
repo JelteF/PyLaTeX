@@ -7,7 +7,6 @@ from .table import TabularBase
 from .section import SectionBase
 from .float import Float
 
-
 # Old names of the base classes for backwards compatibility
 BaseLaTeXClass = LatexObject
 BaseLaTeXContainer = Container

@@ -4,11 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
-This realease will bring some great changes. The whole package has been
+This release will bring some great changes. The whole package has been
 refactored and actual documentation has been added. Because of this, things have
 been moved an renamed.
 
 ### Changed
+- Tables now raise an exception when rows with wrong size are added
 - The base_classes submodule has been split into multiple sub-submodules.
 - The old baseclasses have been renamed as well. They now have easier names that
     better show their purpose.

@@ -2,7 +2,7 @@
 """
 This module implements a class that implements a latex command.
 
-This can be used directly or it can be inherrited to make an easier interface
+This can be used directly or it can be inherited to make an easier interface
 to it.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
