@@ -79,7 +79,7 @@ for f in $main_folder/examples/*.py; do
 done
 
 if [ "$clean" = 'TRUE' ]; then
-    rm *.pdf *.log *.aux *.tex
+    rm *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk
 fi
 
 

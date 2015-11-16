@@ -86,6 +86,9 @@ been moved an renamed.
 - Moved `separate_paragraph`, `begin_paragraph` and `end_paragraph` attributes
     to `LatexObject`.
 
+- Use `latexmk` to compile to pdf when available, otherwise fallback to
+    `pdflatex`.
+
 ### Removed
 - The add `add_multicolumn` and `add_multirow` methods on tabular classes are
     removed in favor of the much more robust and easier to use`MultiRow` and
