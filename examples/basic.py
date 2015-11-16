@@ -46,8 +46,8 @@ if __name__ == '__main__':
     doc.generate_pdf('basic_maketitle', clean=False)
 
     # Add stuff to the document
-    doc.append(Section('A second section'))
-    doc.append('Some text.')
+    with doc.create(Section('A second section')):
+        doc.append('Some text.')
 
     doc.generate_pdf('basic_maketitle2')
     tex = doc.dumps()  # The document as string in LaTeX syntax
