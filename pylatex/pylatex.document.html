@@ -159,7 +159,7 @@
 <p>This module implements the class that deals with the full document.</p>
 <dl class="class">
 <dt id="pylatex.document.Document">
-<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>lmodern=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L17-L170"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>lmodern=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L17-L230"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
 <p>If needed, you can append stuff to the preamble or the packages.
@@ -199,7 +199,7 @@ default filepath attribute is used as the path.</td>
 
 <dl class="method">
 <dt id="pylatex.document.Document.generate_pdf">
-<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>clean=True</em>, <em>compiler='pdflatex'</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L97-L148"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L97-L208"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a pdf file from the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -208,7 +208,14 @@ default filepath attribute is used as the path.</td>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The name of the file (without .pdf), if it is <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> the
 <code class="docutils literal"><span class="pre">default_filepath</span></code> attribute will be used.</li>
-<li><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Whether non-pdf files created by <code class="docutils literal"><span class="pre">pdflatex</span></code> must be removed.</li>
+<li><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Whether non-pdf files created that are created during compilation
+should be removed.</li>
+<li><strong>clean_tex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Also remove the generated tex file.</li>
+<li><strong>compiler</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; The name of the LaTeX compiler to use. If it is None, PyLaTeX will
+choose a fitting one on its own. Starting with mklatex and then
+pdflatex.</li>
+<li><strong>compiler_args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; Extra arguments that should be passed to the LaTeX compiler. If
+this is None it defaults to an empty list.</li>
 <li><strong>silent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Whether to hide compiler output</li>
 </ul>
 </td>
