@@ -48,6 +48,6 @@ class SectionBase(Container):
             num = ''
 
         string = Command(self.latex_name + num, self.title).dumps()
-        string += self.dumps_content()
+        string += '\n' + self.dumps_content()
 
         return string

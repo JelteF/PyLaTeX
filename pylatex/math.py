@@ -40,7 +40,7 @@ class Math(Container):
 
         if self.inline:
             return '$' + self.dumps_content() + '$'
-        return '$$' + self.dumps_content() + '$$\n'
+        return '$$\n' + self.dumps_content() + '\n$$'
 
 
 class VectorName(Command):
@@ -122,8 +122,6 @@ class Matrix(Environment):
 
             if x == shape[1] - 1 and y != shape[0] - 1:
                 string += r'\\' + '\n'
-
-        string += '\n'
 
         super().dumps_content()
 
