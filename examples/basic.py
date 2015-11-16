@@ -8,7 +8,7 @@ This example shows matplotlib functionality.
 
 # begin-doc-include
 from pylatex import Document, Section, Subsection, Command
-from pylatex.utils import italic
+from pylatex.utils import italic, NoEscape
 
 
 def fill_document(doc):
@@ -38,8 +38,8 @@ if __name__ == '__main__':
 
     doc.preamble.append(Command('title', 'Awesome Title'))
     doc.preamble.append(Command('author', 'Anonymous author'))
-    doc.preamble.append(Command('date', r'\today'))
-    doc.append(r'\maketitle')
+    doc.preamble.append(Command('date', NoEscape(r'\today')))
+    doc.append(NoEscape(r'\maketitle'))
 
     fill_document(doc)
 
