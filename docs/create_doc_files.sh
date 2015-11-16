@@ -60,7 +60,7 @@ for f in ../examples/*.py; do
         echo >> ../../../$rst
         echo "    $pdf" >> ../../../$rst
     done
-    rm -f *.pdf *.aux *.tex *.log
+    rm -f *.pdf *.aux *.tex *.log *.fls *.fdb_latexmk
     cd ../../..
 
 done
