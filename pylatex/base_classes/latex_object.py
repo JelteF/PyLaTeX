@@ -176,14 +176,12 @@ class LatexObject(metaclass=_CreatePackages):
         attributes of the class.
         """
 
-        string = ''
+        string = self.dumps()
 
         if self.separate_paragraph or self.begin_paragraph:
-            string += '\n\n'
-
-        string += self.dumps()
+            string = '\n\n' + string.lstrip('\n')
 
         if self.separate_paragraph or self.end_paragraph:
-            string += '\n\n'
+            string = string.rstrip('\n') + '\n\n'
 
         return string
