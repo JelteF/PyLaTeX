@@ -13,6 +13,9 @@ from . import Container, Command
 class SectionBase(Container):
     """A class that is the base for all section type classes."""
 
+    #: A section should normally start in its own paragraph
+    end_paragraph = True
+
     def __init__(self, title, numbering=True, *args, **kwargs):
         """.
 
