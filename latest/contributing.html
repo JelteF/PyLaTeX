@@ -85,7 +85,15 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">How to contribute</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#vagrant-support">Vagrant support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-development-environment">Setting up the development environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#os-specific-dependencies">OS specific dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-the-source-code">Getting the source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-environment-setup">Python environment setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vagrant-support">Vagrant support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#some-tips-before-starting">Some tips before starting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#some-rules">Some rules</a></li>
 </ul>
 </li>
 </ul>
@@ -134,20 +142,116 @@
             
   <div class="section" id="how-to-contribute">
 <h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
-<p>This section needs to be filled. For now, see the <a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> file in the
-git repository.</p>
+<p>First of all, if anything is incorrect or something is missing on this page (or
+any other for that matter), please send in a pull request. It is important that
+setting up the development environment is as painless as possible.</p>
+<div class="section" id="setting-up-the-development-environment">
+<h2>Setting up the development environment<a class="headerlink" href="#setting-up-the-development-environment" title="Permalink to this headline">¶</a></h2>
+<p>Unfortunately there are quite some steps involved in setting up a development
+environment. If you don&#8217;t want to do this and know how Vagrant works, see the
+bottom of this section on how to use that instead.</p>
+<div class="section" id="os-specific-dependencies">
+<h3>OS specific dependencies<a class="headerlink" href="#os-specific-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Some dependencies are OS specific. Ofcourse you need to have LaTeX installed,
+but that also comes in some different packages on most systems.</p>
+<p>For Ubuntu and other Debian based systems:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install python3 python3-dev virtualenv <span class="se">\</span>
+    texlive-pictures texlive-science texlive-latex-extra <span class="se">\</span>
+    imagemagick
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-the-source-code">
+<h3>Getting the source code<a class="headerlink" href="#getting-the-source-code" title="Permalink to this headline">¶</a></h3>
+<p>You need your own fork of the Github repository by using the Github fork
+button. You will then need to clone your version of the repo using the normal
+way, something like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre>git clone git@github.com:YourUserName/pylatex
+<span class="nb">cd </span>pylatex
+</pre></div>
+</div>
+<p>Make your own branch for your specific feature or fix (don&#8217;t do this just on
+master):</p>
+<div class="highlight-bash"><div class="highlight"><pre>git checkout -b your-nice-feature
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-environment-setup">
+<h3>Python environment setup<a class="headerlink" href="#python-environment-setup" title="Permalink to this headline">¶</a></h3>
+<p>This method will use a virtual environment, this is the easiest way to get all
+the dependencies.</p>
+<ol class="arabic">
+<li><p class="first">Create a virtualenv by running:</p>
+<div class="highlight-bash"><div class="highlight"><pre>virtualenv venv -p python3
+</pre></div>
+</div>
+</li>
+<li><p class="first">Activate it by running (you should do this whenever you start working on
+your changes):</p>
+<div class="highlight-bash"><div class="highlight"><pre>. venv bin activate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install all the development dependencies inside the virtual environment by
+running:</p>
+<div class="highlight-bash"><div class="highlight"><pre>pip install -r dev_requirements.txt
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
 <div class="section" id="vagrant-support">
-<h2>Vagrant support<a class="headerlink" href="#vagrant-support" title="Permalink to this headline">¶</a></h2>
-<p>If you don&#8217;t want to manually setup a suitable development environment in
-order to contribute, PyLaTeX comes with a ready-made Vagrantfile. Vagrant
-will launch and configure a small virtual machine with all necessary
-tools for you, so that you can start working with PyLaTeX right away.</p>
+<h3>Vagrant support<a class="headerlink" href="#vagrant-support" title="Permalink to this headline">¶</a></h3>
+<p>This might be an easier way to obtain a development environment, but the script
+is not very well maintained and might not work anymore. If everything goes as
+planned Vagrant will launch and configure a small virtual machine with all
+necessary tools for you, so that you can start working with PyLaTeX right away.</p>
 <p>With Vagrant already installed, you can start the virtual machine with
 <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">up</span></code> and then use <code class="docutils literal"><span class="pre">$</span> <span class="pre">vagrant</span> <span class="pre">ssh</span></code> to ssh into it. Your source
 files will be located under <code class="docutils literal"><span class="pre">/vagrant</span></code>.
 To run all unit tests and build the documentation run
 <code class="docutils literal"><span class="pre">$</span> <span class="pre">./testall.sh</span> <span class="pre">-p</span> <span class="pre">python3</span> <span class="pre">-c</span></code> from that directory.</p>
 <p>You can download or read more about Vagrant on <a class="reference external" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a>.</p>
+</div>
+</div>
+<div class="section" id="some-tips-before-starting">
+<h2>Some tips before starting<a class="headerlink" href="#some-tips-before-starting" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Look at the code that is already there when creating something new, for
+instance the classes for tables.</li>
+<li>To learn how to squash commits, read this <a class="reference external" href="http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html">blog</a>.
+Ignore the word of caution, since that only applies to main repositories on
+which people base their own work.  You can do this when you have a couple of
+commits that could be merged together. This mostly happens when you have
+commits that fix a typo or bug you made in a pull request and you fix that
+in a new commit.</li>
+</ol>
+</div>
+<div class="section" id="some-rules">
+<h2>Some rules<a class="headerlink" href="#some-rules" title="Permalink to this headline">¶</a></h2>
+<p>There are two things that are needed for every pull request:</p>
+<ol class="arabic simple">
+<li>Run the <code class="docutils literal"><span class="pre">testall.sh</span></code> script before making a pull request to check if you
+didn&#8217;t break anything.</li>
+<li>Follow the <strong>PEP8</strong> style guide and make sure it passes pyflakes (this is
+also tested with the <code class="docutils literal"><span class="pre">testall.sh</span></code> script).</li>
+</ol>
+<p>These are also tested for by Travis, but please test them yourself as well.</p>
+<p>Depending on your type of changes some other things are needed as well.</p>
+<ol class="arabic simple">
+<li>If you add new arguments, function or classes, add them to
+<code class="docutils literal"><span class="pre">tests/args.py</span></code> without forgetting to name the arguments. That way it is
+easy to see when the external API is changed in the future.</li>
+<li>Change docstrings when necessary. For instance when adding new arguments or
+changing behaviour.</li>
+<li>If you fix something, add a <strong>test</strong> so it won&#8217;t break again.</li>
+<li>If your change is user facing, add it to the <strong>changelog</strong> so it will be
+mentioned in the next release. Its location is at
+<code class="docutils literal"><span class="pre">docs/source/changelog.rst</span></code>.</li>
+<li>If you add something new, show it off with an <strong>example</strong>. If you don&#8217;t do
+this, I will probably still merge your pull request, but it is always nice
+to have examples of features.</li>
+</ol>
 </div>
 </div>
 
