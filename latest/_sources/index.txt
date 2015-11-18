@@ -81,6 +81,7 @@ to pdf is currently working.
     usage
     examples
     api
+    changelog
     contributing
 
 

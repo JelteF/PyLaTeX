@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Change Log &mdash; PyLaTeX 0.8.0 documentation</title>
+  
+
+  
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="_static/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="_static/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="_static/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="_static/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="_static/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="_static/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="_static/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="_static/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="_static/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="_static/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="_static/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="_static/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="_static/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="_static/favicons/manifest.json">
+    <link rel="mask-icon" href="_static/favicons/safari-pinned-tab.svg" color="#2c7f96">
+    <link rel="shortcut icon" href="_static/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="_static/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="_static/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html"/>
+        <link rel="next" title="How to contribute" href="contributing.html"/>
+        <link rel="prev" title="pylatex.utils" href="pylatex/pylatex.utils.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyLaTeX
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Library usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unreleased">Unreleased</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removed">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#added">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.8.0 - 23-05-2015</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.7.1 - 21-03-2015</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">0.7.0 - 17-03-2015</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">0.6.1 - 11-01-2015</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">0.6 - 07-01-2015</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">0.5 - 02-06-2014</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">0.4.2 - 18-03-2014</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">0.4.1 - 29-01-2014</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Fixed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">PyLaTeX</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Change Log</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="_sources/changelog.txt" rel="nofollow"> View page source</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="change-log">
+<h1>Change Log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
+<p>All notable changes to this project will be documented on this page.
+This project adheres to <a class="reference external" href="http://semver.org/">Semantic Versioning</a>.</p>
+<div class="section" id="unreleased">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.8.0...HEAD">Unreleased</a><a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
+<p>This realease will bring some great changes. The whole package has been
+refactored and actual documentation has been added. Because of this, things
+have been moved an renamed.</p>
+<div class="section" id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The base_classes submodule has been split into multiple sub-submodules.</li>
+<li>The old baseclasses have been renamed as well. They now have easier names that
+better show their purpose.</li>
+<li>The command and parameters submodules have been merged into one command
+submodule in the base_classes submodule.</li>
+<li>The numpy classes have been moved to the math submodule.</li>
+<li>For all of the previous changes the old submodules and names should still work
+during the transition period, but they will be removed before the final
+release.</li>
+<li>The <code class="docutils literal"><span class="pre">Plt</span></code> class has been merged with the <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure" title="pylatex.figure.Figure"><code class="xref py py-obj docutils literal"><span class="pre">Figure</span></code></a> class. Its
+<a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_plot" title="pylatex.figure.Figure.add_plot"><code class="xref py py-obj docutils literal"><span class="pre">add_plot</span></code></a> method also doesn&#8217;t take a plt argument anymore. The plt
+module is now imported when the <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_plot" title="pylatex.figure.Figure.add_plot"><code class="xref py py-obj docutils literal"><span class="pre">add_plot</span></code></a> method is used. This also
+allows for adding plots in the <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure" title="pylatex.figure.SubFigure"><code class="xref py py-obj docutils literal"><span class="pre">SubFigure</span></code></a> class.</li>
+<li>Compiling is more secure now and it doesn&#8217;t show output unless an error occurs
+or explicitly specified.</li>
+<li>The internal method <code class="docutils literal"><span class="pre">propegate_packages</span></code> has been spelled correctly and made
+&#8220;internal&#8221; by adding an underscore in front of the name, resulting in
+<code class="docutils literal"><span class="pre">_propagate_packages</span></code></li>
+<li>The default allignment of a multicolumn is not <code class="docutils literal"><span class="pre">c</span></code> instead of <code class="docutils literal"><span class="pre">|c|</span></code>, since
+vertical lines in tables are ugly most of the time.</li>
+<li>Make the list method of <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters" title="pylatex.base_classes.command.Parameters"><code class="xref py py-obj docutils literal"><span class="pre">Parameters</span></code></a> a private method.</li>
+<li>Make the <code class="docutils literal"><span class="pre">get_table_width</span></code> function private.</li>
+<li>Make <code class="docutils literal"><span class="pre">width</span></code> and <code class="docutils literal"><span class="pre">placement</span></code> keyword only arguments for the
+<a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_plot" title="pylatex.figure.Figure.add_plot"><code class="xref py py-obj docutils literal"><span class="pre">add_plot</span></code></a> method.</li>
+<li>The old <code class="docutils literal"><span class="pre">Table</span></code> class is renamed to <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a>. A new <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Table" title="pylatex.table.Table"><code class="xref py py-obj docutils literal"><span class="pre">Table</span></code></a> class has
+been created that represents the <code class="docutils literal"><span class="pre">table</span></code> LaTeX environment, which can be
+used to create a floating table.</li>
+<li>Fixed a bug in the <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> class, that lead to an error if a filepath
+without basename was provided.</li>
+<li>Fixed the testall.sh script such that sphinx and nosetests get called with
+the correct python version.</li>
+<li>The graphics submodule has been renamed to figure.</li>
+<li>The pgfplots submodule has been renamed to tikz.</li>
+<li>Rename the <code class="docutils literal"><span class="pre">seperate_paragraph</span></code> keyword argument to the correctly spelled
+<code class="docutils literal"><span class="pre">separate_paragraph</span></code>.</li>
+<li>The <code class="docutils literal"><span class="pre">container_name</span></code> attribute has been changed to
+<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.latex_name" title="pylatex.base_classes.latex_object.LatexObject.latex_name"><code class="xref py py-obj docutils literal"><span class="pre">latex_name</span></code></a> so it can be used more than containers. By default
+it is still the lowercase version of the classname. To change the default for
+a class you should set <code class="docutils literal"><span class="pre">_latex_name</span></code></li>
+<li>Made <code class="docutils literal"><span class="pre">Document.select_filepath</span></code> private.</li>
+<li><a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a> now has a <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container.dumps_content" title="pylatex.base_classes.containers.Container.dumps_content"><code class="xref py py-obj docutils literal"><span class="pre">dumps_content</span></code></a> method, which dumps it
+content instead of a dumps method. This allows to override just that method
+when subclassing <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a> so you can do dump in some special inside the
+environment, while still keeping the <code class="docutils literal"><span class="pre">\begin</span></code> and <code class="docutils literal"><span class="pre">\end</span></code> stuff provided
+by <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a>.</li>
+<li>When subclassing a class and special LaTeX packages are needed, you now have
+to specify the packages class attribute instead of passing packages along
+with the <code class="docutils literal"><span class="pre">__init__</span></code> method.</li>
+<li>Content of subclasses of <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a> is now automatically escaped. Content
+of <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a> or <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a> is not escaped by default.</li>
+<li>Made <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.separate_paragraph" title="pylatex.base_classes.latex_object.LatexObject.separate_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">separate_paragraph</span></code></a>, <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.begin_paragraph" title="pylatex.base_classes.latex_object.LatexObject.begin_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">begin_paragraph</span></code></a> and
+<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.end_paragraph" title="pylatex.base_classes.latex_object.LatexObject.end_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">end_paragraph</span></code></a> class attributes instead of instance
+attributes.</li>
+<li>The default of the <code class="docutils literal"><span class="pre">filepath</span></code> argument for the <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf" title="pylatex.document.Document.generate_pdf"><code class="xref py py-obj docutils literal"><span class="pre">Document.generate_pdf</span></code></a> and
+<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document.generate_tex" title="pylatex.document.Document.generate_tex"><code class="xref py py-obj docutils literal"><span class="pre">Document.generate_tex</span></code></a> have been changed to <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>. The response to the
+default is not changed, so this is a fairly invisible change.</li>
+<li>Moved <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.separate_paragraph" title="pylatex.base_classes.latex_object.LatexObject.separate_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">separate_paragraph</span></code></a>, <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.begin_paragraph" title="pylatex.base_classes.latex_object.LatexObject.begin_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">begin_paragraph</span></code></a> and
+<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.end_paragraph" title="pylatex.base_classes.latex_object.LatexObject.end_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">end_paragraph</span></code></a> attributes to <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>.</li>
+<li>Use <code class="docutils literal"><span class="pre">latexmk</span></code> to compile to pdf when available, otherwise fallback to
+<code class="docutils literal"><span class="pre">pdflatex</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The add <code class="docutils literal"><span class="pre">add_multicolumn</span></code> and <code class="docutils literal"><span class="pre">add_multirow</span></code> methods on tabular classes
+are removed in favor of the much more robust and easier to use <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.MultiRow" title="pylatex.table.MultiRow"><code class="xref py py-obj docutils literal"><span class="pre">MultiRow</span></code></a>
+and <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.MultiColumn" title="pylatex.table.MultiColumn"><code class="xref py py-obj docutils literal"><span class="pre">MultiColumn</span></code></a> classes.</li>
+<li>Removed unused <code class="docutils literal"><span class="pre">name</span></code> argument of the <a class="reference internal" href="pylatex/pylatex.math.html#pylatex.math.Matrix" title="pylatex.math.Matrix"><code class="xref py py-obj docutils literal"><span class="pre">Matrix</span></code></a> class.</li>
+<li>Removed base keyword argument of the <a class="reference internal" href="pylatex/pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> class. <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a> should be
+used when changing of the base is needed.</li>
+<li>Removed the <code class="docutils literal"><span class="pre">title</span></code>, <code class="docutils literal"><span class="pre">author</span></code>, <code class="docutils literal"><span class="pre">date</span></code> and <code class="docutils literal"><span class="pre">maketitle</span></code> arguments from
+the <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> constructor. They were from a time when it was not possible
+to change the preamble, which is now very easy. They are not so commonly used
+that they should be part of the main <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> object.</li>
+<li>Removed useless list class constructor arguments for list_spec and pos. These
+were probably copied from the <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a> class.</li>
+</ul>
+</div>
+<div class="section" id="added">
+<h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Lots of documentation!!!!!</li>
+<li>A float environment base class.</li>
+<li>An unfinished Quantity class that can be used in conjunction with the
+quantitities package. <a class="reference external" href="https://pythonhosted.org/quantities/">https://pythonhosted.org/quantities/</a></li>
+<li>Allow supplying a mapper function to dumps_list and the add_row method for
+tabular like objects.</li>
+<li>An <code class="docutils literal"><span class="pre">extra_arguments</span></code> argument to <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a>. See docs for description.</li>
+<li>Add <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-obj docutils literal"><span class="pre">CommandBase</span></code></a>, which can be easily subclassed for a command that is used
+more than once.</li>
+<li>Add <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string class, which can be used to make sure a raw LaTeX
+string is not escaped.</li>
+<li>A <code class="docutils literal"><span class="pre">__repr__</span></code> method, so printing LaTeX objects gives more useful
+information now.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.7.1...v0.8.0">0.8.0</a> - 23-05-2015<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Added<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>List classes (enumerate, itemize, description)</li>
+<li>Arguments for plt.savefig</li>
+<li>SubFigure class for use with subcaption package</li>
+<li>Command line argument for ./testall.sh to supply a custom python command</li>
+<li>The generate_tex method is now usable in every class, this makes making
+snippets even easier.</li>
+<li>MultiColumn and MultiRow classes for generalized table layouts.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Changed<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>BaseLaTeXNamedContainer now uses the name of the class as the default
+container_name</li>
+<li>The <code class="docutils literal"><span class="pre">Table</span></code> object is going to be deprecated in favor of the better named
+<a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a> object. This will take a couple of releases.</li>
+<li>Allow the data keyword argument of containers to be a single item instead of a
+list. If this is the case it will be wrapped in a list on initialization.</li>
+</ul>
+</div>
+<div class="section" id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Propagate packages recursively add packages of sub containers</li>
+<li>Make cleanup of files Windows compatible</li>
+<li>Filenames can be paths (<code class="docutils literal"><span class="pre">foo/bar/my_pdf</span></code>).</li>
+<li>Replace <code class="docutils literal"><span class="pre">filename</span></code> by <code class="docutils literal"><span class="pre">filepath</span></code> in the names of the arguments.</li>
+<li>Matplotlib support now uses the tmpfile module, this fixes permission issues
+with the badly previously badly located tmp directory.</li>
+<li>The temp directory is only removed in generate_pdf when cleaning is
+enabled</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.7.0...v0.7.1">0.7.1</a> - 21-03-2015<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>Added<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Contributing guidelines.</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>Changed<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The non keyword argument for filename is now called path instead of filename
+to show it can also be used with paths.</li>
+<li>Travis now checks for Flake8 errors.</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Fixed<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix a bug in Plt and one in fix_filename that caused an error when using them
+with some filenames (dots in directories and a file without an extension)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.6.1...v0.7.0">0.7.0</a> - 17-03-2015<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>Added<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Matplotlib support</li>
+<li>Quite a bit of basic docstrings</li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3>Changed<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Filenames should now be specified to the
+<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf" title="pylatex.document.Document.generate_pdf"><code class="xref py py-obj docutils literal"><span class="pre">generate_pdf</span></code></a>/<a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document.generate_tex" title="pylatex.document.Document.generate_tex"><code class="xref py py-obj docutils literal"><span class="pre">generate_tex</span></code></a> methods of document. If
+this is not done the <code class="docutils literal"><span class="pre">default_filename</span></code> attribute will be used.</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>Fixed<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix a lot of bugs in the <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.escape_latex" title="pylatex.utils.escape_latex"><code class="xref py py-obj docutils literal"><span class="pre">escape_latex</span></code></a> function</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id12">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.6...v0.6.1">0.6.1</a> - 11-01-2015<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>Added<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Travis tests</li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h3>Fixed<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Bug in VectorName</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id15">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.5...v0.6">0.6</a> - 07-01-2015<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h3>Added<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Figure class</li>
+<li>Command and Parameter classes</li>
+<li><code class="docutils literal"><span class="pre">with</span></code> statement support</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id17">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.4.2...v0.5">0.5</a> - 02-06-2014<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h3>Added<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python 2.7 support</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id19">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v0.4.1...v0.4.2">0.4.2</a> - 18-03-2014<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id20">
+<h3>Added<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>More table types</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id21">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/68ddef6bc43a5dff42105c3a38068d87d99d049f...v0.4.1">0.4.1</a> - 29-01-2014<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h3>Added<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Partial experimental support for multicol/multirow</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3>Fixed<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix package delegation with duplicate packages</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="How to contribute" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pylatex/pylatex.utils.html" class="btn btn-neutral" title="pylatex.utils" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jelte Fennema.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
