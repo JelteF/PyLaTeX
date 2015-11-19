@@ -101,6 +101,8 @@ Changed
 - Use ``latexmk`` to compile to pdf when available, otherwise fallback to
   ``pdflatex``.
 
+- Change the order of arguments of the `.Axis` constructor.
+
 Removed
 ~~~~~~~
 - The add ``add_multicolumn`` and ``add_multirow`` methods on tabular classes

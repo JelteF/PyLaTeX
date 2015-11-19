@@ -23,7 +23,7 @@ class Axis(Environment):
 
     packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
 
-    def __init__(self, data=None, options=None):
+    def __init__(self, options=None, data=None):
         """.
 
         Args
@@ -32,8 +32,7 @@ class Axis(Environment):
             Options to format the axis environment.
         """
 
-        # TODO: Move data behind options
-        super().__init__(data=data, options=options)
+        super().__init__(options=options, data=data)
 
 
 class Plot(LatexObject):
