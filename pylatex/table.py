@@ -61,8 +61,9 @@ class MultiRow(Container):
         ----
         size: int
             The amount of rows that this cell should fill.
-        align: str
-            How to align the content of the cell.
+        width: str
+            Width of the cell. The default is ``*``, which means the content's
+            natural width.
         data: str, list or `~.LatexObject`
             The content of the cell.
         """
