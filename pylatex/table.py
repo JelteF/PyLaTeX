@@ -119,15 +119,10 @@ class Tabular(Environment):
         # Count cell contents
         cell_count = 0
 
-        # TODO: Change latex_name == "multicolumn" to
-        # isinstance(c, MultiColumn)
         for c in cells:
-            try:
-                if c.latex_name == "multicolumn":
-                    cell_count += c.size
-                else:
-                    cell_count += 1
-            except AttributeError:
+            if isinstance(c, MultiColumn):
+                cell_count += c.size
+            else:
                 cell_count += 1
 
         if strict and cell_count != self.width:
