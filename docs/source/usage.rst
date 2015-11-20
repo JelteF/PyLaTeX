@@ -55,8 +55,7 @@ Additionally, Options and Arguments can be placed in an `~.Options` object or a
 Formatting Strings
 ~~~~~~~~~~~~~~~~~~
 A number of functions are available in `~.utils` that are helpful in formatting
-text. For example, `~.escape_latex` can be used on a string to escape special
-characters in LaTeX (e.g. $, #, %).  And `~.bold` and `~.italic` format text
+text. For example, the functions `~.bold` and `~.italic` exist to format text
 appropriately.
 
 
@@ -66,19 +65,27 @@ Because of all the base classes supplied by PyLaTeX, it is very easy to extend
 its support in LaTeX features. Just pick one of the existing (base) classes
 that fits best and extend that with the needed functionality.
 
-All LaTeX objects come from `~.LatexObject` , but it may be more useful an
-object as one of its base subclasses, like an `~.Environment` or a command.
-Consult the API documentation to see the variety of base classes available for
-use.
+All LaTeX objects come from `~.LatexObject` , but it is probably more more
+useful one of the other base subclasses, like `~.Environment` or
+`~.CommandBase`. Consult the API documentation to see the variety of base
+classes available for use.
 
 
 Plain LaTeX Strings
 -------------------
 Although PyLaTeX contains classes and functions to make generating LaTeX
 formatted text easy, at its core it is a nice wrapper around string
-manipulations. This is why all the functions and classes that are supplied by
-this library support normal strings as input. If at any point a LaTeX feature
-that you need is not supported by this library, you can just make a string with
-the LaTeX syntax you need and that string can simply be mixed in with all the
-classes supplied by this library. Raw LaTeX strings can be appended to
-containers, sections, or documents if none of PyLaTeX's functions work for you.
+manipulations. This is why all of them also accept raw LaTeX strings. That way
+you can just use regular LaTeX strings when something is not supported directly
+by the library.
+
+Unescaping Strings
+~~~~~~~~~~~~~~~~~~
+This is not as simple as is seems though, this is becouse by default almost all
+strings are escaped. This is done for security reasons and to make sure valid
+LaTeX code will be generated at all times. However, there are cases where raw
+LaTeX strings should just be used directly in the document. This is why the
+`~.NoEscape` string type exists. This is just a subclass of `str`, but it will
+not be escaped. One important thing to note about this class is that appending
+a `~.NoEscape` type string to a regular string results in a regular string,
+since one type has to be chosen and the most conservative approach is taken.
