@@ -69,8 +69,9 @@ doc.packages.append(Package('geometry', options=['tmargin=1cm',
                                                  'lmargin=10cm']))
 
 with doc.create(Section('The simple stuff')):
-    doc.append('Some regular text and some ' + italic('italic text. '))
-    doc.append(escape_latex('\nAlso some crazy characters: $&#{}'))
+    doc.append('Some regular text and some ')
+    doc.append(italic('italic text. '))
+    doc.append('\nAlso some crazy characters: $&#{}')
     with doc.create(Subsection('Math that is incorrect')) as math:
         doc.append(Math(data=['2*3', '=', 9]))
 

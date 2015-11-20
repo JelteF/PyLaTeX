@@ -123,7 +123,7 @@ class Environment(Container):
             Some content that is in the environment
         \end{environment_name}
 
-    The text that is used in the place of environment_name is by defalt the
+    The text that is used in the place of environment_name is by default the
     name of the class in lowercase. However, this default can be overridden by
     setting the environment_name class variable when declaring the class.
     """
@@ -156,7 +156,7 @@ class Environment(Container):
 
         string = ''
 
-        # Something other than None needs to be used as extra argumets, that
+        # Something other than None needs to be used as extra arguments, that
         # way the options end up behind the latex_name argument.
         if self.arguments is None:
             extra_arguments = Arguments()

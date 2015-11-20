@@ -7,8 +7,8 @@ This module implements the base class for table classes.
 """
 
 from . import LatexObject, Environment, Command
+from ..errors import TableRowSizeError
 from ..utils import dumps_list, NoEscape
-
 
 from collections import Counter
 import re
@@ -92,23 +92,47 @@ class TabularBase(Environment):
 
         self.append(NoEscape((self.width - 1) * '&' + r'\\'))
 
-    def add_row(self, cells, escape=None, mapper=None):
+    def add_row(self, cells, escape=None, mapper=None, strict=True):
         """Add a row of cells to the table.
 
         Args
         ----
         cells: iterable, such as a `list` or `tuple`
-            Each element of the iterable will become a the content of cell.
+            Each element of the iterable will become a the content of a cell.
+        mapper: callable
+            A function that should be called on all entries of the list after
+            converting them to a string, for instance bold
+        strict: bool
+            Check for correct count of cells in row or not.
         """
 
         if escape is None:
             escape = self.escape
 
-        # Propegate packages used in cells
+        # Propagate packages used in cells
         for c in cells:
             if isinstance(c, LatexObject):
                 for p in c.packages:
                     self.packages.add(p)
 
-        self.append(dumps_list(cells, escape=escape, token='&', mapper=mapper)
-                    + NoEscape(r'\\'))
+        # Count cell contents
+        cell_count = 0
+
+        # TODO: Change latex_name == "multicolumn" to
+        # isinstance(c, MultiColumn)
+        for c in cells:
+            try:
+                if c.latex_name == "multicolumn":
+                    cell_count += c.size
+                else:
+                    cell_count += 1
+            except AttributeError:
+                cell_count += 1
+
+        if strict and cell_count != self.width:
+            msg = "Number of cells added to table ({}) " \
+                "did not match table width ({})".format(cell_count, self.width)
+            raise TableRowSizeError(msg)
+
+        self.append(dumps_list(cells, escape=escape, token='&',
+                               mapper=mapper) + NoEscape(r'\\'))

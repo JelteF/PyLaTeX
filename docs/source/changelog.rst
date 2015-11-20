@@ -103,6 +103,9 @@ Changed
 
 - Change the order of arguments of the `.Axis` constructor.
 
+- Tables like `.Tabular` now raise an exception when rows with wrong size are
+  added
+
 Removed
 ~~~~~~~
 - The add ``add_multicolumn`` and ``add_multirow`` methods on tabular classes

@@ -40,7 +40,7 @@ class LatexObject(metaclass=_CreatePackages):
 
     _latex_name = None
 
-    #: Set this to an itterable to override the list of default repr
+    #: Set this to an iterable to override the list of default repr
     #: attributes.
     _repr_attributes_override = None
     #: Set this to a dict to change some of the default repr attributes to

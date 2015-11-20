@@ -19,3 +19,4 @@ from .lists import Enumerate, Itemize, Description
 from .quantities import Quantity
 from .base_classes import Command
 from .utils import NoEscape
+from .errors import TableRowSizeError
