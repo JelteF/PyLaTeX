@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.base_classes.section &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.errors &mdash; PyLaTeX 0.8.0 documentation</title>
   
 
   
@@ -54,8 +54,8 @@
   
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
-        <link rel="next" title="pylatex.base_classes.table" href="pylatex.base_classes.table.html"/>
-        <link rel="prev" title="pylatex.base_classes.latex_object" href="pylatex.base_classes.latex_object.html"/> 
+        <link rel="next" title="pylatex.figure" href="pylatex.figure.html"/>
+        <link rel="prev" title="pylatex.document" href="pylatex.document.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -112,10 +112,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.base_classes.section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
@@ -163,11 +162,11 @@
       
         <li><a href="../api.html">API reference</a> &raquo;</li>
       
-    <li>pylatex.base_classes.section</li>
+    <li>pylatex.errors</li>
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/pylatex/pylatex.base_classes.section.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/pylatex/pylatex.errors.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -177,26 +176,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <span class="target" id="module-pylatex.base_classes.section"></span><div class="section" id="pylatex-base-classes-section">
-<h1>pylatex.base_classes.section<a class="headerlink" href="#pylatex-base-classes-section" title="Permalink to this headline">¶</a></h1>
-<p>This module implements the class that deals with sections.</p>
-<dl class="class">
-<dt id="pylatex.base_classes.section.SectionBase">
-<em class="property">class </em><code class="descname">SectionBase</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/section.py#L13-L53"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.section.SectionBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
-<p>A class that is the base for all section type classes.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+  <span class="target" id="module-pylatex.errors"></span><div class="section" id="pylatex-errors">
+<h1>pylatex.errors<a class="headerlink" href="#pylatex-errors" title="Permalink to this headline">¶</a></h1>
+<p>This module implements Error classes.</p>
+<dl class="exception">
+<dt id="pylatex.errors.PyLaTeXError">
+<em class="property">exception </em><code class="descname">PyLaTeXError</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/errors.py#L10-L11"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.errors.PyLaTeXError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.5)"><code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></a></p>
+<p>A Base class for all PyLaTeX Exceptions.</p>
+<dl class="attribute">
+<dt id="pylatex.errors.PyLaTeXError.args">
+<code class="descname">args</code><a class="headerlink" href="#pylatex.errors.PyLaTeXError.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pylatex.errors.PyLaTeXError.with_traceback">
+<code class="descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.errors.PyLaTeXError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) &#8211;
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="pylatex.errors.TableError">
+<em class="property">exception </em><code class="descname">TableError</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/errors.py#L14-L15"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.errors.TableError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.errors.PyLaTeXError" title="pylatex.errors.PyLaTeXError"><code class="xref py py-class docutils literal"><span class="pre">pylatex.errors.PyLaTeXError</span></code></a></p>
+<p>A Base class for all errors concerning tables.</p>
+<dl class="attribute">
+<dt id="pylatex.errors.TableError.args">
+<code class="descname">args</code><a class="headerlink" href="#pylatex.errors.TableError.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pylatex.errors.TableError.with_traceback">
+<code class="descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.errors.TableError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) &#8211;
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="pylatex.errors.TableRowSizeError">
+<em class="property">exception </em><code class="descname">TableRowSizeError</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/errors.py#L18-L19"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.errors.TableRowSizeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.errors.TableError" title="pylatex.errors.TableError"><code class="xref py py-class docutils literal"><span class="pre">pylatex.errors.TableError</span></code></a></p>
+<p>Error for wrong table row size.</p>
+<dl class="attribute">
+<dt id="pylatex.errors.TableRowSizeError.args">
+<code class="descname">args</code><a class="headerlink" href="#pylatex.errors.TableRowSizeError.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pylatex.errors.TableRowSizeError.with_traceback">
+<code class="descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pylatex.errors.TableRowSizeError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) &#8211;
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -208,10 +245,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pylatex.base_classes.table.html" class="btn btn-neutral float-right" title="pylatex.base_classes.table" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pylatex.figure.html" class="btn btn-neutral float-right" title="pylatex.figure" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.base_classes.latex_object.html" class="btn btn-neutral" title="pylatex.base_classes.latex_object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.document.html" class="btn btn-neutral" title="pylatex.document" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

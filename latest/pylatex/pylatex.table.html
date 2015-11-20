@@ -112,10 +112,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.section.html">pylatex.base_classes.section</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.table.html">pylatex.base_classes.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
@@ -181,49 +180,9 @@
 <h1>pylatex.table<a class="headerlink" href="#pylatex-table" title="Permalink to this headline">¶</a></h1>
 <p>This module implements the class that deals with tables.</p>
 <dl class="class">
-<dt id="pylatex.table.MultiColumn">
-<em class="property">class </em><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='c'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L13-L47"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
-<p>A class that represents a multicolumn inside of a table.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; The amount of columns that this cell should fill.</li>
-<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; How to align the content of the cell.</li>
-<li><strong>data</strong> (str, list or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The content of the cell.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="pylatex.table.MultiRow">
-<em class="property">class </em><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>width='*'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L50-L86"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
-<p>A class that represents a multirow in a table.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; The amount of rows that this cell should fill.</li>
-<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; How to align the content of the cell.</li>
-<li><strong>data</strong> (str, list or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The content of the cell.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
 <dt id="pylatex.table.Tabular">
-<em class="property">class </em><code class="descname">Tabular</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L89-L90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
+<em class="property">class </em><code class="descname">Tabular</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L42-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that represents a tabular.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -243,14 +202,8 @@ if it should contain vertical lines and where.</li>
 <li><a class="reference external" href="https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment">https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment</a></li>
 </ul>
 <dl class="method">
-<dt id="pylatex.table.Tabular.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L90-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_empty_row" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add an empty row to the table.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pylatex.table.Tabular.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L69-L88"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L70-L89"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -267,14 +220,26 @@ if it should contain vertical lines and where.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="pylatex.table.Tabular.add_empty_row">
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L91-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an empty row to the table.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pylatex.table.Tabular.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L95-L114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L96-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of a cell.</li>
+<li><strong>mapper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function that should be called on all entries of the list after
+converting them to a string, for instance bold</li>
+<li><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Check for correct count of cells in row or not.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -283,8 +248,49 @@ if it should contain vertical lines and where.</li>
 </dd></dl>
 
 <dl class="class">
+<dt id="pylatex.table.MultiColumn">
+<em class="property">class </em><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>align='c'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L137-L171"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
+<p>A class that represents a multicolumn inside of a table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; The amount of columns that this cell should fill.</li>
+<li><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; How to align the content of the cell.</li>
+<li><strong>data</strong> (str, list or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The content of the cell.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.table.MultiRow">
+<em class="property">class </em><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>width='*'</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L174-L211"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
+<p>A class that represents a multirow in a table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.5)"><em>int</em></a>) &#8211; The amount of rows that this cell should fill.</li>
+<li><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; Width of the cell. The default is <code class="docutils literal"><span class="pre">*</span></code>, which means the content&#8217;s
+natural width.</li>
+<li><strong>data</strong> (str, list or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The content of the cell.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
 <dt id="pylatex.table.Table">
-<em class="property">class </em><code class="descname">Table</code><span class="sig-paren">(</span><em>position=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L93-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Table" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Table</code><span class="sig-paren">(</span><em>position=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L214-L215"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.float.html#pylatex.base_classes.float.Float" title="pylatex.base_classes.float.Float"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.float.Float</span></code></a></p>
 <p>A class that represents a table float.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -318,8 +324,8 @@ if it should contain vertical lines and where.</li>
 
 <dl class="class">
 <dt id="pylatex.table.Tabu">
-<em class="property">class </em><code class="descname">Tabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L97-L100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
+<em class="property">class </em><code class="descname">Tabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L218-L221"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
 <p>A class that represents a tabu (more flexible table).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -340,13 +346,13 @@ if it should contain vertical lines and where.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.Tabu.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L90-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L91-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.Tabu.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L69-L88"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L70-L89"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -364,13 +370,19 @@ if it should contain vertical lines and where.</li>
 
 <dl class="method">
 <dt id="pylatex.table.Tabu.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L95-L114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L96-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of a cell.</li>
+<li><strong>mapper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function that should be called on all entries of the list after
+converting them to a string, for instance bold</li>
+<li><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Check for correct count of cells in row or not.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -380,8 +392,8 @@ if it should contain vertical lines and where.</li>
 
 <dl class="class">
 <dt id="pylatex.table.LongTable">
-<em class="property">class </em><code class="descname">LongTable</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L103-L106"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.table.html#pylatex.base_classes.table.TabularBase" title="pylatex.base_classes.table.TabularBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.table.TabularBase</span></code></a></p>
+<em class="property">class </em><code class="descname">LongTable</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L224-L227"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
 <p>A class that represents a longtable (multipage table).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -402,13 +414,13 @@ if it should contain vertical lines and where.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.LongTable.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L90-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L91-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTable.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L69-L88"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L70-L89"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -426,13 +438,19 @@ if it should contain vertical lines and where.</li>
 
 <dl class="method">
 <dt id="pylatex.table.LongTable.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L95-L114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L96-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of a cell.</li>
+<li><strong>mapper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function that should be called on all entries of the list after
+converting them to a string, for instance bold</li>
+<li><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Check for correct count of cells in row or not.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -442,7 +460,7 @@ if it should contain vertical lines and where.</li>
 
 <dl class="class">
 <dt id="pylatex.table.LongTabu">
-<em class="property">class </em><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L109-L110"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L230-L231"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.LongTable" title="pylatex.table.LongTable"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.LongTable</span></code></a>, <a class="reference internal" href="#pylatex.table.Tabu" title="pylatex.table.Tabu"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabu</span></code></a></p>
 <p>A class that represents a longtabu (more flexible multipage table).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -464,13 +482,13 @@ if it should contain vertical lines and where.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.LongTabu.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L90-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L91-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabu.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L69-L88"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L70-L89"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -488,13 +506,19 @@ if it should contain vertical lines and where.</li>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabu.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L95-L114"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>cells</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/table.py#L96-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of cell.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cells</strong> (iterable, such as a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>) &#8211; Each element of the iterable will become a the content of a cell.</li>
+<li><strong>mapper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function that should be called on all entries of the list after
+converting them to a string, for instance bold</li>
+<li><strong>strict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Check for correct count of cells in row or not.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
