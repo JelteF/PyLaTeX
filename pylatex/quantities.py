@@ -33,18 +33,21 @@ def _dimensionality_to_siunitx(dim):
 
 
 class Quantity(Command):
-    """A class representing quantities.
-
-    :param quantity:
-    :param fmtstr:
-
-    :type quantity: `quantities.quantity.Quantity` instance
-    :type fmtstr: callable
-    """
+    """A class representing quantities."""
 
     packages = [Package('siunitx')]
 
     def __init__(self, quantity, format_cb=None):
+        """.
+
+        Args
+        ----
+        quantity: `quantities.quantity.Quantity`
+            The quantity that should be displayed
+        fmtstr: callable
+            A function which formats the number in the quantity. By default
+            this uses `numpy.array_str`.
+        """
         import numpy as np
 
         self.quantity = quantity
