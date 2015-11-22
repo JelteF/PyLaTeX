@@ -56,6 +56,9 @@ class CommandBase(LatexObject):
         elif not isinstance(parameters, parameter_cls):
             parameters = parameter_cls(parameters)
 
+        # Pass on escaping to generated parameters
+        parameters._default_escape = self._default_escape
+
         setattr(self, argument_type, parameters)
 
     def __key(self):
@@ -178,14 +181,27 @@ class Command(CommandBase):
         super().__init__(arguments, options, extra_arguments)
 
 
+class UnsafeCommand(Command):
+    """An unsafe version of the `Command` class.
+
+    This class is meant for one-off commands that should not escape their
+    arguments and options. Use this command with care and only use this when
+    the arguments are hardcoded.
+
+    When an unsafe command of the same type is used multiple times it is better
+    to subclass `.CommandBase` and set the ``_default_escape`` attribute to
+    false.
+    """
+
+    _default_escape = False
+
+
 class Parameters(LatexObject):
     """The base class used by `~Options` and `~Arguments`.
 
     This class should probably never be used on its own and inhereting from it
     is only useful if a class like `~Options` or `~Arguments` is needed again.
     """
-
-    escape = False
 
     def __init__(self, *args, **kwargs):
         r""".

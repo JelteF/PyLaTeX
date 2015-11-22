@@ -47,7 +47,23 @@ class LatexObject(metaclass=_CreatePackages):
     #: other attributes. The key is the old one, the value the new one.
     _repr_attributes_mapping = None
 
-    escape = True
+    #: Set on a class to make instances default to a certain kind of escaping
+    _default_escape = True
+
+    #: Only set this directly by changing the cls.escape
+    _escape = None
+
+    @property
+    def escape(self):
+        """Determine wheter or not to escape content of this class.
+
+        This defaults to `True` for most classes.
+        """
+        if self._escape is not None:
+            return self._escape
+        if self._default_escape is not None:
+            return self._default_escape
+        return
 
     #: Start a new paragraph before this environment.
     begin_paragraph = False

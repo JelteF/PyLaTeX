@@ -11,7 +11,8 @@ It requires the latex package SIunitx.
 from operator import itemgetter
 
 from .base_classes import Command
-from pylatex.package import Package
+from .package import Package
+from .utils import NoEscape
 
 
 def _dimensionality_to_siunitx(dim):
@@ -29,7 +30,7 @@ def _dimensionality_to_siunitx(dim):
         if power > 1:
             substring += r'\tothe{' + str(power) + '}'
         string += substring
-    return string
+    return NoEscape(string)
 
 
 class Quantity(Command):

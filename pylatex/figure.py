@@ -8,8 +8,8 @@ This module implements the class that deals with graphics.
 
 import os.path
 
-from .utils import fix_filename, make_temp_dir, NoEscape
-from .base_classes import Command, Float
+from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
+from .base_classes import UnsafeCommand, Float
 from .package import Package
 import uuid
 
@@ -19,7 +19,7 @@ class Figure(Float):
 
     packages = [Package('graphicx')]
 
-    def add_image(self, filename, width=r'0.8\textwidth',
+    def add_image(self, filename, width=NoEscape(r'0.8\textwidth'),
                   placement=NoEscape(r'\centering')):
         """Add an image to the figure.
 
@@ -38,10 +38,13 @@ class Figure(Float):
             self.append(placement)
 
         if width is not None:
+            if self.escape:
+                width = escape_latex(width)
+
             width = 'width=' + str(width)
 
-        self.append(Command('includegraphics', options=width,
-                            arguments=fix_filename(filename)))
+        self.append(UnsafeCommand('includegraphics', options=width,
+                                  arguments=fix_filename(filename)))
 
     def _save_plot(self, *args, **kwargs):
         """Save the plot.
@@ -103,7 +106,7 @@ class SubFigure(Figure):
         'width': 'arguments',
     }
 
-    def __init__(self, width=r'0.45\linewidth', *args, **kwargs):
+    def __init__(self, width=NoEscape(r'0.45\linewidth'), *args, **kwargs):
         """.
 
         Args
@@ -116,7 +119,7 @@ class SubFigure(Figure):
 
         super().__init__(arguments=width, *args, **kwargs)
 
-    def add_image(self, filename, width=r'\linewidth',
+    def add_image(self, filename, width=NoEscape(r'\linewidth'),
                   placement=None):
         """Add an image to the subfigure.
 

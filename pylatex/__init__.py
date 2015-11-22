@@ -17,6 +17,6 @@ from .tikz import TikZ, Axis, Plot
 from .figure import Figure, SubFigure
 from .lists import Enumerate, Itemize, Description
 from .quantities import Quantity
-from .base_classes import Command
+from .base_classes import Command, UnsafeCommand
 from .utils import NoEscape
 from .errors import TableRowSizeError

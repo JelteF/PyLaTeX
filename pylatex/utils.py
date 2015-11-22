@@ -68,8 +68,10 @@ def escape_latex(s):
 
     Args
     ----
-    s : str
-        The string to be escaped.
+    s : `str`, `NoEscape` or anything that can be converted to string
+        The string to be escaped. If this is not a string, it will be converted
+        to a string using `str`. If it is a `NoEscape` string, it will pass
+        through unchanged.
 
     Returns
     -------
@@ -95,7 +97,7 @@ def escape_latex(s):
     if isinstance(s, NoEscape):
         return s
 
-    return ''.join(_latex_special_chars.get(c, c) for c in s)
+    return ''.join(_latex_special_chars.get(c, c) for c in str(s))
 
 
 def fix_filename(path):

@@ -140,8 +140,6 @@ class Document(Environment):
             compilers = ((compiler, []),)
         else:
             latexmk_args = ['--pdf']
-            if silent:
-                latexmk_args += ['--silent']
 
             compilers = (
                 ('latexmk', latexmk_args),

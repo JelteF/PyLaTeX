@@ -11,7 +11,7 @@ import matplotlib
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as plt
 
-from pylatex import Document, Package, Section, Figure
+from pylatex import Document, Package, Section, Figure, NoEscape
 
 
 def main(fname, width, *args, **kwargs):
@@ -24,7 +24,7 @@ def main(fname, width, *args, **kwargs):
         doc.append('Take a look at this beautiful plot:')
 
         with doc.create(Figure(position='htbp')) as plot:
-            plot.add_plot(width=width, *args, **kwargs)
+            plot.add_plot(width=NoEscape(width), *args, **kwargs)
             plot.add_caption('I am a caption.')
 
         doc.append('Created using matplotlib.')

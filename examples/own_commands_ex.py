@@ -10,7 +10,7 @@ How to represent your own LaTeX commands and environments in PyLaTeX.
 from pylatex.base_classes import Environment, CommandBase
 from pylatex.parameters import Arguments
 from pylatex.package import Package
-from pylatex import Document, Section, Command
+from pylatex import Document, Section, UnsafeCommand
 from pylatex.utils import NoEscape
 
 
@@ -48,8 +48,8 @@ with doc.create(Section('Custom commands')):
         """))
 
     # Define the new command
-    new_comm = Command('newcommand', '\exampleCommand', options=3,
-                       extra_arguments=r'\color{#1} #2 #3 \color{black}')
+    new_comm = UnsafeCommand('newcommand', '\exampleCommand', options=3,
+                             extra_arguments=r'\color{#1} #2 #3 \color{black}')
     doc.append(new_comm)
 
     # Use our newly created command with different arguments
@@ -65,19 +65,19 @@ with doc.create(Section('Custom environments')):
         """))
 
     # Define a style for our box
-    mdf_style_definition = Command('mdfdefinestyle',
-                                   arguments=['my_style',
-                                              ('linecolor=#1,'
-                                               'linewidth=#2,'
-                                               'leftmargin=1cm,'
-                                               'leftmargin=1cm')])
+    mdf_style_definition = UnsafeCommand('mdfdefinestyle',
+                                         arguments=['my_style',
+                                                    ('linecolor=#1,'
+                                                     'linewidth=#2,'
+                                                     'leftmargin=1cm,'
+                                                     'leftmargin=1cm')])
 
     # Define the new environment using the style definition above
-    new_env = Command('newenvironment', 'exampleEnvironment', options=2,
-                      extra_arguments=[
-                          mdf_style_definition.dumps() +
-                          r'\begin{mdframed}[style=my_style]',
-                          r'\end{mdframed}'])
+    new_env = UnsafeCommand('newenvironment', 'exampleEnvironment', options=2,
+                            extra_arguments=[
+                                mdf_style_definition.dumps() +
+                                r'\begin{mdframed}[style=my_style]',
+                                r'\end{mdframed}'])
     doc.append(new_env)
 
     # Usage of the newly created environment

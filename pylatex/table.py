@@ -6,10 +6,11 @@ This module implements the class that deals with tables.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import LatexObject, Container, Command, Float, Environment
+from .base_classes import LatexObject, Container, Command, UnsafeCommand, \
+    Float, Environment
 from .package import Package
 from .errors import TableRowSizeError
-from .utils import dumps_list, NoEscape
+from .utils import dumps_list, NoEscape, escape_latex
 
 from collections import Counter
 import re
@@ -86,7 +87,11 @@ class Tabular(Environment):
             elif end is None:
                 end = self.width
 
-            self.append(Command('cline', str(start) + '-' + str(end)))
+            if self.escape:
+                start = escape_latex(start)
+                end = escape_latex(end)
+
+            self.append(UnsafeCommand('cline', start + '-' + end))
 
     def add_empty_row(self):
         """Add an empty row to the table."""
