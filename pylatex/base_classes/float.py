@@ -20,7 +20,7 @@ class Float(Environment):
         'position': 'options',
     }
 
-    def __init__(self, position=None, **kwargs):
+    def __init__(self, *, position=None, **kwargs):
         """.
 
         Args

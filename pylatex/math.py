@@ -15,7 +15,7 @@ class Math(Container):
 
     content_separator = ' '
 
-    def __init__(self, data=None, inline=False):
+    def __init__(self, *, inline=False, data=None):
         """.
 
         Args
@@ -27,7 +27,7 @@ class Math(Container):
         """
 
         self.inline = inline
-        super().__init__(data)
+        super().__init__(data=data)
 
     def dumps(self):
         """Return a LaTeX formatted string representing the object.
@@ -71,7 +71,7 @@ class Matrix(Environment):
         'alignment': 'arguments',
     }
 
-    def __init__(self, matrix, mtype='p', alignment=None):
+    def __init__(self, matrix, *, mtype='p', alignment=None):
         r""".
 
         Args

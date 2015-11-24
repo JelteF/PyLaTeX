@@ -140,7 +140,7 @@ def fix_filename(path):
     return '/'.join(dir_parts)
 
 
-def dumps_list(l, escape=True, token='\n', mapper=None, as_content=True):
+def dumps_list(l, *, escape=True, token='\n', mapper=None, as_content=True):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
@@ -178,14 +178,15 @@ def dumps_list(l, escape=True, token='\n', mapper=None, as_content=True):
     \$100\%
     True
     """
-    strings = (_latex_item_to_string(i, escape, as_content) for i in l)
+    strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
+               for i in l)
     if mapper is not None:
         strings = (mapper(s) for s in strings)
 
     return NoEscape(token.join(strings))
 
 
-def _latex_item_to_string(item, escape=False, as_content=False):
+def _latex_item_to_string(item, *, escape=False, as_content=False):
     """Use the render method when possible, otherwise uses str.
 
     Args
@@ -218,7 +219,7 @@ def _latex_item_to_string(item, escape=False, as_content=False):
     return item
 
 
-def bold(s, escape=True):
+def bold(s, *, escape=True):
     r"""Make a string appear bold in LaTeX formatting.
 
     bold() wraps a given string in the LaTeX command \textbf{}.
@@ -251,7 +252,7 @@ def bold(s, escape=True):
     return NoEscape(r'\textbf{' + s + '}')
 
 
-def italic(s, escape=True):
+def italic(s, *, escape=True):
     r"""Make a string appear italicized in LaTeX formatting.
 
     italic() wraps a given string in the LaTeX command \textit{}.
@@ -282,7 +283,7 @@ def italic(s, escape=True):
     return NoEscape(r'\textit{' + s + '}')
 
 
-def verbatim(s, delimiter='|'):
+def verbatim(s, *, delimiter='|'):
     r"""Make the string verbatim.
 
     Wraps the given string in a \verb LaTeX command.

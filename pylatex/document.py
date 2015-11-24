@@ -24,7 +24,7 @@ class Document(Environment):
 
     """
 
-    def __init__(self, default_filepath='default_filepath',
+    def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, data=None):
         r""".
@@ -94,7 +94,7 @@ class Document(Environment):
 
         super().generate_tex(self._select_filepath(filepath))
 
-    def generate_pdf(self, filepath=None, clean=True, clean_tex=True,
+    def generate_pdf(self, filepath=None, *, clean=True, clean_tex=True,
                      compiler=None, compiler_args=None, silent=True):
         """Generate a pdf file from the document.
 

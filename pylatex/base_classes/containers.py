@@ -25,7 +25,7 @@ class Container(LatexObject, UserList):
 
     content_separator = '\n'
 
-    def __init__(self, data=None):
+    def __init__(self, *, data=None):
         r""".
 
         Args
@@ -128,7 +128,7 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
-    def __init__(self, options=None, arguments=None, **kwargs):
+    def __init__(self, *, options=None, arguments=None, **kwargs):
         r""".
 
         Args
@@ -164,7 +164,7 @@ class Environment(Container):
             extra_arguments = self.arguments
 
         begin = Command('begin', self.latex_name, self.options,
-                        extra_arguments)
+                        extra_arguments=extra_arguments)
         string += begin.dumps() + '\n'
 
         string += self.dumps_content() + '\n'

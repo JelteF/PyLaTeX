@@ -21,7 +21,7 @@ class CommandBase(LatexObject):
 
     """
 
-    def __init__(self, arguments=None, options=None,
+    def __init__(self, arguments=None, options=None, *,
                  extra_arguments=None):
         r""".
 
@@ -136,7 +136,7 @@ class Command(CommandBase):
 
     _repr_attributes_mapping = {'command': 'latex_name'}
 
-    def __init__(self, command=None, arguments=None, options=None,
+    def __init__(self, command=None, arguments=None, options=None, *,
                  extra_arguments=None, packages=None):
         r""".
 
@@ -178,7 +178,7 @@ class Command(CommandBase):
         if packages is not None:
             self.packages |= packages
 
-        super().__init__(arguments, options, extra_arguments)
+        super().__init__(arguments, options, extra_arguments=extra_arguments)
 
 
 class UnsafeCommand(Command):

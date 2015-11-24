@@ -23,7 +23,7 @@ class Axis(Environment):
 
     packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
 
-    def __init__(self, options=None, data=None):
+    def __init__(self, options=None, *, data=None):
         """.
 
         Args

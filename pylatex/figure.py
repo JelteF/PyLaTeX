@@ -19,7 +19,7 @@ class Figure(Float):
 
     packages = [Package('graphicx')]
 
-    def add_image(self, filename, width=NoEscape(r'0.8\textwidth'),
+    def add_image(self, filename, *, width=NoEscape(r'0.8\textwidth'),
                   placement=NoEscape(r'\centering')):
         """Add an image to the figure.
 
@@ -119,7 +119,7 @@ class SubFigure(Figure):
 
         super().__init__(arguments=width, *args, **kwargs)
 
-    def add_image(self, filename, width=NoEscape(r'\linewidth'),
+    def add_image(self, filename, *, width=NoEscape(r'\linewidth'),
                   placement=None):
         """Add an image to the subfigure.
 

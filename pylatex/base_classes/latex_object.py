@@ -10,7 +10,7 @@ from ordered_set import OrderedSet
 from pylatex.utils import dumps_list
 from abc import abstractmethod, ABCMeta
 from reprlib import recursive_repr
-from inspect import getargspec
+from inspect import getfullargspec
 
 
 class _CreatePackages(ABCMeta):
@@ -107,7 +107,7 @@ class LatexObject(metaclass=_CreatePackages):
         """Return attributes that should be part of the repr string."""
         if self._repr_attributes_override is None:
             # Default to init arguments
-            attrs = getargspec(self.__init__).args[1:]
+            attrs = getfullargspec(self.__init__).args[1:]
             mapping = self._repr_attributes_mapping
             if mapping:
                 attrs = [mapping[a] if a in mapping else a for a in attrs]

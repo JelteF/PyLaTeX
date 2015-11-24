@@ -16,7 +16,7 @@ class Section(Container):
     #: A section should normally start in its own paragraph
     end_paragraph = True
 
-    def __init__(self, title, numbering=True, *args, **kwargs):
+    def __init__(self, title, *args, numbering=True, **kwargs):
         """.
 
         Args

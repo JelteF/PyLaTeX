@@ -98,7 +98,7 @@ class Tabular(Environment):
 
         self.append(NoEscape((self.width - 1) * '&' + r'\\'))
 
-    def add_row(self, cells, escape=None, mapper=None, strict=True):
+    def add_row(self, cells, *, escape=None, mapper=None, strict=True):
         """Add a row of cells to the table.
 
         Args
@@ -144,7 +144,7 @@ class MultiColumn(Container):
 
     # TODO: Make this subclass CommandBase and Container
 
-    def __init__(self, size, align='c', data=None):
+    def __init__(self, size, *, align='c', data=None):
         """.
 
         Args
@@ -160,7 +160,7 @@ class MultiColumn(Container):
         self.size = size
         self.align = align
 
-        super().__init__(data)
+        super().__init__(data=data)
 
     def dumps(self):
         """Represent the multicolumn as a string in LaTeX syntax.
@@ -183,7 +183,7 @@ class MultiRow(Container):
 
     packages = [Package('multirow')]
 
-    def __init__(self, size, width='*', data=None):
+    def __init__(self, size, *, width='*', data=None):
         """.
 
         Args
@@ -200,7 +200,7 @@ class MultiRow(Container):
         self.size = size
         self.width = width
 
-        super().__init__(data)
+        super().__init__(data=data)
 
     def dumps(self):
         """Represent the multirow as a string in LaTeX syntax.
