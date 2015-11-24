@@ -276,6 +276,12 @@ default is not changed, so this is a fairly invisible change.</li>
 <li>Change the order of arguments of the <a class="reference internal" href="pylatex/pylatex.tikz.html#pylatex.tikz.Axis" title="pylatex.tikz.Axis"><code class="xref py py-obj docutils literal"><span class="pre">Axis</span></code></a> constructor.</li>
 <li>Tables like <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a> now raise an exception when rows with wrong size are
 added</li>
+<li>Made lots of keyword arguments keyword only arguments. This was needed to
+make it easy to keep the API the same in the future.</li>
+<li>Removed the submodules <code class="docutils literal"><span class="pre">pylatex.parameters</span></code>, <code class="docutils literal"><span class="pre">pylatex.command</span></code> and
+<code class="docutils literal"><span class="pre">pylatex.numpy</span></code>. The content of the first two was moved to
+<code class="docutils literal"><span class="pre">pylatex.base_classes.command</span></code> and the content of the last one was moved to
+<code class="docutils literal"><span class="pre">pylatex.math</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="removed">

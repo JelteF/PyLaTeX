@@ -176,7 +176,7 @@
 <p>How to represent your own LaTeX commands and environments in PyLaTeX.</p>
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleEnvironment">
-<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/examples/own_commands_ex.py#L17-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX environment.</p>
 <p>This class represents a custom LaTeX environment named
 <code class="docutils literal"><span class="pre">exampleEnvironment</span></code>.</p>
@@ -196,7 +196,7 @@
 
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleCommand">
-<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/examples/own_commands_ex.py#L29-L38"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/examples/own_commands_ex.py#L28-L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX command.</p>
 <p>This class represents a custom LaTeX command named
 <code class="docutils literal"><span class="pre">exampleCommand</span></code>.</p>
@@ -220,10 +220,9 @@ before the options.</li>
 
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex.base_classes</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">CommandBase</span>
-<span class="kn">from</span> <span class="nn">pylatex.parameters</span> <span class="kn">import</span> <span class="n">Arguments</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex.base_classes</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">CommandBase</span><span class="p">,</span> <span class="n">Arguments</span>
 <span class="kn">from</span> <span class="nn">pylatex.package</span> <span class="kn">import</span> <span class="n">Package</span>
-<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Command</span>
+<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">UnsafeCommand</span>
 <span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">NoEscape</span>
 
 
@@ -261,8 +260,8 @@ before the options.</li>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">))</span>
 
     <span class="c"># Define the new command</span>
-    <span class="n">new_comm</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span><span class="s">&#39;newcommand&#39;</span><span class="p">,</span> <span class="s">&#39;\exampleCommand&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                       <span class="n">extra_arguments</span><span class="o">=</span><span class="s">r&#39;\color{#1} #2 #3 \color{black}&#39;</span><span class="p">)</span>
+    <span class="n">new_comm</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s">&#39;newcommand&#39;</span><span class="p">,</span> <span class="s">&#39;\exampleCommand&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                             <span class="n">extra_arguments</span><span class="o">=</span><span class="s">r&#39;\color{#1} #2 #3 \color{black}&#39;</span><span class="p">)</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_comm</span><span class="p">)</span>
 
     <span class="c"># Use our newly created command with different arguments</span>
@@ -278,19 +277,19 @@ before the options.</li>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">))</span>
 
     <span class="c"># Define a style for our box</span>
-    <span class="n">mdf_style_definition</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span><span class="s">&#39;mdfdefinestyle&#39;</span><span class="p">,</span>
-                                   <span class="n">arguments</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;my_style&#39;</span><span class="p">,</span>
-                                              <span class="p">(</span><span class="s">&#39;linecolor=#1,&#39;</span>
-                                               <span class="s">&#39;linewidth=#2,&#39;</span>
-                                               <span class="s">&#39;leftmargin=1cm,&#39;</span>
-                                               <span class="s">&#39;leftmargin=1cm&#39;</span><span class="p">)])</span>
+    <span class="n">mdf_style_definition</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s">&#39;mdfdefinestyle&#39;</span><span class="p">,</span>
+                                         <span class="n">arguments</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;my_style&#39;</span><span class="p">,</span>
+                                                    <span class="p">(</span><span class="s">&#39;linecolor=#1,&#39;</span>
+                                                     <span class="s">&#39;linewidth=#2,&#39;</span>
+                                                     <span class="s">&#39;leftmargin=1cm,&#39;</span>
+                                                     <span class="s">&#39;leftmargin=1cm&#39;</span><span class="p">)])</span>
 
     <span class="c"># Define the new environment using the style definition above</span>
-    <span class="n">new_env</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span><span class="s">&#39;newenvironment&#39;</span><span class="p">,</span> <span class="s">&#39;exampleEnvironment&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                      <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[</span>
-                          <span class="n">mdf_style_definition</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span> <span class="o">+</span>
-                          <span class="s">r&#39;\begin{mdframed}[style=my_style]&#39;</span><span class="p">,</span>
-                          <span class="s">r&#39;\end{mdframed}&#39;</span><span class="p">])</span>
+    <span class="n">new_env</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s">&#39;newenvironment&#39;</span><span class="p">,</span> <span class="s">&#39;exampleEnvironment&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                            <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[</span>
+                                <span class="n">mdf_style_definition</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span> <span class="o">+</span>
+                                <span class="s">r&#39;\begin{mdframed}[style=my_style]&#39;</span><span class="p">,</span>
+                                <span class="s">r&#39;\end{mdframed}&#39;</span><span class="p">])</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_env</span><span class="p">)</span>
 
     <span class="c"># Usage of the newly created environment</span>

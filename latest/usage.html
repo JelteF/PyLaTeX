@@ -114,7 +114,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#extending-pylatex">Extending PyLaTeX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plain-latex-strings">Plain LaTeX Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plain-latex-strings">Plain LaTeX Strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unescaping-strings">Unescaping Strings</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
@@ -215,8 +218,7 @@ multiple options in a list.</p>
 <div class="section" id="formatting-strings">
 <h3>Formatting Strings<a class="headerlink" href="#formatting-strings" title="Permalink to this headline">¶</a></h3>
 <p>A number of functions are available in <a class="reference internal" href="pylatex/pylatex.utils.html#module-pylatex.utils" title="pylatex.utils"><code class="xref py py-obj docutils literal"><span class="pre">utils</span></code></a> that are helpful in formatting
-text. For example, <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.escape_latex" title="pylatex.utils.escape_latex"><code class="xref py py-obj docutils literal"><span class="pre">escape_latex</span></code></a> can be used on a string to escape special
-characters in LaTeX (e.g. $, #, %).  And <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.bold" title="pylatex.utils.bold"><code class="xref py py-obj docutils literal"><span class="pre">bold</span></code></a> and <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.italic" title="pylatex.utils.italic"><code class="xref py py-obj docutils literal"><span class="pre">italic</span></code></a> format text
+text. For example, the functions <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.bold" title="pylatex.utils.bold"><code class="xref py py-obj docutils literal"><span class="pre">bold</span></code></a> and <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.italic" title="pylatex.utils.italic"><code class="xref py py-obj docutils literal"><span class="pre">italic</span></code></a> exist to format text
 appropriately.</p>
 </div>
 </div>
@@ -225,21 +227,29 @@ appropriately.</p>
 <p>Because of all the base classes supplied by PyLaTeX, it is very easy to extend
 its support in LaTeX features. Just pick one of the existing (base) classes
 that fits best and extend that with the needed functionality.</p>
-<p>All LaTeX objects come from <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> , but it may be more useful an
-object as one of its base subclasses, like an <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a> or a command.
-Consult the API documentation to see the variety of base classes available for
-use.</p>
+<p>All LaTeX objects come from <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> , but it is probably more more
+useful one of the other base subclasses, like <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a> or
+<a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-obj docutils literal"><span class="pre">CommandBase</span></code></a>. Consult the API documentation to see the variety of base
+classes available for use.</p>
 </div>
 <div class="section" id="plain-latex-strings">
 <h2>Plain LaTeX Strings<a class="headerlink" href="#plain-latex-strings" title="Permalink to this headline">¶</a></h2>
 <p>Although PyLaTeX contains classes and functions to make generating LaTeX
 formatted text easy, at its core it is a nice wrapper around string
-manipulations. This is why all the functions and classes that are supplied by
-this library support normal strings as input. If at any point a LaTeX feature
-that you need is not supported by this library, you can just make a string with
-the LaTeX syntax you need and that string can simply be mixed in with all the
-classes supplied by this library. Raw LaTeX strings can be appended to
-containers, sections, or documents if none of PyLaTeX&#8217;s functions work for you.</p>
+manipulations. This is why all of them also accept raw LaTeX strings. That way
+you can just use regular LaTeX strings when something is not supported directly
+by the library.</p>
+<div class="section" id="unescaping-strings">
+<h3>Unescaping Strings<a class="headerlink" href="#unescaping-strings" title="Permalink to this headline">¶</a></h3>
+<p>This is not as simple as is seems though, this is becouse by default almost all
+strings are escaped. This is done for security reasons and to make sure valid
+LaTeX code will be generated at all times. However, there are cases where raw
+LaTeX strings should just be used directly in the document. This is why the
+<a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string type exists. This is just a subclass of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, but it will
+not be escaped. One important thing to note about this class is that appending
+a <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> type string to a regular string results in a regular string,
+since one type has to be chosen and the most conservative approach is taken.</p>
+</div>
 </div>
 </div>
 

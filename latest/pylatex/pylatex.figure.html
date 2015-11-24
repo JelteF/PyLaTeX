@@ -112,15 +112,12 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -181,7 +178,7 @@
 <p>This module implements the class that deals with graphics.</p>
 <dl class="class">
 <dt id="pylatex.figure.Figure">
-<em class="property">class </em><code class="descname">Figure</code><span class="sig-paren">(</span><em>position=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L17-L90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Figure</code><span class="sig-paren">(</span><em>*</em>, <em>position=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L17-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.float.html#pylatex.base_classes.float.Float" title="pylatex.base_classes.float.Float"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.float.Float</span></code></a></p>
 <p>A class that represents a Figure environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -199,7 +196,7 @@
 </ul>
 <dl class="method">
 <dt id="pylatex.figure.Figure.add_image">
-<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L22-L44"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure.add_image" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>*</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L22-L47"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure.add_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an image to the figure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -218,7 +215,7 @@
 
 <dl class="method">
 <dt id="pylatex.figure.Figure.add_plot">
-<code class="descname">add_plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L65-L90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure.add_plot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L68-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure.add_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the current Matplotlib plot to the figure.</p>
 <p>The plot that gets added is the one that would normally be shown when
 using <code class="docutils literal"><span class="pre">plt.show()</span></code>.</p>
@@ -257,7 +254,7 @@ and placement of the generated plot in the LaTeX document.</li>
 
 <dl class="class">
 <dt id="pylatex.figure.SubFigure">
-<em class="property">class </em><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>width='0.45\linewidth'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L93-L133"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>width='0.45\linewidth'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L96-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.figure.Figure" title="pylatex.figure.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.figure.Figure</span></code></a></p>
 <p>A class that represents a subfigure from the subcaption package.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -271,14 +268,14 @@ inside another figure.</td>
 </table>
 <dl class="attribute">
 <dt id="pylatex.figure.SubFigure.separate_paragraph">
-<code class="descname">separate_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L100-L100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.separate_paragraph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">separate_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L103-L103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.separate_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>By default a subfigure is not on its own paragraph since that looks
 weird inside another figure.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.figure.SubFigure.add_image">
-<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L119-L133"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>*</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L122-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an image to the subfigure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -311,7 +308,7 @@ weird inside another figure.</p>
 
 <dl class="method">
 <dt id="pylatex.figure.SubFigure.add_plot">
-<code class="descname">add_plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L65-L90"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.add_plot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/figure.py#L68-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.add_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the current Matplotlib plot to the figure.</p>
 <p>The plot that gets added is the one that would normally be shown when
 using <code class="docutils literal"><span class="pre">plt.show()</span></code>.</p>

@@ -112,15 +112,12 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -183,7 +180,7 @@
 to it.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.command.CommandBase">
-<em class="property">class </em><code class="descname">CommandBase</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L16-L124"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.CommandBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">CommandBase</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L16-L127"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.CommandBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
 <p>A class that represents a LaTeX command.</p>
 <p>The name of this class (when lowercased) will be the name of this command.
@@ -208,7 +205,7 @@ before the options.</li>
 
 <dl class="class">
 <dt id="pylatex.base_classes.command.Command">
-<em class="property">class </em><code class="descname">Command</code><span class="sig-paren">(</span><em>command=None</em>, <em>arguments=None</em>, <em>options=None</em>, <em>extra_arguments=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L127-L178"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Command" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Command</code><span class="sig-paren">(</span><em>command=None</em>, <em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L130-L181"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.CommandBase</span></code></a></p>
 <p>A class that represents a LaTeX command.</p>
 <p>This class is meant for one-off commands. When a command of the same type
@@ -249,8 +246,54 @@ before the options.</li>
 </dd></dl>
 
 <dl class="class">
+<dt id="pylatex.base_classes.command.UnsafeCommand">
+<em class="property">class </em><code class="descname">UnsafeCommand</code><span class="sig-paren">(</span><em>command=None</em>, <em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em>, <em>packages=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L184-L196"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.UnsafeCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Command</span></code></a></p>
+<p>An unsafe version of the <a class="reference internal" href="#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a> class.</p>
+<p>This class is meant for one-off commands that should not escape their
+arguments and options. Use this command with care and only use this when
+the arguments are hardcoded.</p>
+<p>When an unsafe command of the same type is used multiple times it is better
+to subclass <a class="reference internal" href="#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-obj docutils literal"><span class="pre">CommandBase</span></code></a> and set the <code class="docutils literal"><span class="pre">_default_escape</span></code> attribute to
+false.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; Name of the command</li>
+<li><strong>arguments</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; The main arguments of the command.</li>
+<li><strong>options</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options of the command. These are placed in front of the arguments.</li>
+<li><strong>extra_arguments</strong> (None, str, list or <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Extra arguments for the command. When these are supplied the
+options will be placed before them instead of before the normal
+arguments. This allows for a way of having one or more arguments
+before the options.</li>
+<li><strong>packages</strong> (list of <a class="reference internal" href="pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances) &#8211; A list of the packages that this command requires</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;documentclass&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">options</span><span class="o">=</span><span class="n">Options</span><span class="p">(</span><span class="s">&#39;12pt&#39;</span><span class="p">,</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span> <span class="s">&#39;twoside&#39;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">arguments</span><span class="o">=</span><span class="s">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
+<span class="go">&#39;\\documentclass[12pt,a4paper,twoside]{article}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com{first}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;option&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com[option]{first}&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Command</span><span class="p">(</span><span class="s">&#39;com&#39;</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;option&#39;</span><span class="p">,</span> <span class="s">&#39;second&#39;</span><span class="p">)</span>
+<span class="go">&#39;\\com{first}[option]{second}&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
 <dt id="pylatex.base_classes.command.Parameters">
-<em class="property">class </em><code class="descname">Parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L181-L280"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Parameters" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L199-L296"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
 <p>The base class used by <a class="reference internal" href="#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a> and <a class="reference internal" href="#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>.</p>
 <p>This class should probably never be used on its own and inhereting from it
@@ -271,7 +314,7 @@ is only useful if a class like <a class="reference internal" href="#pylatex.base
 
 <dl class="class">
 <dt id="pylatex.base_classes.command.Options">
-<em class="property">class </em><code class="descname">Options</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L283-L312"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Options" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Options</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L299-L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Options" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.command.Parameters" title="pylatex.base_classes.command.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Parameters</span></code></a></p>
 <p>A class implementing LaTex options for a command.</p>
 <p>It supports normal positional parameters, as well as key-value pairs.
@@ -302,7 +345,7 @@ in the order in which they were entered</p>
 
 <dl class="class">
 <dt id="pylatex.base_classes.command.Arguments">
-<em class="property">class </em><code class="descname">Arguments</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L315-L345"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Arguments" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Arguments</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/base_classes/command.py#L331-L361"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.command.Arguments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.command.Parameters" title="pylatex.base_classes.command.Parameters"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Parameters</span></code></a></p>
 <p>A class implementing LaTex arguments for a command.</p>
 <p>It supports normal positional parameters, as well as key-value pairs.

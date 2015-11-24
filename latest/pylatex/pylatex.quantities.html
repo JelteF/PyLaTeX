@@ -55,7 +55,7 @@
     <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.section" href="pylatex.section.html"/>
-        <link rel="prev" title="pylatex.parameters" href="pylatex.parameters.html"/> 
+        <link rel="prev" title="pylatex.package" href="pylatex.package.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -112,15 +112,12 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.command.html">pylatex.command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.numpy.html">pylatex.numpy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pylatex.parameters.html">pylatex.parameters</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -182,7 +179,7 @@
 <p>It requires the latex package SIunitx.</p>
 <dl class="class">
 <dt id="pylatex.quantities.Quantity">
-<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/quantities.py#L35-L57"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/quantities.py#L36-L61"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Command</span></code></a></p>
 <p>A class representing quantities.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -190,8 +187,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>quantity</strong> (<a class="reference external" href="https://pythonhosted.org/quantities/user/tutorial.html#quantities.quantity.Quantity" title="(in quantities v0.10.0)"><code class="xref py py-obj docutils literal"><span class="pre">quantities.quantity.Quantity</span></code></a> instance) &#8211; </li>
-<li><strong>fmtstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; </li>
+<li><strong>quantity</strong> (<a class="reference external" href="https://pythonhosted.org/quantities/user/tutorial.html#quantities.quantity.Quantity" title="(in quantities v0.10.0)"><code class="xref py py-obj docutils literal"><span class="pre">quantities.quantity.Quantity</span></code></a>) &#8211; The quantity that should be displayed</li>
+<li><strong>fmtstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function which formats the number in the quantity. By default
+this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_str.html#numpy.array_str" title="(in NumPy v1.10)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.array_str</span></code></a>.</li>
 </ul>
 </td>
 </tr>
@@ -211,7 +209,7 @@
         <a href="pylatex.section.html" class="btn btn-neutral float-right" title="pylatex.section" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.parameters.html" class="btn btn-neutral" title="pylatex.parameters" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.package.html" class="btn btn-neutral" title="pylatex.package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
