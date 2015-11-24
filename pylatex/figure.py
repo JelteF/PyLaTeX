@@ -106,7 +106,7 @@ class SubFigure(Figure):
         'width': 'arguments',
     }
 
-    def __init__(self, width=NoEscape(r'0.45\linewidth'), *args, **kwargs):
+    def __init__(self, width=NoEscape(r'0.45\linewidth'), **kwargs):
         """
         Args
         ----
@@ -116,7 +116,7 @@ class SubFigure(Figure):
 
         """
 
-        super().__init__(arguments=width, *args, **kwargs)
+        super().__init__(arguments=width, **kwargs)
 
     def add_image(self, filename, *, width=NoEscape(r'\linewidth'),
                   placement=None):

@@ -16,7 +16,7 @@ class Section(Container):
     #: A section should normally start in its own paragraph
     end_paragraph = True
 
-    def __init__(self, title, *args, numbering=True, **kwargs):
+    def __init__(self, title, numbering=True, **kwargs):
         """
         Args
         ----
@@ -24,13 +24,12 @@ class Section(Container):
             The section title.
         numbering: bool
             Add a number before the section title.
-
         """
 
         self.title = title
         self.numbering = numbering
 
-        super().__init__(*args, **kwargs)
+        super().__init__(**kwargs)
 
     def dumps(self):
         """Represent the section as a string in LaTeX syntax.
