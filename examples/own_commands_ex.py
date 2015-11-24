@@ -7,8 +7,7 @@ How to represent your own LaTeX commands and environments in PyLaTeX.
 """
 
 # begin-doc-include
-from pylatex.base_classes import Environment, CommandBase
-from pylatex.parameters import Arguments
+from pylatex.base_classes import Environment, CommandBase, Arguments
 from pylatex.package import Package
 from pylatex import Document, Section, UnsafeCommand
 from pylatex.utils import NoEscape

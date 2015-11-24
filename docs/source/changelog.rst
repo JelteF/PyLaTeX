@@ -109,6 +109,11 @@ Changed
 - Made lots of keyword arguments keyword only arguments. This was needed to
   make it easy to keep the API the same in the future.
 
+- Removed the submodules ``pylatex.parameters``, ``pylatex.command`` and
+  ``pylatex.numpy``. The content of the first two was moved to
+  ``pylatex.base_classes.command`` and the content of the last one was moved to
+  ``pylatex.math``.
+
 Removed
 ~~~~~~~
 - The add ``add_multicolumn`` and ``add_multirow`` methods on tabular classes
