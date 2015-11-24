@@ -106,6 +106,9 @@ Changed
 - Tables like `.Tabular` now raise an exception when rows with wrong size are
   added
 
+- Made lots of keyword arguments keyword only arguments. This was needed to
+  make it easy to keep the API the same in the future.
+
 Removed
 ~~~~~~~
 - The add ``add_multicolumn`` and ``add_multirow`` methods on tabular classes
