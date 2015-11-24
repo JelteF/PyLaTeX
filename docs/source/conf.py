@@ -130,6 +130,7 @@ def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
 
         'userlist': ['append', 'clear', 'copy', 'count', 'extend', 'index',
                      'insert', 'pop', 'remove', 'reverse', 'sort'],
+        'error': ['args', 'with_traceback'],
     }
 
     members['all'] = list(set([req for reqs in members.values() for req in
