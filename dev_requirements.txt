@@ -2,3 +2,4 @@
 -e git+https://github.com/JelteF/sphinx.git@better-autodoc-skip-member#egg=sphinx-dev
 -e git+https://github.com/JelteF/sphinx_rtd_theme.git@master#egg=sphinx-rtd-theme
 -e git+https://github.com/JelteF/pep257.git@e6187411646c0f324670dbc282bc1200b50e5f68#egg=pep257
+-e git+https://github.com/PyCQA/pep8.git@4dc42d842274ba27d2724e76eb83ff69e7db226f#egg=pep8-master
