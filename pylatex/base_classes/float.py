@@ -21,8 +21,7 @@ class Float(Environment):
     }
 
     def __init__(self, *, position=None, **kwargs):
-        """.
-
+        """
         Args
         ----
         position: str

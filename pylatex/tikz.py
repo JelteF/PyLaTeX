@@ -24,8 +24,7 @@ class Axis(Environment):
     packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
 
     def __init__(self, options=None, *, data=None):
-        """.
-
+        """
         Args
         ----
         options: str, list or `~.Options`
@@ -42,8 +41,7 @@ class Plot(LatexObject):
 
     def __init__(self, name=None, func=None, coordinates=None,
                  error_bar=None, options=None):
-        """.
-
+        """
         Args
         ----
         name: str

@@ -99,16 +99,11 @@ def auto_change_docstring(app, what, name, obj, options, lines):
     Things this function does are:
 
         - Add a title to module docstrings
-        - Remove first lines that only have a single dot. (used in __init__
-            methods)
         - Merge lines that end with a '\' with the next line.
     """
     if what == 'module' and name.startswith('pylatex'):
         lines.insert(0, len(name) * '=')
         lines.insert(0, name)
-
-    if len(lines) and lines[0].strip() == '.':
-        lines.pop(0)
 
     hits = 0
     for i, line in enumerate(lines.copy()):

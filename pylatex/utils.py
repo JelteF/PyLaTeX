@@ -46,8 +46,7 @@ class NoEscape(str):
     """
 
     def __init__(self, string):
-        """.
-
+        """
         Args
         ----
         string: str

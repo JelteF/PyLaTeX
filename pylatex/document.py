@@ -27,8 +27,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, data=None):
-        r""".
-
+        r"""
         Args
         ----
         default_filepath: str

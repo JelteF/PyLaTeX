@@ -17,8 +17,7 @@ class Section(Container):
     end_paragraph = True
 
     def __init__(self, title, *args, numbering=True, **kwargs):
-        """.
-
+        """
         Args
         ----
         title: str

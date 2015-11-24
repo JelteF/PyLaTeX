@@ -19,8 +19,7 @@ class Package(CommandBase):
     }
 
     def __init__(self, name, options=None):
-        """.
-
+        """
         Args
         ----
         name: str

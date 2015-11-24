@@ -23,8 +23,7 @@ class CommandBase(LatexObject):
 
     def __init__(self, arguments=None, options=None, *,
                  extra_arguments=None):
-        r""".
-
+        r"""
         Args
         ----
         arguments: None, str, list or `~.Arguments`
@@ -138,8 +137,7 @@ class Command(CommandBase):
 
     def __init__(self, command=None, arguments=None, options=None, *,
                  extra_arguments=None, packages=None):
-        r""".
-
+        r"""
         Args
         ----
         command: str
@@ -204,8 +202,7 @@ class Parameters(LatexObject):
     """
 
     def __init__(self, *args, **kwargs):
-        r""".
-
+        r"""
         Args
         ----
         \*args:

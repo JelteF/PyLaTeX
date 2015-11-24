@@ -26,8 +26,7 @@ class Container(LatexObject, UserList):
     content_separator = '\n'
 
     def __init__(self, *, data=None):
-        r""".
-
+        r"""
         Args
         ----
         data: list, `~.LatexObject` or something that can be converted to a \
@@ -129,8 +128,7 @@ class Environment(Container):
     """
 
     def __init__(self, *, options=None, arguments=None, **kwargs):
-        r""".
-
+        r"""
         Args
         ----
         options: str or list or  `~.Options`

@@ -107,8 +107,7 @@ class SubFigure(Figure):
     }
 
     def __init__(self, width=NoEscape(r'0.45\linewidth'), *args, **kwargs):
-        """.
-
+        """
         Args
         ----
         width: str

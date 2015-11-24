@@ -49,8 +49,7 @@ class Tabular(Environment):
     }
 
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
-        """.
-
+        """
         Args
         ----
         table_spec: str
@@ -145,8 +144,7 @@ class MultiColumn(Container):
     # TODO: Make this subclass CommandBase and Container
 
     def __init__(self, size, *, align='c', data=None):
-        """.
-
+        """
         Args
         ----
         size: int
@@ -184,8 +182,7 @@ class MultiRow(Container):
     packages = [Package('multirow')]
 
     def __init__(self, size, *, width='*', data=None):
-        """.
-
+        """
         Args
         ----
         size: int
