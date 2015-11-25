@@ -27,9 +27,10 @@ For Ubuntu and other Debian based systems::
 
 Getting the source code
 ~~~~~~~~~~~~~~~~~~~~~~~
-You need your own fork of the Github repository by using the Github fork
-button. You will then need to clone your version of the repo using the normal
-way, something like this::
+You need your own fork of the `Github repository
+<https://github.com/JelteF/PyLaTeX>`_ by using the Github fork button. You will
+then need to clone your version of the repo using the normal way, something
+like this::
 
     git clone git@github.com:YourUserName/pylatex
     cd pylatex

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.document &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>pylatex.document &mdash; PyLaTeX 1.0.0-dev documentation</title>
   
 
   
@@ -52,7 +52,7 @@
   
 
   
-    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.0.0-dev documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.errors" href="pylatex.errors.html"/>
         <link rel="prev" title="pylatex.base_classes.latex_object" href="pylatex.base_classes.latex_object.html"/> 
@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                0.8.0
+                1.0.0
               </div>
             
           
@@ -178,7 +178,7 @@
 <p>This module implements the class that deals with the full document.</p>
 <dl class="class">
 <dt id="pylatex.document.Document">
-<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>*</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>lmodern=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L17-L228"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>*</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>lmodern=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L17-L227"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
 <p>If needed, you can append stuff to the preamble or the packages.
@@ -203,7 +203,7 @@ than the standard LaTeX font.</li>
 </table>
 <dl class="method">
 <dt id="pylatex.document.Document.generate_tex">
-<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L85-L95"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L84-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a .tex file for the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -218,7 +218,7 @@ default filepath attribute is used as the path.</td>
 
 <dl class="method">
 <dt id="pylatex.document.Document.generate_pdf">
-<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>*</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L97-L206"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>*</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/master/pylatex/document.py#L96-L205"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a pdf file from the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -288,7 +288,7 @@ this is None it defaults to an empty list.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.8.0',
+            VERSION:'1.0.0-dev',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

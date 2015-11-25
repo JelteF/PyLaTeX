@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Library usage &mdash; PyLaTeX 0.8.0 documentation</title>
+  <title>Library usage &mdash; PyLaTeX 1.0.0-dev documentation</title>
   
 
   
@@ -52,7 +52,7 @@
   
 
   
-    <link rel="top" title="PyLaTeX 0.8.0 documentation" href="index.html"/>
+    <link rel="top" title="PyLaTeX 1.0.0-dev documentation" href="index.html"/>
         <link rel="next" title="Examples" href="examples.html"/>
         <link rel="prev" title="PyLaTeX" href="index.html"/> 
 
@@ -82,7 +82,7 @@
             
             
               <div class="version">
-                0.8.0
+                1.0.0
               </div>
             
           
@@ -249,6 +249,11 @@ LaTeX strings should just be used directly in the document. This is why the
 not be escaped. One important thing to note about this class is that appending
 a <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> type string to a regular string results in a regular string,
 since one type has to be chosen and the most conservative approach is taken.</p>
+<p>There is also another way to make sure strings are not escaped. This is by
+setting the <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.escape" title="pylatex.base_classes.latex_object.LatexObject.escape"><code class="xref py py-obj docutils literal"><span class="pre">escape</span></code></a> attribute to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> on the class that is
+the container of the string. Keep in mind though that any strings that are
+added to that object will not be escaped when doing this. So, only use this
+method for objects that don&#8217;t contain possibly unsafe strings.</p>
 </div>
 </div>
 </div>
@@ -294,7 +299,7 @@ since one type has to be chosen and the most conservative approach is taken.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.8.0',
+            VERSION:'1.0.0-dev',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
