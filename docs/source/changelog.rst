@@ -1,15 +1,17 @@
 Change Log
 ==========
 
-All notable changes to this project will be documented on this page.
-This project adheres to `Semantic Versioning <http://semver.org/>`_.
+All notable changes to this project will be documented on this page.  This
+project adheres to `Semantic Versioning <http://semver.org/>`_.  See the
+`latest docs <../latest/>`_ for changes that have not yet been released and are
+only present in the development version.
 
-
-Unreleased_
------------
-This realease will bring some great changes. The whole package has been
-refactored and actual documentation has been added. Because of this, things
-have been moved an renamed.
+1.0.0_ - `docs <../v1.0.0/>`__ - 2015-11-25
+-------------------------------------------
+This realease brings some great changes. The whole package has been refactored
+and actual documentation has been added. Because of this, things have been
+moved an renamed. One of the most notable changes is that all normal text is
+now escaped by default.
 
 Changed
 ~~~~~~~
@@ -267,7 +269,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v0.8.0...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...HEAD
+.. _1.0.0: https://github.com/JelteF/PyLaTeX/compare/v0.8.0...v1.0.0
 .. _0.8.0: https://github.com/JelteF/PyLaTeX/compare/v0.7.1...v0.8.0
 .. _0.7.1: https://github.com/JelteF/PyLaTeX/compare/v0.7.0...v0.7.1
 .. _0.7.0: https://github.com/JelteF/PyLaTeX/compare/v0.6.1...v0.7.0
