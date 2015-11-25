@@ -11,14 +11,15 @@ changed.
 import numpy as np
 import quantities as pq
 import matplotlib
-matplotlib.use('Agg')  # Not to use X server. For TravisCI.
-import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim
+
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
+import matplotlib.pyplot as pyplot  # noqa
 
 
 def test_document():

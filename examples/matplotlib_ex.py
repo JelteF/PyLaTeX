@@ -8,10 +8,11 @@ This example shows matplotlib functionality.
 
 # begin-doc-include
 import matplotlib
-matplotlib.use('Agg')  # Not to use X server. For TravisCI.
-import matplotlib.pyplot as plt
 
 from pylatex import Document, Package, Section, Figure, NoEscape
+
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
+import matplotlib.pyplot as plt  # noqa
 
 
 def main(fname, width, *args, **kwargs):
