@@ -7,8 +7,8 @@ This module implements the classes used to show plots.
 """
 
 
-from pylatex.base_classes import LatexObject, Environment, Command
-from pylatex.package import Package
+from .base_classes import LatexObject, Environment, Command
+from .package import Package
 
 
 class TikZ(Environment):

@@ -7,7 +7,7 @@ This module implements the base LaTeX object.
 """
 
 from ordered_set import OrderedSet
-from pylatex.utils import dumps_list
+from ..utils import dumps_list
 from abc import abstractmethod, ABCMeta
 from reprlib import recursive_repr
 from inspect import getfullargspec

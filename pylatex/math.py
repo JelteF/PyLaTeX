@@ -7,7 +7,7 @@ This module implements the classes that deal with math.
 """
 
 from .base_classes import Command, Container, Environment
-from pylatex.package import Package
+from .package import Package
 
 
 class Math(Container):
