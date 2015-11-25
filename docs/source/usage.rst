@@ -89,3 +89,9 @@ LaTeX strings should just be used directly in the document. This is why the
 not be escaped. One important thing to note about this class is that appending
 a `~.NoEscape` type string to a regular string results in a regular string,
 since one type has to be chosen and the most conservative approach is taken.
+
+There is also another way to make sure strings are not escaped. This is by
+setting the `~.LatexObject.escape` attribute to `False` on the class that is
+the container of the string. Keep in mind though that any strings that are
+added to that object will not be escaped when doing this. So, only use this
+method for objects that don't contain possibly unsafe strings.
