@@ -63,7 +63,7 @@ class LatexObject(metaclass=_CreatePackages):
             return self._escape
         if self._default_escape is not None:
             return self._default_escape
-        return
+        return True
 
     #: Start a new paragraph before this environment.
     begin_paragraph = False
