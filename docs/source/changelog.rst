@@ -153,7 +153,7 @@ Added
 - A ``__repr__`` method, so printing LaTeX objects gives more useful
   information now.
 
-0.8.0_ - 23-05-2015
+0.8.0_ - 2015-05-23
 -------------------
 Added
 ~~~~~
@@ -186,7 +186,7 @@ Fixed
   enabled
 
 
-0.7.1_ - 21-03-2015
+0.7.1_ - 2015-03-21
 -------------------
 Added
 ~~~~~
@@ -204,7 +204,7 @@ Fixed
   with some filenames (dots in directories and a file without an extension)
 
 
-0.7.0_ - 17-03-2015
+0.7.0_ - 2015-03-17
 -------------------
 Added
 ~~~~~
@@ -222,7 +222,7 @@ Fixed
 - Fix a lot of bugs in the `.escape_latex` function
 
 
-0.6.1_ - 11-01-2015
+0.6.1_ - 2015-01-11
 -------------------
 Added
 ~~~~~
@@ -233,7 +233,7 @@ Fixed
 - Bug in VectorName
 
 
-0.6_ - 07-01-2015
+0.6_ - 2015-01-07
 -----------------
 Added
 ~~~~~
@@ -242,21 +242,21 @@ Added
 - ``with`` statement support
 
 
-0.5_ - 02-06-2014
+0.5_ - 2014-06-02
 -----------------
 Added
 ~~~~~
 - Python 2.7 support
 
 
-0.4.2_ - 18-03-2014
+0.4.2_ - 2014-03-18
 -------------------
 Added
 ~~~~~
 - More table types
 
 
-0.4.1_ - 29-01-2014
+0.4.1_ - 2014-01-29
 -------------------
 Added
 ~~~~~
