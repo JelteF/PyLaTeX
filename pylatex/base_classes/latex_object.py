@@ -76,11 +76,6 @@ class LatexObject(metaclass=_CreatePackages):
     separate_paragraph = False
 
     def __init__(self):
-        """
-        Args
-        ----
-        nothing
-        """
         # TODO: only create a copy of packages when it will
         # Create a copy of the packages attribute, so changing it in an
         # instance will not change the class default.
