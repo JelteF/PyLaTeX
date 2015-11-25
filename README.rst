@@ -7,8 +7,9 @@ interface between Python and LaTeX.
 
 Installation
 ------------
+Simply install using ``pip``::
 
-``pip install pylatex``
+    pip install pylatex
 
 Documentation
 -------------
@@ -36,8 +37,6 @@ picture:
 
 .. figure:: https://raw.github.com/JelteF/PyLaTeX/master/docs/source/_static/screenshot.png
    :alt: Generated PDF by PyLaTeX
-
-   Generated PDF by PyLaTeX
 
 Copyright and License
 ---------------------
