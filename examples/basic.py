@@ -1,6 +1,6 @@
 #!/usr/bin/python
 """
-This example shows matplotlib functionality.
+This example shows basic document generation functionality.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
