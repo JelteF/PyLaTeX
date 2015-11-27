@@ -1,6 +1,9 @@
 #!/usr/bin/python
 """
-This example shows matplotlib functionality.
+This example demonstrates several features of PyLaTeX.
+
+It includes plain equations, tables, equations using numpy objects, tikz plots,
+and figures.
 
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.

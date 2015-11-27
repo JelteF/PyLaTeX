@@ -8,7 +8,7 @@ compiling LaTeX documents. The package is flexible, and can either work with
 your pre-existing code or generate new code with its system of classes.  In
 turn, LaTeX code can be used to generate a document, or can be exported as-is.
 
-The classes
+The Classes
 -----------
 PyLaTeX uses a set of classes to turn LaTeX document generation into a set of
 pythonic components. For example, a `~.Document` might be comprised of
@@ -65,8 +65,8 @@ Because of all the base classes supplied by PyLaTeX, it is very easy to extend
 its support in LaTeX features. Just pick one of the existing (base) classes
 that fits best and extend that with the needed functionality.
 
-All LaTeX objects come from `~.LatexObject` , but it is probably more more
-useful one of the other base subclasses, like `~.Environment` or
+All LaTeX objects come from `~.LatexObject` , but it is probably more useful to
+extend one of the other base subclasses, like `~.Environment` or
 `~.CommandBase`. Consult the API documentation to see the variety of base
 classes available for use.
 
@@ -81,17 +81,18 @@ by the library.
 
 Unescaping Strings
 ~~~~~~~~~~~~~~~~~~
-This is not as simple as is seems though, this is becouse by default almost all
-strings are escaped. This is done for security reasons and to make sure valid
-LaTeX code will be generated at all times. However, there are cases where raw
-LaTeX strings should just be used directly in the document. This is why the
-`~.NoEscape` string type exists. This is just a subclass of `str`, but it will
-not be escaped. One important thing to note about this class is that appending
-a `~.NoEscape` type string to a regular string results in a regular string,
-since one type has to be chosen and the most conservative approach is taken.
+Using regular LaTeX strings may not be as simple as is seems though, because by
+default almost all strings are escaped. This is done for security reasons and
+to make sure valid LaTeX code will be generated at all times. However, there
+are cases where raw LaTeX strings should just be used directly in the document.
+This is why the `~.NoEscape` string type exists. This is just a subclass of
+`str`, but it will not be escaped. One important thing to note about this class
+is that appending a `~.NoEscape` type string to a regular string results in
+a regular string, since one type has to be chosen and the most conservative
+approach is taken.
 
-There is also another way to make sure strings are not escaped. This is by
-setting the `~.LatexObject.escape` attribute to `False` on the class that is
-the container of the string. Keep in mind though that any strings that are
-added to that object will not be escaped when doing this. So, only use this
-method for objects that don't contain possibly unsafe strings.
+Another way to make sure strings are not escaped is by setting the
+`~.LatexObject.escape` attribute to `False` on the class that is the container
+of the string. Keep in mind though that any strings that are added to that
+object will not be escaped when doing this. So, only use this method for
+objects that don't contain possibly unsafe strings.
