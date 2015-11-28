@@ -6,101 +6,113 @@ This module implements the classes that deal with math.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import LatexObject, Command, Container
-from pylatex.package import Package
+from .base_classes import Command, Container, Environment
+from .package import Package
 
 
 class Math(Container):
+    """A class representing a math environment."""
 
-    """A class representing a math environment.
+    content_separator = ' '
 
-    :param data:
-    :param inline:
+    def __init__(self, *, inline=False, data=None):
+        """
+        Args
+        ----
+        data: list
+            Content of the math container.
+        inline: bool
+            If the math should be displayed inline or not.
+        """
 
-    :type data: list
-    :type inline: bool
-    """
-
-    def __init__(self, data=None, inline=False):
         self.inline = inline
-        super().__init__(data)
+        super().__init__(data=data)
 
     def dumps(self):
         """Return a LaTeX formatted string representing the object.
 
-        :rtype: str
+        Returns
+        -------
+        str
+
         """
 
         if self.inline:
-            string = '$' + super().dumps(token=' ') + '$'
-        else:
-            string = '$$' + super().dumps(token=' ') + '$$\n'
-
-        super().dumps()
-
-        return string
+            return '$' + self.dumps_content() + '$'
+        return '$$\n' + self.dumps_content() + '\n$$'
 
 
 class VectorName(Command):
+    """A class representing a named vector."""
 
-    """A class representing a named vector.
-
-    :param name:
-
-    :type name: str
-    """
+    _repr_attributes_mapping = {
+        'name': 'arguments',
+    }
 
     def __init__(self, name):
+        """
+        Args
+        ----
+        name: str
+            Name of the vector
+        """
+
         super().__init__('mathbf', arguments=name)
 
 
-class Matrix(LatexObject):
+class Matrix(Environment):
+    """A class representing a matrix."""
 
-    """A class representing a matrix.
+    packages = [Package('amsmath')]
 
-    :param matrix:
-    :param name:
-    :param mtype:
-    :param alignment:
+    _repr_attributes_mapping = {
+        'alignment': 'arguments',
+    }
 
-    :type matrix: :class:`numpy.ndarray` instance
-    :type name: str
-    :type mtype: str
-    :type alignment: str
-    """
+    def __init__(self, matrix, *, mtype='p', alignment=None):
+        r"""
+        Args
+        ----
+        matrix: `numpy.ndarray` instance
+            The matrix to display
+        mtype: str
+            What kind of brackets are used around the matrix. The different
+            options and their corresponding brackets are:
+            p = ( ), b = [ ], B = { }, v = \| \|, V = \|\| \|\|
+        alignment: str
+            How to align the content of the cells in the matrix. This is ``c``
+            by default.
 
-    def __init__(self, matrix, name='', mtype='p', alignment=None):
-        import numpy as np
-        self._np = np
-
-        self.mtype = mtype
-        self.matrix = matrix
-        self.alignment = alignment
-        self.name = name
-
-        super().__init__(packages=[Package('amsmath')])
-
-    def dumps(self):
-        """Return a string representin the matrix in LaTeX syntax.
-
-        :rtype: str
+        References
+        ----------
+        * https://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_and_arrays
         """
 
-        string = r'\begin{'
-        mtype = self.mtype + 'matrix'
+        import numpy  # noqa, Sanity check if numpy is installed
 
-        if self.alignment is not None:
-            mtype += '*'
-            alignment = '{' + self.alignment + '}'
-        else:
-            alignment = ''
+        self.matrix = matrix
 
-        string += mtype + '}' + alignment
-        string += '\n'
+        self.latex_name = mtype + 'matrix'
+        self._mtype = mtype
+        if alignment is not None:
+            self.latex_name += '*'
 
+        super().__init__(arguments=alignment)
+
+    def dumps_content(self):
+        """Return a string representing the matrix in LaTeX syntax.
+
+        Returns
+        -------
+        str
+        """
+
+        import numpy as np
+
+        string = ''
         shape = self.matrix.shape
 
-        for (y, x), value in self._np.ndenumerate(self.matrix):
+        for (y, x), value in np.ndenumerate(self.matrix):
             if x:
                 string += '&'
             string += str(value)
@@ -108,10 +120,6 @@ class Matrix(LatexObject):
             if x == shape[1] - 1 and y != shape[0] - 1:
                 string += r'\\' + '\n'
 
-        string += '\n'
-
-        string += r'\end{' + mtype + '}'
-
-        super().dumps()
+        super().dumps_content()
 
         return string

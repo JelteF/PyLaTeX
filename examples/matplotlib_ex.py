@@ -8,10 +8,11 @@ This example shows matplotlib functionality.
 
 # begin-doc-include
 import matplotlib
-matplotlib.use('Agg')  # Not to use X server. For TravisCI.
-import matplotlib.pyplot as plt
 
-from pylatex import Document, Package, Section, MatplotlibFigure
+from pylatex import Document, Package, Section, Figure, NoEscape
+
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
+import matplotlib.pyplot as plt  # noqa
 
 
 def main(fname, width, *args, **kwargs):
@@ -23,8 +24,8 @@ def main(fname, width, *args, **kwargs):
     with doc.create(Section('I am a section')):
         doc.append('Take a look at this beautiful plot:')
 
-        with doc.create(MatplotlibFigure(position='htbp')) as plot:
-            plot.add_plot(width=width, *args, **kwargs)
+        with doc.create(Figure(position='htbp')) as plot:
+            plot.add_plot(width=NoEscape(width), *args, **kwargs)
             plot.add_caption('I am a caption.')
 
         doc.append('Created using matplotlib.')

@@ -7,14 +7,13 @@ How to represent your own LaTeX commands and environments in PyLaTeX.
 """
 
 # begin-doc-include
-from pylatex.base_classes import BaseLaTeXNamedContainer
-from pylatex.parameters import Arguments
-from pylatex.package import Package, Command
-from pylatex import Document, Section
+from pylatex.base_classes import Environment, CommandBase, Arguments
+from pylatex.package import Package
+from pylatex import Document, Section, UnsafeCommand
+from pylatex.utils import NoEscape
 
 
-class ExampleEnvironment(BaseLaTeXNamedContainer):
-
+class ExampleEnvironment(Environment):
     """
     A class representing a custom LaTeX environment.
 
@@ -22,17 +21,11 @@ class ExampleEnvironment(BaseLaTeXNamedContainer):
     ``exampleEnvironment``.
     """
 
-    container_name = 'exampleEnvironment'
-
-    def __init__(self, options=None, arguments=None):
-        packages = [Package('mdframed')]
-
-        super().__init__(options=options, arguments=arguments,
-                         packages=packages)
+    _latex_name = 'exampleEnvironment'
+    packages = [Package('mdframed')]
 
 
-class ExampleCommand(Command):
-
+class ExampleCommand(CommandBase):
     """
     A class representing a custom LaTeX command.
 
@@ -40,25 +33,22 @@ class ExampleCommand(Command):
     ``exampleCommand``.
     """
 
-    def __init__(self, options=None, arguments=None):
-        packages = [Package('color')]
-
-        super().__init__('exampleCommand', options=options,
-                         arguments=arguments, packages=packages)
+    _latex_name = 'exampleCommand'
+    packages = [Package('color')]
 
 
 # Create a new document
 doc = Document()
 with doc.create(Section('Custom commands')):
-    doc.append(
-        """
-        The following is a demonstration of a custom \\LaTeX
+    doc.append(NoEscape(
+        r"""
+        The following is a demonstration of a custom \LaTeX{}
         command with a couple of parameters.
-        """)
+        """))
 
     # Define the new command
-    new_comm = Command('newcommand{\\exampleCommand}', options=3,
-                       arguments='\\color{#1} #2 #3 \\color{black}')
+    new_comm = UnsafeCommand('newcommand', '\exampleCommand', options=3,
+                             extra_arguments=r'\color{#1} #2 #3 \color{black}')
     doc.append(new_comm)
 
     # Use our newly created command with different arguments
@@ -67,26 +57,26 @@ with doc.create(Section('Custom commands')):
     doc.append(ExampleCommand(arguments=Arguments('red', 'Hello', 'World!')))
 
 with doc.create(Section('Custom environments')):
-    doc.append(
-        """
-        The following is a demonstration of a custom \\LaTeX
+    doc.append(NoEscape(
+        r"""
+        The following is a demonstration of a custom \LaTeX{}
         environment using the mdframed package.
-        """)
+        """))
 
     # Define a style for our box
-    mdf_style_definition = Command('mdfdefinestyle',
-                                   arguments=['my_style',
-                                              'linecolor=#1,\
-                                               linewidth=#2,\
-                                               leftmargin=1cm,\
-                                               leftmargin=1cm'])
+    mdf_style_definition = UnsafeCommand('mdfdefinestyle',
+                                         arguments=['my_style',
+                                                    ('linecolor=#1,'
+                                                     'linewidth=#2,'
+                                                     'leftmargin=1cm,'
+                                                     'leftmargin=1cm')])
 
     # Define the new environment using the style definition above
-    new_env = Command('newenvironment{exampleEnvironment}', options=2,
-                      arguments=[
-                          mdf_style_definition.dumps() +
-                          '\\begin{mdframed}[style=my_style]',
-                          '\\end{mdframed}'])
+    new_env = UnsafeCommand('newenvironment', 'exampleEnvironment', options=2,
+                            extra_arguments=[
+                                mdf_style_definition.dumps() +
+                                r'\begin{mdframed}[style=my_style]',
+                                r'\end{mdframed}'])
     doc.append(new_env)
 
     # Usage of the newly created environment

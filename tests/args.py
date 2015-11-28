@@ -11,14 +11,15 @@ changed.
 import numpy as np
 import quantities as pq
 import matplotlib
-matplotlib.use('Agg')  # Not to use X server. For TravisCI.
-import matplotlib.pyplot as pyplot
 
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
-    Package, TikZ, Axis, Plot, MatplotlibFigure, Itemize, Enumerate, \
-    Description, MultiColumn, MultiRow, Command, Matrix, VectorName, Quantity
+    Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
+    MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim
+
+matplotlib.use('Agg')  # Not to use X server. For TravisCI.
+import matplotlib.pyplot as pyplot  # noqa
 
 
 def test_document():
@@ -27,12 +28,11 @@ def test_document():
         documentclass='article',
         fontenc='T1',
         inputenc='utf8',
-        author='',
-        title='',
-        date='',
+        lmodern=True,
         data=None,
-        maketitle=False
     )
+
+    repr(doc)
 
     doc.append('Some text.')
 
@@ -41,20 +41,24 @@ def test_document():
 
 
 def test_section():
-    Section(title='', numbering=True, data=None)
+    sec = Section(title='', numbering=True, data=None)
+    repr(sec)
 
 
 def test_math():
-    Math(data=None, inline=False)
+    math = Math(data=None, inline=False)
+    repr(math)
 
-    VectorName(name='')
+    vec = VectorName(name='')
+    repr(vec)
 
     # Numpy
     m = np.matrix([[2, 3, 4],
                    [0, 0, 1],
                    [0, 0, 2]])
 
-    Matrix(matrix=m, name='', mtype='p', alignment=None)
+    matrix = Matrix(matrix=m, mtype='p', alignment=None)
+    repr(matrix)
 
 
 def test_table():
@@ -63,23 +67,23 @@ def test_table():
 
     t.add_hline(start=None, end=None)
 
-    t.add_row(cells=(1, 2), escape=False)
-
-    t.add_multicolumn(size=2, align='|c|', content='Multicol', cells=None,
-                      escape=False)
-
-    t.add_multirow(size=3, align='*', content='Multirow', hlines=True,
-                   cells=None, escape=False)
+    t.add_row(cells=(1, 2), escape=False, strict=True)
 
     # MultiColumn/MultiRow.
-    t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),))
+    t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),),
+              strict=True)
 
-    t.add_row((MultiRow(size=2, width='*', data='MultiRow'),))
+    # One multiRow-cell in that table would not be proper LaTeX,
+    # so strict is set to False
+    t.add_row((MultiRow(size=2, width='*', data='MultiRow'),), strict=False)
+
+    repr(t)
 
 
 def test_command():
-    Command(command='documentclass', arguments=None, options=None,
-            packages=None)
+    c = Command(command='documentclass', arguments=None, options=None,
+                packages=None)
+    repr(c)
 
 
 def test_graphics():
@@ -88,18 +92,19 @@ def test_graphics():
     f.add_image(filename='', width=r'0.8\textwidth', placement=r'\centering')
 
     f.add_caption(caption='')
+    repr(f)
 
     # Subfigure
-    s = SubFigure(data=None, position=None,
-                  width=r'0.45\linewidth', seperate_paragraph=False)
+    s = SubFigure(data=None, position=None, width=r'0.45\linewidth')
 
     s.add_image(filename='', width='r\linewidth',
                 placement=None)
 
     s.add_caption(caption='')
+    repr(s)
 
     # Matplotlib
-    plot = MatplotlibFigure(data=None, position=None)
+    plot = Figure(data=None, position=None)
 
     x = [0, 1, 2, 3, 4, 5, 6]
     y = [15, 2, 7, 1, 5, 6, 9]
@@ -108,24 +113,33 @@ def test_graphics():
 
     plot.add_plot(width=r'0.8\textwidth', placement=r'\centering')
     plot.add_caption(caption='I am a caption.')
+    repr(plot)
 
+
+def test_quantities():
     # Quantities
     Quantity(quantity=1*pq.kg)
-    Quantity(quantity=1*pq.kg, format_cb=lambda x: str(int(x)))
+    q = Quantity(quantity=1*pq.kg, format_cb=lambda x: str(int(x)))
+    repr(q)
 
 
 def test_package():
     # Package
-    Package(name='', base='usepackage', options=None)
+    p = Package(name='', options=None)
+    repr(p)
 
 
 def test_tikz():
     # PGFPlots
-    TikZ(data=None)
+    t = TikZ(data=None)
+    repr(t)
 
-    Axis(data=None, options=None)
+    a = Axis(data=None, options=None)
+    repr(a)
 
-    Plot(name=None, func=None, coordinates=None, error_bar=None, options=None)
+    p = Plot(name=None, func=None, coordinates=None, error_bar=None,
+             options=None)
+    repr(p)
 
 
 def test_lists():
@@ -133,14 +147,21 @@ def test_lists():
     itemize = Itemize()
     itemize.add_item(s="item")
     itemize.append("append")
+    repr(itemize)
+
+    empty_itemize = Itemize()
+    assert empty_itemize.dumps() == ''
+    repr(empty_itemize)
 
     enum = Enumerate()
     enum.add_item(s="item")
     enum.append("append")
+    repr(enum)
 
     desc = Description()
     desc.add_item(label="label", s="item")
     desc.append("append")
+    repr(desc)
 
 
 def test_utils():
@@ -156,3 +177,32 @@ def test_utils():
     italic(s='')
 
     verbatim(s='', delimiter='|')
+
+
+def test_errors():
+    # Errors
+
+    # TableRowSizeError
+
+    # General test
+
+    try:
+        raise TableRowSizeError
+    except TableRowSizeError:
+        pass
+
+    # Positive test, expected to raise Error
+
+    t = Tabular(table_spec='|c|c|', data=None, pos=None)
+    try:
+        # Wrong number of cells in table should raise an exception
+        t.add_row(cells=(1, 2, 3), escape=False, strict=True)
+    except TableRowSizeError:
+        pass
+
+    # Negative test, should not raise
+    try:
+        # Wrong number with strict=False should not raise an exception
+        t.add_row(cells=(1, 2, 3), escape=False, strict=False)
+    except TableRowSizeError:
+        raise

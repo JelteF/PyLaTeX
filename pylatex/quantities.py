@@ -11,7 +11,8 @@ It requires the latex package SIunitx.
 from operator import itemgetter
 
 from .base_classes import Command
-from pylatex.package import Package
+from .package import Package
+from .utils import NoEscape
 
 
 def _dimensionality_to_siunitx(dim):
@@ -29,28 +30,31 @@ def _dimensionality_to_siunitx(dim):
         if power > 1:
             substring += r'\tothe{' + str(power) + '}'
         string += substring
-    return string
+    return NoEscape(string)
 
 
 class Quantity(Command):
+    """A class representing quantities."""
 
-    """A class representing quantities.
+    packages = [Package('siunitx')]
 
-    :param quantity:
-    :param fmtstr:
-
-    :type quantity: :class:`quantities.quantity.Quantity` instance
-    :type fmtstr: callable
-    """
-
-    def __init__(self, quantity, format_cb=None):
+    def __init__(self, quantity, *, format_cb=None):
+        """
+        Args
+        ----
+        quantity: `quantities.quantity.Quantity`
+            The quantity that should be displayed
+        fmtstr: callable
+            A function which formats the number in the quantity. By default
+            this uses `numpy.array_str`.
+        """
         import numpy as np
 
         self.quantity = quantity
+        self._format_cb = format_cb
         if format_cb is None:
             magnitude_str = np.array_str(quantity.magnitude)
         else:
             magnitude_str = format_cb(quantity.magnitude)
         unit_str = _dimensionality_to_siunitx(quantity.dimensionality)
-        super().__init__(command='SI', arguments=(magnitude_str, unit_str),
-                         packages=[Package('siunitx')])
+        super().__init__(command='SI', arguments=(magnitude_str, unit_str))

@@ -9,28 +9,30 @@ This module implements LaTeX base classes that can be subclassed.
 from collections import UserList
 from pylatex.utils import dumps_list
 from contextlib import contextmanager
-from pylatex.base_classes import LatexObject
+from .latex_object import LatexObject
+from .command import Command, Arguments
 
 
 class Container(LatexObject, UserList):
-
     """A base class that groups multiple LaTeX classes.
 
-    This class should be subclassed when a LaTeX class has content that is
-    variable of variable length. It subclasses UserList, so it holds a list
-    of elements that can simply be accessed by using normal list functionality,
-    like indexing or appending.
+    This class should be subclassed when a LaTeX class has content that is of
+    variable length. It subclasses UserList, so it holds a list of elements
+    that can simply be accessed by using normal list functionality, like
+    indexing or appending.
 
-    :param data:
-    :param packages: :class:`pylatex.package.Package` instances
-
-    :type data: list
-    :type packages: list
     """
 
-    # TODO: Find a way to document multiple types, in this case str as well
+    content_separator = '\n'
 
-    def __init__(self, data=None, packages=None):
+    def __init__(self, *, data=None):
+        r"""
+        Args
+        ----
+        data: list, `~.LatexObject` or something that can be converted to a \
+                string
+            The content with which the container is initialized
+        """
 
         if data is None:
             data = []
@@ -42,18 +44,29 @@ class Container(LatexObject, UserList):
         self.data = data
         self.real_data = data  # Always the data of this instance
 
-        super().__init__(packages=packages)
+        super().__init__()
 
-    def dumps(self, **kwargs):
-        """Represent the container as a string in LaTeX syntax.
+    @property
+    def _repr_attributes(self):
+        return super()._repr_attributes + ['real_data']
 
-        :return:
-        :rtype: list
+    def dumps_content(self, **kwargs):
+        r"""Represent the container as a string in LaTeX syntax.
+
+        Args
+        ----
+        \*\*kwargs:
+            Arguments that can be passed to `~.dumps_list`
+
+
+        Returns
+        -------
+        string:
+            A LaTeX string representing the container
         """
 
-        self._propagate_packages()
-
-        return dumps_list(self, **kwargs)
+        return dumps_list(self, escape=self.escape,
+                          token=self.content_separator, **kwargs)
 
     def _propagate_packages(self):
         """Make sure packages get propagated."""
@@ -66,21 +79,26 @@ class Container(LatexObject, UserList):
                     self.packages.add(p)
 
     def dumps_packages(self):
-        """Represent the packages needed as a string in LaTeX syntax.
+        r"""Represent the packages needed as a string in LaTeX syntax.
 
-        :return:
-        :rtype: list
+        Returns
+        -------
+        string:
+            A LaTeX string representing the packages of the container
         """
 
         self._propagate_packages()
 
-        return dumps_list(self.packages)
+        return super().dumps_packages()
 
     @contextmanager
     def create(self, child):
         """Add a LaTeX object to current container, context-manager style.
 
-        :param child: An object to be added to the current container
+        Args
+        ----
+        child: `~.Container`
+            An object to be added to the current container
         """
 
         prev_data = self.data
@@ -93,7 +111,6 @@ class Container(LatexObject, UserList):
 
 
 class Environment(Container):
-
     r"""A base class for LaTeX environments.
 
     This class implements the basics of a LaTeX environment. A LaTeX
@@ -105,79 +122,56 @@ class Environment(Container):
             Some content that is in the environment
         \end{environment_name}
 
-    The text that is used in the place of environment_name is by defalt the
+    The text that is used in the place of environment_name is by default the
     name of the class in lowercase. However, this default can be overridden by
     setting the environment_name class variable when declaring the class.
-
-    :param name:
-    :param options:
-    :param arguments:
-
-    :type name: str
-    :type options: str or list or \
-        :class:`~pylatex.base_classes.command.Options` instance
-    :type argument: str or list or \
-        :class:`~pylatex.base_classes.command.Arguments` instance
     """
 
-    def __init__(self, options=None, arguments=None,
-                 seperate_paragraph=False, begin_paragraph=False,
-                 end_paragraph=False, omit_if_empty=False, **kwargs):
-        from pylatex.parameters import Arguments, Options
+    def __init__(self, *, options=None, arguments=None, omit_if_empty=False, **kwargs):
+        r"""
+        Args
+        ----
+        options: str or list or  `~.Options`
+            Options to be added to the ``\begin`` command
 
-        if not hasattr(self, 'container_name'):
-            self.container_name = self.__class__.__name__.lower()
+        arguments: str or list or `~.Arguments`
+            Arguments to be added to the ``\begin`` command
+        """
 
-        if isinstance(arguments, Arguments):
-            self.arguments = arguments
-        elif arguments is not None:
-            self.arguments = Arguments(arguments)
-        else:
-            self.arguments = Arguments()
-
-        if isinstance(options, Options):
-            self.options = options
-        elif options is not None:
-            self.options = Options(options)
-        else:
-            self.options = Options()
-
-        self.seperate_paragraph = seperate_paragraph
-        self.begin_paragraph = begin_paragraph
-        self.end_paragraph = end_paragraph
+        self.options = options
+        self.arguments = arguments
         self.omit_if_empty = omit_if_empty
 
         super().__init__(**kwargs)
 
     def dumps(self):
-        """Represent the named container as a string in LaTeX syntax.
+        """Represent the environment as a string in LaTeX syntax.
 
-        :return:
-        :rtype: str
+        Returns
+        -------
+        str
+            A LaTeX string representing the environment.
         """
-
-        content = super().dumps()
-        if not content.strip() and self.omit_if_empty:
-            return ''
 
         string = ''
 
-        if self.seperate_paragraph or self.begin_paragraph:
-            string += '\n\n'
+        content = self.dumps_content()
+        if self.omit_if_empty and (content is None or content == ''):
+            return string
 
-        string += r'\begin{' + self.container_name + '}'
+        # Something other than None needs to be used as extra arguments, that
+        # way the options end up behind the latex_name argument.
+        if self.arguments is None:
+            extra_arguments = Arguments()
+        else:
+            extra_arguments = self.arguments
 
-        string += self.options.dumps()
+        begin = Command('begin', self.latex_name, self.options,
+                        extra_arguments=extra_arguments)
+        string += begin.dumps() + '\n'
 
-        string += self.arguments.dumps()
+        string += content + '\n'
 
-        string += '\n'
-
-        string += content
-
-        string += '\n' + r'\end{' + self.container_name + '}'
-
-        if self.seperate_paragraph or self.end_paragraph:
-            string += '\n\n'
+        string += Command('end', self.latex_name).dumps()
 
         return string

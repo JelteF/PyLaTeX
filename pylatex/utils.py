@@ -36,35 +36,67 @@ _tmp_path = os.path.abspath(
 )
 
 
-def escape_latex(s):
-    """Escape characters that are special in latex.
+class NoEscape(str):
+    """
+    A simple string class that is not escaped.
 
-    Sources:
+    When a `.NoEscape` string is added to another `.NoEscape` string it will
+    produce a `.NoEscape` string. If it is added to normal string it will
+    produce a normal string.
+    """
+
+    def __init__(self, string):
+        """
+        Args
+        ----
+        string: str
+            The content of the `NoEscape` string.
+        """
+
+        super().__init__()
+
+    def __add__(self, right):
+        s = super().__add__(right)
+        if isinstance(right, NoEscape):
+            return NoEscape(s)
+        return s
+
+
+def escape_latex(s):
+    r"""Escape characters that are special in latex.
+
+    Args
+    ----
+    s : `str`, `NoEscape` or anything that can be converted to string
+        The string to be escaped. If this is not a string, it will be converted
+        to a string using `str`. If it is a `NoEscape` string, it will pass
+        through unchanged.
+
+    Returns
+    -------
+    str
+        The string, with special characters in latex escaped.
+
+    Examples
+    --------
+    >>> escape_latex("Total cost: $30,000")
+    'Total cost: \$30,000'
+    >>> escape_latex("Issue #5 occurs in 30% of all cases")
+    'Issue \#5 occurs in 30\% of all cases'
+    >>> print(escape_latex("Total cost: $30,000"))
+
+
+    References
+    ----------
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
 
-    :param s:
-
-    :type s: str
-
-    :return:
-    :rtype: str
     """
 
-    return ''.join(_latex_special_chars.get(c, c) for c in s)
+    if isinstance(s, NoEscape):
+        return s
 
-
-def _merge_packages_into_kwargs(new_packages, kwargs):
-    """Merge packages into keyword arguments that were passed to __init__.
-
-    This is mostly useful when a class that adds packages itself can be
-    inheritted afterwards.
-    """
-
-    if 'packages' in kwargs and kwargs['packages'] is not None:
-        kwargs['packages'] = new_packages + kwargs['packages']
-    else:
-        kwargs['packages'] = new_packages
+    return ''.join(_latex_special_chars.get(c, c) for c in str(s))
 
 
 def fix_filename(path):
@@ -73,12 +105,25 @@ def fix_filename(path):
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
 
-    :param filename:
+    Args
+    ----
+    filename : str
+        The filen name to be changed.
 
-    :type filename: str
+    Returns
+    -------
+    str
+        The new filename.
 
-    :return:
-    :rtype: str
+    Examples
+    --------
+    >>> fix_filename("foo.bar.pdf")
+    '{foo.bar}.pdf'
+    >>> fix_filename("/etc/local/foo.bar.pdf")
+    '/etc/local/{foo.bar}.pdf'
+    >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
+    '/etc/local/foo.bar.baz/document.pdf'
+
     """
 
     path_parts = path.split('/')
@@ -94,106 +139,198 @@ def fix_filename(path):
     return '/'.join(dir_parts)
 
 
-def dumps_list(l, escape=False, token='\n', mapper=None):
-    """Try to generate a LaTeX string of a list that can contain anything.
+def dumps_list(l, *, escape=True, token='\n', mapper=None, as_content=True):
+    r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
     ----
-    l: list
-        List of things that should be dumped
-    escape: bool
-        Do the list entries need to be escaped
-    token: str
-        The string that is added between the entries of the list
+    l : list
+        A list of objects to be converted into a single string.
+    escape : bool
+        Whether to escape special LaTeX characters in converted text.
+    token : str
+        The token (default is a newline) to separate objects in the list.
     mapper: callable
         A function that should be called on all entries of the list after
         converting them to a string, for instance bold
+    as_content: bool
+        Indicates whether the items in the list should be dumped using
+        `~.LatexObject.dumps_as_content`
 
     Returns
     -------
     str
-        The string representation of l
+        A single LaTeX string.
 
+    Examples
+    --------
+    >>> dumps_list([r"\textbf{Test}", r"\nth{4}"])
+    '\\textbf{Test}\n\\nth{4}'
+    >>> print(dumps_list([r"\textbf{Test}", r"\nth{4}"]))
+    \textbf{Test}
+    \nth{4}
+    >>> print(pylatex.utils.dumps_list(["There are", 4, "lights!"]))
+    There are
+    4
+    lights!
+    >>> print(dumps_list(["$100%", "True"], escape=True))
+    \$100\%
+    True
     """
+    strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
+               for i in l)
+    if mapper is not None:
+        strings = (mapper(s) for s in strings)
 
-    return token.join(_latex_item_to_string(i, escape, mapper) for i in l)
+    return NoEscape(token.join(strings))
 
 
-def _latex_item_to_string(item, escape=False, post_convert=None):
+def _latex_item_to_string(item, *, escape=False, as_content=False):
     """Use the render method when possible, otherwise uses str.
 
-    :param item:
-    :param escape:
+    Args
+    ----
+    item: object
+        An object that needs to be converted to a string
+    escape: bool
+        Flag that indicates if escaping is needed
+    as_content: bool
+        Indicates whether the item should be dumped using
+        `~.LatexObject.dumps_as_content`
 
-    :type item: object
-    :type escape: bool
-
-    :return:
-    :rtype: str
+    Returns
+    -------
+    str
+        Latex
     """
 
     if isinstance(item, pylatex.base_classes.LatexObject):
-        s = item.dumps()
-    else:
-        s = str(item)
-        if escape:
-            s = escape_latex(s)
+        if as_content:
+            return item.dumps_as_content()
+        else:
+            return item.dumps()
+    elif not isinstance(item, str):
+        item = str(item)
 
-    if post_convert:
-        return post_convert(s)
-    return s
+    if escape:
+        item = escape_latex(item)
+
+    return item
 
 
-def bold(s):
-    """Return the string bold.
+def bold(s, *, escape=True):
+    r"""Make a string appear bold in LaTeX formatting.
 
-    Source: http://stackoverflow.com/a/16264094/2570866
+    bold() wraps a given string in the LaTeX command \textbf{}.
 
-        :param s:
+    Args
+    ----
+    s : str
+        The string to be formatted.
+    escape: bool
+        If true the bold text will be escaped
 
-        :type s: str
+    Returns
+    -------
+    str
+        The formatted string.
 
-        :return:
-        :rtype: str
+    Examples
+    --------
+
+    >>> bold("hello")
+    '\\textbf{hello}'
+    >>> print(bold("hello"))
+    \textbf{hello}
+
     """
 
-    return r'\textbf{' + s + '}'
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\textbf{' + s + '}')
 
 
-def italic(s):
-    """Return the string italicized.
+def italic(s, *, escape=True):
+    r"""Make a string appear italicized in LaTeX formatting.
 
-    Source: http://stackoverflow.com/a/16264094/2570866
+    italic() wraps a given string in the LaTeX command \textit{}.
 
-    :param s:
+    Args
+    ----
+    s : str
+        The string to be formatted.
+    escape: bool
+        If true the italic text will be escaped
 
-    :type s: str
+    Returns
+    -------
+    str
+        The formatted string.
 
-    :return:
-    :rtype: str
+    Examples
+    --------
+    >>> italic("hello")
+    '\\textit{hello}'
+    >>> print(italic("hello"))
+    \textit{hello}
+
+    """
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\textit{' + s + '}')
+
+
+def verbatim(s, *, delimiter='|'):
+    r"""Make the string verbatim.
+
+    Wraps the given string in a \verb LaTeX command.
+
+    Args
+    ----
+    s : str
+        The string to be formatted.
+    delimiter : str
+        How to designate the verbatim text (default is a pipe | )
+
+    Returns
+    -------
+    str
+        The formatted string.
+
+    Examples
+    --------
+    >>> verbatim(r"\renewcommand{}")
+    '\\verb|\\renewcommand{}|'
+    >>> print(verbatim(r"\renewcommand{}"))
+    \verb|\renewcommand{}|
+    >>> print(verbatim('pi|pe', '!'))
+    \verb!pi|pe!
+
     """
 
-    return r'\textit{' + s + '}'
-
-
-def verbatim(s, delimiter='|'):
-    """Return the string verbatim.
-
-    :param s:
-    :param delimiter:
-
-    :type s: str
-    :type delimiter: str
-
-    :return:
-    :rtype: str
-    """
-
-    return r'\verb' + delimiter + s + delimiter
+    return NoEscape(r'\verb' + delimiter + s + delimiter)
 
 
 def make_temp_dir():
-    """Create the tmp directory if it doesn't exist."""
+    """Create a temporary directory if it doesn't exist.
+
+    Directories created by this functionn follow the format specified
+    by ``_tmp_path`` and are a pylatex subdirectory within
+    a standard ``tempfile`` tempdir.
+
+    Returns
+    -------
+    str
+        The absolute filepath to the created temporary directory.
+
+    Examples
+    --------
+    >>> make_temp_dir()
+    '/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex'
+
+    """
 
     if not os.path.exists(_tmp_path):
         os.makedirs(_tmp_path)
@@ -201,7 +338,7 @@ def make_temp_dir():
 
 
 def rm_temp_dir():
-    """Remove the tmp directory."""
+    """Remove the temporary directory specified in ``_tmp_path``."""
 
     if os.path.exists(_tmp_path):
         shutil.rmtree(_tmp_path)

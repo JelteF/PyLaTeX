@@ -6,24 +6,27 @@ This module implements the class that deals with packages.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Command
+from .base_classes import CommandBase
 
 
-class Package(Command):
+class Package(CommandBase):
+    """A class that represents a package."""
 
-    """A class that represents a package.
+    _latex_name = 'usepackage'
 
-    :param name:
-    :param base:
-    :param options:
+    _repr_attributes_mapping = {
+        'name': 'arguments',
+    }
 
-    :type name: str
-    :type base: str
-    :type options: str
-    """
+    def __init__(self, name, options=None):
+        """
+        Args
+        ----
+        name: str
+            Name of the package.
+        options: `str`, `list` or `~.Options`
+            Options of the package.
 
-    # TODO: Fix multiple types in this case for options:
-    # str or list or :class:`pylatex.parameters.Options` instance
+        """
 
-    def __init__(self, name, base='usepackage', options=None):
-        super().__init__(base, arguments=name, options=options)
+        super().__init__(arguments=name, options=options)

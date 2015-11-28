@@ -7,19 +7,53 @@ This module implements the section type classes.
 """
 
 
-from .base_classes import SectionBase
+from .base_classes import Container, Command
 
 
-class Section(SectionBase):
-
+class Section(Container):
     """A class that represents a section."""
 
+    #: A section should normally start in its own paragraph
+    end_paragraph = True
 
-class Subsection(SectionBase):
+    def __init__(self, title, numbering=True, **kwargs):
+        """
+        Args
+        ----
+        title: str
+            The section title.
+        numbering: bool
+            Add a number before the section title.
+        """
 
+        self.title = title
+        self.numbering = numbering
+
+        super().__init__(**kwargs)
+
+    def dumps(self):
+        """Represent the section as a string in LaTeX syntax.
+
+        Returns
+        -------
+        str
+
+        """
+
+        if not self.numbering:
+            num = '*'
+        else:
+            num = ''
+
+        string = Command(self.latex_name + num, self.title).dumps()
+        string += '\n' + self.dumps_content()
+
+        return string
+
+
+class Subsection(Section):
     """A class that represents a subsection."""
 
 
-class Subsubsection(SectionBase):
-
+class Subsubsection(Section):
     """A class that represents a subsubsection."""

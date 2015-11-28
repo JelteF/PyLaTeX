@@ -42,6 +42,7 @@ been moved an renamed.
 - The old `Table` class is renamed to `Tabular`. A new `Table` class has been
     created that represents the `table` LaTeX environment, which can be used to
     create a floating table.
+
 - List environments with no items will now not be rendered, to avoid LaTeX
     compilation errors.
 

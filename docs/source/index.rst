@@ -71,6 +71,13 @@ operating systems to test it on. Pull requests that fix those issues are always
 welcome though. Issues have been fixed for Windows and it seems that compiling
 to pdf is currently working.
 
+Contributing
+------------
+Read the :doc:`contributing` page for tips and rules when you want to
+contribute. To just see the source code, you should go to the `Github
+repository <https://github.com/JelteF/PyLaTeX/>`_.
+
+
 
 
 .. toctree::
@@ -81,6 +88,7 @@ to pdf is currently working.
     usage
     examples
     api
+    changelog
     contributing
 
 

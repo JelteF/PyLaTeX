@@ -11,7 +11,7 @@
 python="python"
 
 # Check if a command line argument was provided as an input argument.
-while getopts ":p:ch" opt; do
+while getopts ":p:cdh" opt; do
   case $opt in
     p)
       python=$OPTARG
@@ -63,7 +63,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! nosetests tests/*; then
+if ! $python $(which nosetests) tests/*; then
     exit 1
 fi
 
@@ -79,7 +79,7 @@ for f in $main_folder/examples/*.py; do
 done
 
 if [ "$clean" = 'TRUE' ]; then
-    rm *.pdf *.log *.aux *.tex
+    rm *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk
 fi
 
 
@@ -88,7 +88,7 @@ if [ "$python_version" = '3' -a "$nodoc" != 'TRUE' ]; then
     cd docs
     ./create_doc_files.sh -p $python
     make clean
-    if ! sphinx-build -b html -d build/doctrees/ source build/html -nW; then
+    if ! $python $(which sphinx-build) -b html -d build/doctrees/ source build/html -nW; then
         exit 1
     fi
 fi
