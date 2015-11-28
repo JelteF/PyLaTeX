@@ -127,7 +127,8 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
-    def __init__(self, *, options=None, arguments=None, omit_if_empty=False, **kwargs):
+    def __init__(self, *, options=None, arguments=None, omit_if_empty=False,
+                 **kwargs):
         r"""
         Args
         ----
