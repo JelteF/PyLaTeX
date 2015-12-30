@@ -20,3 +20,5 @@ from .quantities import Quantity
 from .base_classes import Command, UnsafeCommand
 from .utils import NoEscape
 from .errors import TableRowSizeError
+
+__version__ = str('1.0.1dev')
