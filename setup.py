@@ -32,8 +32,6 @@ else:
     source_dir = 'python2_source'
     dependencies.append('future')
 
-PY2_CONVERTED = False
-
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
 

@@ -351,6 +351,9 @@ import re
 import subprocess
 import sys
 
+# PyLaTeX global flag
+PY2_CONVERTED = False
+
 
 class VersioneerConfig:
     pass
@@ -1532,7 +1535,13 @@ def get_cmdclass():
 
     # Next lines until return are specific additions for PyLaTeX.
     # Automatically convert the source from Python 3 to Python 2 if we need to.
+    if sys.version_info[0] == 3:
+        source_dir = '.'
+    else:
+        source_dir = 'python2_source'
+
     def convert_to_py2():
+        global PY2_CONVERTED
         if source_dir == 'python2_source' and not PY2_CONVERTED:
             try:
                 # Check if 3to2 exists
@@ -1546,12 +1555,11 @@ def get_cmdclass():
                                       'before installing when PyLaTeX for Python '
                                       '2.7 when it is not installed using one of '
                                       'the pip releases.')
-                else:
-                    converter = os.path.dirname(os.path.realpath(__file__)) \
-                        + '/convert_to_py2.sh'
-                    subprocess.check_call([converter])
-                    global PY2_CONVERTED
-                    PY2_CONVERTED = True
+            else:
+                converter = os.path.dirname(os.path.realpath(__file__)) \
+                    + '/convert_to_py2.sh'
+                subprocess.check_call([converter])
+                PY2_CONVERTED = True
 
     if "setuptools" in sys.modules:
         from setuptools.command.install import install as _install
@@ -1559,7 +1567,6 @@ def get_cmdclass():
         from distutils.command.install import install as _install
 
     class CustomInstall(_install):
-
         def run(self):
             convert_to_py2()
             _install.run(self)
@@ -1572,7 +1579,6 @@ def get_cmdclass():
         from distutils.command.egg_info import egg_info as _egg_info
 
     class CustomEggInfo(_egg_info):
-
         def initialize_options(self):
             convert_to_py2()
             _egg_info.initialize_options(self)
