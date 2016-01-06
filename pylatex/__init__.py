@@ -20,3 +20,7 @@ from .quantities import Quantity
 from .base_classes import Command, UnsafeCommand
 from .utils import NoEscape
 from .errors import TableRowSizeError
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
