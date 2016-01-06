@@ -1,5 +1,5 @@
 
-# Version: 0.15
+# Version: 0.15 + PyLaTeX adaptation
 
 """
 The Versioneer
@@ -975,7 +975,7 @@ def git_versions_from_keywords(keywords, tag_prefix, verbose):
         # "stabilization", as well as "HEAD" and "master".
         tags = set([r for r in refs if re.search(r'\d', r)])
         if verbose:
-            print("discarding '%s', no digits" % ",".join(refs-tags))
+            print("discarding '%s', no digits" % ",".join(refs - tags))
     if verbose:
         print("likely tags: %s" % ",".join(sorted(tags)))
     for ref in sorted(tags):
@@ -1459,6 +1459,7 @@ def get_cmdclass():
     from distutils.command.build_py import build_py as _build_py
 
     class cmd_build_py(_build_py):
+
         def run(self):
             root = get_root()
             cfg = get_config_from_root(root)
@@ -1477,6 +1478,7 @@ def get_cmdclass():
         from cx_Freeze.dist import build_exe as _build_exe
 
         class cmd_build_exe(_build_exe):
+
             def run(self):
                 root = get_root()
                 cfg = get_config_from_root(root)
@@ -1506,6 +1508,7 @@ def get_cmdclass():
         from distutils.command.sdist import sdist as _sdist
 
     class cmd_sdist(_sdist):
+
         def run(self):
             versions = get_versions()
             self._versioneer_generated_versions = versions
@@ -1526,6 +1529,55 @@ def get_cmdclass():
             write_to_version_file(target_versionfile,
                                   self._versioneer_generated_versions)
     cmds["sdist"] = cmd_sdist
+
+    # Next lines until return are specific additions for PyLaTeX.
+    # Automatically convert the source from Python 3 to Python 2 if we need to.
+    def convert_to_py2():
+        if source_dir == 'python2_source' and not PY2_CONVERTED:
+            try:
+                # Check if 3to2 exists
+                subprocess.check_output(['3to2', '--help'])
+                subprocess.check_output(['pasteurize', '--help'])
+            except OSError as e:
+                if e.errno != errno.ENOENT:
+                    raise e
+                if not os.path.exists(os.path.join(source_dir, 'pylatex')):
+                    raise ImportError('3to2 and future need to be installed '
+                                      'before installing when PyLaTeX for Python '
+                                      '2.7 when it is not installed using one of '
+                                      'the pip releases.')
+                else:
+                    converter = os.path.dirname(os.path.realpath(__file__)) \
+                        + '/convert_to_py2.sh'
+                    subprocess.check_call([converter])
+                    global PY2_CONVERTED
+                    PY2_CONVERTED = True
+
+    if "setuptools" in sys.modules:
+        from setuptools.command.install import install as _install
+    else:
+        from distutils.command.install import install as _install
+
+    class CustomInstall(_install):
+
+        def run(self):
+            convert_to_py2()
+            _install.run(self)
+
+    cmds["install"] = CustomInstall
+
+    if "setuptools" in sys.modules:
+        from setuptools.command.egg_info import egg_info as _egg_info
+    else:
+        from distutils.command.egg_info import egg_info as _egg_info
+
+    class CustomEggInfo(_egg_info):
+
+        def initialize_options(self):
+            convert_to_py2()
+            _egg_info.initialize_options(self)
+
+    cmds["egg_info"] = CustomEggInfo
 
     return cmds
 

@@ -1,12 +1,9 @@
 try:
     from setuptools import setup
-    from setuptools.command.install import install
-    from setuptools.command.egg_info import egg_info
 except ImportError:
     from distutils.core import setup
 import sys
 import os
-import subprocess
 import errno
 import versioneer
 
@@ -39,41 +36,6 @@ PY2_CONVERTED = False
 
 
 extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
-
-
-# Automatically convert the source from Python 3 to Python 2 if we need to.
-class CustomInstall(install):
-    def run(self):
-        convert_to_py2()
-        install.run(self)
-
-
-class CustomEggInfo(egg_info):
-    def initialize_options(self):
-        convert_to_py2()
-        egg_info.initialize_options(self)
-
-
-def convert_to_py2():
-    if source_dir == 'python2_source' and not PY2_CONVERTED:
-        try:
-            # Check if 3to2 exists
-            subprocess.check_output(['3to2', '--help'])
-            subprocess.check_output(['pasteurize', '--help'])
-        except OSError as e:
-            if e.errno != errno.ENOENT:
-                raise e
-            if not os.path.exists(os.path.join(source_dir, 'pylatex')):
-                raise ImportError('3to2 and future need to be installed '
-                                  'before installing when PyLaTeX for Python '
-                                  '2.7 when it is not installed using one of '
-                                  'the pip releases.')
-        else:
-            converter = os.path.dirname(os.path.realpath(__file__)) \
-                + '/convert_to_py2.sh'
-            subprocess.check_call([converter])
-            global PY2_CONVERTED
-            PY2_CONVERTED = True
 
 
 setup(name='PyLaTeX',
