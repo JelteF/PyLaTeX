@@ -53,15 +53,19 @@ class Document(Environment):
             self.documentclass = Command('documentclass',
                                          arguments=documentclass)
 
-        fontenc = Package('fontenc', options=fontenc)
-        inputenc = Package('inputenc', options=inputenc)
-        # These variables are used for
+        # These variables are used by the __repr__ method
         self._fontenc = fontenc
         self._inputenc = inputenc
-        self._lmodern = inputenc
+        self._lmodern = lmodern
+
+        fontenc = Package('fontenc', options=fontenc)
+        inputenc = Package('inputenc', options=inputenc)
+        packages = [fontenc, inputenc]
+
         if lmodern:
-            lmodern = Package('lmodern')
-        self.packages |= [fontenc, inputenc, lmodern]
+            packages.append(Package('lmodern'))
+
+        self.packages |= packages
 
         self.preamble = []
 
