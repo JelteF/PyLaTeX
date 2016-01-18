@@ -16,7 +16,11 @@ class Section(Container):
     #: A section should normally start in its own paragraph
     end_paragraph = True
 
-    def __init__(self, title, numbering=True, **kwargs):
+    #: Number the sections, by changing the `~.Section` class default all
+    #: subclasses will also have the new default.
+    numbering = True
+
+    def __init__(self, title, numbering=None, **kwargs):
         """
         Args
         ----
@@ -27,7 +31,9 @@ class Section(Container):
         """
 
         self.title = title
-        self.numbering = numbering
+
+        if self.numbering is not None:
+            self.numbering = numbering
 
         super().__init__(**kwargs)
 

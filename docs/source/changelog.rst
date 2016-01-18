@@ -14,7 +14,9 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
-
+Changed
+~~~~~~~
+- Allow overriding of the default numbering of `.Section` class.
 
 Fixed
 ~~~~~
