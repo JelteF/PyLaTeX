@@ -26,7 +26,7 @@ class Document(Environment):
 
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 lmodern=True, data=None):
+                 lmodern=True, textcomp=True, data=None):
         r"""
         Args
         ----
@@ -41,6 +41,8 @@ class Document(Environment):
         lmodern: bool
             Use the Latin Modern font. This is a font that contains more glyphs
             than the standard LaTeX font.
+        textcomp: bool
+            Adds even more glyphs, for instance the Euro (€) sign.
         data: list
             Initial content of the document.
         """
@@ -64,6 +66,8 @@ class Document(Environment):
 
         if lmodern:
             packages.append(Package('lmodern'))
+        if textcomp:
+            packages.append(Package('textcomp'))
 
         self.packages |= packages
 

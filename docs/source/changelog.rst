@@ -18,6 +18,11 @@ Changed
 ~~~~~~~
 - Allow overriding of the default numbering of `.Section` class.
 
+Added
+~~~~~
+- Add the ``textcomp`` package by default. This way some special glyphs, like
+  the Euro (€) Symbol can be used in the source.
+
 Fixed
 ~~~~~
 - Setting the ``lmodern`` keyword argument of `.Document` to false will not
