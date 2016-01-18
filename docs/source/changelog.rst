@@ -2,9 +2,25 @@ Change Log
 ==========
 
 All notable changes to this project will be documented on this page.  This
-project adheres to `Semantic Versioning <http://semver.org/>`_.  See the
-`latest docs <../latest/>`_ for changes that have not yet been released and are
+project adheres to `Semantic Versioning <http://semver.org/>`_.
+
+.. highlight:: bash
+
+Unreleased_ - `docs <../latest/>`_
+-----------------------------------------
+See these docs for changes that have not yet been released and are
 only present in the development version.
+This version might not be stable, but to install it use::
+
+    pip install git+https://github.com/JelteF/PyLaTeX.git
+
+
+
+Fixed
+~~~~~
+- Setting the ``lmodern`` keyword argument of `.Document` to false will not
+  cause invalid LaTeX code anymore.
+
 
 1.0.0_ - `docs <../v1.0.0/>`__ - 2015-11-25
 -------------------------------------------
