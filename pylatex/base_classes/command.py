@@ -211,9 +211,12 @@ class Parameters(LatexObject):
             Keyword parameters
         """
 
-        if len(args) == 1 and hasattr(args[0], '__iter__') and\
-                not isinstance(args[0], str):
-            args = args[0]
+        if len(args) == 1 and not isinstance(args[0], str):
+            if hasattr(args[0], 'items') and len(kwargs) == 0:
+                kwargs = args[0]  # do not just iterate over the dict keys
+                args = ()
+            elif hasattr(args[0], '__iter__'):
+                args = args[0]
 
         self._positional_args = list(args)
         self._key_value_args = dict(kwargs)
