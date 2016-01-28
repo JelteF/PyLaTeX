@@ -43,17 +43,15 @@ class NoEscape(str):
     When a `.NoEscape` string is added to another `.NoEscape` string it will
     produce a `.NoEscape` string. If it is added to normal string it will
     produce a normal string.
+
+    Args
+    ----
+    string: str
+        The content of the `NoEscape` string.
     """
 
-    def __init__(self, string):
-        """
-        Args
-        ----
-        string: str
-            The content of the `NoEscape` string.
-        """
-
-        super().__init__()
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self)
 
     def __add__(self, right):
         s = super().__add__(right)
