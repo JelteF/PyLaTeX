@@ -21,9 +21,11 @@ class Version1:
     The default attributes are::
 
         indent = True
+        booktabs = False
     """
 
     indent = True
+    booktabs = False
 
     def __init__(self, **kwargs):
         """
@@ -91,9 +93,11 @@ class Version2(Version1):
     The default attributes are::
 
         indent = False
+        booktabs = True
     """
 
     indent = False
+    booktabs = True
 
 #: The default configuration in the nxt major release. Currently the same as
 #: `Version2`.
