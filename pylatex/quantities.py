@@ -10,7 +10,7 @@ It requires the latex package SIunitx.
 
 from operator import itemgetter
 
-from .base_classes import Command, Options
+from .base_classes import Command
 from .package import Package
 from .utils import NoEscape
 
@@ -38,7 +38,7 @@ class Quantity(Command):
 
     packages = [Package('siunitx')]
 
-    def __init__(self, quantity, options=None, *, format_cb=None):
+    def __init__(self, quantity, *, options=None, format_cb=None):
         r"""
         Args
         ----
@@ -58,19 +58,51 @@ class Quantity(Command):
         ...                          'round-mode': 'figures'})
         '\\SI[round-mode=figures,round-precision=3]{3.14159265}{\meter\per\second}'
 
+        Uncertainties are also handled:
+
+        >>> length = pq.UncertainQuantity(16.0, pq.meter, 0.3)
+        >>> width = pq.UncertainQuantity(16.0, pq.meter, 0.4)
+        >>> Quantity(length*width)
+        '\\SI{256.0 +- 0.5}{\meter\tothe{2}}
+
+        Ordinary numbers are also supported:
+
+        >>> Avogadro_constant = 6.022140857e23
+        >>> Quantity(Avogadro_constant, options={'round-precision': 3})
+        '\\num[round-precision=3]{6.022e23}'
+
         """
         import numpy as np
 
         self.quantity = quantity
         self._format_cb = format_cb
 
-        if format_cb is None:
-            magnitude_str = np.array_str(quantity.magnitude)
-        else:
-            magnitude_str = format_cb(quantity.magnitude)
-        unit_str = _dimensionality_to_siunitx(quantity.dimensionality)
-        if options is not None:
-            options = Options(options)
-            options._escape = False  # siunitx uses dashes in kwargs
-        super().__init__(command='SI', arguments=(magnitude_str, unit_str),
-                         options=options)
+        def _format(val):
+            if format_cb is None:
+                try:
+                    return np.array_str(val)
+                except AttributeError:
+                    return str(val)  # Python float and int
+            else:
+                return format_cb(val)
+
+        try:
+            # Assuming quantities.Quantity or quantities.UncertainQuantity
+            try:
+                # Assuming quantities.UncertainQuantity
+                magnitude_str = '{} +- {}'.format(
+                    _format(quantity.magnitude), _format(quantity.uncertainty))
+            except AttributeError:
+                # Assuming quantities.Quantity
+                magnitude_str = _format(quantity.magnitude)
+            unit_str = _dimensionality_to_siunitx(quantity.dimensionality)
+            super().__init__(command='SI', arguments=(magnitude_str, unit_str),
+                             options=options)
+        except AttributeError:
+            # Assuming Python float
+            super().__init__(command='num', arguments=_format(quantity),
+                             options=options)
+
+        self.arguments._escape = False  # dash in e.g. \num{3 +- 2}
+        if self.options is not None:
+            self.options._escape = False  # siunitx uses dashes in kwargs

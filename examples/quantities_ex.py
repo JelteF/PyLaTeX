@@ -14,8 +14,8 @@ from pylatex import Document, Section, Subsection, Math, Quantity
 if __name__ == '__main__':
     doc = Document()
     section = Section('Quantity tests')
-    subsection = Subsection('Scalars')
 
+    subsection = Subsection('Scalars with units')
     G = pq.constants.Newtonian_constant_of_gravitation
     moon_earth_distance = 384400 * pq.km
     moon_mass = 7.34767309e22 * pq.kg
@@ -26,5 +26,22 @@ if __name__ == '__main__':
     math = Math(data=['F=', q1])
     subsection.append(math)
     section.append(subsection)
+
+    subsection = Subsection('Scalars without units')
+    world_population = 7400219037
+    N = Quantity(world_population, options={'round-precision': 2,
+                                            'round-mode': 'figures'},
+                 format_cb="{0:23.17e}".format)
+    subsection.append(Math(data=['N=', N]))
+    section.append(subsection)
+
+    subsection = Subsection('Scalars with uncertainties')
+    width = pq.UncertainQuantity(7.0, pq.meter, .4)
+    length = pq.UncertainQuantity(6.0, pq.meter, .3)
+    area = Quantity(width*length, options='separate-uncertainty',
+                    format_cb=lambda x: "{0:.1f}".format(float(x)))
+    subsection.append(Math(data=['A=', area]))
+    section.append(subsection)
+
     doc.append(section)
     doc.generate_pdf('quantities_ex')
