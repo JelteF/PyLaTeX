@@ -12,7 +12,7 @@ from operator import itemgetter
 
 from .base_classes import Command
 from .package import Package
-from .utils import NoEscape
+from .utils import NoEscape, escape_latex
 
 
 def _dimensionality_to_siunitx(dim):
@@ -73,6 +73,7 @@ class Quantity(Command):
 
         """
         import numpy as np
+        import quantities as pq
 
         self.quantity = quantity
         self._format_cb = format_cb
@@ -82,24 +83,21 @@ class Quantity(Command):
                 try:
                     return np.array_str(val)
                 except AttributeError:
-                    return str(val)  # Python float and int
+                    return escape_latex(val)  # Python float and int
             else:
                 return format_cb(val)
 
-        try:
-            # Assuming quantities.Quantity or quantities.UncertainQuantity
-            try:
-                # Assuming quantities.UncertainQuantity
-                magnitude_str = '{} +- {}'.format(
-                    _format(quantity.magnitude), _format(quantity.uncertainty))
-            except AttributeError:
-                # Assuming quantities.Quantity
-                magnitude_str = _format(quantity.magnitude)
+        if isinstance(quantity, pq.UncertainQuantity):
+            magnitude_str = '{} +- {}'.format(
+                _format(quantity.magnitude), _format(quantity.uncertainty))
+        elif isinstance(quantity, pq.Quantity):
+            magnitude_str = _format(quantity.magnitude)
+
+        if isinstance(quantity, (pq.UncertainQuantity, pq.Quantity)):
             unit_str = _dimensionality_to_siunitx(quantity.dimensionality)
             super().__init__(command='SI', arguments=(magnitude_str, unit_str),
                              options=options)
-        except AttributeError:
-            # Assuming Python float
+        else:
             super().__init__(command='num', arguments=_format(quantity),
                              options=options)
 
