@@ -17,11 +17,15 @@ This version might not be stable, but to install it use::
 Changed
 ~~~~~~~
 - Allow overriding of the default numbering of `.Section` class.
+- `.Parameters` now unpacks a dict as keyword arguments when passed a single
+  dictionary as argument.
 
 Added
 ~~~~~
 - Add the ``textcomp`` package by default. This way some special glyphs, like
   the Euro (€) Symbol can be used in the source.
+- `.Quantity` got a new  ``options`` keyword argument and learned to handle
+  uncertain quantities.
 
 Fixed
 ~~~~~
