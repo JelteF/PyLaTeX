@@ -127,7 +127,8 @@ class Environment(Container):
     setting the environment_name class variable when declaring the class.
     """
 
-    def __init__(self, *, options=None, arguments=None, **kwargs):
+    def __init__(self, *, options=None, arguments=None, omit_if_empty=False,
+                 **kwargs):
         r"""
         Args
         ----
@@ -140,6 +141,7 @@ class Environment(Container):
 
         self.options = options
         self.arguments = arguments
+        self.omit_if_empty = omit_if_empty
 
         super().__init__(**kwargs)
 
@@ -154,6 +156,10 @@ class Environment(Container):
 
         string = ''
 
+        content = self.dumps_content()
+        if self.omit_if_empty and (content is None or content == ''):
+            return string
+
         # Something other than None needs to be used as extra arguments, that
         # way the options end up behind the latex_name argument.
         if self.arguments is None:
@@ -165,7 +171,7 @@ class Environment(Container):
                         extra_arguments=extra_arguments)
         string += begin.dumps() + '\n'
 
-        string += self.dumps_content() + '\n'
+        string += content + '\n'
 
         string += Command('end', self.latex_name).dumps()
 

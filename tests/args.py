@@ -149,6 +149,10 @@ def test_lists():
     itemize.append("append")
     repr(itemize)
 
+    empty_itemize = Itemize()
+    assert empty_itemize.dumps() == ''
+    repr(empty_itemize)
+
     enum = Enumerate()
     enum.add_item(s="item")
     enum.append("append")

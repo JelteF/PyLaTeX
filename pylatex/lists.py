@@ -14,6 +14,9 @@ from .base_classes import Environment, Command
 class List(Environment):
     """A base class that represents a list."""
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(omit_if_empty=True, *args, **kwargs)
+
     def add_item(self, s):
         """Add an item to the list.
 
