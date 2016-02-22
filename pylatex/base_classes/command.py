@@ -173,10 +173,10 @@ class Command(CommandBase):
 
         self.latex_name = command
 
+        super().__init__(arguments, options, extra_arguments=extra_arguments)
+
         if packages is not None:
             self.packages |= packages
-
-        super().__init__(arguments, options, extra_arguments=extra_arguments)
 
 
 class UnsafeCommand(Command):

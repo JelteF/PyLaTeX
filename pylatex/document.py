@@ -69,11 +69,11 @@ class Document(Environment):
         if textcomp:
             packages.append(Package('textcomp'))
 
+        super().__init__(data=data)
+
         self.packages |= packages
 
         self.preamble = []
-
-        super().__init__(data=data)
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.
