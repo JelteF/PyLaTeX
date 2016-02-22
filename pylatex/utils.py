@@ -72,7 +72,7 @@ def escape_latex(s):
 
     Returns
     -------
-    str
+    NoEscape
         The string, with special characters in latex escaped.
 
     Examples
@@ -157,7 +157,7 @@ def dumps_list(l, *, escape=True, token='\n', mapper=None, as_content=True):
 
     Returns
     -------
-    str
+    NoEscape
         A single LaTeX string.
 
     Examples
@@ -198,7 +198,7 @@ def _latex_item_to_string(item, *, escape=False, as_content=False):
 
     Returns
     -------
-    str
+    NoEscape
         Latex
     """
 
@@ -230,7 +230,7 @@ def bold(s, *, escape=True):
 
     Returns
     -------
-    str
+    NoEscape
         The formatted string.
 
     Examples
@@ -263,7 +263,7 @@ def italic(s, *, escape=True):
 
     Returns
     -------
-    str
+    NoEscape
         The formatted string.
 
     Examples
@@ -294,7 +294,7 @@ def verbatim(s, *, delimiter='|'):
 
     Returns
     -------
-    str
+    NoEscape
         The formatted string.
 
     Examples
