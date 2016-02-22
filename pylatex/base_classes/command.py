@@ -9,6 +9,8 @@ to it.
     :license: MIT, see License for more details.
 """
 
+from reprlib import recursive_repr
+
 from .latex_object import LatexObject
 from ..utils import dumps_list
 
@@ -200,6 +202,12 @@ class Parameters(LatexObject):
     This class should probably never be used on its own and inhereting from it
     is only useful if a class like `~Options` or `~Arguments` is needed again.
     """
+
+    @recursive_repr()
+    def __repr__(self):
+        args = [repr(a) for a in self._positional_args]
+        args += ["%s=%r" % k_v for k_v in self._key_value_args.items()]
+        return self.__class__.__name__ + '(' + ', '.join(args) + ')'
 
     def __init__(self, *args, **kwargs):
         r"""
