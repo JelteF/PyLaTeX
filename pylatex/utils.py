@@ -94,7 +94,7 @@ def escape_latex(s):
     if isinstance(s, NoEscape):
         return s
 
-    return ''.join(_latex_special_chars.get(c, c) for c in str(s))
+    return NoEscape(''.join(_latex_special_chars.get(c, c) for c in str(s)))
 
 
 def fix_filename(path):
