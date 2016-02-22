@@ -18,5 +18,5 @@ from .figure import Figure, SubFigure
 from .lists import Enumerate, Itemize, Description
 from .quantities import Quantity
 from .base_classes import Command, UnsafeCommand
-from .utils import NoEscape
+from .utils import NoEscape, escape_latex
 from .errors import TableRowSizeError
