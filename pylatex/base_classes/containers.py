@@ -173,8 +173,6 @@ class Environment(Container):
                         extra_arguments=extra_arguments)
         string += begin.dumps() + '\n'
 
-        string += content
-
         string += content + '\n'
 
         string += Command('end', self.latex_name).dumps()
