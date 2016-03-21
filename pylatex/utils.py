@@ -124,7 +124,7 @@ def fix_filename(path):
 
     """
 
-    path_parts = path.split('/')
+    path_parts = path.split('/' if os.name == 'posix' else '\\')
     dir_parts = path_parts[:-1]
 
     filename = path_parts[-1]
