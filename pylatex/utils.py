@@ -178,7 +178,8 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
                for i in l)
     if mapper is not None:
-        strings = (mapper(s) for s in strings)
+        for m in mapper:
+            strings = (m(s) for s in strings)
 
     return NoEscape(token.join(strings))
 
@@ -284,6 +285,10 @@ def page_break():
     return NoEscape(r'\newpage')
 
 
+def line_break():
+    return NoEscape(r'\linebreak')
+
+
 def horizontal_fill():
     return NoEscape(r'\hfill')
 
@@ -292,11 +297,37 @@ def page_number():
     return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
 
 
+def get_page_number():
+    return int(NoEscape(r'\thepage\ '))
+
+
+def header1(s, *, escape=True):
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\Large{' + s + '}')
+
+def header2(s, *, escape=True):
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\large{' + s + r'}')
+
+
+
 def text_box(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
     return NoEscape(r'\fbox{' + s + '}')
+
+
+def center(s, *, escape=True):
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\Centering{' + s + '}')
+
 
 def verbatim(s, *, delimiter='|'):
     r"""Make the string verbatim.

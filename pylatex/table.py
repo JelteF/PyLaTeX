@@ -97,6 +97,17 @@ class Tabular(Environment):
 
         self.append(NoEscape((self.width - 1) * '&' + r'\\'))
 
+    
+    def add_table_header(self, list_cells, escape=None, mapper=None, strict=True):
+        """ Adds all the rows specified by list_cells to the table header"""
+        for row in list_cells:
+            self.add_row(cells=row, mapper=mapper, escape=escape, strict=strict)
+        
+        self.add_hline()
+
+        self.append(Command('endhead'))
+
+
     def add_row(self, cells, *, escape=None, mapper=None, strict=True):
         """Add a row of cells to the table.
 
@@ -134,8 +145,7 @@ class Tabular(Environment):
                 "did not match table width ({})".format(cell_count, self.width)
             raise TableRowSizeError(msg)
 
-        self.append(dumps_list(cells, escape=escape, token='&',
-                               mapper=mapper) + NoEscape(r'\\'))
+        self.append(dumps_list(cells, escape=escape, token='&', mapper=mapper) + NoEscape(r'\\'))
 
 
 class MultiColumn(Container):
@@ -221,18 +231,6 @@ class Tabu(Tabular):
     """A class that represents a tabu (more flexible table)."""
 
     packages = [Package('tabu')]
-    
-    """
-    def __init__(self, table_spec, data=None, pos=None, table_width=None,
-            **kwargs):
-        super().__init__(table_spec, data, pos, **kwargs)
-        
-        self.table_width = table_width
-
-    #def
-    """
-
-
 
 
 class LongTable(Tabular):

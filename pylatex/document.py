@@ -27,7 +27,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, header=False,
-                 page_numbers=True, data=None):
+                 page_numbers=True, margin='2in', data=None):
         r"""
         Args
         ----
@@ -68,6 +68,7 @@ class Document(Environment):
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
+        geometry_options = ['includeheadfoot', 'margin=' + margin]
         packages = [fontenc, inputenc]
 
         self.preamble = []
@@ -77,9 +78,11 @@ class Document(Environment):
         if textcomp:
             packages.append(Package('textcomp'))
         if lscape:
-            packages.append(Package('geometry', options='landscape'))
+            geometry_options.append('landscape')
         if page_numbers:
             packages.append(Package('lastpage'))
+
+        packages.append(Package('geometry', options=geometry_options))
 
         super().__init__(data=data)
 

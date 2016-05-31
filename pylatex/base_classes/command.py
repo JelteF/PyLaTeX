@@ -367,10 +367,3 @@ class Arguments(Parameters):
         """
 
         return self._format_contents('{', '}{', '}')
-
-"""
-class Extension(Parameters):
-
-    def dumps(self):
-        return self._format_contents(' to ', '', ' ')
-"""
