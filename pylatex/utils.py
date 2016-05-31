@@ -280,6 +280,24 @@ def italic(s, *, escape=True):
     return NoEscape(r'\textit{' + s + '}')
 
 
+def page_break():
+    return NoEscape(r'\newpage')
+
+
+def horizontal_fill():
+    return NoEscape(r'\hfill')
+
+
+def page_number():
+    return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
+
+
+def text_box(s, *, escape=True):
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\fbox{' + s + '}')
+
 def verbatim(s, *, delimiter='|'):
     r"""Make the string verbatim.
 

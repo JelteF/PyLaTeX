@@ -63,7 +63,7 @@ class Tabular(Environment):
         """
 
         self.width = _get_table_width(table_spec)
-
+        
         super().__init__(data=data, options=pos,
                          arguments=table_spec, **kwargs)
 
@@ -221,6 +221,18 @@ class Tabu(Tabular):
     """A class that represents a tabu (more flexible table)."""
 
     packages = [Package('tabu')]
+    
+    """
+    def __init__(self, table_spec, data=None, pos=None, table_width=None,
+            **kwargs):
+        super().__init__(table_spec, data, pos, **kwargs)
+        
+        self.table_width = table_width
+
+    #def
+    """
+
+
 
 
 class LongTable(Tabular):
@@ -231,3 +243,41 @@ class LongTable(Tabular):
 
 class LongTabu(LongTable, Tabu):
     """A class that represents a longtabu (more flexible multipage table)."""
+
+class ColoredTable(Tabu):
+    """ A class that represents a table with colored rows """
+
+    packages = [Package('xcolor', options='table')]
+
+    _latex_name = "tabu"
+
+    def add_row(self, cells, *, color=None, escape=None, mapper=None, string=True):
+        if escape is None:
+            escape = self.escape
+
+        for c in cells:
+            if isinstance(c, LatexObject):
+                for p in c.packages:
+                    self.packages.add(p)
+        cell_count = 0
+
+        for c in cells:
+            if isinstance(c, MultiColumn):
+                cell_count += c.size
+            else:
+                cell_count += 1
+
+        if string and cell_count != self.width:
+            msg = "Number of cells added to table ({}) " \
+                "did not match table width ({})".format(cell_count, self.width)
+            raise TableRowSizeError(msg)
+
+        if color is None:
+            self.append(dumps_list(cells, escape=escape, token='&', mapper=mapper) + NoEscape(r'\\'))
+        else:
+            self.append(NoEscape(r'\rowcolor{' + color + '} ') + dumps_list(cells, escape=escape, token='&', mapper=mapper) + NoEscape(r'\\'))
+
+class LongColoredTable(ColoredTable, LongTabu):
+    """ Class representing a longtabu with colored rows """
+
+    _latex_name = "longtabu"

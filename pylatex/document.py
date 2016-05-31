@@ -11,7 +11,7 @@ import subprocess
 import errno
 from .base_classes import Environment, Command
 from .package import Package
-from .utils import dumps_list, rm_temp_dir
+from .utils import dumps_list, rm_temp_dir, NoEscape
 
 
 class Document(Environment):
@@ -26,7 +26,8 @@ class Document(Environment):
 
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 lmodern=True, textcomp=True, data=None):
+                 lmodern=True, textcomp=True, lscape=False, header=False,
+                 page_numbers=True, data=None):
         r"""
         Args
         ----
@@ -43,6 +44,10 @@ class Document(Environment):
             than the standard LaTeX font.
         textcomp: bool
             Adds even more glyphs, for instance the Euro (€) sign.
+        lscape: bool
+            Adds the ability to orientate the document in landscape mode
+        header: bool
+            Adds the ability to add a header to the Document
         data: list
             Initial content of the document.
         """
@@ -59,21 +64,28 @@ class Document(Environment):
         self._fontenc = fontenc
         self._inputenc = inputenc
         self._lmodern = lmodern
+        self._lscape = lscape
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
         packages = [fontenc, inputenc]
 
+        self.preamble = []
+
         if lmodern:
             packages.append(Package('lmodern'))
         if textcomp:
             packages.append(Package('textcomp'))
+        if lscape:
+            packages.append(Package('geometry', options='landscape'))
+        if page_numbers:
+            packages.append(Package('lastpage'))
 
         super().__init__(data=data)
 
         self.packages |= packages
 
-        self.preamble = []
+        #self.preamble = []
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.
@@ -233,3 +245,32 @@ class Document(Environment):
                 filepath = os.path.join(filepath, os.path.basename(
                     self.default_filepath))
             return filepath
+
+    def add_header(self, lhead=None, rhead=None, chead=None,
+            lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
+            footer_thickness='0pt'):
+        """ Generates a header for the document from the passed in
+        arguments """
+        
+        self.packages.append(Package('fancyhdr'))
+
+
+        self.preamble.append(Command('renewcommand', arguments=
+            [NoEscape(r'\headrulewidth'), header_thickness]))
+        self.preamble.append(Command('renewcommand', arguments=
+            [NoEscape(r'\footrulewidth'), footer_thickness]))
+        self.preamble.append(Command('pagestyle', arguments='fancy'))
+        self.preamble.append(Command('fancyhf', arguments=''))
+
+        if lhead is not None:
+            self.preamble.append(Command('lhead', arguments=lhead))
+        if rhead is not None:
+            self.preamble.append(Command('rhead', arguments=rhead))
+        if chead is not None:
+            self.preamble.append(Command('chead', arguments=chead))
+        if lfoot is not None:
+            self.preamble.append(Command('lfoot', arguments=lfoot))
+        if rfoot is not None:
+            self.preamble.append(Command('rfoot', arguments=rfoot))
+        if cfoot is not None:
+            self.preamble.append(Command('cfoot', arguments=cfoot))
