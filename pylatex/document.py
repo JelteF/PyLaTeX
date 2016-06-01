@@ -249,6 +249,11 @@ class Document(Environment):
                     self.default_filepath))
             return filepath
 
+
+    def change_page_style(self, style):
+        """ Alternate page styles """ 
+        self.append(Command("thispagestyle", arguments=style))
+
     def add_header(self, lhead=None, rhead=None, chead=None,
             lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
             footer_thickness='0pt'):

@@ -5,8 +5,12 @@ import os.path
 
 def gen_r3_rsp():
     doc = Document(lscape=True, page_numbers=True, margin='0.5in')
-    doc.add_header(lhead="Print Date: R3",
-        chead="Pacific & Western Bank", rhead=page_number())
+    header = Header()
+    header.set_lhead("Page date: " + "\n" + " R3")
+    header.set_chead("VersaBank")
+    header.set_rhead(page_number())
+    header.set_header_thickness(0)
+    doc.append(header)
 
     heading = Center()
     heading.append(header1(bold("RSP Savings Trial Balance")))
@@ -14,7 +18,7 @@ def gen_r3_rsp():
     subheading = Center()
     subheading.append(header2(bold("As at:")))
     doc.append(subheading)
-    
+
     data_table = LongTabu("X[r] X[r] X[r] X[r] X[r] X[r]")
     header_row1 = ["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"]
     data_table.add_row(header_row1, mapper=[bold, center])
