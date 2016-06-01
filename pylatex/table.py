@@ -48,6 +48,7 @@ class Tabular(Environment):
         'pos': 'options',
     }
 
+
     def __init__(self, table_spec, data=None, pos=None, **kwargs):
         """
         Args
@@ -96,16 +97,6 @@ class Tabular(Environment):
         """Add an empty row to the table."""
 
         self.append(NoEscape((self.width - 1) * '&' + r'\\'))
-
-    
-    def add_table_header(self, list_cells, escape=None, mapper=None, strict=True):
-        """ Adds all the rows specified by list_cells to the table header"""
-        for row in list_cells:
-            self.add_row(cells=row, mapper=mapper, escape=escape, strict=strict)
-        
-        self.add_hline()
-
-        self.append(Command('endhead'))
 
 
     def add_row(self, cells, *, escape=None, mapper=None, strict=True):
@@ -238,6 +229,18 @@ class LongTable(Tabular):
 
     packages = [Package('longtable')]
 
+    header = False
+
+    def end_table_header(self):
+        """ Ends the table header which will appear on every page """
+
+        if self.header:
+            msg = "Table already has a header"
+            raise TableError(msg)
+            
+        self.header = True
+
+        self.append(NoEscape(r'\endhead'))
 
 class LongTabu(LongTable, Tabu):
     """A class that represents a longtabu (more flexible multipage table)."""

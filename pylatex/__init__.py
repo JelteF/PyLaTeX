@@ -21,4 +21,4 @@ from .base_classes import Command, UnsafeCommand
 from .utils import NoEscape, escape_latex
 from .errors import TableRowSizeError
 #from .header import Header
-from .position import Center, Flushleft, Flushright, Position
+from .position import Center, Flushleft, Flushright, Position, Minipage

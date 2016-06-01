@@ -177,9 +177,16 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     """
     strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
                for i in l)
+
+    #strings1 = ""
+
     if mapper is not None:
         for m in mapper:
-            strings = (m(s) for s in strings)
+            print(m)
+            for i in range(0, len(strings)):
+                s[i] = m(s[i])
+                print(type(s[i]))
+            #strings = (m(s) for s in strings)
 
     return NoEscape(token.join(strings))
 
@@ -246,7 +253,7 @@ def bold(s, *, escape=True):
 
     if escape:
         s = escape_latex(s)
-
+    print(NoEscape(r'\textbf{' + s + '}'))
     return NoEscape(r'\textbf{' + s + '}')
 
 
@@ -326,6 +333,7 @@ def center(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
+    print (NoEscape(r'\Centering{' + s + '}'))
     return NoEscape(r'\Centering{' + s + '}')
 
 
