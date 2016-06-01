@@ -10,6 +10,7 @@ import os.path
 import pylatex.base_classes
 import shutil
 import tempfile
+from itertools import imap
 
 
 _latex_special_chars = {
@@ -177,16 +178,14 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     """
     strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
                for i in l)
-
-    #strings1 = ""
+    
 
     if mapper is not None:
-        for m in mapper:
-            print(m)
-            for i in range(0, len(strings)):
-                s[i] = m(s[i])
-                print(type(s[i]))
-            #strings = (m(s) for s in strings)
+        if type(mapper) is list:
+            for m in mapper:
+                strings = imap(m, strings)
+        else:
+            strings = (mapper(s) for s in strings)
 
     return NoEscape(token.join(strings))
 
