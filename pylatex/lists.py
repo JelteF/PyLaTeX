@@ -8,7 +8,8 @@ These lists are specifically enumerate, itemize and description.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment, Command
+from .base_classes import Environment, Command, Options
+from .package import Package
 
 
 class List(Environment):
@@ -32,6 +33,24 @@ class List(Environment):
 
 class Enumerate(List):
     """A class that represents an enumerate list."""
+    packages = [ Package('enumerate') ]
+    
+    def __init__(self, options=None, arguments=None, enumeration_symbol='1',
+            **kwargs):
+        r""" Initializes an enumerate environment
+            
+            Args
+            ----
+            options: str, list, Options
+                Options to be added to the begin tag
+            arguments: str, list, Arguments
+                Arguments to be added to the begin tag
+            enumeration_symbol: str
+                Enumeration symbol to use for the table (/alph, /Alph, /roman)
+
+        """
+        options = Options(enumeration_symbol)
+        super().__init__(options=options, arguments=arguments, **kwargs)
 
 
 class Itemize(List):

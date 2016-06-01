@@ -232,7 +232,7 @@ class LongTable(Tabular):
     header = False
 
     def end_table_header(self):
-        """ Ends the table header which will appear on every page """
+        r""" Ends the table header which will appear on every page """
 
         if self.header:
             msg = "Table already has a header"
@@ -253,6 +253,19 @@ class ColoredTable(Tabu):
     _latex_name = "tabu"
 
     def add_row(self, cells, *, color=None, escape=None, mapper=None, string=True):
+        r""" Adds a colored row to the table
+
+            Args
+            ----
+            cells: iterable, such as a `list` or `tuple`
+                Each element of the iterable will become a the content of a cell.
+            mapper: callable
+                A function that should be called on all entries of the list after
+            converting them to a string, for instance bold
+            strict: bool
+                Check for correct count of cells in row or not.
+        """
+            
         if escape is None:
             escape = self.escape
 

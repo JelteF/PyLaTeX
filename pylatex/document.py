@@ -48,6 +48,10 @@ class Document(Environment):
             Adds the ability to orientate the document in landscape mode
         header: bool
             Adds the ability to add a header to the Document
+        page_numbers: bool
+            Adds the ability to add page numbers to the document
+        margin: str
+            Modifies the default document margin
         data: list
             Initial content of the document.
         """
@@ -251,17 +255,44 @@ class Document(Environment):
 
 
     def change_page_style(self, style):
-        """ Alternate page styles """ 
+        r""" Alternate page styles of the current page
+            
+            Args
+            ----
+            style: str
+                value to set for the page style of the current page
+        """ 
+
         self.append(Command("thispagestyle", arguments=style))
 
     def add_header(self, lhead=None, rhead=None, chead=None,
             lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
             footer_thickness='0pt'):
-        """ Generates a header for the document from the passed in
-        arguments """
+        r""" Generates a header for the document from the passed in
+        arguments 
+        
+            Args
+            ----
+            lhead: str
+                Left header
+            chead: str
+                Center header
+            rhead: str
+                Right header
+            lfoot: str
+                Left footer
+            cfoot: str
+                Center footer
+            rfoot: str
+                Right footer
+            header_thickness: str
+                Header underline thickness
+            footer_thickness: str
+                Footer underline thickness
+
+        """
         
         self.packages.append(Package('fancyhdr'))
-
 
         self.preamble.append(Command('renewcommand', arguments=
             [NoEscape(r'\headrulewidth'), header_thickness]))

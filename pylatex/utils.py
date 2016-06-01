@@ -288,32 +288,73 @@ def italic(s, *, escape=True):
 
 
 def page_break():
+    r""" Adds a page break to the current environment """
+    
     return NoEscape(r'\newpage')
 
 
 def line_break():
+    r""" Adds a line break to the current line """
+
     return NoEscape(r'\linebreak')
 
 
 def horizontal_fill():
+    r""" Fills the current line """
+
     return NoEscape(r'\hfill')
 
 
-def page_number():
+def display_page_number():
+    r""" Provides the page number in the following format:
+        Page # of ##
+    """
+
     return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
 
 
 def get_page_number():
+    r""" Returns the current page number """
     return int(NoEscape(r'\thepage\ '))
 
 
 def header1(s, *, escape=True):
+    r""" Highlights the text as a header of size Large
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the enlarged text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+            
     if escape:
         s = escape_latex(s)
 
     return NoEscape(r'\Large{' + s + '}')
 
 def header2(s, *, escape=True):
+    r""" Highlights the text as a header of size large
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the enlarged text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
     if escape:
         s = escape_latex(s)
 
@@ -322,6 +363,21 @@ def header2(s, *, escape=True):
 
 
 def text_box(s, *, escape=True):
+    r""" Adds a text box around the text
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the boxed text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
     if escape:
         s = escape_latex(s)
 
@@ -329,6 +385,21 @@ def text_box(s, *, escape=True):
 
 
 def center(s, *, escape=True):
+    r""" Centers the text
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the centered text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
     if escape:
         s = escape_latex(s)
 

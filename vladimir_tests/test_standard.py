@@ -8,7 +8,7 @@ def gen_r3_rsp():
     header = Header()
     header.set_lhead("Page date: " + "\n" + " R3")
     header.set_chead("VersaBank")
-    header.set_rhead(page_number())
+    header.set_rhead(display_page_number())
     header.set_header_thickness(0)
     doc.append(header)
 
