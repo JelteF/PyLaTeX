@@ -27,7 +27,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, header=False,
-                 page_numbers=True, margin='2in', data=None):
+                 page_numbers=True, margin='0.5in', data=None):
         r"""
         Args
         ----
@@ -265,6 +265,16 @@ class Document(Environment):
 
         self.append(Command("thispagestyle", arguments=style))
 
+    def change_document_style(self, style):
+        r""" Alternate page style for the entire document
+
+            Args
+            ----
+            style: str
+                value tp set for the document style
+        """
+
+        self.append(Command("pagestyle", arguments=style))
     def add_header(self, lhead=None, rhead=None, chead=None,
             lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
             footer_thickness='0pt'):

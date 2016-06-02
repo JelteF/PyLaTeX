@@ -149,9 +149,9 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
         Whether to escape special LaTeX characters in converted text.
     token : str
         The token (default is a newline) to separate objects in the list.
-    mapper: callable
-        A function that should be called on all entries of the list after
-        converting them to a string, for instance bold
+    mapper: callable, callable[]
+        A function or a list of functions that should be called on all
+        entries of the list after converting them to a string, for instance bold
     as_content: bool
         Indicates whether the items in the list should be dumped using
         `~.LatexObject.dumps_as_content`
@@ -252,8 +252,8 @@ def bold(s, *, escape=True):
 
     if escape:
         s = escape_latex(s)
-    print(NoEscape(r'\textbf{' + s + '}'))
-    return NoEscape(r'\textbf{' + s + '}')
+
+    return pylatex.base_classes.Command('textbf', arguments=s)
 
 
 def italic(s, *, escape=True):
@@ -284,25 +284,25 @@ def italic(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\textit{' + s + '}')
+    return pylatex.base_classes.Command('textit', arguments=s)
 
 
 def page_break():
     r""" Adds a page break to the current environment """
     
-    return NoEscape(r'\newpage')
+    return pylatex.base_classes.Command('newpage')
 
 
 def line_break():
     r""" Adds a line break to the current line """
 
-    return NoEscape(r'\linebreak')
+    return pylatex.base_classes.Command('linebreak', options=4)
 
 
 def horizontal_fill():
     r""" Fills the current line """
 
-    return NoEscape(r'\hfill')
+    return pylatex.base_classes.Command('hfill')
 
 
 def display_page_number():
@@ -311,11 +311,6 @@ def display_page_number():
     """
 
     return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
-
-
-def get_page_number():
-    r""" Returns the current page number """
-    return int(NoEscape(r'\thepage\ '))
 
 
 def header1(s, *, escape=True):
@@ -337,7 +332,7 @@ def header1(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\Large{' + s + '}')
+    return pylatex.base_classes.Command('Large', arguments=s)
 
 def header2(s, *, escape=True):
     r""" Highlights the text as a header of size large
@@ -358,7 +353,7 @@ def header2(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\large{' + s + r'}')
+    return pylatex.base_classes.Command('large', arguments=s)
 
 
 
@@ -381,7 +376,7 @@ def text_box(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\fbox{' + s + '}')
+    return pylatex.base_classes.Command('fbox', arguments=s)
 
 
 def center(s, *, escape=True):
@@ -403,8 +398,7 @@ def center(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    print (NoEscape(r'\Centering{' + s + '}'))
-    return NoEscape(r'\Centering{' + s + '}')
+    return pylatex.base_classes.Command('Centering', arguments=s)
 
 
 def verbatim(s, *, delimiter='|'):

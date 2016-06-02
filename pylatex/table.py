@@ -106,9 +106,10 @@ class Tabular(Environment):
         ----
         cells: iterable, such as a `list` or `tuple`
             Each element of the iterable will become a the content of a cell.
-        mapper: callable
-            A function that should be called on all entries of the list after
-            converting them to a string, for instance bold
+        mapper: callable, callable[]
+            A function or a list of functions that should be called on all
+            entries of the list after converting them to a string,
+            for instance bold
         strict: bool
             Check for correct count of cells in row or not.
         """
@@ -259,9 +260,10 @@ class ColoredTable(Tabu):
             ----
             cells: iterable, such as a `list` or `tuple`
                 Each element of the iterable will become a the content of a cell.
-            mapper: callable
-                A function that should be called on all entries of the list after
-            converting them to a string, for instance bold
+            mapper: callable, callable[]
+                A function or a list of functions that should be called on
+                all entries of the list after converting them to a string,
+                for instance bold
             strict: bool
                 Check for correct count of cells in row or not.
         """

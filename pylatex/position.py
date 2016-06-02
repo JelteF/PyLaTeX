@@ -2,7 +2,7 @@
 
 from .base_classes import Environment
 from .package import Package
-from .utils import NoEscape
+from .utils import NoEscape, line_break
 
 
 class Position(Environment):
@@ -28,7 +28,9 @@ class Minipage(Environment):
     
     def __init__(self, width=1):
         r""" Instantiates a minipage within the current environment
-
+	
+            Args
+            ----
             width: float
                 width with respect to the text width of the page
         """
