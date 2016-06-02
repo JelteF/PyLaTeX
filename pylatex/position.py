@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .base_classes import Environment
+from .base_classes import Environment, UnsafeCommand
 from .package import Package
-from .utils import NoEscape, line_break
+from .utils import NoEscape, line_break, escape_latex, fix_filename
 
 
 class Position(Environment):
@@ -26,7 +26,7 @@ class Flushright(Position):
 class Minipage(Environment):
     r""" A class that allows the creation of minipages within document pages """
     
-    def __init__(self, width=1):
+    def __init__(self, width=1, adjustment='c'):
         r""" Instantiates a minipage within the current environment
 	
             Args
@@ -35,6 +35,7 @@ class Minipage(Environment):
                 width with respect to the text width of the page
         """
 
+        options = [ adjustment ]
         arguments = [ NoEscape(str(width) + r'\textwidth') ]
 
-        super().__init__(arguments = arguments)
+        super().__init__(arguments = arguments, options=options)

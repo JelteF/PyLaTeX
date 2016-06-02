@@ -275,6 +275,35 @@ class Document(Environment):
         """
 
         self.append(Command("pagestyle", arguments=style))
+
+
+    def add_skip(self, size="0.5in"):
+        r""" Adds the user specified amount of vertical space to the document
+
+            Args
+            ----
+            size: str
+                The amount and units of vertical space to create
+        """
+        self.append(Command("vspace", arguments=size))
+
+
+    def add_color(self, name, model, description):
+        r""" Add a color that can be used throughout the document
+
+            Args
+            ----
+            name: str
+                Name to set for the color
+            model: str
+                The color model to use when defining the color
+            description: str
+                The values to use to define the color
+        """
+
+        self.append(Command("definecolor", arguments=[ name, model, description]))
+
+
     def add_header(self, lhead=None, rhead=None, chead=None,
             lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
             footer_thickness='0pt'):

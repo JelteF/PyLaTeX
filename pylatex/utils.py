@@ -253,7 +253,7 @@ def bold(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return pylatex.base_classes.Command('textbf', arguments=s)
+    return NoEscape(r'\textbf{' + s + '}')
 
 
 def italic(s, *, escape=True):
@@ -284,25 +284,25 @@ def italic(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return pylatex.base_classes.Command('textit', arguments=s)
+    return NoEscape(r'\textit{' + s + '}')
 
 
 def page_break():
     r""" Adds a page break to the current environment """
     
-    return pylatex.base_classes.Command('newpage')
+    return NoEscape(r'\newpage')
 
 
 def line_break():
     r""" Adds a line break to the current line """
 
-    return pylatex.base_classes.Command('linebreak', options=4)
+    return NoEscape('\linebreak[4]')
 
 
 def horizontal_fill():
     r""" Fills the current line """
 
-    return pylatex.base_classes.Command('hfill')
+    return NoEscape(r'\hfill')
 
 
 def display_page_number():
@@ -332,7 +332,7 @@ def header1(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return pylatex.base_classes.Command('Large', arguments=s)
+    return NoEscape(r'\Large{' + s + '}')
 
 def header2(s, *, escape=True):
     r""" Highlights the text as a header of size large
@@ -353,7 +353,7 @@ def header2(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return pylatex.base_classes.Command('large', arguments=s)
+    return NoEscape('\large{' + s + '}')
 
 
 
@@ -376,7 +376,7 @@ def text_box(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return pylatex.base_classes.Command('fbox', arguments=s)
+    return NoEscape(r'\fbox{' + s + '}')
 
 
 def center(s, *, escape=True):
@@ -398,7 +398,7 @@ def center(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return pylatex.base_classes.Command('Centering', arguments=s)
+    return NoEscape('\Centering{' + s + '}')
 
 
 def verbatim(s, *, delimiter='|'):

@@ -13,7 +13,7 @@ class Header(Command):
     """
     def __init__(self, lhead=None, chead=None, rhead=None, lfoot=None,
             cfoot=None, rfoot=None, header_thickness=0,
-            footer_thickness=0):
+            footer_thickness=0, header_height=12, footer_height=12):
         r""" Initializes the header and sets its attributes 
             
             Args
@@ -34,20 +34,26 @@ class Header(Command):
                 Header underline thickness measured in pt
             footer_thickness: float
                 Footer underline thickness measured in pt
+            header_height: float
+                Header height in pt
+            footer_height: float
+                Footer height in pt
         """
 
         self._latex_name = "fancyhf"
 
         packages = [Package("fancyhdr")]
 
-        self.lhead = self.set_lhead(lhead)
-        self.chead = self.set_chead(chead)
-        self.rhead = self.set_rhead(rhead)
-        self.lfoot = self.set_lfoot(lfoot)
-        self.cfoot = self.set_cfoot(cfoot)
-        self.rfoot = self.set_rfoot(rfoot)
-        self.header_thickness = str(header_thickness) + 'pt'
-        self.footer_thickness = str(footer_thickness) + 'pt'
+        self.set_lhead(lhead)
+        self.set_chead(chead)
+        self.set_rhead(rhead)
+        self.set_lfoot(lfoot)
+        self.set_cfoot(cfoot)
+        self.set_rfoot(rfoot)
+        self.set_header_thickness(header_thickness)
+        self.set_footer_thickness(footer_thickness)
+        self.set_header_height(header_height)
+        self.set_footer_height(footer_height)
 
         super().__init__(command=self._latex_name, packages=packages)
 
@@ -69,6 +75,12 @@ class Header(Command):
 
         head += Command("renewcommand", arguments=[NoEscape(r'\footrulewidth'),
             self.footer_thickness]).dumps() + '\n'
+        
+        head += Command("setlength", arguments=[NoEscape(r'\headheight'),
+            self.header_height]).dumps() + '\n'
+
+        head += Command("setlength", arguments=[NoEscape(r'\footheight'),
+            self.footer_height]).dumps() + '\n'
 
         if self.lhead is not None:
             head += Command("lhead",arguments=NoEscape(self.lhead)).dumps() + '\n'
@@ -97,6 +109,8 @@ class Header(Command):
         
         if lhead is not None:
             self.lhead = lhead.replace('\n', r'\linebreak')
+        else:
+            self.lhead = None
 
 
     def set_chead(self, chead):
@@ -110,7 +124,8 @@ class Header(Command):
 
         if chead is not None:
             self.chead = chead.replace('\n', r'\linebreak')
-
+        else:
+            self.chead = None
 
     def set_rhead(self, rhead):
         r""" Sets the right header of the document
@@ -123,7 +138,8 @@ class Header(Command):
   
         if rhead is not None:
             self.rhead = rhead.replace('\n', r'\linebreak')
-
+        else:
+            self.rhead = None
 
     def set_lfoot(self, lfoot):
         r""" Sets the left footer of the document
@@ -136,7 +152,8 @@ class Header(Command):
 
         if lfoot is not None:
             self.lfoot = lfoot.replace('\n', r'\linebreak')
-
+        else:
+            self.lfoot = None
 
     def set_cfoot(self, cfoot):
         r""" Sets the center footer of the document
@@ -148,7 +165,8 @@ class Header(Command):
         """
         if cfoot is not None:
             self.cfoot = cfoot.replace('\n', r'\linebreak')
-
+        else:
+            self.cfoot = None
 
     def set_rfoot(self, rfoot):
         r""" Sets the right footer of the document
@@ -160,6 +178,8 @@ class Header(Command):
         """
         if rfoot is not None:
             self.rfoot = rfoot.replace('\n', r'\linebreak')
+        else:
+            self.rfoot = None
 
     def set_header_thickness(self, thickness):
         r""" Sets the thickness of the line under the header
@@ -169,11 +189,11 @@ class Header(Command):
             thickness: float
                 Value to set for the header thickness in pt
         """
-        
-        self.header_thickness = str(thickness) + 'pt'
 
+        self.header_thickness = str(thickness) + 'pt'
+        
     def set_footer_thickness(self, thickness):
-        r""" Sets the thickness of the line over the header
+        r""" Sets the thickness of the line over the footer
 
             Args
             ----
@@ -182,3 +202,27 @@ class Header(Command):
         """
 
         self.footer_thickness = str(thickness) + 'pt'
+
+    def set_header_height(self, height):
+        r""" Sets the height of the header
+
+            Args
+            ----
+            height: float
+                Value to set for the header height in pt
+        """
+
+        self.header_height = str(height) + 'pt'
+
+    def set_footer_height(self, height):
+        r""" Sets the height of the footer
+
+            Args
+            ----
+            height: float
+                Value to set for the footer height in pt
+        """
+
+        self.footer_height = str(height) + 'pt'
+
+

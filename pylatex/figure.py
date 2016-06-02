@@ -9,7 +9,7 @@ This module implements the class that deals with graphics.
 import os.path
 
 from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
-from .base_classes import UnsafeCommand, Float
+from .base_classes import UnsafeCommand, Float, CommandBase
 from .package import Package
 import uuid
 
@@ -45,6 +45,7 @@ class Figure(Float):
 
         self.append(UnsafeCommand('includegraphics', options=width,
                                   arguments=fix_filename(filename)))
+
 
     def _save_plot(self, *args, **kwargs):
         """Save the plot.
@@ -133,3 +134,18 @@ class SubFigure(Figure):
         """
 
         super().add_image(filename, width=width, placement=placement)
+
+class StandAloneGraphic(CommandBase):
+
+    _latex_name = "includegraphics"
+
+    packages = [ Package('graphicx') ]
+
+    def __init__(self, width, filename, arguments=None, options=None, *,
+            extra_arguments=None):
+        options = [ "width=" + width ]
+        arguments = [ NoEscape(filename) ]
+
+        super().__init__( arguments=arguments, options=options,
+                extra_arguments=extra_arguments)
+        
