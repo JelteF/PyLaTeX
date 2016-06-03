@@ -295,8 +295,8 @@ def page_break():
 
 def line_break():
     r""" Adds a line break to the current line """
-
-    return NoEscape('\linebreak[4]')
+    
+    return NoEscape('\linebreak[4] ')
 
 
 def horizontal_fill():
@@ -399,6 +399,48 @@ def center(s, *, escape=True):
         s = escape_latex(s)
 
     return NoEscape('\Centering{' + s + '}')
+
+def flush_left(s, *, escape=True):
+    r""" Left alligns the text
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the left-aligned text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\flushleft{' + s + '}')
+
+def flush_right(s, *, escape=True):
+    r""" Right alligns the text
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the right-aligned text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\flushright{' + s + '}')
 
 
 def verbatim(s, *, delimiter='|'):

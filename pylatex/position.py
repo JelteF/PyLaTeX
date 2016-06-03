@@ -10,7 +10,6 @@ class Position(Environment):
     """
     packages = [Package('ragged2e')]
 
-
 class Center(Position):
     r""" Centered environment """
 
@@ -26,7 +25,7 @@ class Flushright(Position):
 class Minipage(Environment):
     r""" A class that allows the creation of minipages within document pages """
     
-    def __init__(self, width=1, adjustment='c'):
+    def __init__(self, width=1, adjustment='t'):
         r""" Instantiates a minipage within the current environment
 	
             Args

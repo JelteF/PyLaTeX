@@ -13,7 +13,7 @@ class Header(Command):
     """
     def __init__(self, lhead=None, chead=None, rhead=None, lfoot=None,
             cfoot=None, rfoot=None, header_thickness=0,
-            footer_thickness=0, header_height=12):
+            footer_thickness=0):
         r""" Initializes the header and sets its attributes 
             
             Args
@@ -50,8 +50,7 @@ class Header(Command):
         self.set_rfoot(rfoot)
         self.set_header_thickness(header_thickness)
         self.set_footer_thickness(footer_thickness)
-        self.set_header_height(header_height)
-
+        
         super().__init__(command=self._latex_name, packages=packages)
 
     def dumps(self):
@@ -71,9 +70,6 @@ class Header(Command):
 
         head += self.footer_thickness.dumps() + '\n'
         
-        head += Command("setlength", arguments=[NoEscape(r'\headheight'),
-            self.header_height]).dumps() + '\n'
-
         if self.lhead is not None:
             head += self.lhead.dumps() + '\n'
         if self.chead is not None:
@@ -198,14 +194,10 @@ class Header(Command):
         self.footer_thickness = Command("renewcommand", arguments =
                 [NoEscape(r'\footrulewidth'), str(thickness) + 'pt'])
 
-    def set_header_height(self, height):
-        r""" Sets the height of the header
+    def recalculate_height(self, input_string):
+        r""" Calculate header height based on the input string
 
-            Args
-            ----
-            height: float
-                Value to set for the header height in pt
         """
 
-        self.header_height = str(height) + 'pt'
-
+    def get_header_height(self):
+        return self.header_height

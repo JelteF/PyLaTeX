@@ -5,71 +5,111 @@ from pylatex import *
 from pylatex.utils import *
 
 def generate_unique():
-    doc = Document()
+    doc = Document(header_height='60pt')
     doc.change_page_style('empty')
     
-    header = Header(header_height=20)
+    header = Header()
     logo_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
-    header_table = Tabu("X[l]|X[l]|X[r]")
 
-    customer = Minipage(width=0.33, adjustment='t')
-    customer.append("Verna Volcano")
-    customer.append("\nFor some Person")
-    customer.append("\nAddress1")
-    customer.append("\nAddress2")
-    customer.append("\nAddress3")
+    logo_wrapper = Minipage(width=0.33, adjustment='h')
+    logo_wrapper.append(StandAloneGraphic(width="150px", filename=logo_file))
 
-    header.set_lhead(customer.dumps())
+    customer = Minipage(width=0.33, adjustment='h')
+    customer_left = Flushleft()
+    customer_left.append("Verna Volcano")
+    customer_left.append(NoEscape(line_break()))
+    customer_left.append("For some Person")
+    customer_left.append(NoEscape(line_break()))
+    customer_left.append("Address1")
+    customer_left.append(NoEscape(line_break()))
+    customer_left.append("Address2")
+    customer_left.append(NoEscape(line_break()))
+    customer_left.append("Address3")
+    customer.append(customer_left)
+
+    statement_details = Minipage(width=0.33, adjustment='h')
+    statement_right = Flushright()
+    statement_right.append(bold("Bank Account Statement"))
+    statement_right.append(NoEscape(line_break()))
+    statement_right.append("Date")
+    statement_right.append(NoEscape(line_break()))
+    statement_right.append("Branch no. - Account no.")
+    statement_right.append(NoEscape(line_break()))
+    statement_right.append("1181 - Asdasd")
+    statement_right.append(NoEscape(line_break()))
+    statement_right.append("TlB Chequing")
+    statement_details.append(statement_right)
+
+    header.set_lhead(logo_wrapper.dumps())
     header.set_chead(customer.dumps())
-    header.set_rhead(customer.dumps())
+    header.set_rhead(statement_details.dumps())
+
+    footer_table = Tabular("l|l|c|r")
+    message = MultiColumn(4, data="Please read this message it is so important, ayayyayaa")
+    footer_table.add_row((message))
+    footer_table.add_hline()
+    footer_table.add_row(["tele", "tele", "tele", display_page_number()])
+
+    header.set_cfoot(footer_table.dumps())
 
     doc.append(header)
 
     print(doc.packages[1])
 
     # Add versabank logo
-    logo_wrapper = Minipage(width=0.49)
+    first_page = Tabu("X[c] X[r]")
+    logo_wrapper = Minipage(width=0.49, adjustment='h')
     image_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
     logo = StandAloneGraphic(width="120px", filename=image_file)
     logo_wrapper.append(logo)
-    doc.append(logo_wrapper)
+    # doc.append(logo_wrapper)
 
-    doc.append(horizontal_fill())
+    # doc.append(horizontal_fill())
 
     # Add document title
-    title_wrapper = Minipage(width=0.49)
+    title_wrapper = Minipage(width=0.49, adjustment='h')
     title_right = Flushright()
     title_right.append(bold(header1("Bank Account Statement")))
     title_right.append(bold(header2("\nDate")))
     title_wrapper.append(title_right)
-    doc.append(title_wrapper)
+    #doc.append(title_wrapper)
+
+    first_page.add_row([logo_wrapper, title_wrapper])
 
     # Add customer information
-    customer = Minipage(width=0.49, adjustment='t')
+    customer = Minipage(width=0.49, adjustment='h')
     customer.append("Verna Volcano")
     customer.append("\nFor some Person")
     customer.append("\nAddress1")
     customer.append("\nAddress2")
     customer.append("\nAddress3")
-    doc.append(customer)
+    #doc.append(customer)
 
     # Add branch information
-    branch = Minipage(width=0.49, adjustment='t')
+    branch = Minipage(width=0.49, adjustment='h')
     branch_right = Flushright()
     branch_right.append("Branch no.")
     branch_right.append(bold("\n1181..."))
     branch_right.append(bold("\nTIB Cheque"))
     branch.append(branch_right)
-    doc.append(branch)
+    #doc.append(branch)
 
-    doc.append(line_break())
+    first_page.add_row([customer, branch])
+
+    #doc.append(NoEscape(line_break()))
 
     # Add advisor information
-    advisor = Minipage(width=1, adjustment='t')
+    advisor = Minipage(width=1, adjustment='h')
     advisor.append("Info about advisor")
     advisor.append("\nStuff and things")
-    doc.append(advisor)
+    #doc.append(advisor)
 
+    advisor_row = MultiColumn(2, data=advisor)
+
+    first_page.add_row((advisor_row, 'X'))
+    
+    doc.append(first_page)
+    
     doc.add_skip("1in")
     doc.add_color(name="lightgray", model="gray", description="0.80")
 
@@ -100,6 +140,8 @@ def generate_unique():
     for i in range(0,20):
         cheque_table.add_row([cheque, cheque])
     doc.append(cheque_table)
+
+
     
 
     doc.generate_tex("Example_Unique")

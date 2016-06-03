@@ -27,7 +27,8 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, header=False,
-                 page_numbers=True, margin='0.5in', data=None):
+                 page_numbers=True, margin='0.5in', header_height='12pt', 
+                 data=None):
         r"""
         Args
         ----
@@ -48,6 +49,8 @@ class Document(Environment):
             Adds the ability to orientate the document in landscape mode
         header: bool
             Adds the ability to add a header to the Document
+        header_height: str
+            Controls the header height of the document
         page_numbers: bool
             Adds the ability to add page numbers to the document
         margin: str
@@ -72,7 +75,8 @@ class Document(Environment):
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
-        geometry_options = ['includeheadfoot', 'margin=' + margin]
+        geometry_options = ['includeheadfoot', 'margin=' + margin,
+                'headheight=' + header_height]
         packages = [fontenc, inputenc]
 
         self.preamble = []
