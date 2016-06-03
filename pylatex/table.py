@@ -139,7 +139,6 @@ class Tabular(Environment):
 
         self.append(dumps_list(cells, escape=escape, token='&', mapper=mapper) + NoEscape(r'\\'))
 
-
 class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
 
@@ -217,7 +216,7 @@ class MultiRow(Container):
 
 class Table(Float):
     """A class that represents a table float."""
-
+    
 
 class Tabu(Tabular):
     """A class that represents a tabu (more flexible table)."""

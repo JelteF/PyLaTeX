@@ -8,11 +8,24 @@ def generate_unique():
     doc = Document()
     doc.change_page_style('empty')
     
-    header = Header(header_height=20, footer_height=20)
+    header = Header(header_height=20)
     logo_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
-    header.set_lhead(StandAloneGraphic("200px", logo_file).dumps())
+    header_table = Tabu("X[l]|X[l]|X[r]")
+
+    customer = Minipage(width=0.33, adjustment='t')
+    customer.append("Verna Volcano")
+    customer.append("\nFor some Person")
+    customer.append("\nAddress1")
+    customer.append("\nAddress2")
+    customer.append("\nAddress3")
+
+    header.set_lhead(customer.dumps())
+    header.set_chead(customer.dumps())
+    header.set_rhead(customer.dumps())
 
     doc.append(header)
+
+    print(doc.packages[1])
 
     # Add versabank logo
     logo_wrapper = Minipage(width=0.49)
@@ -75,7 +88,7 @@ def generate_unique():
             else:
                 data_table.add_row(row)
                 i = 1
-    
+
     doc.append(data_table)
 
     doc.append(page_break())
