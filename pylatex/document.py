@@ -69,14 +69,13 @@ class Document(Environment):
         self._inputenc = inputenc
         self._lmodern = lmodern
         self._lscape = lscape
+        self.header_height = header_height
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
         geometry_options = ['includeheadfoot', 'margin=' + margin,
                 'headheight=' + header_height]
         packages = [fontenc, inputenc]
-
-        self.preamble = []
 
         if lmodern:
             packages.append(Package('lmodern'))
@@ -304,7 +303,15 @@ class Document(Environment):
         """
 
         self.append(Command("definecolor", arguments=[ name, model, description]))
+    
 
+    def remove_header_and_footer(self):
+        r""" Removes the header from the current document page """
+
+        self.change_page_style("empty")
+
+        self.append(Command("vspace*", arguments=NoEscape("-" +
+            self.header_height)))
 
     def add_header(self, lhead=None, rhead=None, chead=None,
             lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',

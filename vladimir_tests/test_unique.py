@@ -44,13 +44,14 @@ def generate_unique():
     header.set_params("chead", customer)
     header.set_params("rhead", statement_details)
 
-
     footer = Footer(header_exists=True)
 
     footer.set_params("lfoot", "this is a test footer")
 
     doc.append(header)
     doc.append(footer)
+
+    doc.remove_header_and_footer()
 
     # Add versabank logo
     first_page = Tabu("X[c] X[r]")
@@ -66,7 +67,8 @@ def generate_unique():
     title_wrapper = Minipage(width=0.49, adjustment='h')
     title_right = Flushright()
     title_right.append(bold(header1("Bank Account Statement")))
-    title_right.append(bold(header2("\nDate")))
+    title_right.append(NoEscape(line_break()))
+    title_right.append(bold(header2("Date")))
     title_wrapper.append(title_right)
     #doc.append(title_wrapper)
 
@@ -75,18 +77,18 @@ def generate_unique():
     # Add customer information
     customer = Minipage(width=0.49, adjustment='h')
     customer.append("Verna Volcano")
-    customer.append("\nFor some Person")
-    customer.append("\nAddress1")
-    customer.append("\nAddress2")
-    customer.append("\nAddress3")
+    customer.append("For some Person")
+    customer.append("Address1")
+    customer.append("Address2")
+    customer.append("Address3")
     #doc.append(customer)
 
     # Add branch information
     branch = Minipage(width=0.49, adjustment='h')
     branch_right = Flushright()
     branch_right.append("Branch no.")
-    branch_right.append(bold("\n1181..."))
-    branch_right.append(bold("\nTIB Cheque"))
+    branch_right.append(bold("1181..."))
+    branch_right.append(bold("TIB Cheque"))
     branch.append(branch_right)
     #doc.append(branch)
 
@@ -97,7 +99,7 @@ def generate_unique():
     # Add advisor information
     advisor = Minipage(width=1, adjustment='h')
     advisor.append("Info about advisor")
-    advisor.append("\nStuff and things")
+    advisor.append("Stuff and things")
     #doc.append(advisor)
 
     advisor_row = MultiColumn(2, data=advisor)
@@ -106,7 +108,6 @@ def generate_unique():
     
     doc.append(first_page)
     
-    doc.add_skip("1in")
     doc.add_color(name="lightgray", model="gray", description="0.80")
 
     # Add statement table
