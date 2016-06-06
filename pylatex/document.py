@@ -12,7 +12,7 @@ import errno
 from .base_classes import Environment, Command
 from .package import Package
 from .utils import dumps_list, rm_temp_dir, NoEscape
-
+from .header import Header, Footer
 
 class Document(Environment):
     r"""
@@ -26,9 +26,8 @@ class Document(Environment):
 
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 lmodern=True, textcomp=True, lscape=False, header=False,
-                 page_numbers=True, margin='0.5in', header_height='12pt', 
-                 data=None):
+                 lmodern=True, textcomp=True, lscape=False, page_numbers=True,
+                 margin='0.5in', header_height='12pt', data=None):
         r"""
         Args
         ----
@@ -47,8 +46,6 @@ class Document(Environment):
             Adds even more glyphs, for instance the Euro (€) sign.
         lscape: bool
             Adds the ability to orientate the document in landscape mode
-        header: bool
-            Adds the ability to add a header to the Document
         header_height: str
             Controls the header height of the document
         page_numbers: bool
@@ -96,7 +93,8 @@ class Document(Environment):
 
         self.packages |= packages
 
-        #self.preamble = []
+        self.preamble = []
+
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.

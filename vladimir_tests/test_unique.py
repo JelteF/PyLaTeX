@@ -40,21 +40,17 @@ def generate_unique():
     statement_right.append("TlB Chequing")
     statement_details.append(statement_right)
 
-    header.set_lhead(logo_wrapper.dumps())
-    header.set_chead(customer.dumps())
-    header.set_rhead(statement_details.dumps())
+    header.set_params("lhead", logo_wrapper)
+    header.set_params("chead", customer)
+    header.set_params("rhead", statement_details)
 
-    footer_table = Tabular("l|l|c|r")
-    message = MultiColumn(4, data="Please read this message it is so important, ayayyayaa")
-    footer_table.add_row((message))
-    footer_table.add_hline()
-    footer_table.add_row(["tele", "tele", "tele", display_page_number()])
 
-    header.set_cfoot(footer_table.dumps())
+    footer = Footer(header_exists=True)
+
+    footer.set_params("lfoot", "this is a test footer")
 
     doc.append(header)
-
-    print(doc.packages[1])
+    doc.append(footer)
 
     # Add versabank logo
     first_page = Tabu("X[c] X[r]")
@@ -106,7 +102,7 @@ def generate_unique():
 
     advisor_row = MultiColumn(2, data=advisor)
 
-    first_page.add_row((advisor_row, 'X'))
+    first_page.add_row([advisor, ''])
     
     doc.append(first_page)
     
