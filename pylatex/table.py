@@ -49,7 +49,7 @@ class Tabular(Environment):
     }
 
 
-    def __init__(self, table_spec, data=None, pos=None, **kwargs):
+    def __init__(self, table_spec, row_height=None, data=None, pos=None, **kwargs):
         """
         Args
         ----
@@ -57,6 +57,9 @@ class Tabular(Environment):
             A string that represents how many columns a table should have and
             if it should contain vertical lines and where.
         pos: list
+        row_height: float
+            Specifies the heights of the rows in relation to the default
+            row height
 
         References
         ----------
@@ -64,11 +67,22 @@ class Tabular(Environment):
         """
 
         self.width = _get_table_width(table_spec)
-        
+        self.row_height = row_height
+
         super().__init__(data=data, options=pos,
                          arguments=table_spec, **kwargs)
 
-    def add_hline(self, start=None, end=None):
+    def dumps(self):
+        r""" Turn the Latex Object into a Latex string """
+        if self.row_height is not None:
+            row_height = Command('renewcommand', arguments =
+                [NoEscape(r'\arraystretch'), self.row_height])
+            return row_height.dumps() + '\n' + super().dumps()
+
+        return super().dumps()
+
+
+    def add_hline(self, start=None, end=None, color=None):
         """Add a horizontal line to the table.
 
         Args
@@ -77,7 +91,11 @@ class Tabular(Environment):
             At what cell the line should begin
         end: int
             At what cell the line should end
+        color: str
+            Add color to the horizontal line
         """
+        if color is not None:
+            self.append(Command('arrayrulecolor', arguments=color))
 
         if start is None and end is None:
             self.append(NoEscape(r'\hline'))

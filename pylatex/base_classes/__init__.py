@@ -1,7 +1,7 @@
 # flake8: noqa
 
 from .latex_object import LatexObject
-from .containers import Container, Environment
+from .containers import Container, Environment, PreambleCommand
 from .command import CommandBase, Command, UnsafeCommand, Options, Arguments
 from .float import Float
 

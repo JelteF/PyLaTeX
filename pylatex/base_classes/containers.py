@@ -10,7 +10,7 @@ from collections import UserList
 from pylatex.utils import dumps_list
 from contextlib import contextmanager
 from .latex_object import LatexObject
-from .command import Command, Arguments
+from .command import Command, Arguments, Options
 
 
 class Container(LatexObject, UserList):
@@ -108,6 +108,48 @@ class Container(LatexObject, UserList):
 
         self.data = prev_data
         self.append(child)
+
+
+class PreambleCommand(Container):
+    omit_if_empty = False
+
+    def __init__(self, *, options=None, arguments=None, **kwargs):
+        if options is not None:
+            self.options = options
+        else:
+            self.options = Options()
+
+        if arguments is not None:
+            self.arguments = arguments
+        else:
+            self.arguments = Arguments()
+
+        super().__init__(**kwargs)
+
+
+    def dumps(self):
+        content = self.dumps_content()
+        if not content.strip() and self.omit_if_empty:
+            return ''
+
+        string = ''
+
+        # Something other than None needs to be used as extra arguments, that
+        # way the options end up behind the latex_name argument.
+        if self.arguments is None:
+            extra_arguments = Arguments()
+        else:
+            extra_arguments = self.arguments
+
+        begin = Command(command=self.latex_name, arguments=self.arguments,
+             options=self.options, extra_arguments=extra_arguments)
+        string += begin.dumps() + '{\n'
+
+        string += content + '\n'
+
+        string += '}'
+
+        return string
 
 
 class Environment(Container):

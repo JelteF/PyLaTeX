@@ -12,7 +12,7 @@ import errno
 from .base_classes import Environment, Command
 from .package import Package
 from .utils import dumps_list, rm_temp_dir, NoEscape
-from .header import Header, Footer
+from .headfoot import FancyPageStyle
 
 class Document(Environment):
     r"""
@@ -93,7 +93,13 @@ class Document(Environment):
         self.packages |= packages
 
         self.preamble = []
-
+    
+    #def append(self, item):
+        #if isinstance(item, FancyPageStyle):
+        #    self.packages |= item.packages
+        #    self.preamble.append(item)
+        #else:
+    #        super().append(item)
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.

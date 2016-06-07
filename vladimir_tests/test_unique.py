@@ -9,48 +9,72 @@ def generate_unique():
     doc.change_page_style('empty')
     
     header = Header()
+    header_table = Tabular(NoEscape("m{2.2in}|m{1.5in}|m{1.5in}"))
     logo_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
 
-    logo_wrapper = Minipage(width=0.33, adjustment='h')
-    logo_wrapper.append(StandAloneGraphic(width="150px", filename=logo_file))
+    logo_wrapper = Minipage(width=0.33, adjustment='t!')
+    logo_wrapper_left = Flushleft()
+    logo_wrapper_left.append(StandAloneGraphic(width="150px", filename=logo_file))
+    logo_wrapper.append(logo_wrapper_left)
 
     customer = Minipage(width=0.33, adjustment='h')
     customer_left = Flushleft()
     customer_left.append("Verna Volcano")
-    customer_left.append(NoEscape(line_break()))
+    customer_left.append(line_break())
     customer_left.append("For some Person")
-    customer_left.append(NoEscape(line_break()))
+    customer_left.append(line_break())
     customer_left.append("Address1")
-    customer_left.append(NoEscape(line_break()))
+    customer_left.append(line_break())
     customer_left.append("Address2")
-    customer_left.append(NoEscape(line_break()))
+    customer_left.append(line_break())
     customer_left.append("Address3")
     customer.append(customer_left)
 
     statement_details = Minipage(width=0.33, adjustment='h')
     statement_right = Flushright()
     statement_right.append(bold("Bank Account Statement"))
-    statement_right.append(NoEscape(line_break()))
+    statement_right.append(line_break())
     statement_right.append("Date")
-    statement_right.append(NoEscape(line_break()))
+    statement_right.append(line_break())
     statement_right.append("Branch no. - Account no.")
-    statement_right.append(NoEscape(line_break()))
+    statement_right.append(line_break())
     statement_right.append("1181 - Asdasd")
-    statement_right.append(NoEscape(line_break()))
+    statement_right.append(line_break())
     statement_right.append("TlB Chequing")
     statement_details.append(statement_right)
 
-    header.set_params("lhead", logo_wrapper)
-    header.set_params("chead", customer)
-    header.set_params("rhead", statement_details)
+    header_table.add_row([logo_wrapper, customer, statement_details])
+
+    header.set_params("chead", header_table)
 
     footer = Footer(header_exists=True)
 
-    footer.set_params("lfoot", "this is a test footer")
+    message = "Important message please read"
+    footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{2in} m{2in}"))
+    footer_table.add_row([MultiColumn(4, data=text_color(message, "blue"))])
+    footer_table.add_hline(color="blue")
+    footer_table.add_empty_row()
+
+    branch_address = Minipage(width=0.25, adjustment='h')
+    branch_address.append("960 - 22nd street east")
+    branch_address.append("\nSaskatoon, SK")
+
+    document_details = Minipage(width=0.25, adjustment='h')
+    document_details_right = Flushright()
+    document_details_right.append("1000")
+    document_details_right.append(line_break())
+    document_details_right.append(display_page_number())
+    document_details.append(document_details_right)
+
+    footer_table.add_row([branch_address, branch_address, branch_address,
+        document_details])
+
+    footer.set_params("cfoot", footer_table)
 
     doc.append(header)
     doc.append(footer)
-
+    
+    # Remove header and footer from the first page
     doc.remove_header_and_footer()
 
     # Add versabank logo
@@ -59,9 +83,6 @@ def generate_unique():
     image_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
     logo = StandAloneGraphic(width="120px", filename=image_file)
     logo_wrapper.append(logo)
-    # doc.append(logo_wrapper)
-
-    # doc.append(horizontal_fill())
 
     # Add document title
     title_wrapper = Minipage(width=0.49, adjustment='h')
@@ -70,37 +91,41 @@ def generate_unique():
     title_right.append(NoEscape(line_break()))
     title_right.append(bold(header2("Date")))
     title_wrapper.append(title_right)
-    #doc.append(title_wrapper)
 
     first_page.add_row([logo_wrapper, title_wrapper])
+    first_page.add_empty_row()
 
     # Add customer information
     customer = Minipage(width=0.49, adjustment='h')
     customer.append("Verna Volcano")
+    customer.append(new_line())
     customer.append("For some Person")
+    customer.append(new_line())
     customer.append("Address1")
+    customer.append(new_line())
     customer.append("Address2")
+    customer.append(new_line())
     customer.append("Address3")
-    #doc.append(customer)
 
     # Add branch information
-    branch = Minipage(width=0.49, adjustment='h')
+    branch = Minipage(width=0.49, adjustment='t!')
     branch_right = Flushright()
     branch_right.append("Branch no.")
+    branch_right.append(line_break())
     branch_right.append(bold("1181..."))
+    branch_right.append(line_break())
     branch_right.append(bold("TIB Cheque"))
     branch.append(branch_right)
-    #doc.append(branch)
 
     first_page.add_row([customer, branch])
+    first_page.add_empty_row()
 
-    #doc.append(NoEscape(line_break()))
 
     # Add advisor information
     advisor = Minipage(width=1, adjustment='h')
     advisor.append("Info about advisor")
+    advisor.append(new_line())
     advisor.append("Stuff and things")
-    #doc.append(advisor)
 
     advisor_row = MultiColumn(2, data=advisor)
 
@@ -111,9 +136,10 @@ def generate_unique():
     doc.add_color(name="lightgray", model="gray", description="0.80")
 
     # Add statement table
-    data_table = LongColoredTable("X[l] X[2l] X[r] X[r] X[r]")
+    data_table = LongColoredTable("X[l] X[2l] X[r] X[r] X[r]", row_height=1.5)
     data_table.add_row(["date", "description", "debits($)", "credits($)", "balance($)"], mapper=bold, color="lightgray")
     data_table.add_empty_row()
+    data_table.add_hline()
     path_to_data = os.path.join(os.path.dirname(__file__), 'data.csv')
     with open(path_to_data, 'rb') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=',')
@@ -133,7 +159,7 @@ def generate_unique():
     # Add cheque images
     cheque_table = LongTabu("X[c] X[c]")
     cheque_file = os.path.join(os.path.dirname(__file__), 'chequeexample.png')
-    cheque = StandAloneGraphic("200px", cheque_file)
+    cheque = StandAloneGraphic(cheque_file, width="200px")
     for i in range(0,20):
         cheque_table.add_row([cheque, cheque])
     doc.append(cheque_table)

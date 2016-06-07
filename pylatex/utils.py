@@ -256,6 +256,14 @@ def bold(s, *, escape=True):
     return NoEscape(r'\textbf{' + s + '}')
 
 
+def text_color(s, color, *, escape=True):
+    r""" Change the string color """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r"\textcolor{" + color + "}{" + s + "}")
+
 def italic(s, *, escape=True):
     r"""Make a string appear italicized in LaTeX formatting.
 
@@ -297,6 +305,11 @@ def line_break():
     r""" Adds a line break to the current line """
     
     return NoEscape('\linebreak[4] ')
+
+def new_line():
+    r""" Adds a new line """
+
+    return NoEscape(r'\newline ')
 
 
 def horizontal_fill():

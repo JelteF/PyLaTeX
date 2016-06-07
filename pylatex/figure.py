@@ -33,18 +33,9 @@ class Figure(Float):
             Placement of the figure, `None` is also accepted.
 
         """
-
-        if placement is not None:
-            self.append(placement)
-
-        if width is not None:
-            if self.escape:
-                width = escape_latex(width)
-
-            width = 'width=' + str(width)
-
-        self.append(UnsafeCommand('includegraphics', options=width,
-                                  arguments=fix_filename(filename)))
+        
+        self.append(StandAloneGraphic(options=width, placement=placement,
+                                  filename=fix_filename(filename)))
 
 
     def _save_plot(self, *args, **kwargs):
@@ -136,14 +127,33 @@ class SubFigure(Figure):
         super().add_image(filename, width=width, placement=placement)
 
 class StandAloneGraphic(CommandBase):
+    r""" A class representing a stand alone image """
 
     _latex_name = "includegraphics"
 
-    packages = [ Package('graphicx') ]
+    #packages = [ Package('graphicx') ]
 
-    def __init__(self, width, filename, arguments=None, options=None, *,
-            extra_arguments=None):
-        options = [ "width=" + width ]
+    def __init__(self, filename, width=NoEscape(r'\textwidth'),
+            placement=None, extra_arguments=None):
+        r""" Initializes a stand alone image
+            
+            Args
+            ----
+            filename: str
+                The path to the image file
+            width: str
+                The width of the image
+            placement: str
+                The positioning of the image
+        """
+
+        options = [ "width=" + str(width) ]
+        
+        if placement is not None:
+            self.append(placement)
+        
+        self.packages.append(Package('graphicx'))
+
         arguments = [ NoEscape(filename) ]
 
         super().__init__( arguments=arguments, options=options,
