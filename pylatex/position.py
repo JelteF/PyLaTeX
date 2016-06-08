@@ -25,16 +25,22 @@ class Flushright(Position):
 class Minipage(Environment):
     r""" A class that allows the creation of minipages within document pages """
     
-    def __init__(self, width=1, adjustment='h'):
+    def __init__(self, width=NoEscape(r'\textwidth'), adjustment='h'):
         r""" Instantiates a minipage within the current environment
 	
             Args
             ----
             width: float
-                width with respect to the text width of the page
+                width of the minipage
         """
 
         options = [ adjustment ]
-        arguments = [ NoEscape(str(width) + r'\textwidth') ]
+        arguments = [ NoEscape(str(width)) ]
 
         super().__init__(arguments = arguments, options=options)
+
+class TextBlock(Environment):
+
+    packages = [ Package('textpos', options='absolute') ]
+
+    #def __init__(

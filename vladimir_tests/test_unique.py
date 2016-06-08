@@ -5,22 +5,78 @@ from pylatex import *
 from pylatex.utils import *
 
 def generate_unique():
-    doc = Document(header_height='60pt')
-    doc.change_page_style('empty')
-    
+    doc = Document(header_height='70pt')
+   
+    # Generating first page style 
     first_page = PageStyle("firstpage")
-    
+  
+    # Header image
+    header_left = Head("L")
+    logo_wrapper = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
     logo_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
-    first_page_left = Head("L")
+    logo = StandAloneGraphic(width="120px", filename=logo_file)
+    logo_wrapper.append(logo)
+    header_left.append(logo_wrapper)
 
-    logo_wrapper = Minipage(width=0.33, adjustment='t!')
+    header_center = Head("C")
+
+    # Add document title
+    header_right = Head("R")
+    title_wrapper = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
+    title_right = Flushright()
+    title_right.append(bold(header1("Bank Account Statement")))
+    title_right.append(NoEscape(line_break()))
+    title_right.append(bold(header2("Date")))
+    title_wrapper.append(title_right)
+    header_right.append(title_wrapper)
+
+    # Add footer
+    footer_center = Foot("C")
+    message = "Important message please read"
+    footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{2in} m{2in}"))
+    footer_table.add_row([MultiColumn(4, align='r', data=text_color(message, "blue"))])
+    footer_table.add_hline(color="blue")
+    footer_table.add_empty_row()
+
+    branch_address = Minipage(width=NoEscape(r"0.25\textwidth"), adjustment='h')
+    branch_address.append("960 - 22nd street east")
+    branch_address.append("\nSaskatoon, SK")
+
+    document_details = Minipage(width=NoEscape(r"0.25\textwidth"),
+            adjustment='h')
+    document_details_right = Flushright()
+    document_details_right.append("1000")
+    document_details_right.append(line_break())
+    document_details_right.append(display_page_number())
+    document_details.append(document_details_right)
+
+    footer_table.add_row([branch_address, branch_address, branch_address,
+        document_details])
+
+    footer_center.append(footer_table)
+
+    first_page.append(header_left)
+    first_page.append(header_center)
+    first_page.append(header_right)
+    first_page.append(footer_center)
+
+    doc.preamble.append(first_page)
+    # End first page style
+
+    # Start other page style
+    other_style = PageStyle("otherstyle")
+
+    # Add logo to left header
+    header_left = Head("L")
+    logo_wrapper = Minipage(width=NoEscape(r"0.33\textwidth"), adjustment='t!')
     logo_wrapper_left = Flushleft()
     logo_wrapper_left.append(StandAloneGraphic(width="150px", filename=logo_file))
     logo_wrapper.append(logo_wrapper_left)
-    first_page_left.append(logo_wrapper)
+    header_left.append(logo_wrapper)
 
-    first_page_center = Head("C")
-    customer = Minipage(width=0.33, adjustment='h')
+    # Add recipent information
+    header_center = Head("C")
+    customer = Minipage(width=NoEscape(r"0.33\textwidth"), adjustment='h')
     customer_left = Flushleft()
     customer_left.append("Verna Volcano")
     customer_left.append(line_break())
@@ -32,10 +88,12 @@ def generate_unique():
     customer_left.append(line_break())
     customer_left.append("Address3")
     customer.append(customer_left)
-    first_page_center.append(customer)
+    header_center.append(customer)
 
-    first_page_right = Head("R")
-    statement_details = Minipage(width=0.33, adjustment='h')
+    # Add branch information
+    header_right = Head("R")
+    statement_details = Minipage(width=NoEscape(r"0.33\textwidth"),
+        adjustment='h')
     statement_right = Flushright()
     statement_right.append(bold("Bank Account Statement"))
     statement_right.append(line_break())
@@ -47,60 +105,20 @@ def generate_unique():
     statement_right.append(line_break())
     statement_right.append("TlB Chequing")
     statement_details.append(statement_right)
-    first_page_right.append(statement_details)
+    header_right.append(statement_details)
 
-    first_page.append([first_page_left, first_page_center, first_page_right])
+    other_style.append(header_left)
+    other_style.append(header_center)
+    other_style.append(header_right)
+    other_style.append(footer_center)
 
-    """footer = Footer(header_exists=True)
-
-    message = "Important message please read"
-    footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{2in} m{2in}"))
-    footer_table.add_row([MultiColumn(4, data=text_color(message, "blue"))])
-    footer_table.add_hline(color="blue")
-    footer_table.add_empty_row()
-
-    branch_address = Minipage(width=0.25, adjustment='h')
-    branch_address.append("960 - 22nd street east")
-    branch_address.append("\nSaskatoon, SK")
-
-    document_details = Minipage(width=0.25, adjustment='h')
-    document_details_right = Flushright()
-    document_details_right.append("1000")
-    document_details_right.append(line_break())
-    document_details_right.append(display_page_number())
-    document_details.append(document_details_right)
-
-    footer_table.add_row([branch_address, branch_address, branch_address,
-        document_details])
-
-    footer.set_params("cfoot", footer_table)
-
-    doc.append(header)
-    doc.append(footer)
-    """
-
-    doc.preamble.append(first_page)
-
-    # Add versabank logo
-    """first_page = Tabu("X[c] X[r]")
-    logo_wrapper = Minipage(width=0.49, adjustment='h')
-    image_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
-    logo = StandAloneGraphic(width="120px", filename=image_file)
-    logo_wrapper.append(logo)
-
-    # Add document title
-    title_wrapper = Minipage(width=0.49, adjustment='h')
-    title_right = Flushright()
-    title_right.append(bold(header1("Bank Account Statement")))
-    title_right.append(NoEscape(line_break()))
-    title_right.append(bold(header2("Date")))
-    title_wrapper.append(title_right)
-
-    first_page.add_row([logo_wrapper, title_wrapper])
-    first_page.add_empty_row()
+    doc.preamble.append(other_style)
+    # End Page Styles
 
     # Add customer information
-    customer = Minipage(width=0.49, adjustment='h')
+    first_page_table = Tabu("X[l] X[r]")
+
+    customer = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
     customer.append("Verna Volcano")
     customer.append(new_line())
     customer.append("For some Person")
@@ -112,7 +130,7 @@ def generate_unique():
     customer.append("Address3")
 
     # Add branch information
-    branch = Minipage(width=0.49, adjustment='t!')
+    branch = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='t!')
     branch_right = Flushright()
     branch_right.append("Branch no.")
     branch_right.append(line_break())
@@ -121,24 +139,22 @@ def generate_unique():
     branch_right.append(bold("TIB Cheque"))
     branch.append(branch_right)
 
-    first_page.add_row([customer, branch])
-    first_page.add_empty_row()
-
+    first_page_table.add_row([customer, branch])
 
     # Add advisor information
-    advisor = Minipage(width=1, adjustment='h')
+    advisor = Minipage(width=NoEscape(r"\textwidth"), adjustment='h')
     advisor.append("Info about advisor")
     advisor.append(new_line())
     advisor.append("Stuff and things")
-
     advisor_row = MultiColumn(2, data=advisor)
 
-    first_page.add_row([advisor, ''])
-    
-    doc.append(first_page)
-    """
+    first_page_table.add_row([ advisor_row ])
 
-    doc.change_document_style("firstpage")
+    doc.append(first_page_table)
+    
+    doc.change_document_style("otherstyle")
+
+    doc.change_page_style("firstpage")
 
     doc.add_color(name="lightgray", model="gray", description="0.80")
 
@@ -170,9 +186,6 @@ def generate_unique():
     for i in range(0,20):
         cheque_table.add_row([cheque, cheque])
     doc.append(cheque_table)
-
-
-    
 
     doc.generate_tex("Example_Unique")
 

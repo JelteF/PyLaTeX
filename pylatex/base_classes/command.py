@@ -231,9 +231,6 @@ class Parameters(LatexObject):
 
         super().__init__()
 
-    def append(self, item):
-        self._positional_args.append(item)
-
     def __key(self):
         """Generate a unique hashable key representing the parameter object.
 

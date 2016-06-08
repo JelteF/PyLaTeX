@@ -12,7 +12,7 @@ class HeaderCommand(Container):
 
     omit_if_empty = True
 
-    def __init__(self, name=None, options=None, **kwargs):
+    def __init__(self, name=None, options=None, data=None, **kwargs):
         r""" Initializes a header command
             
             Args
@@ -21,13 +21,15 @@ class HeaderCommand(Container):
                 The name of the header command
             options: str, list or Options
                 The options for the header command
+            data: str or LatexObject
+                The data to place inside the header command
         """
 
         self.arguments = name
 
         self.options = options
 
-        super().__init__(**kwargs)
+        super().__init__(data=data, **kwargs)
 
     def dumps(self):
         r""" Converts the command to a latex string """
@@ -56,7 +58,7 @@ class PageStyle(HeaderCommand):
 
     packages = [ Package('fancyhdr') ]
 
-    def __init__(self, name, header_thickness=0, footer_thickness=0):
+    def __init__(self, name, data=None, header_thickness=0, footer_thickness=0):
         r""" 
             Args
             ----
@@ -70,7 +72,7 @@ class PageStyle(HeaderCommand):
 
         self.name = name
 
-        super().__init__(name=self.name)
+        super().__init__(data=data, name=self.name)
 
         self.change_thickness(element="header", thickness=header_thickness)
         self.change_thickness(element="footer", thickness=footer_thickness)
@@ -111,7 +113,7 @@ class Head(HeaderCommand):
 
         self.position = position
 
-        super().__init__(options = position)
+        super().__init__(data=data, options = position)
 
 
 class Foot(Head):

@@ -7,11 +7,10 @@ This module implements some simple utility functions.
 """
 
 import os.path
-import pylatex.base_classes
 import shutil
 import tempfile
+import pylatex.base_classes
 from itertools import imap
-
 
 _latex_special_chars = {
     '&': r'\&',
@@ -368,7 +367,58 @@ def header2(s, *, escape=True):
 
     return NoEscape('\large{' + s + '}')
 
+def small1(s, *, escape=True):
+    r""" Highlights the text as size small
 
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the enlarged text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape('\small{' + s + '}')
+
+def small2(s, *, escape=True):
+    r""" Highlights the text as size footnotesize
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the enlarged text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\footnotesize{' + s + '}')
+
+def add_skip(size="0.5in"):
+    r""" Adds the user specified amount of vertical space to the document
+
+        Args
+        ----
+        size: str
+            The amount and units of vertical space to create
+    """
+    
+    return pylatex.base_classes.Command("vspace", arguments=size)
 
 def text_box(s, *, escape=True):
     r""" Adds a text box around the text
