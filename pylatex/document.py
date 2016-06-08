@@ -9,10 +9,9 @@ This module implements the class that deals with the full document.
 import os
 import subprocess
 import errno
-from .base_classes import Environment, Command
+from .base_classes import Environment, Command, Container, LatexObject
 from .package import Package
 from .utils import dumps_list, rm_temp_dir, NoEscape
-from .headfoot import FancyPageStyle
 
 class Document(Environment):
     r"""
@@ -93,13 +92,19 @@ class Document(Environment):
         self.packages |= packages
 
         self.preamble = []
-    
-    #def append(self, item):
-        #if isinstance(item, FancyPageStyle):
-        #    self.packages |= item.packages
-        #    self.preamble.append(item)
-        #else:
-    #        super().append(item)
+
+    def _propagate_packages(self):
+        r""" Make sure that all the packages included in the previous containers
+        are part of the full list of packages """
+
+        super()._propagate_packages()
+
+        for item in (self.preamble):
+            if isinstance(item, LatexObject):
+                if isinstance(item, Container):
+                    item._propagate_packages()
+                for p in item.packages:
+                    self.packages.add(p)
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.
@@ -263,12 +268,12 @@ class Document(Environment):
 
     def change_page_style(self, style):
         r""" Alternate page styles of the current page
-            
+
             Args
             ----
             style: str
                 value to set for the page style of the current page
-        """ 
+        """
 
         self.append(Command("thispagestyle", arguments=style))
 
@@ -281,7 +286,7 @@ class Document(Environment):
                 value tp set for the document style
         """
 
-        self.append(Command("pagestyle", arguments=style))
+        self.preamble.append(Command("pagestyle", arguments=style))
 
 
     def add_skip(self, size="0.5in"):
@@ -309,7 +314,7 @@ class Document(Environment):
         """
 
         self.append(Command("definecolor", arguments=[ name, model, description]))
-    
+
 
     def remove_header_and_footer(self):
         r""" Removes the header from the current document page """
@@ -323,8 +328,8 @@ class Document(Environment):
             lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
             footer_thickness='0pt'):
         r""" Generates a header for the document from the passed in
-        arguments 
-        
+        arguments
+
             Args
             ----
             lhead: str
@@ -345,7 +350,7 @@ class Document(Environment):
                 Footer underline thickness
 
         """
-        
+
         self.packages.append(Package('fancyhdr'))
 
         self.preamble.append(Command('renewcommand', arguments=

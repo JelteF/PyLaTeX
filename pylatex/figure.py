@@ -131,7 +131,7 @@ class StandAloneGraphic(CommandBase):
 
     _latex_name = "includegraphics"
 
-    #packages = [ Package('graphicx') ]
+    packages = [ Package('graphicx') ]
 
     def __init__(self, filename, width=NoEscape(r'\textwidth'),
             placement=None, extra_arguments=None):
@@ -147,13 +147,11 @@ class StandAloneGraphic(CommandBase):
                 The positioning of the image
         """
 
-        options = [ "width=" + str(width) ]
+        options = [ NoEscape("width=" + str(width)) ]
         
         if placement is not None:
             self.append(placement)
         
-        self.packages.append(Package('graphicx'))
-
         arguments = [ NoEscape(filename) ]
 
         super().__init__( arguments=arguments, options=options,

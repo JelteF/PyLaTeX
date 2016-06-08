@@ -62,6 +62,14 @@ class CommandBase(LatexObject):
 
         setattr(self, argument_type, parameters)
 
+    def _propagate_packages(self):
+        r""" Propogate packages contained in the arguments of a command """
+        for item in self.arguments._positional_args:
+            if isinstance(item, LatexObject):
+                item._propagate_packages()
+                for p in item.packages:
+                    self.packages.add(p)
+
     def __key(self):
         """Return a hashable key, representing the command.
 
@@ -230,7 +238,6 @@ class Parameters(LatexObject):
         self._key_value_args = dict(kwargs)
 
         super().__init__()
-
 
     def append(self, item):
         self._positional_args.append(item)

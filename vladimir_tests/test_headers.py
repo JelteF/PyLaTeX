@@ -4,8 +4,8 @@ import os
 
 doc = Document()
 
-style = FancyPageStyle("testName")
-header = FancyHead("C")
+style = PageStyle("testName")
+header = Head("C")
 
 logo = os.path.join(os.path.dirname(__file__), 'versabanklogo.png') 
 header.append(StandAloneGraphic(logo))
@@ -13,7 +13,9 @@ header.append(StandAloneGraphic(logo))
 style.append(header)
 
 #doc.append(StandAloneGraphic(logo))
-doc.append(style)
+doc.preamble.append(style)
+
+doc.change_document_style("testName")
 
 doc.generate_tex("Example_Headers")
 
