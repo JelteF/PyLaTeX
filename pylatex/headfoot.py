@@ -44,7 +44,7 @@ class HeaderCommand(Container):
 
         string += start.dumps() + '{ \n'
 
-        string += '\t' + content + '\n}'
+        string += content + '\n}'
 
         return string
 
@@ -70,12 +70,12 @@ class PageStyle(HeaderCommand):
 
         self.name = name
 
-        self.change_thickness(element="header", thickness=header_thickness)
-        #self.change_thickness(element="footer", thickness=footer_thickness)
-
         super().__init__(name=self.name)
 
-    def change_thickness(element, thickness):
+        self.change_thickness(element="header", thickness=header_thickness)
+        self.change_thickness(element="footer", thickness=footer_thickness)
+
+    def change_thickness(self, element, thickness):
         r""" Changes the thickness of the line under/over the header/footer
         to the specified thickness 
             
@@ -88,10 +88,10 @@ class PageStyle(HeaderCommand):
         """
         
         if element == "header":
-            self.append(Command("renewcommand", arguments =
+            self.data.append(Command("renewcommand", arguments =
                 [NoEscape(r"\headrulewidth"), str(thickness) + 'pt']))
         elif element == "footer":
-            self.append(Command("renewcommand", arguments =
+            self.data.append(Command("renewcommand", arguments =
                 [NoEscape(r"\footrulewidth"), str(thickness) + 'pt']))
 
         

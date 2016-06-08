@@ -8,15 +8,18 @@ def generate_unique():
     doc = Document(header_height='60pt')
     doc.change_page_style('empty')
     
-    header = Header()
-    header_table = Tabular(NoEscape("m{2.2in}|m{1.5in}|m{1.5in}"))
+    first_page = PageStyle("firstpage")
+    
     logo_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
+    first_page_left = Head("L")
 
     logo_wrapper = Minipage(width=0.33, adjustment='t!')
     logo_wrapper_left = Flushleft()
     logo_wrapper_left.append(StandAloneGraphic(width="150px", filename=logo_file))
     logo_wrapper.append(logo_wrapper_left)
+    first_page_left.append(logo_wrapper)
 
+    first_page_center = Head("C")
     customer = Minipage(width=0.33, adjustment='h')
     customer_left = Flushleft()
     customer_left.append("Verna Volcano")
@@ -29,7 +32,9 @@ def generate_unique():
     customer_left.append(line_break())
     customer_left.append("Address3")
     customer.append(customer_left)
+    first_page_center.append(customer)
 
+    first_page_right = Head("R")
     statement_details = Minipage(width=0.33, adjustment='h')
     statement_right = Flushright()
     statement_right.append(bold("Bank Account Statement"))
@@ -42,12 +47,11 @@ def generate_unique():
     statement_right.append(line_break())
     statement_right.append("TlB Chequing")
     statement_details.append(statement_right)
+    first_page_right.append(statement_details)
 
-    header_table.add_row([logo_wrapper, customer, statement_details])
+    first_page.append([first_page_left, first_page_center, first_page_right])
 
-    header.set_params("chead", header_table)
-
-    footer = Footer(header_exists=True)
+    """footer = Footer(header_exists=True)
 
     message = "Important message please read"
     footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{2in} m{2in}"))
@@ -73,12 +77,12 @@ def generate_unique():
 
     doc.append(header)
     doc.append(footer)
-    
-    # Remove header and footer from the first page
-    doc.remove_header_and_footer()
+    """
+
+    doc.preamble.append(first_page)
 
     # Add versabank logo
-    first_page = Tabu("X[c] X[r]")
+    """first_page = Tabu("X[c] X[r]")
     logo_wrapper = Minipage(width=0.49, adjustment='h')
     image_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
     logo = StandAloneGraphic(width="120px", filename=image_file)
@@ -132,7 +136,10 @@ def generate_unique():
     first_page.add_row([advisor, ''])
     
     doc.append(first_page)
-    
+    """
+
+    doc.change_document_style("firstpage")
+
     doc.add_color(name="lightgray", model="gray", description="0.80")
 
     # Add statement table

@@ -25,7 +25,7 @@ class Flushright(Position):
 class Minipage(Environment):
     r""" A class that allows the creation of minipages within document pages """
     
-    def __init__(self, width=1, adjustment='t'):
+    def __init__(self, width=1, adjustment='h'):
         r""" Instantiates a minipage within the current environment
 	
             Args
