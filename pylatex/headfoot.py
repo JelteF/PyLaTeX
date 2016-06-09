@@ -10,7 +10,7 @@ from .utils import dumps_list, rm_temp_dir, NoEscape, _latex_item_to_string
 class HeaderCommand(Container):
     r""" Wrapper class for the header commands """
 
-    omit_if_empty = True
+    omit_if_empty = False
 
     def __init__(self, name=None, options=None, data=None, **kwargs):
         r""" Initializes a header command
@@ -46,7 +46,10 @@ class HeaderCommand(Container):
 
         string += start.dumps() + '{ \n'
 
-        string += content + '\n}'
+        if content != '':
+            string += content + '\n}'
+        else:
+            string += '}'
 
         return string
 

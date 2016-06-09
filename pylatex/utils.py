@@ -317,6 +317,18 @@ def horizontal_fill():
     return NoEscape(r'\hfill')
 
 
+def horizontal_skip(size):
+    r""" Adds/removes the amount of horizontal space between elements 
+        
+        Args
+        ----
+        size: str
+            The amount of horizontal space to add
+    """
+
+    return pylatex.base_classes.UnsafeCommand("hspace*", arguments=size) 
+
+
 def display_page_number():
     r""" Provides the page number in the following format:
         Page # of ##
@@ -409,7 +421,7 @@ def small2(s, *, escape=True):
 
     return NoEscape(r'\footnotesize{' + s + '}')
 
-def add_skip(size="0.5in"):
+def vertical_skip(size):
     r""" Adds the user specified amount of vertical space to the document
 
         Args
@@ -418,9 +430,9 @@ def add_skip(size="0.5in"):
             The amount and units of vertical space to create
     """
     
-    return pylatex.base_classes.Command("vspace", arguments=size)
+    return pylatex.base_classes.UnsafeCommand("vspace*", arguments=size)
 
-def text_box(s, *, escape=True):
+def text_box(s, *, escape=False):
     r""" Adds a text box around the text
 
         Args

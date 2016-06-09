@@ -26,7 +26,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, page_numbers=True,
-                 margin='0.5in', header_height='12pt', data=None):
+                 margin='0.5in', header_height='12pt', indent=False, data=None):
         r"""
         Args
         ----
@@ -51,6 +51,8 @@ class Document(Environment):
             Adds the ability to add page numbers to the document
         margin: str
             Modifies the default document margin
+        indent: bool
+            Add/Remove indent from the beggining of a document
         data: list
             Initial content of the document.
         """
@@ -89,6 +91,9 @@ class Document(Environment):
 
         super().__init__(data=data)
 
+        if indent == False:
+            self.append(NoEscape(r'\noindent'))
+        
         self.packages |= packages
 
         self.preamble = []
