@@ -34,7 +34,7 @@ def generate_unique():
     footer_center = Foot("C")
     message = "Important message please read"
     footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{2in} m{2in}"))
-    footer_table.add_row([MultiColumn(4, align='r', data=text_color(message, "blue"))])
+    footer_table.add_row([MultiColumn(4, align='l', data=text_color(message, "blue"))])
     footer_table.add_hline(color="blue")
     footer_table.add_empty_row()
 
@@ -68,11 +68,12 @@ def generate_unique():
 
     # Add logo to left header
     header_left = Head("L")
+    header_table = Tabular(NoEscape("m{2.5in}|m{2.1in}|m{2.5in}"))
     logo_wrapper = Minipage(width=NoEscape(r"0.33\textwidth"), adjustment='t!')
     logo_wrapper_left = Flushleft()
     logo_wrapper_left.append(StandAloneGraphic(width="150px", filename=logo_file))
     logo_wrapper.append(logo_wrapper_left)
-    header_left.append(logo_wrapper)
+    #header_left.append(logo_wrapper)
 
     # Add recipent information
     header_center = Head("C")
@@ -88,7 +89,7 @@ def generate_unique():
     customer_left.append(line_break())
     customer_left.append("Address3")
     customer.append(customer_left)
-    header_center.append(customer)
+    #header_center.append(customer)
 
     # Add branch information
     header_right = Head("R")
@@ -105,8 +106,10 @@ def generate_unique():
     statement_right.append(line_break())
     statement_right.append("TlB Chequing")
     statement_details.append(statement_right)
-    header_right.append(statement_details)
+    #header_right.append(statement_details)
 
+    header_table.add_row([logo_wrapper, customer, statement_details])
+    header_center.append(header_table)
     other_style.append(header_left)
     other_style.append(header_center)
     other_style.append(header_right)
@@ -140,6 +143,7 @@ def generate_unique():
     branch.append(branch_right)
 
     first_page_table.add_row([customer, branch])
+    first_page_table.add_empty_row()
 
     # Add advisor information
     advisor = Minipage(width=NoEscape(r"\textwidth"), adjustment='h')

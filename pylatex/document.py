@@ -9,7 +9,7 @@ This module implements the class that deals with the full document.
 import os
 import subprocess
 import errno
-from .base_classes import Environment, Command, Container, LatexObject
+from .base_classes import Environment, Command, Container, LatexObject, UnsafeCommand
 from .package import Package
 from .utils import dumps_list, rm_temp_dir, NoEscape
 
@@ -93,7 +93,7 @@ class Document(Environment):
 
         if indent == False:
             self.append(NoEscape(r'\noindent'))
-        
+
         self.packages |= packages
 
         self.preamble = []
@@ -318,62 +318,19 @@ class Document(Environment):
                 The values to use to define the color
         """
 
-        self.append(Command("definecolor", arguments=[ name, model, description]))
+        self.preamble.append(Command("definecolor", arguments=[ name, model, description]))
 
-
-    def remove_header_and_footer(self):
-        r""" Removes the header from the current document page """
-
-        self.change_page_style("empty")
-
-        self.append(Command("vspace*", arguments=NoEscape("-" +
-            self.header_height)))
-
-    def add_header(self, lhead=None, rhead=None, chead=None,
-            lfoot=None, rfoot=None, cfoot=None, header_thickness='0pt',
-            footer_thickness='0pt'):
-        r""" Generates a header for the document from the passed in
-        arguments
+    def change_length(self, parameter, value):
+        r""" Change the length of a certain parameter to a certain value
 
             Args
             ----
-            lhead: str
-                Left header
-            chead: str
-                Center header
-            rhead: str
-                Right header
-            lfoot: str
-                Left footer
-            cfoot: str
-                Center footer
-            rfoot: str
-                Right footer
-            header_thickness: str
-                Header underline thickness
-            footer_thickness: str
-                Footer underline thickness
-
+            parameter: str
+                The name of the parameter to change the length for
+            value: str, int, float
+                The value to set the parameter to
         """
 
-        self.packages.append(Package('fancyhdr'))
+        self.preamble.append(UnsafeCommand('setlength',
+            arguments=[parameter, value]))
 
-        self.preamble.append(Command('renewcommand', arguments=
-            [NoEscape(r'\headrulewidth'), header_thickness]))
-        self.preamble.append(Command('renewcommand', arguments=
-            [NoEscape(r'\footrulewidth'), footer_thickness]))
-        self.preamble.append(Command('pagestyle', arguments='fancy'))
-        self.preamble.append(Command('fancyhf', arguments=''))
-
-        if lhead is not None:
-            self.preamble.append(Command('lhead', arguments=lhead))
-        if rhead is not None:
-            self.preamble.append(Command('rhead', arguments=rhead))
-        if chead is not None:
-            self.preamble.append(Command('chead', arguments=chead))
-        if lfoot is not None:
-            self.preamble.append(Command('lfoot', arguments=lfoot))
-        if rfoot is not None:
-            self.preamble.append(Command('rfoot', arguments=rfoot))
-        if cfoot is not None:
-            self.preamble.append(Command('cfoot', arguments=cfoot))
