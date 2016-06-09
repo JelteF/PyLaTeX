@@ -473,7 +473,7 @@ def center(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape('\Centering{' + s + '}')
+    return NoEscape('\centering{' + s + '}')
 
 def flush_left(s, *, escape=True):
     r""" Left alligns the text
@@ -494,7 +494,7 @@ def flush_left(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\flushleft{' + s + '}')
+    return NoEscape(r'\raggedleft{' + s + '}')
 
 def flush_right(s, *, escape=True):
     r""" Right alligns the text
@@ -515,7 +515,7 @@ def flush_right(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\flushright{' + s + '}')
+    return NoEscape(r'\raggedright{' + s + '}')
 
 
 def verbatim(s, *, delimiter='|'):

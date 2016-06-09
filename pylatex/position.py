@@ -2,7 +2,7 @@
 
 from .base_classes import Environment, Command, SpecialOptions
 from .package import Package
-from .utils import NoEscape, line_break, escape_latex, fix_filename
+from .utils import NoEscape, line_break, escape_latex, fix_filename, new_line, horizontal_skip, vertical_skip, text_box
 
 
 class Position(Environment):
@@ -26,7 +26,7 @@ class Minipage(Environment):
     r""" A class that allows the creation of minipages within document pages """
     
     def __init__(self, width=NoEscape(r'\textwidth'),
-            height=None, adjustment='t'):
+            height=None, adjustment='t', data=None):
         r""" Instantiates a minipage within the current environment
 	
             Args
@@ -45,7 +45,7 @@ class Minipage(Environment):
 
         arguments = [ NoEscape(str(width)) ]
 
-        super().__init__(arguments = arguments, options=options)
+        super().__init__(arguments = arguments, options=options, data=data)
 
 class TextBlock(Environment):
     r""" A class that represents a textblock environment.
@@ -123,3 +123,61 @@ class TextBlock(Environment):
         return string
  
 
+class Fields(Minipage):
+    r""" A class that defines an area of fields """
+
+    _latex_name = "minipage"
+
+    def __init__(self, page_width=21.66, margin=1.27, box_height=1.5, units="cm"):
+        r""" 
+            Args
+            ----
+            page_width: float
+                the width of the page in units
+            margin: float
+                the height of the page in units
+            box_height: float
+                the height of the box in units
+            units: str
+                the units used
+        """
+        
+        self.text_width = page_width - 2 * margin
+        self.box_height = box_height
+        self.units = units
+
+        super().__init__()
+
+    
+    def add_box(self, box_width, data=None):
+        r""" Add a box to the current line of boxes 
+            
+            Args
+            ----
+            box_width: float
+                the width of the box in units
+            data: str, LatexObject
+                the data to be included inside the box
+
+        """
+
+        if box_width > self.text_width:
+            print ("Error: box overflow, putting on next line")
+            self.add_new_row()
+        
+        width = str(box_width) + self.units
+        height = str(self.box_height) + self.units
+
+        box = Minipage(width=width, height=height, data=data)
+
+        self.append(text_box(box.dumps()))
+        self.append(horizontal_skip("-7pt"))
+
+    def get_text_width(self):
+        r""" Returns the value that is left for the text width """
+
+        return self.text_width
+
+    def add_new_row(self):
+
+        self.append(new_line())
