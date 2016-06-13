@@ -24,9 +24,10 @@ class Flushright(Position):
 
 class Minipage(Environment):
     r""" A class that allows the creation of minipages within document pages """
-    
+    packages = [ Package('ragged2e') ]
+
     def __init__(self, width=NoEscape(r'\textwidth'),
-            height=None, adjustment='t', data=None):
+            height=None, adjustment='t', data=None, align='l'):
         r""" Instantiates a minipage within the current environment
 	
             Args
@@ -37,6 +38,8 @@ class Minipage(Environment):
                 height of the minipage
             adjustment: str
                 vertical allignment of text inside the minipage
+            align: str
+                alignment of the minibox
         """
         if height is not None:
             options = SpecialOptions(adjustment, NoEscape(height))
@@ -46,6 +49,13 @@ class Minipage(Environment):
         arguments = [ NoEscape(str(width)) ]
 
         super().__init__(arguments = arguments, options=options, data=data)
+
+        if align == "l":
+            self.append(NoEscape(r"\flushleft"))
+        elif align == "c":
+            self.append(NoEscape(r"\centering"))
+        elif align == "r":
+            self.append(NoEscape(r"\flushright"))
 
 class TextBlock(Environment):
     r""" A class that represents a textblock environment.

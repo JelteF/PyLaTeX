@@ -355,7 +355,7 @@ def huge(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\Huge{' + s + '}')
+    return NoEscape(r'\begin{Huge}' + s + '\end{Huge}')
 
 def header1(s, *, escape=True):
     r""" Highlights the text as a header of size Large
@@ -376,7 +376,7 @@ def header1(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\Large{' + s + '}')
+    return NoEscape(r'\begin{Large}' + s + '\end{Large}')
 
 def header2(s, *, escape=True):
     r""" Highlights the text as a header of size large
@@ -397,7 +397,7 @@ def header2(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape('\large{' + s + '}')
+    return NoEscape(r'\begin{large}' + s + '\end{large}')
 
 def small1(s, *, escape=True):
     r""" Highlights the text as size small
@@ -418,7 +418,7 @@ def small1(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape('\small{' + s + '}')
+    return NoEscape(r'\begin{small}' + s + '\end{small}')
 
 def small2(s, *, escape=True):
     r""" Highlights the text as size footnotesize
@@ -439,7 +439,7 @@ def small2(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\footnotesize{' + s + '}')
+    return NoEscape(r'\begin{footnotesize}' + s + '\end{footnotesize}')
 
 def vertical_skip(size):
     r""" Adds the user specified amount of vertical space to the document

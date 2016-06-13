@@ -76,7 +76,7 @@ def convert_to_py2():
 
 
 setup(name='PyLaTeX',
-      version='1.0.0',
+      version='1.0.1',
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files and snippets',
