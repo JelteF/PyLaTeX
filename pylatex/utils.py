@@ -336,6 +336,26 @@ def display_page_number():
 
     return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
 
+def huge(s, *, escape=True):
+    r""" Highlights the text as a header of size Huge
+
+        Args
+        ----
+        s : str
+            The string to be formatted.
+        escape: bool
+            If true the enlarged text will be escaped
+
+        Returns
+        -------
+        NoEscape
+            The formatted string.
+    """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\Huge{' + s + '}')
 
 def header1(s, *, escape=True):
     r""" Highlights the text as a header of size Large

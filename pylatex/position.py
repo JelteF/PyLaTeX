@@ -39,7 +39,7 @@ class Minipage(Environment):
                 vertical allignment of text inside the minipage
         """
         if height is not None:
-            options = SpecialOptions(adjustment, height)
+            options = SpecialOptions(adjustment, NoEscape(height))
         else:
             options = adjustment
 
@@ -52,8 +52,9 @@ class TextBlock(Environment):
 
         Make sure to set lengths of TPHorizModule and TPVertModule
     """
+    packages = [ Package('textpos') ]
 
-    def __init__(self, width, horizontal_pos, vertical_pos, absolute=False,
+    def __init__(self, width, horizontal_pos, vertical_pos,
             indent=False, data=None):
         r""" Initializes a text block environment
 
@@ -63,8 +64,6 @@ class TextBlock(Environment):
                 Width of the text block in the units specified by TPHorizModule
             horizontal_pos: float
                 Horizontal position in units specified by the TPHorizModule
-            absolute: bool
-                Determines whether the item is positioned absolutelly
             indent: bool
                 Determines whether the text block has an indent before it
             vertical_pos: float
@@ -74,13 +73,6 @@ class TextBlock(Environment):
         arguments = width
         self.horizontal_pos = horizontal_pos
         self.vertical_pos = vertical_pos
-
-        package_options = None
-
-        if absolute:
-            package_options = 'absolute'
-
-        self.packages.append(Package('textpos', options=package_options))
 
         super().__init__(arguments=arguments)
 

@@ -98,6 +98,9 @@ class Document(Environment):
 
         self.preamble = []
 
+        if not page_numbers:
+            self.change_document_style("empty")
+
     def _propagate_packages(self):
         r""" Make sure that all the packages included in the previous containers
         are part of the full list of packages """
