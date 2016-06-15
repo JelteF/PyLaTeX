@@ -17,7 +17,6 @@ import matplotlib.pyplot as plt  # noqa
 
 def main(fname, width, *args, **kwargs):
     doc = Document(fname)
-    doc.packages.append(Package('geometry', options=['left=2cm', 'right=2cm']))
 
     doc.append('Introduction.')
 

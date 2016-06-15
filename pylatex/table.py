@@ -72,6 +72,7 @@ class Tabular(Environment):
         super().__init__(data=data, options=pos,
                          arguments=table_spec, **kwargs)
 
+
     def dumps(self):
         r""" Turn the Latex Object into a Latex string """
         if self.row_height is not None:

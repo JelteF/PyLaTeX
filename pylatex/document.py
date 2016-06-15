@@ -52,7 +52,7 @@ class Document(Environment):
         margin: str
             Modifies the default document margin
         indent: bool
-            Add/Remove indent from the beggining of a document
+            Determines whether or not the document requires indentation
         data: list
             Initial content of the document.
         """
@@ -91,15 +91,15 @@ class Document(Environment):
 
         super().__init__(data=data)
 
-        if indent == False:
-            self.append(NoEscape(r'\noindent'))
-
         self.packages |= packages
 
         self.preamble = []
 
         if not page_numbers:
             self.change_document_style("empty")
+
+        if not indent:
+            self.change_length("\parindent", "0pt")
 
     def _propagate_packages(self):
         r""" Make sure that all the packages included in the previous containers

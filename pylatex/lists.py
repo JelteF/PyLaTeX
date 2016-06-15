@@ -10,6 +10,7 @@ These lists are specifically enumerate, itemize and description.
 
 from .base_classes import Environment, Command, Options
 from .package import Package
+from pylatex.utils import NoEscape
 
 
 class List(Environment):
@@ -33,12 +34,15 @@ class List(Environment):
 
 class Enumerate(List):
     """A class that represents an enumerate list."""
-    packages = [ Package('enumerate') ]
-    
-    def __init__(self, options=None, arguments=None, enumeration_symbol='1',
-            **kwargs):
+
+    _repr_attributes_mapping = {
+            "enumeration_symbol": "options"
+    }
+
+    def __init__(self, options=None, arguments=None, enumeration_symbol=None,
+        **kwargs):
         r""" Initializes an enumerate environment
-            
+
             Args
             ----
             options: str, list, Options
@@ -46,10 +50,16 @@ class Enumerate(List):
             arguments: str, list, Arguments
                 Arguments to be added to the begin tag
             enumeration_symbol: str
-                Enumeration symbol to use for the table (/alph, /Alph, /roman)
-
+                The enumeration symbol to use
         """
-        options = Options(enumeration_symbol)
+        packages = []
+        if enumeration_symbol is not None:
+            packages = [ Package("enumerate") ]
+            options = [ NoEscape(enumeration_symbol) ]
+        self.enumeration_symbol = enumeration_symbol
+
+        self.packages |= packages
+
         super().__init__(options=options, arguments=arguments, **kwargs)
 
 

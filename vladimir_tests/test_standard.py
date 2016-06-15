@@ -5,12 +5,12 @@ import os.path
 
 def gen_r3_rsp():
     doc = Document(lscape=True, page_numbers=True, margin='0.5in')
-    header = Header()
-    header.set_lhead("Page date: " + "\n" + " R3")
-    header.set_chead("VersaBank")
-    header.set_rhead(display_page_number())
-    header.set_header_thickness(0)
-    doc.append(header)
+    #header = Header()
+    #header.set_lhead("Page date: " + "\n" + " R3")
+    #header.set_chead("VersaBank")
+    #header.set_rhead(display_page_number())
+    #header.set_header_thickness(0)
+    #doc.append(header)
 
     heading = Center()
     heading.append(header1(bold("RSP Savings Trial Balance")))
@@ -35,7 +35,15 @@ def gen_r3_rsp():
     
     doc.append(bold("Grand Total:") + horizontal_fill() + bold("Total"))
 
+    enum = Enumerate(enumeration_symbol="1.")
+
+    enum.add_item("test")
+
+    doc.append(enum)
+    print(enum)
     doc.generate_tex("Example_R3")
+
+    
 
 def generate_csv():
     with open('test.csv', 'wb') as csvfile:

@@ -21,8 +21,6 @@ if __name__ == '__main__':
     image_filename = os.path.join(os.path.dirname(__file__), 'kitten.jpg')
 
     doc = Document()
-    doc.packages.append(Package('geometry', options=['tmargin=1cm',
-                                                     'lmargin=10cm']))
 
     with doc.create(Section('The simple stuff')):
         doc.append('Some regular text and some')

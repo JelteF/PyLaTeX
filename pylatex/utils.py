@@ -303,7 +303,7 @@ def page_break():
 def line_break():
     r""" Adds a line break to the current line """
     
-    return NoEscape('\linebreak[4] ')
+    return NoEscape('\linebreak ')
 
 def new_line():
     r""" Adds a new line """
@@ -514,7 +514,7 @@ def flush_left(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\raggedleft{' + s + '}')
+    return NoEscape(r'\flushleft{' + s + '}')
 
 def flush_right(s, *, escape=True):
     r""" Right alligns the text
@@ -535,7 +535,7 @@ def flush_right(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\raggedright{' + s + '}')
+    return NoEscape(r'\flushright{' + s + '}')
 
 
 def verbatim(s, *, delimiter='|'):

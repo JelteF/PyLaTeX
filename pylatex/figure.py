@@ -17,8 +17,6 @@ import uuid
 class Figure(Float):
     """A class that represents a Figure environment."""
 
-    packages = [Package('graphicx')]
-
     def add_image(self, filename, *, width=NoEscape(r'0.8\textwidth'),
                   placement=NoEscape(r'\centering')):
         """Add an image to the figure.
@@ -33,9 +31,11 @@ class Figure(Float):
             Placement of the figure, `None` is also accepted.
 
         """
+        if placement is not None:
+            self.append(placement)
         
-        self.append(StandAloneGraphic(options=width, placement=placement,
-                                  filename=fix_filename(filename)))
+        self.append(StandAloneGraphic(width=width,
+                    filename=fix_filename(filename)))
 
 
     def _save_plot(self, *args, **kwargs):
@@ -133,8 +133,13 @@ class StandAloneGraphic(CommandBase):
 
     packages = [ Package('graphicx') ]
 
+    _repr_attributes_mapping = {
+            "filename": "arguments",
+            "width": "options"
+    }
+
     def __init__(self, filename, width=NoEscape(r'\textwidth'),
-            placement=None, extra_arguments=None):
+            extra_arguments=None):
         r""" Initializes a stand alone image
             
             Args
@@ -143,14 +148,9 @@ class StandAloneGraphic(CommandBase):
                 The path to the image file
             width: str
                 The width of the image
-            placement: str
-                The positioning of the image
         """
 
         options = [ NoEscape("width=" + str(width)) ]
-        
-        if placement is not None:
-            self.append(placement)
         
         arguments = [ NoEscape(filename) ]
 
