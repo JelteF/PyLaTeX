@@ -14,9 +14,14 @@ import matplotlib
 
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
-    MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError
+    MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
+    LongTable, ColoredTable, Position, FlushLeft, FlushRight, Center, \
+    MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim
+    italic, verbatim, center, flush_left, flush_right, huge, header1, header2, \
+    small1, small2, text_color, page_break, new_line, line_break, \
+    horizontal_fill, vertical_skip, horizontal_skip, display_page_number, \
+    text_box
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -30,11 +35,21 @@ def test_document():
         inputenc='utf8',
         lmodern=True,
         data=None,
+        lscape=True,
+        margin="0.5in",
+        page_numbers=True,
+        header_height="12pt",
+        indent=False
     )
 
     repr(doc)
 
     doc.append('Some text.')
+    doc.change_page_style(style="empty")
+    doc.change_document_style(style="plain")
+    doc.add_skip(size="12pt")
+    doc.add_color(name="lightgray", model="gray", description="0.6")
+    doc.change_length(parameter=r"\headheight", value="0.5in")
 
     doc.generate_tex(filepath='')
     doc.generate_pdf(filepath='', clean=True)
@@ -67,7 +82,7 @@ def test_table():
 
     t.add_hline(start=None, end=None)
 
-    t.add_row(cells=(1, 2), escape=False, strict=True)
+    t.add_row(cells=(1, 2), escape=False, strict=True, mapper=[bold, center])
 
     # MultiColumn/MultiRow.
     t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),),
@@ -78,6 +93,15 @@ def test_table():
     t.add_row((MultiRow(size=2, width='*', data='MultiRow'),), strict=False)
 
     repr(t)
+
+    # Long Table
+    longtable = LongTable(table_spec='c c c')
+    longtable.add_row(["test", "test2", "test3"])
+    longtable.end_table_header()
+
+    # Colored Table
+    coloredtable = ColoredTable(table_spec='X[c] X[c]')
+    coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
 
 def test_command():
@@ -115,6 +139,9 @@ def test_graphics():
     plot.add_caption(caption='I am a caption.')
     repr(plot)
 
+    #StandAloneGraphic
+    stand_alone_graphic = StandAloneGraphic(filename='', width=r"0.8\textwidth")
+
 
 def test_quantities():
     # Quantities
@@ -149,8 +176,9 @@ def test_lists():
     itemize.append("append")
     repr(itemize)
 
-    enum = Enumerate()
+    enum = Enumerate(enumeration_symbol="a)")
     enum.add_item(s="item")
+    enum.add_item(s="item2")
     enum.append("append")
     repr(enum)
 
@@ -158,6 +186,45 @@ def test_lists():
     desc.add_item(label="label", s="item")
     desc.append("append")
     repr(desc)
+
+
+def test_headfoot():
+    # Page styles, headers and footers
+    page_style = PageStyle("NewStyle")
+    page_style.change_thickness("header", "1pt")
+    page_style.change_thickness("footer", "1pt")
+
+    header = Head("C")
+    header.append("append")
+
+    footer = Foot("C")
+    footer.append("append")
+
+    page_style.append(header)
+    page_style.append(footer)
+
+
+def test_position():
+    # Test alignment environments
+    position = Position()
+
+    center = Center()
+    center.append("append")
+
+    right = FlushRight()
+    right.append("append")
+
+    left = FlushLeft()
+    left.append("append")
+
+    minipage = MiniPage(width=r"\textwidth", height="10pt", adjustment='t',
+            align='r')
+    minipage.append("append")
+
+    textblock = TextBlock(width="200", horizontal_pos="200", vertical_pos="200",
+            indent=True)
+    textblock.append("append")
+    textblock.dumps()
 
 
 def test_utils():
@@ -173,6 +240,40 @@ def test_utils():
     italic(s='')
 
     verbatim(s='', delimiter='|')
+
+    text_color(s='green text', color='green')
+
+    page_break()
+
+    line_break()
+
+    new_line()
+
+    horizontal_fill()
+
+    horizontal_skip(size='20pt')
+
+    display_page_number()
+
+    huge(s='HugeText')
+
+    header1(s='Header1Text')
+
+    header2(s='Header2Text')
+
+    small1(s='Small1Text')
+
+    small2(s='Small2Text')
+
+    vertical_skip(size="20pt")
+
+    text_box(s="TextBoxText")
+
+    center(s="CenteredText")
+
+    flush_left(s="FlushedLeft")
+
+    flush_right(s="FlushedRight")
 
 
 def test_errors():

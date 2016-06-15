@@ -30,21 +30,3 @@ class Package(CommandBase):
         """
 
         super().__init__(arguments=name, options=options)
-    
-    def is_package(self, name):
-        """ Determines whether a package with the given name exists
-            and if it does returns its index in the ordered set
-
-            Args
-            ----
-            name: str
-                Name of the package
-
-            Returns
-            -------
-            int: index of the package or -1 if it does not exist
-
-        """
-
-        for package in self.packages:
-            print(package)

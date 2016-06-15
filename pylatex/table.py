@@ -271,7 +271,7 @@ class ColoredTable(Tabu):
 
     _latex_name = "tabu"
 
-    def add_row(self, cells, *, color=None, escape=None, mapper=None, string=True):
+    def add_row(self, cells, *, color=None, escape=None, mapper=None, strict=True):
         r""" Adds a colored row to the table
 
             Args
@@ -301,7 +301,7 @@ class ColoredTable(Tabu):
             else:
                 cell_count += 1
 
-        if string and cell_count != self.width:
+        if strict and cell_count != self.width:
             msg = "Number of cells added to table ({}) " \
                 "did not match table width ({})".format(cell_count, self.width)
             raise TableRowSizeError(msg)

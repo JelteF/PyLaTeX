@@ -6,7 +6,7 @@ doc.change_length("\TPHorizModule", "1mm")
 doc.change_length("\TPVertModule", "1mm")
 doc.change_length("\parindent", "0pt")
 
-page = Minipage(width=r"\textwidth")
+page = MiniPage(width=r"\textwidth")
 
 text_amount_wrapper = TextBlock(100, 0, 0)
 
@@ -47,12 +47,12 @@ heading = MultiColumn(2, align='l', data=bold("TFSA TRANSFER"))
 cheque_info.add_row([heading])
 cheque_info.add_empty_row()
 
-details_wrapper = Minipage(width=r"0.4\textwidth")
+details_wrapper = MiniPage(width=r"0.4\textwidth")
 details_wrapper.append("Cheque number")
 details_wrapper.append(horizontal_fill())
 details_wrapper.append(bold("testNo"))
 
-details2_wrapper = Minipage(width=r"0.4\textwidth")
+details2_wrapper = MiniPage(width=r"0.4\textwidth")
 details2_wrapper.append("Cheque date")
 details2_wrapper.append(horizontal_fill())
 details2_wrapper.append(bold("testDate"))
@@ -66,4 +66,4 @@ doc.append(page)
 doc.append(page_break())
 doc.append(page)
 
-doc.generate_tex("Example_Cheque")
+doc.generate_pdf("Example_Cheque")

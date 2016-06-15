@@ -6,14 +6,14 @@ from pylatex.utils import *
 
 def generate_unique():
     doc = Document(header_height='70pt')
-   
+
     # Generating first page style 
     first_page = PageStyle("firstpage")
-  
+
     # Header image
     header_left = Head("L")
-    logo_wrapper = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
-    logo_file = os.path.join(os.path.dirname(__file__), 'versabanklogo.png')
+    logo_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='c')
+    logo_file = os.path.join(os.path.dirname(__file__), 'sample-logo.png')
     logo = StandAloneGraphic(width="120px", filename=logo_file)
     logo_wrapper.append(logo)
     header_left.append(logo_wrapper)
@@ -22,33 +22,31 @@ def generate_unique():
 
     # Add document title
     header_right = Head("R")
-    title_wrapper = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
-    title_right = Flushright()
-    title_right.append(bold(header1("Bank Account Statement")))
-    title_right.append(NoEscape(line_break()))
-    title_right.append(bold(header2("Date")))
-    title_wrapper.append(title_right)
+    title_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='c',
+            align='r')
+    title_wrapper.append(bold(header1("Bank Account Statement")))
+    title_wrapper.append(NoEscape(line_break()))
+    title_wrapper.append(bold(header2("Date")))
     header_right.append(title_wrapper)
 
     # Add footer
     footer_center = Foot("C")
     message = "Important message please read"
-    footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{2in} m{2in}"))
+    footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{1.85in} m{2in}"))
     footer_table.add_row([MultiColumn(4, align='l', data=text_color(message, "blue"))])
     footer_table.add_hline(color="blue")
     footer_table.add_empty_row()
 
-    branch_address = Minipage(width=NoEscape(r"0.25\textwidth"), adjustment='h')
+    branch_address = MiniPage(width=NoEscape(r"0.25\textwidth"), adjustment='t')
     branch_address.append("960 - 22nd street east")
-    branch_address.append("\nSaskatoon, SK")
+    branch_address.append(line_break())
+    branch_address.append("Saskatoon, SK")
 
-    document_details = Minipage(width=NoEscape(r"0.25\textwidth"),
-            adjustment='h')
-    document_details_right = Flushright()
-    document_details_right.append("1000")
-    document_details_right.append(line_break())
-    document_details_right.append(display_page_number())
-    document_details.append(document_details_right)
+    document_details = MiniPage(width=NoEscape(r"0.25\textwidth"),
+            adjustment='t', align='r')
+    document_details.append("1000")
+    document_details.append(line_break())
+    document_details.append(display_page_number())
 
     footer_table.add_row([branch_address, branch_address, branch_address,
         document_details])
@@ -69,44 +67,37 @@ def generate_unique():
     # Add logo to left header
     header_left = Head("L")
     header_table = Tabular(NoEscape("m{2.5in}|m{2.1in}|m{2.5in}"))
-    logo_wrapper = Minipage(width=NoEscape(r"0.33\textwidth"), adjustment='t!')
-    logo_wrapper_left = Flushleft()
-    logo_wrapper_left.append(StandAloneGraphic(width="150px", filename=logo_file))
-    logo_wrapper.append(logo_wrapper_left)
-    #header_left.append(logo_wrapper)
+    logo_wrapper = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='t!',
+            align='l')
+    logo_wrapper.append(StandAloneGraphic(width="150px", filename=logo_file))
 
     # Add recipent information
     header_center = Head("C")
-    customer = Minipage(width=NoEscape(r"0.33\textwidth"), adjustment='h')
-    customer_left = Flushleft()
-    customer_left.append("Verna Volcano")
-    customer_left.append(line_break())
-    customer_left.append("For some Person")
-    customer_left.append(line_break())
-    customer_left.append("Address1")
-    customer_left.append(line_break())
-    customer_left.append("Address2")
-    customer_left.append(line_break())
-    customer_left.append("Address3")
-    customer.append(customer_left)
-    #header_center.append(customer)
+    customer = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='h', 
+            align='l')
+    customer.append("Some Person")
+    customer.append(line_break())
+    customer.append("For some Person")
+    customer.append(line_break())
+    customer.append("Address1")
+    customer.append(line_break())
+    customer.append("Address2")
+    customer.append(line_break())
+    customer.append("Address3")
 
     # Add branch information
     header_right = Head("R")
-    statement_details = Minipage(width=NoEscape(r"0.33\textwidth"),
-        adjustment='h')
-    statement_right = Flushright()
-    statement_right.append(bold("Bank Account Statement"))
-    statement_right.append(line_break())
-    statement_right.append("Date")
-    statement_right.append(line_break())
-    statement_right.append("Branch no. - Account no.")
-    statement_right.append(line_break())
-    statement_right.append("1181 - Asdasd")
-    statement_right.append(line_break())
-    statement_right.append("TlB Chequing")
-    statement_details.append(statement_right)
-    #header_right.append(statement_details)
+    statement_details = MiniPage(width=NoEscape(r"0.33\textwidth"),
+        adjustment='h', align='r')
+    statement_details.append(bold("Bank Account Statement"))
+    statement_details.append(line_break())
+    statement_details.append("Date")
+    statement_details.append(line_break())
+    statement_details.append("Branch no. - Account no.")
+    statement_details.append(line_break())
+    statement_details.append("1181 - Asdasd")
+    statement_details.append(line_break())
+    statement_details.append("TlB Chequing")
 
     header_table.add_row([logo_wrapper, customer, statement_details])
     header_center.append(header_table)
@@ -121,7 +112,7 @@ def generate_unique():
     # Add customer information
     first_page_table = Tabu("X[l] X[r]")
 
-    customer = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
+    customer = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
     customer.append("Verna Volcano")
     customer.append(new_line())
     customer.append("For some Person")
@@ -133,20 +124,19 @@ def generate_unique():
     customer.append("Address3")
 
     # Add branch information
-    branch = Minipage(width=NoEscape(r"0.49\textwidth"), adjustment='t!')
-    branch_right = Flushright()
-    branch_right.append("Branch no.")
-    branch_right.append(line_break())
-    branch_right.append(bold("1181..."))
-    branch_right.append(line_break())
-    branch_right.append(bold("TIB Cheque"))
-    branch.append(branch_right)
+    branch = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='t!',
+            align='r')
+    branch.append("Branch no.")
+    branch.append(line_break())
+    branch.append(bold("1181..."))
+    branch.append(line_break())
+    branch.append(bold("TIB Cheque"))
 
     first_page_table.add_row([customer, branch])
     first_page_table.add_empty_row()
 
     # Add advisor information
-    advisor = Minipage(width=NoEscape(r"\textwidth"), adjustment='h')
+    advisor = MiniPage(width=NoEscape(r"\textwidth"), adjustment='h')
     advisor.append("Info about advisor")
     advisor.append(new_line())
     advisor.append("Stuff and things")
@@ -182,7 +172,7 @@ def generate_unique():
     doc.append(data_table)
 
     doc.append(page_break())
-    
+
     # Add cheque images
     cheque_table = LongTabu("X[c] X[c]")
     cheque_file = os.path.join(os.path.dirname(__file__), 'chequeexample.png')

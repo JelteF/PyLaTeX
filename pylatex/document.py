@@ -320,7 +320,6 @@ class Document(Environment):
             description: str
                 The values to use to define the color
         """
-
         self.preamble.append(Command("definecolor", arguments=[ name, model, description]))
 
     def change_length(self, parameter, value):

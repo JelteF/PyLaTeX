@@ -5,20 +5,31 @@ import os.path
 
 def gen_r3_rsp():
     doc = Document(lscape=True, page_numbers=True, margin='0.5in')
-    #header = Header()
-    #header.set_lhead("Page date: " + "\n" + " R3")
-    #header.set_chead("VersaBank")
-    #header.set_rhead(display_page_number())
-    #header.set_header_thickness(0)
-    #doc.append(header)
 
-    heading = Center()
-    heading.append(header1(bold("RSP Savings Trial Balance")))
+    # Add document header
+    header = PageStyle("header")
+    left_header = Head("L")
+    left_header.append("Page date: ")
+    left_header.append(line_break())
+    left_header.append("R3")
+    center_header = Head("C")
+    center_header.append("Company")
+    right_header = Head("R")
+    right_header.append(display_page_number())
+    header.append(left_header)
+    header.append(center_header)
+    header.append(right_header)
+    doc.preamble.append(header)
+    doc.change_document_style("header")
+
+    # Add Heading
+    heading = MiniPage(align='c')
+    heading.append(header1(bold("Title")))
+    heading.append(line_break())
+    heading.append(header2(bold("As at:")))
     doc.append(heading)
-    subheading = Center()
-    subheading.append(header2(bold("As at:")))
-    doc.append(subheading)
 
+    # Generate data table
     data_table = LongTabu("X[r] X[r] X[r] X[r] X[r] X[r]")
     header_row1 = ["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"]
     data_table.add_row(header_row1, mapper=[bold, center])
@@ -32,18 +43,10 @@ def gen_r3_rsp():
             data_table.add_row(row)
 
     doc.append(data_table)
-    
+
     doc.append(bold("Grand Total:") + horizontal_fill() + bold("Total"))
 
-    enum = Enumerate(enumeration_symbol="1.")
-
-    enum.add_item("test")
-
-    doc.append(enum)
-    print(enum)
-    doc.generate_tex("Example_R3")
-
-    
+    doc.generate_pdf("Example_Standard")
 
 def generate_csv():
     with open('test.csv', 'wb') as csvfile:
