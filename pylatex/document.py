@@ -101,6 +101,9 @@ class Document(Environment):
         if not indent:
             self.change_length("\parindent", "0pt")
 
+        # No colors have been added to the document yet
+        self.color = False
+
     def _propagate_packages(self):
         r""" Make sure that all the packages included in the previous containers
         are part of the full list of packages """
@@ -320,6 +323,10 @@ class Document(Environment):
             description: str
                 The values to use to define the color
         """
+        if self.color is False:
+            self.packages.append(Package("color"))
+            self.color = True
+
         self.preamble.append(Command("definecolor", arguments=[ name, model, description]))
 
     def change_length(self, parameter, value):

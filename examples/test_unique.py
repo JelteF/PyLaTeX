@@ -5,7 +5,7 @@ from pylatex import *
 from pylatex.utils import *
 
 def generate_unique():
-    doc = Document(header_height='70pt')
+    doc = Document(header_height='50pt')
 
     # Generating first page style 
     first_page = PageStyle("firstpage")
@@ -159,7 +159,7 @@ def generate_unique():
     data_table.add_hline()
     path_to_data = os.path.join(os.path.dirname(__file__), 'data.csv')
     with open(path_to_data, 'rb') as csvfile:
-        csv_reader = csv.reader(csvfile, delimiter=',')
+        csv_reader = csv.reader(csvfile)
         i = 0
         for row in csv_reader:
             if i == 1:

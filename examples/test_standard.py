@@ -16,9 +16,11 @@ def gen_r3_rsp():
     center_header.append("Company")
     right_header = Head("R")
     right_header.append(display_page_number())
+    center_footer = Foot("C")
     header.append(left_header)
     header.append(center_header)
     header.append(right_header)
+    header.append(center_footer)
     doc.preamble.append(header)
     doc.change_document_style("header")
 
@@ -38,7 +40,7 @@ def gen_r3_rsp():
     data_table.end_table_header()
     data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"])
     with open('test.csv', 'rb') as csvfile:
-        csv_reader = csv.reader(csvfile, delimiter=',')
+        csv_reader = csv.reader(csvfile)
         for row in csv_reader:
             data_table.add_row(row)
 
@@ -60,6 +62,5 @@ if not os.path.isfile('test.csv'):
     generate_csv()
 
 gen_r3_rsp()
-print("Done")
 
 
