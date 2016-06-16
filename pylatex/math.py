@@ -16,7 +16,8 @@ class Math(Container):
     content_separator = ' '
 
     def __init__(self, *, inline=False, data=None):
-        """
+        """Initialize a math object.
+
         Args
         ----
         data: list
@@ -50,7 +51,8 @@ class VectorName(Command):
     }
 
     def __init__(self, name):
-        """
+        """Initialize a vector object.
+
         Args
         ----
         name: str
@@ -70,7 +72,8 @@ class Matrix(Environment):
     }
 
     def __init__(self, matrix, *, mtype='p', alignment=None):
-        r"""
+        r"""Initialize a matrix object.
+
         Args
         ----
         matrix: `numpy.ndarray` instance

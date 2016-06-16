@@ -3,6 +3,7 @@ from pylatex.utils import *
 import csv
 import os.path
 
+
 def gen_r3_rsp():
     doc = Document(lscape=True, page_numbers=True, margin='0.5in')
 
@@ -46,21 +47,22 @@ def gen_r3_rsp():
 
     doc.append(data_table)
 
-    doc.append(bold("Grand Total:") + horizontal_fill() + bold("Total"))
+    doc.append(bold("Grand Total:"))
+    doc.append(horizontal_fill())
+    doc.append(bold("Total"))
 
     doc.generate_pdf("Example_Standard")
+
 
 def generate_csv():
     with open('test.csv', 'wb') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=',')
-        
-        for i in range(0,5000):
-            csv_writer.writerow(['Test1','Test2','Test3','Test4','Test5',
-                'Test6'])
+
+        for i in range(0, 5000):
+            csv_writer.writerow(['Test1', 'Test2', 'Test3', 'Test4', 'Test5',
+                                 'Test6'])
 
 if not os.path.isfile('test.csv'):
     generate_csv()
 
 gen_r3_rsp()
-
-

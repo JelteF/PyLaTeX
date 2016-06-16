@@ -19,7 +19,8 @@ class Package(CommandBase):
     }
 
     def __init__(self, name, options=None):
-        """
+        """Initialize a package.
+
         Args
         ----
         name: str

@@ -4,10 +4,11 @@ import csv
 from pylatex import *
 from pylatex.utils import *
 
-def generate_unique():
-    doc = Document(header_height='50pt')
 
-    # Generating first page style 
+def generate_unique():
+    doc = Document(header_height='75pt')
+
+    # Generating first page style
     first_page = PageStyle("firstpage")
 
     # Header image
@@ -23,9 +24,9 @@ def generate_unique():
     # Add document title
     header_right = Head("R")
     title_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='c',
-            align='r')
+                             align='r')
     title_wrapper.append(bold(header1("Bank Account Statement")))
-    title_wrapper.append(NoEscape(line_break()))
+    title_wrapper.append(line_break())
     title_wrapper.append(bold(header2("Date")))
     header_right.append(title_wrapper)
 
@@ -33,23 +34,26 @@ def generate_unique():
     footer_center = Foot("C")
     message = "Important message please read"
     footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{1.85in} m{2in}"))
-    footer_table.add_row([MultiColumn(4, align='l', data=text_color(message, "blue"))])
+    footer_table.add_row(
+        [MultiColumn(4, align='l', data=text_color(message, "blue"))])
     footer_table.add_hline(color="blue")
     footer_table.add_empty_row()
 
-    branch_address = MiniPage(width=NoEscape(r"0.25\textwidth"), adjustment='t')
+    branch_address = MiniPage(
+        width=NoEscape(r"0.25\textwidth"),
+        adjustment='t')
     branch_address.append("960 - 22nd street east")
     branch_address.append(line_break())
     branch_address.append("Saskatoon, SK")
 
     document_details = MiniPage(width=NoEscape(r"0.25\textwidth"),
-            adjustment='t', align='r')
+                                adjustment='t', align='r')
     document_details.append("1000")
     document_details.append(line_break())
     document_details.append(display_page_number())
 
     footer_table.add_row([branch_address, branch_address, branch_address,
-        document_details])
+                          document_details])
 
     footer_center.append(footer_table)
 
@@ -68,13 +72,13 @@ def generate_unique():
     header_left = Head("L")
     header_table = Tabular(NoEscape("m{2.5in}|m{2.1in}|m{2.5in}"))
     logo_wrapper = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='t!',
-            align='l')
+                            align='l')
     logo_wrapper.append(StandAloneGraphic(width="150px", filename=logo_file))
 
     # Add recipent information
     header_center = Head("C")
-    customer = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='h', 
-            align='l')
+    customer = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='h',
+                        align='l')
     customer.append("Some Person")
     customer.append(line_break())
     customer.append("For some Person")
@@ -88,7 +92,7 @@ def generate_unique():
     # Add branch information
     header_right = Head("R")
     statement_details = MiniPage(width=NoEscape(r"0.33\textwidth"),
-        adjustment='h', align='r')
+                                 adjustment='h', align='r')
     statement_details.append(bold("Bank Account Statement"))
     statement_details.append(line_break())
     statement_details.append("Date")
@@ -125,7 +129,7 @@ def generate_unique():
 
     # Add branch information
     branch = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='t!',
-            align='r')
+                      align='r')
     branch.append("Branch no.")
     branch.append(line_break())
     branch.append(bold("1181..."))
@@ -142,10 +146,10 @@ def generate_unique():
     advisor.append("Stuff and things")
     advisor_row = MultiColumn(2, data=advisor)
 
-    first_page_table.add_row([ advisor_row ])
+    first_page_table.add_row([advisor_row])
 
     doc.append(first_page_table)
-    
+
     doc.change_document_style("otherstyle")
 
     doc.change_page_style("firstpage")
@@ -154,7 +158,13 @@ def generate_unique():
 
     # Add statement table
     data_table = LongColoredTable("X[l] X[2l] X[r] X[r] X[r]", row_height=1.5)
-    data_table.add_row(["date", "description", "debits($)", "credits($)", "balance($)"], mapper=bold, color="lightgray")
+    data_table.add_row(["date",
+                        "description",
+                        "debits($)",
+                        "credits($)",
+                        "balance($)"],
+                       mapper=bold,
+                       color="lightgray")
     data_table.add_empty_row()
     data_table.add_hline()
     path_to_data = os.path.join(os.path.dirname(__file__), 'data.csv')
@@ -177,10 +187,10 @@ def generate_unique():
     cheque_table = LongTabu("X[c] X[c]")
     cheque_file = os.path.join(os.path.dirname(__file__), 'chequeexample.png')
     cheque = StandAloneGraphic(cheque_file, width="200px")
-    for i in range(0,20):
+    for i in range(0, 20):
         cheque_table.add_row([cheque, cheque])
     doc.append(cheque_table)
 
-    doc.generate_tex("Example_Unique")
+    doc.generate_pdf("Example_Unique")
 
 generate_unique()

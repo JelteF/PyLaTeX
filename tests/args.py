@@ -47,7 +47,6 @@ def test_document():
     doc.append('Some text.')
     doc.change_page_style(style="empty")
     doc.change_document_style(style="plain")
-    doc.add_skip(size="12pt")
     doc.add_color(name="lightgray", model="gray", description="0.6")
     doc.add_color(name="abitless", model="gray", description="0.8")
     doc.change_length(parameter=r"\headheight", value="0.5in")

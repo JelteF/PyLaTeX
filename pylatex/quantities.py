@@ -39,7 +39,8 @@ class Quantity(Command):
     packages = [Package('siunitx')]
 
     def __init__(self, quantity, *, options=None, format_cb=None):
-        r"""
+        r"""Initialize a quantity.
+
         Args
         ----
         quantity: `quantities.quantity.Quantity`

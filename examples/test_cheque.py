@@ -12,7 +12,7 @@ text_amount_wrapper = TextBlock(100, 0, 0)
 
 text_amount_wrapper.append("**** Ten Thousand Dollars")
 
-address_wrapper = TextBlock(100, 0, 30) 
+address_wrapper = TextBlock(100, 0, 30)
 
 address_wrapper.append("COMPANY NAME")
 address_wrapper.append("\nSTREET, ADDRESS")

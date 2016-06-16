@@ -8,8 +8,8 @@ This module implements the class that deals with graphics.
 
 import os.path
 
-from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
-from .base_classes import UnsafeCommand, Float, CommandBase
+from .utils import fix_filename, make_temp_dir, NoEscape
+from .base_classes import Float, CommandBase
 from .package import Package
 import uuid
 
@@ -33,10 +33,9 @@ class Figure(Float):
         """
         if placement is not None:
             self.append(placement)
-        
-        self.append(StandAloneGraphic(width=width,
-                    filename=fix_filename(filename)))
 
+        self.append(StandAloneGraphic(width=width,
+                                      filename=fix_filename(filename)))
 
     def _save_plot(self, *args, **kwargs):
         """Save the plot.
@@ -99,7 +98,8 @@ class SubFigure(Figure):
     }
 
     def __init__(self, width=NoEscape(r'0.45\linewidth'), **kwargs):
-        """
+        """Initialize a sub figure.
+
         Args
         ----
         width: str
@@ -126,34 +126,34 @@ class SubFigure(Figure):
 
         super().add_image(filename, width=width, placement=placement)
 
+
 class StandAloneGraphic(CommandBase):
-    r""" A class representing a stand alone image """
+    r"""A class representing a stand alone image."""
 
     _latex_name = "includegraphics"
 
-    packages = [ Package('graphicx') ]
+    packages = [Package('graphicx')]
 
     _repr_attributes_mapping = {
-            "filename": "arguments",
-            "width": "options"
+        "filename": "arguments",
+        "width": "options"
     }
 
     def __init__(self, filename, width=NoEscape(r'\textwidth'),
-            extra_arguments=None):
-        r""" Initializes a stand alone image
-            
-            Args
-            ----
-            filename: str
-                The path to the image file
-            width: str
-                The width of the image
+                 extra_arguments=None):
+        r"""Initialize a stand alone graphic.
+
+        Args
+        ----
+        filename: str
+            The path to the image file
+        width: str
+            The width of the image
         """
 
-        options = [ NoEscape("width=" + str(width)) ]
-        
-        arguments = [ NoEscape(filename) ]
+        options = [NoEscape("width=" + str(width))]
 
-        super().__init__( arguments=arguments, options=options,
-                extra_arguments=extra_arguments)
-        
+        arguments = [NoEscape(filename)]
+
+        super().__init__(arguments=arguments, options=options,
+                         extra_arguments=extra_arguments)

@@ -8,7 +8,7 @@ These lists are specifically enumerate, itemize and description.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment, Command, Options
+from .base_classes import Environment, Command
 from .package import Package
 from pylatex.utils import NoEscape
 
@@ -36,26 +36,27 @@ class Enumerate(List):
     """A class that represents an enumerate list."""
 
     _repr_attributes_mapping = {
-            "enumeration_symbol": "options"
+        "enumeration_symbol": "options"
     }
 
     def __init__(self, options=None, arguments=None, enumeration_symbol=None,
-        **kwargs):
-        r""" Initializes an enumerate environment
+                 **kwargs):
+        r"""Initialize an enumerate environment.
 
-            Args
-            ----
-            options: str, list, Options
-                Options to be added to the begin tag
-            arguments: str, list, Arguments
-                Arguments to be added to the begin tag
-            enumeration_symbol: str
-                The enumeration symbol to use
+        Args
+        ----
+        options: str, list, Options
+            Options to be added to the begin tag
+        arguments: str, list, Arguments
+            Arguments to be added to the begin tag
+        enumeration_symbol: str
+            The enumeration symbol to use
         """
+
         packages = []
         if enumeration_symbol is not None:
-            packages = [ Package("enumerate") ]
-            options = [ NoEscape(enumeration_symbol) ]
+            packages = [Package("enumerate")]
+            options = [NoEscape(enumeration_symbol)]
         self.enumeration_symbol = enumeration_symbol
 
         self.packages |= packages

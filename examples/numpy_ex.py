@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     subsection = Subsection('Product')
 
-    math = Math(data=['M', vec_name, '=', Matrix(M*a)])
+    math = Math(data=['M', vec_name, '=', Matrix(M * a)])
     subsection.append(math)
 
     section.append(subsection)

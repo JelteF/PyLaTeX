@@ -99,13 +99,13 @@ class Plot(LatexObject):
 
         return string
 
+
 class Frame(Environment):
     r""" A class that defines an mdframed environment """
 
     _latex_name = 'mdframed'
 
-    packages = [ Package('mdframed') ]
+    packages = [Package('mdframed')]
 
     def __init__(self, options=None, data=None):
         super().__init__(options=options, data=data)
-

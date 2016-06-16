@@ -1,54 +1,57 @@
 # -*- coding: utf-8 -*-
 
-from .base_classes import Environment, Command, SpecialOptions
+from .base_classes import Environment, Command, SpecialOptions, Arguments
 from .package import Package
-from .utils import NoEscape, line_break, escape_latex, fix_filename, new_line, horizontal_skip, vertical_skip, text_box
+from .utils import NoEscape
 
 
 class Position(Environment):
-    r""" Base class for positioning environments
-    """
+    r"""Base class for positioning environments."""
+
     packages = [Package('ragged2e')]
 
+
 class Center(Position):
-    r""" Centered environment """
+    r"""Centered environment."""
 
 
 class FlushLeft(Position):
-    r""" Left-aligned environment """
+    r"""Left-aligned environment."""
 
 
 class FlushRight(Position):
-    r""" Right-aligned environment """
+    r"""Right-aligned environment."""
 
 
 class MiniPage(Environment):
-    r""" A class that allows the creation of minipages within document pages """
-    packages = [ Package('ragged2e') ]
+    r"""A class that allows the creation of minipages within document pages."""
+
+    packages = [Package('ragged2e')]
 
     def __init__(self, width=NoEscape(r'\textwidth'),
-            height=None, adjustment='t', data=None, align='l'):
-        r""" Instantiates a minipage within the current environment
-	
-            Args
-            ----
-            width: str
-                width of the minipage
-            height: str
-                height of the minipage
-            adjustment: str
-                vertical allignment of text inside the minipage
-            align: str
-                alignment of the minibox
+                 height=None, adjustment='t', data=None, align='l'):
+        r"""Instantiate a minipage within the current environment.
+
+        Args
+        ----
+        width: str
+            width of the minipage
+        height: str
+            height of the minipage
+        adjustment: str
+            vertical allignment of text inside the minipage
+        align: str
+            alignment of the minibox
         """
+
         if height is not None:
             options = SpecialOptions(adjustment, NoEscape(height))
         else:
             options = adjustment
 
-        arguments = [ NoEscape(str(width)) ]
+        arguments = [NoEscape(str(width))]
 
-        super().__init__(arguments = arguments, options=options, data=data)
+        super().__init__(arguments=arguments, options=options, data=data)
 
         if align == "l":
             self.append(NoEscape(r"\flushleft"))
@@ -57,27 +60,29 @@ class MiniPage(Environment):
         elif align == "r":
             self.append(NoEscape(r"\flushright"))
 
-class TextBlock(Environment):
-    r""" A class that represents a textblock environment.
 
-        Make sure to set lengths of TPHorizModule and TPVertModule
+class TextBlock(Environment):
+    r"""A class that represents a textblock environment.
+
+    Make sure to set lengths of TPHorizModule and TPVertModule
     """
-    packages = [ Package('textpos') ]
+
+    packages = [Package('textpos')]
 
     def __init__(self, width, horizontal_pos, vertical_pos,
-            indent=False, data=None):
-        r""" Initializes a text block environment
+                 indent=False, data=None):
+        r"""Initialize a text block environment.
 
-            Args
-            ----
-            width: float
-                Width of the text block in the units specified by TPHorizModule
-            horizontal_pos: float
-                Horizontal position in units specified by the TPHorizModule
-            indent: bool
-                Determines whether the text block has an indent before it
-            vertical_pos: float
-                Vertical position in units specified by the TPVertModule
+        Args
+        ----
+        width: float
+            Width of the text block in the units specified by TPHorizModule
+        horizontal_pos: float
+            Horizontal position in units specified by the TPHorizModule
+        indent: bool
+            Determines whether the text block has an indent before it
+        vertical_pos: float
+            Vertical position in units specified by the TPVertModule
         """
 
         arguments = width
@@ -86,10 +91,9 @@ class TextBlock(Environment):
 
         super().__init__(arguments=arguments)
 
-        if indent == False:
+        if not indent:
             self.append(NoEscape(r'\noindent'))
 
-    
     def dumps(self):
         """Represent the environment as a string in LaTeX syntax.
 
@@ -114,9 +118,9 @@ class TextBlock(Environment):
 
         begin = Command('begin', self.latex_name, self.options,
                         extra_arguments=extra_arguments)
-        
+
         string += (begin.dumps() + '(' + str(self.horizontal_pos) + ',' +
-                str(self.vertical_pos) + ')' + '\n')
+                   str(self.vertical_pos) + ')' + '\n')
 
         string += content + '\n'
 

@@ -178,3 +178,57 @@ class Environment(Container):
         string += Command('end', self.latex_name).dumps()
 
         return string
+
+
+class PreambleCommand(Container):
+    r""" Wrapper class for the header commands """
+
+    omit_if_empty = False
+
+    def __init__(self, command=None, name=None, options=None, data=None,
+            **kwargs):
+        r""" Initializes a header command
+
+            Args
+            ----
+            command: str
+                The name of the header command
+            name: str
+                The first argument of the header command
+            options: str, list or Options
+                The options for the header command
+            data: str or LatexObject
+                The data to place inside the header command
+        """
+
+        self.arguments = name
+
+        self.options = options
+
+        if command is not None:
+            self._latex_name = command
+
+        super().__init__(data=data, **kwargs)
+
+    def dumps(self):
+        r""" Converts the command to a latex string """
+
+        content = self.dumps_content()
+
+        if not content.strip() and self.omit_if_empty:
+            return ''
+
+        string = ''
+
+        start = Command(self.latex_name, arguments=self.arguments,
+                options=self.options)
+
+        string += start.dumps() + '{ \n'
+
+        if content != '':
+            string += content + '\n}'
+        else:
+            string += '}'
+
+        return string
+

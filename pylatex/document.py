@@ -9,9 +9,11 @@ This module implements the class that deals with the full document.
 import os
 import subprocess
 import errno
-from .base_classes import Environment, Command, Container, LatexObject, UnsafeCommand
+from .base_classes import Environment, Command, Container, LatexObject, \
+    UnsafeCommand
 from .package import Package
-from .utils import dumps_list, rm_temp_dir, NoEscape
+from .utils import dumps_list, rm_temp_dir
+
 
 class Document(Environment):
     r"""
@@ -26,8 +28,10 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, page_numbers=True,
-                 margin='0.5in', header_height='12pt', indent=False, data=None):
-        r"""
+                 margin='0.5in', header_height='12pt', indent=False,
+                 data=None):
+        r"""Initialize a new Document.
+
         Args
         ----
         default_filepath: str
@@ -75,7 +79,7 @@ class Document(Environment):
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
         geometry_options = ['includeheadfoot', 'margin=' + margin,
-                'headheight=' + header_height]
+                            'headheight=' + header_height]
         packages = [fontenc, inputenc]
 
         if lmodern:
@@ -105,8 +109,11 @@ class Document(Environment):
         self.color = False
 
     def _propagate_packages(self):
-        r""" Make sure that all the packages included in the previous containers
-        are part of the full list of packages """
+        r"""Propogate packages.
+
+        Make sure that all the packages included in the previous containers
+        are part of the full list of packages.
+        """
 
         super()._propagate_packages()
 
@@ -276,70 +283,59 @@ class Document(Environment):
                     self.default_filepath))
             return filepath
 
-
     def change_page_style(self, style):
-        r""" Alternate page styles of the current page
+        r"""Alternate page styles of the current page.
 
-            Args
-            ----
-            style: str
-                value to set for the page style of the current page
+        Args
+        ----
+        style: str
+            value to set for the page style of the current page
         """
 
         self.append(Command("thispagestyle", arguments=style))
 
     def change_document_style(self, style):
-        r""" Alternate page style for the entire document
+        r"""Alternate page style for the entire document.
 
-            Args
-            ----
-            style: str
-                value tp set for the document style
+        Args
+        ----
+        style: str
+            value tp set for the document style
         """
 
         self.preamble.append(Command("pagestyle", arguments=style))
 
-
-    def add_skip(self, size="0.5in"):
-        r""" Adds the user specified amount of vertical space to the document
-
-            Args
-            ----
-            size: str
-                The amount and units of vertical space to create
-        """
-        self.append(Command("vspace", arguments=size))
-
-
     def add_color(self, name, model, description):
-        r""" Add a color that can be used throughout the document
+        r"""Add a color that can be used throughout the document.
 
-            Args
-            ----
-            name: str
-                Name to set for the color
-            model: str
-                The color model to use when defining the color
-            description: str
-                The values to use to define the color
+        Args
+        ----
+        name: str
+            Name to set for the color
+        model: str
+            The color model to use when defining the color
+        description: str
+            The values to use to define the color
         """
+
         if self.color is False:
             self.packages.append(Package("color"))
             self.color = True
 
-        self.preamble.append(Command("definecolor", arguments=[ name, model, description]))
+        self.preamble.append(Command("definecolor", arguments=[name,
+                                                               model,
+                                                               description]))
 
     def change_length(self, parameter, value):
-        r""" Change the length of a certain parameter to a certain value
+        r"""Change the length of a certain parameter to a certain value.
 
-            Args
-            ----
-            parameter: str
-                The name of the parameter to change the length for
-            value: str, int, float
-                The value to set the parameter to
+        Args
+        ----
+        parameter: str
+            The name of the parameter to change the length for
+        value: str, int, float
+            The value to set the parameter to
         """
 
         self.preamble.append(UnsafeCommand('setlength',
-            arguments=[parameter, value]))
-
+                                           arguments=[parameter, value]))
