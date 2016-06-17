@@ -418,25 +418,19 @@ def vertical_skip(size):
     return pylatex.base_classes.UnsafeCommand("vspace*", arguments=size)
 
 
-def text_box(s, *, escape=False):
+def text_box(s):
     r"""Add a text box around the text.
     Args
     ----
     s : str
         The string to be formatted.
-    escape: bool
-        If true the boxed text will be escaped
     Returns
     -------
-    NoEscape
-        The formatted string.
+    PreambleCommand
+        The container with the content specified
     """
 
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\fbox{' + s + '}')
-
+    return pylatex.base_classes.PreambleCommand(command='fbox', data=s)
 
 def center(s, *, escape=True):
     r"""Center the text.
