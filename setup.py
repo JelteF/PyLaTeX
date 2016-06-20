@@ -25,14 +25,14 @@ extras = {
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
     'testing': ['flake8', 'pep8-naming', 'flake8_docstrings', 'nose'],
-    'convert_to_py2': ['3to2', 'future'],
+    'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 
 if sys.version_info[0] == 3:
     source_dir = '.'
 else:
     source_dir = 'python2_source'
-    dependencies.append('future')
+    dependencies.append('future>=0.15.2')
 
 PY2_CONVERTED = False
 
