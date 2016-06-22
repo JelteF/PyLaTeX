@@ -2,7 +2,7 @@
 
 from pylatex import Document, MiniPage, TextBlock, MultiColumn, Tabu
 from pylatex.utils import huge, bold, header2, small1, horizontal_skip, \
-        horizontal_fill, vertical_skip, page_break
+    horizontal_fill, vertical_skip, page_break
 
 doc = Document(page_numbers=False)
 doc.change_length("\TPHorizModule", "1mm")
@@ -69,4 +69,4 @@ doc.append(page)
 doc.append(page_break())
 doc.append(page)
 
-doc.generate_pdf("Example_Cheque")
+doc.generate_pdf("test_cheque")

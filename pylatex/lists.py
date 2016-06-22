@@ -39,14 +39,14 @@ class Enumerate(List):
         "enumeration_symbol": "options"
     }
 
-    def __init__(self, options=None, arguments=None, enumeration_symbol=None,
-                 **kwargs):
+    def __init__(self, options=None, arguments=None, *,
+                 enumeration_symbol=None, **kwargs):
         r"""
         Args
         ----
-        options: str, list, Options
+        options: str, list or `~.Options`
             Options to be added to the begin tag
-        arguments: str, list, Arguments
+        arguments: str, list or `~.Arguments`
             Arguments to be added to the begin tag
         enumeration_symbol: str
             The enumeration symbol to use

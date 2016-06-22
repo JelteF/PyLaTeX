@@ -12,7 +12,7 @@ class PageStyle(PreambleCommand):
 
     packages = [Package('fancyhdr')]
 
-    def __init__(self, name, data=None, header_thickness=0,
+    def __init__(self, name, data=None, *, header_thickness=0,
                  footer_thickness=0):
         r"""
         Args

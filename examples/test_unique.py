@@ -2,9 +2,9 @@ import os
 import csv
 
 from pylatex import Document, PageStyle, Head, Foot, Tabular, MiniPage, \
-        StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu
+    StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu
 from pylatex.utils import header1, header2, bold, NoEscape, line_break, \
-        text_color, display_page_number, new_line, page_break
+    text_color, display_page_number, new_line, page_break
 
 
 def generate_unique():
@@ -170,7 +170,7 @@ def generate_unique():
     data_table.add_empty_row()
     data_table.add_hline()
     path_to_data = os.path.join(os.path.dirname(__file__), 'data.csv')
-    with open(path_to_data, 'rb') as csvfile:
+    with open(path_to_data, 'r') as csvfile:
         csv_reader = csv.reader(csvfile)
         i = 0
         for row in csv_reader:
@@ -193,6 +193,6 @@ def generate_unique():
         cheque_table.add_row([cheque, cheque])
     doc.append(cheque_table)
 
-    doc.generate_pdf("Example_Unique")
+    doc.generate_pdf("test_unique")
 
 generate_unique()

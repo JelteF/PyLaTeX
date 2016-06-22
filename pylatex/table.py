@@ -126,7 +126,7 @@ class Tabular(Environment):
         ----
         cells: iterable, such as a `list` or `tuple`
             Each element of the iterable will become a the content of a cell.
-        mapper: callable, callable[]
+        mapper: callable or `list`
             A function or a list of functions that should be called on all
             entries of the list after converting them to a string,
             for instance bold
@@ -287,7 +287,7 @@ class ColoredTable(Tabu):
         ----
         cells: iterable, such as a `list` or `tuple`
             Each element of the iterable will become a the content of a cell.
-        mapper: callable, callable[]
+        mapper: callable or `list`
             A function or a list of functions that should be called on
             all entries of the list after converting them to a string,
             for instance bold

@@ -28,7 +28,7 @@ class MiniPage(Environment):
 
     packages = [Package('ragged2e')]
 
-    def __init__(self, width=NoEscape(r'\textwidth'),
+    def __init__(self, *, width=NoEscape(r'\textwidth'),
                  height=None, adjustment='t', data=None, align='l'):
         r"""
         Args
@@ -66,9 +66,13 @@ class TextBlock(Environment):
     Make sure to set lengths of TPHorizModule and TPVertModule
     """
 
+    _repr_attributes_mapping = {
+        "width": "arguments"
+    }
+
     packages = [Package('textpos')]
 
-    def __init__(self, width, horizontal_pos, vertical_pos,
+    def __init__(self, width, horizontal_pos, vertical_pos, *,
                  indent=False, data=None):
         r"""
         Args
@@ -98,7 +102,7 @@ class TextBlock(Environment):
         Returns
         -------
         str
-            A LaTeX string representing the environment.
+            A string in LaTeX syntax representing the environment.
         """
 
         content = self.dumps_content()

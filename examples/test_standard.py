@@ -43,7 +43,7 @@ def gen_r3_rsp():
     data_table.add_empty_row()
     data_table.end_table_header()
     data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"])
-    with open('test.csv', 'rb') as csvfile:
+    with open('test.csv', 'r') as csvfile:
         csv_reader = csv.reader(csvfile)
         for row in csv_reader:
             data_table.add_row(row)
@@ -54,14 +54,14 @@ def gen_r3_rsp():
     doc.append(horizontal_fill())
     doc.append(bold("Total"))
 
-    doc.generate_pdf("Example_Standard")
+    doc.generate_pdf("test_standard")
 
 
 def generate_csv():
-    with open('test.csv', 'wb') as csvfile:
+    with open('test.csv', 'w') as csvfile:
         csv_writer = csv.writer(csvfile)
 
-        for i in range(0, 5000):
+        for i in range(0, 50):
             csv_writer.writerow(['Test1', 'Test2', 'Test3', 'Test4', 'Test5',
                                  'Test6'])
 

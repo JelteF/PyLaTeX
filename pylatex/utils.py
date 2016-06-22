@@ -10,7 +10,6 @@ import os.path
 import shutil
 import tempfile
 import pylatex.base_classes
-from itertools import imap
 
 _latex_special_chars = {
     '&': r'\&',
@@ -138,7 +137,7 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
         Whether to escape special LaTeX characters in converted text.
     token : str
         The token (default is a newline) to separate objects in the list.
-    mapper: callable, callable[]
+    mapper: callable or `list`
         A function or a list of functions that should be called on all
         entries of the list after converting them to a string, for instance
         bold
@@ -170,7 +169,7 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     if mapper is not None:
         if isinstance(mapper, list):
             for m in mapper:
-                strings = imap(m, strings)
+                strings = map(m, strings)
         else:
             strings = (mapper(s) for s in strings)
 
@@ -320,8 +319,7 @@ def horizontal_skip(size):
 
 
 def display_page_number():
-    r"""Provide the page number in the following format: Page # of ##.
-    """
+    r"""Provide the page number in the following format: Page # of ##."""
 
     return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
 
@@ -457,6 +455,7 @@ def text_box(s):
     """
 
     return pylatex.base_classes.PreambleCommand(command='fbox', data=s)
+
 
 def center(s, *, escape=True):
     r"""Center the text.

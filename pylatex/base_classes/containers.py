@@ -193,11 +193,11 @@ class PreambleCommand(Container):
         command: str
             The name of the header command
         name: str
-            The first argument of the header command
-        options: str, list or Options
-            The options for the header command
-        data: str or LatexObject
-            The data to place inside the header command
+            The first argument of the preamble command
+        options: str, list or `~.Options`
+            The options for the preamble command
+        data: str or `~.LatexObject`
+            The data to place inside the preamble command
         """
 
         self.arguments = name

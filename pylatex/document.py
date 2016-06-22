@@ -336,7 +336,7 @@ class Document(Environment):
         ----
         parameter: str
             The name of the parameter to change the length for
-        value: str, int, float
+        value: str
             The value to set the parameter to
         """
 

@@ -142,6 +142,7 @@ def test_graphics():
     # StandAloneGraphic
     stand_alone_graphic = StandAloneGraphic(filename='',
                                             width=r"0.8\textwidth")
+    repr(stand_alone_graphic)
 
 
 def test_quantities():
@@ -203,29 +204,38 @@ def test_headfoot():
 
     page_style.append(header)
     page_style.append(footer)
+    repr(header)
+    repr(footer)
+    repr(page_style)
 
 
 def test_position():
     # Test alignment environments
     position = Position()
+    repr(position)
 
     center = Center()
     center.append("append")
+    repr(center)
 
     right = FlushRight()
     right.append("append")
+    repr(right)
 
     left = FlushLeft()
     left.append("append")
+    repr(left)
 
     minipage = MiniPage(width=r"\textwidth", height="10pt", adjustment='t',
                         align='r')
     minipage.append("append")
+    repr(minipage)
 
     textblock = TextBlock(width="200", horizontal_pos="200",
                           vertical_pos="200", indent=True)
     textblock.append("append")
     textblock.dumps()
+    repr(textblock)
 
 
 def test_utils():
