@@ -29,9 +29,8 @@ class Document(Environment):
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, page_numbers=True,
                  margin='0.5in', header_height='12pt', indent=False,
-                 data=None):
-        r"""Initialize a new Document.
-
+                 header_sep='5pt', data=None):
+        r"""
         Args
         ----
         default_filepath: str
@@ -51,6 +50,8 @@ class Document(Environment):
             Adds the ability to orientate the document in landscape mode
         header_height: str
             Controls the header height of the document
+        header_sep: str
+            Controls the sepparation between the header and the content
         page_numbers: bool
             Adds the ability to add page numbers to the document
         margin: str
@@ -75,11 +76,13 @@ class Document(Environment):
         self._lmodern = lmodern
         self._lscape = lscape
         self.header_height = header_height
+        self.header_sep = header_sep
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
         geometry_options = ['includeheadfoot', 'margin=' + margin,
-                            'headheight=' + header_height]
+                            'headheight=' + header_height,
+                            'headsep=' + header_sep]
         packages = [fontenc, inputenc]
 
         if lmodern:

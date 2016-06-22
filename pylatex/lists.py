@@ -41,8 +41,7 @@ class Enumerate(List):
 
     def __init__(self, options=None, arguments=None, enumeration_symbol=None,
                  **kwargs):
-        r"""Initialize an enumerate environment.
-
+        r"""
         Args
         ----
         options: str, list, Options

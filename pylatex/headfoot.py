@@ -14,8 +14,7 @@ class PageStyle(PreambleCommand):
 
     def __init__(self, name, data=None, header_thickness=0,
                  footer_thickness=0):
-        r"""Initialize a page style.
-
+        r"""
         Args
         ----
         name: str
@@ -67,8 +66,7 @@ class Head(PreambleCommand):
     _latex_name = "fancyhead"
 
     def __init__(self, position, data=None):
-        r"""Initialize a head object.
-
+        r"""
         Args
         ----
         position: str

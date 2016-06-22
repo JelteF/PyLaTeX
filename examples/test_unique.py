@@ -1,8 +1,10 @@
 import os
 import csv
 
-from pylatex import *
-from pylatex.utils import *
+from pylatex import Document, PageStyle, Head, Foot, Tabular, MiniPage, \
+        StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu
+from pylatex.utils import header1, header2, bold, NoEscape, line_break, \
+        text_color, display_page_number, new_line, page_break
 
 
 def generate_unique():

@@ -21,8 +21,7 @@ class Section(Container):
     numbering = True
 
     def __init__(self, title, numbering=None, **kwargs):
-        """Initialize a section environment.
-
+        """
         Args
         ----
         title: str

@@ -9,7 +9,7 @@ This example shows matplotlib functionality.
 # begin-doc-include
 import matplotlib
 
-from pylatex import Document, Package, Section, Figure, NoEscape
+from pylatex import Document, Section, Figure, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as plt  # noqa

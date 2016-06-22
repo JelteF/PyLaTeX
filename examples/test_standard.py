@@ -1,5 +1,8 @@
-from pylatex import *
-from pylatex.utils import *
+#!/usr/bin/python
+
+from pylatex import Document, PageStyle, Head, Foot, MiniPage, LongTabu
+from pylatex.utils import line_break, display_page_number, header1, header2, \
+    bold, horizontal_fill, center
 import csv
 import os.path
 
@@ -56,7 +59,7 @@ def gen_r3_rsp():
 
 def generate_csv():
     with open('test.csv', 'wb') as csvfile:
-        csv_writer = csv.writer(csvfile, delimiter=',')
+        csv_writer = csv.writer(csvfile)
 
         for i in range(0, 5000):
             csv_writer.writerow(['Test1', 'Test2', 'Test3', 'Test4', 'Test5',

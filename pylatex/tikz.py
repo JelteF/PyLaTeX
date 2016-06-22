@@ -101,7 +101,7 @@ class Plot(LatexObject):
 
 
 class Frame(Environment):
-    r""" A class that defines an mdframed environment """
+    """A class that defines an mdframed environment."""
 
     _latex_name = 'mdframed'
 

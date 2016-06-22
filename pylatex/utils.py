@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 This module implements some simple utility functions.
+
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
@@ -38,6 +39,7 @@ _tmp_path = os.path.abspath(
 class NoEscape(str):
     """
     A simple string class that is not escaped.
+
     When a `.NoEscape` string is added to another `.NoEscape` string it will
     produce a `.NoEscape` string. If it is added to normal string it will
     produce a normal string.
@@ -59,6 +61,7 @@ class NoEscape(str):
 
 def escape_latex(s):
     r"""Escape characters that are special in latex.
+
     Args
     ----
     s : `str`, `NoEscape` or anything that can be converted to string
@@ -90,6 +93,7 @@ def escape_latex(s):
 
 def fix_filename(path):
     """Fix filenames for use in LaTeX.
+
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
     Args
@@ -125,6 +129,7 @@ def fix_filename(path):
 
 def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     r"""Try to generate a LaTeX string of a list that can contain anything.
+
     Args
     ----
     l : list
@@ -135,7 +140,8 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
         The token (default is a newline) to separate objects in the list.
     mapper: callable, callable[]
         A function or a list of functions that should be called on all
-        entries of the list after converting them to a string, for instance bold
+        entries of the list after converting them to a string, for instance
+        bold
     as_content: bool
         Indicates whether the items in the list should be dumped using
         `~.LatexObject.dumps_as_content`
@@ -173,6 +179,7 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
 
 def _latex_item_to_string(item, *, escape=False, as_content=False):
     """Use the render method when possible, otherwise uses str.
+
     Args
     ----
     item: object
@@ -204,6 +211,7 @@ def _latex_item_to_string(item, *, escape=False, as_content=False):
 
 def bold(s, *, escape=True):
     r"""Make a string appear bold in LaTeX formatting.
+
     bold() wraps a given string in the LaTeX command \textbf{}.
     Args
     ----
@@ -230,7 +238,17 @@ def bold(s, *, escape=True):
 
 
 def text_color(s, color, *, escape=True):
-    r""" Change the string color """
+    r"""Change the string color.
+
+    Args
+    ----
+    s : str
+        The string to be formatted
+    escape : bool
+        If true the text will be escaped
+    color : str
+        The name of the color for the text
+    """
 
     if escape:
         s = escape_latex(s)
@@ -240,6 +258,7 @@ def text_color(s, color, *, escape=True):
 
 def italic(s, *, escape=True):
     r"""Make a string appear italicized in LaTeX formatting.
+
     italic() wraps a given string in the LaTeX command \textit{}.
     Args
     ----
@@ -289,7 +308,7 @@ def horizontal_fill():
 
 
 def horizontal_skip(size):
-    r"""Add/remove the amount of horizontal space between elements
+    r"""Add/remove the amount of horizontal space between elements.
 
     Args
     ----
@@ -309,6 +328,7 @@ def display_page_number():
 
 def huge(s, *, escape=True):
     r"""Highlight the text as a header of size Huge.
+
     Args
     ----
     s : str
@@ -329,6 +349,7 @@ def huge(s, *, escape=True):
 
 def header1(s, *, escape=True):
     r"""Highlight the text as a header of size Large.
+
     Args
     ----
     s : str
@@ -349,6 +370,7 @@ def header1(s, *, escape=True):
 
 def header2(s, *, escape=True):
     r"""Highlight the text as a header of size large.
+
     Args
     ----
     s : str
@@ -369,6 +391,7 @@ def header2(s, *, escape=True):
 
 def small1(s, *, escape=True):
     r"""Highlight the text as size small.
+
     Args
     ----
     s : str
@@ -389,6 +412,7 @@ def small1(s, *, escape=True):
 
 def small2(s, *, escape=True):
     r"""Highlight the text as size footnotesize.
+
     Args
     ----
     s : str
@@ -409,6 +433,7 @@ def small2(s, *, escape=True):
 
 def vertical_skip(size):
     r"""Add the user specified amount of vertical space to the document.
+
     Args
     ----
     size: str
@@ -420,6 +445,7 @@ def vertical_skip(size):
 
 def text_box(s):
     r"""Add a text box around the text.
+
     Args
     ----
     s : str
@@ -434,6 +460,7 @@ def text_box(s):
 
 def center(s, *, escape=True):
     r"""Center the text.
+
     Args
     ----
     s : str
@@ -454,6 +481,7 @@ def center(s, *, escape=True):
 
 def flush_left(s, *, escape=True):
     r"""Left allign the text.
+
     Args
     ----
     s : str
@@ -474,6 +502,7 @@ def flush_left(s, *, escape=True):
 
 def flush_right(s, *, escape=True):
     r"""Right allign the text.
+
     Args
     ----
     s : str
@@ -494,6 +523,7 @@ def flush_right(s, *, escape=True):
 
 def verbatim(s, *, delimiter='|'):
     r"""Make the string verbatim.
+
     Wraps the given string in a \verb LaTeX command.
     Args
     ----
@@ -520,6 +550,7 @@ def verbatim(s, *, delimiter='|'):
 
 def make_temp_dir():
     """Create a temporary directory if it doesn't exist.
+
     Directories created by this functionn follow the format specified
     by ``_tmp_path`` and are a pylatex subdirectory within
     a standard ``tempfile`` tempdir.

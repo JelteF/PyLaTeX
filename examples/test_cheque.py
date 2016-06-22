@@ -1,5 +1,8 @@
-from pylatex import *
-from pylatex.utils import *
+#!/usr/bin/python
+
+from pylatex import Document, MiniPage, TextBlock, MultiColumn, Tabu
+from pylatex.utils import huge, bold, header2, small1, horizontal_skip, \
+        horizontal_fill, vertical_skip, page_break
 
 doc = Document(page_numbers=False)
 doc.change_length("\TPHorizModule", "1mm")

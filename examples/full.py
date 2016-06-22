@@ -13,7 +13,7 @@ and figures.
 import numpy as np
 
 from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
-    Plot, Figure, Package, Matrix
+    Plot, Figure, Matrix
 from pylatex.utils import italic
 import os
 

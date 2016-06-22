@@ -30,8 +30,7 @@ class MiniPage(Environment):
 
     def __init__(self, width=NoEscape(r'\textwidth'),
                  height=None, adjustment='t', data=None, align='l'):
-        r"""Instantiate a minipage within the current environment.
-
+        r"""
         Args
         ----
         width: str
@@ -71,8 +70,7 @@ class TextBlock(Environment):
 
     def __init__(self, width, horizontal_pos, vertical_pos,
                  indent=False, data=None):
-        r"""Initialize a text block environment.
-
+        r"""
         Args
         ----
         width: float

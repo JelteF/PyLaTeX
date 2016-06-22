@@ -48,10 +48,9 @@ class Tabular(Environment):
         'pos': 'options',
     }
 
-    def __init__(self, table_spec, row_height=None, data=None, pos=None,
+    def __init__(self, table_spec, data=None, pos=None, *, row_height=None,
                  **kwargs):
-        """Initialize a tabular environemnt.
-
+        """
         Args
         ----
         table_spec: str
@@ -171,8 +170,7 @@ class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
 
     def __init__(self, size, *, align='c', data=None):
-        """Initialize a MultiColumn.
-
+        """
         Args
         ----
         size: int
@@ -210,8 +208,7 @@ class MultiRow(Container):
     packages = [Package('multirow')]
 
     def __init__(self, size, *, width='*', data=None):
-        """Initialize a MultiRow.
-
+        """
         Args
         ----
         size: int

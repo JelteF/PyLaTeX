@@ -10,7 +10,7 @@ from collections import UserList
 from pylatex.utils import dumps_list
 from contextlib import contextmanager
 from .latex_object import LatexObject
-from .command import Command, Arguments, Options
+from .command import Command, Arguments
 
 
 class Container(LatexObject, UserList):
@@ -181,24 +181,23 @@ class Environment(Container):
 
 
 class PreambleCommand(Container):
-    r""" Wrapper class for the header commands """
+    r"""Wrapper class for the header commands."""
 
     omit_if_empty = False
 
     def __init__(self, command=None, name=None, options=None, data=None,
-            **kwargs):
-        r""" Initializes a header command
-
-            Args
-            ----
-            command: str
-                The name of the header command
-            name: str
-                The first argument of the header command
-            options: str, list or Options
-                The options for the header command
-            data: str or LatexObject
-                The data to place inside the header command
+                 **kwargs):
+        r"""
+        Args
+        ----
+        command: str
+            The name of the header command
+        name: str
+            The first argument of the header command
+        options: str, list or Options
+            The options for the header command
+        data: str or LatexObject
+            The data to place inside the header command
         """
 
         self.arguments = name
@@ -211,7 +210,7 @@ class PreambleCommand(Container):
         super().__init__(data=data, **kwargs)
 
     def dumps(self):
-        r""" Converts the command to a latex string """
+        r"""Convert the container to a string in latex syntax."""
 
         content = self.dumps_content()
 
@@ -221,7 +220,7 @@ class PreambleCommand(Container):
         string = ''
 
         start = Command(self.latex_name, arguments=self.arguments,
-                options=self.options)
+                        options=self.options)
 
         string += start.dumps() + '{ \n'
 
@@ -231,4 +230,3 @@ class PreambleCommand(Container):
             string += '}'
 
         return string
-

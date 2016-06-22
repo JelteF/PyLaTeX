@@ -18,8 +18,8 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     LongTable, ColoredTable, Position, FlushLeft, FlushRight, Center, \
     MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, center, flush_left, flush_right, huge, header1, header2, \
-    small1, small2, text_color, page_break, new_line, line_break, \
+    italic, verbatim, center, flush_left, flush_right, huge, header1, \
+    header2, small1, small2, text_color, page_break, new_line, line_break, \
     horizontal_fill, vertical_skip, horizontal_skip, display_page_number, \
     text_box
 
@@ -139,8 +139,9 @@ def test_graphics():
     plot.add_caption(caption='I am a caption.')
     repr(plot)
 
-    #StandAloneGraphic
-    stand_alone_graphic = StandAloneGraphic(filename='', width=r"0.8\textwidth")
+    # StandAloneGraphic
+    stand_alone_graphic = StandAloneGraphic(filename='',
+                                            width=r"0.8\textwidth")
 
 
 def test_quantities():
@@ -218,11 +219,11 @@ def test_position():
     left.append("append")
 
     minipage = MiniPage(width=r"\textwidth", height="10pt", adjustment='t',
-            align='r')
+                        align='r')
     minipage.append("append")
 
-    textblock = TextBlock(width="200", horizontal_pos="200", vertical_pos="200",
-            indent=True)
+    textblock = TextBlock(width="200", horizontal_pos="200",
+                          vertical_pos="200", indent=True)
     textblock.append("append")
     textblock.dumps()
 

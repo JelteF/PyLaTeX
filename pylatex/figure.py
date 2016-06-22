@@ -98,8 +98,7 @@ class SubFigure(Figure):
     }
 
     def __init__(self, width=NoEscape(r'0.45\linewidth'), **kwargs):
-        """Initialize a sub figure.
-
+        """
         Args
         ----
         width: str
@@ -141,8 +140,7 @@ class StandAloneGraphic(CommandBase):
 
     def __init__(self, filename, width=NoEscape(r'\textwidth'),
                  extra_arguments=None):
-        r"""Initialize a stand alone graphic.
-
+        r"""
         Args
         ----
         filename: str
