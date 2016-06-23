@@ -21,6 +21,8 @@ Changed
   dictionary as argument.
 - Escape generated ``\n`` characters by PyLaTeX by placing a ``%`` sign in
   front of them.
+- For better readability let `~.escape_latex` change a newline to ``\\%\n``
+  instead of simply ``\\``.
 
 Added
 ~~~~~
