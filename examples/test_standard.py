@@ -3,8 +3,6 @@
 from pylatex import Document, PageStyle, Head, Foot, MiniPage, LongTabu
 from pylatex.utils import line_break, display_page_number, header1, header2, \
     bold, horizontal_fill, center
-import csv
-import os.path
 
 
 def gen_r3_rsp():

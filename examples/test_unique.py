@@ -1,5 +1,4 @@
 import os
-import csv
 
 from pylatex import Document, PageStyle, Head, Foot, Tabular, MiniPage, \
     StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu
