@@ -23,7 +23,7 @@ class Container(LatexObject, UserList):
 
     """
 
-    content_separator = '\n'
+    content_separator = '%\n'
 
     def __init__(self, *, data=None):
         r"""
@@ -171,9 +171,9 @@ class Environment(Container):
 
         begin = Command('begin', self.latex_name, self.options,
                         extra_arguments=extra_arguments)
-        string += begin.dumps() + '\n'
+        string += begin.dumps() + '%\n'
 
-        string += content + '\n'
+        string += content + '%\n'
 
         string += Command('end', self.latex_name).dumps()
 

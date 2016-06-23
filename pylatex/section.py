@@ -52,7 +52,7 @@ class Section(Container):
             num = ''
 
         string = Command(self.latex_name + num, self.title).dumps()
-        string += '\n' + self.dumps_content()
+        string += '%\n' + self.dumps_content()
 
         return string
 

@@ -19,6 +19,8 @@ Changed
 - Allow overriding of the default numbering of `.Section` class.
 - `.Parameters` now unpacks a dict as keyword arguments when passed a single
   dictionary as argument.
+- Escape generated ``\n`` characters by PyLaTeX by placing a ``%`` sign in
+  front of them.
 
 Added
 ~~~~~

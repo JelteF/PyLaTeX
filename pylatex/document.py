@@ -83,11 +83,11 @@ class Document(Environment):
         str
         """
 
-        head = self.documentclass.dumps() + '\n'
-        head += self.dumps_packages() + '\n'
-        head += dumps_list(self.preamble) + '\n'
+        head = self.documentclass.dumps() + '%\n'
+        head += self.dumps_packages() + '%\n'
+        head += dumps_list(self.preamble) + '%\n'
 
-        return head + '\n' + super().dumps()
+        return head + '%\n' + super().dumps()
 
     def generate_tex(self, filepath=None):
         """Generate a .tex file for the document.

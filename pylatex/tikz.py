@@ -73,24 +73,24 @@ class Plot(LatexObject):
         string = Command('addplot', options=self.options).dumps()
 
         if self.coordinates is not None:
-            string += ' coordinates {\n'
+            string += ' coordinates {%\n'
 
             if self.error_bar is None:
                 for x, y in self.coordinates:
                     # ie: "(x,y)"
-                    string += '(' + str(x) + ',' + str(y) + ')\n'
+                    string += '(' + str(x) + ',' + str(y) + ')%\n'
 
             else:
                 for (x, y), (e_x, e_y) in zip(self.coordinates,
                                               self.error_bar):
                     # ie: "(x,y) +- (e_x,e_y)"
                     string += '(' + str(x) + ',' + str(y) + \
-                        ') +- (' + str(e_x) + ',' + str(e_y) + ')\n'
+                        ') +- (' + str(e_x) + ',' + str(e_y) + ')%\n'
 
-            string += '};\n\n'
+            string += '};%\n%\n'
 
         elif self.func is not None:
-            string += '{' + self.func + '};\n\n'
+            string += '{' + self.func + '};%\n%\n'
 
         if self.name is not None:
             string += Command('addlegendentry', self.name).dumps()

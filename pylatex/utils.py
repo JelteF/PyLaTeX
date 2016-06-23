@@ -137,7 +137,7 @@ def fix_filename(path):
     return '/'.join(dir_parts)
 
 
-def dumps_list(l, *, escape=True, token='\n', mapper=None, as_content=True):
+def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
@@ -163,7 +163,7 @@ def dumps_list(l, *, escape=True, token='\n', mapper=None, as_content=True):
     Examples
     --------
     >>> dumps_list([r"\textbf{Test}", r"\nth{4}"])
-    '\\textbf{Test}\n\\nth{4}'
+    '\\textbf{Test}%\n\\nth{4}'
     >>> print(dumps_list([r"\textbf{Test}", r"\nth{4}"]))
     \textbf{Test}
     \nth{4}
