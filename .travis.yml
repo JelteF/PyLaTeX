@@ -22,6 +22,7 @@ addons:
       - texlive-pictures
       - texlive-science
       - texlive-fonts-recommended
+      - lmodern
 
 install:
   - pip install 3to2 future
