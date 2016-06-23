@@ -196,7 +196,7 @@
 </ul>
 <dl class="method">
 <dt id="pylatex.figure.Figure.add_image">
-<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>*</em>, <em>width='0.8\\textwidth'</em>, <em>placement='\\centering'</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/figure.py#L22-L47"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure.add_image" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>*</em>, <em>width=NoEscape(0.8\textwidth)</em>, <em>placement=NoEscape(\centering)</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/figure.py#L22-L47"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.Figure.add_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an image to the figure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -250,11 +250,16 @@ and placement of the generated plot in the LaTeX document.</li>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="pylatex.figure.Figure.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.figure.Figure.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.figure.SubFigure">
-<em class="property">class </em><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>width='0.45\linewidth'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/figure.py#L96-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">SubFigure</code><span class="sig-paren">(</span><em>width=NoEscape(0.45linewidth)</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/figure.py#L96-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.figure.Figure" title="pylatex.figure.Figure"><code class="xref py py-class docutils literal"><span class="pre">pylatex.figure.Figure</span></code></a></p>
 <p>A class that represents a subfigure from the subcaption package.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -275,7 +280,7 @@ weird inside another figure.</p>
 
 <dl class="method">
 <dt id="pylatex.figure.SubFigure.add_image">
-<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>*</em>, <em>width='\\linewidth'</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/figure.py#L121-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_image</code><span class="sig-paren">(</span><em>filename</em>, <em>*</em>, <em>width=NoEscape(\linewidth)</em>, <em>placement=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/figure.py#L121-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.figure.SubFigure.add_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an image to the subfigure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -328,6 +333,11 @@ and placement of the generated plot in the LaTeX document.</li>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.figure.SubFigure.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.figure.SubFigure.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

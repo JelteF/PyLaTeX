@@ -242,12 +242,12 @@ class.</p>
 
 <dl class="class">
 <dt id="pylatex.base_classes.containers.Environment">
-<em class="property">class </em><code class="descname">Environment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/base_classes/containers.py#L113-L172"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.containers.Environment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Environment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/base_classes/containers.py#L113-L180"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.containers.Environment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A base class for LaTeX environments.</p>
 <p>This class implements the basics of a LaTeX environment. A LaTeX
 environment looks like this:</p>
-<div class="highlight-latex"><div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>environment<span class="nb">_</span>name<span class="nb">}</span>
+<div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>environment<span class="nb">_</span>name<span class="nb">}</span>
     Some content that is in the environment
 <span class="k">\end</span><span class="nb">{</span>environment<span class="nb">_</span>name<span class="nb">}</span>
 </pre></div>
@@ -267,6 +267,13 @@ setting the environment_name class variable when declaring the class.</p>
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.base_classes.containers.Environment.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/base_classes/containers.py#L132-L132"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.containers.Environment.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set to true if this full container should be equivalent to an empty
+string if it has no content.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="pylatex.base_classes.containers.Environment.begin_paragraph">
 <code class="descname">begin_paragraph</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.base_classes.containers.Environment.begin_paragraph" title="Permalink to this definition">¶</a></dt>
@@ -306,7 +313,7 @@ setting the environment_name class variable when declaring the class.</p>
 
 <dl class="method">
 <dt id="pylatex.base_classes.containers.Environment.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/base_classes/containers.py#L146-L172"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/base_classes/containers.py#L150-L180"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.containers.Environment.dumps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the environment as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

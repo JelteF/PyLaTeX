@@ -115,7 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Own commands example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
@@ -220,7 +220,7 @@ before the options.</li>
 
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex.base_classes</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">CommandBase</span><span class="p">,</span> <span class="n">Arguments</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex.base_classes</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">CommandBase</span><span class="p">,</span> <span class="n">Arguments</span>
 <span class="kn">from</span> <span class="nn">pylatex.package</span> <span class="kn">import</span> <span class="n">Package</span>
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">UnsafeCommand</span>
 <span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">NoEscape</span>
@@ -234,8 +234,8 @@ before the options.</li>
 <span class="sd">    ``exampleEnvironment``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">_latex_name</span> <span class="o">=</span> <span class="s">&#39;exampleEnvironment&#39;</span>
-    <span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="n">Package</span><span class="p">(</span><span class="s">&#39;mdframed&#39;</span><span class="p">)]</span>
+    <span class="n">_latex_name</span> <span class="o">=</span> <span class="s1">&#39;exampleEnvironment&#39;</span>
+    <span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;mdframed&#39;</span><span class="p">)]</span>
 
 
 <span class="k">class</span> <span class="nc">ExampleCommand</span><span class="p">(</span><span class="n">CommandBase</span><span class="p">):</span>
@@ -246,67 +246,137 @@ before the options.</li>
 <span class="sd">    ``exampleCommand``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">_latex_name</span> <span class="o">=</span> <span class="s">&#39;exampleCommand&#39;</span>
-    <span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="n">Package</span><span class="p">(</span><span class="s">&#39;color&#39;</span><span class="p">)]</span>
+    <span class="n">_latex_name</span> <span class="o">=</span> <span class="s1">&#39;exampleCommand&#39;</span>
+    <span class="n">packages</span> <span class="o">=</span> <span class="p">[</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)]</span>
 
 
-<span class="c"># Create a new document</span>
+<span class="c1"># Create a new document</span>
 <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
-<span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;Custom commands&#39;</span><span class="p">)):</span>
+<span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Custom commands&#39;</span><span class="p">)):</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span>
         <span class="sd">r&quot;&quot;&quot;</span>
 <span class="sd">        The following is a demonstration of a custom \LaTeX{}</span>
 <span class="sd">        command with a couple of parameters.</span>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">))</span>
 
-    <span class="c"># Define the new command</span>
-    <span class="n">new_comm</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s">&#39;newcommand&#39;</span><span class="p">,</span> <span class="s">&#39;\exampleCommand&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                             <span class="n">extra_arguments</span><span class="o">=</span><span class="s">r&#39;\color{#1} #2 #3 \color{black}&#39;</span><span class="p">)</span>
+    <span class="c1"># Define the new command</span>
+    <span class="n">new_comm</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s1">&#39;newcommand&#39;</span><span class="p">,</span> <span class="s1">&#39;\exampleCommand&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                             <span class="n">extra_arguments</span><span class="o">=</span><span class="s1">r&#39;\color{#1} #2 #3 \color{black}&#39;</span><span class="p">)</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_comm</span><span class="p">)</span>
 
-    <span class="c"># Use our newly created command with different arguments</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ExampleCommand</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;Hello&#39;</span><span class="p">,</span> <span class="s">&#39;World!&#39;</span><span class="p">)))</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ExampleCommand</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;Hello&#39;</span><span class="p">,</span> <span class="s">&#39;World!&#39;</span><span class="p">)))</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ExampleCommand</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;Hello&#39;</span><span class="p">,</span> <span class="s">&#39;World!&#39;</span><span class="p">)))</span>
+    <span class="c1"># Use our newly created command with different arguments</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ExampleCommand</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World!&#39;</span><span class="p">)))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ExampleCommand</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World!&#39;</span><span class="p">)))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ExampleCommand</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World!&#39;</span><span class="p">)))</span>
 
-<span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;Custom environments&#39;</span><span class="p">)):</span>
+<span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Custom environments&#39;</span><span class="p">)):</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span>
         <span class="sd">r&quot;&quot;&quot;</span>
 <span class="sd">        The following is a demonstration of a custom \LaTeX{}</span>
 <span class="sd">        environment using the mdframed package.</span>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">))</span>
 
-    <span class="c"># Define a style for our box</span>
-    <span class="n">mdf_style_definition</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s">&#39;mdfdefinestyle&#39;</span><span class="p">,</span>
-                                         <span class="n">arguments</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;my_style&#39;</span><span class="p">,</span>
-                                                    <span class="p">(</span><span class="s">&#39;linecolor=#1,&#39;</span>
-                                                     <span class="s">&#39;linewidth=#2,&#39;</span>
-                                                     <span class="s">&#39;leftmargin=1cm,&#39;</span>
-                                                     <span class="s">&#39;leftmargin=1cm&#39;</span><span class="p">)])</span>
+    <span class="c1"># Define a style for our box</span>
+    <span class="n">mdf_style_definition</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s1">&#39;mdfdefinestyle&#39;</span><span class="p">,</span>
+                                         <span class="n">arguments</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;my_style&#39;</span><span class="p">,</span>
+                                                    <span class="p">(</span><span class="s1">&#39;linecolor=#1,&#39;</span>
+                                                     <span class="s1">&#39;linewidth=#2,&#39;</span>
+                                                     <span class="s1">&#39;leftmargin=1cm,&#39;</span>
+                                                     <span class="s1">&#39;leftmargin=1cm&#39;</span><span class="p">)])</span>
 
-    <span class="c"># Define the new environment using the style definition above</span>
-    <span class="n">new_env</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s">&#39;newenvironment&#39;</span><span class="p">,</span> <span class="s">&#39;exampleEnvironment&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="c1"># Define the new environment using the style definition above</span>
+    <span class="n">new_env</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s1">&#39;newenvironment&#39;</span><span class="p">,</span> <span class="s1">&#39;exampleEnvironment&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                             <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[</span>
                                 <span class="n">mdf_style_definition</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span> <span class="o">+</span>
-                                <span class="s">r&#39;\begin{mdframed}[style=my_style]&#39;</span><span class="p">,</span>
-                                <span class="s">r&#39;\end{mdframed}&#39;</span><span class="p">])</span>
+                                <span class="s1">r&#39;\begin{mdframed}[style=my_style]&#39;</span><span class="p">,</span>
+                                <span class="s1">r&#39;\end{mdframed}&#39;</span><span class="p">])</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_env</span><span class="p">)</span>
 
-    <span class="c"># Usage of the newly created environment</span>
+    <span class="c1"># Usage of the newly created environment</span>
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-            <span class="n">ExampleEnvironment</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span> <span class="k">as</span> <span class="n">environment</span><span class="p">:</span>
-        <span class="n">environment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;This is the actual content&#39;</span><span class="p">)</span>
+            <span class="n">ExampleEnvironment</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">Arguments</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span> <span class="k">as</span> <span class="n">environment</span><span class="p">:</span>
+        <span class="n">environment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;This is the actual content&#39;</span><span class="p">)</span>
 
-<span class="c"># Generate pdf</span>
-<span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;own_commands_ex&#39;</span><span class="p">)</span>
+<span class="c1"># Generate pdf</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;own_commands_ex&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-generated-pdfs">
-<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
+<div class="section" id="the-generated-files">
+<h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper container" id="own-commands-ex-tex">
+<div class="code-block-caption"><span class="caption-text">own_commands_ex.tex</span><a class="headerlink" href="#own-commands-ex-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>mdframed<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>Custom commands<span class="nb">}</span><span class="c">%</span>
+
+        The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>
+        command with a couple of parameters.
+        <span class="c">%</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\exampleCommand</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="k">\color</span><span class="nb">{</span>#1<span class="nb">}</span> #2 #3 <span class="k">\color</span><span class="nb">{</span>black<span class="nb">}}</span><span class="c">%</span>
+<span class="k">\exampleCommand</span><span class="nb">{</span>blue<span class="nb">}{</span>Hello<span class="nb">}{</span>World!<span class="nb">}</span><span class="c">%</span>
+<span class="k">\exampleCommand</span><span class="nb">{</span>green<span class="nb">}{</span>Hello<span class="nb">}{</span>World!<span class="nb">}</span><span class="c">%</span>
+<span class="k">\exampleCommand</span><span class="nb">{</span>red<span class="nb">}{</span>Hello<span class="nb">}{</span>World!<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>Custom environments<span class="nb">}</span><span class="c">%</span>
+
+        The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>
+        environment using the mdframed package.
+        <span class="c">%</span>
+<span class="k">\newenvironment</span><span class="nb">{</span>exampleEnvironment<span class="nb">}</span>[2]<span class="nb">{</span><span class="k">\mdfdefinestyle</span><span class="nb">{</span>my<span class="nb">_</span>style<span class="nb">}{</span>linecolor=#1,linewidth=#2,leftmargin=1cm,leftmargin=1cm<span class="nb">}</span><span class="k">\begin</span><span class="nb">{</span>mdframed<span class="nb">}</span>[style=my<span class="nb">_</span>style]<span class="nb">}{</span><span class="k">\end</span><span class="nb">{</span>mdframed<span class="nb">}}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>exampleEnvironment<span class="nb">}{</span>red<span class="nb">}{</span>3<span class="nb">}</span><span class="c">%</span>
+This is the actual content<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>exampleEnvironment<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>own_commands_ex.pdf</p>
+<div class="figure">
 <img alt="../_images/own_commands_ex.pdf.png" src="../_images/own_commands_ex.pdf.png" />
-<p class="caption"><span class="caption-text">own_commands_ex.pdf</span></p>
 </div>
 </div>
 </div>

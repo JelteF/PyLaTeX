@@ -112,7 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Matplotlib example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
@@ -176,54 +176,170 @@
 <p>This example shows matplotlib functionality.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
 
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Package</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">NoEscape</span>
 
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s">&#39;Agg&#39;</span><span class="p">)</span>  <span class="c"># Not to use X server. For TravisCI.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>  <span class="c"># noqa</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>  <span class="c1"># Not to use X server. For TravisCI.</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>  <span class="c1"># noqa</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;left=2cm&#39;</span><span class="p">,</span> <span class="s">&#39;right=2cm&#39;</span><span class="p">]))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;left=2cm&#39;</span><span class="p">,</span> <span class="s1">&#39;right=2cm&#39;</span><span class="p">]))</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Introduction.&#39;</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Introduction.&#39;</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;I am a section&#39;</span><span class="p">)):</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Take a look at this beautiful plot:&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;I am a section&#39;</span><span class="p">)):</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Take a look at this beautiful plot:&#39;</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;htbp&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s1">&#39;htbp&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">plot</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">plot</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;I am a caption.&#39;</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s1">&#39;I am a caption.&#39;</span><span class="p">)</span>
 
-        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Created using matplotlib.&#39;</span><span class="p">)</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Created using matplotlib.&#39;</span><span class="p">)</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Conclusion.&#39;</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Conclusion.&#39;</span><span class="p">)</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">()</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    <span class="n">main</span><span class="p">(</span><span class="s">&#39;matplotlib_ex-dpi&#39;</span><span class="p">,</span> <span class="s">r&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-    <span class="n">main</span><span class="p">(</span><span class="s">&#39;matplotlib_ex-facecolor&#39;</span><span class="p">,</span> <span class="s">r&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;matplotlib_ex-dpi&#39;</span><span class="p">,</span> <span class="s1">r&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;matplotlib_ex-facecolor&#39;</span><span class="p">,</span> <span class="s1">r&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-generated-pdfs">
-<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
-<img alt="../_images/matplotlib_ex-dpi.pdf.png" src="../_images/matplotlib_ex-dpi.pdf.png" />
-<p class="caption"><span class="caption-text">matplotlib_ex-dpi.pdf</span></p>
+<div class="section" id="the-generated-files">
+<h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper container" id="matplotlib-ex-dpi-tex">
+<div class="code-block-caption"><span class="caption-text">matplotlib_ex-dpi.tex</span><a class="headerlink" href="#matplotlib-ex-dpi-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[left=2cm,right=2cm]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+Introduction.<span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
+Take a look at this beautiful plot:<span class="c">%</span>
+
+
+<span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[htbp]<span class="c">%</span>
+<span class="k">\centering</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=1\textwidth]</span><span class="nb">{</span>/tmp/pylatex/7786c9dc-f6f7-4134-a425-9160cb1f565c.pdf<span class="nb">}</span><span class="c">%</span>
+<span class="k">\caption</span><span class="nb">{</span>I am a caption.<span class="nb">}</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+
+<span class="c">%</span>
+Created using matplotlib.
+
+<span class="c">%</span>
+Conclusion.<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
 </div>
-<div class="figure" id="id2">
+<p>matplotlib_ex-dpi.pdf</p>
+<div class="figure">
+<img alt="../_images/matplotlib_ex-dpi.pdf.png" src="../_images/matplotlib_ex-dpi.pdf.png" />
+</div>
+<div class="literal-block-wrapper container" id="matplotlib-ex-facecolor-tex">
+<div class="code-block-caption"><span class="caption-text">matplotlib_ex-facecolor.tex</span><a class="headerlink" href="#matplotlib-ex-facecolor-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[left=2cm,right=2cm]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+Introduction.<span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
+Take a look at this beautiful plot:<span class="c">%</span>
+
+
+<span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[htbp]<span class="c">%</span>
+<span class="k">\centering</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=0.5\textwidth]</span><span class="nb">{</span>/tmp/pylatex/ec041259-86d9-4161-aa35-479ee38f20a5.pdf<span class="nb">}</span><span class="c">%</span>
+<span class="k">\caption</span><span class="nb">{</span>I am a caption.<span class="nb">}</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+
+<span class="c">%</span>
+Created using matplotlib.
+
+<span class="c">%</span>
+Conclusion.<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>matplotlib_ex-facecolor.pdf</p>
+<div class="figure">
 <img alt="../_images/matplotlib_ex-facecolor.pdf.png" src="../_images/matplotlib_ex-facecolor.pdf.png" />
-<p class="caption"><span class="caption-text">matplotlib_ex-facecolor.pdf</span></p>
 </div>
 </div>
 </div>

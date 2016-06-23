@@ -179,7 +179,7 @@
 <p>These lists are specifically enumerate, itemize and description.</p>
 <dl class="class">
 <dt id="pylatex.lists.List">
-<em class="property">class </em><code class="descname">List</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L14-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">List</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L14-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A base class that represents a list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -194,9 +194,16 @@
 </tr>
 </tbody>
 </table>
+<dl class="attribute">
+<dt id="pylatex.lists.List.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = True</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L19-L19"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>List environments cause compile errors when they do not contain items.
+This is why they are ommited fully if they are empty.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="pylatex.lists.List.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L17-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -212,7 +219,7 @@
 
 <dl class="class">
 <dt id="pylatex.lists.Enumerate">
-<em class="property">class </em><code class="descname">Enumerate</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L29-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Enumerate</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L33-L34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">pylatex.lists.List</span></code></a></p>
 <p>A class that represents an enumerate list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -229,7 +236,7 @@
 </table>
 <dl class="method">
 <dt id="pylatex.lists.Enumerate.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L17-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -241,11 +248,16 @@
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="pylatex.lists.Enumerate.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.lists.Enumerate.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.lists.Itemize">
-<em class="property">class </em><code class="descname">Itemize</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L33-L34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Itemize</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L37-L38"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">pylatex.lists.List</span></code></a></p>
 <p>A class that represents an itemize list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -262,7 +274,7 @@
 </table>
 <dl class="method">
 <dt id="pylatex.lists.Itemize.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L17-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -274,11 +286,16 @@
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="pylatex.lists.Itemize.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.lists.Itemize.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.lists.Description">
-<em class="property">class </em><code class="descname">Description</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L37-L51"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Description</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L41-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">pylatex.lists.List</span></code></a></p>
 <p>A class that represents a description list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -295,7 +312,7 @@
 </table>
 <dl class="method">
 <dt id="pylatex.lists.Description.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>label</em>, <em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L40-L51"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>label</em>, <em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L44-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -310,6 +327,11 @@
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pylatex.lists.Description.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = True</em><a class="headerlink" href="#pylatex.lists.Description.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

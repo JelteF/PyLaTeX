@@ -111,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Lists example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
@@ -176,64 +176,154 @@
 <p>This example shows list functionality.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># Test for list structures in PyLaTeX.</span>
-<span class="c"># More info @ http://en.wikibooks.org/wiki/LaTeX/List_Structures</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Test for list structures in PyLaTeX.</span>
+<span class="c1"># More info @ http://en.wikibooks.org/wiki/LaTeX/List_Structures</span>
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Itemize</span><span class="p">,</span> <span class="n">Enumerate</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> \
     <span class="n">Command</span><span class="p">,</span> <span class="n">NoEscape</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
 
-    <span class="c"># create a bulleted &quot;itemize&quot; list like the below:</span>
-    <span class="c"># \begin{itemize}</span>
-    <span class="c">#   \item The first item</span>
-    <span class="c">#   \item The second item</span>
-    <span class="c">#   \item The third etc \ldots</span>
-    <span class="c"># \end{itemize}</span>
+    <span class="c1"># create a bulleted &quot;itemize&quot; list like the below:</span>
+    <span class="c1"># \begin{itemize}</span>
+    <span class="c1">#   \item The first item</span>
+    <span class="c1">#   \item The second item</span>
+    <span class="c1">#   \item The third etc \ldots</span>
+    <span class="c1"># \end{itemize}</span>
 
-    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;&quot;Itemize&quot; list&#39;</span><span class="p">)):</span>
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;&quot;Itemize&quot; list&#39;</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Itemize</span><span class="p">())</span> <span class="k">as</span> <span class="n">itemize</span><span class="p">:</span>
-            <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the first item&quot;</span><span class="p">)</span>
-            <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the second item&quot;</span><span class="p">)</span>
-            <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the third etc&quot;</span><span class="p">)</span>
-            <span class="c"># you can append to existing items</span>
-            <span class="n">itemize</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s">&quot;ldots&quot;</span><span class="p">))</span>
+            <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the first item&quot;</span><span class="p">)</span>
+            <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the second item&quot;</span><span class="p">)</span>
+            <span class="n">itemize</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the third etc&quot;</span><span class="p">)</span>
+            <span class="c1"># you can append to existing items</span>
+            <span class="n">itemize</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s2">&quot;ldots&quot;</span><span class="p">))</span>
 
-    <span class="c"># create a numbered &quot;enumerate&quot; list like the below:</span>
-    <span class="c"># \begin{enumerate}</span>
-    <span class="c">#   \item The first item</span>
-    <span class="c">#   \item The second item</span>
-    <span class="c">#   \item The third etc \ldots</span>
-    <span class="c"># \end{enumerate}</span>
+    <span class="c1"># create a numbered &quot;enumerate&quot; list like the below:</span>
+    <span class="c1"># \begin{enumerate}</span>
+    <span class="c1">#   \item The first item</span>
+    <span class="c1">#   \item The second item</span>
+    <span class="c1">#   \item The third etc \ldots</span>
+    <span class="c1"># \end{enumerate}</span>
 
-    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;&quot;Enumerate&quot; list&#39;</span><span class="p">)):</span>
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;&quot;Enumerate&quot; list&#39;</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Enumerate</span><span class="p">())</span> <span class="k">as</span> <span class="n">enum</span><span class="p">:</span>
-            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the first item&quot;</span><span class="p">)</span>
-            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;the second item&quot;</span><span class="p">)</span>
-            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span><span class="s">&quot;the third etc </span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">))</span>
+            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the first item&quot;</span><span class="p">)</span>
+            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the second item&quot;</span><span class="p">)</span>
+            <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span><span class="s2">&quot;the third etc </span><span class="se">\\</span><span class="s2">ldots&quot;</span><span class="p">))</span>
 
-    <span class="c"># create a labelled &quot;description&quot; list like the below:</span>
-    <span class="c"># \begin{description}</span>
-    <span class="c">#   \item[First] The first item</span>
-    <span class="c">#   \item[Second] The second item</span>
-    <span class="c">#   \item[Third] The third etc \ldots</span>
-    <span class="c"># \end{description}</span>
+    <span class="c1"># create a labelled &quot;description&quot; list like the below:</span>
+    <span class="c1"># \begin{description}</span>
+    <span class="c1">#   \item[First] The first item</span>
+    <span class="c1">#   \item[Second] The second item</span>
+    <span class="c1">#   \item[Third] The third etc \ldots</span>
+    <span class="c1"># \end{description}</span>
 
-    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;&quot;Description&quot; list&#39;</span><span class="p">)):</span>
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;&quot;Description&quot; list&#39;</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Description</span><span class="p">())</span> <span class="k">as</span> <span class="n">desc</span><span class="p">:</span>
-            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;First&quot;</span><span class="p">,</span> <span class="s">&quot;The first item&quot;</span><span class="p">)</span>
-            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;Second&quot;</span><span class="p">,</span> <span class="s">&quot;The second item&quot;</span><span class="p">)</span>
-            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s">&quot;Third&quot;</span><span class="p">,</span> <span class="n">NoEscape</span><span class="p">(</span><span class="s">&quot;The third etc </span><span class="se">\\</span><span class="s">ldots&quot;</span><span class="p">))</span>
+            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;First&quot;</span><span class="p">,</span> <span class="s2">&quot;The first item&quot;</span><span class="p">)</span>
+            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;Second&quot;</span><span class="p">,</span> <span class="s2">&quot;The second item&quot;</span><span class="p">)</span>
+            <span class="n">desc</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;Third&quot;</span><span class="p">,</span> <span class="n">NoEscape</span><span class="p">(</span><span class="s2">&quot;The third etc </span><span class="se">\\</span><span class="s2">ldots&quot;</span><span class="p">))</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;lists&#39;</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;lists&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-generated-pdfs">
-<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
+<div class="section" id="the-generated-files">
+<h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper container" id="lists-tex">
+<div class="code-block-caption"><span class="caption-text">lists.tex</span><a class="headerlink" href="#lists-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>&quot;Itemize&quot; list<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>itemize<span class="nb">}</span><span class="c">%</span>
+<span class="k">\item</span><span class="c">%</span>
+the first item<span class="c">%</span>
+<span class="k">\item</span><span class="c">%</span>
+the second item<span class="c">%</span>
+<span class="k">\item</span><span class="c">%</span>
+the third etc<span class="c">%</span>
+<span class="k">\ldots</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>itemize<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>&quot;Enumerate&quot; list<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>enumerate<span class="nb">}</span><span class="c">%</span>
+<span class="k">\item</span><span class="c">%</span>
+the first item<span class="c">%</span>
+<span class="k">\item</span><span class="c">%</span>
+the second item<span class="c">%</span>
+<span class="k">\item</span><span class="c">%</span>
+the third etc <span class="k">\ldots</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>enumerate<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>&quot;Description&quot; list<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>description<span class="nb">}</span><span class="c">%</span>
+<span class="k">\item</span><span class="na">[First]</span><span class="c">%</span>
+The first item<span class="c">%</span>
+<span class="k">\item</span><span class="na">[Second]</span><span class="c">%</span>
+The second item<span class="c">%</span>
+<span class="k">\item</span><span class="na">[Third]</span><span class="c">%</span>
+The third etc <span class="k">\ldots</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>description<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>lists.pdf</p>
+<div class="figure">
 <img alt="../_images/lists.pdf.png" src="../_images/lists.pdf.png" />
-<p class="caption"><span class="caption-text">lists.pdf</span></p>
 </div>
 </div>
 </div>

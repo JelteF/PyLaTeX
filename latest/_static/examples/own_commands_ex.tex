@@ -1,0 +1,33 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{color}%
+\usepackage{mdframed}%
+%
+%
+\begin{document}%
+\section*{Custom commands}%
+
+        The following is a demonstration of a custom \LaTeX{}
+        command with a couple of parameters.
+        %
+\newcommand{\exampleCommand}[3]{\color{#1} #2 #3 \color{black}}%
+\exampleCommand{blue}{Hello}{World!}%
+\exampleCommand{green}{Hello}{World!}%
+\exampleCommand{red}{Hello}{World!}
+
+%
+\section*{Custom environments}%
+
+        The following is a demonstration of a custom \LaTeX{}
+        environment using the mdframed package.
+        %
+\newenvironment{exampleEnvironment}[2]{\mdfdefinestyle{my_style}{linecolor=#1,linewidth=#2,leftmargin=1cm,leftmargin=1cm}\begin{mdframed}[style=my_style]}{\end{mdframed}}%
+\begin{exampleEnvironment}{red}{3}%
+This is the actual content%
+\end{exampleEnvironment}
+
+%
+\end{document}

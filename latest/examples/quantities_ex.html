@@ -116,7 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Quantities example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
@@ -176,34 +176,114 @@
 <p>This example shows quantities functionality.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantities</span> <span class="kn">as</span> <span class="nn">pq</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">quantities</span> <span class="kn">as</span> <span class="nn">pq</span>
 
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Quantity</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
-    <span class="n">section</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="s">&#39;Quantity tests&#39;</span><span class="p">)</span>
-    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Scalars&#39;</span><span class="p">)</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Quantity tests&#39;</span><span class="p">)</span>
 
+    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Scalars with units&#39;</span><span class="p">)</span>
     <span class="n">G</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">Newtonian_constant_of_gravitation</span>
     <span class="n">moon_earth_distance</span> <span class="o">=</span> <span class="mi">384400</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">km</span>
     <span class="n">moon_mass</span> <span class="o">=</span> <span class="mf">7.34767309e22</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">kg</span>
     <span class="n">earth_mass</span> <span class="o">=</span> <span class="mf">5.972e24</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">kg</span>
     <span class="n">moon_earth_force</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">moon_mass</span> <span class="o">*</span> <span class="n">earth_mass</span> <span class="o">/</span> <span class="n">moon_earth_distance</span><span class="o">**</span><span class="mi">2</span>
-    <span class="n">q1</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">moon_earth_force</span><span class="o">.</span><span class="n">rescale</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">newton</span><span class="p">))</span>
-    <span class="n">math</span> <span class="o">=</span> <span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;F=&#39;</span><span class="p">,</span> <span class="n">q1</span><span class="p">])</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">moon_earth_force</span><span class="o">.</span><span class="n">rescale</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">newton</span><span class="p">),</span>
+                  <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;round-precision&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;round-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;figures&#39;</span><span class="p">})</span>
+    <span class="n">math</span> <span class="o">=</span> <span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;F=&#39;</span><span class="p">,</span> <span class="n">q1</span><span class="p">])</span>
     <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
     <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
+
+    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Scalars without units&#39;</span><span class="p">)</span>
+    <span class="n">world_population</span> <span class="o">=</span> <span class="mi">7400219037</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">world_population</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;round-precision&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                                            <span class="s1">&#39;round-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;figures&#39;</span><span class="p">},</span>
+                 <span class="n">format_cb</span><span class="o">=</span><span class="s2">&quot;{0:23.17e}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+    <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;N=&#39;</span><span class="p">,</span> <span class="n">N</span><span class="p">]))</span>
+    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
+
+    <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Scalars with uncertainties&#39;</span><span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="o">.</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">width</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s1">&#39;separate-uncertainty&#39;</span><span class="p">,</span>
+                    <span class="n">format_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;{0:.1f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A=&#39;</span><span class="p">,</span> <span class="n">area</span><span class="p">]))</span>
+    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
+
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;quantities_ex&#39;</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;quantities_ex&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-generated-pdfs">
-<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
+<div class="section" id="the-generated-files">
+<h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper container" id="quantities-ex-tex">
+<div class="code-block-caption"><span class="caption-text">quantities_ex.tex</span><a class="headerlink" href="#quantities-ex-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>siunitx<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>Quantity tests<span class="nb">}</span><span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Scalars with units<span class="nb">}</span><span class="c">%</span>
+<span class="sb">$$</span><span class="c">%</span>
+<span class="nb">F</span><span class="o">=</span><span class="nb"> </span><span class="nv">\SI</span><span class="o">[</span><span class="nb">round</span><span class="o">-</span><span class="nb">mode</span><span class="o">=</span><span class="nb">figures,round</span><span class="o">-</span><span class="nb">precision</span><span class="o">=</span><span class="m">4</span><span class="o">]</span><span class="nb">{</span><span class="m">1</span><span class="nb">.</span><span class="m">9820166063855052</span><span class="nb">e</span><span class="o">+</span><span class="m">20</span><span class="nb">}{</span><span class="nv">\newton</span><span class="nb">}</span><span class="c">%</span>
+<span class="s">$$</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Scalars without units<span class="nb">}</span><span class="c">%</span>
+<span class="sb">$$</span><span class="c">%</span>
+<span class="nb">N</span><span class="o">=</span><span class="nb"> </span><span class="nv">\num</span><span class="o">[</span><span class="nb">round</span><span class="o">-</span><span class="nb">mode</span><span class="o">=</span><span class="nb">figures,round</span><span class="o">-</span><span class="nb">precision</span><span class="o">=</span><span class="m">2</span><span class="o">]</span><span class="nb">{</span><span class="m">7</span><span class="nb">.</span><span class="m">40021903700000000</span><span class="nb">e</span><span class="o">+</span><span class="m">09</span><span class="nb">}</span><span class="c">%</span>
+<span class="s">$$</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Scalars with uncertainties<span class="nb">}</span><span class="c">%</span>
+<span class="sb">$$</span><span class="c">%</span>
+<span class="nb">A</span><span class="o">=</span><span class="nb"> </span><span class="nv">\SI</span><span class="o">[</span><span class="nb">separate</span><span class="o">-</span><span class="nb">uncertainty</span><span class="o">]</span><span class="nb">{</span><span class="m">42</span><span class="nb">.</span><span class="m">0</span><span class="nb"> </span><span class="o">+-</span><span class="nb"> </span><span class="m">3</span><span class="nb">.</span><span class="m">2</span><span class="nb">}{</span><span class="nv">\meter\tothe</span><span class="nb">{</span><span class="m">2</span><span class="nb">}}</span><span class="c">%</span>
+<span class="s">$$</span>
+
+<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>quantities_ex.pdf</p>
+<div class="figure">
 <img alt="../_images/quantities_ex.pdf.png" src="../_images/quantities_ex.pdf.png" />
-<p class="caption"><span class="caption-text">quantities_ex.pdf</span></p>
 </div>
 </div>
 </div>

@@ -110,7 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Full example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
@@ -173,32 +173,34 @@
             
   <div class="section" id="module-examples.full">
 <span id="full-example"></span><h1>Full example<a class="headerlink" href="#module-examples.full" title="Permalink to this headline">¶</a></h1>
-<p>This example shows matplotlib functionality.</p>
+<p>This example demonstrates several features of PyLaTeX.</p>
+<p>It includes plain equations, tables, equations using numpy objects, tikz plots,
+and figures.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Tabular</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">TikZ</span><span class="p">,</span> <span class="n">Axis</span><span class="p">,</span> \
     <span class="n">Plot</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">Package</span><span class="p">,</span> <span class="n">Matrix</span>
 <span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s">&#39;kitten.jpg&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s1">&#39;kitten.jpg&#39;</span><span class="p">)</span>
 
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tmargin=1cm&#39;</span><span class="p">,</span>
-                                                     <span class="s">&#39;lmargin=10cm&#39;</span><span class="p">]))</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tmargin=1cm&#39;</span><span class="p">,</span>
+                                                     <span class="s1">&#39;lmargin=10cm&#39;</span><span class="p">]))</span>
 
-    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;The simple stuff&#39;</span><span class="p">)):</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Some regular text and some&#39;</span><span class="p">)</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">italic</span><span class="p">(</span><span class="s">&#39;italic text. &#39;</span><span class="p">))</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Also some crazy characters: $&amp;#{}&#39;</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Math that is incorrect&#39;</span><span class="p">)):</span>
-            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;2*3&#39;</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span>
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;The simple stuff&#39;</span><span class="p">)):</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Some regular text and some&#39;</span><span class="p">)</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">italic</span><span class="p">(</span><span class="s1">&#39;italic text. &#39;</span><span class="p">))</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Also some crazy characters: $&amp;#{}&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Math that is incorrect&#39;</span><span class="p">)):</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2*3&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span>
 
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Table of something&#39;</span><span class="p">)):</span>
-            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Tabular</span><span class="p">(</span><span class="s">&#39;rc|cl&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">table</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Table of something&#39;</span><span class="p">)):</span>
+            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Tabular</span><span class="p">(</span><span class="s1">&#39;rc|cl&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">table</span><span class="p">:</span>
                 <span class="n">table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
                 <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
                 <span class="n">table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -210,15 +212,15 @@
                    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
 
-    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s">&#39;The fancy stuff&#39;</span><span class="p">)):</span>
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Correct matrix equations&#39;</span><span class="p">)):</span>
-            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">Matrix</span><span class="p">(</span><span class="n">M</span><span class="p">),</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">M</span> <span class="o">*</span> <span class="n">a</span><span class="p">)]))</span>
+    <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;The fancy stuff&#39;</span><span class="p">)):</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Correct matrix equations&#39;</span><span class="p">)):</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">Matrix</span><span class="p">(</span><span class="n">M</span><span class="p">),</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">M</span> <span class="o">*</span> <span class="n">a</span><span class="p">)]))</span>
 
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Beautiful graphs&#39;</span><span class="p">)):</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Beautiful graphs&#39;</span><span class="p">)):</span>
             <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">TikZ</span><span class="p">()):</span>
-                <span class="n">plot_options</span> <span class="o">=</span> <span class="s">&#39;height=6cm, width=6cm, grid=major&#39;</span>
+                <span class="n">plot_options</span> <span class="o">=</span> <span class="s1">&#39;height=6cm, width=6cm, grid=major&#39;</span>
                 <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Axis</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">plot_options</span><span class="p">))</span> <span class="k">as</span> <span class="n">plot</span><span class="p">:</span>
-                    <span class="n">plot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;model&#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s">&#39;-x^5 - 242&#39;</span><span class="p">))</span>
+                    <span class="n">plot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;-x^5 - 242&#39;</span><span class="p">))</span>
 
                     <span class="n">coordinates</span> <span class="o">=</span> <span class="p">[</span>
                         <span class="p">(</span><span class="o">-</span><span class="mf">4.77778</span><span class="p">,</span> <span class="mf">2027.60977</span><span class="p">),</span>
@@ -232,22 +234,204 @@
                         <span class="p">(</span><span class="mf">5.00000</span><span class="p">,</span> <span class="o">-</span><span class="mf">3269.56775</span><span class="p">),</span>
                     <span class="p">]</span>
 
-                    <span class="n">plot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;estimate&#39;</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="p">))</span>
+                    <span class="n">plot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;estimate&#39;</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="p">))</span>
 
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Cute kitten pictures&#39;</span><span class="p">)):</span>
-            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s">&#39;h!&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">kitten_pic</span><span class="p">:</span>
-                <span class="n">kitten_pic</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s">&#39;120px&#39;</span><span class="p">)</span>
-                <span class="n">kitten_pic</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s">&#39;Look it</span><span class="se">\&#39;</span><span class="s">s on its back&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Cute kitten pictures&#39;</span><span class="p">)):</span>
+            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s1">&#39;h!&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">kitten_pic</span><span class="p">:</span>
+                <span class="n">kitten_pic</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;120px&#39;</span><span class="p">)</span>
+                <span class="n">kitten_pic</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s1">&#39;Look it</span><span class="se">\&#39;</span><span class="s1">s on its back&#39;</span><span class="p">)</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s">&#39;full&#39;</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-generated-pdfs">
-<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
+<div class="section" id="the-generated-files">
+<h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper container" id="full-tex">
+<div class="code-block-caption"><span class="caption-text">full.tex</span><a class="headerlink" href="#full-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[tmargin=1cm,lmargin=10cm]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>amsmath<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>tikz<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>pgfplots<span class="nb">}</span><span class="c">%</span>
+<span class="k">\pgfplotsset</span><span class="nb">{</span>compat=newest<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>pgfplots<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>The simple stuff<span class="nb">}</span><span class="c">%</span>
+Some regular text and some<span class="c">%</span>
+<span class="k">\textit</span><span class="nb">{</span>italic text. <span class="nb">}</span><span class="c">%</span>
+<span class="k">\\</span><span class="c">%</span>
+Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span><span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Math that is incorrect<span class="nb">}</span><span class="c">%</span>
+<span class="sb">$$</span><span class="c">%</span>
+<span class="m">2</span><span class="o">*</span><span class="m">3</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="m">9</span><span class="c">%</span>
+<span class="s">$$</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Table of something<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>rc|cl<span class="nb">}</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+1<span class="nb">&amp;</span>2<span class="nb">&amp;</span>3<span class="nb">&amp;</span>4<span class="k">\\</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>1-2<span class="nb">}</span><span class="c">%</span>
+<span class="nb">&amp;&amp;&amp;</span><span class="k">\\</span><span class="c">%</span>
+4<span class="nb">&amp;</span>5<span class="nb">&amp;</span>6<span class="nb">&amp;</span>7<span class="k">\\</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>The fancy stuff<span class="nb">}</span><span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Correct matrix equations<span class="nb">}</span><span class="c">%</span>
+<span class="sb">$$</span><span class="c">%</span>
+<span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
+<span class="m">2</span><span class="nb">&amp;</span><span class="m">3</span><span class="nb">&amp;</span><span class="m">4</span><span class="nv">\\</span><span class="c">%</span>
+<span class="m">0</span><span class="nb">&amp;</span><span class="m">0</span><span class="nb">&amp;</span><span class="m">1</span><span class="nv">\\</span><span class="c">%</span>
+<span class="m">0</span><span class="nb">&amp;</span><span class="m">0</span><span class="nb">&amp;</span><span class="m">2</span><span class="c">%</span>
+<span class="nv">\end</span><span class="nb">{pmatrix} </span><span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
+<span class="m">100</span><span class="nv">\\</span><span class="c">%</span>
+<span class="m">10</span><span class="nv">\\</span><span class="c">%</span>
+<span class="m">20</span><span class="c">%</span>
+<span class="nv">\end</span><span class="nb">{pmatrix} </span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
+<span class="m">310</span><span class="nv">\\</span><span class="c">%</span>
+<span class="m">20</span><span class="nv">\\</span><span class="c">%</span>
+<span class="m">40</span><span class="c">%</span>
+<span class="nv">\end</span><span class="nb">{pmatrix}</span><span class="c">%</span>
+<span class="s">$$</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Beautiful graphs<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>tikzpicture<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>axis<span class="nb">}</span>[height=6cm, width=6cm, grid=major]<span class="c">%</span>
+<span class="k">\addplot</span><span class="nb">{</span>-x<span class="nb">^</span>5 - 242<span class="nb">}</span>;<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\addlegendentry</span><span class="nb">{</span>model<span class="nb">}</span><span class="c">%</span>
+<span class="k">\addplot</span> coordinates <span class="nb">{</span><span class="c">%</span>
+(-4.77778,2027.60977)<span class="c">%</span>
+(-3.55556,347.84069)<span class="c">%</span>
+(-2.33333,22.58953)<span class="c">%</span>
+(-1.11111,-493.50066)<span class="c">%</span>
+(0.11111,46.66082)<span class="c">%</span>
+(1.33333,-205.56286)<span class="c">%</span>
+(2.55556,-341.40638)<span class="c">%</span>
+(3.77778,-1169.2478)<span class="c">%</span>
+(5.0,-3269.56775)<span class="c">%</span>
+<span class="nb">}</span>;<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\addlegendentry</span><span class="nb">{</span>estimate<span class="nb">}</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>axis<span class="nb">}</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Cute kitten pictures<span class="nb">}</span><span class="c">%</span>
+
+
+<span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[h!]<span class="c">%</span>
+<span class="k">\centering</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=120px]</span><span class="nb">{</span>../../../../examples/kitten.jpg<span class="nb">}</span><span class="c">%</span>
+<span class="k">\caption</span><span class="nb">{</span>Look it&#39;s on its back<span class="nb">}</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>full.pdf</p>
+<div class="figure">
 <img alt="../_images/full.pdf.png" src="../_images/full.pdf.png" />
-<p class="caption"><span class="caption-text">full.pdf</span></p>
 </div>
 </div>
 </div>

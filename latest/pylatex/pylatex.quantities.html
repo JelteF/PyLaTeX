@@ -179,7 +179,7 @@
 <p>It requires the latex package SIunitx.</p>
 <dl class="class">
 <dt id="pylatex.quantities.Quantity">
-<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/quantities.py#L36-L60"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>options=None</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/quantities.py#L36-L106"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Command</span></code></a></p>
 <p>A class representing quantities.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -188,13 +188,35 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>quantity</strong> (<a class="reference external" href="https://pythonhosted.org/quantities/user/tutorial.html#quantities.quantity.Quantity" title="(in quantities v0.10.0)"><code class="xref py py-obj docutils literal"><span class="pre">quantities.quantity.Quantity</span></code></a>) &#8211; The quantity that should be displayed</li>
-<li><strong>fmtstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function which formats the number in the quantity. By default
-this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_str.html#numpy.array_str" title="(in NumPy v1.10)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.array_str</span></code></a>.</li>
+<li><strong>options</strong> (None, str, list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options of the command. These are placed in front of the arguments.</li>
+<li><strong>format_cb</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#callable" title="(in Python v3.5)"><em>callable</em></a>) &#8211; A function which formats the number in the quantity. By default
+this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_str.html#numpy.array_str" title="(in NumPy v1.11)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.array_str</span></code></a>.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">quantities</span> <span class="kn">as</span> <span class="nn">pq</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="mf">3.14159265</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span> <span class="o">/</span> <span class="n">pq</span><span class="o">.</span><span class="n">second</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;round-precision&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="gp">... </span>                         <span class="s1">&#39;round-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;figures&#39;</span><span class="p">})</span>
+<span class="go">&#39;\\SI[round-mode=figures,round-precision=3]{3.14159265}{\meter\per\second}&#39;</span>
+</pre></div>
+</div>
+<p>Uncertainties are also handled:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">width</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="n">width</span><span class="p">)</span>
+<span class="go">&#39;\\SI{256.0 +- 0.5}{\meter\tothe{2}}</span>
+</pre></div>
+</div>
+<p>Ordinary numbers are also supported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Avogadro_constant</span> <span class="o">=</span> <span class="mf">6.022140857e23</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="p">(</span><span class="n">Avogadro_constant</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;round-precision&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="go">&#39;\\num[round-precision=3]{6.022e23}&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

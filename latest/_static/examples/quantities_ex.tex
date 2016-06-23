@@ -1,0 +1,29 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{siunitx}%
+%
+%
+\begin{document}%
+\section*{Quantity tests}%
+\subsection*{Scalars with units}%
+$$%
+F= \SI[round-mode=figures,round-precision=4]{1.9820166063855052e+20}{\newton}%
+$$
+
+%
+\subsection*{Scalars without units}%
+$$%
+N= \num[round-mode=figures,round-precision=2]{7.40021903700000000e+09}%
+$$
+
+%
+\subsection*{Scalars with uncertainties}%
+$$%
+A= \SI[separate-uncertainty]{42.0 +- 3.2}{\meter\tothe{2}}%
+$$
+
+%
+\end{document}

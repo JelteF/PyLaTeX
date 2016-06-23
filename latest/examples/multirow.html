@@ -113,7 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Multirow example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-generated-pdfs">The generated pdfs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
@@ -176,62 +176,62 @@
 <p>This example shows how multirow and multicolumns can be used.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Tabular</span><span class="p">,</span> <span class="n">MultiColumn</span><span class="p">,</span>\
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Tabular</span><span class="p">,</span> <span class="n">MultiColumn</span><span class="p">,</span>\
     <span class="n">MultiRow</span>
 
-<span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s">&quot;multirow&quot;</span><span class="p">)</span>
-<span class="n">section</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="s">&#39;Multirow Test&#39;</span><span class="p">)</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s2">&quot;multirow&quot;</span><span class="p">)</span>
+<span class="n">section</span> <span class="o">=</span> <span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Multirow Test&#39;</span><span class="p">)</span>
 
-<span class="n">test1</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;MultiColumn&#39;</span><span class="p">)</span>
-<span class="n">test2</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;MultiRow&#39;</span><span class="p">)</span>
-<span class="n">test3</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;MultiColumn and MultiRow&#39;</span><span class="p">)</span>
-<span class="n">test4</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s">&#39;Vext01&#39;</span><span class="p">)</span>
+<span class="n">test1</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;MultiColumn&#39;</span><span class="p">)</span>
+<span class="n">test2</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;MultiRow&#39;</span><span class="p">)</span>
+<span class="n">test3</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;MultiColumn and MultiRow&#39;</span><span class="p">)</span>
+<span class="n">test4</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Vext01&#39;</span><span class="p">)</span>
 
-<span class="n">table1</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s">&#39;|c|c|c|c|&#39;</span><span class="p">)</span>
+<span class="n">table1</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s1">&#39;|c|c|c|c|&#39;</span><span class="p">)</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">table1</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s">&#39;|c|&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;Multicolumn&#39;</span><span class="p">),))</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;|c|&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;Multicolumn&#39;</span><span class="p">),))</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">row_cells</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;9&#39;</span><span class="p">,</span> <span class="n">MultiColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s">&#39;|c|&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;Multicolumn not on left&#39;</span><span class="p">))</span>
+<span class="n">row_cells</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="n">MultiColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;|c|&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;Multicolumn not on left&#39;</span><span class="p">))</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row_cells</span><span class="p">)</span>
 <span class="n">table1</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
 
-<span class="n">table2</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s">&#39;|c|c|c|&#39;</span><span class="p">)</span>
+<span class="n">table2</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s1">&#39;|c|c|c|&#39;</span><span class="p">)</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiRow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;Multirow&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiRow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;Multirow&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiRow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;Multirow2&#39;</span><span class="p">),</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+<span class="n">table2</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiRow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;Multirow2&#39;</span><span class="p">),</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_empty_row</span><span class="p">()</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_empty_row</span><span class="p">()</span>
 <span class="n">table2</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
 
-<span class="n">table3</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s">&#39;|c|c|c|&#39;</span><span class="p">)</span>
+<span class="n">table3</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s1">&#39;|c|c|c|&#39;</span><span class="p">)</span>
 <span class="n">table3</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">table3</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s">&#39;|c|&#39;</span><span class="p">,</span>
-                            <span class="n">data</span><span class="o">=</span><span class="n">MultiRow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;multi-col-row&#39;</span><span class="p">)),</span> <span class="s">&#39;X&#39;</span><span class="p">))</span>
-<span class="n">table3</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s">&#39;|c|&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">),</span> <span class="s">&#39;X&#39;</span><span class="p">))</span>
+<span class="n">table3</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;|c|&#39;</span><span class="p">,</span>
+                            <span class="n">data</span><span class="o">=</span><span class="n">MultiRow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;multi-col-row&#39;</span><span class="p">)),</span> <span class="s1">&#39;X&#39;</span><span class="p">))</span>
+<span class="n">table3</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;|c|&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="s1">&#39;X&#39;</span><span class="p">))</span>
 <span class="n">table3</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">table3</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">))</span>
+<span class="n">table3</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">))</span>
 <span class="n">table3</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
 
-<span class="n">table4</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s">&#39;|c|c|c|&#39;</span><span class="p">)</span>
+<span class="n">table4</span> <span class="o">=</span> <span class="n">Tabular</span><span class="p">(</span><span class="s1">&#39;|c|c|c|&#39;</span><span class="p">)</span>
 <span class="n">table4</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-<span class="n">col1_cell</span> <span class="o">=</span> <span class="n">MultiRow</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;span-4&#39;</span><span class="p">)</span>
-<span class="n">col2_cell</span> <span class="o">=</span> <span class="n">MultiRow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s">&#39;span-2&#39;</span><span class="p">)</span>
-<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">col1_cell</span><span class="p">,</span> <span class="n">col2_cell</span><span class="p">,</span> <span class="s">&#39;3a&#39;</span><span class="p">))</span>
+<span class="n">col1_cell</span> <span class="o">=</span> <span class="n">MultiRow</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;span-4&#39;</span><span class="p">)</span>
+<span class="n">col2_cell</span> <span class="o">=</span> <span class="n">MultiRow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;span-2&#39;</span><span class="p">)</span>
+<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">col1_cell</span><span class="p">,</span> <span class="n">col2_cell</span><span class="p">,</span> <span class="s1">&#39;3a&#39;</span><span class="p">))</span>
 <span class="n">table4</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;3b&#39;</span><span class="p">))</span>
+<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;3b&#39;</span><span class="p">))</span>
 <span class="n">table4</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">col2_cell</span><span class="p">,</span> <span class="s">&#39;3c&#39;</span><span class="p">))</span>
+<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">col2_cell</span><span class="p">,</span> <span class="s1">&#39;3c&#39;</span><span class="p">))</span>
 <span class="n">table4</span><span class="o">.</span><span class="n">add_hline</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;3d&#39;</span><span class="p">))</span>
+<span class="n">table4</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;3d&#39;</span><span class="p">))</span>
 <span class="n">table4</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
 
 <span class="n">test1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span>
@@ -245,15 +245,151 @@
 <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test4</span><span class="p">)</span>
 
 <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
-<span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="n">clean</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="the-generated-pdfs">
-<h2>The generated pdfs<a class="headerlink" href="#the-generated-pdfs" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="id1">
+<div class="section" id="the-generated-files">
+<h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper container" id="multirow-tex">
+<div class="code-block-caption"><span class="caption-text">multirow.tex</span><a class="headerlink" href="#multirow-tex" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>multirow<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
+<span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section*</span><span class="nb">{</span>Multirow Test<span class="nb">}</span><span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>MultiColumn<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|c|<span class="nb">}</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\multicolumn</span><span class="nb">{</span>4<span class="nb">}{</span>|c|<span class="nb">}{</span>Multicolumn<span class="nb">}</span><span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+1<span class="nb">&amp;</span>2<span class="nb">&amp;</span>3<span class="nb">&amp;</span>4<span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+5<span class="nb">&amp;</span>6<span class="nb">&amp;</span>7<span class="nb">&amp;</span>8<span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+9<span class="nb">&amp;</span><span class="k">\multicolumn</span><span class="nb">{</span>3<span class="nb">}{</span>|c|<span class="nb">}{</span>Multicolumn not on left<span class="nb">}</span><span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>MultiRow<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|<span class="nb">}</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\multirow</span><span class="nb">{</span>3<span class="nb">}{</span>*<span class="nb">}{</span>Multirow<span class="nb">}&amp;</span>1<span class="nb">&amp;</span>2<span class="k">\\</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>2-3<span class="nb">}</span><span class="c">%</span>
+<span class="nb">&amp;</span>3<span class="nb">&amp;</span>4<span class="k">\\</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>2-3<span class="nb">}</span><span class="c">%</span>
+<span class="nb">&amp;</span>5<span class="nb">&amp;</span>6<span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\multirow</span><span class="nb">{</span>3<span class="nb">}{</span>*<span class="nb">}{</span>Multirow2<span class="nb">}&amp;&amp;</span><span class="k">\\</span><span class="c">%</span>
+<span class="nb">&amp;&amp;</span><span class="k">\\</span><span class="c">%</span>
+<span class="nb">&amp;&amp;</span><span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>MultiColumn and MultiRow<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|<span class="nb">}</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\multicolumn</span><span class="nb">{</span>2<span class="nb">}{</span>|c|<span class="nb">}{</span><span class="k">\multirow</span><span class="nb">{</span>2<span class="nb">}{</span>*<span class="nb">}{</span>multi<span class="nb">{</span>-<span class="nb">}</span>col<span class="nb">{</span>-<span class="nb">}</span>row<span class="nb">}}&amp;</span>X<span class="k">\\</span><span class="c">%</span>
+<span class="k">\multicolumn</span><span class="nb">{</span>2<span class="nb">}{</span>|c|<span class="nb">}{}&amp;</span>X<span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+X<span class="nb">&amp;</span>X<span class="nb">&amp;</span>X<span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\subsection*</span><span class="nb">{</span>Vext01<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|<span class="nb">}</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\multirow</span><span class="nb">{</span>4<span class="nb">}{</span>*<span class="nb">}{</span>span<span class="nb">{</span>-<span class="nb">}</span>4<span class="nb">}&amp;</span><span class="k">\multirow</span><span class="nb">{</span>2<span class="nb">}{</span>*<span class="nb">}{</span>span<span class="nb">{</span>-<span class="nb">}</span>2<span class="nb">}&amp;</span>3a<span class="k">\\</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>3-3<span class="nb">}</span><span class="c">%</span>
+<span class="nb">&amp;&amp;</span>3b<span class="k">\\</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>2-3<span class="nb">}</span><span class="c">%</span>
+<span class="nb">&amp;</span><span class="k">\multirow</span><span class="nb">{</span>2<span class="nb">}{</span>*<span class="nb">}{</span>span<span class="nb">{</span>-<span class="nb">}</span>2<span class="nb">}&amp;</span>3c<span class="k">\\</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>3-3<span class="nb">}</span><span class="c">%</span>
+<span class="nb">&amp;&amp;</span>3d<span class="k">\\</span><span class="c">%</span>
+<span class="k">\hline</span><span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+
+<span class="c">%</span>
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>multirow.pdf</p>
+<div class="figure">
 <img alt="../_images/multirow.pdf.png" src="../_images/multirow.pdf.png" />
-<p class="caption"><span class="caption-text">multirow.pdf</span></p>
 </div>
 </div>
 </div>

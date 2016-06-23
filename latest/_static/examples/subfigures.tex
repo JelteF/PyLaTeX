@@ -1,0 +1,27 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{graphicx}%
+\usepackage{subcaption}%
+%
+%
+\begin{document}%
+\section*{Showing subfigures}%
+
+
+\begin{figure}[h!]%
+\begin{subfigure}[b]{0.45\linewidth}%
+\includegraphics[width=\linewidth]{../../../../examples/kitten.jpg}%
+\caption{Kitten on the left}%
+\end{subfigure}%
+\begin{subfigure}[b]{0.45\linewidth}%
+\includegraphics[width=\linewidth]{../../../../examples/kitten.jpg}%
+\caption{Kitten on the right}%
+\end{subfigure}%
+\caption{Two kittens}%
+\end{figure}
+
+%
+\end{document}

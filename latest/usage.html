@@ -106,7 +106,7 @@
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Library usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#understanding-pylatex">Understanding PyLaTeX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-classes">The classes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-classes">The Classes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#containers-documents">Containers / Documents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tables-images-math-etc">Tables, Images, Math, etc.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#commands-options-and-arguments">Commands, Options, and Arguments</a></li>
@@ -178,7 +178,7 @@ your pre-existing code or generate new code with its system of classes.  In
 turn, LaTeX code can be used to generate a document, or can be exported as-is.</p>
 </div>
 <div class="section" id="the-classes">
-<h2>The classes<a class="headerlink" href="#the-classes" title="Permalink to this headline">¶</a></h2>
+<h2>The Classes<a class="headerlink" href="#the-classes" title="Permalink to this headline">¶</a></h2>
 <p>PyLaTeX uses a set of classes to turn LaTeX document generation into a set of
 pythonic components. For example, a <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> might be comprised of
 <a class="reference internal" href="pylatex/pylatex.section.html#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-obj docutils literal"><span class="pre">Section</span></code></a> objects, which in turn might have <a class="reference internal" href="pylatex/pylatex.lists.html#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-obj docutils literal"><span class="pre">List</span></code></a> objects, <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure" title="pylatex.figure.Figure"><code class="xref py py-obj docutils literal"><span class="pre">Figure</span></code></a>
@@ -227,8 +227,8 @@ appropriately.</p>
 <p>Because of all the base classes supplied by PyLaTeX, it is very easy to extend
 its support in LaTeX features. Just pick one of the existing (base) classes
 that fits best and extend that with the needed functionality.</p>
-<p>All LaTeX objects come from <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> , but it is probably more more
-useful one of the other base subclasses, like <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a> or
+<p>All LaTeX objects come from <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a> , but it is probably more useful to
+extend one of the other base subclasses, like <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-obj docutils literal"><span class="pre">Environment</span></code></a> or
 <a class="reference internal" href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-obj docutils literal"><span class="pre">CommandBase</span></code></a>. Consult the API documentation to see the variety of base
 classes available for use.</p>
 </div>
@@ -241,19 +241,20 @@ you can just use regular LaTeX strings when something is not supported directly
 by the library.</p>
 <div class="section" id="unescaping-strings">
 <h3>Unescaping Strings<a class="headerlink" href="#unescaping-strings" title="Permalink to this headline">¶</a></h3>
-<p>This is not as simple as is seems though, this is becouse by default almost all
-strings are escaped. This is done for security reasons and to make sure valid
-LaTeX code will be generated at all times. However, there are cases where raw
-LaTeX strings should just be used directly in the document. This is why the
-<a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string type exists. This is just a subclass of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, but it will
-not be escaped. One important thing to note about this class is that appending
-a <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> type string to a regular string results in a regular string,
-since one type has to be chosen and the most conservative approach is taken.</p>
-<p>There is also another way to make sure strings are not escaped. This is by
-setting the <a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.escape" title="pylatex.base_classes.latex_object.LatexObject.escape"><code class="xref py py-obj docutils literal"><span class="pre">escape</span></code></a> attribute to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> on the class that is
-the container of the string. Keep in mind though that any strings that are
-added to that object will not be escaped when doing this. So, only use this
-method for objects that don&#8217;t contain possibly unsafe strings.</p>
+<p>Using regular LaTeX strings may not be as simple as is seems though, because by
+default almost all strings are escaped. This is done for security reasons and
+to make sure valid LaTeX code will be generated at all times. However, there
+are cases where raw LaTeX strings should just be used directly in the document.
+This is why the <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string type exists. This is just a subclass of
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, but it will not be escaped. One important thing to note about this class
+is that appending a <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> type string to a regular string results in
+a regular string, since one type has to be chosen and the most conservative
+approach is taken.</p>
+<p>Another way to make sure strings are not escaped is by setting the
+<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.escape" title="pylatex.base_classes.latex_object.LatexObject.escape"><code class="xref py py-obj docutils literal"><span class="pre">escape</span></code></a> attribute to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> on the class that is the container
+of the string. Keep in mind though that any strings that are added to that
+object will not be escaped when doing this. So, only use this method for
+objects that don&#8217;t contain possibly unsafe strings.</p>
 </div>
 </div>
 </div>

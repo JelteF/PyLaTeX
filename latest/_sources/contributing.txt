@@ -53,7 +53,7 @@ the dependencies.
 2. Activate it by running (you should do this whenever you start working on
    your changes)::
 
-    . venv bin activate
+    . venv/bin/activate
 
 3. Install all the development dependencies inside the virtual environment by
    running::

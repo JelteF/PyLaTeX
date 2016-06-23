@@ -178,7 +178,7 @@ bottom of this section on how to use that instead.</p>
 <p>Some dependencies are OS specific. Ofcourse you need to have LaTeX installed,
 but that also comes in some different packages on most systems.</p>
 <p>For Ubuntu and other Debian based systems:</p>
-<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install python3 python3-dev virtualenv <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install python3 python3-dev virtualenv <span class="se">\</span>
     texlive-pictures texlive-science texlive-latex-extra <span class="se">\</span>
     imagemagick
 </pre></div>
@@ -189,13 +189,13 @@ but that also comes in some different packages on most systems.</p>
 <p>You need your own fork of the <a class="reference external" href="https://github.com/JelteF/PyLaTeX">Github repository</a> by using the Github fork button. You will
 then need to clone your version of the repo using the normal way, something
 like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre>git clone git@github.com:YourUserName/pylatex
-<span class="nb">cd </span>pylatex
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone git@github.com:YourUserName/pylatex
+<span class="nb">cd</span> pylatex
 </pre></div>
 </div>
 <p>Make your own branch for your specific feature or fix (don&#8217;t do this just on
 master):</p>
-<div class="highlight-bash"><div class="highlight"><pre>git checkout -b your-nice-feature
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git checkout -b your-nice-feature
 </pre></div>
 </div>
 </div>
@@ -205,19 +205,19 @@ master):</p>
 the dependencies.</p>
 <ol class="arabic">
 <li><p class="first">Create a virtualenv by running:</p>
-<div class="highlight-bash"><div class="highlight"><pre>virtualenv venv -p python3
+<div class="highlight-bash"><div class="highlight"><pre><span></span>virtualenv venv -p python3
 </pre></div>
 </div>
 </li>
 <li><p class="first">Activate it by running (you should do this whenever you start working on
 your changes):</p>
-<div class="highlight-bash"><div class="highlight"><pre>. venv bin activate
+<div class="highlight-bash"><div class="highlight"><pre><span></span>. venv/bin/activate
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install all the development dependencies inside the virtual environment by
 running:</p>
-<div class="highlight-bash"><div class="highlight"><pre>pip install -r dev_requirements.txt
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install -r dev_requirements.txt
 </pre></div>
 </div>
 </li>

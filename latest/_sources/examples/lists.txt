@@ -7,8 +7,13 @@ The code
 .. literalinclude:: /../../examples/lists.py
     :start-after: begin-doc-include
 
-The generated pdfs
-------------------
-.. figure:: /_static/examples/lists.pdf.png
+The generated files
+-------------------
+.. literalinclude:: /_static/examples/lists.tex
+    :language: latex
+    :linenos:
+    :caption: lists.tex
 
-    lists.pdf
+lists.pdf
+
+.. figure:: /_static/examples/lists.pdf.png
