@@ -8,7 +8,8 @@ import os.path
 
 
 def gen_r3_rsp():
-    doc = Document(lscape=True, page_numbers=True, margin='0.5in')
+    doc = Document(lscape=True, page_numbers=True, margin='0.5in',
+                   header_height="20pt", header_sep="10pt")
 
     # Add document header
     header = PageStyle("header")
@@ -43,10 +44,9 @@ def gen_r3_rsp():
     data_table.add_empty_row()
     data_table.end_table_header()
     data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"])
-    with open('test.csv', 'r') as csvfile:
-        csv_reader = csv.reader(csvfile)
-        for row in csv_reader:
-            data_table.add_row(row)
+    row = ["PA", "9", "$100", "%10", "$1000", "Test"]
+    for i in range(50):
+        data_table.add_row(row)
 
     doc.append(data_table)
 
@@ -55,17 +55,5 @@ def gen_r3_rsp():
     doc.append(bold("Total"))
 
     doc.generate_pdf("test_standard")
-
-
-def generate_csv():
-    with open('test.csv', 'w') as csvfile:
-        csv_writer = csv.writer(csvfile)
-
-        for i in range(0, 50):
-            csv_writer.writerow(['Test1', 'Test2', 'Test3', 'Test4', 'Test5',
-                                 'Test6'])
-
-if not os.path.isfile('test.csv'):
-    generate_csv()
 
 gen_r3_rsp()

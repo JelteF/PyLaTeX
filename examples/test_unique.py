@@ -169,17 +169,12 @@ def generate_unique():
                        color="lightgray")
     data_table.add_empty_row()
     data_table.add_hline()
-    path_to_data = os.path.join(os.path.dirname(__file__), 'data.csv')
-    with open(path_to_data, 'r') as csvfile:
-        csv_reader = csv.reader(csvfile)
-        i = 0
-        for row in csv_reader:
-            if i == 1:
-                data_table.add_row(row, color="lightgray")
-                i = 0
-            else:
-                data_table.add_row(row)
-                i = 1
+    row = ["2016-JUN-01", "Test", "$100", "$1000", "-$900"]
+    for i in range(30):
+        if (i % 2) == 0:
+            data_table.add_row(row, color="lightgray")
+        else:
+            data_table.add_row(row)
 
     doc.append(data_table)
 
