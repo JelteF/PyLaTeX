@@ -32,4 +32,4 @@ if __name__ == '__main__':
                 right_kitten.add_caption('Kitten on the right')
             kittens.add_caption("Two kittens")
 
-    doc.generate_pdf()
+    doc.generate_pdf(clean_tex=False)

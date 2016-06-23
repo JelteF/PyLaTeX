@@ -85,4 +85,4 @@ with doc.create(Section('Custom environments')):
         environment.append('This is the actual content')
 
 # Generate pdf
-doc.generate_pdf('own_commands_ex')
+doc.generate_pdf('own_commands_ex', clean_tex=False)

@@ -32,7 +32,7 @@ def main(fname, width, *args, **kwargs):
 
     doc.append('Conclusion.')
 
-    doc.generate_pdf()
+    doc.generate_pdf(clean_tex=False)
 
 
 if __name__ == '__main__':

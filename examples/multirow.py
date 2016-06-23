@@ -76,4 +76,4 @@ section.append(test3)
 section.append(test4)
 
 doc.append(section)
-doc.generate_pdf(clean=True)
+doc.generate_pdf(clean_tex=False)

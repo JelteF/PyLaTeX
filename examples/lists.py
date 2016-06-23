@@ -57,4 +57,4 @@ if __name__ == '__main__':
             desc.add_item("Second", "The second item")
             desc.add_item("Third", NoEscape("The third etc \\ldots"))
 
-    doc.generate_pdf('lists')
+    doc.generate_pdf('lists', clean_tex=False)

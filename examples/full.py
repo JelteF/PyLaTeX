@@ -73,4 +73,4 @@ if __name__ == '__main__':
                 kitten_pic.add_image(image_filename, width='120px')
                 kitten_pic.add_caption('Look it\'s on its back')
 
-    doc.generate_pdf('full')
+    doc.generate_pdf('full', clean_tex=False)

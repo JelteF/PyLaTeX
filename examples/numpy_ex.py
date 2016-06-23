@@ -43,4 +43,4 @@ if __name__ == '__main__':
     section.append(subsection)
 
     doc.append(section)
-    doc.generate_pdf('numpy_ex')
+    doc.generate_pdf('numpy_ex', clean_tex=False)

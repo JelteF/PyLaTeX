@@ -49,18 +49,24 @@ for f in ../examples/*.py; do
     echo "    :start-after: begin-doc-include" >> $rst
     echo >> $rst
 
-    echo The generated pdfs >> $rst
-    echo ------------------ >> $rst
+    echo The generated files >> $rst
+    echo ------------------- >> $rst
     # Compiling examples to png
     cd source/_static/examples
     $python ../../../$f > /dev/null
+    rst=../../../$rst
     for pdf in ${name}*.pdf; do
         convert $pdf ${pdf}.png
-        echo ".. figure:: /_static/examples/${pdf}.png" >> ../../../$rst
-        echo >> ../../../$rst
-        echo "    $pdf" >> ../../../$rst
+        echo ".. literalinclude:: /_static/examples/${pdf%.pdf}.tex" >> $rst
+        echo "    :language: latex" >> $rst
+        echo "    :linenos:" >> $rst
+        echo "    :caption: ${pdf%.pdf}.tex" >> $rst
+        echo >> $rst
+        echo "$pdf" >> $rst
+        echo >> $rst
+        echo ".. figure:: /_static/examples/${pdf}.png" >> $rst
     done
-    rm -f *.pdf *.aux *.tex *.log *.fls *.fdb_latexmk
+    rm -f *.pdf *.aux *.log *.fls *.fdb_latexmk
     cd ../../..
 
 done
