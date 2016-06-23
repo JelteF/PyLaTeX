@@ -23,6 +23,7 @@ addons:
       - texlive-science
       - texlive-fonts-recommended
       - lmodern
+      - pgf
 
 install:
   - pip install 3to2 future
