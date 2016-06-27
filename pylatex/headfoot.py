@@ -32,6 +32,10 @@ class PageStyle(PreambleCommand):
         self.change_thickness(element="header", thickness=header_thickness)
         self.change_thickness(element="footer", thickness=footer_thickness)
 
+        # Clear the current header and footer
+        self.append(Head(""))
+        self.append(Foot(""))
+
     def change_thickness(self, element, thickness):
         r"""Change line thickness.
 
