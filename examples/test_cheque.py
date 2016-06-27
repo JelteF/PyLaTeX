@@ -69,4 +69,4 @@ doc.append(page)
 doc.append(page_break())
 doc.append(page)
 
-doc.generate_pdf("test_cheque")
+doc.generate_pdf("test_cheque", clean_tex=False)

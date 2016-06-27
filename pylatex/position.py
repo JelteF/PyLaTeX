@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .base_classes import Environment, Command, SpecialOptions, Arguments
+from .base_classes import Environment, SpecialOptions
 from .package import Package
 from .utils import NoEscape
 
@@ -93,39 +93,8 @@ class TextBlock(Environment):
 
         super().__init__(arguments=arguments)
 
+        self.append("(%s, %s)" % (str(self.horizontal_pos),
+                    str(self.vertical_pos)))
+
         if not indent:
             self.append(NoEscape(r'\noindent'))
-
-    def dumps(self):
-        """Represent the environment as a string in LaTeX syntax.
-
-        Returns
-        -------
-        str
-            A string in LaTeX syntax representing the environment.
-        """
-
-        content = self.dumps_content()
-        if not content.strip() and self.omit_if_empty:
-            return ''
-
-        string = ''
-
-        # Something other than None needs to be used as extra arguments, that
-        # way the options end up behind the latex_name argument.
-        if self.arguments is None:
-            extra_arguments = Arguments()
-        else:
-            extra_arguments = self.arguments
-
-        begin = Command('begin', self.latex_name, self.options,
-                        extra_arguments=extra_arguments)
-
-        string += (begin.dumps() + '(' + str(self.horizontal_pos) + ',' +
-                   str(self.vertical_pos) + ')' + '\n')
-
-        string += content + '\n'
-
-        string += Command('end', self.latex_name).dumps()
-
-        return string

@@ -52,6 +52,6 @@ def gen_r3_rsp():
     doc.append(horizontal_fill())
     doc.append(bold("Total"))
 
-    doc.generate_pdf("test_standard")
+    doc.generate_pdf("test_standard", clean_tex=False)
 
 gen_r3_rsp()
