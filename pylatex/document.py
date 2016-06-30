@@ -29,8 +29,7 @@ class Document(Environment):
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, page_numbers=True,
                  margin='0.5in', header_height='12pt', indent=False,
-                 header_sep='5pt', data=None, last_page=False,
-                 font_size="normalsize"):
+                 header_sep='5pt', data=None, font_size="normalsize"):
         r"""
         Args
         ----
@@ -55,8 +54,6 @@ class Document(Environment):
             Controls the sepparation between the header and the content
         page_numbers: bool
             Adds the ability to add page numbers to the document
-        last_page: bool
-            Determines if the last page package is used (compile twice)
         margin: str
             Modifies the default document margin
         indent: bool
@@ -82,7 +79,6 @@ class Document(Environment):
         self._lscape = lscape
         self.header_height = header_height
         self.header_sep = header_sep
-        self.last_page = last_page
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
@@ -240,27 +236,6 @@ class Document(Environment):
                 if not silent:
                     print(output.decode())
 
-            # Compile again if last page package is being used
-            if self.last_page:
-                try:
-                    output = subprocess.check_output(command,
-                                                     stderr=subprocess.STDOUT)
-                except (OSError, IOError) as e:
-                    # Use FileNotFoundError when python 2 is dropped
-                    os_error = e
-
-                    if os_error.errno == errno.ENOENT:
-                        # If compiler does not exist, try next in the list
-                        continue
-                    raise(e)
-                except subprocess.CalledProcessError as e:
-                    # For all other errors print the output and raise the error
-                    print(e.output.decode())
-                    raise(e)
-                else:
-                    if not silent:
-                        print(output.decode())
-
             if clean:
                 try:
                     # Try latexmk cleaning first
@@ -374,7 +349,7 @@ class Document(Environment):
                                            arguments=[parameter, value]))
 
     def add_watermark(self, text, scale=1):
-        """Add a watermark to the document
+        """Add a watermark to the document.
 
         Args
         ----

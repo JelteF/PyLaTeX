@@ -169,6 +169,8 @@ class Tabular(Environment):
 class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
 
+    # TODO: Make this subclass of CommandBase and Container
+
     def __init__(self, size, *, align='c', data=None):
         """
         Args
