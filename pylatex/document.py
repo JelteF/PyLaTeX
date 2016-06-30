@@ -29,7 +29,8 @@ class Document(Environment):
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, page_numbers=True,
                  margin='0.5in', header_height='12pt', indent=False,
-                 header_sep='5pt', data=None, last_page=False):
+                 header_sep='5pt', data=None, last_page=False,
+                 font_size="normalsize"):
         r"""
         Args
         ----
@@ -62,6 +63,8 @@ class Document(Environment):
             Determines whether or not the document requires indentation
         data: list
             Initial content of the document.
+        font_size: str
+            The font size to declare as normalsize
         """
 
         self.default_filepath = default_filepath
@@ -113,6 +116,9 @@ class Document(Environment):
 
         # No colors have been added to the document yet
         self.color = False
+        self.watermark = False
+
+        self.append(Command(command=font_size))
 
     def _propagate_packages(self):
         r"""Propogate packages.
@@ -366,3 +372,21 @@ class Document(Environment):
 
         self.preamble.append(UnsafeCommand('setlength',
                                            arguments=[parameter, value]))
+
+    def add_watermark(self, text, scale=1):
+        """Add a watermark to the document
+
+        Args
+        ----
+        text: str
+            The text to be displayed on the watermark
+        scale: float
+            The scale of the watermark
+        """
+
+        if not self.watermark:
+            self.packages.append(Package("draftwatermark"))
+            self.preamble.append(Command(command="SetWatermarkText",
+                                         arguments=text))
+            self.preamble.append(Command(command="SetWatermarkScale",
+                                         arguments=scale))
