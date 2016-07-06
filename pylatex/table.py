@@ -49,7 +49,7 @@ class Tabular(Environment):
     }
 
     def __init__(self, table_spec, data=None, pos=None, *, row_height=None,
-                 **kwargs):
+                 col_space=None, **kwargs):
         """
         Args
         ----
@@ -60,6 +60,8 @@ class Tabular(Environment):
         row_height: float
             Specifies the heights of the rows in relation to the default
             row height
+        col_space: str
+            Specifies the spacing between table columns
 
         References
         ----------
@@ -68,22 +70,29 @@ class Tabular(Environment):
 
         self.width = _get_table_width(table_spec)
         self.row_height = row_height
+        self.col_space = col_space
 
         super().__init__(data=data, options=pos,
                          arguments=table_spec, **kwargs)
 
     def dumps(self):
-        r"""Turn the Latex Object into a Latex string."""
+        r"""Turn the Latex Object into a string in Latex format."""
+
+        dump = ""
 
         if self.row_height is not None:
-            row_height = Command(
-                'renewcommand',
-                arguments=[
-                    NoEscape(r'\arraystretch'),
-                    self.row_height])
-            return row_height.dumps() + '\n' + super().dumps()
+            row_height = Command('renewcommand', arguments=[
+                NoEscape(r'\arraystretch'),
+                self.row_height])
+            dump += row_height.dumps() + '%\n'
 
-        return super().dumps()
+        if self.col_space is not None:
+            col_space = Command('setlength', arguments=[
+                NoEscape(r'\tabcolsep'),
+                self.col_space])
+            dump += col_space.dumps() + '%\n'
+
+        return dump + super().dumps()
 
     def add_hline(self, start=None, end=None, color=None):
         """Add a horizontal line to the table.
