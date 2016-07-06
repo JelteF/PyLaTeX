@@ -180,7 +180,7 @@ class MultiColumn(Container):
 
     # TODO: Make this subclass of CommandBase and Container
 
-    def __init__(self, size, *, align='c', data=None):
+    def __init__(self, size, *, align='c', color=None, data=None):
         """
         Args
         ----
@@ -190,12 +190,19 @@ class MultiColumn(Container):
             How to align the content of the cell.
         data: str, list or `~.LatexObject`
             The content of the cell.
+        color: str
+            The color for the MultiColumn
         """
 
         self.size = size
         self.align = align
 
         super().__init__(data=data)
+
+        # Add a cell color to the MultiColumn
+        if color is not None:
+            color_command = Command("cellcolor", arguments=color)
+            self.append(color_command)
 
     def dumps(self):
         """Represent the multicolumn as a string in LaTeX syntax.
@@ -218,7 +225,7 @@ class MultiRow(Container):
 
     packages = [Package('multirow')]
 
-    def __init__(self, size, *, width='*', data=None):
+    def __init__(self, size, *, width='*', color=None, data=None):
         """
         Args
         ----
@@ -229,12 +236,18 @@ class MultiRow(Container):
             natural width.
         data: str, list or `~.LatexObject`
             The content of the cell.
+        color: str
+            The color for the MultiRow
         """
 
         self.size = size
         self.width = width
 
         super().__init__(data=data)
+
+        if color is not None:
+            color_command = Command("cellcolor", arguments=color)
+            self.append(color_command)
 
     def dumps(self):
         """Represent the multirow as a string in LaTeX syntax.
