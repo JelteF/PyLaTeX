@@ -29,7 +29,8 @@ class Document(Environment):
                  documentclass='article', fontenc='T1', inputenc='utf8',
                  lmodern=True, textcomp=True, lscape=False, page_numbers=True,
                  margin='0.5in', header_height='12pt', indent=False,
-                 header_sep='5pt', data=None, font_size="normalsize"):
+                 header_sep='5pt', data=None, font_size="normalsize",
+                 paper_size="a4paper"):
         r"""
         Args
         ----
@@ -62,6 +63,8 @@ class Document(Environment):
             Initial content of the document.
         font_size: str
             The font size to declare as normalsize
+        paper_size: str
+            The paper size to use for the document
         """
 
         self.default_filepath = default_filepath
@@ -70,7 +73,8 @@ class Document(Environment):
             self.documentclass = documentclass
         else:
             self.documentclass = Command('documentclass',
-                                         arguments=documentclass)
+                                         arguments=documentclass,
+                                         options=paper_size)
 
         # These variables are used by the __repr__ method
         self._fontenc = fontenc
