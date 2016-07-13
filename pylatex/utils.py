@@ -22,7 +22,7 @@ _latex_special_chars = {
     '~': r'\textasciitilde{}',
     '^': r'\^{}',
     '\\': r'\textbackslash{}',
-    '\n': '\\\\%\n',
+    '\n': '\\newline%\n',
     '-': r'{-}',
     '\xA0': '~',  # Non-breaking space
 }

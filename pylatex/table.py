@@ -166,13 +166,8 @@ class Tabular(Environment):
                 "did not match table width ({})".format(cell_count, self.width)
             raise TableRowSizeError(msg)
 
-        self.append(
-            dumps_list(
-                cells,
-                escape=escape,
-                token='&',
-                mapper=mapper) +
-            NoEscape(r'\\'))
+        self.append(dumps_list(cells, escape=escape, token='&',
+                    mapper=mapper) + NoEscape(r'\\'))
 
 
 class MultiColumn(Container):

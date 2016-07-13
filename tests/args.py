@@ -39,7 +39,8 @@ def test_document():
         margin="0.5in",
         page_numbers=True,
         header_height="12pt",
-        indent=False
+        indent=False,
+        document_options=["a4paper", "12pt"]
     )
 
     repr(doc)
