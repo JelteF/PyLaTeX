@@ -16,12 +16,13 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
     LongTable, ColoredTable, Position, FlushLeft, FlushRight, Center, \
-    MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic
+    MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic, Tabularx, \
+    Column
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, center, flush_left, flush_right, huge, header1, \
     header2, small1, small2, text_color, page_break, new_line, line_break, \
     horizontal_fill, vertical_skip, horizontal_skip, display_page_number, \
-    text_box
+    text_box, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -101,6 +102,10 @@ def test_table():
 
     repr(t)
 
+    # TabularX
+    tabularx = Tabularx(table_spec='X X X', arguments=NoEscape(r"\textwidth"))
+    tabularx.add_row(["test1", "test2", "test3"])
+
     # Long Table
     longtable = LongTable(table_spec='c c c')
     longtable.add_row(["test", "test2", "test3"])
@@ -109,6 +114,10 @@ def test_table():
     # Colored Table
     coloredtable = ColoredTable(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
+
+    # Column
+    column = Column("R", "X", r"\raggedleft")
+    repr(column)
 
 
 def test_command():

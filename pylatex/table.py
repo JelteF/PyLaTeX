@@ -16,6 +16,10 @@ from collections import Counter
 import re
 
 
+# The letters used to count the table width
+COLUMN_LETTERS = ['l', 'c', 'r', 'p', 'm', 'b', 'X']
+
+
 def _get_table_width(table_spec):
     """Calculate the width of a table based on its spec.
 
@@ -31,13 +35,15 @@ def _get_table_width(table_spec):
         The width of a table which uses the specification supplied.
     """
 
-    column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
-
     # Remove things like {\bfseries}
     cleaner_spec = re.sub(r'{[^}]*}', '', table_spec)
+
+    # Remove X[] in tabu environments so they dont interfere with column count
+    for l in COLUMN_LETTERS:
+        cleaner_spec = re.sub(r'X\[[^X]*' + l + r'\]', l, cleaner_spec)
     spec_counter = Counter(cleaner_spec)
 
-    return sum(spec_counter[l] for l in column_letters)
+    return sum(spec_counter[l] for l in COLUMN_LETTERS)
 
 
 class Tabular(Environment):
@@ -49,7 +55,7 @@ class Tabular(Environment):
     }
 
     def __init__(self, table_spec, data=None, pos=None, *, row_height=None,
-                 col_space=None, **kwargs):
+                 col_space=None, arguments=None, **kwargs):
         """
         Args
         ----
@@ -62,6 +68,8 @@ class Tabular(Environment):
             row height
         col_space: str
             Specifies the spacing between table columns
+        arguments: str or `list`
+            The arguments to append to the table
 
         References
         ----------
@@ -72,8 +80,17 @@ class Tabular(Environment):
         self.row_height = row_height
         self.col_space = col_space
 
+        # Append the table_spec to the arguments list
+        if arguments is not None:
+            if isinstance(arguments, str):
+                arguments = [arguments]
+        else:
+            arguments = []
+
+        arguments.append(table_spec)
+
         super().__init__(data=data, options=pos,
-                         arguments=table_spec, **kwargs)
+                         arguments=arguments, **kwargs)
 
     def dumps(self):
         r"""Turn the Latex Object into a string in Latex format."""
@@ -168,6 +185,12 @@ class Tabular(Environment):
 
         self.append(dumps_list(cells, escape=escape, token='&',
                     mapper=mapper) + NoEscape(r'\\'))
+
+
+class Tabularx(Tabular):
+    """A class that represents a tabularx environment."""
+
+    packages = [Package('tabularx')]
 
 
 class MultiColumn(Container):
@@ -347,3 +370,31 @@ class LongColoredTable(ColoredTable, LongTabu):
     """Class representing a longtabu with colored rows."""
 
     _latex_name = "longtabu"
+
+
+class Column(UnsafeCommand):
+    """A class representing a new column type."""
+
+    _repr_attributes_mapping = {
+        'name': 'arguments',
+        'base': 'arguments',
+        'modifications': 'arguments'
+    }
+
+    def __init__(self, name, base, modifications):
+        """
+        Args
+        ----
+        name: str
+            The name of the new column type
+        base: str
+            The name of the base column type
+        modifications: str
+            The modifications made to the column type
+        """
+
+        COLUMN_LETTERS.append(name)
+
+        modified = r">{%s\arraybackslash}%s" % (modifications, base)
+
+        super().__init__(command="newcolumntype", arguments=[name, modified])
