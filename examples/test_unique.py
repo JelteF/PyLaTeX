@@ -1,7 +1,8 @@
 import os
 
 from pylatex import Document, PageStyle, Head, Foot, Tabular, MiniPage, \
-    StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu
+    StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu, \
+    ColoredTabularx
 from pylatex.utils import header1, header2, bold, NoEscape, line_break, \
     text_color, display_page_number, new_line, page_break
 
@@ -39,7 +40,8 @@ def generate_unique():
     # Add footer
     footer_center = Foot("C")
     message = "Important message please read"
-    footer_table = Tabular(NoEscape("m{1.5in} m{1.5in} m{1.85in} m{2in}"))
+    footer_table = ColoredTabularx("X X X X",
+                                   arguments=NoEscape(r"\textwidth"))
     footer_table.add_row(
         [MultiColumn(4, align='l', data=text_color(message, "blue"))])
     footer_table.add_hline(color="blue")

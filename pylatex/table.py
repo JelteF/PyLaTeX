@@ -111,7 +111,7 @@ class Tabular(Environment):
 
         return dump + super().dumps()
 
-    def add_hline(self, start=None, end=None, color=None):
+    def add_hline(self, start=None, end=None):
         """Add a horizontal line to the table.
 
         Args
@@ -120,11 +120,7 @@ class Tabular(Environment):
             At what cell the line should begin
         end: int
             At what cell the line should end
-        color: str
-            Add color to the horizontal line
         """
-        if color is not None:
-            self.append(Command('arrayrulecolor', arguments=color))
 
         if start is None and end is None:
             self.append(NoEscape(r'\hline'))
@@ -314,8 +310,8 @@ class LongTabu(LongTable, Tabu):
     """A class that represents a longtabu (more flexible multipage table)."""
 
 
-class ColoredTable(Tabu):
-    """A class that represents a table with colored rows."""
+class ColoredTabu(Tabu):
+    """A class that represents a tabu with colored rows."""
 
     packages = [Package('xcolor', options='table')]
 
@@ -337,36 +333,80 @@ class ColoredTable(Tabu):
             Check for correct count of cells in row or not.
         """
 
-        if escape is None:
-            escape = self.escape
+        if color is not None:
+            self.append(NoEscape(r'\rowcolor{' + color + '}'))
 
-        for c in cells:
-            if isinstance(c, LatexObject):
-                for p in c.packages:
-                    self.packages.add(p)
-        cell_count = 0
+        super().add_row(cells, escape=escape, mapper=mapper,
+                        strict=strict)
 
-        for c in cells:
-            if isinstance(c, MultiColumn):
-                cell_count += c.size
-            else:
-                cell_count += 1
+    def add_hline(self, start=None, end=None, color=None):
+        """Add a horizontal line to the table.
 
-        if strict and cell_count != self.width:
-            msg = "Number of cells added to table ({}) " \
-                "did not match table width ({})".format(cell_count, self.width)
-            raise TableRowSizeError(msg)
+        Args
+        ----
+        start: int
+            At what cell the line should begin
+        end: int
+            At what cell the line should end
+        color: str
+            Add color to the horizontal line
+        """
 
-        if color is None:
-            self.append(dumps_list(cells, escape=escape, token='&',
-                                   mapper=mapper) + NoEscape(r'\\'))
-        else:
-            self.append(NoEscape(r'\rowcolor{' + color + '} ') +
-                        dumps_list(cells, escape=escape, token='&',
-                                   mapper=mapper) + NoEscape(r'\\'))
+        if color is not None:
+            self.append(Command('arrayrulecolor', arguments=color))
+
+        super().add_hline(start, end)
 
 
-class LongColoredTable(ColoredTable, LongTabu):
+class ColoredTabularx(Tabularx):
+    """A class that represents a tabularx with colored rows."""
+
+    _latex_name = "tabularx"
+
+    packages = [Package('xcolor', options='table')]
+
+    def add_row(self, cells, *, color=None, escape=None, mapper=None,
+                strict=True):
+        r"""Add a colored row to the table.
+
+        Args
+        ----
+        cells: iterable, such as a `list` or `tuple`
+            Each element of the iterable will become a the content of a cell.
+        mapper: callable or `list`
+            A function or a list of functions that should be called on
+            all entries of the list after converting them to a string,
+            for instance bold
+        strict: bool
+            Check for correct count of cells in row or not.
+        """
+
+        if color is not None:
+            self.append(NoEscape(r'\rowcolor{' + color + '}'))
+
+        super().add_row(cells, escape=escape, mapper=mapper,
+                        strict=strict)
+
+    def add_hline(self, start=None, end=None, color=None):
+        """Add a horizontal line to the table.
+
+        Args
+        ----
+        start: int
+            At what cell the line should begin
+        end: int
+            At what cell the line should end
+        color: str
+            Add color to the horizontal line
+        """
+
+        if color is not None:
+            self.append(Command('arrayrulecolor', arguments=color))
+
+        super().add_hline(start, end)
+
+
+class LongColoredTable(ColoredTabu, LongTabu):
     """Class representing a longtabu with colored rows."""
 
     _latex_name = "longtabu"
@@ -378,10 +418,11 @@ class Column(UnsafeCommand):
     _repr_attributes_mapping = {
         'name': 'arguments',
         'base': 'arguments',
-        'modifications': 'arguments'
+        'modifications': 'arguments',
+        'parameters': 'options'
     }
 
-    def __init__(self, name, base, modifications):
+    def __init__(self, name, base, modifications, parameters=None):
         """
         Args
         ----
@@ -391,10 +432,13 @@ class Column(UnsafeCommand):
             The name of the base column type
         modifications: str
             The modifications made to the column type
+        parameters: int
+            The number of parameters inside the modifications
         """
 
         COLUMN_LETTERS.append(name)
 
         modified = r">{%s\arraybackslash}%s" % (modifications, base)
 
-        super().__init__(command="newcolumntype", arguments=[name, modified])
+        super().__init__(command="newcolumntype", arguments=[name, modified],
+                         options=parameters, extra_arguments=name)

@@ -53,8 +53,10 @@ Added
   figure environments.
 - Added the ability to change the ``row_height`` of a table within the
   `.Tabular` constructor.
-- Added two new types of tables `.ColoredTable` and `.LongColoredTable` which
-  allows the selection of a color when creating a table row.
+- Added four new types of tables `.Tabularx`, `.ColoredTabu`, `.ColoredTabularx`
+  and `.LongColoredTable` which allows the selection of a color when creating
+  a table row.
+- Added the ability to add your own column types through the `.Column` class.
 - Added the ability to end the header of a `.LongTable` which repeats on every
   consecutive page.
 - Added the ability to choose the enumeration symbol in a list using the

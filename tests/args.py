@@ -15,9 +15,9 @@ import matplotlib
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
-    LongTable, ColoredTable, Position, FlushLeft, FlushRight, Center, \
+    LongTable, ColoredTabu, Position, FlushLeft, FlushRight, Center, \
     MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic, Tabularx, \
-    Column
+    Column, ColoredTabularx
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, center, flush_left, flush_right, huge, header1, \
     header2, small1, small2, text_color, page_break, new_line, line_break, \
@@ -111,12 +111,16 @@ def test_table():
     longtable.add_row(["test", "test2", "test3"])
     longtable.end_table_header()
 
-    # Colored Table
-    coloredtable = ColoredTable(table_spec='X[c] X[c]')
+    # Colored Tabu
+    coloredtable = ColoredTabu(table_spec='X[c] X[c]')
+    coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
+
+    # Colored Tabularx
+    coloredtable = ColoredTabularx(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
     # Column
-    column = Column("R", "X", r"\raggedleft")
+    column = Column("R", "X", r"\raggedleft", parameters=2)
     repr(column)
 
 
