@@ -27,10 +27,9 @@ class Document(Environment):
 
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', fontenc='T1', inputenc='utf8',
-                 lmodern=True, textcomp=True, lscape=False, page_numbers=True,
-                 margin='0.5in', header_height='12pt', indent=False,
-                 header_sep='5pt', data=None, font_size="normalsize",
-                 document_options=["a4paper"]):
+                 lmodern=True, textcomp=True, page_numbers=True, indent=False,
+                 data=None, font_size="normalsize",
+                 document_options=None, geometry_options=None):
         r"""
         Args
         ----
@@ -65,6 +64,8 @@ class Document(Environment):
             The font size to declare as normalsize
         document_options: str or `list`
             The options to supply to the documentclass
+        geometry_options: str or `list`
+            The options to supply to the geometry package
         """
 
         self.default_filepath = default_filepath
@@ -80,31 +81,25 @@ class Document(Environment):
         self._fontenc = fontenc
         self._inputenc = inputenc
         self._lmodern = lmodern
-        self._lscape = lscape
-        self.header_height = header_height
-        self.header_sep = header_sep
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
-        geometry_options = ['includeheadfoot', 'margin=' + margin,
-                            'headheight=' + header_height,
-                            'headsep=' + header_sep]
         packages = [fontenc, inputenc]
 
         if lmodern:
             packages.append(Package('lmodern'))
         if textcomp:
             packages.append(Package('textcomp'))
-        if lscape:
-            geometry_options.append('landscape')
         if page_numbers:
             packages.append(Package('lastpage'))
 
-        packages.append(Package('geometry', options=geometry_options))
+        if geometry_options is not None:
+            packages.append(Package('geometry', options=geometry_options))
 
         super().__init__(data=data)
 
         self.packages |= packages
+        self.variables = []
 
         self.preamble = []
 
@@ -146,6 +141,7 @@ class Document(Environment):
 
         head = self.documentclass.dumps() + '%\n'
         head += self.dumps_packages() + '%\n'
+        head += dumps_list(self.variables) + '%\n'
         head += dumps_list(self.preamble) + '%\n'
 
         return head + '%\n' + super().dumps()
@@ -369,3 +365,26 @@ class Document(Environment):
                                          arguments=text))
             self.preamble.append(Command(command="SetWatermarkScale",
                                          arguments=scale))
+
+    def add_variable(self, name, value):
+        """Add a variable which can be used inside the document.
+
+        Args
+        ----
+        name: str
+            The name to set for the variable
+        value: str
+            The value to set for the variable
+        """
+
+        name_arg = "\\" + name
+        value_arg = "\\" + value
+
+        if name in self.variables:
+            renew = UnsafeCommand(command="renewcommand",
+                                  arguments=[name_arg, value_arg])
+            self.variables.append(renew)
+        else:
+            new = UnsafeCommand(command="newcommand",
+                                arguments=[name_arg, value_arg])
+            self.variables.append(new)

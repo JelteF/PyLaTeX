@@ -28,6 +28,13 @@ import matplotlib.pyplot as pyplot  # noqa
 
 
 def test_document():
+    geometry_options = {
+        "includeheadfoot": True,
+        "headheight": "12pt",
+        "headsep": "10pt",
+        "landscape": True
+    }
+
     doc = Document(
         default_filepath='default_filepath',
         documentclass='article',
@@ -35,12 +42,10 @@ def test_document():
         inputenc='utf8',
         lmodern=True,
         data=None,
-        lscape=True,
-        margin="0.5in",
         page_numbers=True,
-        header_height="12pt",
         indent=False,
-        document_options=["a4paper", "12pt"]
+        document_options=["a4paper", "12pt"],
+        geometry_options=geometry_options
     )
 
     repr(doc)
@@ -50,6 +55,7 @@ def test_document():
     doc.change_document_style(style="plain")
     doc.add_color(name="lightgray", model="gray", description="0.6")
     doc.add_color(name="abitless", model="gray", description="0.8")
+    doc.add_variable(name="myVar", value="1234")
     doc.change_length(parameter=r"\headheight", value="0.5in")
 
     doc.generate_tex(filepath='')

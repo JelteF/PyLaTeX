@@ -7,7 +7,12 @@ from pylatex.utils import header1, header2, bold, NoEscape, line_break, \
 
 
 def generate_unique():
-    doc = Document(header_height='75pt')
+    geometry_options = {
+        "headheight": "75pt",
+        "margin": "0.5in",
+        "includeheadfoot": True
+    }
+    doc = Document(geometry_options=geometry_options)
 
     # Generating first page style
     first_page = PageStyle("firstpage")

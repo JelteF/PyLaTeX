@@ -6,8 +6,14 @@ from pylatex.utils import line_break, display_page_number, header1, header2, \
 
 
 def gen_r3_rsp():
-    doc = Document(lscape=True, page_numbers=True, margin='0.5in',
-                   header_height="20pt", header_sep="10pt")
+    geometry_options = {
+        "landscape": True,
+        "margin": "0.5in",
+        "headheight": "20pt",
+        "headsep": "10pt",
+        "includeheadfoot": True
+    }
+    doc = Document(page_numbers=True, geometry_options=geometry_options)
 
     # Add document header
     header = PageStyle("header")
