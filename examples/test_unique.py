@@ -21,7 +21,7 @@ def generate_unique():
     header_left = Head("L")
     logo_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='c')
     logo_file = os.path.join(os.path.dirname(__file__), 'sample-logo.png')
-    logo = StandAloneGraphic(width="120px", filename=logo_file)
+    logo = StandAloneGraphic(image_options="width=120px", filename=logo_file)
     logo_wrapper.append(logo)
     header_left.append(logo_wrapper)
 
@@ -79,7 +79,8 @@ def generate_unique():
     header_table = Tabular(NoEscape("m{2.5in}|m{2.1in}|m{2.5in}"))
     logo_wrapper = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='t!',
                             align='l')
-    logo_wrapper.append(StandAloneGraphic(width="150px", filename=logo_file))
+    logo_wrapper.append(StandAloneGraphic(image_options="width=150px",
+                                          filename=logo_file))
 
     # Add recipent information
     header_center = Head("C")
@@ -187,7 +188,7 @@ def generate_unique():
     # Add cheque images
     cheque_table = LongTabu("X[c] X[c]")
     cheque_file = os.path.join(os.path.dirname(__file__), 'chequeexample.png')
-    cheque = StandAloneGraphic(cheque_file, width="200px")
+    cheque = StandAloneGraphic(cheque_file, image_options="width=200px")
     for i in range(0, 20):
         cheque_table.add_row([cheque, cheque])
     doc.append(cheque_table)

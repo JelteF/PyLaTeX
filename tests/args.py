@@ -147,8 +147,8 @@ def test_graphics():
     repr(plot)
 
     # StandAloneGraphic
-    stand_alone_graphic = StandAloneGraphic(filename='',
-                                            width=r"0.8\textwidth")
+    stand_alone_graphic = StandAloneGraphic(
+        filename='', image_options=r"width=0.8\textwidth")
     repr(stand_alone_graphic)
 
 
