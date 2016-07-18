@@ -378,13 +378,12 @@ class Document(Environment):
         """
 
         name_arg = "\\" + name
-        value_arg = "\\" + value
 
         if name in self.variables:
             renew = UnsafeCommand(command="renewcommand",
-                                  arguments=[name_arg, value_arg])
+                                  arguments=[name_arg, value])
             self.variables.append(renew)
         else:
             new = UnsafeCommand(command="newcommand",
-                                arguments=[name_arg, value_arg])
+                                arguments=[name_arg, value])
             self.variables.append(new)

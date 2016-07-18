@@ -28,36 +28,57 @@ class MiniPage(Environment):
 
     packages = [Package('ragged2e')]
 
-    def __init__(self, *, width=NoEscape(r'\textwidth'),
-                 height=None, adjustment='t', data=None, align='l'):
+    _repr_attributes_mapping = {
+        "width": "arguments",
+        "pos": "options",
+        "height": "options",
+        "content_pos": "options",
+        "align": "options"
+    }
+
+    def __init__(self, *, width=NoEscape(r'\textwidth'), pos=None,
+                 height=None, content_pos=None, data=None, align=None):
         r"""
         Args
         ----
         width: str
             width of the minipage
+        pos: str
+            The vertical alignment of the minipage relative to the baseline
+            (center(c), top(t), bottom(b))
         height: str
             height of the minipage
-        adjustment: str
-            vertical allignment of text inside the minipage
+        content_pos: str
+            The position of the content inside the minipage (center(c),
+            bottom(b), top(t), spread(s))
         align: str
             alignment of the minibox
         """
 
+        options = []
+
+        if pos is not None:
+            options.append(pos)
+
         if height is not None:
-            options = SpecialOptions(adjustment, NoEscape(height))
-        else:
-            options = adjustment
+            options.append(NoEscape(height))
+
+        if content_pos is not None:
+            options.append(content_pos)
+
+        options = SpecialOptions(*options)
 
         arguments = [NoEscape(str(width))]
 
         super().__init__(arguments=arguments, options=options, data=data)
 
-        if align == "l":
-            self.append(NoEscape(r"\flushleft"))
-        elif align == "c":
-            self.append(NoEscape(r"\centering"))
-        elif align == "r":
-            self.append(NoEscape(r"\flushright"))
+        if align is not None:
+            if align == "l":
+                self.append(NoEscape(r"\flushleft"))
+            elif align == "c":
+                self.append(NoEscape(r"\centering"))
+            elif align == "r":
+                self.append(NoEscape(r"\flushright"))
 
 
 class TextBlock(Environment):

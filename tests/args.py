@@ -246,8 +246,8 @@ def test_position():
     left.append("append")
     repr(left)
 
-    minipage = MiniPage(width=r"\textwidth", height="10pt", adjustment='t',
-                        align='r')
+    minipage = MiniPage(width=r"\textwidth", height="10pt", pos='t',
+                        align='r', content_pos='t')
     minipage.append("append")
     repr(minipage)
 

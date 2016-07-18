@@ -20,7 +20,7 @@ def generate_unique():
 
     # Header image
     header_left = Head("L")
-    logo_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='c')
+    logo_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='c')
     logo_file = os.path.join(os.path.dirname(__file__), 'sample-logo.png')
     logo = StandAloneGraphic(image_options="width=120px", filename=logo_file)
     logo_wrapper.append(logo)
@@ -30,7 +30,7 @@ def generate_unique():
 
     # Add document title
     header_right = Head("R")
-    title_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='c',
+    title_wrapper = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='c',
                              align='r')
     title_wrapper.append(bold(header1("Bank Account Statement")))
     title_wrapper.append(line_break())
@@ -49,13 +49,13 @@ def generate_unique():
 
     branch_address = MiniPage(
         width=NoEscape(r"0.25\textwidth"),
-        adjustment='t')
+        pos='t')
     branch_address.append("960 - 22nd street east")
     branch_address.append(line_break())
     branch_address.append("Saskatoon, SK")
 
     document_details = MiniPage(width=NoEscape(r"0.25\textwidth"),
-                                adjustment='t', align='r')
+                                pos='t', align='r')
     document_details.append("1000")
     document_details.append(line_break())
     document_details.append(display_page_number())
@@ -79,14 +79,14 @@ def generate_unique():
     # Add logo to left header
     header_left = Head("L")
     header_table = Tabular(NoEscape("m{2.5in}|m{2.1in}|m{2.5in}"))
-    logo_wrapper = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='t!',
+    logo_wrapper = MiniPage(width=NoEscape(r"0.33\textwidth"), pos='t!',
                             align='l')
     logo_wrapper.append(StandAloneGraphic(image_options="width=150px",
                                           filename=logo_file))
 
     # Add recipent information
     header_center = Head("C")
-    customer = MiniPage(width=NoEscape(r"0.33\textwidth"), adjustment='h',
+    customer = MiniPage(width=NoEscape(r"0.33\textwidth"), pos='h',
                         align='l')
     customer.append("Some Person")
     customer.append(line_break())
@@ -101,7 +101,7 @@ def generate_unique():
     # Add branch information
     header_right = Head("R")
     statement_details = MiniPage(width=NoEscape(r"0.33\textwidth"),
-                                 adjustment='h', align='r')
+                                 pos='h', align='r')
     statement_details.append(bold("Bank Account Statement"))
     statement_details.append(line_break())
     statement_details.append("Date")
@@ -125,7 +125,7 @@ def generate_unique():
     # Add customer information
     first_page_table = Tabu("X[l] X[r]")
 
-    customer = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='h')
+    customer = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='h')
     customer.append("Verna Volcano")
     customer.append(new_line())
     customer.append("For some Person")
@@ -137,7 +137,7 @@ def generate_unique():
     customer.append("Address3")
 
     # Add branch information
-    branch = MiniPage(width=NoEscape(r"0.49\textwidth"), adjustment='t!',
+    branch = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='t!',
                       align='r')
     branch.append("Branch no.")
     branch.append(line_break())
@@ -149,7 +149,7 @@ def generate_unique():
     first_page_table.add_empty_row()
 
     # Add advisor information
-    advisor = MiniPage(width=NoEscape(r"\textwidth"), adjustment='h')
+    advisor = MiniPage(width=NoEscape(r"\textwidth"), pos='h')
     advisor.append("Info about advisor")
     advisor.append(new_line())
     advisor.append("Stuff and things")
