@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .base_classes import Environment, SpecialOptions
+from .base_classes import Environment, SpecialOptions, Command
 from .package import Package
 from .utils import NoEscape
 
@@ -37,7 +37,8 @@ class MiniPage(Environment):
     }
 
     def __init__(self, *, width=NoEscape(r'\textwidth'), pos=None,
-                 height=None, content_pos=None, data=None, align=None):
+                 height=None, content_pos=None, data=None, align=None,
+                 fontsize=None):
         r"""
         Args
         ----
@@ -53,6 +54,8 @@ class MiniPage(Environment):
             bottom(b), top(t), spread(s))
         align: str
             alignment of the minibox
+        fontsize: str
+            The font size of the minipage
         """
 
         options = []
@@ -63,22 +66,36 @@ class MiniPage(Environment):
         if height is not None:
             options.append(NoEscape(height))
 
-        if content_pos is not None:
+        if ((content_pos is not None) and (pos is not None) and
+           (height is not None)):
             options.append(content_pos)
 
         options = SpecialOptions(*options)
 
         arguments = [NoEscape(str(width))]
 
-        super().__init__(arguments=arguments, options=options, data=data)
+        extra_data = []
 
         if align is not None:
             if align == "l":
-                self.append(NoEscape(r"\flushleft"))
+                extra_data.append(Command(command="raggedright"))
             elif align == "c":
-                self.append(NoEscape(r"\centering"))
+                extra_data.append(Command(command="centering"))
             elif align == "r":
-                self.append(NoEscape(r"\flushright"))
+                extra_data.append(Command(command="raggedleft"))
+
+        if fontsize is not None:
+            extra_data.append(Command(command=fontsize))
+
+        if data is not None:
+            if isinstance(data, list):
+                data = extra_data + data
+            else:
+                data = extra_data + [data]
+        else:
+            data = extra_data
+
+        super().__init__(arguments=arguments, options=options, data=data)
 
 
 class TextBlock(Environment):

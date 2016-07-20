@@ -112,6 +112,7 @@ class Document(Environment):
         # No colors have been added to the document yet
         self.color = False
         self.watermark = False
+        self.meta_data = False
 
         self.append(Command(command=font_size))
 

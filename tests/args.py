@@ -247,7 +247,7 @@ def test_position():
     repr(left)
 
     minipage = MiniPage(width=r"\textwidth", height="10pt", pos='t',
-                        align='r', content_pos='t')
+                        align='r', content_pos='t', fontsize="Large")
     minipage.append("append")
     repr(minipage)
 
