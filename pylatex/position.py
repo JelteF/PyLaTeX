@@ -78,11 +78,11 @@ class MiniPage(Environment):
 
         if align is not None:
             if align == "l":
-                extra_data.append(Command(command="raggedright"))
+                extra_data.append(Command(command="flushleft"))
             elif align == "c":
                 extra_data.append(Command(command="centering"))
             elif align == "r":
-                extra_data.append(Command(command="raggedleft"))
+                extra_data.append(Command(command="flushright"))
 
         if fontsize is not None:
             extra_data.append(Command(command=fontsize))

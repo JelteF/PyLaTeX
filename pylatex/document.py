@@ -309,10 +309,10 @@ class Document(Environment):
         Args
         ----
         style: str
-            value tp set for the document style
+            value to set for the document style
         """
 
-        self.preamble.append(Command("pagestyle", arguments=style))
+        self.append(Command("pagestyle", arguments=style))
 
     def add_color(self, name, model, description):
         r"""Add a color that can be used throughout the document.
@@ -379,11 +379,17 @@ class Document(Environment):
         """
 
         name_arg = "\\" + name
+        variable_exists = False
 
-        if name in self.variables:
+        for variable in self.variables:
+            if name_arg == variable.arguments._positional_args[0]:
+                variable_exists = True
+                break
+
+        if variable_exists:
             renew = UnsafeCommand(command="renewcommand",
                                   arguments=[name_arg, value])
-            self.variables.append(renew)
+            self.append(renew)
         else:
             new = UnsafeCommand(command="newcommand",
                                 arguments=[name_arg, value])
