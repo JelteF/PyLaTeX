@@ -12,7 +12,7 @@ import errno
 from .base_classes import Environment, Command, Container, LatexObject, \
     UnsafeCommand
 from .package import Package
-from .utils import dumps_list, rm_temp_dir
+from .utils import dumps_list, rm_temp_dir, NoEscape
 
 
 class Document(Environment):
@@ -387,10 +387,10 @@ class Document(Environment):
                 break
 
         if variable_exists:
-            renew = UnsafeCommand(command="renewcommand",
-                                  arguments=[name_arg, value])
+            renew = Command(command="renewcommand",
+                            arguments=[NoEscape(name_arg), value])
             self.append(renew)
         else:
-            new = UnsafeCommand(command="newcommand",
-                                arguments=[name_arg, value])
+            new = Command(command="newcommand",
+                          arguments=[NoEscape(name_arg), value])
             self.variables.append(new)
