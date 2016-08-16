@@ -16,6 +16,8 @@ from .utils import NoEscape, escape_latex
 
 
 def _dimensionality_to_siunitx(dim):
+    import quantities as pq
+
     string = ''
     items = dim.items()
     for unit, power in sorted(items, key=itemgetter(1), reverse=True):
@@ -26,7 +28,17 @@ def _dimensionality_to_siunitx(dim):
             continue
         else:
             substring = ''
-        substring += '\\' + unit.name
+
+        prefixes = [x for x in dir(pq.prefixes) if not x.startswith('_')]
+        for prefix in prefixes:
+            # Split unitname into prefix and actual name if possible
+            if unit.name.startswith(prefix):
+                substring += '\\' + prefix + '\\' + unit.name[len(prefix):]
+                break
+        else:
+            # Otherwise simply use the full name
+            substring += '\\' + unit.name
+
         if power > 1:
             substring += r'\tothe{' + str(power) + '}'
         string += substring
