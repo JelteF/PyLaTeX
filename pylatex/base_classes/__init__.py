@@ -1,4 +1,9 @@
-# flake8: noqa
+"""
+Baseclasses that can be used to create classes representing LaTeX objects.
+
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
 
 from .latex_object import LatexObject
 from .containers import Container, Environment
