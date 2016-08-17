@@ -30,11 +30,14 @@ Added
   the Euro (€) Symbol can be used in the source.
 - `.Quantity` got a new  ``options`` keyword argument and learned to handle
   uncertain quantities.
+- `.Tabular` can now have a width specified to override the calculated width
+  based on the ``table_spec`` argument.
 
 Fixed
 ~~~~~
 - Setting the ``lmodern`` keyword argument of `.Document` to false will not
   cause invalid LaTeX code anymore.
+- `.Quantity` now correctly splits prefix and unit into seperate commands.
 
 
 1.0.0_ - `docs <../v1.0.0/>`__ - 2015-11-25
