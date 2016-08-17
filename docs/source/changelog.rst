@@ -30,6 +30,8 @@ Added
   the Euro (€) Symbol can be used in the source.
 - `.Quantity` got a new  ``options`` keyword argument and learned to handle
   uncertain quantities.
+- `.Tabular` can now have a width specified to override the calculated width
+  based on the ``table_spec`` argument.
 
 Fixed
 ~~~~~

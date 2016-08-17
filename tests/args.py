@@ -63,7 +63,7 @@ def test_math():
 
 def test_table():
     # Tabular
-    t = Tabular(table_spec='|c|c|', data=None, pos=None)
+    t = Tabular(table_spec='|c|c|', data=None, pos=None, width=2)
 
     t.add_hline(start=None, end=None)
 
