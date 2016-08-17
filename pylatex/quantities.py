@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-This module implements the classes that deals with quantities objects.
+This module implements classes that deal with quantities.
 
-It requires the latex package SIunitx.
+It converts the objects from the quantities package to latex strings that
+display them using the SIunitx package. Not all units work because of name
+differences between quantities and SIunitx. If you find one that doesn't work
+please create a pull request that adds it to the ``UNIT_NAME_TRANSLATIONS``
+dictionary.
 
 ..  :copyright: (c) 2015 by Björn Dahlgren.
     :license: MIT, see License for more details.
@@ -13,6 +17,12 @@ from operator import itemgetter
 from .base_classes import Command
 from .package import Package
 from .utils import NoEscape, escape_latex
+
+
+# Translations for names used in the quantities package to ones used by SIunitx
+UNIT_NAME_TRANSLATIONS = {
+    'Celsius': 'celsius',
+}
 
 
 def _dimensionality_to_siunitx(dim):
@@ -33,11 +43,20 @@ def _dimensionality_to_siunitx(dim):
         for prefix in prefixes:
             # Split unitname into prefix and actual name if possible
             if unit.name.startswith(prefix):
-                substring += '\\' + prefix + '\\' + unit.name[len(prefix):]
+                substring += '\\' + prefix
+                name = unit.name[len(prefix)]
                 break
         else:
             # Otherwise simply use the full name
-            substring += '\\' + unit.name
+            name = unit.name
+
+        try:
+            # Check if the name is different in SIunitx
+            name = UNIT_NAME_TRANSLATIONS[name]
+        except KeyError:
+            pass
+
+        substring += '\\' + name
 
         if power > 1:
             substring += r'\tothe{' + str(power) + '}'
