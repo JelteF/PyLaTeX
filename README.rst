@@ -16,8 +16,8 @@ Documentation
 
 There are two versions of the documentation:
 
-- The one generated for the `last release
-  <https://jeltef.github.io/PyLaTeX/latest/>`__.
+- The one generated for the `last stable release
+  <https://jeltef.github.io/PyLaTeX/current/>`__.
 - The one based on the `latest git version
   <https://jeltef.github.io/PyLaTeX/latest/>`__.
 
