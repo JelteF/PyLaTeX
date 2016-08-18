@@ -40,6 +40,6 @@ def generate_header():
         heading.append(line_break())
         heading.append(header2(bold("As at:")))
 
-    doc.generate_pdf("header")
+    doc.generate_pdf("header", clean_tex=False)
 
 generate_header()
