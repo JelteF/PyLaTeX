@@ -23,7 +23,7 @@ Changed
   front of them.
 - For better readability let `~.escape_latex` change a newline to ``\\%\n``
   instead of simply ``\\``.
-- `.Document` packages now get propogated from the preamble elements as well.
+- `.Document` packages now get propagated from the preamble elements as well.
 - Changed `.Figure` add_image to add a StandAloneGraphic
 - `.Tabular` add_row now accepts a list of mappers
 
@@ -37,10 +37,12 @@ Added
   addition to this class `.Head` and `.Foot` were added for creating unique
   headers and footers within the page styles.
 - Added a new type of container `.PreambleCommand` for supporting page styles.
-- Added new options to the `.Document` constructor: ``lscape`` (an option to
-  make the document landscape mode), ``margin`` (an option to select margin
-  size), ``header_height`` (an option to select header height), ``indents``
-  (an option to select whether the documents elements are indented).
+- Added new options to the `.Document` constructor: ``geometry_options`` (a
+  list of options for the geometry package), ``document_options`` (a list of
+  options to place in the document class), ``indents`` (an option to select
+  whether the documents elements are indented), ``page_numbers`` (an option to
+  choose whether to use the lastpage package or not), ``font_size`` (the font
+  size to set at the beggining of the document).
 - Added several new methods to the `.Document`: ``change_page_style``,
   ``change_document_style``, ``add_color``, ``change_length``.
 - Added a new `.position` package with the following classes: `.Center` (an

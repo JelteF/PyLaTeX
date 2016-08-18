@@ -26,10 +26,10 @@ class Document(Environment):
     """
 
     def __init__(self, default_filepath='default_filepath', *,
-                 documentclass='article', fontenc='T1', inputenc='utf8',
-                 lmodern=True, textcomp=True, page_numbers=True, indent=False,
-                 data=None, font_size="normalsize",
-                 document_options=None, geometry_options=None):
+                 documentclass='article', document_options=None, fontenc='T1',
+                 inputenc='utf8', font_size="normalsize", lmodern=True,
+                 textcomp=True, page_numbers=True, indent=False,
+                 geometry_options=None, data=None):
         r"""
         Args
         ----
@@ -37,35 +37,27 @@ class Document(Environment):
             The default path to save files.
         documentclass: str or `~.Command`
             The LaTeX class of the document.
+        document_options: str or `list`
+            The options to supply to the documentclass
         fontenc: str
             The option for the fontenc package.
         inputenc: str
             The option for the inputenc package.
+        font_size: str
+            The font size to declare as normalsize
         lmodern: bool
             Use the Latin Modern font. This is a font that contains more glyphs
             than the standard LaTeX font.
         textcomp: bool
             Adds even more glyphs, for instance the Euro (€) sign.
-        lscape: bool
-            Adds the ability to orientate the document in landscape mode
-        header_height: str
-            Controls the header height of the document
-        header_sep: str
-            Controls the sepparation between the header and the content
         page_numbers: bool
-            Adds the ability to add page numbers to the document
-        margin: str
-            Modifies the default document margin
+            Adds the ability to add the last page to the document.
         indent: bool
             Determines whether or not the document requires indentation
-        data: list
-            Initial content of the document.
-        font_size: str
-            The font size to declare as normalsize
-        document_options: str or `list`
-            The options to supply to the documentclass
         geometry_options: str or `list`
             The options to supply to the geometry package
+        data: list
+            Initial content of the document.
         """
 
         self.default_filepath = default_filepath
