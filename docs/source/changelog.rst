@@ -67,11 +67,15 @@ Added
   size, changing text color, aligning text), general commands (page break, line
   break, new line, horizontal fill, horizontal skip, vertical skip), general
   utilities (displaying page number, adding textbox around text)
+- `.Tabular` can now have a width specified to override the calculated width
+  based on the ``table_spec`` argument.
 
 Fixed
 ~~~~~
 - Setting the ``lmodern`` keyword argument of `.Document` to false will not
   cause invalid LaTeX code anymore.
+- `.Quantity` now correctly splits prefix and unit into seperate commands.
+- `.Quantity` can now handle Celsius.
 
 
 1.0.0_ - `docs <../v1.0.0/>`__ - 2015-11-25

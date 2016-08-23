@@ -55,7 +55,7 @@ class Tabular(Environment):
     }
 
     def __init__(self, table_spec, data=None, pos=None, *, row_height=None,
-                 col_space=None, arguments=None, **kwargs):
+                 col_space=None, width=None, arguments=None, **kwargs):
         """
         Args
         ----
@@ -70,13 +70,22 @@ class Tabular(Environment):
             Specifies the spacing between table columns
         arguments: str or `list`
             The arguments to append to the table
+        width: int
+            The amount of columns that the table has. If this is `None` it is
+            calculated based on the ``table_spec``, but this is only works for
+            simple specs. In cases where this calculation is wrong override the
+            width using this argument.
 
         References
         ----------
         * https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
         """
 
-        self.width = _get_table_width(table_spec)
+        if width is None:
+            self.width = _get_table_width(table_spec)
+        else:
+            self.width = width
+
         self.row_height = row_height
         self.col_space = col_space
 

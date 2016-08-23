@@ -167,8 +167,8 @@ class Document(Environment):
             Also remove the generated tex file.
         compiler: `str` or `None`
             The name of the LaTeX compiler to use. If it is None, PyLaTeX will
-            choose a fitting one on its own. Starting with mklatex and then
-            pdflatex.
+            choose a fitting one on its own. Starting with ``latexmk`` and then
+            ``pdflatex``.
         compiler_args: `list` or `None`
             Extra arguments that should be passed to the LaTeX compiler. If
             this is None it defaults to an empty list.
