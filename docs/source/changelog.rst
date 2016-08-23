@@ -65,7 +65,7 @@ Added
   consecutive page.
 - Added the ability to choose the enumeration symbol in a list using the
   ``enumeration_symbol`` option inside the constructor.
-- Added a `.basic` module with the following commands: NewLine, NewPage,
+- Added a `pylatex.basic` module with the following commands: NewLine, NewPage,
   LineBreak, HFill.
 - Added several environments to `~.basic`: FontSize, HugeText, LargeText,
   MediumText, SmallText, FootnoteText.
