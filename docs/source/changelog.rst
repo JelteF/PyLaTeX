@@ -36,6 +36,8 @@ Added
 - Added `.PageStyle` class to support the creation of various page styles. In
   addition to this class `.Head` and `.Foot` were added for creating unique
   headers and footers within the page styles.
+- Added a display_page_number method inside `~.Head` to return a string which
+  displays the page number in latex.
 - Added a new type of container `.PreambleCommand` for supporting page styles.
 - Added new options to the `.Document` constructor: ``geometry_options`` (a
   list of options for the geometry package), ``document_options`` (a list of
@@ -63,10 +65,13 @@ Added
   consecutive page.
 - Added the ability to choose the enumeration symbol in a list using the
   ``enumeration_symbol`` option inside the constructor.
-- Added several functions to the `.utils` package: text formating (changing text
-  size, changing text color, aligning text), general commands (page break, line
-  break, new line, horizontal fill, horizontal skip, vertical skip), general
-  utilities (displaying page number, adding textbox around text)
+- Added a `.basic` module with the following commands: NewLine, NewPage,
+  LineBreak, HFill.
+- Added several environments to `~.basic`: FontSize, HugeText, LargeText,
+  MediumText, SmallText, FootnoteText.
+- Added several functions to the `.utils` package: text formating (changing
+  text color, aligning text), general commands (horizontal skip, vertical
+  skip), general utilities (adding textbox around text)
 - `.Tabular` can now have a width specified to override the calculated width
   based on the ``table_spec`` argument.
 
