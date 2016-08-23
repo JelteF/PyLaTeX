@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+This module implements the classes that deal with positioning.
+
+Positions various elements on the page.
+
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
 
 from .base_classes import Environment, SpecialOptions, Command
 from .package import Package

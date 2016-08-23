@@ -42,6 +42,7 @@ class NoEscape(str):
     When a `.NoEscape` string is added to another `.NoEscape` string it will
     produce a `.NoEscape` string. If it is added to normal string it will
     produce a normal string.
+
     Args
     ----
     string: str
@@ -67,10 +68,12 @@ def escape_latex(s):
         The string to be escaped. If this is not a string, it will be converted
         to a string using `str`. If it is a `NoEscape` string, it will pass
         through unchanged.
+
     Returns
     -------
     NoEscape
         The string, with special characters in latex escaped.
+
     Examples
     --------
     >>> escape_latex("Total cost: $30,000")
@@ -78,6 +81,7 @@ def escape_latex(s):
     >>> escape_latex("Issue #5 occurs in 30% of all cases")
     'Issue \#5 occurs in 30\% of all cases'
     >>> print(escape_latex("Total cost: $30,000"))
+
     References
     ----------
         * http://tex.stackexchange.com/a/34586/43228
@@ -95,14 +99,17 @@ def fix_filename(path):
 
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
+
     Args
     ----
     filename : str
         The filen name to be changed.
+
     Returns
     -------
     str
         The new filename.
+
     Examples
     --------
     >>> fix_filename("foo.bar.pdf")
@@ -140,14 +147,16 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     mapper: callable or `list`
         A function or a list of functions that should be called on all
         entries of the list after converting them to a string, for instance
-        bold
+        `~.bold`
     as_content: bool
         Indicates whether the items in the list should be dumped using
         `~.LatexObject.dumps_as_content`
+
     Returns
     -------
     NoEscape
         A single LaTeX string.
+
     Examples
     --------
     >>> dumps_list([r"\textbf{Test}", r"\nth{4}"])
@@ -188,6 +197,7 @@ def _latex_item_to_string(item, *, escape=False, as_content=False):
     as_content: bool
         Indicates whether the item should be dumped using
         `~.LatexObject.dumps_as_content`
+
     Returns
     -------
     NoEscape
@@ -212,16 +222,19 @@ def bold(s, *, escape=True):
     r"""Make a string appear bold in LaTeX formatting.
 
     bold() wraps a given string in the LaTeX command \textbf{}.
+
     Args
     ----
     s : str
         The string to be formatted.
     escape: bool
         If true the bold text will be escaped
+
     Returns
     -------
     NoEscape
         The formatted string.
+
     Examples
     --------
     >>> bold("hello")
@@ -259,16 +272,19 @@ def italic(s, *, escape=True):
     r"""Make a string appear italicized in LaTeX formatting.
 
     italic() wraps a given string in the LaTeX command \textit{}.
+
     Args
     ----
     s : str
         The string to be formatted.
     escape: bool
         If true the italic text will be escaped
+
     Returns
     -------
     NoEscape
         The formatted string.
+
     Examples
     --------
     >>> italic("hello")
@@ -282,30 +298,6 @@ def italic(s, *, escape=True):
     return NoEscape(r'\textit{' + s + '}')
 
 
-def page_break():
-    r"""Add a page break to the current environment."""
-
-    return NoEscape(r'\newpage')
-
-
-def line_break():
-    r"""Add a line break to the current line."""
-
-    return NoEscape('\linebreak ')
-
-
-def new_line():
-    r"""Add a new line."""
-
-    return NoEscape(r'\newline ')
-
-
-def horizontal_fill():
-    r"""Fill the current line."""
-
-    return NoEscape(r'\hfill')
-
-
 def horizontal_skip(size):
     r"""Add/remove the amount of horizontal space between elements.
 
@@ -316,117 +308,6 @@ def horizontal_skip(size):
     """
 
     return pylatex.base_classes.UnsafeCommand("hspace*", arguments=size)
-
-
-def display_page_number():
-    r"""Provide the page number in the following format: Page # of ##."""
-
-    return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
-
-
-def huge(s, *, escape=True):
-    r"""Highlight the text as a header of size Huge.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the enlarged text will be escaped
-    Returns
-    -------
-    NoEscape
-        The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\begin{Huge}' + s + '\end{Huge}')
-
-
-def header1(s, *, escape=True):
-    r"""Highlight the text as a header of size Large.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the enlarged text will be escaped
-    Returns
-    -------
-    NoEscape
-        The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\begin{Large}' + s + '\end{Large}')
-
-
-def header2(s, *, escape=True):
-    r"""Highlight the text as a header of size large.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the enlarged text will be escaped
-    Returns
-    -------
-    NoEscape
-        The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\begin{large}' + s + '\end{large}')
-
-
-def small1(s, *, escape=True):
-    r"""Highlight the text as size small.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the enlarged text will be escaped
-    Returns
-    -------
-    NoEscape
-        The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\begin{small}' + s + '\end{small}')
-
-
-def small2(s, *, escape=True):
-    r"""Highlight the text as size footnotesize.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the enlarged text will be escaped
-    Returns
-    -------
-    NoEscape
-        The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\begin{footnotesize}' + s + '\end{footnotesize}')
 
 
 def vertical_skip(size):
@@ -448,6 +329,7 @@ def text_box(s):
     ----
     s : str
         The string to be formatted.
+
     Returns
     -------
     PreambleCommand
@@ -466,6 +348,7 @@ def center(s, *, escape=True):
         The string to be formatted.
     escape: bool
         If true the centered text will be escaped
+
     Returns
     -------
     NoEscape
@@ -487,6 +370,7 @@ def flush_left(s, *, escape=True):
         The string to be formatted.
     escape: bool
         If true the left-aligned text will be escaped
+
     Returns
     -------
     NoEscape
@@ -508,6 +392,7 @@ def flush_right(s, *, escape=True):
         The string to be formatted.
     escape: bool
         If true the right-aligned text will be escaped
+
     Returns
     -------
     NoEscape
@@ -524,16 +409,19 @@ def verbatim(s, *, delimiter='|'):
     r"""Make the string verbatim.
 
     Wraps the given string in a \verb LaTeX command.
+
     Args
     ----
     s : str
         The string to be formatted.
     delimiter : str
         How to designate the verbatim text (default is a pipe | )
+
     Returns
     -------
     NoEscape
         The formatted string.
+
     Examples
     --------
     >>> verbatim(r"\renewcommand{}")
@@ -553,10 +441,12 @@ def make_temp_dir():
     Directories created by this functionn follow the format specified
     by ``_tmp_path`` and are a pylatex subdirectory within
     a standard ``tempfile`` tempdir.
+
     Returns
     -------
     str
         The absolute filepath to the created temporary directory.
+
     Examples
     --------
     >>> make_temp_dir()

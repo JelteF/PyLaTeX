@@ -39,8 +39,7 @@ def _get_table_width(table_spec):
     cleaner_spec = re.sub(r'{[^}]*}', '', table_spec)
 
     # Remove X[] in tabu environments so they dont interfere with column count
-    for l in COLUMN_LETTERS:
-        cleaner_spec = re.sub(r'X\[[^X]*' + l + r'\]', l, cleaner_spec)
+    cleaner_spec = re.sub(r'X\[(.*?(.))\]', r'\2', cleaner_spec)
     spec_counter = Counter(cleaner_spec)
 
     return sum(spec_counter[l] for l in COLUMN_LETTERS)

@@ -9,8 +9,8 @@ It creates a sample page filled with labels using the MiniPage element.
 """
 
 # begin-doc-include
-from pylatex import Document, LongTabu
-from pylatex.utils import bold, horizontal_fill, center
+from pylatex import Document, LongTabu, HFill
+from pylatex.utils import bold, center
 
 
 def genenerate_longtabu():
@@ -37,7 +37,7 @@ def genenerate_longtabu():
             data_table.add_row(row)
 
     doc.append(bold("Grand Total:"))
-    doc.append(horizontal_fill())
+    doc.append(HFill())
     doc.append(bold("Total"))
 
     doc.generate_pdf("longtabu", clean_tex=False)

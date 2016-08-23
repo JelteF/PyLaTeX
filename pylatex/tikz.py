@@ -108,4 +108,12 @@ class Frame(Environment):
     packages = [Package('mdframed')]
 
     def __init__(self, options=None, data=None):
+        """
+        Args
+        ----
+        options : str, `list` or `~.options`
+            The options for the mdframed package
+        data : str or `~.LatexObject`
+            The data that is part of the mdframed environment
+        """
         super().__init__(options=options, data=data)

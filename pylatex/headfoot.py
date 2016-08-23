@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+This module implements the classes that deal with creating headers and footers.
+
+..  :copyright: (c) 2014 by Jelte Fennema.
+    :license: MIT, see License for more details.
+"""
 
 from .base_classes import PreambleCommand, Command
 from .package import Package
@@ -80,6 +86,18 @@ class Head(PreambleCommand):
         self.position = position
 
         super().__init__(data=data, options=position)
+
+    @staticmethod
+    def display_page_number():
+        """Get the string that displays the page number.
+
+        Returns
+        -------
+        str
+            The latex string that displays the page number
+        """
+
+        return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
 
 
 class Foot(Head):

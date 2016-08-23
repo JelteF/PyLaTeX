@@ -17,12 +17,11 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
     LongTable, ColoredTabu, Position, FlushLeft, FlushRight, Center, \
     MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic, Tabularx, \
-    Column, ColoredTabularx
+    Column, ColoredTabularx, NewLine, LineBreak, NewPage, HFill, FontSize, \
+    HugeText, LargeText, MediumText, SmallText, FootnoteText
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, center, flush_left, flush_right, huge, header1, \
-    header2, small1, small2, text_color, page_break, new_line, line_break, \
-    horizontal_fill, vertical_skip, horizontal_skip, display_page_number, \
-    text_box, NoEscape
+    italic, verbatim, center, flush_left, flush_right, text_color, \
+    vertical_skip, horizontal_skip, text_box, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -258,6 +257,47 @@ def test_position():
     repr(textblock)
 
 
+def test_basic():
+    # Tests the basic commands and environments
+    # Basic commands
+    new_page = NewPage()
+    repr(new_page)
+
+    new_line = NewLine()
+    repr(new_line)
+
+    line_break = LineBreak()
+    repr(line_break)
+
+    h_fill = HFill()
+    repr(h_fill)
+
+    # Basic environments
+    huge = HugeText("Huge")
+    huge.append("Huge 2")
+    repr(huge)
+
+    large = LargeText("Large")
+    large.append("Large 2")
+    repr(large)
+
+    medium = MediumText("Medium")
+    medium.append("Medium 2")
+    repr(medium)
+
+    small = SmallText("Small")
+    small.append("Small 2")
+    repr(small)
+
+    footnote = FootnoteText("Footnote")
+    footnote.append("Footnote 2")
+    repr(footnote)
+
+    font_size = FontSize("scriptsize", "Script")
+    font_size.append("Script 2")
+    repr(font_size)
+
+
 def test_utils():
     # Utils
     escape_latex(s='')
@@ -274,27 +314,7 @@ def test_utils():
 
     text_color(s='green text', color='green')
 
-    page_break()
-
-    line_break()
-
-    new_line()
-
-    horizontal_fill()
-
     horizontal_skip(size='20pt')
-
-    display_page_number()
-
-    huge(s='HugeText')
-
-    header1(s='Header1Text')
-
-    header2(s='Header2Text')
-
-    small1(s='Small1Text')
-
-    small2(s='Small2Text')
 
     vertical_skip(size="20pt")
 

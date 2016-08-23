@@ -1,10 +1,21 @@
+#!/usr/bin/python
+"""
+This example shows the functionality of the PyLaTeX library.
+
+It creates a sample report with 2 tables, one containing images and the other
+containing data. It also creates a complex header with an image.
+
+..  :copyright: (c) 2016 by Vladimir Gorovikov
+    :license: MIT, see License for more details.
+"""
+
+# begin-doc-include
 import os
 
 from pylatex import Document, PageStyle, Head, Foot, MiniPage, \
     StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu, \
-    ColoredTabularx
-from pylatex.utils import header1, header2, bold, NoEscape, line_break, \
-    text_color, display_page_number, page_break
+    ColoredTabularx, LargeText, MediumText, LineBreak, NewPage
+from pylatex.utils import bold, NoEscape, text_color
 
 
 def generate_unique():
@@ -32,9 +43,9 @@ def generate_unique():
     with first_page.create(Head("R")) as right_header:
         with right_header.create(MiniPage(width=NoEscape(r"0.49\textwidth"),
                                  pos='c', align='r')) as title_wrapper:
-            title_wrapper.append(bold(header1("Bank Account Statement")))
-            title_wrapper.append(line_break())
-            title_wrapper.append(bold(header2("Date")))
+            title_wrapper.append(LargeText(bold("Bank Account Statement")))
+            title_wrapper.append(LineBreak())
+            title_wrapper.append(MediumText(bold("Date")))
 
     # Add footer
     with first_page.create(Foot("C")) as footer:
@@ -58,8 +69,8 @@ def generate_unique():
             document_details = MiniPage(width=NoEscape(r"0.25\textwidth"),
                                         pos='t', align='r')
             document_details.append("1000")
-            document_details.append(line_break())
-            document_details.append(display_page_number())
+            document_details.append(LineBreak())
+            document_details.append(Head.display_page_number())
 
             footer_table.add_row([branch_address, branch_address,
                                   branch_address, document_details])
@@ -84,9 +95,9 @@ def generate_unique():
         branch = MiniPage(width=NoEscape(r"0.49\textwidth"), pos='t!',
                           align='r')
         branch.append("Branch no.")
-        branch.append(line_break())
+        branch.append(LineBreak())
         branch.append(bold("1181..."))
-        branch.append(line_break())
+        branch.append(LineBreak())
         branch.append(bold("TIB Cheque"))
 
         first_page_table.add_row([customer, branch])
@@ -114,7 +125,7 @@ def generate_unique():
             else:
                 data_table.add_row(row)
 
-    doc.append(page_break())
+    doc.append(NewPage())
 
     # Add cheque images
     with doc.create(LongTabu("X[c] X[c]")) as cheque_table:

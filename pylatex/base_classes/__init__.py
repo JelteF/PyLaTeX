@@ -7,7 +7,8 @@ Baseclasses that can be used to create classes representing LaTeX objects.
 
 from .latex_object import LatexObject
 from .containers import Container, Environment, PreambleCommand
-from .command import CommandBase, Command, UnsafeCommand, Options, SpecialOptions, Arguments
+from .command import CommandBase, Command, UnsafeCommand, Options, \
+    SpecialOptions, Arguments
 from .float import Float
 
 # Old names of the base classes for backwards compatibility

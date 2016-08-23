@@ -2,43 +2,52 @@
 """
 This example shows the functionality of the PageHeader object.
 
-It creates a sample page with the different types of headers.
+It creates a sample page with the different types of headers and footers.
 
 ..  :copyright: (c) 2016 by Vladimir Gorovikov
     :license: MIT, see License for more details.
 """
 
 # begin-doc-include
-from pylatex import Document, PageStyle, Head, MiniPage
-from pylatex.utils import line_break, display_page_number, header1, header2, \
-    bold
+from pylatex import Document, PageStyle, Head, MiniPage, Foot, LargeText, \
+    MediumText, LineBreak
+from pylatex.utils import bold
 
 
 def generate_header():
-    geometry_options = {"margin": "0.5in"}
+    geometry_options = {"margin": "0.7in"}
     doc = Document(geometry_options=geometry_options)
     # Add document header
     header = PageStyle("header")
     # Create left header
-    with header.create(Head("L")) as left_header:
-        left_header.append("Page date: ")
-        left_header.append(line_break())
-        left_header.append("R3")
+    with header.create(Head("L")):
+        header.append("Page date: ")
+        header.append(LineBreak())
+        header.append("R3")
     # Create center header
-    with header.create(Head("C")) as center_header:
-        center_header.append("Company")
+    with header.create(Head("C")):
+        header.append("Company")
     # Create right header
-    with header.create(Head("R")) as right_header:
-        right_header.append(display_page_number())
+    with header.create(Head("R")):
+        header.append(Head.display_page_number())
+    # Create left footer
+    with header.create(Foot("L")):
+        header.append("Left Footer")
+    # Create center footer
+    with header.create(Foot("C")):
+        header.append("Center Footer")
+    # Create right footer
+    with header.create(Foot("R")):
+        header.append("Right Footer")
 
     doc.preamble.append(header)
     doc.change_document_style("header")
 
     # Add Heading
-    with doc.create(MiniPage(align='c')) as heading:
-        heading.append(header1(bold("Title")))
-        heading.append(line_break())
-        heading.append(header2(bold("As at:")))
+    with doc.create(MiniPage(align='c')):
+        doc.append(LargeText(bold("Title")))
+        doc.append(LineBreak())
+        doc.append(MediumText(bold("As at:")))
 
     doc.generate_pdf("header", clean_tex=False)
 

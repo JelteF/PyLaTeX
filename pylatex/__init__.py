@@ -5,6 +5,8 @@ A library for creating Latex files.
     :license: MIT, see License for more details.
 """
 
+from .basic import HugeText, NewPage, LineBreak, NewLine, HFill, FontSize, \
+    LargeText, MediumText, SmallText, FootnoteText
 from .document import Document
 from .math import Math, VectorName, Matrix
 from .package import Package
