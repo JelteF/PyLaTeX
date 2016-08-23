@@ -332,11 +332,11 @@ def text_box(s):
 
     Returns
     -------
-    PreambleCommand
+    ContainerCommand
         The container with the content specified
     """
 
-    return pylatex.base_classes.PreambleCommand(command='fbox', data=s)
+    return pylatex.base_classes.ContainerCommand(command='fbox', data=s)
 
 
 def center(s, *, escape=True):

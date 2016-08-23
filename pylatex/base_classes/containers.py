@@ -180,8 +180,14 @@ class Environment(Container):
         return string
 
 
-class PreambleCommand(Container):
-    r"""Wrapper class for the header commands."""
+class ContainerCommand(Container):
+    r"""A base class for a container command (A command which contains data).
+
+    Container command example:
+        \CommandName[options]{arguments}{
+            data
+        }
+    """
 
     omit_if_empty = False
 

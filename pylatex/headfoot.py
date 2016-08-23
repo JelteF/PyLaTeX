@@ -6,12 +6,12 @@ This module implements the classes that deal with creating headers and footers.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import PreambleCommand, Command
+from .base_classes import ContainerCommand, Command
 from .package import Package
 from .utils import NoEscape
 
 
-class PageStyle(PreambleCommand):
+class PageStyle(ContainerCommand):
     r"""Allows the creation of new page styles."""
 
     _latex_name = "fancypagestyle"
@@ -61,16 +61,11 @@ class PageStyle(PreambleCommand):
                              arguments=[NoEscape(r"\headrulewidth"),
                                         str(thickness) + 'pt']))
         elif element == "footer":
-            self.data.append(
-                Command(
-                    "renewcommand",
-                    arguments=[
-                        NoEscape(r"\footrulewidth"),
-                        str(thickness) +
-                        'pt']))
+            self.data.append(Command("renewcommand", arguments=[
+                NoEscape(r"\footrulewidth"), str(thickness) + 'pt']))
 
 
-class Head(PreambleCommand):
+class Head(ContainerCommand):
     r"""Allows the creation of headers."""
 
     _latex_name = "fancyhead"

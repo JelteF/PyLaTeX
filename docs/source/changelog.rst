@@ -38,7 +38,8 @@ Added
   headers and footers within the page styles.
 - Added a display_page_number method inside `~.Head` to return a string which
   displays the page number in latex.
-- Added a new type of container `.PreambleCommand` for supporting page styles.
+- Added a new type of container `.ContainerCommand` for supporting commands
+  with data.
 - Added new options to the `.Document` constructor: ``geometry_options`` (a
   list of options for the geometry package), ``document_options`` (a list of
   options to place in the document class), ``indents`` (an option to select
@@ -67,7 +68,7 @@ Added
   ``enumeration_symbol`` option inside the constructor.
 - Added a `pylatex.basic` module with the following commands: NewLine, NewPage,
   LineBreak, HFill.
-- Added several environments to `~.basic`: FontSize, HugeText, LargeText,
+- Added several environments to `pylatex.basic`: FontSize, HugeText, LargeText,
   MediumText, SmallText, FootnoteText.
 - Added several functions to the `.utils` package: text formating (changing
   text color, aligning text), general commands (horizontal skip, vertical
