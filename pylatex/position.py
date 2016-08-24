@@ -13,21 +13,17 @@ from .package import Package
 from .utils import NoEscape
 
 
-class Position(Environment):
-    r"""Base class for positioning environments."""
+class Center(Environment):
+    r"""Centered environment."""
 
     packages = [Package('ragged2e')]
 
 
-class Center(Position):
-    r"""Centered environment."""
-
-
-class FlushLeft(Position):
+class FlushLeft(Center):
     r"""Left-aligned environment."""
 
 
-class FlushRight(Position):
+class FlushRight(Center):
     r"""Right-aligned environment."""
 
 

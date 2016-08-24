@@ -10,118 +10,63 @@ from .base_classes import CommandBase, Environment, ContainerCommand
 from .package import Package
 
 
-class BasicCommand(CommandBase):
-    """A command which takes no arguments or options."""
+class NewPage(CommandBase):
+    """A command that adds a new page to the document."""
 
     def __init__(self):
         super().__init__()
 
 
-class NewPage(BasicCommand):
-    """A command that adds a new page to the document."""
-
-
-class LineBreak(BasicCommand):
+class LineBreak(NewPage):
     """A command that adds a line break to the document."""
 
 
-class NewLine(BasicCommand):
+class NewLine(NewPage):
     """A command that adds a new line to the document."""
 
 
-class HFill(BasicCommand):
+class HFill(NewPage):
     """A command that fills the current line in the document."""
 
 
-class FontSize(Environment):
-    """An environment which changes the font size."""
+class HugeText(Environment):
+    """An environment which makes the text size 'Huge'."""
 
-    _repr_attributes_mapping = {
-        "size": "options"
-    }
+    _latex_name = "Huge"
 
-    def __init__(self, size, data):
+    def __init__(self, data=None):
         """
         Args
         ----
-        size : str
-            The name of the font size
         data : str or `~.LatexObject`
             The string or LatexObject to be formatted.
         """
 
-        self._latex_name = size
         super().__init__(data=data)
 
 
-class HugeText(FontSize):
-    """An environment which makes the text size 'Huge'."""
-
-    def __init__(self, data):
-        """
-        Args
-        ----
-        data : str or `~.LatexObject`
-            The string or LatexObject to be formatted.
-        """
-
-        super().__init__(size="Huge", data=data)
-
-
-class LargeText(FontSize):
+class LargeText(HugeText):
     """An environment which makes the text size 'Large'."""
 
-    def __init__(self, data):
-        """
-        Args
-        ----
-        data : str or `~.LatexObject`
-            The string or LatexObject to be formatted.
-        """
-
-        super().__init__(size="Large", data=data)
+    _latex_name = "Large"
 
 
-class MediumText(FontSize):
+class MediumText(HugeText):
     """An environment which makes the text size 'large'."""
 
-    def __init__(self, data):
-        """
-        Args
-        ----
-        data : str or `~.LatexObject`
-            The string or LatexObject to be formatted.
-        """
-
-        super().__init__(size="large", data=data)
+    _latex_name = "large"
 
 
-class SmallText(FontSize):
+class SmallText(HugeText):
     """An environment which makes the text size 'small'."""
 
-    def __init__(self, data):
-        """
-        Args
-        ----
-        data : str or `~.LatexObject`
-            The string or LatexObject to be formatted.
-        """
-
-        super().__init__(size="small", data=data)
+    _latex_name = "small"
 
 
-class FootnoteText(FontSize):
+class FootnoteText(HugeText):
     """An environment which makes the text size 'footnotesize'."""
 
-    def __init__(self, data):
-        """
-        Args
-        ----
-        data : str or `~.LatexObject`
-            The string or LatexObject to be formatted.
-        """
-
-        super().__init__(size="footnotesize", data=data)
+    _latex_name = "footnotesize"
 
 
 class TextColor(ContainerCommand):

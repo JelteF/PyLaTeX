@@ -5,8 +5,8 @@ A library for creating Latex files.
     :license: MIT, see License for more details.
 """
 
-from .basic import HugeText, NewPage, LineBreak, NewLine, HFill, FontSize, \
-    LargeText, MediumText, SmallText, FootnoteText, TextColor
+from .basic import HugeText, NewPage, LineBreak, NewLine, HFill, LargeText, \
+    MediumText, SmallText, FootnoteText, TextColor
 from .document import Document
 from .frames import MdFramed, FBox
 from .math import Math, VectorName, Matrix
@@ -22,5 +22,4 @@ from .base_classes import Command, UnsafeCommand
 from .utils import NoEscape, escape_latex, _latex_item_to_string
 from .errors import TableRowSizeError
 from .headfoot import PageStyle, Head, Foot
-from .position import Center, FlushLeft, FlushRight, Position, MiniPage, \
-    TextBlock
+from .position import Center, FlushLeft, FlushRight, MiniPage, TextBlock

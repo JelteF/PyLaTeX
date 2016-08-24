@@ -15,9 +15,9 @@ import matplotlib
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
-    LongTable, Position, FlushLeft, FlushRight, Center, MiniPage, TextBlock, \
+    LongTable, FlushLeft, FlushRight, Center, MiniPage, TextBlock, \
     PageStyle, Head, Foot, StandAloneGraphic, Tabularx, Column, NewLine, \
-    LineBreak, NewPage, HFill, FontSize, HugeText, LargeText, MediumText, \
+    LineBreak, NewPage, HFill, HugeText, LargeText, MediumText, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, vertical_skip, horizontal_skip, NoEscape
@@ -229,9 +229,6 @@ def test_headfoot():
 
 def test_position():
     # Test alignment environments
-    position = Position()
-    repr(position)
-
     center = Center()
     center.append("append")
     repr(center)
@@ -303,10 +300,6 @@ def test_basic():
     footnote = FootnoteText("Footnote")
     footnote.append("Footnote 2")
     repr(footnote)
-
-    font_size = FontSize("scriptsize", "Script")
-    font_size.append("Script 2")
-    repr(font_size)
 
     text_color = TextColor("green", "GreenText")
     text_color.append("More Green Text")
