@@ -135,6 +135,6 @@ def generate_unique():
         for i in range(0, 20):
             cheque_table.add_row([cheque, cheque])
 
-    doc.generate_pdf("complex_example", clean_tex=False)
+    doc.generate_pdf("complex_report", clean_tex=False)
 
 generate_unique()
