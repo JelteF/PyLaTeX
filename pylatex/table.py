@@ -137,6 +137,7 @@ class Tabular(Environment):
         """
 
         if color is not None:
+            # TODO: This check should not be needed.
             if not self.color:
                 self.packages.append(Package('xcolor', options='table'))
                 self.color = True
@@ -223,7 +224,7 @@ class Tabularx(Tabular):
 class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
 
-    # TODO: Make this subclass of CommandBase and Container
+    # TODO: Make this subclass of ContainerCommand
 
     def __init__(self, size, *, align='c', color=None, data=None):
         """
