@@ -103,7 +103,6 @@ class Document(Environment):
 
         # No colors have been added to the document yet
         self.color = False
-        self.watermark = False
         self.meta_data = False
 
         self.append(Command(command=font_size))
@@ -340,24 +339,6 @@ class Document(Environment):
 
         self.preamble.append(UnsafeCommand('setlength',
                                            arguments=[parameter, value]))
-
-    def add_watermark(self, text, scale=1):
-        """Add a watermark to the document.
-
-        Args
-        ----
-        text: str
-            The text to be displayed on the watermark
-        scale: float
-            The scale of the watermark
-        """
-
-        if not self.watermark:
-            self.packages.append(Package("draftwatermark"))
-            self.preamble.append(Command(command="SetWatermarkText",
-                                         arguments=text))
-            self.preamble.append(Command(command="SetWatermarkScale",
-                                         arguments=scale))
 
     def add_variable(self, name, value):
         """Add a variable which can be used inside the document.

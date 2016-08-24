@@ -24,8 +24,8 @@ Changed
 - For better readability let `~.escape_latex` change a newline to ``\\%\n``
   instead of simply ``\\``.
 - `.Document` packages now get propagated from the preamble elements as well.
-- Changed `.Figure` add_image to add a StandAloneGraphic
-- `.Tabular` add_row now accepts a list of mappers
+- Changed `.Figure.add_image` to add a `.StandAloneGraphic`
+- `.Tabular.add_row` now accepts a list of mappers
 
 Added
 ~~~~~
