@@ -340,8 +340,12 @@ class Document(Environment):
         self.preamble.append(UnsafeCommand('setlength',
                                            arguments=[parameter, value]))
 
-    def add_variable(self, name, value):
-        """Add a variable which can be used inside the document.
+    def set_variable(self, name, value):
+        r"""Add a variable which can be used inside the document.
+
+        Variables are defined before the preamble. If a variable with that name
+        has already been set, the new value will override it for future uses.
+        This is done by appending ``\renewcommand`` to the document.
 
         Args
         ----

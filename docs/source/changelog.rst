@@ -43,10 +43,11 @@ Added
   list of options for the geometry package), ``document_options`` (a list of
   options to place in the document class), ``indents`` (an option to select
   whether the documents elements are indented), ``page_numbers`` (an option to
-  choose whether to use the lastpage package or not), ``font_size`` (the font
-  size to set at the beggining of the document).
+  choose whether to use page numbers or not), ``font_size`` (the font size to
+  set at the beggining of the document).
 - Added several new methods to the `.Document`: ``change_page_style``,
-  ``change_document_style``, ``add_color``, ``change_length``.
+  ``change_document_style``, ``add_color``, ``change_length``,
+  ``set_variable``.
 - Added a new `.position` package with the following classes: `.Center` (an
   environment with centered content), `.FlushLeft` (an environment with left
   aligned content), `.FlushRight` (an environment with right aligned content),
