@@ -22,6 +22,8 @@ from .utils import NoEscape, escape_latex
 # Translations for names used in the quantities package to ones used by SIunitx
 UNIT_NAME_TRANSLATIONS = {
     'Celsius': 'celsius',
+    'revolutions_per_minute': 'rpm',
+    'v': 'volt',
 }
 
 
@@ -67,7 +69,8 @@ def _dimensionality_to_siunitx(dim):
 class Quantity(Command):
     """A class representing quantities."""
 
-    packages = [Package('siunitx')]
+    packages = [Package('siunitx'),
+                NoEscape('\\DeclareSIUnit\\rpm{rpm}')]
 
     def __init__(self, quantity, *, options=None, format_cb=None):
         r"""
