@@ -67,6 +67,18 @@ class PageStyle(ContainerCommand):
                 NoEscape(r"\footrulewidth"), str(thickness) + 'pt']))
 
 
+def simple_page_number():
+    """Get a string containing commands to display the page number.
+
+    Returns
+    -------
+    str
+        The latex string that displays the page number
+    """
+
+    return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
+
+
 class Head(ContainerCommand):
     r"""Allows the creation of headers."""
 
@@ -85,18 +97,6 @@ class Head(ContainerCommand):
         self.position = position
 
         super().__init__(data=data, options=position)
-
-    @staticmethod
-    def display_page_number():
-        """Get the string that displays the page number.
-
-        Returns
-        -------
-        str
-            The latex string that displays the page number
-        """
-
-        return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
 
 
 class Foot(Head):

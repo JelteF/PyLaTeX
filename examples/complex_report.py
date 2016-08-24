@@ -14,7 +14,7 @@ import os
 
 from pylatex import Document, PageStyle, Head, Foot, MiniPage, \
     StandAloneGraphic, MultiColumn, Tabu, LongTabu, LargeText, MediumText, \
-    LineBreak, NewPage, Tabularx, TextColor
+    LineBreak, NewPage, Tabularx, TextColor, simple_page_number
 from pylatex.utils import bold, NoEscape
 
 
@@ -70,7 +70,7 @@ def generate_unique():
                                         pos='t', align='r')
             document_details.append("1000")
             document_details.append(LineBreak())
-            document_details.append(Head.display_page_number())
+            document_details.append(simple_page_number())
 
             footer_table.add_row([branch_address, branch_address,
                                   branch_address, document_details])

@@ -35,9 +35,8 @@ Added
   uncertain quantities.
 - Added `.PageStyle` class to support the creation of various page styles. In
   addition to this class `.Head` and `.Foot` were added for creating unique
-  headers and footers within the page styles.
-- Added a display_page_number method inside `~.Head` to return a string which
-  displays the page number in latex.
+  headers and footers within the page styles. A `.simple_page_number` function
+  was also added for easy displaying of a simple page number.
 - Added a new type of container `.ContainerCommand` for supporting commands
   with data.
 - Added new options to the `.Document` constructor: ``geometry_options`` (a

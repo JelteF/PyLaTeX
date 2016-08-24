@@ -10,7 +10,7 @@ It creates a sample page with the different types of headers and footers.
 
 # begin-doc-include
 from pylatex import Document, PageStyle, Head, MiniPage, Foot, LargeText, \
-    MediumText, LineBreak
+    MediumText, LineBreak, simple_page_number
 from pylatex.utils import bold
 
 
@@ -29,7 +29,7 @@ def generate_header():
         header.append("Company")
     # Create right header
     with header.create(Head("R")):
-        header.append(Head.display_page_number())
+        header.append(simple_page_number())
     # Create left footer
     with header.create(Foot("L")):
         header.append("Left Footer")

@@ -21,5 +21,5 @@ from .quantities import Quantity
 from .base_classes import Command, UnsafeCommand
 from .utils import NoEscape, escape_latex, _latex_item_to_string
 from .errors import TableRowSizeError
-from .headfoot import PageStyle, Head, Foot
+from .headfoot import PageStyle, Head, Foot, simple_page_number
 from .position import Center, FlushLeft, FlushRight, MiniPage, TextBlock
