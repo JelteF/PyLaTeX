@@ -11,8 +11,8 @@ the page.
 
 # begin-doc-include
 from pylatex import Document, MiniPage, TextBlock, MediumText, HugeText, \
-    SmallText
-from pylatex.utils import bold, horizontal_skip, vertical_skip
+    SmallText, VerticalSpace, HorizontalSpace
+from pylatex.utils import bold
 
 geometry_options = {"margin": "0.5in"}
 doc = Document(indent=False, geometry_options=geometry_options)
@@ -34,12 +34,12 @@ with doc.create(MiniPage(width=r"\textwidth")) as page:
     with page.create(TextBlock(80, 150, 0)):
         page.append("DATE")
         page.append(MediumText(bold("2016 06 07\n")))
-        page.append(horizontal_skip("10mm"))
+        page.append(HorizontalSpace("10mm"))
         page.append(SmallText("Y/A M/M D/J"))
 
     with page.create(TextBlock(70, 150, 30)):
         page.append(MediumText(bold("$***** 10,000.00")))
 
-    page.append(vertical_skip("100mm"))
+    page.append(VerticalSpace("100mm"))
 
 doc.generate_pdf("textblock", clean_tex=False)

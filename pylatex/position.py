@@ -8,9 +8,41 @@ Positions various elements on the page.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment, SpecialOptions, Command
+from .base_classes import Environment, SpecialOptions, Command, CommandBase
 from .package import Package
 from .utils import NoEscape
+
+
+class HorizontalSpace(CommandBase):
+    """Add/remove the amount of horizontal space between elements."""
+
+    _latex_name = 'hspace'
+
+    _repr_attributes_mapping = {
+        "size": "arguments"
+    }
+
+    def __init__(self, size, *, star=True):
+        """
+        Args
+        ----
+        size: str
+            The amount of space to add
+        star: bool
+            Use the star variant of the command. Enabling this makes sure the
+            space is also added where page breaking takes place.
+        """
+
+        if star:
+            self.latex_name += '*'
+
+        super().__init__(arguments=size)
+
+
+class VerticalSpace(HorizontalSpace):
+    """Add the user specified amount of vertical space to the document."""
+
+    _latex_name = 'vspace'
 
 
 class Center(Environment):

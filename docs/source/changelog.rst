@@ -53,7 +53,8 @@ Added
   aligned content), `.FlushRight` (an environment with right aligned content),
   `.MiniPage` (a portion of the document with a certain width and height),
   `.TextBlock` (a portion of the document for which the position can be selected
-  using x,y coordinates)
+  using x,y coordinates), `.VerticalSpace` and `HorizontalSpace` (add space of
+  a certain size by using vspace and hspace)
 - Added `.StandAloneGraphic` to support the creation of images outside of
   figure environments.
 - Added the ability to change the ``row_height`` of a table within the
@@ -70,8 +71,6 @@ Added
   LineBreak, HFill.
 - Added several environments to `pylatex.basic`: FontSize, HugeText, LargeText,
   MediumText, SmallText, FootnoteText.
-- Added several functions to the `.utils` package: horizontal skip, vertical
-  skip
 - `.Tabular` can now have a width specified to override the calculated width
   based on the ``table_spec`` argument.
 

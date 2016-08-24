@@ -18,9 +18,10 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     LongTable, FlushLeft, FlushRight, Center, MiniPage, TextBlock, \
     PageStyle, Head, Foot, StandAloneGraphic, Tabularx, Column, NewLine, \
     LineBreak, NewPage, HFill, HugeText, LargeText, MediumText, \
-    SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu
+    SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
+    HorizontalSpace, VerticalSpace
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, vertical_skip, horizontal_skip, NoEscape
+    italic, verbatim, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -229,6 +230,11 @@ def test_headfoot():
 
 
 def test_position():
+
+    repr(HorizontalSpace(size='20pt', star=False))
+
+    repr(VerticalSpace(size="20pt", star=True))
+
     # Test alignment environments
     center = Center()
     center.append("append")
@@ -320,10 +326,6 @@ def test_utils():
     italic(s='')
 
     verbatim(s='', delimiter='|')
-
-    horizontal_skip(size='20pt')
-
-    vertical_skip(size="20pt")
 
 
 def test_errors():

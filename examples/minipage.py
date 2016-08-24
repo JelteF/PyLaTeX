@@ -9,8 +9,7 @@ It creates a sample page filled with labels using the MiniPage element.
 """
 
 # begin-doc-include
-from pylatex import Document, MiniPage, LineBreak
-from pylatex.utils import vertical_skip
+from pylatex import Document, MiniPage, LineBreak, VerticalSpace
 
 
 def generate_labels():
@@ -30,7 +29,7 @@ def generate_labels():
             doc.append("Country")
 
         if (i % 2) == 1:
-            doc.append(vertical_skip("20pt"))
+            doc.append(VerticalSpace("20pt"))
             doc.append(LineBreak())
 
     doc.generate_pdf("minipage", clean_tex=False)

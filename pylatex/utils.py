@@ -279,30 +279,6 @@ def italic(s, *, escape=True):
     return NoEscape(r'\textit{' + s + '}')
 
 
-def horizontal_skip(size):
-    r"""Add/remove the amount of horizontal space between elements.
-
-    Args
-    ----
-    size: str
-        The amount of horizontal space to add
-    """
-
-    return pylatex.base_classes.UnsafeCommand("hspace*", arguments=size)
-
-
-def vertical_skip(size):
-    r"""Add the user specified amount of vertical space to the document.
-
-    Args
-    ----
-    size: str
-        The amount and units of vertical space to create
-    """
-
-    return pylatex.base_classes.UnsafeCommand("vspace*", arguments=size)
-
-
 def verbatim(s, *, delimiter='|'):
     r"""Make the string verbatim.
 
