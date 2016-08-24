@@ -249,25 +249,6 @@ def bold(s, *, escape=True):
     return NoEscape(r'\textbf{' + s + '}')
 
 
-def text_color(s, color, *, escape=True):
-    r"""Change the string color.
-
-    Args
-    ----
-    s : str
-        The string to be formatted
-    escape : bool
-        If true the text will be escaped
-    color : str
-        The name of the color for the text
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r"\textcolor{" + color + "}{" + s + "}")
-
-
 def italic(s, *, escape=True):
     r"""Make a string appear italicized in LaTeX formatting.
 
@@ -320,89 +301,6 @@ def vertical_skip(size):
     """
 
     return pylatex.base_classes.UnsafeCommand("vspace*", arguments=size)
-
-
-def text_box(s):
-    r"""Add a text box around the text.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-
-    Returns
-    -------
-    ContainerCommand
-        The container with the content specified
-    """
-
-    return pylatex.base_classes.ContainerCommand(command='fbox', data=s)
-
-
-def center(s, *, escape=True):
-    r"""Center the text.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the centered text will be escaped
-
-    Returns
-    -------
-    NoEscape
-       The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape('\centering{' + s + '}')
-
-
-def flush_left(s, *, escape=True):
-    r"""Left allign the text.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the left-aligned text will be escaped
-
-    Returns
-    -------
-    NoEscape
-        The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\flushleft{' + s + '}')
-
-
-def flush_right(s, *, escape=True):
-    r"""Right allign the text.
-
-    Args
-    ----
-    s : str
-        The string to be formatted.
-    escape: bool
-        If true the right-aligned text will be escaped
-
-    Returns
-    -------
-    NoEscape
-       The formatted string.
-    """
-
-    if escape:
-        s = escape_latex(s)
-
-    return NoEscape(r'\flushright{' + s + '}')
 
 
 def verbatim(s, *, delimiter='|'):

@@ -15,13 +15,12 @@ import matplotlib
 from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
-    LongTable, ColoredTabu, Position, FlushLeft, FlushRight, Center, \
-    MiniPage, TextBlock, PageStyle, Head, Foot, StandAloneGraphic, Tabularx, \
-    Column, ColoredTabularx, NewLine, LineBreak, NewPage, HFill, FontSize, \
-    HugeText, LargeText, MediumText, SmallText, FootnoteText
+    LongTable, Position, FlushLeft, FlushRight, Center, MiniPage, TextBlock, \
+    PageStyle, Head, Foot, StandAloneGraphic, Tabularx, Column, NewLine, \
+    LineBreak, NewPage, HFill, FontSize, HugeText, LargeText, MediumText, \
+    SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, center, flush_left, flush_right, text_color, \
-    vertical_skip, horizontal_skip, text_box, NoEscape
+    italic, verbatim, vertical_skip, horizontal_skip, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -89,7 +88,7 @@ def test_table():
 
     t.add_hline(start=None, end=None)
 
-    t.add_row(cells=(1, 2), escape=False, strict=True, mapper=[bold, center])
+    t.add_row(cells=(1, 2), escape=False, strict=True, mapper=[bold])
 
     # MultiColumn/MultiRow.
     t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),),
@@ -111,11 +110,11 @@ def test_table():
     longtable.end_table_header()
 
     # Colored Tabu
-    coloredtable = ColoredTabu(table_spec='X[c] X[c]')
+    coloredtable = Tabu(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
     # Colored Tabularx
-    coloredtable = ColoredTabularx(table_spec='X[c] X[c]')
+    coloredtable = Tabularx(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
     # Column
@@ -257,6 +256,18 @@ def test_position():
     repr(textblock)
 
 
+def test_frames():
+    # Tests the framed environments
+
+    md_framed = MdFramed()
+    md_framed.append("Framed text")
+    repr(md_framed)
+
+    f_box = FBox()
+    f_box.append("Fboxed text")
+    repr(f_box)
+
+
 def test_basic():
     # Tests the basic commands and environments
     # Basic commands
@@ -297,6 +308,10 @@ def test_basic():
     font_size.append("Script 2")
     repr(font_size)
 
+    text_color = TextColor("green", "GreenText")
+    text_color.append("More Green Text")
+    repr(text_color)
+
 
 def test_utils():
     # Utils
@@ -312,19 +327,9 @@ def test_utils():
 
     verbatim(s='', delimiter='|')
 
-    text_color(s='green text', color='green')
-
     horizontal_skip(size='20pt')
 
     vertical_skip(size="20pt")
-
-    text_box(s="TextBoxText")
-
-    center(s="CenteredText")
-
-    flush_left(s="FlushedLeft")
-
-    flush_right(s="FlushedRight")
 
 
 def test_errors():

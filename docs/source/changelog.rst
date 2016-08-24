@@ -53,14 +53,14 @@ Added
   aligned content), `.FlushRight` (an environment with right aligned content),
   `.MiniPage` (a portion of the document with a certain width and height),
   `.TextBlock` (a portion of the document for which the position can be selected
-  using x,y coordiantes)
+  using x,y coordinates)
 - Added `.StandAloneGraphic` to support the creation of images outside of
   figure environments.
 - Added the ability to change the ``row_height`` of a table within the
   `.Tabular` constructor.
-- Added four new types of tables `.Tabularx`, `.ColoredTabu`, `.ColoredTabularx`
-  and `.LongColoredTable` which allows the selection of a color when creating
-  a table row.
+- Added a new type of table `.Tabularx`.
+- Added the option to select a color when adding an hline or adding a row to
+  any `~.Tabular` environment.
 - Added the ability to add your own column types through the `.Column` class.
 - Added the ability to end the header of a `.LongTable` which repeats on every
   consecutive page.
@@ -70,9 +70,8 @@ Added
   LineBreak, HFill.
 - Added several environments to `pylatex.basic`: FontSize, HugeText, LargeText,
   MediumText, SmallText, FootnoteText.
-- Added several functions to the `.utils` package: text formating (changing
-  text color, aligning text), general commands (horizontal skip, vertical
-  skip), general utilities (adding textbox around text)
+- Added several functions to the `.utils` package: horizontal skip, vertical
+  skip
 - `.Tabular` can now have a width specified to override the calculated width
   based on the ``table_spec`` argument.
 

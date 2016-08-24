@@ -45,8 +45,8 @@ class MiniPage(Environment):
     }
 
     def __init__(self, *, width=NoEscape(r'\textwidth'), pos=None,
-                 height=None, content_pos=None, data=None, align=None,
-                 fontsize=None):
+                 height=None, content_pos=None, align=None, fontsize=None,
+                 data=None):
         r"""
         Args
         ----
@@ -64,6 +64,8 @@ class MiniPage(Environment):
             alignment of the minibox
         fontsize: str
             The font size of the minipage
+        data: str or `~.LatexObject`
+            The data to place inside the MiniPage element
         """
 
         options = []
@@ -131,6 +133,8 @@ class TextBlock(Environment):
             Determines whether the text block has an indent before it
         vertical_pos: float
             Vertical position in units specified by the TPVertModule
+        data: str or `~.LatexObject`
+            The data to place inside the TextBlock element
         """
 
         arguments = width

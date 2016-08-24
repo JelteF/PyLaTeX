@@ -184,34 +184,31 @@ class ContainerCommand(Container):
     r"""A base class for a container command (A command which contains data).
 
     Container command example:
+
+    .. code-block:: latex
+
         \CommandName[options]{arguments}{
             data
         }
+
     """
 
     omit_if_empty = False
 
-    def __init__(self, command=None, name=None, options=None, data=None,
-                 **kwargs):
+    def __init__(self, arguments=None, options=None, *, data=None, **kwargs):
         r"""
         Args
         ----
-        command: str
-            The name of the header command
-        name: str
-            The first argument of the preamble command
+        arguments: str or `list`
+            The arguments for the container command
         options: str, list or `~.Options`
             The options for the preamble command
         data: str or `~.LatexObject`
             The data to place inside the preamble command
         """
 
-        self.arguments = name
-
+        self.arguments = arguments
         self.options = options
-
-        if command is not None:
-            self._latex_name = command
 
         super().__init__(data=data, **kwargs)
 

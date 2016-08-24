@@ -10,7 +10,7 @@ It creates a sample page filled with labels using the MiniPage element.
 
 # begin-doc-include
 from pylatex import Document, LongTabu, HFill
-from pylatex.utils import bold, center
+from pylatex.utils import bold
 
 
 def genenerate_longtabu():
@@ -26,7 +26,7 @@ def genenerate_longtabu():
     # Generate data table
     with doc.create(LongTabu("X[r] X[r] X[r] X[r] X[r] X[r]")) as data_table:
         header_row1 = ["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"]
-        data_table.add_row(header_row1, mapper=[bold, center])
+        data_table.add_row(header_row1, mapper=[bold])
         data_table.add_hline()
         data_table.add_empty_row()
         data_table.end_table_header()

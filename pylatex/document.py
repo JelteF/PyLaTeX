@@ -28,7 +28,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', document_options=None, fontenc='T1',
                  inputenc='utf8', font_size="normalsize", lmodern=True,
-                 textcomp=True, page_numbers=True, indent=False,
+                 textcomp=True, page_numbers=True, indent=True,
                  geometry_options=None, data=None):
         r"""
         Args

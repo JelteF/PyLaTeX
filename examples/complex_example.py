@@ -13,9 +13,9 @@ containing data. It also creates a complex header with an image.
 import os
 
 from pylatex import Document, PageStyle, Head, Foot, MiniPage, \
-    StandAloneGraphic, MultiColumn, Tabu, LongColoredTable, LongTabu, \
-    ColoredTabularx, LargeText, MediumText, LineBreak, NewPage
-from pylatex.utils import bold, NoEscape, text_color
+    StandAloneGraphic, MultiColumn, Tabu, LongTabu, LargeText, MediumText, \
+    LineBreak, NewPage, Tabularx, TextColor
+from pylatex.utils import bold, NoEscape
 
 
 def generate_unique():
@@ -50,12 +50,12 @@ def generate_unique():
     # Add footer
     with first_page.create(Foot("C")) as footer:
         message = "Important message please read"
-        with footer.create(ColoredTabularx(
+        with footer.create(Tabularx(
                            "X X X X",
                            arguments=NoEscape(r"\textwidth"))) as footer_table:
 
             footer_table.add_row(
-                [MultiColumn(4, align='l', data=text_color(message, "blue"))])
+                [MultiColumn(4, align='l', data=TextColor("blue", message))])
             footer_table.add_hline(color="blue")
             footer_table.add_empty_row()
 
@@ -107,8 +107,8 @@ def generate_unique():
     doc.add_color(name="lightgray", model="gray", description="0.80")
 
     # Add statement table
-    with doc.create(LongColoredTable("X[l] X[2l] X[r] X[r] X[r]",
-                                     row_height=1.5)) as data_table:
+    with doc.create(LongTabu("X[l] X[2l] X[r] X[r] X[r]",
+                             row_height=1.5)) as data_table:
         data_table.add_row(["date",
                             "description",
                             "debits($)",

@@ -18,8 +18,8 @@ class PageStyle(ContainerCommand):
 
     packages = [Package('fancyhdr')]
 
-    def __init__(self, name, data=None, *, header_thickness=0,
-                 footer_thickness=0):
+    def __init__(self, name, *, header_thickness=0, footer_thickness=0,
+                 data=None):
         r"""
         Args
         ----
@@ -29,18 +29,20 @@ class PageStyle(ContainerCommand):
             Value to set for the line under the header
         footer_thickness: float
             Value to set for the line over the footer
+        data: str or `~.LatexObject`
+            The data to place inside the PageStyle
         """
 
         self.name = name
 
-        super().__init__(data=data, name=self.name)
+        super().__init__(data=data, arguments=self.name)
 
         self.change_thickness(element="header", thickness=header_thickness)
         self.change_thickness(element="footer", thickness=footer_thickness)
 
         # Clear the current header and footer
-        self.append(Head(""))
-        self.append(Foot(""))
+        self.append(Head())
+        self.append(Foot())
 
     def change_thickness(self, element, thickness):
         r"""Change line thickness.
@@ -70,12 +72,14 @@ class Head(ContainerCommand):
 
     _latex_name = "fancyhead"
 
-    def __init__(self, position, data=None):
+    def __init__(self, position=None, *, data=None):
         r"""
         Args
         ----
         position: str
             the headers position: L, C, R
+        data: str or `~.LatexObject`
+            The data to place inside the Head element
         """
 
         self.position = position

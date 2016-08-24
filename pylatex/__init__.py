@@ -6,13 +6,14 @@ A library for creating Latex files.
 """
 
 from .basic import HugeText, NewPage, LineBreak, NewLine, HFill, FontSize, \
-    LargeText, MediumText, SmallText, FootnoteText
+    LargeText, MediumText, SmallText, FootnoteText, TextColor
 from .document import Document
+from .frames import MdFramed, FBox
 from .math import Math, VectorName, Matrix
 from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
-    LongTabu, ColoredTabu, ColoredTabularx, LongColoredTable, Tabularx, Column
+    LongTabu, Tabularx, Column
 from .tikz import TikZ, Axis, Plot
 from .figure import Figure, SubFigure, StandAloneGraphic
 from .lists import Enumerate, Itemize, Description
