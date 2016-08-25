@@ -236,15 +236,15 @@ def test_position():
     repr(VerticalSpace(size="20pt", star=True))
 
     # Test alignment environments
-    center = Center()
+    center = Center("centered data")
     center.append("append")
     repr(center)
 
-    right = FlushRight()
+    right = FlushRight("right alligned data")
     right.append("append")
     repr(right)
 
-    left = FlushLeft()
+    left = FlushLeft("left alligned data")
     left.append("append")
     repr(left)
 
