@@ -53,7 +53,7 @@ Added
   aligned content), `.FlushRight` (an environment with right aligned content),
   `.MiniPage` (a portion of the document with a certain width and height),
   `.TextBlock` (a portion of the document for which the position can be selected
-  using x,y coordinates), `.VerticalSpace` and `HorizontalSpace` (add space of
+  using x,y coordinates), `.VerticalSpace` and `.HorizontalSpace` (add space of
   a certain size by using vspace and hspace)
 - Added `.StandAloneGraphic` to support the creation of images outside of
   figure environments.
