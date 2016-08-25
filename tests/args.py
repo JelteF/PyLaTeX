@@ -320,6 +320,8 @@ def test_utils():
     fix_filename(path='')
 
     dumps_list(l=[], escape=False, token='\n')
+    # Test dumps_list with a class as a mapper
+    dumps_list(l=["Item1", "Item2"], mapper=[bold, Center], token='\n')
 
     bold(s='')
 
