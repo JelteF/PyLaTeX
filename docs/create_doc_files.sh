@@ -64,7 +64,9 @@ for f in ../examples/*.py; do
         echo >> $rst
         echo "$pdf" >> $rst
         echo >> $rst
-        echo ".. figure:: /_static/examples/${pdf}.png" >> $rst
+        for figure in ${pdf}*.png; do
+            echo ".. figure:: /_static/examples/${figure}" >> $rst
+        done
     done
     rm -f *.pdf *.aux *.log *.fls *.fdb_latexmk
     cd ../../..

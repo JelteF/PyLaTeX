@@ -7,10 +7,9 @@ This module implements some simple utility functions.
 """
 
 import os.path
-import pylatex.base_classes
 import shutil
 import tempfile
-
+import pylatex.base_classes
 
 _latex_special_chars = {
     '&': r'\&',
@@ -23,7 +22,7 @@ _latex_special_chars = {
     '~': r'\textasciitilde{}',
     '^': r'\^{}',
     '\\': r'\textbackslash{}',
-    '\n': '\\\\%\n',
+    '\n': '\\newline%\n',
     '-': r'{-}',
     '\xA0': '~',  # Non-breaking space
 }
@@ -83,12 +82,10 @@ def escape_latex(s):
     'Issue \#5 occurs in 30\% of all cases'
     >>> print(escape_latex("Total cost: $30,000"))
 
-
     References
     ----------
         * http://tex.stackexchange.com/a/34586/43228
         * http://stackoverflow.com/a/16264094/2570866
-
     """
 
     if isinstance(s, NoEscape):
@@ -121,7 +118,6 @@ def fix_filename(path):
     '/etc/local/{foo.bar}.pdf'
     >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
     '/etc/local/foo.bar.baz/document.pdf'
-
     """
 
     path_parts = path.split('/' if os.name == 'posix' else '\\')
@@ -148,9 +144,10 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
         Whether to escape special LaTeX characters in converted text.
     token : str
         The token (default is a newline) to separate objects in the list.
-    mapper: callable
-        A function that should be called on all entries of the list after
-        converting them to a string, for instance bold
+    mapper: callable or `list`
+        A function or a list of functions that should be called on all
+        entries of the list after converting them to a string, for instance
+        `~.bold`
     as_content: bool
         Indicates whether the items in the list should be dumped using
         `~.LatexObject.dumps_as_content`
@@ -177,8 +174,13 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     """
     strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
                for i in l)
+
     if mapper is not None:
-        strings = (mapper(s) for s in strings)
+        if isinstance(mapper, list):
+            for m in mapper:
+                strings = map(m, strings)
+        else:
+            strings = (mapper(s) for s in strings)
 
     return NoEscape(token.join(strings))
 
@@ -235,12 +237,10 @@ def bold(s, *, escape=True):
 
     Examples
     --------
-
     >>> bold("hello")
     '\\textbf{hello}'
     >>> print(bold("hello"))
     \textbf{hello}
-
     """
 
     if escape:
@@ -272,7 +272,6 @@ def italic(s, *, escape=True):
     '\\textit{hello}'
     >>> print(italic("hello"))
     \textit{hello}
-
     """
     if escape:
         s = escape_latex(s)
@@ -305,7 +304,6 @@ def verbatim(s, *, delimiter='|'):
     \verb|\renewcommand{}|
     >>> print(verbatim('pi|pe', '!'))
     \verb!pi|pe!
-
     """
 
     return NoEscape(r'\verb' + delimiter + s + delimiter)
@@ -327,7 +325,6 @@ def make_temp_dir():
     --------
     >>> make_temp_dir()
     '/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex'
-
     """
 
     if not os.path.exists(_tmp_path):

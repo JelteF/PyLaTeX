@@ -13,16 +13,15 @@ and figures.
 import numpy as np
 
 from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
-    Plot, Figure, Package, Matrix
+    Plot, Figure, Matrix
 from pylatex.utils import italic
 import os
 
 if __name__ == '__main__':
     image_filename = os.path.join(os.path.dirname(__file__), 'kitten.jpg')
 
-    doc = Document()
-    doc.packages.append(Package('geometry', options=['tmargin=1cm',
-                                                     'lmargin=10cm']))
+    geometry_options = {"tmargin": "1cm", "lmargin": "10cm"}
+    doc = Document(geometry_options=geometry_options)
 
     with doc.create(Section('The simple stuff')):
         doc.append('Some regular text and some')

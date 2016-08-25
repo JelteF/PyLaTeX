@@ -336,6 +336,15 @@ class Options(Parameters):
         return self._format_contents('[', ',', ']')
 
 
+class SpecialOptions(Options):
+    r"""A class that sepparates the options with '][' instead of ','."""
+
+    def dumps(self):
+        """Represent the parameters as a string in LaTex syntax."""
+
+        return self._format_contents('[', '][', ']')
+
+
 class Arguments(Parameters):
     """A class implementing LaTex arguments for a command.
 

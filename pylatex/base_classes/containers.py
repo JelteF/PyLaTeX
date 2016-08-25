@@ -178,3 +178,58 @@ class Environment(Container):
         string += Command('end', self.latex_name).dumps()
 
         return string
+
+
+class ContainerCommand(Container):
+    r"""A base class for a container command (A command which contains data).
+
+    Container command example:
+
+    .. code-block:: latex
+
+        \CommandName[options]{arguments}{
+            data
+        }
+
+    """
+
+    omit_if_empty = False
+
+    def __init__(self, arguments=None, options=None, *, data=None, **kwargs):
+        r"""
+        Args
+        ----
+        arguments: str or `list`
+            The arguments for the container command
+        options: str, list or `~.Options`
+            The options for the preamble command
+        data: str or `~.LatexObject`
+            The data to place inside the preamble command
+        """
+
+        self.arguments = arguments
+        self.options = options
+
+        super().__init__(data=data, **kwargs)
+
+    def dumps(self):
+        r"""Convert the container to a string in latex syntax."""
+
+        content = self.dumps_content()
+
+        if not content.strip() and self.omit_if_empty:
+            return ''
+
+        string = ''
+
+        start = Command(self.latex_name, arguments=self.arguments,
+                        options=self.options)
+
+        string += start.dumps() + '{ \n'
+
+        if content != '':
+            string += content + '\n}'
+        else:
+            string += '}'
+
+        return string

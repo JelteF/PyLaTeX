@@ -9,11 +9,15 @@ This module implements the class that deals with tables.
 from .base_classes import LatexObject, Container, Command, UnsafeCommand, \
     Float, Environment
 from .package import Package
-from .errors import TableRowSizeError
+from .errors import TableRowSizeError, TableError
 from .utils import dumps_list, NoEscape, escape_latex
 
 from collections import Counter
 import re
+
+
+# The letters used to count the table width
+COLUMN_LETTERS = ['l', 'c', 'r', 'p', 'm', 'b', 'X']
 
 
 def _get_table_width(table_spec):
@@ -31,13 +35,14 @@ def _get_table_width(table_spec):
         The width of a table which uses the specification supplied.
     """
 
-    column_letters = ['l', 'c', 'r', 'p', 'm', 'b']
-
     # Remove things like {\bfseries}
     cleaner_spec = re.sub(r'{[^}]*}', '', table_spec)
+
+    # Remove X[] in tabu environments so they dont interfere with column count
+    cleaner_spec = re.sub(r'X\[(.*?(.))\]', r'\2', cleaner_spec)
     spec_counter = Counter(cleaner_spec)
 
-    return sum(spec_counter[l] for l in column_letters)
+    return sum(spec_counter[l] for l in COLUMN_LETTERS)
 
 
 class Tabular(Environment):
@@ -48,7 +53,8 @@ class Tabular(Environment):
         'pos': 'options',
     }
 
-    def __init__(self, table_spec, data=None, pos=None, *, width=None,
+    def __init__(self, table_spec, data=None, pos=None, *,
+                 row_height=None, col_space=None, width=None, arguments=None,
                  **kwargs):
         """
         Args
@@ -57,6 +63,13 @@ class Tabular(Environment):
             A string that represents how many columns a table should have and
             if it should contain vertical lines and where.
         pos: list
+        row_height: float
+            Specifies the heights of the rows in relation to the default
+            row height
+        col_space: str
+            Specifies the spacing between table columns
+        arguments: str or `list`
+            The arguments to append to the table
         width: int
             The amount of columns that the table has. If this is `None` it is
             calculated based on the ``table_spec``, but this is only works for
@@ -73,10 +86,44 @@ class Tabular(Environment):
         else:
             self.width = width
 
-        super().__init__(data=data, options=pos,
-                         arguments=table_spec, **kwargs)
+        self.row_height = row_height
+        self.col_space = col_space
 
-    def add_hline(self, start=None, end=None):
+        # Append the table_spec to the arguments list
+        if arguments is not None:
+            if isinstance(arguments, str):
+                arguments = [arguments]
+        else:
+            arguments = []
+
+        arguments.append(table_spec)
+
+        super().__init__(data=data, options=pos,
+                         arguments=arguments, **kwargs)
+
+        # Parameter that determines if the xcolor package has been added.
+        self.color = False
+
+    def dumps(self):
+        r"""Turn the Latex Object into a string in Latex format."""
+
+        string = ""
+
+        if self.row_height is not None:
+            row_height = Command('renewcommand', arguments=[
+                NoEscape(r'\arraystretch'),
+                self.row_height])
+            string += row_height.dumps() + '%\n'
+
+        if self.col_space is not None:
+            col_space = Command('setlength', arguments=[
+                NoEscape(r'\tabcolsep'),
+                self.col_space])
+            string += col_space.dumps() + '%\n'
+
+        return string + super().dumps()
+
+    def add_hline(self, start=None, end=None, *, color=None):
         """Add a horizontal line to the table.
 
         Args
@@ -85,7 +132,17 @@ class Tabular(Environment):
             At what cell the line should begin
         end: int
             At what cell the line should end
+        color: str
+            The hline color.
         """
+
+        if color is not None:
+            # TODO: This check should not be needed.
+            if not self.color:
+                self.packages.append(Package('xcolor', options='table'))
+                self.color = True
+            color_command = Command(command="arrayrulecolor", arguments=color)
+            self.append(color_command)
 
         if start is None and end is None:
             self.append(NoEscape(r'\hline'))
@@ -106,16 +163,20 @@ class Tabular(Environment):
 
         self.append(NoEscape((self.width - 1) * '&' + r'\\'))
 
-    def add_row(self, cells, *, escape=None, mapper=None, strict=True):
+    def add_row(self, cells, *, color=None, escape=None, mapper=None,
+                strict=True):
         """Add a row of cells to the table.
 
         Args
         ----
         cells: iterable, such as a `list` or `tuple`
             Each element of the iterable will become a the content of a cell.
-        mapper: callable
-            A function that should be called on all entries of the list after
-            converting them to a string, for instance bold
+        color: str
+            The name of the color used to highlight the row
+        mapper: callable or `list`
+            A function or a list of functions that should be called on all
+            entries of the list after converting them to a string,
+            for instance bold
         strict: bool
             Check for correct count of cells in row or not.
         """
@@ -143,16 +204,29 @@ class Tabular(Environment):
                 "did not match table width ({})".format(cell_count, self.width)
             raise TableRowSizeError(msg)
 
+        if color is not None:
+            if not self.color:
+                self.packages.append(Package("xcolor", options='table'))
+                self.color = True
+            color_command = Command(command="rowcolor", arguments=color)
+            self.append(color_command)
+
         self.append(dumps_list(cells, escape=escape, token='&',
-                               mapper=mapper) + NoEscape(r'\\'))
+                    mapper=mapper) + NoEscape(r'\\'))
+
+
+class Tabularx(Tabular):
+    """A class that represents a tabularx environment."""
+
+    packages = [Package('tabularx')]
 
 
 class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
 
-    # TODO: Make this subclass CommandBase and Container
+    # TODO: Make this subclass of ContainerCommand
 
-    def __init__(self, size, *, align='c', data=None):
+    def __init__(self, size, *, align='c', color=None, data=None):
         """
         Args
         ----
@@ -162,12 +236,19 @@ class MultiColumn(Container):
             How to align the content of the cell.
         data: str, list or `~.LatexObject`
             The content of the cell.
+        color: str
+            The color for the MultiColumn
         """
 
         self.size = size
         self.align = align
 
         super().__init__(data=data)
+
+        # Add a cell color to the MultiColumn
+        if color is not None:
+            color_command = Command("cellcolor", arguments=color)
+            self.append(color_command)
 
     def dumps(self):
         """Represent the multicolumn as a string in LaTeX syntax.
@@ -190,7 +271,7 @@ class MultiRow(Container):
 
     packages = [Package('multirow')]
 
-    def __init__(self, size, *, width='*', data=None):
+    def __init__(self, size, *, width='*', color=None, data=None):
         """
         Args
         ----
@@ -201,12 +282,18 @@ class MultiRow(Container):
             natural width.
         data: str, list or `~.LatexObject`
             The content of the cell.
+        color: str
+            The color for the MultiRow
         """
 
         self.size = size
         self.width = width
 
         super().__init__(data=data)
+
+        if color is not None:
+            color_command = Command("cellcolor", arguments=color)
+            self.append(color_command)
 
     def dumps(self):
         """Represent the multirow as a string in LaTeX syntax.
@@ -237,6 +324,68 @@ class LongTable(Tabular):
 
     packages = [Package('longtable')]
 
+    header = False
+
+    def end_table_header(self):
+        r"""End the table header which will appear on every page."""
+
+        if self.header:
+            msg = "Table already has a header"
+            raise TableError(msg)
+
+        self.header = True
+
+        self.append(NoEscape(r'\endhead'))
+
 
 class LongTabu(LongTable, Tabu):
     """A class that represents a longtabu (more flexible multipage table)."""
+
+
+class Column(UnsafeCommand):
+    r"""A class representing a new column type.
+
+    It uses the ``\newcolumntype`` command, for a thorough explanation see
+    `this StackExchange question <https://tex.stackexchange.com/
+    questions/257128/how-does-the-newcolumntype-command-work>`_.
+    """
+
+    _repr_attributes_mapping = {
+        'name': 'arguments',
+        'parameters': 'options'
+    }
+
+    def __init__(self, name, base, modifications, *, parameters=None):
+        """
+        Args
+        ----
+        name: str
+            The name of the new column type (a single letter)
+        base: str
+            The name of the column type that the new one is based on (a single
+            letter)
+        modifications: str
+            The modifications to be made to the base column type
+        parameters: int
+            The number of # parameters inside the modifications string, if this
+            is `None` this is calculated automatically.
+        """
+
+        # repr vars
+        self._base = base
+        self._modifications = modifications
+
+        COLUMN_LETTERS.append(name)
+
+        if parameters is None:
+            # count the number of non escaped #<number> parameters
+            parameters = len(re.findall('(?<!\\)#\d', modifications))
+
+        if parameters == 0:
+            parameters = None
+
+        modified = r">{%s\arraybackslash}%s" % (modifications, base)
+
+        super().__init__(command="newcolumntype", arguments=name,
+                         options=parameters, extra_arguments=modified)
+        print(self.dumps())

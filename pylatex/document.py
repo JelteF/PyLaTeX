@@ -9,9 +9,10 @@ This module implements the class that deals with the full document.
 import os
 import subprocess
 import errno
-from .base_classes import Environment, Command
+from .base_classes import Environment, Command, Container, LatexObject, \
+    UnsafeCommand
 from .package import Package
-from .utils import dumps_list, rm_temp_dir
+from .utils import dumps_list, rm_temp_dir, NoEscape
 
 
 class Document(Environment):
@@ -25,8 +26,10 @@ class Document(Environment):
     """
 
     def __init__(self, default_filepath='default_filepath', *,
-                 documentclass='article', fontenc='T1', inputenc='utf8',
-                 lmodern=True, textcomp=True, data=None):
+                 documentclass='article', document_options=None, fontenc='T1',
+                 inputenc='utf8', font_size="normalsize", lmodern=True,
+                 textcomp=True, page_numbers=True, indent=True,
+                 geometry_options=None, data=None):
         r"""
         Args
         ----
@@ -34,15 +37,25 @@ class Document(Environment):
             The default path to save files.
         documentclass: str or `~.Command`
             The LaTeX class of the document.
+        document_options: str or `list`
+            The options to supply to the documentclass
         fontenc: str
             The option for the fontenc package.
         inputenc: str
             The option for the inputenc package.
+        font_size: str
+            The font size to declare as normalsize
         lmodern: bool
             Use the Latin Modern font. This is a font that contains more glyphs
             than the standard LaTeX font.
         textcomp: bool
             Adds even more glyphs, for instance the Euro (€) sign.
+        page_numbers: bool
+            Adds the ability to add the last page to the document.
+        indent: bool
+            Determines whether or not the document requires indentation
+        geometry_options: str or `list`
+            The options to supply to the geometry package
         data: list
             Initial content of the document.
         """
@@ -53,7 +66,8 @@ class Document(Environment):
             self.documentclass = documentclass
         else:
             self.documentclass = Command('documentclass',
-                                         arguments=documentclass)
+                                         arguments=documentclass,
+                                         options=document_options)
 
         # These variables are used by the __repr__ method
         self._fontenc = fontenc
@@ -68,12 +82,46 @@ class Document(Environment):
             packages.append(Package('lmodern'))
         if textcomp:
             packages.append(Package('textcomp'))
+        if page_numbers:
+            packages.append(Package('lastpage'))
+
+        if geometry_options is not None:
+            packages.append(Package('geometry', options=geometry_options))
 
         super().__init__(data=data)
 
         self.packages |= packages
+        self.variables = []
 
         self.preamble = []
+
+        if not page_numbers:
+            self.change_document_style("empty")
+
+        if not indent:
+            self.change_length("\parindent", "0pt")
+
+        # No colors have been added to the document yet
+        self.color = False
+        self.meta_data = False
+
+        self.append(Command(command=font_size))
+
+    def _propagate_packages(self):
+        r"""Propogate packages.
+
+        Make sure that all the packages included in the previous containers
+        are part of the full list of packages.
+        """
+
+        super()._propagate_packages()
+
+        for item in (self.preamble):
+            if isinstance(item, LatexObject):
+                if isinstance(item, Container):
+                    item._propagate_packages()
+                for p in item.packages:
+                    self.packages.add(p)
 
     def dumps(self):
         """Represent the document as a string in LaTeX syntax.
@@ -85,6 +133,7 @@ class Document(Environment):
 
         head = self.documentclass.dumps() + '%\n'
         head += self.dumps_packages() + '%\n'
+        head += dumps_list(self.variables) + '%\n'
         head += dumps_list(self.preamble) + '%\n'
 
         return head + '%\n' + super().dumps()
@@ -233,3 +282,92 @@ class Document(Environment):
                 filepath = os.path.join(filepath, os.path.basename(
                     self.default_filepath))
             return filepath
+
+    def change_page_style(self, style):
+        r"""Alternate page styles of the current page.
+
+        Args
+        ----
+        style: str
+            value to set for the page style of the current page
+        """
+
+        self.append(Command("thispagestyle", arguments=style))
+
+    def change_document_style(self, style):
+        r"""Alternate page style for the entire document.
+
+        Args
+        ----
+        style: str
+            value to set for the document style
+        """
+
+        self.append(Command("pagestyle", arguments=style))
+
+    def add_color(self, name, model, description):
+        r"""Add a color that can be used throughout the document.
+
+        Args
+        ----
+        name: str
+            Name to set for the color
+        model: str
+            The color model to use when defining the color
+        description: str
+            The values to use to define the color
+        """
+
+        if self.color is False:
+            self.packages.append(Package("color"))
+            self.color = True
+
+        self.preamble.append(Command("definecolor", arguments=[name,
+                                                               model,
+                                                               description]))
+
+    def change_length(self, parameter, value):
+        r"""Change the length of a certain parameter to a certain value.
+
+        Args
+        ----
+        parameter: str
+            The name of the parameter to change the length for
+        value: str
+            The value to set the parameter to
+        """
+
+        self.preamble.append(UnsafeCommand('setlength',
+                                           arguments=[parameter, value]))
+
+    def set_variable(self, name, value):
+        r"""Add a variable which can be used inside the document.
+
+        Variables are defined before the preamble. If a variable with that name
+        has already been set, the new value will override it for future uses.
+        This is done by appending ``\renewcommand`` to the document.
+
+        Args
+        ----
+        name: str
+            The name to set for the variable
+        value: str
+            The value to set for the variable
+        """
+
+        name_arg = "\\" + name
+        variable_exists = False
+
+        for variable in self.variables:
+            if name_arg == variable.arguments._positional_args[0]:
+                variable_exists = True
+                break
+
+        if variable_exists:
+            renew = Command(command="renewcommand",
+                            arguments=[NoEscape(name_arg), value])
+            self.append(renew)
+        else:
+            new = Command(command="newcommand",
+                          arguments=[NoEscape(name_arg), value])
+            self.variables.append(new)

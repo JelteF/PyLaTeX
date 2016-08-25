@@ -9,15 +9,13 @@ This module implements the class that deals with graphics.
 import os.path
 
 from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
-from .base_classes import UnsafeCommand, Float
+from .base_classes import Float, UnsafeCommand
 from .package import Package
 import uuid
 
 
 class Figure(Float):
     """A class that represents a Figure environment."""
-
-    packages = [Package('graphicx')]
 
     def add_image(self, filename, *, width=NoEscape(r'0.8\textwidth'),
                   placement=NoEscape(r'\centering')):
@@ -28,14 +26,11 @@ class Figure(Float):
         filename: str
             Filename of the image.
         width: str
-            Width of the image in LaTeX terms.
+            The width of the image
         placement: str
             Placement of the figure, `None` is also accepted.
 
         """
-
-        if placement is not None:
-            self.append(placement)
 
         if width is not None:
             if self.escape:
@@ -43,8 +38,11 @@ class Figure(Float):
 
             width = 'width=' + str(width)
 
-        self.append(UnsafeCommand('includegraphics', options=width,
-                                  arguments=fix_filename(filename)))
+        if placement is not None:
+            self.append(placement)
+
+        self.append(StandAloneGraphic(image_options=width,
+                                      filename=fix_filename(filename)))
 
     def _save_plot(self, *args, **kwargs):
         """Save the plot.
@@ -133,3 +131,34 @@ class SubFigure(Figure):
         """
 
         super().add_image(filename, width=width, placement=placement)
+
+
+class StandAloneGraphic(UnsafeCommand):
+    r"""A class representing a stand alone image."""
+
+    _latex_name = "includegraphics"
+
+    packages = [Package('graphicx')]
+
+    _repr_attributes_mapping = {
+        "filename": "arguments",
+        "image_options": "options"
+    }
+
+    def __init__(self, filename,
+                 image_options=NoEscape(r'width=0.8\textwidth'),
+                 extra_arguments=None):
+        r"""
+        Args
+        ----
+        filename: str
+            The path to the image file
+        image_options: str or `list`
+            Specifies the options for the image (ie. height, width)
+        """
+
+        arguments = [NoEscape(filename)]
+
+        super().__init__(command=self._latex_name, arguments=arguments,
+                         options=image_options,
+                         extra_arguments=extra_arguments)

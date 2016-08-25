@@ -38,7 +38,7 @@ if __name__ == '__main__':
     subsection = Subsection('Scalars with uncertainties')
     width = pq.UncertainQuantity(7.0, pq.meter, .4)
     length = pq.UncertainQuantity(6.0, pq.meter, .3)
-    area = Quantity(width*length, options='separate-uncertainty',
+    area = Quantity(width * length, options='separate-uncertainty',
                     format_cb=lambda x: "{0:.1f}".format(float(x)))
     subsection.append(Math(data=['A=', area]))
     section.append(subsection)

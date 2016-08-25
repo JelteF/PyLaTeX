@@ -9,15 +9,15 @@ This example shows matplotlib functionality.
 # begin-doc-include
 import matplotlib
 
-from pylatex import Document, Package, Section, Figure, NoEscape
+from pylatex import Document, Section, Figure, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as plt  # noqa
 
 
 def main(fname, width, *args, **kwargs):
-    doc = Document(fname)
-    doc.packages.append(Package('geometry', options=['left=2cm', 'right=2cm']))
+    geometry_options = {"right": "2cm", "left": "2cm"}
+    doc = Document(fname, geometry_options=geometry_options)
 
     doc.append('Introduction.')
 

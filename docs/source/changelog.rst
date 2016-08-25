@@ -23,6 +23,9 @@ Changed
   front of them.
 - For better readability let `~.escape_latex` change a newline to ``\\%\n``
   instead of simply ``\\``.
+- `.Document` packages now get propagated from the preamble elements as well.
+- Changed `.Figure.add_image` to add a `.StandAloneGraphic`
+- `.Tabular.add_row` now accepts a list of mappers
 
 Added
 ~~~~~
@@ -30,6 +33,44 @@ Added
   the Euro (€) Symbol can be used in the source.
 - `.Quantity` got a new  ``options`` keyword argument and learned to handle
   uncertain quantities.
+- Added `.PageStyle` class to support the creation of various page styles. In
+  addition to this class `.Head` and `.Foot` were added for creating unique
+  headers and footers within the page styles. A `.simple_page_number` function
+  was also added for easy displaying of a simple page number.
+- Added a new type of container `.ContainerCommand` for supporting commands
+  with data.
+- Added new options to the `.Document` constructor: ``geometry_options`` (a
+  list of options for the geometry package), ``document_options`` (a list of
+  options to place in the document class), ``indents`` (an option to select
+  whether the documents elements are indented), ``page_numbers`` (an option to
+  choose whether to use page numbers or not), ``font_size`` (the font size to
+  set at the beggining of the document).
+- Added several new methods to the `.Document`: ``change_page_style``,
+  ``change_document_style``, ``add_color``, ``change_length``,
+  ``set_variable``.
+- Added a new `.position` package with the following classes: `.Center` (an
+  environment with centered content), `.FlushLeft` (an environment with left
+  aligned content), `.FlushRight` (an environment with right aligned content),
+  `.MiniPage` (a portion of the document with a certain width and height),
+  `.TextBlock` (a portion of the document for which the position can be selected
+  using x,y coordinates), `.VerticalSpace` and `.HorizontalSpace` (add space of
+  a certain size by using vspace and hspace)
+- Added `.StandAloneGraphic` to support the creation of images outside of
+  figure environments.
+- Added the ability to change the ``row_height`` of a table within the
+  `.Tabular` constructor.
+- Added a new type of table `.Tabularx`.
+- Added the option to select a color when adding an hline or adding a row to
+  any `~.Tabular` environment.
+- Added the ability to add your own column types through the `.Column` class.
+- Added the ability to end the header of a `.LongTable` which repeats on every
+  consecutive page.
+- Added the ability to choose the enumeration symbol in a list using the
+  ``enumeration_symbol`` keyword argument of `.Enumerate`.
+- Added a `pylatex.basic` module with the following commands: `.NewLine`,
+  `.NewPage`, `.LineBreak`, `.HFill`.
+- Added several environments to `pylatex.basic`: `.HugeText`, `.LargeText`,
+  `.MediumText`, `.SmallText`, `.FootnoteText`, `.TextColor`.
 - `.Tabular` can now have a width specified to override the calculated width
   based on the ``table_spec`` argument.
 
