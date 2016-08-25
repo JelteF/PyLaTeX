@@ -343,32 +343,49 @@ class LongTabu(LongTable, Tabu):
 
 
 class Column(UnsafeCommand):
-    """A class representing a new column type."""
+    r"""A class representing a new column type.
+
+    It uses the ``\newcolumntype`` command, for a thorough explanation see
+    `this StackExchange question <https://tex.stackexchange.com/
+    questions/257128/how-does-the-newcolumntype-command-work>`_.
+    """
 
     _repr_attributes_mapping = {
         'name': 'arguments',
-        'base': 'arguments',
-        'modifications': 'arguments',
         'parameters': 'options'
     }
 
-    def __init__(self, name, base, modifications, parameters=None):
+    def __init__(self, name, base, modifications, *, parameters=None):
         """
         Args
         ----
         name: str
-            The name of the new column type
+            The name of the new column type (a single letter)
         base: str
-            The name of the base column type
+            The name of the column type that the new one is based on (a single
+            letter)
         modifications: str
-            The modifications made to the column type
+            The modifications to be made to the base column type
         parameters: int
-            The number of parameters inside the modifications
+            The number of # parameters inside the modifications string, if this
+            is `None` this is calculated automatically.
         """
+
+        # repr vars
+        self._base = base
+        self._modifications = modifications
 
         COLUMN_LETTERS.append(name)
 
+        if parameters is None:
+            # count the number of non escaped #<number> parameters
+            parameters = len(re.findall('(?<!\\)#\d', modifications))
+
+        if parameters == 0:
+            parameters = None
+
         modified = r">{%s\arraybackslash}%s" % (modifications, base)
 
-        super().__init__(command="newcolumntype", arguments=[name, modified],
-                         options=parameters, extra_arguments=name)
+        super().__init__(command="newcolumntype", arguments=name,
+                         options=parameters, extra_arguments=modified)
+        print(self.dumps())
