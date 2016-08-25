@@ -66,11 +66,11 @@ Added
 - Added the ability to end the header of a `.LongTable` which repeats on every
   consecutive page.
 - Added the ability to choose the enumeration symbol in a list using the
-  ``enumeration_symbol`` option inside the constructor.
-- Added a `pylatex.basic` module with the following commands: NewLine, NewPage,
-  LineBreak, HFill.
-- Added several environments to `pylatex.basic`: FontSize, HugeText, LargeText,
-  MediumText, SmallText, FootnoteText.
+  ``enumeration_symbol`` keyword argument of `.Enumerate`.
+- Added a `pylatex.basic` module with the following commands: `.NewLine`,
+  `.NewPage`, `.LineBreak`, `.HFill`.
+- Added several environments to `pylatex.basic`: `.HugeText`, `.LargeText`,
+  `.MediumText`, `.SmallText`, `.FootnoteText`, `.TextColor`.
 - `.Tabular` can now have a width specified to override the calculated width
   based on the ``table_spec`` argument.
 
