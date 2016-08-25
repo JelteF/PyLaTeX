@@ -107,21 +107,21 @@ class Tabular(Environment):
     def dumps(self):
         r"""Turn the Latex Object into a string in Latex format."""
 
-        dump = ""
+        string = ""
 
         if self.row_height is not None:
             row_height = Command('renewcommand', arguments=[
                 NoEscape(r'\arraystretch'),
                 self.row_height])
-            dump += row_height.dumps() + '%\n'
+            string += row_height.dumps() + '%\n'
 
         if self.col_space is not None:
             col_space = Command('setlength', arguments=[
                 NoEscape(r'\tabcolsep'),
                 self.col_space])
-            dump += col_space.dumps() + '%\n'
+            string += col_space.dumps() + '%\n'
 
-        return dump + super().dumps()
+        return string + super().dumps()
 
     def add_hline(self, start=None, end=None, *, color=None):
         """Add a horizontal line to the table.
