@@ -35,8 +35,6 @@ class List(Environment):
 class Enumerate(List):
     """A class that represents an enumerate list."""
 
-    omit_if_empty = False
-
     def __init__(self, enumeration_symbol=None, *, options=None, **kwargs):
         r"""
         Args
