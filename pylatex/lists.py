@@ -49,12 +49,14 @@ class Enumerate(List):
         arguments: str, list or `~.Arguments`
             Arguments to be added to the begin tag
         enumeration_symbol: str
-            The enumeration symbol to use
+            The enumeration symbol to use, see the `enumitem
+            <https://www.ctan.org/pkg/enumitem>`_ documentation to see what
+            can be used here.
         """
 
         packages = []
         if enumeration_symbol is not None:
-            packages = [Package("enumerate")]
+            packages = [Package("enumitem")]
             options = [NoEscape(enumeration_symbol)]
         self.enumeration_symbol = enumeration_symbol
 
