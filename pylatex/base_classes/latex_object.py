@@ -96,7 +96,7 @@ class LatexObject(metaclass=_CreatePackages):
                 return getattr(obj, field)
             except AttributeError as e:
                 try:
-                    getattr(obj, '_' + field)
+                    return getattr(obj, '_' + field)
                 except AttributeError:
                     raise e
 
