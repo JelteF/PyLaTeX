@@ -8,7 +8,7 @@ These lists are specifically enumerate, itemize and description.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment, Command
+from .base_classes import Environment, Command, Options
 from .package import Package
 from pylatex.utils import NoEscape
 
@@ -35,34 +35,37 @@ class List(Environment):
 class Enumerate(List):
     """A class that represents an enumerate list."""
 
-    _repr_attributes_mapping = {
-        "enumeration_symbol": "options"
-    }
+    omit_if_empty = False
 
-    def __init__(self, options=None, arguments=None, *,
-                 enumeration_symbol=None, **kwargs):
+    def __init__(self, enumeration_symbol=None, *, options=None, **kwargs):
         r"""
         Args
         ----
-        options: str, list or `~.Options`
-            Options to be added to the begin tag
-        arguments: str, list or `~.Arguments`
-            Arguments to be added to the begin tag
         enumeration_symbol: str
             The enumeration symbol to use, see the `enumitem
             <https://www.ctan.org/pkg/enumitem>`_ documentation to see what
-            can be used here.
+            can be used here. This argument is not escaped as it usually
+            should usually contain commands, so do not use user input here.
+        options: str or list or `.Options`
+            Custom options to be added to the enumerate list. These options are
+            merged with the options created by ``enumeration_symbol``.
         """
 
-        packages = []
+        self._enumeration_symbol = enumeration_symbol
+
         if enumeration_symbol is not None:
-            packages = [Package("enumitem")]
-            options = [NoEscape(enumeration_symbol)]
-        self.enumeration_symbol = enumeration_symbol
+            self.packages.add(Package("enumitem"))
 
-        self.packages |= packages
+            if options is not None:
+                options = Options(options)
+            else:
+                options = Options()
+            options._positional_args.append(NoEscape('label=' +
+                                                     enumeration_symbol))
 
-        super().__init__(options=options, arguments=arguments, **kwargs)
+        super().__init__(options=options, **kwargs)
+
+        print(self.dumps())
 
 
 class Itemize(List):

@@ -198,7 +198,7 @@ def test_lists():
     itemize.append("append")
     repr(itemize)
 
-    enum = Enumerate(enumeration_symbol="a)")
+    enum = Enumerate(enumeration_symbol=r"\alph*)", options={'start': 172})
     enum.add_item(s="item")
     enum.add_item(s="item2")
     enum.append("append")

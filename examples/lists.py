@@ -32,14 +32,15 @@ if __name__ == '__main__':
             itemize.append(Command("ldots"))
 
     # create a numbered "enumerate" list like the below:
-    # \begin{enumerate}
+    # \begin{enumerate}[label=\alph*),start=20]
     #   \item The first item
     #   \item The second item
     #   \item The third etc \ldots
     # \end{enumerate}
 
     with doc.create(Section('"Enumerate" list')):
-        with doc.create(Enumerate()) as enum:
+        with doc.create(Enumerate(enumeration_symbol=r"\alph*)",
+                                  options={'start': 20})) as enum:
             enum.add_item("the first item")
             enum.add_item("the second item")
             enum.add_item(NoEscape("the third etc \\ldots"))
