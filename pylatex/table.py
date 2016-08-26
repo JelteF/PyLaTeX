@@ -293,6 +293,7 @@ class MultiRow(Container):
         super().__init__(data=data)
 
         if color is not None:
+            self.packages.append(Package('xcolor', options='table'))
             color_command = Command("cellcolor", arguments=color)
             self.append(color_command)
 
