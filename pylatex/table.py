@@ -247,6 +247,7 @@ class MultiColumn(Container):
 
         # Add a cell color to the MultiColumn
         if color is not None:
+            self.packages.append(Package('xcolor', options='table'))
             color_command = Command("cellcolor", arguments=color)
             self.append(color_command)
 
