@@ -13,6 +13,7 @@ from .base_classes import Environment, Command, Container, LatexObject, \
     UnsafeCommand
 from .package import Package
 from .utils import dumps_list, rm_temp_dir, NoEscape
+import pylatex.config as cf
 
 
 class Document(Environment):
@@ -28,7 +29,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', document_options=None, fontenc='T1',
                  inputenc='utf8', font_size="normalsize", lmodern=True,
-                 textcomp=True, page_numbers=True, indent=True,
+                 textcomp=True, page_numbers=True, indent=None,
                  geometry_options=None, data=None):
         r"""
         Args
@@ -53,7 +54,9 @@ class Document(Environment):
         page_numbers: bool
             Adds the ability to add the last page to the document.
         indent: bool
-            Determines whether or not the document requires indentation
+            Determines whether or not the document requires indentation. If it
+            is `None` it will use the value from the active config. Which is
+            `True` by default.
         geometry_options: str or `list`
             The options to supply to the geometry package
         data: list
@@ -68,11 +71,14 @@ class Document(Environment):
             self.documentclass = Command('documentclass',
                                          arguments=documentclass,
                                          options=document_options)
+        if indent is None:
+            indent = cf.active.indent
 
         # These variables are used by the __repr__ method
         self._fontenc = fontenc
         self._inputenc = inputenc
         self._lmodern = lmodern
+        self._indent = indent
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)

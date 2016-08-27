@@ -73,6 +73,8 @@ Added
   `.MediumText`, `.SmallText`, `.FootnoteText`, `.TextColor`.
 - `.Tabular` can now have a width specified to override the calculated width
   based on the ``table_spec`` argument.
+- Default configuration for certain options can be overwritten with the new
+  `pylatex.config` module.
 
 Fixed
 ~~~~~
