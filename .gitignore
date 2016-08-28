@@ -44,8 +44,7 @@ nosetests.xml
 python2_source
 
 # Venv
-venv
-venv2
+venv*
 
 # Ignore generated doc files
 docs/source/examples
