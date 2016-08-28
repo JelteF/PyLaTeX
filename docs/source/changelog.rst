@@ -41,7 +41,7 @@ Added
   with data.
 - Added new options to the `.Document` constructor: ``geometry_options`` (a
   list of options for the geometry package), ``document_options`` (a list of
-  options to place in the document class), ``indents`` (an option to select
+  options to place in the document class), ``indent`` (an option to select
   whether the documents elements are indented), ``page_numbers`` (an option to
   choose whether to use page numbers or not), ``font_size`` (the font size to
   set at the beggining of the document).

@@ -90,6 +90,8 @@ class Document(Environment):
             packages.append(Package('textcomp'))
         if page_numbers:
             packages.append(Package('lastpage'))
+        if not indent:
+            packages.append(Package('parskip'))
 
         if geometry_options is not None:
             packages.append(Package('geometry', options=geometry_options))
@@ -103,9 +105,6 @@ class Document(Environment):
 
         if not page_numbers:
             self.change_document_style("empty")
-
-        if not indent:
-            self.change_length("\parindent", "0pt")
 
         # No colors have been added to the document yet
         self.color = False
