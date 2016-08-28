@@ -28,6 +28,13 @@ def test():
     assert not cf.active.indent
     assert not Document()._indent
 
+    with cf.active.change(indent=True):
+        assert cf.active.indent
+        assert Document()._indent
+
+    assert not cf.active.indent
+    assert not Document()._indent
+
 
 if __name__ == '__main__':
     test()
