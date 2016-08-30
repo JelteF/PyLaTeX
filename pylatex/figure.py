@@ -6,7 +6,7 @@ This module implements the class that deals with graphics.
     :license: MIT, see License for more details.
 """
 
-import os.path
+import posixpath
 
 from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
 from .base_classes import Float, UnsafeCommand
@@ -57,7 +57,7 @@ class Figure(Float):
 
         tmp_path = make_temp_dir()
 
-        filename = os.path.join(tmp_path, str(uuid.uuid4()) + '.pdf')
+        filename = posixpath.join(tmp_path, str(uuid.uuid4()) + '.pdf')
 
         plt.savefig(filename, *args, **kwargs)
 
