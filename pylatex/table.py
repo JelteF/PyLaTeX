@@ -276,7 +276,15 @@ class Tabularx(Tabular):
 
     def __init__(self, *args, width_argument=NoEscape(r'\textwidth'),
                  **kwargs):
+        """
+        Args
+        ----
+        width_argument:
+            The width of the table. By default the table is as wide as the
+            text.
+        """
         super().__init__(*args, arguments=width_argument, **kwargs)
+
 
 class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
