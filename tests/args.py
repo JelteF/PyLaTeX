@@ -16,7 +16,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     Package, TikZ, Axis, Plot, Itemize, Enumerate, Description, MultiColumn, \
     MultiRow, Command, Matrix, VectorName, Quantity, TableRowSizeError, \
     LongTable, FlushLeft, FlushRight, Center, MiniPage, TextBlock, \
-    PageStyle, Head, Foot, StandAloneGraphic, Tabularx, Column, NewLine, \
+    PageStyle, Head, Foot, StandAloneGraphic, Tabularx, ColumnType, NewLine, \
     LineBreak, NewPage, HFill, HugeText, LargeText, MediumText, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace
@@ -120,7 +120,7 @@ def test_table():
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
     # Column
-    column = Column("R", "X", r"\raggedleft", parameters=2)
+    column = ColumnType("R", "X", r"\raggedleft", parameters=2)
     repr(column)
 
 

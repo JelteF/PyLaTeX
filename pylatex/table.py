@@ -415,8 +415,7 @@ class LongTabularx(Tabularx, LongTable):
     packages = [Package('ltablex')]
 
 
-
-class Column(UnsafeCommand):
+class ColumnType(UnsafeCommand):
     r"""A class representing a new column type.
 
     It uses the ``\newcolumntype`` command, for a thorough explanation see

@@ -13,7 +13,7 @@ from .math import Math, VectorName, Matrix
 from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
-    LongTabu, Tabularx, LongTabularx, Column
+    LongTabu, Tabularx, LongTabularx, ColumnType
 from .tikz import TikZ, Axis, Plot
 from .figure import Figure, SubFigure, StandAloneGraphic
 from .lists import Enumerate, Itemize, Description

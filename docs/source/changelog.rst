@@ -62,7 +62,8 @@ Added
 - Added a new type of table `.Tabularx`.
 - Added the option to select a color when adding an hline or adding a row to
   any `~.Tabular` environment.
-- Added the ability to add your own column types through the `.Column` class.
+- Added the ability to add your own column types through the `.ColumnType`
+  class.
 - Added the ability to end the header of a `.LongTable` which repeats on every
   consecutive page.
 - Added the ability to choose the enumeration symbol in a list using the
