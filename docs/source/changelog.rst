@@ -26,6 +26,8 @@ Changed
 - `.Document` packages now get propagated from the preamble elements as well.
 - Changed `.Figure.add_image` to add a `.StandAloneGraphic`
 - `.Tabular.add_row` now accepts a list of mappers
+- `.Tabular.add_row` now accepts cells as arguments, so they don't have to be
+  wrapped in a `list` or `tuple` anymore.
 
 Added
 ~~~~~
@@ -77,6 +79,7 @@ Added
 - Default configuration for certain options can be overwritten with the new
   `pylatex.config` module.
 - Add support for booktabs tables, which look nicer than normal tables.
+- Add support for the microtype package.
 
 Fixed
 ~~~~~
@@ -84,6 +87,7 @@ Fixed
   cause invalid LaTeX code anymore.
 - `.Quantity` now correctly splits prefix and unit into seperate commands.
 - `.Quantity` can now handle Celsius.
+- `.Package` instances now actually get deduplicated.
 
 
 1.0.0_ - `docs <../v1.0.0/>`__ - 2015-11-25
