@@ -10,7 +10,7 @@ from .base_classes import LatexObject, Container, Command, UnsafeCommand, \
     Float, Environment
 from .package import Package
 from .errors import TableRowSizeError, TableError
-from .utils import dumps_list, NoEscape
+from .utils import dumps_list, NoEscape, _is_iterable
 import pylatex.config as cf
 
 from collections import Counter
@@ -211,14 +211,17 @@ class Tabular(Environment):
 
         self.append(NoEscape((self.width - 1) * '&' + r'\\'))
 
-    def add_row(self, cells, *, color=None, escape=None, mapper=None,
+    def add_row(self, *cells, color=None, escape=None, mapper=None,
                 strict=True):
         """Add a row of cells to the table.
 
         Args
         ----
         cells: iterable, such as a `list` or `tuple`
-            Each element of the iterable will become a the content of a cell.
+            There's two ways to use this method. The first method is to pass
+            the content of each cell as a separate argument. The second method
+            is to pass a single argument that is an iterable that contains each
+            contents.
         color: str
             The name of the color used to highlight the row
         mapper: callable or `list`
@@ -228,6 +231,9 @@ class Tabular(Environment):
         strict: bool
             Check for correct count of cells in row or not.
         """
+
+        if len(cells) == 1 and _is_iterable(cells):
+            cells = cells[0]
 
         if escape is None:
             escape = self.escape
@@ -268,6 +274,9 @@ class Tabularx(Tabular):
 
     packages = [Package('tabularx')]
 
+    def __init__(self, *args, width_argument=NoEscape(r'\textwidth'),
+                 **kwargs):
+        super().__init__(*args, arguments=width_argument, **kwargs)
 
 class MultiColumn(Container):
     """A class that represents a multicolumn inside of a table."""
@@ -390,6 +399,21 @@ class LongTable(Tabular):
 
 class LongTabu(LongTable, Tabu):
     """A class that represents a longtabu (more flexible multipage table)."""
+
+
+class LongTabularx(Tabularx, LongTable):
+    """A class that represents a long version of the tabularx environment.
+
+    This uses the ``ltablex`` package. This package modifies the ``tabularx``
+    environment so that it can be spread over multiple pages. Because of this,
+    using this class in a document has the side effect that it spreads all
+    `Tabularx` elements over multiple pages as well.
+    """
+
+    _latex_name = 'tabularx'
+
+    packages = [Package('ltablex')]
+
 
 
 class Column(UnsafeCommand):

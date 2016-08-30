@@ -35,6 +35,10 @@ _tmp_path = os.path.abspath(
 )
 
 
+def _is_iterable(element):
+    return hasattr(element, '__iter__') and not isinstance(element, str)
+
+
 class NoEscape(str):
     """
     A simple string class that is not escaped.
