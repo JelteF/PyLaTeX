@@ -462,7 +462,8 @@ class ColumnType(UnsafeCommand):
 
         if parameters is None:
             # count the number of non escaped #<number> parameters
-            parameters = len(re.findall('(?<!\\)#\d', modifications))
+            parameters = len(re.findall(r'(?<!\\)#\d', modifications))
+            parameters += len(re.findall(r'(?<!\\)#\d', base))
 
         if parameters == 0:
             parameters = None
