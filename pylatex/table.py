@@ -99,7 +99,8 @@ class Tabular(Environment):
         if self.booktabs:
             self.packages.add(Package('booktabs'))
 
-        self.row_height = row_height
+        self.row_height = row_height if row_height is not None else \
+            cf.active.row_height
         self.col_space = col_space
 
         # Append the table_spec to the arguments list
