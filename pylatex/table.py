@@ -415,9 +415,9 @@ class LongTabularx(Tabularx, LongTable):
     """A class that represents a long version of the tabularx environment.
 
     This uses the ``ltablex`` package. This package modifies the ``tabularx``
-    environment so that it can be spread over multiple pages. Because of this,
-    using this class in a document has the side effect that it spreads all
-    `Tabularx` elements over multiple pages as well.
+    environment so that it can be spread over multiple pages. This has the
+    sideeffect that using this class in a document spreads all `Tabularx`
+    elements in that document over multiple pages as well.
     """
 
     _latex_name = 'tabularx'
