@@ -78,7 +78,7 @@ class CommandBase(LatexObject):
 
         Args
         ----
-        other: `~.Command` instance
+        other: `~.CommandBase` instance
             The command to compare this command to
 
 
@@ -88,7 +88,7 @@ class CommandBase(LatexObject):
             If the two instances are equal
         """
 
-        if isinstance(other, Command):
+        if isinstance(other, CommandBase):
             return self.__key() == other.__key()
 
         return False
