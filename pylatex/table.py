@@ -111,7 +111,7 @@ class Tabular(Environment):
         else:
             arguments = []
 
-        arguments.append(table_spec)
+        arguments.append(NoEscape(table_spec))
 
         super().__init__(data=data, options=pos,
                          arguments=arguments, **kwargs)
