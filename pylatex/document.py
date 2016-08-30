@@ -29,7 +29,7 @@ class Document(Environment):
     def __init__(self, default_filepath='default_filepath', *,
                  documentclass='article', document_options=None, fontenc='T1',
                  inputenc='utf8', font_size="normalsize", lmodern=True,
-                 textcomp=True, page_numbers=True, indent=None,
+                 textcomp=True, microtype=None, page_numbers=True, indent=None,
                  geometry_options=None, data=None):
         r"""
         Args
@@ -73,12 +73,15 @@ class Document(Environment):
                                          options=document_options)
         if indent is None:
             indent = cf.active.indent
+        if microtype is None:
+            microtype = cf.active.microtype
 
         # These variables are used by the __repr__ method
         self._fontenc = fontenc
         self._inputenc = inputenc
         self._lmodern = lmodern
         self._indent = indent
+        self._microtype = microtype
 
         fontenc = Package('fontenc', options=fontenc)
         inputenc = Package('inputenc', options=inputenc)
@@ -92,6 +95,8 @@ class Document(Environment):
             packages.append(Package('lastpage'))
         if not indent:
             packages.append(Package('parskip'))
+        if microtype:
+            packages.append(Package('microtype'))
 
         if geometry_options is not None:
             packages.append(Package('geometry', options=geometry_options))

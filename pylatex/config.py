@@ -22,10 +22,12 @@ class Version1:
 
         indent = True
         booktabs = False
+        microtype = False
     """
 
     indent = True
     booktabs = False
+    microtype = False
 
     def __init__(self, **kwargs):
         """
@@ -94,10 +96,12 @@ class Version2(Version1):
 
         indent = False
         booktabs = True
+        microtype = True
     """
 
     indent = False
     booktabs = True
+    microtype = True
 
 #: The default configuration in the nxt major release. Currently the same as
 #: `Version2`.
