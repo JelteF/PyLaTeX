@@ -18,7 +18,7 @@ import re
 
 
 # The letters used to count the table width
-COLUMN_LETTERS = ['l', 'c', 'r', 'p', 'm', 'b', 'X']
+COLUMN_LETTERS = {'l', 'c', 'r', 'p', 'm', 'b', 'X'}
 
 
 def _get_table_width(table_spec):
@@ -457,7 +457,7 @@ class ColumnType(UnsafeCommand):
         self._base = base
         self._modifications = modifications
 
-        COLUMN_LETTERS.append(name)
+        COLUMN_LETTERS.add(name)
 
         if parameters is None:
             # count the number of non escaped #<number> parameters
