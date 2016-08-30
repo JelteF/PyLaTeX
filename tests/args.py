@@ -90,7 +90,8 @@ def test_table():
 
     t.add_hline(start=None, end=None)
 
-    t.add_row(cells=(1, 2), escape=False, strict=True, mapper=[bold])
+    t.add_row((1, 2), escape=False, strict=True, mapper=[bold])
+    t.add_row(1, 2, escape=False, strict=True, mapper=[bold])
 
     # MultiColumn/MultiRow.
     t.add_row((MultiColumn(size=2, align='|c|', data='MultiColumn'),),
@@ -103,7 +104,8 @@ def test_table():
     repr(t)
 
     # TabularX
-    tabularx = Tabularx(table_spec='X X X', arguments=NoEscape(r"\textwidth"))
+    tabularx = Tabularx(table_spec='X X X',
+                        width_argument=NoEscape(r"\textwidth"))
     tabularx.add_row(["test1", "test2", "test3"])
 
     # Long Table
@@ -343,15 +345,16 @@ def test_errors():
     # Positive test, expected to raise Error
 
     t = Tabular(table_spec='|c|c|', data=None, pos=None)
+    # TODO: this does not actually check if the error is raised
     try:
         # Wrong number of cells in table should raise an exception
-        t.add_row(cells=(1, 2, 3), escape=False, strict=True)
+        t.add_row((1, 2, 3), escape=False, strict=True)
     except TableRowSizeError:
         pass
 
     # Negative test, should not raise
     try:
         # Wrong number with strict=False should not raise an exception
-        t.add_row(cells=(1, 2, 3), escape=False, strict=False)
+        t.add_row((1, 2, 3), escape=False, strict=False)
     except TableRowSizeError:
         raise

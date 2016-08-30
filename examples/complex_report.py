@@ -51,8 +51,8 @@ def generate_unique():
     with first_page.create(Foot("C")) as footer:
         message = "Important message please read"
         with footer.create(Tabularx(
-                           "X X X X",
-                           arguments=NoEscape(r"\textwidth"))) as footer_table:
+                "X X X X",
+                width_argument=NoEscape(r"\textwidth"))) as footer_table:
 
             footer_table.add_row(
                 [MultiColumn(4, align='l', data=TextColor("blue", message))])
