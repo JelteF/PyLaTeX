@@ -438,4 +438,3 @@ class Column(UnsafeCommand):
 
         super().__init__(command="newcolumntype", arguments=name,
                          options=parameters, extra_arguments=modified)
-        print(self.dumps())

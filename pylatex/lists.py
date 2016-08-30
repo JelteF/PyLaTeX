@@ -63,8 +63,6 @@ class Enumerate(List):
 
         super().__init__(options=options, **kwargs)
 
-        print(self.dumps())
-
 
 class Itemize(List):
     """A class that represents an itemize list."""
