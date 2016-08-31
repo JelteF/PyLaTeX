@@ -131,7 +131,8 @@ class Environment(Container):
     #: string if it has no content.
     omit_if_empty = False
 
-    def __init__(self, *, options=None, arguments=None, **kwargs):
+    def __init__(self, *, options=None, arguments=None, start_arguments=None,
+                 **kwargs):
         r"""
         Args
         ----
@@ -140,10 +141,14 @@ class Environment(Container):
 
         arguments: str or list or `~.Arguments`
             Arguments to be added to the ``\begin`` command
+
+        start_arguments: str or list or `~.Arguments`
+            Arguments to be added before the options
         """
 
         self.options = options
         self.arguments = arguments
+        self.start_arguments = start_arguments
 
         super().__init__(**kwargs)
 
@@ -169,8 +174,9 @@ class Environment(Container):
         else:
             extra_arguments = self.arguments
 
-        begin = Command('begin', self.latex_name, self.options,
+        begin = Command('begin', self.start_arguments, self.options,
                         extra_arguments=extra_arguments)
+        begin.arguments._positional_args.insert(0, self.latex_name)
         string += begin.dumps() + '%\n'
 
         string += content + '%\n'

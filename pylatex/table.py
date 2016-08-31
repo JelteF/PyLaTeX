@@ -56,7 +56,7 @@ class Tabular(Environment):
 
     def __init__(self, table_spec, data=None, pos=None, *,
                  row_height=None, col_space=None, width=None, booktabs=None,
-                 arguments=None, **kwargs):
+                 **kwargs):
         """
         Args
         ----
@@ -79,8 +79,6 @@ class Tabular(Environment):
             calculated based on the ``table_spec``, but this is only works for
             simple specs. In cases where this calculation is wrong override the
             width using this argument.
-        arguments: str or `list`
-            The arguments to append to the table
 
         References
         ----------
@@ -104,17 +102,9 @@ class Tabular(Environment):
             cf.active.row_height
         self.col_space = col_space
 
-        # Append the table_spec to the arguments list
-        if arguments is not None:
-            if isinstance(arguments, str):
-                arguments = [arguments]
-        else:
-            arguments = []
-
-        arguments.append(NoEscape(table_spec))
-
         super().__init__(data=data, options=pos,
-                         arguments=arguments, **kwargs)
+                         arguments=NoEscape(table_spec),
+                         **kwargs)
 
         # Parameter that determines if the xcolor package has been added.
         self.color = False
@@ -285,7 +275,7 @@ class Tabularx(Tabular):
             The width of the table. By default the table is as wide as the
             text.
         """
-        super().__init__(*args, arguments=width_argument, **kwargs)
+        super().__init__(*args, start_arguments=width_argument, **kwargs)
 
 
 class MultiColumn(Container):
