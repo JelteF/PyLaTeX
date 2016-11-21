@@ -124,6 +124,8 @@ def fix_filename(path):
     '/etc/local/{foo.bar}.pdf'
     >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
     '/etc/local/foo.bar.baz/document.pdf'
+    >>> fix_filename("/etc/local/foo.bar.baz/foo~1/document.pdf")
+    '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}'
     """
 
     path_parts = path.split('/' if os.name == 'posix' else '\\')
@@ -136,7 +138,12 @@ def fix_filename(path):
         filename = '{' + '.'.join(file_parts[0:-1]) + '}.' + file_parts[-1]
 
     dir_parts.append(filename)
-    return '/'.join(dir_parts)
+    fixed_path = '/'.join(dir_parts)
+
+    if '~' in fixed_path:
+        fixed_path = detokenize(fixed_path)
+
+    return fixed_path
 
 
 def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):

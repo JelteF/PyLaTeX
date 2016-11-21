@@ -157,9 +157,6 @@ class StandAloneGraphic(UnsafeCommand):
             Specifies the options for the image (ie. height, width)
         """
 
-        if '~' in filename:
-            filename = detokenize(filename)
-
         arguments = [NoEscape(filename)]
 
         super().__init__(command=self._latex_name, arguments=arguments,
