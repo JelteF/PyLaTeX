@@ -21,7 +21,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, NoEscape
+    italic, verbatim, NoEscape, detokenize
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
