@@ -28,6 +28,7 @@ Changed
 - `.Tabular.add_row` now accepts a list of mappers
 - `.Tabular.add_row` now accepts cells as arguments, so they don't have to be
   wrapped in a `list` or `tuple` anymore.
+- Changed from using ``$$ ... $$`` for displaymath to using ``\[ ... \]``.
 
 Added
 ~~~~~
