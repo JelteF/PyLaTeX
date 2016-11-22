@@ -12,7 +12,7 @@ from .package import Package
 
 class Math(Container):
     """A class representing a math environment."""
-    
+
     packages = [Package('amsmath')]
 
     content_separator = ' '
