@@ -12,6 +12,8 @@ from .package import Package
 
 class Math(Container):
     """A class representing a math environment."""
+    
+    packages = [Package('amsmath')]
 
     content_separator = ' '
 
@@ -39,7 +41,7 @@ class Math(Container):
 
         if self.inline:
             return '$' + self.dumps_content() + '$'
-        return r'\[' + '%\n' + self.dumps_content() + '%\n' + r'\]'
+        return '\\[%\n' + self.dumps_content() + '%\n\\]'
 
 
 class VectorName(Command):
