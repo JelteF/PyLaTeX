@@ -39,7 +39,7 @@ class Math(Container):
 
         if self.inline:
             return '$' + self.dumps_content() + '$'
-        return r'\[' + '%\n' + self.dumps_content() + r'%\n' + r'\]'
+        return r'\[' + '%\n' + self.dumps_content() + '%\n' + r'\]'
 
 
 class VectorName(Command):
