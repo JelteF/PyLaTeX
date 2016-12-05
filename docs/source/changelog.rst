@@ -16,18 +16,18 @@ This version might not be stable, but to install it use::
 
 Changed
 ~~~~~~~
-- Allow overriding of the default numbering of ``.Section`` class.
-- ``.Parameters`` now unpacks a dict as keyword arguments when passed a single
+- Allow overriding of the default numbering of `.Section` class.
+- `.Parameters` now unpacks a dict as keyword arguments when passed a single
   dictionary as argument.
 - Escape generated ``\n`` characters by PyLaTeX by placing a ``%`` sign in
   front of them.
-- For better readability let ``~.escape_latex`` change a newline to ``\\%\n``
+- For better readability let `~.escape_latex` change a newline to ``\\%\n``
   instead of simply ``\\``.
-- ``.Document`` packages now get propagated from the preamble elements as well.
-- Changed ``.Figure.add_image`` to add a ``.StandAloneGraphic``
-- ``.Tabular.add_row`` now accepts a list of mappers
-- ``.Tabular.add_row`` now accepts cells as arguments, so they don't have to be
-  wrapped in a ``list`` or `tuple` anymore.
+- `.Document` packages now get propagated from the preamble elements as well.
+- Changed `.Figure.add_image` to add a `.StandAloneGraphic`
+- `.Tabular.add_row` now accepts a list of mappers
+- `.Tabular.add_row` now accepts cells as arguments, so they don't have to be
+  wrapped in a `list` or `tuple` anymore.
 - Changed from using ``$$ ... $$`` for displaymath to using ``\[ ... \]``.
 
 Added
