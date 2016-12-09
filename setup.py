@@ -55,6 +55,7 @@ class CustomEggInfo(egg_info):
 
 
 def convert_to_py2():
+    global PY2_CONVERTED
     if source_dir == 'python2_source' and not PY2_CONVERTED:
         try:
             # Check if 3to2 exists
@@ -72,7 +73,6 @@ def convert_to_py2():
             converter = os.path.dirname(os.path.realpath(__file__)) \
                 + '/convert_to_py2.sh'
             subprocess.check_call([converter])
-            global PY2_CONVERTED
             PY2_CONVERTED = True
 
 
