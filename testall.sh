@@ -47,7 +47,7 @@ done
 python_version=$($python --version |& sed 's|Python \(.\).*|\1|g')
 
 # Run the examples and tests
-python_version_long=$($python --version |& sed 's|Python \(.*)|\1|g')
+python_version_long=$($python --version |& sed 's|Python \(.*\)|\1|g')
 
 if [ "$python_version" = '3' ]; then
     # Check code guidelines
