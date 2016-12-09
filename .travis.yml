@@ -29,5 +29,5 @@ addons:
 
 install:
   - pip install 3to2 future
-  - pip install -r dev_requirements.txt
+  - pip install -r dev_requirements.txt --upgrade
 script: ./testall.sh
