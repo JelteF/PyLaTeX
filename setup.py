@@ -65,7 +65,7 @@ def convert_to_py2():
             subprocess.check_output(['pasteurize', '--help'])
         except OSError as e:
             if e.errno != errno.ENOENT:
-                raise e
+                raise
             if not os.path.exists(os.path.join(source_dir, 'pylatex')):
                 raise ImportError('3to2 and future need to be installed '
                                   'before installing when PyLaTeX for Python '
