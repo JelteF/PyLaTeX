@@ -30,5 +30,5 @@ addons:
 
 install:
   - pip install 3to2 future
-  - pip install -r dev_requirements.txt --upgrade
+  - 'if [ "$TRAVIS_PYTHON_VERSION" != 3.3 ]; then pip install -r dev_requirements.txt --upgrade; else pip install -e .[all] --upgrade; fi'
 script: ./testall.sh
