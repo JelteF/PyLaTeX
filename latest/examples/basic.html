@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basic example &mdash; PyLaTeX 1.0.0 documentation</title>
+  <title>Basic example &mdash; PyLaTeX 1.1.0 documentation</title>
   
 
   
@@ -52,7 +52,10 @@
   
 
   
-    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PyLaTeX 1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Complex report example" href="complex_report.html"/>
         <link rel="prev" title="Examples" href="../examples.html"/> 
@@ -83,7 +86,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0
               </div>
             
           
@@ -107,7 +110,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Basic example</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
@@ -167,7 +170,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/examples/basic.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/examples/basic.rst.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -182,7 +185,7 @@
 <p>This example shows basic document generation functionality.</p>
 <dl class="function">
 <dt id="examples.basic.fill_document">
-<code class="descname">fill_document</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/examples/basic.py#L14-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.basic.fill_document" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fill_document</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.0/examples/basic.py#L14-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.basic.fill_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a section, a subsection and some text to the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -196,8 +199,8 @@
 
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Command</span>
-<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span><span class="p">,</span> <span class="n">NoEscape</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Command</span>
+<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="k">import</span> <span class="n">italic</span><span class="p">,</span> <span class="n">NoEscape</span>
 
 
 <span class="k">def</span> <span class="nf">fill_document</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
@@ -211,7 +214,7 @@
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">italic</span><span class="p">(</span><span class="s1">&#39;italic text. &#39;</span><span class="p">))</span>
 
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;A subsection&#39;</span><span class="p">)):</span>
-            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Also some crazy characters: $&amp;#{}&#39;</span><span class="p">)</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Also some crazy characters: $&amp;#</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -219,7 +222,7 @@
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s1">&#39;basic&#39;</span><span class="p">)</span>
     <span class="n">fill_document</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_tex</span><span class="p">()</span>
 
     <span class="c1"># Document with `\maketitle` command activated</span>
@@ -232,21 +235,21 @@
 
     <span class="n">fill_document</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;basic_maketitle&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;basic_maketitle&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="c1"># Add stuff to the document</span>
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;A second section&#39;</span><span class="p">)):</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Some text.&#39;</span><span class="p">)</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;basic_maketitle2&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;basic_maketitle2&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">tex</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>  <span class="c1"># The document as string in LaTeX syntax</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper container" id="basic-tex">
-<div class="code-block-caption"><span class="caption-text">basic.tex</span><a class="headerlink" href="#basic-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">basic.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -291,8 +294,8 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
 <div class="figure">
 <img alt="../_images/basic.pdf.png" src="../_images/basic.pdf.png" />
 </div>
-<div class="literal-block-wrapper container" id="basic-maketitle-tex">
-<div class="code-block-caption"><span class="caption-text">basic_maketitle.tex</span><a class="headerlink" href="#basic-maketitle-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">basic_maketitle.tex</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -343,8 +346,8 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
 <div class="figure">
 <img alt="../_images/basic_maketitle.pdf.png" src="../_images/basic_maketitle.pdf.png" />
 </div>
-<div class="literal-block-wrapper container" id="basic-maketitle2-tex">
-<div class="code-block-caption"><span class="caption-text">basic_maketitle2.tex</span><a class="headerlink" href="#basic-maketitle2-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">basic_maketitle2.tex</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -447,7 +450,7 @@ Some text.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.0',
+            VERSION:'1.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

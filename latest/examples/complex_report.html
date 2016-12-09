@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Complex report example &mdash; PyLaTeX 1.0.0 documentation</title>
+  <title>Complex report example &mdash; PyLaTeX 1.1.0 documentation</title>
   
 
   
@@ -52,7 +52,10 @@
   
 
   
-    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PyLaTeX 1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Config example" href="config.html"/>
         <link rel="prev" title="Basic example" href="basic.html"/> 
@@ -83,7 +86,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0
               </div>
             
           
@@ -108,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Complex report example</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Complex report example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
@@ -167,7 +170,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/examples/complex_report.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/examples/complex_report.rst.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -184,12 +187,12 @@
 containing data. It also creates a complex header with an image.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">PageStyle</span><span class="p">,</span> <span class="n">Head</span><span class="p">,</span> <span class="n">Foot</span><span class="p">,</span> <span class="n">MiniPage</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">PageStyle</span><span class="p">,</span> <span class="n">Head</span><span class="p">,</span> <span class="n">Foot</span><span class="p">,</span> <span class="n">MiniPage</span><span class="p">,</span> \
     <span class="n">StandAloneGraphic</span><span class="p">,</span> <span class="n">MultiColumn</span><span class="p">,</span> <span class="n">Tabu</span><span class="p">,</span> <span class="n">LongTabu</span><span class="p">,</span> <span class="n">LargeText</span><span class="p">,</span> <span class="n">MediumText</span><span class="p">,</span> \
     <span class="n">LineBreak</span><span class="p">,</span> <span class="n">NewPage</span><span class="p">,</span> <span class="n">Tabularx</span><span class="p">,</span> <span class="n">TextColor</span><span class="p">,</span> <span class="n">simple_page_number</span>
-<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">NoEscape</span>
+<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="k">import</span> <span class="n">bold</span><span class="p">,</span> <span class="n">NoEscape</span>
 
 
 <span class="k">def</span> <span class="nf">generate_unique</span><span class="p">():</span>
@@ -197,7 +200,7 @@ containing data. It also creates a complex header with an image.</p>
         <span class="s2">&quot;head&quot;</span><span class="p">:</span> <span class="s2">&quot;40pt&quot;</span><span class="p">,</span>
         <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5in&quot;</span><span class="p">,</span>
         <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="s2">&quot;0.6in&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;includeheadfoot&quot;</span><span class="p">:</span> <span class="bp">True</span>
+        <span class="s2">&quot;includeheadfoot&quot;</span><span class="p">:</span> <span class="kc">True</span>
     <span class="p">}</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">geometry_options</span><span class="o">=</span><span class="n">geometry_options</span><span class="p">)</span>
 
@@ -309,7 +312,7 @@ containing data. It also creates a complex header with an image.</p>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
             <span class="n">cheque_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">cheque</span><span class="p">,</span> <span class="n">cheque</span><span class="p">])</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;complex_report&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;complex_report&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">generate_unique</span><span class="p">()</span>
 </pre></div>
@@ -317,8 +320,8 @@ containing data. It also creates a complex header with an image.</p>
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper container" id="complex-report-tex">
-<div class="code-block-caption"><span class="caption-text">complex_report.tex</span><a class="headerlink" href="#complex-report-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">complex_report.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -502,7 +505,7 @@ containing data. It also creates a complex header with an image.</p>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
-<span class="k">\usepackage</span><span class="na">[margin=0.5in,includeheadfoot=True,head=40pt,bottom=0.6in]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="na">[includeheadfoot=True,margin=0.5in,bottom=0.6in,head=40pt]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>tabu<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>ragged2e<span class="nb">}</span><span class="c">%</span>
@@ -740,7 +743,7 @@ Branch no.<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.0',
+            VERSION:'1.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

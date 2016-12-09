@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.quantities &mdash; PyLaTeX 1.0.0 documentation</title>
+  <title>pylatex.quantities &mdash; PyLaTeX 1.1.0 documentation</title>
   
 
   
@@ -52,7 +52,10 @@
   
 
   
-    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PyLaTeX 1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.section" href="pylatex.section.html"/>
         <link rel="prev" title="pylatex.position" href="pylatex.position.html"/> 
@@ -83,7 +86,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0
               </div>
             
           
@@ -123,7 +126,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.position.html">pylatex.position</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.quantities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
@@ -168,7 +171,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/pylatex/pylatex.quantities.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/pylatex/pylatex.quantities.rst.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -188,7 +191,7 @@ please create a pull request that adds it to the <code class="docutils literal">
 dictionary.</p>
 <dl class="class">
 <dt id="pylatex.quantities.Quantity">
-<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>options=None</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/quantities.py#L69-L140"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>options=None</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.0/pylatex/quantities.py#L69-L140"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Command</span></code></a></p>
 <p>A class representing quantities.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -206,7 +209,7 @@ this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/r
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">quantities</span> <span class="kn">as</span> <span class="nn">pq</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">quantities</span> <span class="k">as</span> <span class="nn">pq</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">speed</span> <span class="o">=</span> <span class="mf">3.14159265</span> <span class="o">*</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span> <span class="o">/</span> <span class="n">pq</span><span class="o">.</span><span class="n">second</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;round-precision&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
 <span class="gp">... </span>                         <span class="s1">&#39;round-mode&#39;</span><span class="p">:</span> <span class="s1">&#39;figures&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
@@ -214,14 +217,14 @@ this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/r
 </pre></div>
 </div>
 <p>Uncertainties are also handled:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">length</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">width</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="n">width</span><span class="p">)</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
 <span class="go">&#39;\\SI{256.0 +- 0.5}{\meter\tothe{2}}</span>
 </pre></div>
 </div>
 <p>Ordinary numbers are also supported:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Avogadro_constant</span> <span class="o">=</span> <span class="mf">6.022140857e23</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Avogadro_constant</span> <span class="o">=</span> <span class="mf">6.022140857e23</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="p">(</span><span class="n">Avogadro_constant</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;round-precision&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span>
 <span class="go">&#39;\\num[round-precision=3]{6.022e23}&#39;</span>
 </pre></div>
@@ -271,7 +274,7 @@ this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/r
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.0',
+            VERSION:'1.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

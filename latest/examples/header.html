@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Header example &mdash; PyLaTeX 1.0.0 documentation</title>
+  <title>Header example &mdash; PyLaTeX 1.1.0 documentation</title>
   
 
   
@@ -52,7 +52,10 @@
   
 
   
-    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PyLaTeX 1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Lists example" href="lists.html"/>
         <link rel="prev" title="Full example" href="full.html"/> 
@@ -83,7 +86,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0
               </div>
             
           
@@ -111,7 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Header example</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Header example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
@@ -167,7 +170,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/examples/header.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/examples/header.rst.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -183,9 +186,9 @@
 <p>It creates a sample page with the different types of headers and footers.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">PageStyle</span><span class="p">,</span> <span class="n">Head</span><span class="p">,</span> <span class="n">MiniPage</span><span class="p">,</span> <span class="n">Foot</span><span class="p">,</span> <span class="n">LargeText</span><span class="p">,</span> \
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">PageStyle</span><span class="p">,</span> <span class="n">Head</span><span class="p">,</span> <span class="n">MiniPage</span><span class="p">,</span> <span class="n">Foot</span><span class="p">,</span> <span class="n">LargeText</span><span class="p">,</span> \
     <span class="n">MediumText</span><span class="p">,</span> <span class="n">LineBreak</span><span class="p">,</span> <span class="n">simple_page_number</span>
-<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">bold</span>
+<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="k">import</span> <span class="n">bold</span>
 
 
 <span class="k">def</span> <span class="nf">generate_header</span><span class="p">():</span>
@@ -223,7 +226,7 @@
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LineBreak</span><span class="p">())</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MediumText</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="s2">&quot;As at:&quot;</span><span class="p">)))</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">generate_header</span><span class="p">()</span>
 </pre></div>
@@ -231,8 +234,8 @@
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper container" id="header-tex">
-<div class="code-block-caption"><span class="caption-text">header.tex</span><a class="headerlink" href="#header-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">header.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -389,7 +392,7 @@ Right Footer
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.0',
+            VERSION:'1.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

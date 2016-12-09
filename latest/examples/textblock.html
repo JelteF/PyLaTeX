@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Textblock example &mdash; PyLaTeX 1.0.0 documentation</title>
+  <title>Textblock example &mdash; PyLaTeX 1.1.0 documentation</title>
   
 
   
@@ -52,7 +52,10 @@
   
 
   
-    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PyLaTeX 1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="API reference" href="../api.html"/>
         <link rel="prev" title="Subfigure example" href="subfigure.html"/> 
@@ -83,7 +86,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0
               </div>
             
           
@@ -121,7 +124,7 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Textblock example</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Textblock example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
@@ -167,7 +170,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/examples/textblock.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/examples/textblock.rst.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -184,12 +187,12 @@
 the page.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">MiniPage</span><span class="p">,</span> <span class="n">TextBlock</span><span class="p">,</span> <span class="n">MediumText</span><span class="p">,</span> <span class="n">HugeText</span><span class="p">,</span> \
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">MiniPage</span><span class="p">,</span> <span class="n">TextBlock</span><span class="p">,</span> <span class="n">MediumText</span><span class="p">,</span> <span class="n">HugeText</span><span class="p">,</span> \
     <span class="n">SmallText</span><span class="p">,</span> <span class="n">VerticalSpace</span><span class="p">,</span> <span class="n">HorizontalSpace</span>
-<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">bold</span>
+<span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="k">import</span> <span class="n">bold</span>
 
 <span class="n">geometry_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5in&quot;</span><span class="p">}</span>
-<span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">geometry_options</span><span class="o">=</span><span class="n">geometry_options</span><span class="p">)</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">geometry_options</span><span class="o">=</span><span class="n">geometry_options</span><span class="p">)</span>
 <span class="n">doc</span><span class="o">.</span><span class="n">change_length</span><span class="p">(</span><span class="s2">&quot;\TPHorizModule&quot;</span><span class="p">,</span> <span class="s2">&quot;1mm&quot;</span><span class="p">)</span>
 <span class="n">doc</span><span class="o">.</span><span class="n">change_length</span><span class="p">(</span><span class="s2">&quot;\TPVertModule&quot;</span><span class="p">,</span> <span class="s2">&quot;1mm&quot;</span><span class="p">)</span>
 
@@ -216,14 +219,14 @@ the page.</p>
 
     <span class="n">page</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">VerticalSpace</span><span class="p">(</span><span class="s2">&quot;100mm&quot;</span><span class="p">))</span>
 
-<span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;textblock&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;textblock&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper container" id="textblock-tex">
-<div class="code-block-caption"><span class="caption-text">textblock.tex</span><a class="headerlink" href="#textblock-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">textblock.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -396,7 +399,7 @@ Y/A M/M D/J<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.0',
+            VERSION:'1.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -14,6 +14,10 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Fixed
+~~~~~
+- Install now works on python 3.6+
+
 1.1.0_ - `docs <../v1.1.0/>`__ - 2016-12-09
 -------------------------------------------
 

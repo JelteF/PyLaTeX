@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Config example &mdash; PyLaTeX 1.0.0 documentation</title>
+  <title>Config example &mdash; PyLaTeX 1.1.0 documentation</title>
   
 
   
@@ -52,7 +52,10 @@
   
 
   
-    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PyLaTeX 1.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Full example" href="full.html"/>
         <link rel="prev" title="Complex report example" href="complex_report.html"/> 
@@ -83,7 +86,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0
               </div>
             
           
@@ -109,7 +112,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Config example</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Config example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
@@ -167,7 +170,7 @@
     <li class="wy-breadcrumbs-aside">
       
         
-          <a href="../_sources/examples/config.txt" rel="nofollow"> View page source</a>
+          <a href="../_sources/examples/config.rst.txt" rel="nofollow"> View page source</a>
         
       
     </li>
@@ -182,8 +185,8 @@
 <p>This example shows basic document generation functionality.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">NoEscape</span>
-<span class="kn">import</span> <span class="nn">pylatex.config</span> <span class="kn">as</span> <span class="nn">cf</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">NoEscape</span>
+<span class="kn">import</span> <span class="nn">pylatex.config</span> <span class="k">as</span> <span class="nn">cf</span>
 
 <span class="n">lorem</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere</span>
@@ -214,18 +217,18 @@
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">cf</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Version1</span><span class="p">()</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="n">lorem</span><span class="p">))</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config1_with_indent&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config1_with_indent&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="n">cf</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Version1</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">cf</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Version1</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="n">lorem</span><span class="p">))</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config2_without_indent&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config2_without_indent&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">cf</span><span class="o">.</span><span class="n">Version1</span><span class="p">()</span><span class="o">.</span><span class="n">use</span><span class="p">():</span>
         <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="n">lorem</span><span class="p">))</span>
-        <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config3_with_indent_again&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config3_with_indent_again&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="n">lorem</span><span class="p">))</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config4_without_indent_again&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;config4_without_indent_again&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -235,8 +238,8 @@
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper container" id="config1-with-indent-tex">
-<div class="code-block-caption"><span class="caption-text">config1_with_indent.tex</span><a class="headerlink" href="#config1-with-indent-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">config1_with_indent.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -315,8 +318,8 @@ eros.
 <div class="figure">
 <img alt="../_images/config1_with_indent.pdf.png" src="../_images/config1_with_indent.pdf.png" />
 </div>
-<div class="literal-block-wrapper container" id="config2-without-indent-tex">
-<div class="code-block-caption"><span class="caption-text">config2_without_indent.tex</span><a class="headerlink" href="#config2-without-indent-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">config2_without_indent.tex</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -397,8 +400,8 @@ eros.
 <div class="figure">
 <img alt="../_images/config2_without_indent.pdf.png" src="../_images/config2_without_indent.pdf.png" />
 </div>
-<div class="literal-block-wrapper container" id="config3-with-indent-again-tex">
-<div class="code-block-caption"><span class="caption-text">config3_with_indent_again.tex</span><a class="headerlink" href="#config3-with-indent-again-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">config3_with_indent_again.tex</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -477,8 +480,8 @@ eros.
 <div class="figure">
 <img alt="../_images/config3_with_indent_again.pdf.png" src="../_images/config3_with_indent_again.pdf.png" />
 </div>
-<div class="literal-block-wrapper container" id="config4-without-indent-again-tex">
-<div class="code-block-caption"><span class="caption-text">config4_without_indent_again.tex</span><a class="headerlink" href="#config4-without-indent-again-tex" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">config4_without_indent_again.tex</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -603,7 +606,7 @@ eros.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.0',
+            VERSION:'1.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
