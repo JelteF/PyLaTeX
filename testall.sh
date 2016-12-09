@@ -83,7 +83,7 @@ if [ "$clean" = 'TRUE' ]; then
 fi
 
 
-if [ "$python_version" = '3' -a "$nodoc" != 'TRUE' ]; then
+if [[ "$nodoc" != 'TRUE' && "$python" == 3.* && "$python" != 3.3.* ]]; then
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
     ./create_doc_files.sh -p $python
