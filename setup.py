@@ -31,6 +31,8 @@ extras = {
 
 if sys.version_info[0] == 3:
     source_dir = '.'
+    if sys.version_info < (3, 4):
+        del extras['docs']
 else:
     source_dir = 'python2_source'
     dependencies.append('future>=0.15.2')
