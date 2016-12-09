@@ -112,12 +112,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.basic.html">pylatex.basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.config.html">pylatex.config</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.frames.html">pylatex.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.headfoot.html">pylatex.headfoot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.position.html">pylatex.position</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -178,7 +183,7 @@
 <p>This module implements the classes used to show plots.</p>
 <dl class="class">
 <dt id="pylatex.tikz.TikZ">
-<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/tikz.py#L14-L18"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/tikz.py#L14-L18"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>Basic TikZ container class.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -188,6 +193,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
 <li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>start_arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added before the options</li>
 </ul>
 </td>
 </tr>

@@ -3,27 +3,32 @@
 \usepackage[utf8]{inputenc}%
 \usepackage{lmodern}%
 \usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{amsmath}%
 \usepackage{siunitx}%
+\DeclareSIUnit\rpm{rpm}%
+%
 %
 %
 \begin{document}%
+\normalsize%
 \section*{Quantity tests}%
 \subsection*{Scalars with units}%
-$$%
+\[%
 F= \SI[round-precision=4,round-mode=figures]{1.9820166063855052e+20}{\newton}%
-$$
+\]
 
 %
 \subsection*{Scalars without units}%
-$$%
+\[%
 N= \num[round-precision=2,round-mode=figures]{7.40021903700000000e+09}%
-$$
+\]
 
 %
 \subsection*{Scalars with uncertainties}%
-$$%
+\[%
 A= \SI[separate-uncertainty]{42.0 +- 3.2}{\meter\tothe{2}}%
-$$
+\]
 
 %
 \end{document}

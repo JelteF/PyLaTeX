@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pylatex.basic &mdash; PyLaTeX 1.0.0 documentation</title>
+  
+
+  
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="../_static/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../_static/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../_static/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../_static/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../_static/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../_static/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../_static/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../_static/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../_static/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../_static/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="../_static/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="../_static/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="../_static/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="../_static/favicons/manifest.json">
+    <link rel="mask-icon" href="../_static/favicons/safari-pinned-tab.svg" color="#2c7f96">
+    <link rel="shortcut icon" href="../_static/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="../_static/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="../_static/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
+        <link rel="up" title="API reference" href="../api.html"/>
+        <link rel="next" title="pylatex.config" href="pylatex.config.html"/>
+        <link rel="prev" title="pylatex.base_classes.latex_object" href="pylatex.base_classes.latex_object.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyLaTeX
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.command.html">pylatex.base_classes.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.config.html">pylatex.config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.frames.html">pylatex.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.headfoot.html">pylatex.headfoot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.position.html">pylatex.position</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.tikz.html">pylatex.tikz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PyLaTeX</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="../api.html">API reference</a> &raquo;</li>
+      
+    <li>pylatex.basic</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="../_sources/pylatex/pylatex.basic.txt" rel="nofollow"> View page source</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-pylatex.basic"></span><div class="section" id="pylatex-basic">
+<h1>pylatex.basic<a class="headerlink" href="#pylatex-basic" title="Permalink to this headline">¶</a></h1>
+<p>This module implements several classes that represent basic latex commands.</p>
+<dl class="class">
+<dt id="pylatex.basic.NewPage">
+<em class="property">class </em><code class="descname">NewPage</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L13-L17"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.NewPage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.CommandBase</span></code></a></p>
+<p>A command that adds a new page to the document.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.LineBreak">
+<em class="property">class </em><code class="descname">LineBreak</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L20-L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.LineBreak" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.NewPage" title="pylatex.basic.NewPage"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.NewPage</span></code></a></p>
+<p>A command that adds a line break to the document.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.NewLine">
+<em class="property">class </em><code class="descname">NewLine</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L24-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.NewLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.NewPage" title="pylatex.basic.NewPage"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.NewPage</span></code></a></p>
+<p>A command that adds a new line to the document.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.HFill">
+<em class="property">class </em><code class="descname">HFill</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L28-L29"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.HFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.NewPage" title="pylatex.basic.NewPage"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.NewPage</span></code></a></p>
+<p>A command that fills the current line in the document.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.HugeText">
+<em class="property">class </em><code class="descname">HugeText</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L32-L45"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.HugeText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
+<p>An environment which makes the text size &#8216;Huge&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The string or LatexObject to be formatted.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.basic.HugeText.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.basic.HugeText.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.LargeText">
+<em class="property">class </em><code class="descname">LargeText</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L48-L51"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.LargeText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.HugeText" title="pylatex.basic.HugeText"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.HugeText</span></code></a></p>
+<p>An environment which makes the text size &#8216;Large&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The string or LatexObject to be formatted.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.basic.LargeText.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.basic.LargeText.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.MediumText">
+<em class="property">class </em><code class="descname">MediumText</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L54-L57"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.MediumText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.HugeText" title="pylatex.basic.HugeText"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.HugeText</span></code></a></p>
+<p>An environment which makes the text size &#8216;large&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The string or LatexObject to be formatted.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.basic.MediumText.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.basic.MediumText.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.SmallText">
+<em class="property">class </em><code class="descname">SmallText</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L60-L63"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.SmallText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.HugeText" title="pylatex.basic.HugeText"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.HugeText</span></code></a></p>
+<p>An environment which makes the text size &#8216;small&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The string or LatexObject to be formatted.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.basic.SmallText.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.basic.SmallText.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.FootnoteText">
+<em class="property">class </em><code class="descname">FootnoteText</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L66-L69"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.FootnoteText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.basic.HugeText" title="pylatex.basic.HugeText"><code class="xref py py-class docutils literal"><span class="pre">pylatex.basic.HugeText</span></code></a></p>
+<p>An environment which makes the text size &#8216;footnotesize&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The string or LatexObject to be formatted.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.basic.FootnoteText.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.basic.FootnoteText.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.basic.TextColor">
+<em class="property">class </em><code class="descname">TextColor</code><span class="sig-paren">(</span><em>color</em>, <em>data</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/basic.py#L72-L91"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.basic.TextColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.ContainerCommand" title="pylatex.base_classes.containers.ContainerCommand"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.ContainerCommand</span></code></a></p>
+<p>An environment which changes the text color of the data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The color to set for the data inside of the environment.</li>
+<li><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The string or LatexObject to be formatted.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.basic.TextColor.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.basic.TextColor.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pylatex.config.html" class="btn btn-neutral float-right" title="pylatex.config" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pylatex.base_classes.latex_object.html" class="btn btn-neutral" title="pylatex.base_classes.latex_object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jelte Fennema.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -3,32 +3,36 @@
 \usepackage[utf8]{inputenc}%
 \usepackage{lmodern}%
 \usepackage{textcomp}%
+\usepackage{lastpage}%
 \usepackage[tmargin=1cm,lmargin=10cm]{geometry}%
 \usepackage{amsmath}%
 \usepackage{tikz}%
 \usepackage{pgfplots}%
 \pgfplotsset{compat=newest}%
-\usepackage{pgfplots}%
 \usepackage{graphicx}%
 %
 %
+%
 \begin{document}%
+\normalsize%
 \section*{The simple stuff}%
 Some regular text and some%
 \textit{italic text. }%
-\\%
+\newline%
 Also some crazy characters: \$\&\#\{\}%
 \subsection*{Math that is incorrect}%
-$$%
+\[%
 2*3 = 9%
-$$
+\]
 
 %
 \subsection*{Table of something}%
 \begin{tabular}{rc|cl}%
 \hline%
 1&2&3&4\\%
-\cline{1-2}%
+\cline{1%
+-%
+2}%
 &&&\\%
 4&5&6&7\\%
 \end{tabular}
@@ -36,7 +40,7 @@ $$
 %
 \section*{The fancy stuff}%
 \subsection*{Correct matrix equations}%
-$$%
+\[%
 \begin{pmatrix}%
 2&3&4\\%
 0&0&1\\%
@@ -50,7 +54,7 @@ $$%
 20\\%
 40%
 \end{pmatrix}%
-$$
+\]
 
 %
 \subsection*{Beautiful graphs}%

@@ -55,7 +55,7 @@
     <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.errors" href="pylatex.errors.html"/>
-        <link rel="prev" title="pylatex.base_classes.latex_object" href="pylatex.base_classes.latex_object.html"/> 
+        <link rel="prev" title="pylatex.config" href="pylatex.config.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -112,12 +112,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.basic.html">pylatex.basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.config.html">pylatex.config</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.frames.html">pylatex.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.headfoot.html">pylatex.headfoot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.position.html">pylatex.position</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -178,7 +183,7 @@
 <p>This module implements the class that deals with the full document.</p>
 <dl class="class">
 <dt id="pylatex.document.Document">
-<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>*</em>, <em>documentclass='article'</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>lmodern=True</em>, <em>textcomp=True</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L17-L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>*</em>, <em>documentclass='article'</em>, <em>document_options=None</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>font_size='normalsize'</em>, <em>lmodern=True</em>, <em>textcomp=True</em>, <em>microtype=None</em>, <em>page_numbers=True</em>, <em>indent=None</em>, <em>geometry_options=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L19-L383"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
 <p>If needed, you can append stuff to the preamble or the packages.
@@ -191,11 +196,18 @@ author and date commands to the preamble to make it work.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>default_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The default path to save files.</li>
 <li><strong>documentclass</strong> (str or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-obj docutils literal"><span class="pre">Command</span></code></a>) &#8211; The LaTeX class of the document.</li>
+<li><strong>document_options</strong> (str or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>) &#8211; The options to supply to the documentclass</li>
 <li><strong>fontenc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The option for the fontenc package.</li>
 <li><strong>inputenc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The option for the inputenc package.</li>
+<li><strong>font_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The font size to declare as normalsize</li>
 <li><strong>lmodern</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Use the Latin Modern font. This is a font that contains more glyphs
 than the standard LaTeX font.</li>
 <li><strong>textcomp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Adds even more glyphs, for instance the Euro (€) sign.</li>
+<li><strong>page_numbers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Adds the ability to add the last page to the document.</li>
+<li><strong>indent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.5)"><em>bool</em></a>) &#8211; Determines whether or not the document requires indentation. If it
+is <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> it will use the value from the active config. Which is
+<a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> by default.</li>
+<li><strong>geometry_options</strong> (str or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>) &#8211; The options to supply to the geometry package</li>
 <li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><em>list</em></a>) &#8211; Initial content of the document.</li>
 </ul>
 </td>
@@ -204,7 +216,7 @@ than the standard LaTeX font.</li>
 </table>
 <dl class="method">
 <dt id="pylatex.document.Document.generate_tex">
-<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L92-L102"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L151-L161"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a .tex file for the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -219,7 +231,7 @@ default filepath attribute is used as the path.</td>
 
 <dl class="method">
 <dt id="pylatex.document.Document.generate_pdf">
-<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>*</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L104-L213"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>*</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L163-L272"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a pdf file from the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -244,10 +256,96 @@ this is None it defaults to an empty list.</li>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="pylatex.document.Document.change_page_style">
+<code class="descname">change_page_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L296-L305"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_page_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternate page styles of the current page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>style</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; value to set for the page style of the current page</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.document.Document.change_document_style">
+<code class="descname">change_document_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L307-L316"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_document_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternate page style for the entire document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>style</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; value to set for the document style</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.document.Document.add_color">
+<code class="descname">add_color</code><span class="sig-paren">(</span><em>name</em>, <em>model</em>, <em>description</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L318-L337"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.add_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a color that can be used throughout the document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; Name to set for the color</li>
+<li><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The color model to use when defining the color</li>
+<li><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The values to use to define the color</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.document.Document.change_length">
+<code class="descname">change_length</code><span class="sig-paren">(</span><em>parameter</em>, <em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L339-L351"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the length of a certain parameter to a certain value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The name of the parameter to change the length for</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The value to set the parameter to</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="pylatex.document.Document.omit_if_empty">
 <code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.document.Document.omit_if_empty" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="pylatex.document.Document.set_variable">
+<code class="descname">set_variable</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/document.py#L353-L383"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.set_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a variable which can be used inside the document.</p>
+<p>Variables are defined before the preamble. If a variable with that name
+has already been set, the new value will override it for future uses.
+This is done by appending <code class="docutils literal"><span class="pre">\renewcommand</span></code> to the document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The name to set for the variable</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The value to set for the variable</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -263,7 +361,7 @@ this is None it defaults to an empty list.</li>
         <a href="pylatex.errors.html" class="btn btn-neutral float-right" title="pylatex.errors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.base_classes.latex_object.html" class="btn btn-neutral" title="pylatex.base_classes.latex_object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.config.html" class="btn btn-neutral" title="pylatex.config" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

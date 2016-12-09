@@ -1,0 +1,53 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage[margin=0.7in]{geometry}%
+\usepackage{ragged2e}%
+\usepackage{fancyhdr}%
+%
+\fancypagestyle{header}{ 
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}%
+\fancyhead{ 
+}%
+\fancyfoot{ 
+}%
+\fancyhead[L]{ 
+Page date: %
+\linebreak%
+R3
+}%
+\fancyhead[C]{ 
+Company
+}%
+\fancyhead[R]{ 
+Page \thepage\ of \pageref{LastPage}
+}%
+\fancyfoot[L]{ 
+Left Footer
+}%
+\fancyfoot[C]{ 
+Center Footer
+}%
+\fancyfoot[R]{ 
+Right Footer
+}
+}%
+%
+\begin{document}%
+\normalsize%
+\pagestyle{header}%
+\begin{minipage}{\textwidth}%
+\centering%
+\begin{Large}%
+\textbf{Title}%
+\end{Large}%
+\linebreak%
+\begin{large}%
+\textbf{As at:}%
+\end{large}%
+\end{minipage}%
+\end{document}

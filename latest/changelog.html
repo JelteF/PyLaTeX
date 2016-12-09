@@ -108,7 +108,8 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Change Log</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#unreleased-docs">Unreleased - docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unreleased-docs">Unreleased - docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docs-2016-12-09">1.1.0 - docs - 2016-12-09</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#changed">Changed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#added">Added</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fixed">Fixed</a></li>
@@ -219,6 +220,9 @@ This version might not be stable, but to install it use:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>pip install git+https://github.com/JelteF/PyLaTeX.git
 </pre></div>
 </div>
+</div>
+<div class="section" id="docs-2016-12-09">
+<h2><a class="reference external" href="https://github.com/JelteF/PyLaTeX/compare/v1.0.0...v1.1.0">1.1.0</a> - <a class="reference external" href="../v1.1.0/">docs</a> - 2016-12-09<a class="headerlink" href="#docs-2016-12-09" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -229,6 +233,12 @@ dictionary as argument.</li>
 front of them.</li>
 <li>For better readability let <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.escape_latex" title="pylatex.utils.escape_latex"><code class="xref py py-obj docutils literal"><span class="pre">escape_latex</span></code></a> change a newline to <code class="docutils literal"><span class="pre">\\%\n</span></code>
 instead of simply <code class="docutils literal"><span class="pre">\\</span></code>.</li>
+<li><a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> packages now get propagated from the preamble elements as well.</li>
+<li>Changed <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_image" title="pylatex.figure.Figure.add_image"><code class="xref py py-obj docutils literal"><span class="pre">Figure.add_image</span></code></a> to add a <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.StandAloneGraphic" title="pylatex.figure.StandAloneGraphic"><code class="xref py py-obj docutils literal"><span class="pre">StandAloneGraphic</span></code></a></li>
+<li><a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular.add_row" title="pylatex.table.Tabular.add_row"><code class="xref py py-obj docutils literal"><span class="pre">Tabular.add_row</span></code></a> now accepts a list of mappers</li>
+<li><a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular.add_row" title="pylatex.table.Tabular.add_row"><code class="xref py py-obj docutils literal"><span class="pre">Tabular.add_row</span></code></a> now accepts cells as arguments, so they don&#8217;t have to be
+wrapped in a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a> anymore.</li>
+<li>Changed from using <code class="docutils literal"><span class="pre">$$</span> <span class="pre">...</span> <span class="pre">$$</span></code> for displaymath to using <code class="docutils literal"><span class="pre">\[</span> <span class="pre">...</span> <span class="pre">\]</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="added">
@@ -238,8 +248,51 @@ instead of simply <code class="docutils literal"><span class="pre">\\</span></co
 the Euro (€) Symbol can be used in the source.</li>
 <li><a class="reference internal" href="pylatex/pylatex.quantities.html#pylatex.quantities.Quantity" title="pylatex.quantities.Quantity"><code class="xref py py-obj docutils literal"><span class="pre">Quantity</span></code></a> got a new  <code class="docutils literal"><span class="pre">options</span></code> keyword argument and learned to handle
 uncertain quantities.</li>
+<li>Added <a class="reference internal" href="pylatex/pylatex.headfoot.html#pylatex.headfoot.PageStyle" title="pylatex.headfoot.PageStyle"><code class="xref py py-obj docutils literal"><span class="pre">PageStyle</span></code></a> class to support the creation of various page styles. In
+addition to this class <a class="reference internal" href="pylatex/pylatex.headfoot.html#pylatex.headfoot.Head" title="pylatex.headfoot.Head"><code class="xref py py-obj docutils literal"><span class="pre">Head</span></code></a> and <a class="reference internal" href="pylatex/pylatex.headfoot.html#pylatex.headfoot.Foot" title="pylatex.headfoot.Foot"><code class="xref py py-obj docutils literal"><span class="pre">Foot</span></code></a> were added for creating unique
+headers and footers within the page styles. A <a class="reference internal" href="pylatex/pylatex.headfoot.html#pylatex.headfoot.simple_page_number" title="pylatex.headfoot.simple_page_number"><code class="xref py py-obj docutils literal"><span class="pre">simple_page_number</span></code></a> function
+was also added for easy displaying of a simple page number.</li>
+<li>Added a new type of container <a class="reference internal" href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.ContainerCommand" title="pylatex.base_classes.containers.ContainerCommand"><code class="xref py py-obj docutils literal"><span class="pre">ContainerCommand</span></code></a> for supporting commands
+with data.</li>
+<li>Added new options to the <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> constructor: <code class="docutils literal"><span class="pre">geometry_options</span></code> (a
+list of options for the geometry package), <code class="docutils literal"><span class="pre">document_options</span></code> (a list of
+options to place in the document class), <code class="docutils literal"><span class="pre">indent</span></code> (an option to select
+whether the documents elements are indented), <code class="docutils literal"><span class="pre">page_numbers</span></code> (an option to
+choose whether to use page numbers or not), <code class="docutils literal"><span class="pre">font_size</span></code> (the font size to
+set at the beggining of the document).</li>
+<li>Added several new methods to the <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a>: <code class="docutils literal"><span class="pre">change_page_style</span></code>,
+<code class="docutils literal"><span class="pre">change_document_style</span></code>, <code class="docutils literal"><span class="pre">add_color</span></code>, <code class="docutils literal"><span class="pre">change_length</span></code>,
+<code class="docutils literal"><span class="pre">set_variable</span></code>.</li>
+<li>Added a new <a class="reference internal" href="pylatex/pylatex.position.html#module-pylatex.position" title="pylatex.position"><code class="xref py py-obj docutils literal"><span class="pre">position</span></code></a> package with the following classes: <a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.Center" title="pylatex.position.Center"><code class="xref py py-obj docutils literal"><span class="pre">Center</span></code></a> (an
+environment with centered content), <a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.FlushLeft" title="pylatex.position.FlushLeft"><code class="xref py py-obj docutils literal"><span class="pre">FlushLeft</span></code></a> (an environment with left
+aligned content), <a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.FlushRight" title="pylatex.position.FlushRight"><code class="xref py py-obj docutils literal"><span class="pre">FlushRight</span></code></a> (an environment with right aligned content),
+<a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.MiniPage" title="pylatex.position.MiniPage"><code class="xref py py-obj docutils literal"><span class="pre">MiniPage</span></code></a> (a portion of the document with a certain width and height),
+<a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.TextBlock" title="pylatex.position.TextBlock"><code class="xref py py-obj docutils literal"><span class="pre">TextBlock</span></code></a> (a portion of the document for which the position can be selected
+using x,y coordinates), <a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.VerticalSpace" title="pylatex.position.VerticalSpace"><code class="xref py py-obj docutils literal"><span class="pre">VerticalSpace</span></code></a> and <a class="reference internal" href="pylatex/pylatex.position.html#pylatex.position.HorizontalSpace" title="pylatex.position.HorizontalSpace"><code class="xref py py-obj docutils literal"><span class="pre">HorizontalSpace</span></code></a> (add space of
+a certain size by using vspace and hspace)</li>
+<li>Added <a class="reference internal" href="pylatex/pylatex.figure.html#pylatex.figure.StandAloneGraphic" title="pylatex.figure.StandAloneGraphic"><code class="xref py py-obj docutils literal"><span class="pre">StandAloneGraphic</span></code></a> to support the creation of images outside of
+figure environments.</li>
+<li>Added the ability to change the <code class="docutils literal"><span class="pre">row_height</span></code> of a table within the
+<a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a> constructor.</li>
+<li>Added a new type of table <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabularx" title="pylatex.table.Tabularx"><code class="xref py py-obj docutils literal"><span class="pre">Tabularx</span></code></a>.</li>
+<li>Added the option to select a color when adding an hline or adding a row to
+any <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a> environment.</li>
+<li>Added the ability to add your own column types through the <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.ColumnType" title="pylatex.table.ColumnType"><code class="xref py py-obj docutils literal"><span class="pre">ColumnType</span></code></a>
+class.</li>
+<li>Added the ability to end the header of a <a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.LongTable" title="pylatex.table.LongTable"><code class="xref py py-obj docutils literal"><span class="pre">LongTable</span></code></a> which repeats on every
+consecutive page.</li>
+<li>Added the ability to choose the enumeration symbol in a list using the
+<code class="docutils literal"><span class="pre">enumeration_symbol</span></code> keyword argument of <a class="reference internal" href="pylatex/pylatex.lists.html#pylatex.lists.Enumerate" title="pylatex.lists.Enumerate"><code class="xref py py-obj docutils literal"><span class="pre">Enumerate</span></code></a>.</li>
+<li>Added a <a class="reference internal" href="pylatex/pylatex.basic.html#module-pylatex.basic" title="pylatex.basic"><code class="xref py py-obj docutils literal"><span class="pre">pylatex.basic</span></code></a> module with the following commands: <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.NewLine" title="pylatex.basic.NewLine"><code class="xref py py-obj docutils literal"><span class="pre">NewLine</span></code></a>,
+<a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.NewPage" title="pylatex.basic.NewPage"><code class="xref py py-obj docutils literal"><span class="pre">NewPage</span></code></a>, <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.LineBreak" title="pylatex.basic.LineBreak"><code class="xref py py-obj docutils literal"><span class="pre">LineBreak</span></code></a>, <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.HFill" title="pylatex.basic.HFill"><code class="xref py py-obj docutils literal"><span class="pre">HFill</span></code></a>.</li>
+<li>Added several environments to <a class="reference internal" href="pylatex/pylatex.basic.html#module-pylatex.basic" title="pylatex.basic"><code class="xref py py-obj docutils literal"><span class="pre">pylatex.basic</span></code></a>: <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.HugeText" title="pylatex.basic.HugeText"><code class="xref py py-obj docutils literal"><span class="pre">HugeText</span></code></a>, <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.LargeText" title="pylatex.basic.LargeText"><code class="xref py py-obj docutils literal"><span class="pre">LargeText</span></code></a>,
+<a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.MediumText" title="pylatex.basic.MediumText"><code class="xref py py-obj docutils literal"><span class="pre">MediumText</span></code></a>, <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.SmallText" title="pylatex.basic.SmallText"><code class="xref py py-obj docutils literal"><span class="pre">SmallText</span></code></a>, <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.FootnoteText" title="pylatex.basic.FootnoteText"><code class="xref py py-obj docutils literal"><span class="pre">FootnoteText</span></code></a>, <a class="reference internal" href="pylatex/pylatex.basic.html#pylatex.basic.TextColor" title="pylatex.basic.TextColor"><code class="xref py py-obj docutils literal"><span class="pre">TextColor</span></code></a>.</li>
 <li><a class="reference internal" href="pylatex/pylatex.table.html#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-obj docutils literal"><span class="pre">Tabular</span></code></a> can now have a width specified to override the calculated width
 based on the <code class="docutils literal"><span class="pre">table_spec</span></code> argument.</li>
+<li>Default configuration for certain options can be overwritten with the new
+<a class="reference internal" href="pylatex/pylatex.config.html#module-pylatex.config" title="pylatex.config"><code class="xref py py-obj docutils literal"><span class="pre">pylatex.config</span></code></a> module.</li>
+<li>Add support for booktabs tables, which look nicer than normal tables.</li>
+<li>Add support for the microtype package.</li>
 </ul>
 </div>
 <div class="section" id="fixed">
@@ -248,6 +301,8 @@ based on the <code class="docutils literal"><span class="pre">table_spec</span><
 <li>Setting the <code class="docutils literal"><span class="pre">lmodern</span></code> keyword argument of <a class="reference internal" href="pylatex/pylatex.document.html#pylatex.document.Document" title="pylatex.document.Document"><code class="xref py py-obj docutils literal"><span class="pre">Document</span></code></a> to false will not
 cause invalid LaTeX code anymore.</li>
 <li><a class="reference internal" href="pylatex/pylatex.quantities.html#pylatex.quantities.Quantity" title="pylatex.quantities.Quantity"><code class="xref py py-obj docutils literal"><span class="pre">Quantity</span></code></a> now correctly splits prefix and unit into seperate commands.</li>
+<li><a class="reference internal" href="pylatex/pylatex.quantities.html#pylatex.quantities.Quantity" title="pylatex.quantities.Quantity"><code class="xref py py-obj docutils literal"><span class="pre">Quantity</span></code></a> can now handle Celsius.</li>
+<li><a class="reference internal" href="pylatex/pylatex.package.html#pylatex.package.Package" title="pylatex.package.Package"><code class="xref py py-obj docutils literal"><span class="pre">Package</span></code></a> instances now actually get deduplicated.</li>
 </ul>
 </div>
 </div>

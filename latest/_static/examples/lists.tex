@@ -3,9 +3,13 @@
 \usepackage[utf8]{inputenc}%
 \usepackage{lmodern}%
 \usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{enumitem}%
+%
 %
 %
 \begin{document}%
+\normalsize%
 \section*{"Itemize" list}%
 \begin{itemize}%
 \item%
@@ -19,7 +23,7 @@ the third etc%
 
 %
 \section*{"Enumerate" list}%
-\begin{enumerate}%
+\begin{enumerate}[label=\alph*),start=20]%
 \item%
 the first item%
 \item%

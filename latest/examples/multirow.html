@@ -55,7 +55,7 @@
     <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Numpy example" href="numpy_ex.html"/>
-        <link rel="prev" title="Matplotlib example" href="matplotlib_ex.html"/> 
+        <link rel="prev" title="Minipage example" href="minipage.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -108,9 +108,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Multirow example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
@@ -120,6 +125,7 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
@@ -318,15 +324,31 @@
 63
 64
 65
-66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>multirow<span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
 <span class="c">%</span>
+<span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>Multirow Test<span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>MultiColumn<span class="nb">}</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|c|<span class="nb">}</span><span class="c">%</span>
@@ -346,9 +368,13 @@
 <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|<span class="nb">}</span><span class="c">%</span>
 <span class="k">\hline</span><span class="c">%</span>
 <span class="k">\multirow</span><span class="nb">{</span>3<span class="nb">}{</span>*<span class="nb">}{</span>Multirow<span class="nb">}&amp;</span>1<span class="nb">&amp;</span>2<span class="k">\\</span><span class="c">%</span>
-<span class="k">\cline</span><span class="nb">{</span>2-3<span class="nb">}</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>2<span class="c">%</span>
+-<span class="c">%</span>
+3<span class="nb">}</span><span class="c">%</span>
 <span class="nb">&amp;</span>3<span class="nb">&amp;</span>4<span class="k">\\</span><span class="c">%</span>
-<span class="k">\cline</span><span class="nb">{</span>2-3<span class="nb">}</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>2<span class="c">%</span>
+-<span class="c">%</span>
+3<span class="nb">}</span><span class="c">%</span>
 <span class="nb">&amp;</span>5<span class="nb">&amp;</span>6<span class="k">\\</span><span class="c">%</span>
 <span class="k">\hline</span><span class="c">%</span>
 <span class="k">\multirow</span><span class="nb">{</span>3<span class="nb">}{</span>*<span class="nb">}{</span>Multirow2<span class="nb">}&amp;&amp;</span><span class="k">\\</span><span class="c">%</span>
@@ -373,11 +399,17 @@ X<span class="nb">&amp;</span>X<span class="nb">&amp;</span>X<span class="k">\\<
 <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|c|c|c|<span class="nb">}</span><span class="c">%</span>
 <span class="k">\hline</span><span class="c">%</span>
 <span class="k">\multirow</span><span class="nb">{</span>4<span class="nb">}{</span>*<span class="nb">}{</span>span<span class="nb">{</span>-<span class="nb">}</span>4<span class="nb">}&amp;</span><span class="k">\multirow</span><span class="nb">{</span>2<span class="nb">}{</span>*<span class="nb">}{</span>span<span class="nb">{</span>-<span class="nb">}</span>2<span class="nb">}&amp;</span>3a<span class="k">\\</span><span class="c">%</span>
-<span class="k">\cline</span><span class="nb">{</span>3-3<span class="nb">}</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>3<span class="c">%</span>
+-<span class="c">%</span>
+3<span class="nb">}</span><span class="c">%</span>
 <span class="nb">&amp;&amp;</span>3b<span class="k">\\</span><span class="c">%</span>
-<span class="k">\cline</span><span class="nb">{</span>2-3<span class="nb">}</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>2<span class="c">%</span>
+-<span class="c">%</span>
+3<span class="nb">}</span><span class="c">%</span>
 <span class="nb">&amp;</span><span class="k">\multirow</span><span class="nb">{</span>2<span class="nb">}{</span>*<span class="nb">}{</span>span<span class="nb">{</span>-<span class="nb">}</span>2<span class="nb">}&amp;</span>3c<span class="k">\\</span><span class="c">%</span>
-<span class="k">\cline</span><span class="nb">{</span>3-3<span class="nb">}</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>3<span class="c">%</span>
+-<span class="c">%</span>
+3<span class="nb">}</span><span class="c">%</span>
 <span class="nb">&amp;&amp;</span>3d<span class="k">\\</span><span class="c">%</span>
 <span class="k">\hline</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
@@ -404,7 +436,7 @@ X<span class="nb">&amp;</span>X<span class="nb">&amp;</span>X<span class="k">\\<
         <a href="numpy_ex.html" class="btn btn-neutral float-right" title="Numpy example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="matplotlib_ex.html" class="btn btn-neutral" title="Matplotlib example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="minipage.html" class="btn btn-neutral" title="Minipage example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

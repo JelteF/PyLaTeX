@@ -54,8 +54,8 @@
   
     <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Matplotlib example" href="matplotlib_ex.html"/>
-        <link rel="prev" title="Full example" href="full.html"/> 
+        <link rel="next" title="Longtabu example" href="longtabu.html"/>
+        <link rel="prev" title="Header example" href="header.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -108,18 +108,24 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Lists example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
@@ -200,14 +206,15 @@
             <span class="n">itemize</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Command</span><span class="p">(</span><span class="s2">&quot;ldots&quot;</span><span class="p">))</span>
 
     <span class="c1"># create a numbered &quot;enumerate&quot; list like the below:</span>
-    <span class="c1"># \begin{enumerate}</span>
+    <span class="c1"># \begin{enumerate}[label=\alph*),start=20]</span>
     <span class="c1">#   \item The first item</span>
     <span class="c1">#   \item The second item</span>
     <span class="c1">#   \item The third etc \ldots</span>
     <span class="c1"># \end{enumerate}</span>
 
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;&quot;Enumerate&quot; list&#39;</span><span class="p">)):</span>
-        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Enumerate</span><span class="p">())</span> <span class="k">as</span> <span class="n">enum</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Enumerate</span><span class="p">(</span><span class="n">enumeration_symbol</span><span class="o">=</span><span class="s2">r&quot;\alph*)&quot;</span><span class="p">,</span>
+                                  <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}))</span> <span class="k">as</span> <span class="n">enum</span><span class="p">:</span>
             <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the first item&quot;</span><span class="p">)</span>
             <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s2">&quot;the second item&quot;</span><span class="p">)</span>
             <span class="n">enum</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span><span class="s2">&quot;the third etc </span><span class="se">\\</span><span class="s2">ldots&quot;</span><span class="p">))</span>
@@ -275,14 +282,22 @@
 40
 41
 42
-43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>enumitem<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
 <span class="c">%</span>
 <span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>&quot;Itemize&quot; list<span class="nb">}</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>itemize<span class="nb">}</span><span class="c">%</span>
 <span class="k">\item</span><span class="c">%</span>
@@ -296,7 +311,7 @@ the third etc<span class="c">%</span>
 
 <span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>&quot;Enumerate&quot; list<span class="nb">}</span><span class="c">%</span>
-<span class="k">\begin</span><span class="nb">{</span>enumerate<span class="nb">}</span><span class="c">%</span>
+<span class="k">\begin</span><span class="nb">{</span>enumerate<span class="nb">}</span>[label=<span class="k">\alph*</span>),start=20]<span class="c">%</span>
 <span class="k">\item</span><span class="c">%</span>
 the first item<span class="c">%</span>
 <span class="k">\item</span><span class="c">%</span>
@@ -335,10 +350,10 @@ The third etc <span class="k">\ldots</span><span class="c">%</span>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="matplotlib_ex.html" class="btn btn-neutral float-right" title="Matplotlib example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="longtabu.html" class="btn btn-neutral float-right" title="Longtabu example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="full.html" class="btn btn-neutral" title="Full example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="header.html" class="btn btn-neutral" title="Header example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

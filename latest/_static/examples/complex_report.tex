@@ -1,0 +1,178 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage[margin=0.5in,includeheadfoot=True,head=40pt,bottom=0.6in]{geometry}%
+\usepackage{color}%
+\usepackage{tabu}%
+\usepackage{ragged2e}%
+\usepackage{longtable}%
+\usepackage[table]{xcolor}%
+\usepackage{graphicx}%
+\usepackage{fancyhdr}%
+\usepackage{tabularx}%
+%
+\fancypagestyle{firstpage}{ 
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}%
+\fancyhead{ 
+}%
+\fancyfoot{ 
+}%
+\fancyhead[L]{ 
+\begin{minipage}[c]{0.49\textwidth}%
+\includegraphics[width=120px]{../../../../examples/sample-logo.png}%
+\end{minipage}
+}%
+\fancyhead[R]{ 
+\begin{minipage}[c]{0.49\textwidth}%
+\flushright%
+\begin{Large}%
+\textbf{Bank Account Statement}%
+\end{Large}%
+\linebreak%
+\begin{large}%
+\textbf{Date}%
+\end{large}%
+\end{minipage}
+}%
+\fancyfoot[C]{ 
+\begin{tabularx}{\textwidth}{X X X X}%
+\multicolumn{4}{l}{\textcolor{blue}{ 
+Important message please read
+}}\\%
+\arrayrulecolor{blue}%
+\hline%
+&&&\\%
+\begin{minipage}[t]{0.25\textwidth}%
+960 {-} 22nd street east%
+\newline%
+%
+Saskatoon, SK%
+\end{minipage}&\begin{minipage}[t]{0.25\textwidth}%
+960 {-} 22nd street east%
+\newline%
+%
+Saskatoon, SK%
+\end{minipage}&\begin{minipage}[t]{0.25\textwidth}%
+960 {-} 22nd street east%
+\newline%
+%
+Saskatoon, SK%
+\end{minipage}&\begin{minipage}[t]{0.25\textwidth}%
+\flushright%
+1000%
+\linebreak%
+Page \thepage\ of \pageref{LastPage}%
+\end{minipage}\\%
+\end{tabularx}
+}
+}%
+\definecolor{lightgray}{gray}{0.80}%
+%
+\begin{document}%
+\normalsize%
+\begin{tabu}{X[l] X[r]}%
+\begin{minipage}[h]{0.49\textwidth}%
+Verna Volcano%
+\newline%
+%
+For some Person%
+\newline%
+%
+Address1%
+\newline%
+%
+Address2%
+\newline%
+%
+Address3%
+\end{minipage}&\begin{minipage}[t!]{0.49\textwidth}%
+\flushright%
+Branch no.%
+\linebreak%
+\textbf{1181...}%
+\linebreak%
+\textbf{TIB Cheque}%
+\end{minipage}\\%
+&\\%
+\end{tabu}%
+\pagestyle{firstpage}%
+\renewcommand{\arraystretch}{1.5}%
+\begin{longtabu}{X[l] X[2l] X[r] X[r] X[r]}%
+\rowcolor{lightgray}%
+\textbf{date}&\textbf{description}&\textbf{debits(\$)}&\textbf{credits(\$)}&\textbf{balance(\$)}\\%
+&&&&\\%
+\hline%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\rowcolor{lightgray}%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+2016{-}JUN{-}01&Test&\$100&\$1000&{-}\$900\\%
+\end{longtabu}%
+\newpage%
+\begin{longtabu}{X[c] X[c]}%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\includegraphics[width=200px]{../../../../examples/chequeexample.png}&\includegraphics[width=200px]{../../../../examples/chequeexample.png}\\%
+\end{longtabu}%
+\end{document}

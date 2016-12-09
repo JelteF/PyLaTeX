@@ -108,9 +108,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
@@ -120,6 +125,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
@@ -207,7 +213,7 @@
     <span class="n">subsection</span> <span class="o">=</span> <span class="n">Subsection</span><span class="p">(</span><span class="s1">&#39;Scalars with uncertainties&#39;</span><span class="p">)</span>
     <span class="n">width</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">length</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">UncertainQuantity</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">pq</span><span class="o">.</span><span class="n">meter</span><span class="p">,</span> <span class="o">.</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">area</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">width</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s1">&#39;separate-uncertainty&#39;</span><span class="p">,</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">length</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s1">&#39;separate-uncertainty&#39;</span><span class="p">,</span>
                     <span class="n">format_cb</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;{0:.1f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
     <span class="n">subsection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A=&#39;</span><span class="p">,</span> <span class="n">area</span><span class="p">]))</span>
     <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsection</span><span class="p">)</span>
@@ -249,32 +255,42 @@
 26
 27
 28
-29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>amsmath<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>siunitx<span class="nb">}</span><span class="c">%</span>
+<span class="k">\DeclareSIUnit\rpm</span><span class="nb">{</span>rpm<span class="nb">}</span><span class="c">%</span>
+<span class="c">%</span>
 <span class="c">%</span>
 <span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>Quantity tests<span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Scalars with units<span class="nb">}</span><span class="c">%</span>
-<span class="sb">$$</span><span class="c">%</span>
+<span class="sb">\[</span><span class="c">%</span>
 <span class="nb">F</span><span class="o">=</span><span class="nb"> </span><span class="nv">\SI</span><span class="o">[</span><span class="nb">round</span><span class="o">-</span><span class="nb">precision</span><span class="o">=</span><span class="m">4</span><span class="nb">,round</span><span class="o">-</span><span class="nb">mode</span><span class="o">=</span><span class="nb">figures</span><span class="o">]</span><span class="nb">{</span><span class="m">1</span><span class="nb">.</span><span class="m">9820166063855052</span><span class="nb">e</span><span class="o">+</span><span class="m">20</span><span class="nb">}{</span><span class="nv">\newton</span><span class="nb">}</span><span class="c">%</span>
-<span class="s">$$</span>
+<span class="s">\]</span>
 
 <span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Scalars without units<span class="nb">}</span><span class="c">%</span>
-<span class="sb">$$</span><span class="c">%</span>
+<span class="sb">\[</span><span class="c">%</span>
 <span class="nb">N</span><span class="o">=</span><span class="nb"> </span><span class="nv">\num</span><span class="o">[</span><span class="nb">round</span><span class="o">-</span><span class="nb">precision</span><span class="o">=</span><span class="m">2</span><span class="nb">,round</span><span class="o">-</span><span class="nb">mode</span><span class="o">=</span><span class="nb">figures</span><span class="o">]</span><span class="nb">{</span><span class="m">7</span><span class="nb">.</span><span class="m">40021903700000000</span><span class="nb">e</span><span class="o">+</span><span class="m">09</span><span class="nb">}</span><span class="c">%</span>
-<span class="s">$$</span>
+<span class="s">\]</span>
 
 <span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Scalars with uncertainties<span class="nb">}</span><span class="c">%</span>
-<span class="sb">$$</span><span class="c">%</span>
+<span class="sb">\[</span><span class="c">%</span>
 <span class="nb">A</span><span class="o">=</span><span class="nb"> </span><span class="nv">\SI</span><span class="o">[</span><span class="nb">separate</span><span class="o">-</span><span class="nb">uncertainty</span><span class="o">]</span><span class="nb">{</span><span class="m">42</span><span class="nb">.</span><span class="m">0</span><span class="nb"> </span><span class="o">+-</span><span class="nb"> </span><span class="m">3</span><span class="nb">.</span><span class="m">2</span><span class="nb">}{</span><span class="nv">\meter\tothe</span><span class="nb">{</span><span class="m">2</span><span class="nb">}}</span><span class="c">%</span>
-<span class="s">$$</span>
+<span class="s">\]</span>
 
 <span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>

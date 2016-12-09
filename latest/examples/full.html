@@ -54,8 +54,8 @@
   
     <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Lists example" href="lists.html"/>
-        <link rel="prev" title="Basic example" href="basic.html"/> 
+        <link rel="next" title="Header example" href="header.html"/>
+        <link rel="prev" title="Config example" href="config.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -108,18 +108,24 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Full example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
@@ -181,16 +187,15 @@ and figures.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Tabular</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">TikZ</span><span class="p">,</span> <span class="n">Axis</span><span class="p">,</span> \
-    <span class="n">Plot</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">Package</span><span class="p">,</span> <span class="n">Matrix</span>
+    <span class="n">Plot</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">Matrix</span>
 <span class="kn">from</span> <span class="nn">pylatex.utils</span> <span class="kn">import</span> <span class="n">italic</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s1">&#39;kitten.jpg&#39;</span><span class="p">)</span>
 
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
-    <span class="n">doc</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tmargin=1cm&#39;</span><span class="p">,</span>
-                                                     <span class="s1">&#39;lmargin=10cm&#39;</span><span class="p">]))</span>
+    <span class="n">geometry_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;tmargin&quot;</span><span class="p">:</span> <span class="s2">&quot;1cm&quot;</span><span class="p">,</span> <span class="s2">&quot;lmargin&quot;</span><span class="p">:</span> <span class="s2">&quot;10cm&quot;</span><span class="p">}</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">geometry_options</span><span class="o">=</span><span class="n">geometry_options</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;The simple stuff&#39;</span><span class="p">)):</span>
         <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Some regular text and some&#39;</span><span class="p">)</span>
@@ -337,37 +342,45 @@ and figures.</p>
 86
 87
 88
-89</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+89
+90
+91
+92
+93</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[tmargin=1cm,lmargin=10cm]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>amsmath<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>tikz<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>pgfplots<span class="nb">}</span><span class="c">%</span>
 <span class="k">\pgfplotsset</span><span class="nb">{</span>compat=newest<span class="nb">}</span><span class="c">%</span>
-<span class="k">\usepackage</span><span class="nb">{</span>pgfplots<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
 <span class="c">%</span>
+<span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>The simple stuff<span class="nb">}</span><span class="c">%</span>
 Some regular text and some<span class="c">%</span>
 <span class="k">\textit</span><span class="nb">{</span>italic text. <span class="nb">}</span><span class="c">%</span>
-<span class="k">\\</span><span class="c">%</span>
+<span class="k">\newline</span><span class="c">%</span>
 Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span><span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Math that is incorrect<span class="nb">}</span><span class="c">%</span>
-<span class="sb">$$</span><span class="c">%</span>
+<span class="sb">\[</span><span class="c">%</span>
 <span class="m">2</span><span class="o">*</span><span class="m">3</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="m">9</span><span class="c">%</span>
-<span class="s">$$</span>
+<span class="s">\]</span>
 
 <span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Table of something<span class="nb">}</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>rc|cl<span class="nb">}</span><span class="c">%</span>
 <span class="k">\hline</span><span class="c">%</span>
 1<span class="nb">&amp;</span>2<span class="nb">&amp;</span>3<span class="nb">&amp;</span>4<span class="k">\\</span><span class="c">%</span>
-<span class="k">\cline</span><span class="nb">{</span>1-2<span class="nb">}</span><span class="c">%</span>
+<span class="k">\cline</span><span class="nb">{</span>1<span class="c">%</span>
+-<span class="c">%</span>
+2<span class="nb">}</span><span class="c">%</span>
 <span class="nb">&amp;&amp;&amp;</span><span class="k">\\</span><span class="c">%</span>
 4<span class="nb">&amp;</span>5<span class="nb">&amp;</span>6<span class="nb">&amp;</span>7<span class="k">\\</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
@@ -375,7 +388,7 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span><span class="c"
 <span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>The fancy stuff<span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Correct matrix equations<span class="nb">}</span><span class="c">%</span>
-<span class="sb">$$</span><span class="c">%</span>
+<span class="sb">\[</span><span class="c">%</span>
 <span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
 <span class="m">2</span><span class="nb">&amp;</span><span class="m">3</span><span class="nb">&amp;</span><span class="m">4</span><span class="nv">\\</span><span class="c">%</span>
 <span class="m">0</span><span class="nb">&amp;</span><span class="m">0</span><span class="nb">&amp;</span><span class="m">1</span><span class="nv">\\</span><span class="c">%</span>
@@ -389,7 +402,7 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span><span class="c"
 <span class="m">20</span><span class="nv">\\</span><span class="c">%</span>
 <span class="m">40</span><span class="c">%</span>
 <span class="nv">\end</span><span class="nb">{pmatrix}</span><span class="c">%</span>
-<span class="s">$$</span>
+<span class="s">\]</span>
 
 <span class="c">%</span>
 <span class="k">\subsection*</span><span class="nb">{</span>Beautiful graphs<span class="nb">}</span><span class="c">%</span>
@@ -443,10 +456,10 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span><span class="c"
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="lists.html" class="btn btn-neutral float-right" title="Lists example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="header.html" class="btn btn-neutral float-right" title="Header example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="basic.html" class="btn btn-neutral" title="Basic example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="config.html" class="btn btn-neutral" title="Config example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

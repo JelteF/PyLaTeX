@@ -55,7 +55,7 @@
     <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.section" href="pylatex.section.html"/>
-        <link rel="prev" title="pylatex.package" href="pylatex.package.html"/> 
+        <link rel="prev" title="pylatex.position" href="pylatex.position.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -112,12 +112,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.basic.html">pylatex.basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.config.html">pylatex.config</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.frames.html">pylatex.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.headfoot.html">pylatex.headfoot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.position.html">pylatex.position</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -175,11 +180,15 @@
             
   <span class="target" id="module-pylatex.quantities"></span><div class="section" id="pylatex-quantities">
 <h1>pylatex.quantities<a class="headerlink" href="#pylatex-quantities" title="Permalink to this headline">¶</a></h1>
-<p>This module implements the classes that deals with quantities objects.</p>
-<p>It requires the latex package SIunitx.</p>
+<p>This module implements classes that deal with quantities.</p>
+<p>It converts the objects from the quantities package to latex strings that
+display them using the SIunitx package. Not all units work because of name
+differences between quantities and SIunitx. If you find one that doesn&#8217;t work
+please create a pull request that adds it to the <code class="docutils literal"><span class="pre">UNIT_NAME_TRANSLATIONS</span></code>
+dictionary.</p>
 <dl class="class">
 <dt id="pylatex.quantities.Quantity">
-<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>options=None</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/quantities.py#L48-L118"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Quantity</code><span class="sig-paren">(</span><em>quantity</em>, <em>*</em>, <em>options=None</em>, <em>format_cb=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/quantities.py#L69-L140"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.quantities.Quantity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Command" title="pylatex.base_classes.command.Command"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Command</span></code></a></p>
 <p>A class representing quantities.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -231,7 +240,7 @@ this uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/r
         <a href="pylatex.section.html" class="btn btn-neutral float-right" title="pylatex.section" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.package.html" class="btn btn-neutral" title="pylatex.package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.position.html" class="btn btn-neutral" title="pylatex.position" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

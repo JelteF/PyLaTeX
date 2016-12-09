@@ -108,9 +108,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="numpy_ex.html">Numpy example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Own commands example</a><ul>
@@ -120,6 +125,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
@@ -176,7 +182,7 @@
 <p>How to represent your own LaTeX commands and environments in PyLaTeX.</p>
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleEnvironment">
-<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX environment.</p>
 <p>This class represents a custom LaTeX environment named
 <code class="docutils literal"><span class="pre">exampleEnvironment</span></code>.</p>
@@ -187,6 +193,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>options</strong> (str or list or  <a class="reference internal" href="../pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
 <li><strong>arguments</strong> (str or list or <a class="reference internal" href="../pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>start_arguments</strong> (str or list or <a class="reference internal" href="../pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added before the options</li>
 </ul>
 </td>
 </tr>
@@ -338,16 +345,22 @@ before the options.</li>
 30
 31
 32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>mdframed<span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
 <span class="c">%</span>
+<span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
+<span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section*</span><span class="nb">{</span>Custom commands<span class="nb">}</span><span class="c">%</span>
 
         The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>

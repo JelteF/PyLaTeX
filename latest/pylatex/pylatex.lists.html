@@ -55,7 +55,7 @@
     <link rel="top" title="PyLaTeX 1.0.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.math" href="pylatex.math.html"/>
-        <link rel="prev" title="pylatex.figure" href="pylatex.figure.html"/> 
+        <link rel="prev" title="pylatex.headfoot" href="pylatex.headfoot.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -112,12 +112,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.containers.html">pylatex.base_classes.containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.float.html">pylatex.base_classes.float</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.base_classes.latex_object.html">pylatex.base_classes.latex_object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.basic.html">pylatex.basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.config.html">pylatex.config</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.document.html">pylatex.document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.errors.html">pylatex.errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.frames.html">pylatex.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.headfoot.html">pylatex.headfoot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.position.html">pylatex.position</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.quantities.html">pylatex.quantities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.section.html">pylatex.section</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.table.html">pylatex.table</a></li>
@@ -179,7 +184,7 @@
 <p>These lists are specifically enumerate, itemize and description.</p>
 <dl class="class">
 <dt id="pylatex.lists.List">
-<em class="property">class </em><code class="descname">List</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L14-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">List</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L16-L32"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A base class that represents a list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -189,6 +194,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
 <li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>start_arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added before the options</li>
 </ul>
 </td>
 </tr>
@@ -196,14 +202,14 @@
 </table>
 <dl class="attribute">
 <dt id="pylatex.lists.List.omit_if_empty">
-<code class="descname">omit_if_empty</code><em class="property"> = True</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L19-L19"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<code class="descname">omit_if_empty</code><em class="property"> = True</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.omit_if_empty" title="Permalink to this definition">¶</a></dt>
 <dd><p>List environments cause compile errors when they do not contain items.
 This is why they are ommited fully if they are empty.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.lists.List.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L23-L32"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.List.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -219,7 +225,7 @@ This is why they are ommited fully if they are empty.</p>
 
 <dl class="class">
 <dt id="pylatex.lists.Enumerate">
-<em class="property">class </em><code class="descname">Enumerate</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L33-L34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Enumerate</code><span class="sig-paren">(</span><em>enumeration_symbol=None</em>, <em>*</em>, <em>options=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L35-L64"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">pylatex.lists.List</span></code></a></p>
 <p>A class that represents an enumerate list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -227,8 +233,11 @@ This is why they are ommited fully if they are empty.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
-<li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>enumeration_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.5)"><em>str</em></a>) &#8211; The enumeration symbol to use, see the <a class="reference external" href="https://www.ctan.org/pkg/enumitem">enumitem</a> documentation to see what
+can be used here. This argument is not escaped as it usually
+should usually contain commands, so do not use user input here.</li>
+<li><strong>options</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Custom options to be added to the enumerate list. These options are
+merged with the options created by <code class="docutils literal"><span class="pre">enumeration_symbol</span></code>.</li>
 </ul>
 </td>
 </tr>
@@ -236,7 +245,7 @@ This is why they are ommited fully if they are empty.</p>
 </table>
 <dl class="method">
 <dt id="pylatex.lists.Enumerate.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L23-L32"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Enumerate.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -257,7 +266,7 @@ This is why they are ommited fully if they are empty.</p>
 
 <dl class="class">
 <dt id="pylatex.lists.Itemize">
-<em class="property">class </em><code class="descname">Itemize</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L37-L38"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Itemize</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L67-L68"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">pylatex.lists.List</span></code></a></p>
 <p>A class that represents an itemize list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -267,6 +276,7 @@ This is why they are ommited fully if they are empty.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
 <li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>start_arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added before the options</li>
 </ul>
 </td>
 </tr>
@@ -274,7 +284,7 @@ This is why they are ommited fully if they are empty.</p>
 </table>
 <dl class="method">
 <dt id="pylatex.lists.Itemize.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L21-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L23-L32"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Itemize.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -295,7 +305,7 @@ This is why they are ommited fully if they are empty.</p>
 
 <dl class="class">
 <dt id="pylatex.lists.Description">
-<em class="property">class </em><code class="descname">Description</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L41-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Description</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L71-L85"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.lists.List" title="pylatex.lists.List"><code class="xref py py-class docutils literal"><span class="pre">pylatex.lists.List</span></code></a></p>
 <p>A class that represents a description list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -305,6 +315,7 @@ This is why they are ommited fully if they are empty.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
 <li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>start_arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added before the options</li>
 </ul>
 </td>
 </tr>
@@ -312,7 +323,7 @@ This is why they are ommited fully if they are empty.</p>
 </table>
 <dl class="method">
 <dt id="pylatex.lists.Description.add_item">
-<code class="descname">add_item</code><span class="sig-paren">(</span><em>label</em>, <em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L44-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description.add_item" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_item</code><span class="sig-paren">(</span><em>label</em>, <em>s</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.0.0/pylatex/lists.py#L74-L85"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.lists.Description.add_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an item to the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -347,7 +358,7 @@ This is why they are ommited fully if they are empty.</p>
         <a href="pylatex.math.html" class="btn btn-neutral float-right" title="pylatex.math" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pylatex.figure.html" class="btn btn-neutral" title="pylatex.figure" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pylatex.headfoot.html" class="btn btn-neutral" title="pylatex.headfoot" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
