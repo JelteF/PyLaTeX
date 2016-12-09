@@ -8,11 +8,13 @@ python:
   - '3.4'
   - '3.5'
   - '3.5-dev'
+  - '3.6-dev'
   - 'nightly'
 
 matrix:
   allow_failures:
     - python: '3.5-dev'
+    - python: '3.6-dev'
     - python: 'nightly'
 
 addons:
