@@ -46,6 +46,9 @@ done
 # Run the examples and tests
 python_version=$($python --version |& sed 's|Python \(.\).*|\1|g')
 
+# Run the examples and tests
+python_version_long=$($python --version |& sed 's|Python \(.*)|\1|g')
+
 if [ "$python_version" = '3' ]; then
     # Check code guidelines
     echo -e '\e[32mChecking for code style errors \e[0m'
@@ -83,7 +86,7 @@ if [ "$clean" = 'TRUE' ]; then
 fi
 
 
-if [[ "$nodoc" != 'TRUE' && "$python" == 3.* && "$python" != 3.3.* ]]; then
+if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.3.* ]]; then
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
     ./create_doc_files.sh -p $python
