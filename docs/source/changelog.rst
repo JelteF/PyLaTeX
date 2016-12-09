@@ -14,6 +14,9 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.1.0_ - `docs <../v1.1.0/>`__ - 2016-12-09
+-------------------------------------------
+
 Changed
 ~~~~~~~
 - Allow overriding of the default numbering of `.Section` class.
@@ -355,6 +358,7 @@ Fixed
 
 
 .. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...HEAD
+.. _1.1.0: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...v1.1.0
 .. _1.0.0: https://github.com/JelteF/PyLaTeX/compare/v0.8.0...v1.0.0
 .. _0.8.0: https://github.com/JelteF/PyLaTeX/compare/v0.7.1...v0.8.0
 .. _0.7.1: https://github.com/JelteF/PyLaTeX/compare/v0.7.0...v0.7.1
