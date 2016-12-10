@@ -10,6 +10,8 @@ import subprocess
 import errno
 import versioneer
 
+cmdclass = versioneer.get_cmdclass()
+version = versioneer.get_version()
 
 if sys.version_info[:2] <= (2, 6):
     raise RuntimeError(
@@ -59,6 +61,12 @@ class CustomEggInfo(egg_info):
 
 def convert_to_py2():
     global PY2_CONVERTED
+
+    if '+' not in version:
+        # This is an official release, just use the pre existing existing
+        # python2_source dir
+        return
+
     if source_dir == 'python2_source' and not PY2_CONVERTED:
         try:
             # Check if 3to2 exists
@@ -79,12 +87,11 @@ def convert_to_py2():
             PY2_CONVERTED = True
 
 
-cmdclass = versioneer.get_cmdclass()
 cmdclass['install'] = CustomInstall
 cmdclass['egg_info'] = CustomEggInfo
 
 setup(name='PyLaTeX',
-      version=versioneer.get_version(),
+      version=version,
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files and snippets',
