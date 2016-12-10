@@ -8,6 +8,7 @@ import sys
 import os
 import subprocess
 import errno
+import versioneer
 
 
 if sys.version_info[:2] <= (2, 6):
@@ -78,8 +79,13 @@ def convert_to_py2():
             PY2_CONVERTED = True
 
 
+cmdclass = versioneer.get_cmdclass()
+cmdclass['install'] = CustomInstall
+cmdclass['egg_info'] = CustomEggInfo
+print('versiooooon', versioneer.get_version())
+
 setup(name='PyLaTeX',
-      version='1.1.0',
+      version=versioneer.get_version(),
       author='Jelte Fennema',
       author_email='pylatex@jeltef.nl',
       description='A Python library for creating LaTeX files and snippets',
@@ -90,10 +96,7 @@ setup(name='PyLaTeX',
       license='MIT',
       install_requires=dependencies,
       extras_require=extras,
-      cmdclass={
-          'install': CustomInstall,
-          'egg_info': CustomEggInfo,
-      },
+      cmdclass=cmdclass,
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Console',
