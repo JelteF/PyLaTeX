@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.table &mdash; PyLaTeX 1.1.0+20.g275723a documentation</title>
+  <title>pylatex.table &mdash; PyLaTeX 1.1.1 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.1.0+20.g275723a documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.1.1 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.tikz" href="pylatex.tikz.html"/>
         <link rel="prev" title="pylatex.section" href="pylatex.section.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.1.0+20.g275723a
+                1.1.1
               </div>
             
           
@@ -186,7 +186,7 @@
 <p>This module implements the class that deals with tables.</p>
 <dl class="class">
 <dt id="pylatex.table.Tabular">
-<em class="property">class </em><code class="descname">Tabular</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L49-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Tabular</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L49-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that represents a tabular.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -219,7 +219,7 @@ width using this argument.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.Tabular.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -240,13 +240,13 @@ width using this argument.</li>
 
 <dl class="method">
 <dt id="pylatex.table.Tabular.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.Tabular.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabular.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -278,7 +278,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.Tabularx">
-<em class="property">class </em><code class="descname">Tabularx</code><span class="sig-paren">(</span><em>*args</em>, <em>width_argument=NoEscape(textwidth)</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L264-L278"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Tabularx</code><span class="sig-paren">(</span><em>*args</em>, <em>width_argument=NoEscape(textwidth)</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L264-L278"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
 <p>A class that represents a tabularx environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -292,13 +292,13 @@ text.</td>
 </table>
 <dl class="method">
 <dt id="pylatex.table.Tabularx.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.Tabularx.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -319,7 +319,7 @@ text.</td>
 
 <dl class="method">
 <dt id="pylatex.table.Tabularx.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabularx.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -351,7 +351,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.MultiColumn">
-<em class="property">class </em><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>align='c'</em>, <em>color=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L281-L322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">MultiColumn</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>align='c'</em>, <em>color=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L281-L322"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiColumn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A class that represents a multicolumn inside of a table.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -372,7 +372,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.MultiRow">
-<em class="property">class </em><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>width='*'</em>, <em>color=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L325-L368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">MultiRow</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>width='*'</em>, <em>color=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L325-L368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.MultiRow" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A class that represents a multirow in a table.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -394,7 +394,7 @@ natural width.</li>
 
 <dl class="class">
 <dt id="pylatex.table.Table">
-<em class="property">class </em><code class="descname">Table</code><span class="sig-paren">(</span><em>*</em>, <em>position=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L371-L372"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Table" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Table</code><span class="sig-paren">(</span><em>*</em>, <em>position=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L371-L372"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.float.html#pylatex.base_classes.float.Float" title="pylatex.base_classes.float.Float"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.float.Float</span></code></a></p>
 <p>A class that represents a table float.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -412,7 +412,7 @@ natural width.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.Table.add_caption">
-<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L38-L47"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Table.add_caption" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_caption</code><span class="sig-paren">(</span><em>caption</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L38-L47"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Table.add_caption" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a caption to the float.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -433,7 +433,7 @@ natural width.</li>
 
 <dl class="class">
 <dt id="pylatex.table.Tabu">
-<em class="property">class </em><code class="descname">Tabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L375-L378"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Tabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L375-L378"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
 <p>A class that represents a tabu (more flexible table).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -466,13 +466,13 @@ width using this argument.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.Tabu.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.Tabu.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -493,7 +493,7 @@ width using this argument.</li>
 
 <dl class="method">
 <dt id="pylatex.table.Tabu.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.Tabu.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -525,7 +525,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.LongTable">
-<em class="property">class </em><code class="descname">LongTable</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L381-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LongTable</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L381-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabular" title="pylatex.table.Tabular"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabular</span></code></a></p>
 <p>A class that represents a longtable (multipage table).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -558,24 +558,24 @@ width using this argument.</li>
 </ul>
 <dl class="attribute">
 <dt id="pylatex.table.LongTable.header">
-<code class="descname">header</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L386-L386"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.header" title="Permalink to this definition">¶</a></dt>
+<code class="descname">header</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L386-L386"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.header" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTable.end_table_header">
-<code class="descname">end_table_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L388-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.end_table_header" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_table_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L388-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.end_table_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>End the table header which will appear on every page.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTable.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTable.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -596,7 +596,7 @@ width using this argument.</li>
 
 <dl class="method">
 <dt id="pylatex.table.LongTable.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTable.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -628,7 +628,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.LongTabu">
-<em class="property">class </em><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L400-L401"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LongTabu</code><span class="sig-paren">(</span><em>table_spec</em>, <em>data=None</em>, <em>pos=None</em>, <em>*</em>, <em>row_height=None</em>, <em>col_space=None</em>, <em>width=None</em>, <em>booktabs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L400-L401"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.LongTable" title="pylatex.table.LongTable"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.LongTable</span></code></a>, <a class="reference internal" href="#pylatex.table.Tabu" title="pylatex.table.Tabu"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabu</span></code></a></p>
 <p>A class that represents a longtabu (more flexible multipage table).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -661,13 +661,13 @@ width using this argument.</li>
 </ul>
 <dl class="method">
 <dt id="pylatex.table.LongTabu.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabu.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -688,7 +688,7 @@ width using this argument.</li>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabu.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -713,7 +713,7 @@ for instance bold</li>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabu.end_table_header">
-<code class="descname">end_table_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L388-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.end_table_header" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_table_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L388-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabu.end_table_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>End the table header which will appear on every page.</p>
 </dd></dl>
 
@@ -731,7 +731,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.LongTabularx">
-<em class="property">class </em><code class="descname">LongTabularx</code><span class="sig-paren">(</span><em>*args</em>, <em>width_argument=NoEscape(textwidth)</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L404-L415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LongTabularx</code><span class="sig-paren">(</span><em>*args</em>, <em>width_argument=NoEscape(textwidth)</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L404-L415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.table.Tabularx" title="pylatex.table.Tabularx"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.Tabularx</span></code></a>, <a class="reference internal" href="#pylatex.table.LongTable" title="pylatex.table.LongTable"><code class="xref py py-class docutils literal"><span class="pre">pylatex.table.LongTable</span></code></a></p>
 <p>A class that represents a long version of the tabularx environment.</p>
 <p>This uses the <code class="docutils literal"><span class="pre">ltablex</span></code> package. This package modifies the <code class="docutils literal"><span class="pre">tabularx</span></code>
@@ -749,13 +749,13 @@ text.</td>
 </table>
 <dl class="method">
 <dt id="pylatex.table.LongTabularx.add_empty_row">
-<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.add_empty_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_empty_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L201-L204"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.add_empty_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an empty row to the table.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabularx.add_hline">
-<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.add_hline" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_hline</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em>, <em>*</em>, <em>color=None</em>, <em>cmidruleoption=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L158-L199"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.add_hline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a horizontal line to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -776,7 +776,7 @@ text.</td>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabularx.add_row">
-<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.add_row" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_row</code><span class="sig-paren">(</span><em>*cells</em>, <em>color=None</em>, <em>escape=None</em>, <em>mapper=None</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L206-L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.add_row" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a row of cells to the table.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -801,7 +801,7 @@ for instance bold</li>
 
 <dl class="method">
 <dt id="pylatex.table.LongTabularx.end_table_header">
-<code class="descname">end_table_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L388-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.end_table_header" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_table_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L388-L397"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.LongTabularx.end_table_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>End the table header which will appear on every page.</p>
 </dd></dl>
 
@@ -819,7 +819,7 @@ for instance bold</li>
 
 <dl class="class">
 <dt id="pylatex.table.ColumnType">
-<em class="property">class </em><code class="descname">ColumnType</code><span class="sig-paren">(</span><em>name</em>, <em>base</em>, <em>modifications</em>, <em>*</em>, <em>parameters=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/275723a/pylatex/table.py#L418-L464"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.ColumnType" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ColumnType</code><span class="sig-paren">(</span><em>name</em>, <em>base</em>, <em>modifications</em>, <em>*</em>, <em>parameters=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/pylatex/table.py#L418-L464"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.table.ColumnType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.UnsafeCommand" title="pylatex.base_classes.command.UnsafeCommand"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.UnsafeCommand</span></code></a></p>
 <p>A class representing a new column type.</p>
 <p>It uses the <code class="docutils literal"><span class="pre">\newcolumntype</span></code> command, for a thorough explanation see
@@ -885,7 +885,7 @@ is <a class="reference external" href="https://docs.python.org/3/library/constan
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.1.0+20.g275723a',
+            VERSION:'1.1.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
