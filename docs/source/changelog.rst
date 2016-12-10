@@ -14,9 +14,21 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
+-------------------------------------------
+
+Changed
+~~~~~~~
+- Installs from git now get installed as a special version based on the commit.
+  This is done by using versioneer.
+- Releases can be done with much less manual work for the maintainer in the
+  future.
+
 Fixed
 ~~~~~
 - Install now works on python 3.6+
+- Pypi installs will not fail anymore for python 2.7, when ``3to2`` and
+  ``future`` were installed.
 
 1.1.0_ - `docs <../v1.1.0/>`__ - 2016-12-09
 -------------------------------------------
@@ -361,7 +373,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.1.1...HEAD
+.. _1.1.1: https://github.com/JelteF/PyLaTeX/compare/v1.1.0...v1.1.1
 .. _1.1.0: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...v1.1.0
 .. _1.0.0: https://github.com/JelteF/PyLaTeX/compare/v0.8.0...v1.0.0
 .. _0.8.0: https://github.com/JelteF/PyLaTeX/compare/v0.7.1...v0.8.0
