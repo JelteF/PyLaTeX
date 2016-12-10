@@ -22,6 +22,8 @@ if ! grep $1 docs/source/changelog.rst > /dev/null; then
     exit 1
 fi
 
+./testall.sh
+
 set -x
 
 git tag $1
