@@ -2,6 +2,8 @@
 # Optional named arguments:
 #      -p COMMAND: the python command that should be used, e.g. -p python3
 
+set -e
+
 # Default values
 python="python"
 
