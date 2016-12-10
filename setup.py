@@ -61,13 +61,14 @@ class CustomEggInfo(egg_info):
 
 def convert_to_py2():
     global PY2_CONVERTED
-
-    if '+' not in version:
-        # This is an official release, just use the pre existing existing
-        # python2_source dir
-        return
-
     if source_dir == 'python2_source' and not PY2_CONVERTED:
+        pylatex_exists = os.path.exists(os.path.join(source_dir, 'pylatex'))
+
+        if '+' not in version and pylatex_exists:
+            # This is an official release, just use the pre existing existing
+            # python2_source dir
+            return
+
         try:
             # Check if 3to2 exists
             subprocess.check_output(['3to2', '--help'])
@@ -75,7 +76,7 @@ def convert_to_py2():
         except OSError as e:
             if e.errno != errno.ENOENT:
                 raise
-            if not os.path.exists(os.path.join(source_dir, 'pylatex')):
+            if not pylatex_exists:
                 raise ImportError('3to2 and future need to be installed '
                                   'before installing when PyLaTeX for Python '
                                   '2.7 when it is not installed using one of '
