@@ -82,7 +82,6 @@ def convert_to_py2():
 cmdclass = versioneer.get_cmdclass()
 cmdclass['install'] = CustomInstall
 cmdclass['egg_info'] = CustomEggInfo
-print('versiooooon', versioneer.get_version())
 
 setup(name='PyLaTeX',
       version=versioneer.get_version(),
