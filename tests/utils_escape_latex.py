@@ -21,6 +21,8 @@ def test():
     \\ (backslash)
     --- (three minuses)
     a\xA0a (non breaking space)
+    [ (left bracket)
+    ] (right bracket)
     ''')
 
     section.append(text)

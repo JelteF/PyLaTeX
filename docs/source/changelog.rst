@@ -14,6 +14,10 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Fixed
+~~~~~
+- Escape '[' and ']' (left and right bracket).
+
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
 -------------------------------------------
 
