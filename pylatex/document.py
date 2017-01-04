@@ -229,11 +229,11 @@ class Document(Environment):
                 if os_error.errno == errno.ENOENT:
                     # If compiler does not exist, try next in the list
                     continue
-                raise(e)
+                raise
             except subprocess.CalledProcessError as e:
                 # For all other errors print the output and raise the error
                 print(e.output.decode())
-                raise(e)
+                raise
             else:
                 if not silent:
                     print(output.decode())
