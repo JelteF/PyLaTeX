@@ -25,6 +25,8 @@ _latex_special_chars = {
     '\n': '\\newline%\n',
     '-': r'{-}',
     '\xA0': '~',  # Non-breaking space
+    '[': r'{[}',
+    ']': r'{]}',
 }
 
 _tmp_path = os.path.abspath(
