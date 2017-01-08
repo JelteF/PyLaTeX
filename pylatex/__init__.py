@@ -9,7 +9,7 @@ from .basic import HugeText, NewPage, LineBreak, NewLine, HFill, LargeText, \
     MediumText, SmallText, FootnoteText, TextColor
 from .document import Document
 from .frames import MdFramed, FBox
-from .math import Math, VectorName, Matrix
+from .math import Math, VectorName, Matrix, Alignat
 from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \

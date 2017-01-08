@@ -39,6 +39,7 @@ class LatexObject(metaclass=_CreatePackages):
     """
 
     _latex_name = None
+    _star_latex_name = False    # latex_name + ('*' if True else '')
 
     #: Set this to an iterable to override the list of default repr
     #: attributes.
@@ -126,9 +127,11 @@ class LatexObject(metaclass=_CreatePackages):
 
         It can be `None` when the class doesn't have a name.
         """
+        star = ('*' if self._star_latex_name else '')
         if self._latex_name is not None:
-            return self._latex_name
-        return self.__class__.__name__.lower()
+            return self._latex_name + star
+        else:
+            return self.__class__.__name__.lower() + star
 
     @latex_name.setter
     def latex_name(self, value):
