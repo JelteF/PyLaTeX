@@ -123,8 +123,10 @@ class Environment(Container):
         \end{environment_name}
 
     The text that is used in the place of environment_name is by default the
-    name of the class in lowercase. However, this default can be overridden by
-    setting the environment_name class variable when declaring the class.
+    name of the class in lowercase.
+    However, this default can be overridden in 2 ways:
+        1. setting the _latex_name class variable when declaring the class
+        2. setting the _latex_name attribute when initialising object
     """
 
     #: Set to true if this full container should be equivalent to an empty
