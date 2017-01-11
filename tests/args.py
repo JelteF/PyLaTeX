@@ -21,7 +21,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, NoEscape
+    italic, verbatim, NoEscape, detokenize
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -164,6 +164,13 @@ def test_graphics():
     # StandAloneGraphic
     stand_alone_graphic = StandAloneGraphic(
         filename='', image_options=r"width=0.8\textwidth")
+    repr(stand_alone_graphic)
+
+def test_stand_alone_graphic():
+    fname = "/just/a/test/file~1/path"
+
+    stand_alone_graphic = StandAloneGraphic(
+        filename=fname, image_options=r"width=0.8\textwidth")
     repr(stand_alone_graphic)
 
 
@@ -328,6 +335,8 @@ def test_utils():
     italic(s='')
 
     verbatim(s='', delimiter='|')
+
+    detokenize(s='')
 
 
 def test_errors():

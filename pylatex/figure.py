@@ -8,7 +8,7 @@ This module implements the class that deals with graphics.
 
 import posixpath
 
-from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
+from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex, detokenize
 from .base_classes import Float, UnsafeCommand
 from .package import Package
 import uuid
@@ -162,3 +162,5 @@ class StandAloneGraphic(UnsafeCommand):
         super().__init__(command=self._latex_name, arguments=arguments,
                          options=image_options,
                          extra_arguments=extra_arguments)
+
+
