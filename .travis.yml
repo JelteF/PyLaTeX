@@ -7,9 +7,13 @@ python:
   - '3.3'
   - '3.4'
   - '3.5'
+  - '3.6'
+  # allow failures
   - '3.5-dev'
   - '3.6-dev'
   - 'nightly'
+  - 'pypy'
+  - 'pypy3'
 
 matrix:
   fast_finish: true
@@ -17,6 +21,8 @@ matrix:
     - python: '3.5-dev'
     - python: '3.6-dev'
     - python: 'nightly'
+    - python: 'pypy'
+    - python: 'pypy3'
 
 addons:
   apt:
