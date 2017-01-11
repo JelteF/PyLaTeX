@@ -186,7 +186,7 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
             mapper = [mapper]
 
         for m in mapper:
-            strings = map(m, strings)
+            strings = map(lambda x: _latex_item_to_string(m(x)), strings)
 
     return NoEscape(token.join(strings))
 
