@@ -182,11 +182,11 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
                for i in l)
 
     if mapper is not None:
-        if isinstance(mapper, list):
-            for m in mapper:
-                strings = map(m, strings)
-        else:
-            strings = (mapper(s) for s in strings)
+        if not isinstance(mapper, list):
+            mapper = [mapper]
+
+        for m in mapper:
+            strings = map(m, strings)
 
     return NoEscape(token.join(strings))
 
