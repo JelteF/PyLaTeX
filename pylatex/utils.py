@@ -151,9 +151,9 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     token : str
         The token (default is a newline) to separate objects in the list.
     mapper: callable or `list`
-        A function or a list of functions that should be called on all
-        entries of the list after converting them to a string, for instance
-        `~.bold`
+        A function, class or a list of functions/classes that should be called
+        on all entries of the list after converting them to a string, for
+        instance `~.bold` or `~.MediumText`.
     as_content: bool
         Indicates whether the items in the list should be dumped using
         `~.LatexObject.dumps_as_content`

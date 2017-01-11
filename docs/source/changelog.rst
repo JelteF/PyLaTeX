@@ -16,8 +16,10 @@ This version might not be stable, but to install it use::
 
 Fixed
 ~~~~~
-- Escape '[' and ']' (left and right bracket).
+- Escape ``[`` and ``]`` (left and right bracket).
+- Allow mappers of `~.dumps_list` to return a `~.LatexObject`.
 - Section numbering default behaviour fixed
+
 
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
 -------------------------------------------
