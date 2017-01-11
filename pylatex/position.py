@@ -50,6 +50,16 @@ class Center(Environment):
 
     packages = [Package('ragged2e')]
 
+    def __init__(self, data=None):
+        """
+        Args
+        ----
+        data: str or `~.LatexObject`
+            The data to be positioned
+        """
+
+        super().__init__(data=data)
+
 
 class FlushLeft(Center):
     r"""Left-aligned environment."""

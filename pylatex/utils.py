@@ -189,6 +189,9 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
             strings = [m(s) for s in strings]
         strings = [_latex_item_to_string(s) for s in strings]
 
+    strings = [s.dumps() for s in strings if isinstance(
+        s, pylatex.base_classes.LatexObject)]
+
     return NoEscape(token.join(strings))
 
 
