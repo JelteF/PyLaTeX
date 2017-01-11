@@ -32,7 +32,7 @@ class Section(Container):
 
         self.title = title
 
-        if self.numbering is not None:
+        if numbering is not None:
             self.numbering = numbering
 
         super().__init__(**kwargs)
