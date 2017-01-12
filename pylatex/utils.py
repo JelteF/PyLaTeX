@@ -216,13 +216,12 @@ def _latex_item_to_string(item, *, escape=False, as_content=False):
             return item.dumps_as_content()
         else:
             return item.dumps()
-    elif not isinstance(item, str):
-        item = str(item)
-
-    if escape:
-        item = escape_latex(item)
-
-    return item
+    else:
+        if not isinstance(item, str):
+            item = str(item)
+        if escape:
+            item = escape_latex(item)
+        return item
 
 
 def bold(s, *, escape=True):
