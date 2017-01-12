@@ -18,6 +18,7 @@ Fixed
 ~~~~~
 - Escape ``[`` and ``]`` (left and right bracket).
 - Allow mappers of `~.dumps_list` to return a `~.LatexObject`.
+- Added setter method for `escape` property in `LatexObject`
 
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
 -------------------------------------------
