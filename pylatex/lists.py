@@ -17,7 +17,7 @@ class List(Environment):
     """A base class that represents a list."""
 
     #: List environments cause compile errors when they do not contain items.
-    #: This is why they are ommited fully if they are empty.
+    #: This is why they are omitted fully if they are empty.
     omit_if_empty = True
 
     def add_item(self, s):
