@@ -65,6 +65,11 @@ class LatexObject(metaclass=_CreatePackages):
             return self._default_escape
         return True
 
+    @escape.setter
+    def escape(self, value):
+        """Escape flag setter - to be used at object level."""
+        self._escape = value
+
     #: Start a new paragraph before this environment.
     begin_paragraph = False
 
