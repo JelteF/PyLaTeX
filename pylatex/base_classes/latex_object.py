@@ -56,7 +56,7 @@ class LatexObject(metaclass=_CreatePackages):
 
     @property
     def escape(self):
-        """Determine wheter or not to escape content of this class.
+        """Determine whether or not to escape content of this class.
 
         This defaults to `True` for most classes.
         """

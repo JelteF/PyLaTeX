@@ -21,7 +21,7 @@ Fixed
 - Section numbering default behaviour fixed
 - Setter method for `~.LatexObject.escape` property added
 - Escape and raw flags to `.Math` container
-- `.LatexObject._star_latex_name` flag to append a star
+- ``_star_latex_name`` attribute of `.LatexObject` to append a star
 - `.Alignat` environment that can contain strings and `.Math` containers
 
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
