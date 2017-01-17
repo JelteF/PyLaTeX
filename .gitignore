@@ -45,6 +45,7 @@ python2_source
 
 # Venv
 venv*
+.venv*
 
 # Ignore generated doc files
 docs/source/examples
