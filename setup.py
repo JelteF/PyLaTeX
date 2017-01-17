@@ -36,6 +36,8 @@ if sys.version_info[0] == 3:
     source_dir = '.'
     if sys.version_info < (3, 4):
         del extras['docs']
+        extras['matrices'] = ['numpy<1.12.0']
+        extras['quantities'][1] = 'numpy<1.12.0'
 else:
     source_dir = 'python2_source'
     dependencies.append('future>=0.15.2')
