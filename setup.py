@@ -36,6 +36,7 @@ if sys.version_info[0] == 3:
     source_dir = '.'
     if sys.version_info < (3, 4):
         del extras['docs']
+        extras['matplotlib'] = ['matplotlib<2.0.0']
         extras['matrices'] = ['numpy<1.12.0']
         extras['quantities'][1] = 'numpy<1.12.0'
 else:
