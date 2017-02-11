@@ -130,8 +130,7 @@ class LatexObject(metaclass=_CreatePackages):
         star = ('*' if self._star_latex_name else '')
         if self._latex_name is not None:
             return self._latex_name + star
-        else:
-            return self.__class__.__name__.lower() + star
+        return self.__class__.__name__.lower() + star
 
     @latex_name.setter
     def latex_name(self, value):

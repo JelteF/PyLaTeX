@@ -18,7 +18,7 @@ class Alignat(Environment):
     omit_if_empty = True
     packages = [Package('amsmath')]
 
-    def __init__(self, aligns=2, numbering=True, escape=False):
+    def __init__(self, aligns=2, numbering=True, escape=True):
         """
         Parameters
         ----------
@@ -34,24 +34,7 @@ class Alignat(Environment):
         self.escape = escape
         if not numbering:
             self._star_latex_name = True
-        super().__init__(
-            start_arguments=[str(int(aligns))]
-        )
-
-    def add_math(self, data, **kwargs):
-        """Add math to the list.
-
-        Args
-        ----
-        data: str, `~.LatexObject`, list[str, `~.LatexObject`]
-            The equation itself.
-        kwargs : dict
-            any keyword arguments to Math container
-        """
-        escape = kwargs.pop('escape', None) or self.escape
-        if not isinstance(data, (list, tuple)):
-            data = [data]
-        self.append(Math(data=list(data), raw=True, escape=escape, **kwargs))
+        super().__init__(start_arguments=[str(int(aligns))])
 
 
 class Math(Container):
@@ -61,8 +44,7 @@ class Math(Container):
 
     content_separator = ' '
 
-    def __init__(self, *, inline=False, data=None, raw=False,
-                 escape=False):
+    def __init__(self, *, inline=False, data=None, escape=True):
         r"""
         Args
         ----
@@ -70,14 +52,11 @@ class Math(Container):
             Content of the math container.
         inline: bool
             If the math should be displayed inline or not.
-        raw : bool
-            if raw, then will not be wrapped into environment
         escape : bool
             if True, will escape strings
         """
 
         self.inline = inline
-        self.raw = raw
         self.escape = escape
         super().__init__(data=data)
 
@@ -89,12 +68,9 @@ class Math(Container):
         str
 
         """
-        if self.raw:
-            return self.dumps_content()
-        elif self.inline:
+        if self.inline:
             return '$' + self.dumps_content() + '$'
-        else:
-            return '\\[%\n' + self.dumps_content() + '%\n\\]'
+        return '\\[%\n' + self.dumps_content() + '%\n\\]'
 
 
 class VectorName(Command):

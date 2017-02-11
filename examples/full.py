@@ -48,9 +48,9 @@ if __name__ == '__main__':
             doc.append(Math(data=[Matrix(M), Matrix(a), '=', Matrix(M * a)]))
 
         with doc.create(Subsection('Alignat math environment')):
-            with doc.create(Alignat(numbering=False)) as agn:
-                agn.add_math(r'\frac{a}{b} &= 0 \\')
-                agn.add_math([Matrix(M), Matrix(a), '&=', Matrix(M * a)])
+            with doc.create(Alignat(numbering=False, escape=False)) as agn:
+                agn.append(r'\frac{a}{b} &= 0 \\')
+                agn.extend([Matrix(M), Matrix(a), '&=', Matrix(M * a)])
 
         with doc.create(Subsection('Beautiful graphs')):
             with doc.create(TikZ()):
