@@ -14,6 +14,11 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Changed
+~~~~~~~
+- Tabu and LongTabu environments learn 'spread' and 'to' syntax to control their width.
+
+
 Fixed
 ~~~~~
 - Escape ``[`` and ``]`` (left and right bracket).
