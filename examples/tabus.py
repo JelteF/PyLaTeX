@@ -10,7 +10,7 @@ It creates a sample page filled with labels using the MiniPage element.
 
 # begin-doc-include
 from random import randint
-from pylatex import Document, LongTabu, HFill, Tabu, LineBreak, Center
+from pylatex import Document, LongTabu, Tabu, Center
 from pylatex.utils import bold
 
 
@@ -25,7 +25,8 @@ def genenerate_tabus():
     doc = Document(page_numbers=True, geometry_options=geometry_options)
 
     # Generate data table with 'tight' columns
-    with doc.create(LongTabu("X[r] X[r] X[r] X[r] X[r] X[r]", spread="0pt")) as data_table:
+    fmt = "X[r] X[r] X[r] X[r] X[r] X[r]"
+    with doc.create(LongTabu(fmt, spread="0pt")) as data_table:
         header_row1 = ["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"]
         data_table.add_row(header_row1, mapper=[bold])
         data_table.add_hline()
@@ -42,7 +43,7 @@ def genenerate_tabus():
             header_row1 = ["X", "Y"]
             data_table.add_row(header_row1, mapper=[bold])
             data_table.add_hline()
-            row = [randint(0,1000), randint(0,1000)]
+            row = [randint(0, 1000), randint(0, 1000)]
             for i in range(4):
                 data_table.add_row(row)
 
@@ -51,10 +52,9 @@ def genenerate_tabus():
             header_row1 = ["X", "Y"]
             data_table.add_row(header_row1, mapper=[bold])
             data_table.add_hline()
-            row = [randint(0,1000), randint(0,1000)]
+            row = [randint(0, 1000), randint(0, 1000)]
             for i in range(4):
                 data_table.add_row(row)
-
 
     doc.generate_pdf("tabus", clean_tex=False)
 

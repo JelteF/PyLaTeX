@@ -377,7 +377,6 @@ class Tabu(Tabular):
 
     packages = [Package('tabu')]
 
-
     def __init__(self, table_spec, data=None, pos=None, *,
                  row_height=None, col_space=None, width=None, booktabs=None,
                  spread=None, to=None, **kwargs):
@@ -400,11 +399,11 @@ class Tabu(Tabular):
             configuration. This attribute is `False` by default.
         spread: str
             Specifies the Tabu table should add a given amount of 'padding' to
-            the width of the table. This should be a latex dimension; for example:
-            "0 pt" or "1in"
+            the width of the table. This should be a latex dimension;
+            for example: "0 pt" or "1in"
         to: str
-            Specifies the Tabu table should extend to a given width. This should be
-            a latex dimension; for example '4in'
+            Specifies the Tabu table should extend to a given width.
+            This should be a latex dimension; for example '4in'
         width: int
             The amount of columns that the table has. If this is `None` it is
             calculated based on the ``table_spec``, but this is only works for
@@ -416,8 +415,6 @@ class Tabu(Tabular):
         * https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
         """
 
-
-
         super().__init__(table_spec, data, pos,
                          row_height=row_height, col_space=col_space,
                          width=width, booktabs=booktabs, **kwargs)
@@ -426,10 +423,11 @@ class Tabu(Tabular):
         if spread:
             self._preamble = "spread " + spread
         elif to:
-            self._preamble = "to "+ to
-
+            self._preamble = "to " + to
 
     def dumps(self):
+        """Turn the tabu object into a string in Latex format."""
+
         _s = super().dumps()
 
         # Tabu tables support a unusual syntax:
@@ -444,7 +442,8 @@ class Tabu(Tabular):
             elif _s.startswith(r"\begin{tabu}"):
                 _s = _s[:12] + self._preamble + _s[12:]
             else:
-                raise TableError("Can't apply preamble '%s' to Tabu table (unexpected initial command sequence)"%self._preamble)
+                raise TableError("Can't apply preamble to Tabu table "
+                                 "(unexpected initial command sequence)")
 
         return _s
 
