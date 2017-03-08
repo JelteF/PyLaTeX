@@ -18,7 +18,7 @@ class Alignat(Environment):
     omit_if_empty = True
     packages = [Package('amsmath')]
 
-    def __init__(self, aligns=2, numbering=True, escape=True):
+    def __init__(self, aligns=2, numbering=True, escape=None):
         """
         Parameters
         ----------
@@ -44,7 +44,7 @@ class Math(Container):
 
     content_separator = ' '
 
-    def __init__(self, *, inline=False, data=None, escape=True):
+    def __init__(self, *, inline=False, data=None, escape=None):
         r"""
         Args
         ----
