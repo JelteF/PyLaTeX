@@ -10,6 +10,33 @@ from .base_classes import Command, Container, Environment
 from .package import Package
 
 
+class Alignat(Environment):
+    """Class that represents a aligned equation environment."""
+
+    #: Alignat environment cause compile errors when they do not contain items.
+    #: This is why it is omitted fully if they are empty.
+    omit_if_empty = True
+    packages = [Package('amsmath')]
+
+    def __init__(self, aligns=2, numbering=True, escape=True):
+        """
+        Parameters
+        ----------
+        aligns : int
+            number of alignments
+        numbering : bool
+            Whether to number equations
+        escape : bool
+            if True, will escape strings
+        """
+        self.aligns = aligns
+        self.numbering = numbering
+        self.escape = escape
+        if not numbering:
+            self._star_latex_name = True
+        super().__init__(start_arguments=[str(int(aligns))])
+
+
 class Math(Container):
     """A class representing a math environment."""
 
@@ -17,17 +44,20 @@ class Math(Container):
 
     content_separator = ' '
 
-    def __init__(self, *, inline=False, data=None):
-        """
+    def __init__(self, *, inline=False, data=None, escape=True):
+        r"""
         Args
         ----
         data: list
             Content of the math container.
         inline: bool
             If the math should be displayed inline or not.
+        escape : bool
+            if True, will escape strings
         """
 
         self.inline = inline
+        self.escape = escape
         super().__init__(data=data)
 
     def dumps(self):
@@ -38,7 +68,6 @@ class Math(Container):
         str
 
         """
-
         if self.inline:
             return '$' + self.dumps_content() + '$'
         return '\\[%\n' + self.dumps_content() + '%\n\\]'
