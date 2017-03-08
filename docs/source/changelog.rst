@@ -14,15 +14,19 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- Escape flag to `.Math` container
+- ``_star_latex_name`` attribute of `.LatexObject` to append a star
+- `.Alignat` math environment
+
 Fixed
 ~~~~~
 - Escape ``[`` and ``]`` (left and right bracket).
 - Allow mappers of `~.dumps_list` to return a `~.LatexObject`.
 - Section numbering default behaviour fixed
 - Setter method for `~.LatexObject.escape` property added
-- Escape flag to `.Math` container
-- ``_star_latex_name`` attribute of `.LatexObject` to append a star
-- `.Alignat` math environment
+
 
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
 -------------------------------------------
