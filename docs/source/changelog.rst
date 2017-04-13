@@ -19,6 +19,7 @@ Added
 - Escape flag to `.Math` container
 - ``_star_latex_name`` attribute of `.LatexObject` to append a star
 - `.Alignat` math environment
+- `~.Figure._save_plot` method looks for extension in kwargs
 
 Fixed
 ~~~~~

@@ -52,15 +52,13 @@ class Figure(Float):
         str
             The basename with which the plot has been saved.
         """
-
         import matplotlib.pyplot as plt
 
         tmp_path = make_temp_dir()
-
-        filename = posixpath.join(tmp_path, str(uuid.uuid4()) + '.pdf')
+        extension = kwargs.pop('extension', 'pdf').strip('.')
+        filename = posixpath.join(tmp_path, '{}.{}'.format(str(uuid.uuid4()), extension))
 
         plt.savefig(filename, *args, **kwargs)
-
         return filename
 
     def add_plot(self, *args, **kwargs):
