@@ -44,7 +44,7 @@ class Figure(Float):
         self.append(StandAloneGraphic(image_options=width,
                                       filename=fix_filename(filename)))
 
-    def _save_plot(self, *args, **kwargs):
+    def _save_plot(self, *args, extension='pdf', **kwargs):
         """Save the plot.
 
         Returns
@@ -52,18 +52,16 @@ class Figure(Float):
         str
             The basename with which the plot has been saved.
         """
-
         import matplotlib.pyplot as plt
 
         tmp_path = make_temp_dir()
+        filename = '{}.{}'.format(str(uuid.uuid4()), extension.strip('.'))
+        filepath = posixpath.join(tmp_path, filename)
 
-        filename = posixpath.join(tmp_path, str(uuid.uuid4()) + '.pdf')
+        plt.savefig(filepath, *args, **kwargs)
+        return filepath
 
-        plt.savefig(filename, *args, **kwargs)
-
-        return filename
-
-    def add_plot(self, *args, **kwargs):
+    def add_plot(self, *args, extension='pdf', **kwargs):
         """Add the current Matplotlib plot to the figure.
 
         The plot that gets added is the one that would normally be shown when
@@ -73,6 +71,8 @@ class Figure(Float):
         ----
         args:
             Arguments passed to plt.savefig for displaying the plot.
+        extension : str
+            extension of image file indicating figure file type
         kwargs:
             Keyword arguments passed to plt.savefig for displaying the plot. In
             case these contain ``width`` or ``placement``, they will be used
@@ -86,7 +86,7 @@ class Figure(Float):
             if key in kwargs:
                 add_image_kwargs[key] = kwargs.pop(key)
 
-        filename = self._save_plot(*args, **kwargs)
+        filename = self._save_plot(*args, extension=extension, **kwargs)
 
         self.add_image(filename, **add_image_kwargs)
 
