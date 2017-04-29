@@ -20,7 +20,7 @@ def test_user_latex_object():
 
 
 def test_foreign_object():
-    class ForeignObject:
+    class ForeignObject(object):
         def dumps(self):
             return 15
 

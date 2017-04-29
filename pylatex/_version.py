@@ -30,7 +30,7 @@ def get_keywords():
     return keywords
 
 
-class VersioneerConfig:
+class VersioneerConfig(object):
     """Container for Versioneer configuration parameters."""
 
 
