@@ -15,7 +15,7 @@ in a specific context.
 from contextlib import contextmanager
 
 
-class Version1:
+class Version1(object):
     """The config used to get the behaviour of v1.x.y of the library.
 
     The default attributes are::
