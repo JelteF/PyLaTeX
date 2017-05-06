@@ -123,7 +123,7 @@ class LatexObject(metaclass=_CreatePackages):
 
     @property
     def latex_name(self):
-        """The name of the class used in LaTeX.
+        """Return the name of the class used in LaTeX.
 
         It can be `None` when the class doesn't have a name.
         """
