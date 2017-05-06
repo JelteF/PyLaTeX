@@ -14,12 +14,15 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+
 Added
 ~~~~~
 - Escape flag to `.Math` container
 - ``_star_latex_name`` attribute of `.LatexObject` to append a star
 - `.Alignat` math environment
 - `.Figure.add_plot` method looks for extension in kwargs
+- `.Tabu` and `.LongTabu` environments learn 'spread' and 'to' syntax to control their width.
+
 
 Fixed
 ~~~~~

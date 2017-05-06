@@ -117,6 +117,14 @@ def test_table():
     coloredtable = Tabu(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
+    # Colored Tabu with 'spread'
+    coloredtable = Tabu(table_spec='X[c] X[c]', spread="1in")
+    coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
+
+    # Colored Tabu with 'to'
+    coloredtable = Tabu(table_spec='X[c] X[c]', to="5in")
+    coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
+
     # Colored Tabularx
     coloredtable = Tabularx(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
