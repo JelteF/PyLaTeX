@@ -66,20 +66,27 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! $python $(which nosetests) tests/*; then
+if ! $python $(which nosetests) --with-coverage tests/*; then
     exit 1
 fi
+mv .coverage{,.tests}
 
 if [ "$python_version" = '2' ]; then
     cd ..
 fi
 
+
+count=0
 for f in $main_folder/examples/*.py; do
     echo -e '\e[32mTesting '$f'\e[0m'
-    if ! $python $f; then
+    if ! $python $(which coverage) run $f; then
         exit 1
     fi
+    ((count ++))
+    mv .coverage .coverage.example$count
 done
+
+coverage combine
 
 if [ "$clean" = 'TRUE' ]; then
     rm *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk > /dev/null

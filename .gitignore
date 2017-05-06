@@ -53,3 +53,5 @@ docs/source/pylatex
 docs/source/_static/examples
 
 docs/gh-pages
+
+coverage.xml

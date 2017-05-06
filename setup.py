@@ -28,7 +28,7 @@ extras = {
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
     'testing': ['flake8<3.0.0', 'pep8-naming', 'flake8_docstrings', 'nose',
-                'flake8-putty'],
+                'flake8-putty', 'coverage'],
     'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 
