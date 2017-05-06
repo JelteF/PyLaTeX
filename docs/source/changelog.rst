@@ -14,9 +14,14 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
-Changed
-~~~~~~~
-- Tabu and LongTabu environments learn 'spread' and 'to' syntax to control their width.
+
+Added
+~~~~~
+- Escape flag to `.Math` container
+- ``_star_latex_name`` attribute of `.LatexObject` to append a star
+- `.Alignat` math environment
+- `.Figure.add_plot` method looks for extension in kwargs
+- `.Tabu` and `.LongTabu` environments learn 'spread' and 'to' syntax to control their width.
 
 
 Fixed
@@ -25,6 +30,7 @@ Fixed
 - Allow mappers of `~.dumps_list` to return a `~.LatexObject`.
 - Section numbering default behaviour fixed
 - Setter method for `~.LatexObject.escape` property added
+
 
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
 -------------------------------------------

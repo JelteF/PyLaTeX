@@ -13,7 +13,7 @@ and figures.
 import numpy as np
 
 from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
-    Plot, Figure, Matrix
+    Plot, Figure, Matrix, Alignat
 from pylatex.utils import italic
 import os
 
@@ -47,9 +47,14 @@ if __name__ == '__main__':
         with doc.create(Subsection('Correct matrix equations')):
             doc.append(Math(data=[Matrix(M), Matrix(a), '=', Matrix(M * a)]))
 
+        with doc.create(Subsection('Alignat math environment')):
+            with doc.create(Alignat(numbering=False, escape=False)) as agn:
+                agn.append(r'\frac{a}{b} &= 0 \\')
+                agn.extend([Matrix(M), Matrix(a), '&=', Matrix(M * a)])
+
         with doc.create(Subsection('Beautiful graphs')):
             with doc.create(TikZ()):
-                plot_options = 'height=6cm, width=6cm, grid=major'
+                plot_options = 'height=4cm, width=6cm, grid=major'
                 with doc.create(Axis(options=plot_options)) as plot:
                     plot.append(Plot(name='model', func='-x^5 - 242'))
 

@@ -41,9 +41,11 @@ class Document(Environment):
         document_options: str or `list`
             The options to supply to the documentclass
         fontenc: str
-            The option for the fontenc package.
+            The option for the fontenc package. If it is `None`, the fontenc
+            package will not be loaded at all.
         inputenc: str
-            The option for the inputenc package.
+            The option for the inputenc package. If it is `None`, the inputenc
+            package will not be loaded at all.
         font_size: str
             The font size to declare as normalsize
         lmodern: bool
@@ -83,10 +85,12 @@ class Document(Environment):
         self._indent = indent
         self._microtype = microtype
 
-        fontenc = Package('fontenc', options=fontenc)
-        inputenc = Package('inputenc', options=inputenc)
-        packages = [fontenc, inputenc]
+        packages = []
 
+        if fontenc is not None:
+            packages.append(Package('fontenc', options=fontenc))
+        if inputenc is not None:
+            packages.append(Package('inputenc', options=inputenc))
         if lmodern:
             packages.append(Package('lmodern'))
         if textcomp:
