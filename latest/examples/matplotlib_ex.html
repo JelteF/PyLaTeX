@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Matplotlib example &mdash; PyLaTeX 1.1.1 documentation</title>
+  <title>Matplotlib example &mdash; PyLaTeX 1.2.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.1.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.2.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Minipage example" href="minipage.html"/>
         <link rel="prev" title="Longtabu example" href="longtabu.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
@@ -128,6 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
@@ -213,14 +215,14 @@
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;matplotlib_ex-dpi&#39;</span><span class="p">,</span> <span class="s1">r&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;matplotlib_ex-facecolor&#39;</span><span class="p">,</span> <span class="s1">r&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;matplotlib_ex-dpi&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;1\textwidth&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="s1">&#39;matplotlib_ex-facecolor&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;0.5\textwidth&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -271,13 +273,13 @@
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 Introduction.<span class="c">%</span>
-<span class="k">\section*</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
 Take a look at this beautiful plot:<span class="c">%</span>
 
 
 <span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[htbp]<span class="c">%</span>
 <span class="k">\centering</span><span class="c">%</span>
-<span class="k">\includegraphics</span><span class="na">[width=1\textwidth]</span><span class="nb">{</span>/tmp/pylatex/d75650a1-d533-46fe-801d-4eb8a8bea0eb.pdf<span class="nb">}</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=1\textwidth]</span><span class="nb">{</span>/tmp/pylatex/c45e514b-c8fb-4e81-9f4d-fccb42cd9adb.pdf<span class="nb">}</span><span class="c">%</span>
 <span class="k">\caption</span><span class="nb">{</span>I am a caption.<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
 
@@ -339,13 +341,13 @@ Conclusion.<span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 Introduction.<span class="c">%</span>
-<span class="k">\section*</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
 Take a look at this beautiful plot:<span class="c">%</span>
 
 
 <span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[htbp]<span class="c">%</span>
 <span class="k">\centering</span><span class="c">%</span>
-<span class="k">\includegraphics</span><span class="na">[width=0.5\textwidth]</span><span class="nb">{</span>/tmp/pylatex/10e8ad6a-5bd0-4920-91e3-650ed2b5c608.pdf<span class="nb">}</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=0.5\textwidth]</span><span class="nb">{</span>/tmp/pylatex/c4bbcb92-b224-4506-a8ff-b31ebfceeaff.pdf<span class="nb">}</span><span class="c">%</span>
 <span class="k">\caption</span><span class="nb">{</span>I am a caption.<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
 
@@ -406,7 +408,7 @@ Conclusion.<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.1.1',
+            VERSION:'1.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

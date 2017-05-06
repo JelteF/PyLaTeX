@@ -1,0 +1,33 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{alltt}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+\section{Wrapping Latex Environments}%
+
+        The following is a demonstration of a custom \LaTeX{}
+        command with a couple of parameters.
+        %
+\begin{alltt}
+This is verbatim, alltt, text.
+
+
+Setting \underline{escape} to \underline{False} ensures that text in the environment is not
+subject to escaping...
+
+
+Setting \underline{content_separator} ensures that line endings are broken in
+the latex just as they are in the input text.
+alltt supports math: \(x^2=10\)
+\end{alltt}%
+This is back to normal text...
+
+%
+\end{document}

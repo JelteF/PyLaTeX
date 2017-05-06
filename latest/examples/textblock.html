@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Textblock example &mdash; PyLaTeX 1.1.1 documentation</title>
+  <title>Textblock example &mdash; PyLaTeX 1.2.0 documentation</title>
   
 
   
@@ -55,10 +55,10 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.1.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.2.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="API reference" href="../api.html"/>
-        <link rel="prev" title="Subfigure example" href="subfigure.html"/> 
+        <link rel="prev" title="Tabus example" href="tabus.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
@@ -124,6 +125,7 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Textblock example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
@@ -196,7 +198,7 @@ the page.</p>
 <span class="n">doc</span><span class="o">.</span><span class="n">change_length</span><span class="p">(</span><span class="s2">&quot;\TPHorizModule&quot;</span><span class="p">,</span> <span class="s2">&quot;1mm&quot;</span><span class="p">)</span>
 <span class="n">doc</span><span class="o">.</span><span class="n">change_length</span><span class="p">(</span><span class="s2">&quot;\TPVertModule&quot;</span><span class="p">,</span> <span class="s2">&quot;1mm&quot;</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">MiniPage</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">r&quot;\textwidth&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">page</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">MiniPage</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;\textwidth&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">page</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">page</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">TextBlock</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
         <span class="n">page</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;**** Ten Thousand Dollars&quot;</span><span class="p">)</span>
 
@@ -368,7 +370,7 @@ Y/A M/M D/J<span class="c">%</span>
         <a href="../api.html" class="btn btn-neutral float-right" title="API reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="subfigure.html" class="btn btn-neutral" title="Subfigure example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tabus.html" class="btn btn-neutral" title="Tabus example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -399,7 +401,7 @@ Y/A M/M D/J<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.1.1',
+            VERSION:'1.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

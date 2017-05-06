@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Own commands example &mdash; PyLaTeX 1.1.1 documentation</title>
+  <title>Own commands example &mdash; PyLaTeX 1.2.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.1.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.2.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Quantities example" href="quantities_ex.html"/>
         <link rel="prev" title="Numpy example" href="numpy_ex.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
@@ -128,6 +129,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
@@ -185,7 +187,7 @@
 <p>How to represent your own LaTeX commands and environments in PyLaTeX.</p>
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleEnvironment">
-<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.2.0/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX environment.</p>
 <p>This class represents a custom LaTeX environment named
 <code class="docutils literal"><span class="pre">exampleEnvironment</span></code>.</p>
@@ -206,7 +208,7 @@
 
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleCommand">
-<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.1.1/examples/own_commands_ex.py#L28-L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.2.0/examples/own_commands_ex.py#L28-L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX command.</p>
 <p>This class represents a custom LaTeX command named
 <code class="docutils literal"><span class="pre">exampleCommand</span></code>.</p>
@@ -264,14 +266,14 @@ before the options.</li>
 <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
 <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Custom commands&#39;</span><span class="p">)):</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span>
-        <span class="sd">r&quot;&quot;&quot;</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The following is a demonstration of a custom \LaTeX{}</span>
 <span class="sd">        command with a couple of parameters.</span>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">))</span>
 
     <span class="c1"># Define the new command</span>
     <span class="n">new_comm</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s1">&#39;newcommand&#39;</span><span class="p">,</span> <span class="s1">&#39;\exampleCommand&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                             <span class="n">extra_arguments</span><span class="o">=</span><span class="s1">r&#39;\color{#1} #2 #3 \color</span><span class="si">{black}</span><span class="s1">&#39;</span><span class="p">)</span>
+                             <span class="n">extra_arguments</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\color{#1} #2 #3 \color</span><span class="si">{black}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_comm</span><span class="p">)</span>
 
     <span class="c1"># Use our newly created command with different arguments</span>
@@ -281,7 +283,7 @@ before the options.</li>
 
 <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Custom environments&#39;</span><span class="p">)):</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NoEscape</span><span class="p">(</span>
-        <span class="sd">r&quot;&quot;&quot;</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The following is a demonstration of a custom \LaTeX{}</span>
 <span class="sd">        environment using the mdframed package.</span>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">))</span>
@@ -298,8 +300,8 @@ before the options.</li>
     <span class="n">new_env</span> <span class="o">=</span> <span class="n">UnsafeCommand</span><span class="p">(</span><span class="s1">&#39;newenvironment&#39;</span><span class="p">,</span> <span class="s1">&#39;exampleEnvironment&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                             <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[</span>
                                 <span class="n">mdf_style_definition</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span> <span class="o">+</span>
-                                <span class="s1">r&#39;\begin</span><span class="si">{mdframed}</span><span class="s1">[style=my_style]&#39;</span><span class="p">,</span>
-                                <span class="s1">r&#39;\end</span><span class="si">{mdframed}</span><span class="s1">&#39;</span><span class="p">])</span>
+                                <span class="sa">r</span><span class="s1">&#39;\begin</span><span class="si">{mdframed}</span><span class="s1">[style=my_style]&#39;</span><span class="p">,</span>
+                                <span class="sa">r</span><span class="s1">&#39;\end</span><span class="si">{mdframed}</span><span class="s1">&#39;</span><span class="p">])</span>
     <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_env</span><span class="p">)</span>
 
     <span class="c1"># Usage of the newly created environment</span>
@@ -364,7 +366,7 @@ before the options.</li>
 <span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
-<span class="k">\section*</span><span class="nb">{</span>Custom commands<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section</span><span class="nb">{</span>Custom commands<span class="nb">}</span><span class="c">%</span>
 
         The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>
         command with a couple of parameters.
@@ -375,7 +377,7 @@ before the options.</li>
 <span class="k">\exampleCommand</span><span class="nb">{</span>red<span class="nb">}{</span>Hello<span class="nb">}{</span>World!<span class="nb">}</span>
 
 <span class="c">%</span>
-<span class="k">\section*</span><span class="nb">{</span>Custom environments<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section</span><span class="nb">{</span>Custom environments<span class="nb">}</span><span class="c">%</span>
 
         The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>
         environment using the mdframed package.
@@ -438,7 +440,7 @@ This is the actual content<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.1.1',
+            VERSION:'1.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

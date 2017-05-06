@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Subfigure example &mdash; PyLaTeX 1.1.1 documentation</title>
+  <title>Subfigure example &mdash; PyLaTeX 1.2.0 documentation</title>
   
 
   
@@ -55,9 +55,9 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.1.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.2.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Textblock example" href="textblock.html"/>
+        <link rel="next" title="Tabus example" href="tabus.html"/>
         <link rel="prev" title="Quantities example" href="quantities_ex.html"/> 
 
   
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
@@ -128,6 +129,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
@@ -188,25 +190,25 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">SubFigure</span><span class="p">,</span> <span class="n">NoEscape</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">default_filepath</span><span class="o">=</span><span class="s1">&#39;subfigures&#39;</span><span class="p">)</span>
-    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s1">&#39;kitten.jpg&#39;</span><span class="p">)</span>
+    <span class="n">image_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;kitten.jpg&#39;</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Section</span><span class="p">(</span><span class="s1">&#39;Showing subfigures&#39;</span><span class="p">)):</span>
         <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">Figure</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s1">&#39;h!&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">kittens</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">SubFigure</span><span class="p">(</span>
                     <span class="n">position</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
-                    <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="s1">r&#39;0.45\linewidth&#39;</span><span class="p">)))</span> <span class="k">as</span> <span class="n">left_kitten</span><span class="p">:</span>
+                    <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;0.45\linewidth&#39;</span><span class="p">)))</span> <span class="k">as</span> <span class="n">left_kitten</span><span class="p">:</span>
 
                 <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span>
-                                      <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="s1">r&#39;\linewidth&#39;</span><span class="p">))</span>
+                                      <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\linewidth&#39;</span><span class="p">))</span>
                 <span class="n">left_kitten</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s1">&#39;Kitten on the left&#39;</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">SubFigure</span><span class="p">(</span>
                     <span class="n">position</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
-                    <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="s1">r&#39;0.45\linewidth&#39;</span><span class="p">)))</span> <span class="k">as</span> <span class="n">right_kitten</span><span class="p">:</span>
+                    <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;0.45\linewidth&#39;</span><span class="p">)))</span> <span class="k">as</span> <span class="n">right_kitten</span><span class="p">:</span>
 
                 <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span>
-                                       <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="s1">r&#39;\linewidth&#39;</span><span class="p">))</span>
+                                       <span class="n">width</span><span class="o">=</span><span class="n">NoEscape</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\linewidth&#39;</span><span class="p">))</span>
                 <span class="n">right_kitten</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s1">&#39;Kitten on the right&#39;</span><span class="p">)</span>
             <span class="n">kittens</span><span class="o">.</span><span class="n">add_caption</span><span class="p">(</span><span class="s2">&quot;Two kittens&quot;</span><span class="p">)</span>
 
@@ -260,7 +262,7 @@
 <span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
-<span class="k">\section*</span><span class="nb">{</span>Showing subfigures<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section</span><span class="nb">{</span>Showing subfigures<span class="nb">}</span><span class="c">%</span>
 
 
 <span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[h!]<span class="c">%</span>
@@ -294,7 +296,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="textblock.html" class="btn btn-neutral float-right" title="Textblock example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tabus.html" class="btn btn-neutral float-right" title="Tabus example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="quantities_ex.html" class="btn btn-neutral" title="Quantities example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -328,7 +330,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.1.1',
+            VERSION:'1.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

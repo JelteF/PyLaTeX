@@ -15,18 +15,18 @@
 %
 \begin{document}%
 \normalsize%
-\section*{The simple stuff}%
+\section{The simple stuff}%
 Some regular text and some%
 \textit{italic text. }%
 \newline%
 Also some crazy characters: \$\&\#\{\}%
-\subsection*{Math that is incorrect}%
+\subsection{Math that is incorrect}%
 \[%
 2*3 = 9%
 \]
 
 %
-\subsection*{Table of something}%
+\subsection{Table of something}%
 \begin{tabular}{rc|cl}%
 \hline%
 1&2&3&4\\%
@@ -38,8 +38,8 @@ Also some crazy characters: \$\&\#\{\}%
 \end{tabular}
 
 %
-\section*{The fancy stuff}%
-\subsection*{Correct matrix equations}%
+\section{The fancy stuff}%
+\subsection{Correct matrix equations}%
 \[%
 \begin{pmatrix}%
 2&3&4\\%
@@ -57,9 +57,31 @@ Also some crazy characters: \$\&\#\{\}%
 \]
 
 %
-\subsection*{Beautiful graphs}%
+\subsection{Alignat math environment}%
+\begin{alignat*}{2}%
+\frac{a}{b} &= 0 \\%
+\begin{pmatrix}%
+2&3&4\\%
+0&0&1\\%
+0&0&2%
+\end{pmatrix}%
+\begin{pmatrix}%
+100\\%
+10\\%
+20%
+\end{pmatrix}%
+&=%
+\begin{pmatrix}%
+310\\%
+20\\%
+40%
+\end{pmatrix}%
+\end{alignat*}
+
+%
+\subsection{Beautiful graphs}%
 \begin{tikzpicture}%
-\begin{axis}[height=6cm, width=6cm, grid=major]%
+\begin{axis}[height=4cm, width=6cm, grid=major]%
 \addplot{-x^5 - 242};%
 %
 \addlegendentry{model}%
@@ -80,7 +102,7 @@ Also some crazy characters: \$\&\#\{\}%
 \end{tikzpicture}
 
 %
-\subsection*{Cute kitten pictures}%
+\subsection{Cute kitten pictures}%
 
 
 \begin{figure}[h!]%

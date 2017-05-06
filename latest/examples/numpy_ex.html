@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numpy example &mdash; PyLaTeX 1.1.1 documentation</title>
+  <title>Numpy example &mdash; PyLaTeX 1.2.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.1.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.2.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Own commands example" href="own_commands_ex.html"/>
         <link rel="prev" title="Multirow example" href="multirow.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
             
           
@@ -113,6 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
@@ -128,6 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 </ul>
 </li>
@@ -189,7 +191,7 @@
 
 <span class="kn">from</span> <span class="nn">pylatex</span> <span class="k">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">Section</span><span class="p">,</span> <span class="n">Subsection</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">VectorName</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
 
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
@@ -284,8 +286,8 @@
 <span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
-<span class="k">\section*</span><span class="nb">{</span>Numpy tests<span class="nb">}</span><span class="c">%</span>
-<span class="k">\subsection*</span><span class="nb">{</span>Array<span class="nb">}</span><span class="c">%</span>
+<span class="k">\section</span><span class="nb">{</span>Numpy tests<span class="nb">}</span><span class="c">%</span>
+<span class="k">\subsection</span><span class="nb">{</span>Array<span class="nb">}</span><span class="c">%</span>
 <span class="sb">\[</span><span class="c">%</span>
 <span class="nv">\mathbf</span><span class="nb">{a} </span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
 <span class="m">100</span><span class="nv">\\</span><span class="c">%</span>
@@ -295,7 +297,7 @@
 <span class="s">\]</span>
 
 <span class="c">%</span>
-<span class="k">\subsection*</span><span class="nb">{</span>Matrix<span class="nb">}</span><span class="c">%</span>
+<span class="k">\subsection</span><span class="nb">{</span>Matrix<span class="nb">}</span><span class="c">%</span>
 <span class="sb">\[</span><span class="c">%</span>
 <span class="nb">M</span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{bmatrix}</span><span class="c">%</span>
 <span class="m">2</span><span class="nb">&amp;</span><span class="m">3</span><span class="nb">&amp;</span><span class="m">4</span><span class="nv">\\</span><span class="c">%</span>
@@ -305,7 +307,7 @@
 <span class="s">\]</span>
 
 <span class="c">%</span>
-<span class="k">\subsection*</span><span class="nb">{</span>Product<span class="nb">}</span><span class="c">%</span>
+<span class="k">\subsection</span><span class="nb">{</span>Product<span class="nb">}</span><span class="c">%</span>
 <span class="sb">\[</span><span class="c">%</span>
 <span class="nb">M </span><span class="nv">\mathbf</span><span class="nb">{a} </span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
 <span class="m">310</span><span class="nv">\\</span><span class="c">%</span>
@@ -367,7 +369,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.1.1',
+            VERSION:'1.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
