@@ -6,8 +6,8 @@ project adheres to `Semantic Versioning <http://semver.org/>`_.
 
 .. highlight:: bash
 
-Unreleased_ - `docs <../latest/>`_
------------------------------------------
+Unreleased_ - `docs <../latest/>`__
+-----------------------------------
 See these docs for changes that have not yet been released and are
 only present in the development version.
 This version might not be stable, but to install it use::
@@ -15,8 +15,8 @@ This version might not be stable, but to install it use::
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
 
-1.2.0_ - `docs <../v1.2.0/>`_
------------------------------
+1.2.0_ - `docs <../v1.2.0/>`__ - 2017-05-06
+-------------------------------------------
 
 Added
 ~~~~~
