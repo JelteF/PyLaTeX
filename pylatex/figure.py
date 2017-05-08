@@ -8,7 +8,7 @@ This module implements the class that deals with graphics.
 
 import posixpath
 
-from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex, detokenize
+from .utils import fix_filename, make_temp_dir, NoEscape, escape_latex
 from .base_classes import Float, UnsafeCommand
 from .package import Package
 import uuid

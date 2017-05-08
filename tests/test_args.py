@@ -21,7 +21,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
-    italic, verbatim, NoEscape, detokenize
+    italic, verbatim, NoEscape
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -343,8 +343,6 @@ def test_utils():
     italic(s='')
 
     verbatim(s='', delimiter='|')
-
-    detokenize(s='')
 
 
 def test_errors():
