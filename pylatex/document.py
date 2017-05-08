@@ -202,9 +202,8 @@ class Document(Environment):
         if basename == '':
             basename = 'default_basename'
 
-        os.chdir(dest_dir)
 
-        self.generate_tex(basename)
+        self.generate_tex(os.path.join(dest_dir,basename))
 
         if compiler is not None:
             compilers = ((compiler, []),)
@@ -225,7 +224,8 @@ class Document(Environment):
 
             try:
                 output = subprocess.check_output(command,
-                                                 stderr=subprocess.STDOUT)
+                                                 stderr=subprocess.STDOUT,
+                                                 cwd=dest_dir)
             except (OSError, IOError) as e:
                 # Use FileNotFoundError when python 2 is dropped
                 os_error = e
