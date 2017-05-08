@@ -174,13 +174,6 @@ def test_graphics():
         filename='', image_options=r"width=0.8\textwidth")
     repr(stand_alone_graphic)
 
-def test_stand_alone_graphic():
-    fname = "/just/a/test/file~1/path"
-
-    stand_alone_graphic = StandAloneGraphic(
-        filename=fname, image_options=r"width=0.8\textwidth")
-    repr(stand_alone_graphic)
-
 
 def test_quantities():
     # Quantities

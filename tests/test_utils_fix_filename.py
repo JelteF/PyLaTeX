@@ -41,3 +41,9 @@ def test_dots_in_path_one_in_filename():
 def test_dots_in_path_and_multiple_in_filename():
     fname = "/au.u/b.c.d/abc.def.fgh.ijk"
     assert fix_filename(fname) == "/au.u/b.c.d/{abc.def.fgh}.ijk"
+
+
+def test_tilde_in_filename():
+    fname = "/etc/local/foo.bar.baz/foo~1/document.pdf"
+    assert (fix_filename(fname) ==
+            '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}')
