@@ -162,5 +162,3 @@ class StandAloneGraphic(UnsafeCommand):
         super().__init__(command=self._latex_name, arguments=arguments,
                          options=image_options,
                          extra_arguments=extra_arguments)
-
-

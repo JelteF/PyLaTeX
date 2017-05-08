@@ -101,7 +101,7 @@ def escape_latex(s):
 
 
 def fix_filename(path):
-    """Fix filenames for use in LaTeX.
+    r"""Fix filenames for use in LaTeX.
 
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
@@ -321,6 +321,7 @@ def verbatim(s, *, delimiter='|'):
     """
 
     return NoEscape(r'\verb' + delimiter + s + delimiter)
+
 
 def make_temp_dir():
     """Create a temporary directory if it doesn't exist.
