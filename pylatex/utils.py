@@ -324,7 +324,8 @@ def verbatim(s, *, delimiter='|'):
 
 
 def detokenize(s, *, escape=True):
-    r"""Add a string to the detokenize command 
+    r"""Add a string to the detokenize command.
+
     detokenize wraps a given string in the LaTeX command \detokenize{}. This is
     useful for tilde files on windows that cannot be referenced normally.
 
