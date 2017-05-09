@@ -14,6 +14,10 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- `~.detokenize` function added. `~.fix_filename` fixed by for windows.
+
 
 1.2.0_ - `docs <../v1.2.0/>`__ - 2017-05-06
 -------------------------------------------

@@ -125,7 +125,7 @@ def fix_filename(path):
     >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
     '/etc/local/foo.bar.baz/document.pdf'
     >>> fix_filename("/etc/local/foo.bar.baz/foo~1/document.pdf")
-    '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}'
+    NoEscape(\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf})
     """
 
     path_parts = path.split('/' if os.name == 'posix' else '\\')
@@ -141,7 +141,7 @@ def fix_filename(path):
     fixed_path = '/'.join(dir_parts)
 
     if '~' in fixed_path:
-        fixed_path = r'\detokenize{' + fixed_path + '}'
+        fixed_path = detokenize(fixed_path, escape=False)
 
     return fixed_path
 
@@ -321,6 +321,40 @@ def verbatim(s, *, delimiter='|'):
     """
 
     return NoEscape(r'\verb' + delimiter + s + delimiter)
+
+
+def detokenize(s, *, escape=True):
+    r"""Add a string to the detokenize command.
+
+    detokenize wraps a given string in the LaTeX command \detokenize{}. This is
+    useful for tilde files on windows that cannot be referenced normally.
+
+    Args
+    ----
+    s : str
+        The string to be formatted.
+    escape: bool
+        If true the text will be escaped
+
+    Returns
+    -------
+    NoEscape
+        The formatted string.
+
+    Examples
+    --------
+    >>> detokenize("file.pdf")
+    NoEscape(\detokenize{file.pdf})
+    >>> print(detokenize("thisisa~1.pdf"))
+    \detokenize{thisisa\textasciitilde{}1.pdf}
+    >>> print(detokenize("thisisa~1.pdf", escape=False))
+    \detokenize{thisisa~1.pdf}
+    """
+
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r'\detokenize{' + s + '}')
 
 
 def make_temp_dir():
