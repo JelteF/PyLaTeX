@@ -19,7 +19,8 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     PageStyle, Head, Foot, StandAloneGraphic, Tabularx, ColumnType, NewLine, \
     LineBreak, NewPage, HFill, HugeText, LargeText, MediumText, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
-    HorizontalSpace, VerticalSpace
+    HorizontalSpace, VerticalSpace, TikZCoordinate, TikZObject, TikZNode, \
+    TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, TikZScope
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
 
@@ -198,6 +199,25 @@ def test_tikz():
 
     p = Plot(name=None, func=None, coordinates=None, error_bar=None,
              options=None)
+    repr(p)
+
+    scope = TikZScope(data=None)
+    repr(scope)
+
+    c = TikZCoordinate.from_str("(0,0)")
+    c = TikZCoordinate(x=0, y=0, relative=False)
+    repr(c)
+
+    o = TikZObject(options=None)
+    repr(o)
+
+    a = TikZNodeAnchor(node_handle=None, anchor_name=None)
+    repr(a)
+
+    n = TikZNodeAnchor(handler=None, options=None, at=None, text=None)
+    repr(n)
+
+    p = n.get_anchor_point("north")
     repr(p)
 
 
