@@ -51,7 +51,7 @@ class TikZCoordinate(object):
     """A General Purpose Coordinate Class."""
 
     _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
-                                       ',\s*(-?[0-9]+(\.[0-9]+)?)\s*\)')
+                                       r',\s*(-?[0-9]+(\.[0-9]+)?)\s*\)')
 
     def __init__(self, x, y, relative=False):
         """
@@ -266,8 +266,8 @@ class TikZNode(TikZObject):
         except ValueError:
             pass
 
-        raise AttributeError(
-            'Invalid attribute requested: "{}"'.format(attr_name))
+        # raise AttributeError(
+        #    'Invalid attribute requested: "{}"'.format(attr_name))
 
 
 class TikZUserPath(LatexObject):
@@ -409,7 +409,8 @@ class TikZPathList(object):
             return point.dumps()
 
         raise TypeError('Only str, tuple, TikZCoordinate,'
-                        'TikZNode or TikZNodeAnchor types are allowed')
+                        'TikZNode or TikZNodeAnchor types are allowed,'
+                        ' got: {}'.format(type(point)))
 
     def dumps(self):
         """Return representation of the path command."""
