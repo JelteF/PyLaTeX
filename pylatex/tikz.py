@@ -9,6 +9,7 @@ This module implements the classes used to show plots.
 from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
 import re
+import math
 
 
 class TikZOptions(Options):
@@ -94,7 +95,62 @@ class TikZCoordinate(object):
         return TikZCoordinate(
             float(m.group(2)), float(m.group(4)), relative=relative)
 
-    # todo: math, etc
+    def __eq__(self, other):
+        if isinstance(other, tuple):
+            if float(other[0]) == self._x and\
+               float(other[1]) == self._y:
+
+                # check if relative. if yes then we return False
+                if self.relative is False:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        elif isinstance(other, TikZCoordinate):
+            # prevent comparison between relative and non relative
+            # by returning False
+            if other.relative != self.relative:
+                return False
+            if other._x == self._x and\
+               other._y == self._y:
+                return True
+            else:
+                return False
+        else:
+            raise TypeError('can only compare tuple and TiKZCoordinate types')
+
+    def _arith_check(self, other):
+        if isinstance(other, tuple):
+            other_coord = TikZCoordinate(*other)
+        elif isinstance(other, TikZCoordinate):
+            if other.relative is True or self.relative is True:
+                raise ValueError('refusing to add relative coordinates')
+            other_coord = other
+        else:
+            raise TypeError('can only add tuple or TiKZCoordinate types')
+
+        return other_coord
+
+    def __add__(self, other):
+        other_coord = self._arith_check(other)
+        return TikZCoordinate(self._x + other_coord._x,
+                              self._y + other_coord._y)
+
+    def __radd__(self, other):
+        self.__add__(other)
+
+    def __sub__(self, other):
+        other_coord = self._arith_check(other)
+        return TikZCoordinate(self._x - other_coord._y,
+                              self._y - other_coord._y)
+
+    def distance_to(self, other):
+        """Euclidean distance between two coordinates."""
+
+        other_coord = self._arith_check(other)
+        return math.sqrt(math.pow(self._x - other_coord._x, 2) +
+                         math.pow(self._y - other_coord._y, 2))
 
 
 class TikZObject(Container):
