@@ -54,5 +54,4 @@ if __name__ == '__main__':
 
             path.append(TikZCoordinate(1, 0, relative=True))
 
-    doc.generate_tex('scratch/out')
-    # doc.generate_pdf('scratch/out')
+    doc.generate_pdf('tikzdraw')
