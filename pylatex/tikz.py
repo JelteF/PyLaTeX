@@ -6,7 +6,7 @@ This module implements the classes used to show plots.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import LatexObject, Environment, Command, Options
+from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
 import re
 
@@ -91,7 +91,7 @@ class TikZCoordinate(object):
     # todo: math, etc
 
 
-class TikZObject(LatexObject):
+class TikZObject(Container):
     """Abstract Class that most TikZ Objects inherits from."""
 
     def __init__(self, options=None):
@@ -280,19 +280,39 @@ class TikZPathList(object):
                 self._arg_list.append(_item)
                 self._last_item_type = 'point'
                 return
-            except ValueError:
+            except (ValueError, TypeError):
                 # not a point, try path
                 pass
 
             # will raise typeerror if wrong
             _item = self._parse_path(item)
             self._arg_list.append(_item)
-            self.last_item_type = 'path'
+            self._last_item_type = 'path'
         elif self._last_item_type is 'path':
             # only point allowed after path
-            _item = self._parse_point(item)
-            self._arg_list.append(_item)
-            self._last_item_type = 'point'
+            original_exception = None
+            try:
+                _item = self._parse_point(item)
+                self._arg_list.append(_item)
+                self._last_item_type = 'point'
+                return
+            except (TypeError, ValueError) as ex:
+                # check if trying to insert path after path
+                try:
+                    self._parse_path(item)
+                    not_a_path = False
+                    original_exception = ex
+                except (TypeError, ValueError):
+                    # not a path either!
+                    not_a_path = True
+
+            # disentangle exceptions
+            if not_a_path is False:
+                raise ValueError('only a point descriptor can come'
+                                 ' after a path descriptor')
+
+            if original_exception is not None:
+                raise original_exception
 
     def _parse_arg_list(self, args):
 
@@ -347,7 +367,7 @@ class TikZPathList(object):
 class TikZPath(TikZObject):
     r"""The TikZ \path command."""
 
-    def __init__(self, path, options=None):
+    def __init__(self, path=None, options=None):
         """
         Args
         ----
@@ -363,9 +383,15 @@ class TikZPath(TikZObject):
             self.path = path
         elif isinstance(path, list):
             self.path = TikZPathList(*path)
+        elif path is None:
+            self.path = TikZPathList()
         else:
             raise TypeError(
                 'argument "path" can only be of types list or TikZPathList')
+
+    def append(self, element):
+        """Append a path element to the current list."""
+        self.path.append(element)
 
     def dumps(self):
         """Return a representation for the command."""
@@ -390,7 +416,9 @@ class TikZDraw(TikZPath):
 
         # append option
         if self.options is not None:
-            self.options['draw'] = None
+            # should not really do this but it is the only way, currently
+            # TODO: must not escape several things
+            self.options._positional_args.append('draw')
         else:
             self.options = Options('draw')
 
