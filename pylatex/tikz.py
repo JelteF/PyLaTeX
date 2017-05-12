@@ -57,8 +57,10 @@ class TikZCoordinate(object):
         """
         Args
         ----
-        x, y: float or int
-            Values for the coordinate
+        x: float or int
+            X coordinate
+        y: float or int
+            Y coordinate
         relative: bool
             Coordinate is relative or absolute
         """
@@ -436,7 +438,7 @@ class TikZPath(TikZObject):
         ----
         path: TikZPathList
             A list of the nodes, path types in the path
-        options: Options
+        options: TikZOptions
             A list of options for the command
         """
 
@@ -469,18 +471,20 @@ class TikZPath(TikZObject):
 class TikZDraw(TikZPath):
     """A draw command is just a path command with the draw option."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, path=None, options=None):
         """
         Args
         ----
-        args, kwargs: directly passed to the TikZPath constructor
+        path: TikZPathList
+            A list of the nodes, path types in the path
+        options: TikZOptions
+            A list of options for the command
         """
-        super(TikZDraw, self).__init__(*args, **kwargs)
+        super(TikZDraw, self).__init__(path=path, options=options)
 
         # append option
         if self.options is not None:
             # should not really do this but it is the only way, currently
-            # TODO: must not escape several things
             self.options._positional_args.append('draw')
         else:
             self.options = TikZOptions('draw')
