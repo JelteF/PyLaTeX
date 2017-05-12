@@ -19,8 +19,9 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     PageStyle, Head, Foot, StandAloneGraphic, Tabularx, ColumnType, NewLine, \
     LineBreak, NewPage, HFill, HugeText, LargeText, MediumText, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
-    HorizontalSpace, VerticalSpace, TikZCoordinate, TikZObject, TikZNode, \
-    TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, TikZScope
+    HorizontalSpace, VerticalSpace, TikZCoordinate, TikZNode, \
+    TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, \
+    TikZScope, TikZOptions
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
 
@@ -201,24 +202,41 @@ def test_tikz():
              options=None)
     repr(p)
 
+    opt = TikZOptions(None)
+    repr(opt)
+
     scope = TikZScope(data=None)
     repr(scope)
 
     c = TikZCoordinate.from_str("(0,0)")
     c = TikZCoordinate(x=0, y=0, relative=False)
+    d = c + (0, 1)
+    c.distance_to(d)
     repr(c)
-
-    o = TikZObject(options=None)
-    repr(o)
+    repr(d)
 
     a = TikZNodeAnchor(node_handle=None, anchor_name=None)
     repr(a)
 
-    n = TikZNodeAnchor(handle=None, options=None, at=None, text=None)
+    n = TikZNode(handle=None, options=None, at=None, text=None)
     repr(n)
 
     p = n.get_anchor_point("north")
     repr(p)
+
+    up = TikZUserPath(path_type="edge", options=TikZOptions('bend right'))
+    repr(up)
+
+    pl = TikZPathList('(0, 1)', '--', '(2, 0)')
+    pl.append((0.5, 0))
+    repr(pl)
+
+    pt = TikZPath(path=None, options=TikZOptions("->"))
+    pt.append(TikZCoordinate(0, 1, relative=True))
+    repr(pt)
+
+    dr = TikZDraw(path=None, options=None)
+    repr(dr)
 
 
 def test_lists():
