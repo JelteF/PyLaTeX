@@ -2,9 +2,11 @@
 """
 This example shows TikZ drawing capabilities.
 
+..  :copyright: (c) 2017 by Bruno Morais
     :license: MIT, see License for more details.
 """
 
+# begin-doc-include
 from pylatex import (Document, TikZ, TikZNode,
                      TikZDraw, TikZCoordinate,
                      TikZUserPath, TikZOptions)
@@ -54,4 +56,4 @@ if __name__ == '__main__':
 
             path.append(TikZCoordinate(1, 0, relative=True))
 
-    doc.generate_pdf('tikzdraw')
+    doc.generate_pdf('tikzdraw', clean_tex=False)
