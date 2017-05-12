@@ -11,6 +11,12 @@ from .package import Package
 import re
 
 
+class TikZOptions(Options):
+    """Options class, do not escape."""
+
+    escape = False
+
+
 class TikZ(Environment):
     """Basic TikZ container class."""
 
@@ -420,7 +426,7 @@ class TikZDraw(TikZPath):
             # TODO: must not escape several things
             self.options._positional_args.append('draw')
         else:
-            self.options = Options('draw')
+            self.options = TikZOptions('draw')
 
 
 class Plot(LatexObject):
