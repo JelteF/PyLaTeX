@@ -214,7 +214,7 @@ def test_tikz():
     a = TikZNodeAnchor(node_handle=None, anchor_name=None)
     repr(a)
 
-    n = TikZNodeAnchor(handler=None, options=None, at=None, text=None)
+    n = TikZNodeAnchor(handle=None, options=None, at=None, text=None)
     repr(n)
 
     p = n.get_anchor_point("north")
