@@ -18,7 +18,7 @@ class TikZOptions(Options):
     escape = False
 
     def append_positional(self, option):
-        """Add a new positional option"""
+        """Add a new positional option."""
 
         self._positional_args.append(option)
 
