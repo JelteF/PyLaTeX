@@ -47,8 +47,16 @@ class TikZCoordinate(object):
                                        ',\s*(-?[0-9]+(\.[0-9]+)?)\s*\)')
 
     def __init__(self, x, y, relative=False):
-        self._x = x
-        self._y = y
+        """
+        Args
+        ----
+        x, y: float or int
+            Values for the coordinate
+        relative: bool
+            Coordinate is relative or absolute
+        """
+        self._x = float(x)
+        self._y = float(y)
         self.relative = relative
 
     def __repr__(self):
@@ -59,11 +67,13 @@ class TikZCoordinate(object):
         return ret_str + '({},{})'.format(self._x, self._y)
 
     def dumps(self):
+        """Return representation."""
+
         return self.__repr__()
 
     @classmethod
     def from_str(cls, coordinate):
-        """Builds a TikZCoordinate object from a string."""
+        """Build a TikZCoordinate object from a string."""
 
         m = cls._coordinate_str_regex.match(coordinate)
 
@@ -85,17 +95,40 @@ class TikZObject(LatexObject):
     """Abstract Class that most TikZ Objects inherits from."""
 
     def __init__(self, options=None):
+        """
+        Args
+        ----
+        options: list
+            Options pertaining to the object
+        """
+
         super(TikZObject, self).__init__()
         self.options = options
 
 
 class TikZNodeAnchor(object):
+    """Representation of a node's anchor point."""
+
     def __init__(self, node_handle, anchor_name):
+        """
+        Args
+        ----
+        node_handle: str
+            Node's identifier
+        anchor_name: str
+            Name of the anchor
+        """
+
         self.handle = node_handle
         self.anchor = anchor_name
 
-    def dumps(self):
+    def __repr__(self):
         return '({}.{})'.format(self.handle, self.anchor)
+
+    def dumps(self):
+        """Return a representation. Alias for consistency."""
+
+        return self.__repr__()
 
 
 class TikZNode(TikZObject):
@@ -103,11 +136,22 @@ class TikZNode(TikZObject):
 
     _possible_anchors = ['north', 'south', 'east', 'west']
 
-    def __init__(self, handler=None, options=None, at=None, text=None):
-
+    def __init__(self, handle=None, options=None, at=None, text=None):
+        """
+        Args
+        ----
+        handler: str
+            Node identifier
+        options: list
+            List of options
+        at: TikZCoordinate
+            Coordinate where node is placed
+        text: str
+            Body text of the node
+        """
         super(TikZNode, self).__init__(options=options)
 
-        self.handler = handler
+        self.handle = handle
 
         if isinstance(at, (TikZCoordinate, type(None))):
             self._node_position = at
@@ -119,12 +163,13 @@ class TikZNode(TikZObject):
         self._node_text = text
 
     def dumps(self):
+        """Return string representation of the node."""
 
         ret_str = []
         ret_str.append(Command('node', options=self.options).dumps())
 
-        if self.handler is not None:
-            ret_str.append('({})'.format(self.handler))
+        if self.handle is not None:
+            ret_str.append('({})'.format(self.handle))
 
         if self._node_position is not None:
             ret_str.append('at {}'.format(str(self._position)))
@@ -137,8 +182,10 @@ class TikZNode(TikZObject):
         return ' '.join(ret_str)
 
     def get_anchor_point(self, anchor_name):
+        """Return an anchor point of the node, if it exists."""
+
         if anchor_name in self._possible_anchors:
-            return TikZNodeAnchor(self.handler, anchor_name)
+            return TikZNodeAnchor(self.handle, anchor_name)
         else:
             try:
                 anchor = int(anchor_name.split('_')[1])
@@ -146,7 +193,7 @@ class TikZNode(TikZObject):
                 anchor = None
 
             if anchor is not None:
-                return TikZNodeAnchor(self.handler, str(anchor))
+                return TikZNodeAnchor(self.handle, str(anchor))
 
         raise ValueError('Invalid anchor name: "{}"'.format(anchor_name))
 
@@ -162,12 +209,23 @@ class TikZNode(TikZObject):
 
 
 class TikZUserPath(LatexObject):
+    """Represents a possible TikZ path."""
+
     def __init__(self, path_type, options=None):
+        """
+        Args
+        ----
+        path_type: str
+            Type of path used
+        options: Options
+            List of options to add
+        """
         super(TikZUserPath, self).__init__()
         self.path_type = path_type
         self.options = options
 
     def dumps(self):
+        """Return path command representation."""
 
         ret_str = self.path_type
 
@@ -185,7 +243,12 @@ class TikZPathList(object):
                          'arc', 'edge']
 
     def __init__(self, *args):
-
+        """
+        Args
+        ----
+        args: list
+            A list of path elements
+        """
         self._last_item_type = None
         self._arg_list = []
 
@@ -193,10 +256,12 @@ class TikZPathList(object):
         self._parse_arg_list(args)
 
     def append(self, item):
+        """Add a new element to the current path."""
         self._parse_next_item(item)
 
     def _parse_next_item(self, item):
-        # assume first item is point type
+
+        # assume first item is a point
         if self._last_item_type is None:
             try:
                 _item = self._parse_point(item)
@@ -257,7 +322,7 @@ class TikZPathList(object):
         elif isinstance(point, tuple):
             return TikZCoordinate(*point)
         elif isinstance(point, TikZNode):
-            return '({})'.format(point.handler)
+            return '({})'.format(point.handle)
         elif isinstance(point, TikZNodeAnchor):
             return point.dumps()
 
@@ -265,6 +330,7 @@ class TikZPathList(object):
                         'TikZNode or TikZNodeAnchor types are allowed')
 
     def dumps(self):
+        """Return representation of the path command."""
 
         ret_str = []
         for item in self._arg_list:
@@ -279,7 +345,18 @@ class TikZPathList(object):
 
 
 class TikZPath(TikZObject):
+    r"""The TikZ \path command."""
+
     def __init__(self, path, options=None):
+        """
+        Args
+        ----
+        path: TikZPathList
+            A list of the nodes, path types in the path
+        options: Options
+            A list of options for the command
+        """
+
         super(TikZPath, self).__init__(options=options)
 
         if isinstance(path, TikZPathList):
@@ -291,6 +368,8 @@ class TikZPath(TikZObject):
                 'argument "path" can only be of types list or TikZPathList')
 
     def dumps(self):
+        """Return a representation for the command."""
+
         ret_str = [Command('path', options=self.options).dumps()]
 
         ret_str.append(self.path.dumps())
@@ -302,6 +381,11 @@ class TikZDraw(TikZPath):
     """A draw command is just a path command with the draw option."""
 
     def __init__(self, *args, **kwargs):
+        """
+        Args
+        ----
+        args, kwargs: directly passed to the TikZPath constructor
+        """
         super(TikZDraw, self).__init__(*args, **kwargs)
 
         # append option
