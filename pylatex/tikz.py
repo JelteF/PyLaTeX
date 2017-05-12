@@ -17,6 +17,11 @@ class TikZOptions(Options):
 
     escape = False
 
+    def append_positional(self, option):
+        """Add a new positional option"""
+
+        self._positional_args.append(option)
+
 
 class TikZ(Environment):
     """Basic TikZ container class."""
@@ -484,8 +489,7 @@ class TikZDraw(TikZPath):
 
         # append option
         if self.options is not None:
-            # should not really do this but it is the only way, currently
-            self.options._positional_args.append('draw')
+            self.options.append_positional('draw')
         else:
             self.options = TikZOptions('draw')
 
