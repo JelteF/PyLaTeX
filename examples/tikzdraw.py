@@ -37,7 +37,8 @@ if __name__ == '__main__':
         # draw a few paths
         pic.append(TikZDraw([TikZCoordinate(0, -6),
                              'rectangle',
-                             TikZCoordinate(2, -8)], options=TikZOptions(fill='red')))
+                             TikZCoordinate(2, -8)],
+                            options=TikZOptions(fill='red')))
 
         # show use of anchor, relative coordinate
         pic.append(TikZDraw([box.west,
