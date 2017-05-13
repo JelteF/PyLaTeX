@@ -211,9 +211,25 @@ def test_tikz():
     c = TikZCoordinate.from_str("(0,0)")
     c = TikZCoordinate(x=0, y=0, relative=False)
     d = c + (0, 1)
+    e = c - (0, 1)
+    f = (0, 1) + c
     c.distance_to(d)
     repr(c)
     repr(d)
+    repr(e)
+    repr(f)
+
+    bool(c == (1, 1))
+    bool(c == TikZCoordinate(1, 1))
+
+    # test expected to fail
+    try:
+        g = TikZCoordinate(0, 1, relative=True) +\
+            TikZCoordinate(1, 0, relative=False)
+        repr(g)
+        raise Exception
+    except ValueError:
+        pass
 
     a = TikZNodeAnchor(node_handle=None, anchor_name=None)
     repr(a)
@@ -222,6 +238,12 @@ def test_tikz():
     repr(n)
 
     p = n.get_anchor_point("north")
+    repr(p)
+
+    p = n.get_anchor_point('_180')
+    repr(p)
+
+    p = n.west
     repr(p)
 
     up = TikZUserPath(path_type="edge", options=TikZOptions('bend right'))
@@ -233,6 +255,9 @@ def test_tikz():
 
     pt = TikZPath(path=None, options=TikZOptions("->"))
     pt.append(TikZCoordinate(0, 1, relative=True))
+    repr(pt)
+
+    pt = TikZPath(path=[n.west, 'edge', TikZCoordinate(0, 1, relative=True)])
     repr(pt)
 
     dr = TikZDraw(path=None, options=None)
