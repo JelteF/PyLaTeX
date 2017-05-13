@@ -21,7 +21,8 @@ if __name__ == '__main__':
 
         # options for our node
         node_kwargs = {'align': 'center',
-                       'minimum size': '100pt'}
+                       'minimum size': '100pt',
+                       'fill': 'black!20'}
 
         # create our test node
         box = TikZNode(text='My block',
@@ -34,9 +35,9 @@ if __name__ == '__main__':
         pic.append(box)
 
         # draw a few paths
-        pic.append(TikZDraw([TikZCoordinate(0, 0),
-                             '--',
-                             TikZCoordinate(0, 1)]))
+        pic.append(TikZDraw([TikZCoordinate(0, -6),
+                             'rectangle',
+                             TikZCoordinate(2, -8)], options=TikZOptions(fill='red')))
 
         # show use of anchor, relative coordinate
         pic.append(TikZDraw([box.west,
@@ -44,7 +45,7 @@ if __name__ == '__main__':
                              '++(-1,0)']))
 
         # demonstrate the use of the with syntax
-        with pic.create(TikZDraw(options=TikZOptions('->'))) as path:
+        with pic.create(TikZDraw()) as path:
 
             # start at an anchor of the node
             path.append(box.east)
@@ -52,7 +53,7 @@ if __name__ == '__main__':
             # necessary here because 'in' is a python keyword
             path_options = {'in': 90, 'out': 0}
             path.append(TikZUserPath('edge',
-                                     TikZOptions(**path_options)))
+                                     TikZOptions('-latex', **path_options)))
 
             path.append(TikZCoordinate(1, 0, relative=True))
 
