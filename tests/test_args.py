@@ -221,6 +221,11 @@ def test_tikz():
 
     bool(c == (1, 1))
     bool(c == TikZCoordinate(1, 1))
+    bool(TikZCoordinate(1, 1, relative=True) == (1, 1))
+    bool(TikZCoordinate(1, 1, relative=False) == (1, 1))
+    bool(TikZCoordinate(1, 1, relative=True) == TikZCoordinate(1,
+                                                               1,
+                                                               relative=False))
 
     # test expected to fail
     try:
@@ -253,11 +258,42 @@ def test_tikz():
     pl.append((0.5, 0))
     repr(pl)
 
+    # generate a failure, illegal start
+    try:
+        pl = TikZPathList('--', '(0, 1)')
+        raise Exception
+    except TypeError:
+        pass
+
+    # fail with illegal path type
+    try:
+        pl = TikZPathList('(0, 1)', 'illegal', '(0, 2)')
+        raise Exception
+    except ValueError:
+        pass
+
+    # fail with path after path
+    try:
+        pl = TikZPathList('(0, 1)', '--', '--')
+        raise Exception
+    except ValueError:
+        pass
+
+    # other type of failure: illegal identifier after path
+    try:
+        pl = TikZPathList('(0, 1)', '--', 'illegal')
+        raise Exception
+    except (ValueError, TypeError):
+        pass
+
     pt = TikZPath(path=None, options=TikZOptions("->"))
     pt.append(TikZCoordinate(0, 1, relative=True))
     repr(pt)
 
     pt = TikZPath(path=[n.west, 'edge', TikZCoordinate(0, 1, relative=True)])
+    repr(pt)
+
+    pt = TikZPath(path=pl, options=None)
     repr(pt)
 
     dr = TikZDraw(path=None, options=None)
