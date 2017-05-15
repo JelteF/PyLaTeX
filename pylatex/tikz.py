@@ -336,7 +336,7 @@ class TikZPathList(object):
                 _item = self._parse_point(item)
                 self._arg_list.append(_item)
                 self._last_item_type = 'point'
-            except TypeError:
+            except (TypeError, ValueError):
                 # not a point, do something
                 raise TypeError(
                     'First element of path list must be a node identifier'
@@ -427,7 +427,7 @@ class TikZPathList(object):
             if isinstance(item, TikZUserPath):
                 ret_str.append(item.dumps())
             elif isinstance(item, TikZCoordinate):
-                ret_str.append(str(item))
+                ret_str.append(item.dumps())
             elif isinstance(item, str):
                 ret_str.append(item)
 
