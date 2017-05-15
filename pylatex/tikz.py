@@ -371,9 +371,10 @@ class TikZPathList(object):
                     self._parse_path(item)
                     not_a_path = False
                     original_exception = ex
-                except (TypeError, ValueError):
+                except (TypeError, ValueError) as ex:
                     # not a path either!
                     not_a_path = True
+                    original_exception = ex
 
             # disentangle exceptions
             if not_a_path is False:
