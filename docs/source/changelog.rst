@@ -14,6 +14,11 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Fixed
+~~~~~
+- Filenames with a ``~`` (tilde) in them now also work as figure paths. This
+  caused issues when using temp directories on Windows.
+
 
 1.2.0_ - `docs <../v1.2.0/>`__ - 2017-05-06
 -------------------------------------------
