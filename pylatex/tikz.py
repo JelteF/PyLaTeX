@@ -104,28 +104,24 @@ class TikZCoordinate(LatexObject):
 
     def __eq__(self, other):
         if isinstance(other, tuple):
-            if float(other[0]) == self._x and\
-               float(other[1]) == self._y:
-
-                # check if relative. if yes then we return False
-                if self.relative is False:
-                    return True
-                else:
-                    return False
-            else:
-                return False
+            # if comparing to a tuple, assume it to be an absolute coordinate.
+            other_relative = False
+            other_x = float(other[0])
+            other_y = float(other[1])
         elif isinstance(other, TikZCoordinate):
-            # prevent comparison between relative and non relative
-            # by returning False
-            if other.relative != self.relative:
-                return False
-            if other._x == self._x and\
-               other._y == self._y:
-                return True
-            else:
-                return False
+            other_relative = other.relative
+            other_x = other._x
+            other_y = other._y
         else:
             raise TypeError('can only compare tuple and TiKZCoordinate types')
+
+        # prevent comparison between relative and non relative
+        # by returning False
+        if (other_relative != self.relative):
+            return False
+
+        # return comparison result
+        return (other_x == self._x and other_y == self._y)
 
     def _arith_check(self, other):
         if isinstance(other, tuple):
