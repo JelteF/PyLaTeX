@@ -52,7 +52,7 @@ class TikZScope(Environment):
     _latex_name = 'scope'
 
 
-class TikZCoordinate(object):
+class TikZCoordinate(LatexObject):
     """A General Purpose Coordinate Class."""
 
     _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
@@ -175,7 +175,7 @@ class TikZObject(Container):
         self.options = options
 
 
-class TikZNodeAnchor(object):
+class TikZNodeAnchor(LatexObject):
     """Representation of a node's anchor point."""
 
     def __init__(self, node_handle, anchor_name):
@@ -304,7 +304,7 @@ class TikZUserPath(LatexObject):
         return ret_str
 
 
-class TikZPathList(object):
+class TikZPathList(LatexObject):
     """Represents a path drawing."""
 
     _legal_path_types = ['--', '-|', '|-', 'to',
