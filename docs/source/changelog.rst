@@ -14,6 +14,10 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- Longtables now have end_foot() and end_last_foot() functions.
+
 1.2.1_ - `docs <../v1.2.1/>`__ - 2017-05-19
 -------------------------------------------
 
