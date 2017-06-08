@@ -11,6 +11,10 @@ class PyLaTeXError(Exception):
     """A Base class for all PyLaTeX Exceptions."""
 
 
+class CompilerError(PyLaTeXError):
+    """A Base class for all PyLaTeX compiler related Exceptions."""
+
+
 class TableError(PyLaTeXError):
     """A Base class for all errors concerning tables."""
 
