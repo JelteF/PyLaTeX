@@ -468,7 +468,7 @@ class LongTable(Tabular):
 
         self.append(Command(r'endhead'))
 
-    def end_foot(self):
+    def end_table_footer(self):
         r"""End the table foot which will appear on every page."""
 
         if self.foot:
@@ -479,7 +479,7 @@ class LongTable(Tabular):
 
         self.append(Command('endfoot'))
 
-    def end_last_foot(self):
+    def end_table_last_footer(self):
         r"""End the table foot which will appear on the last page."""
 
         if self.lastFoot:
