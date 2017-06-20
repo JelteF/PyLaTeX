@@ -45,3 +45,14 @@ class Float(Environment):
         """
 
         self.append(Command('caption', caption))
+
+    def add_label(self, label):
+        """Add a label to the float.
+
+        Args
+        ----
+        label: str
+            The label for the float.
+        """
+
+        self.append(Command('label', label))
