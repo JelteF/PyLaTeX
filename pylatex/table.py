@@ -454,6 +454,8 @@ class LongTable(Tabular):
     packages = [Package('longtable')]
 
     header = False
+    foot = False
+    lastFoot = False
 
     def end_table_header(self):
         r"""End the table header which will appear on every page."""
@@ -464,7 +466,29 @@ class LongTable(Tabular):
 
         self.header = True
 
-        self.append(NoEscape(r'\endhead'))
+        self.append(Command(r'endhead'))
+
+    def end_table_footer(self):
+        r"""End the table foot which will appear on every page."""
+
+        if self.foot:
+            msg = "Table already has a foot"
+            raise TableError(msg)
+
+        self.foot = True
+
+        self.append(Command('endfoot'))
+
+    def end_table_last_footer(self):
+        r"""End the table foot which will appear on the last page."""
+
+        if self.lastFoot:
+            msg = "Table already has a last foot"
+            raise TableError(msg)
+
+        self.lastFoot = True
+
+        self.append(Command('endlastfoot'))
 
 
 class LongTabu(LongTable, Tabu):
