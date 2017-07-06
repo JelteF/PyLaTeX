@@ -205,7 +205,7 @@ class TikZNode(TikZObject):
         """
         Args
         ----
-        handler: str
+        handle: str
             Node identifier
         options: list
             List of options
