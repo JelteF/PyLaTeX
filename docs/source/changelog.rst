@@ -14,6 +14,18 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- Longtables now have end_foot() and end_last_foot() functions.
+
+1.2.1_ - `docs <../v1.2.1/>`__ - 2017-05-19
+-------------------------------------------
+
+Fixed
+~~~~~
+- Filenames with a ``~`` (tilde) in them now also work as figure paths. This
+  caused issues when using temp directories on Windows.
+
 
 1.2.0_ - `docs <../v1.2.0/>`__ - 2017-05-06
 -------------------------------------------
@@ -394,7 +406,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.2.0...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.2.1...HEAD
+.. _1.2.1: https://github.com/JelteF/PyLaTeX/compare/v1.2.0...v1.2.1
 .. _1.2.0: https://github.com/JelteF/PyLaTeX/compare/v1.1.1...v1.2.0
 .. _1.1.1: https://github.com/JelteF/PyLaTeX/compare/v1.1.0...v1.1.1
 .. _1.1.0: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...v1.1.0

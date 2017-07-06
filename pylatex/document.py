@@ -12,6 +12,7 @@ import errno
 from .base_classes import Environment, Command, Container, LatexObject, \
     UnsafeCommand
 from .package import Package
+from .errors import CompilerError
 from .utils import dumps_list, rm_temp_dir, NoEscape
 import pylatex.config as cf
 
@@ -270,8 +271,12 @@ class Document(Environment):
             break
 
         else:
-            # If none of the compilers worked, raise the last error
-            raise(os_error)
+            # Notify user that none of the compilers worked.
+            raise(CompilerError(
+                'No LaTex compiler was found\n' +
+                'Either specify a LaTex compiler ' +
+                'or make sure you have latexmk or pdfLaTex installed.'
+            ))
 
         os.chdir(cur_dir)
 

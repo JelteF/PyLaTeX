@@ -16,7 +16,8 @@ class Section(Container):
     #: A section should normally start in its own paragraph
     end_paragraph = True
 
-    #: Number the sections, by changing the `~.Section` class default all
+    #: Number the sections when the section element is compatible,
+    #: by changing the `~.Section` class default all
     #: subclasses will also have the new default.
     numbering = True
 
@@ -57,9 +58,25 @@ class Section(Container):
         return string
 
 
+class Part(Section):
+    """A class that represents a part."""
+
+
+class Chapter(Section):
+    """A class that represents a chapter."""
+
+
 class Subsection(Section):
     """A class that represents a subsection."""
 
 
 class Subsubsection(Section):
     """A class that represents a subsubsection."""
+
+
+class Paragraph(Section):
+    """A class that represents a paragraph."""
+
+
+class Subparagraph(Section):
+    """A class that represents a subparagraph."""
