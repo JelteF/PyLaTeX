@@ -336,7 +336,7 @@ class TikZPathList(LatexObject):
                     'First element of path list must be a node identifier'
                     ' or coordinate'
                 )
-        elif self._last_item_type is 'point':
+        elif self._last_item_type == 'point':
             # point after point is permitted, doesnt draw
             try:
                 self._add_point(item)
@@ -347,7 +347,7 @@ class TikZPathList(LatexObject):
 
             # will raise typeerror if wrong
             self._add_path(item)
-        elif self._last_item_type is 'path':
+        elif self._last_item_type == 'path':
             # only point allowed after path
             original_exception = None
             try:
