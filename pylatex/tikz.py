@@ -329,9 +329,7 @@ class TikZPathList(LatexObject):
         # assume first item is a point
         if self._last_item_type is None:
             try:
-                _item = self._parse_point(item)
-                self._arg_list.append(_item)
-                self._last_item_type = 'point'
+                self._add_point(item)
             except (TypeError, ValueError):
                 # not a point, do something
                 raise TypeError(
@@ -341,30 +339,24 @@ class TikZPathList(LatexObject):
         elif self._last_item_type is 'point':
             # point after point is permitted, doesnt draw
             try:
-                _item = self._parse_point(item)
-                self._arg_list.append(_item)
-                self._last_item_type = 'point'
+                self._add_point(item)
                 return
             except (ValueError, TypeError):
                 # not a point, try path
                 pass
 
             # will raise typeerror if wrong
-            _item = self._parse_path(item)
-            self._arg_list.append(_item)
-            self._last_item_type = 'path'
+            self._add_path(item)
         elif self._last_item_type is 'path':
             # only point allowed after path
             original_exception = None
             try:
-                _item = self._parse_point(item)
-                self._arg_list.append(_item)
-                self._last_item_type = 'point'
+                self._add_point(item)
                 return
             except (TypeError, ValueError) as ex:
                 # check if trying to insert path after path
                 try:
-                    self._parse_path(item)
+                    self._add_path(item, parse_only=True)
                     not_a_path = False
                     original_exception = ex
                 except (TypeError, ValueError) as ex:
@@ -385,36 +377,47 @@ class TikZPathList(LatexObject):
         for item in args:
             self._parse_next_item(item)
 
-    @classmethod
-    def _parse_path(cls, path):
+    def _add_path(self, path, parse_only=False):
         if isinstance(path, str):
-            if path in cls._legal_path_types:
-                return TikZUserPath(path)
+            if path in self._legal_path_types:
+                _path = TikZUserPath(path)
             raise ValueError('Illegal user path type: "{}"'.format(path))
         elif isinstance(path, TikZUserPath):
-            return path
+            _path = path
+        else:
+            raise TypeError('Only string or TikZUserPath types are allowed')
 
-        raise TypeError('Only string or TikZUserPath types are allowed')
+        # add
+        if parse_only is False:
+            self._arg_list.append(_path)
+            self._last_item_type = 'path'
+        else:
+            return _path
 
-    @staticmethod
-    def _parse_point(point):
+    def _add_point(self, point, parse_only=False):
         if isinstance(point, str):
             try:
-                return TikZCoordinate.from_str(point)
+                _item = TikZCoordinate.from_str(point)
             except ValueError:
                 raise ValueError('Illegal point string: "{}"'.format(point))
         elif isinstance(point, TikZCoordinate):
-            return point
+            _item = point
         elif isinstance(point, tuple):
-            return TikZCoordinate(*point)
+            _item = TikZCoordinate(*point)
         elif isinstance(point, TikZNode):
-            return '({})'.format(point.handle)
+            _item = '({})'.format(point.handle)
         elif isinstance(point, TikZNodeAnchor):
-            return point.dumps()
-
-        raise TypeError('Only str, tuple, TikZCoordinate,'
-                        'TikZNode or TikZNodeAnchor types are allowed,'
-                        ' got: {}'.format(type(point)))
+            _item = point.dumps()
+        else:
+            raise TypeError('Only str, tuple, TikZCoordinate,'
+                            'TikZNode or TikZNodeAnchor types are allowed,'
+                            ' got: {}'.format(type(point)))
+        # add, finally
+        if parse_only is False:
+            self._arg_list.append(_item)
+            self._last_item_type = 'point'
+        else:
+            return _item
 
     def dumps(self):
         """Return representation of the path command."""
