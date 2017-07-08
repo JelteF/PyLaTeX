@@ -381,7 +381,8 @@ class TikZPathList(LatexObject):
         if isinstance(path, str):
             if path in self._legal_path_types:
                 _path = TikZUserPath(path)
-            raise ValueError('Illegal user path type: "{}"'.format(path))
+            else:
+                raise ValueError('Illegal user path type: "{}"'.format(path))
         elif isinstance(path, TikZUserPath):
             _path = path
         else:
