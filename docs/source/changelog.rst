@@ -17,6 +17,7 @@ This version might not be stable, but to install it use::
 Added
 ~~~~~
 - Longtables now have end_foot() and end_last_foot() functions.
+- Added TikZ basic drawing functions for nodes and paths, with minimal coordinate support.
 
 1.2.1_ - `docs <../v1.2.1/>`__ - 2017-05-19
 -------------------------------------------
