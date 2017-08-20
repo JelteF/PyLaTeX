@@ -260,11 +260,10 @@ class Document(Environment):
                             # Use FileNotFoundError when python 2 is dropped
                             if e.errno != errno.ENOENT:
                                 raise
-
+                rm_temp_dir()
+                                
             if clean_tex:
                 os.remove(basename + '.tex')  # Remove generated tex file
-
-            rm_temp_dir()
 
             # Compilation has finished, so no further compilers have to be
             # tried
