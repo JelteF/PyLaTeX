@@ -261,7 +261,7 @@ class Document(Environment):
                             if e.errno != errno.ENOENT:
                                 raise
                 rm_temp_dir()
-                                
+
             if clean_tex:
                 os.remove(basename + '.tex')  # Remove generated tex file
 
