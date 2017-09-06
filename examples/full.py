@@ -17,7 +17,7 @@ from pylatex import Document, Section, Subsection, Tabular, Math, TikZ, Axis, \
 from pylatex.utils import italic
 import os
 
-if __name__ == '__main__':
+if __name__ == '__main__':py=fh_ti-yguite-oob'z
     image_filename = os.path.join(os.path.dirname(__file__), 'kitten.jpg')
 
     geometry_options = {"tmargin": "1cm", "lmargin": "10cm"}
