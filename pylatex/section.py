@@ -25,7 +25,7 @@ class Section(Container):
     #: subclasses will also have the new default.
     numbering = True
 
-    def __init__(self, title, numbering=None, label=True, **kwargs):
+    def __init__(self, title, numbering=None, *, label=True, **kwargs):
         """
         Args
         ----
@@ -33,7 +33,7 @@ class Section(Container):
             The section title.
         numbering: bool
             Add a number before the section title.
-        label: Label or bool
+        label: Label or bool or str
             Can set a label manually or use a boolean to set
             preference between automatic or no label
         """
@@ -44,6 +44,12 @@ class Section(Container):
             self.numbering = numbering
         if isinstance(label, Label):
             self.label = label
+        elif isinstance(label, str):
+            if ':' in label:
+                label = label.split(':', 1)
+                self.label = Label(Marker(label[1], label[0]))
+            else:
+                self.label = Label(Marker(label, self.marker_prefix))
         elif label:
             self.label = Label(Marker(title, self.marker_prefix))
         else:
