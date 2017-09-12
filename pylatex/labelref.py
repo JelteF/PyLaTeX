@@ -6,7 +6,7 @@ from .package import Package
 from .base_classes import LatexObject
 
 
-def remove_invalid_char(s):
+def _remove_invalid_char(s):
     """Remove invalid and dangerous characters from a string."""
 
     s = ''.join([i if ord(i) >= 32 and ord(i) < 127 else '' for i in s])
@@ -36,8 +36,8 @@ class Marker(LatexObject):
         """
 
         if del_invalid_char:
-            prefix = remove_invalid_char(prefix)
-            name = remove_invalid_char(name)
+            prefix = _remove_invalid_char(prefix)
+            name = _remove_invalid_char(name)
         self.prefix = prefix
         self.name = name
 
@@ -90,6 +90,19 @@ class Eqref(RefLabelBase):
     """A class that represent a ref to a formulae."""
 
     packages = [Package('amsmath')]
+
+
+class Cref(RefLabelBase):
+    """A class that represent a cref (not a Cref)."""
+
+    packages = [Package('cleveref')]
+
+
+class CrefUp(RefLabelBase):
+    """A class that represent a Cref."""
+
+    packages = [Package('cleveref')]
+    latex_name = 'Cref'
 
 
 class Autoref(RefLabelBase):
