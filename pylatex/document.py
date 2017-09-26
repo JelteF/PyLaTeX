@@ -108,6 +108,9 @@ class Document(Environment):
 
         super().__init__(data=data)
 
+        # Usually the name is the class name, but if we create our own document class, \begin{document} gets messed up.
+        self.latex_name = 'document'
+
         self.packages |= packages
         self.variables = []
 
