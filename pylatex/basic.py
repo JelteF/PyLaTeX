@@ -13,9 +13,6 @@ from .package import Package
 class NewPage(CommandBase):
     """A command that adds a new page to the document."""
 
-    def __init__(self):
-        super().__init__()
-
 
 class LineBreak(NewPage):
     """A command that adds a line break to the document."""

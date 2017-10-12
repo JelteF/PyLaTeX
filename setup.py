@@ -28,7 +28,7 @@ extras = {
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
     'testing': ['flake8<3.0.0', 'pep8-naming', 'flake8_docstrings', 'nose',
-                'flake8-putty'],
+                'flake8-putty', 'coverage'],
     'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 
@@ -36,6 +36,9 @@ if sys.version_info[0] == 3:
     source_dir = '.'
     if sys.version_info < (3, 4):
         del extras['docs']
+        extras['matplotlib'] = ['matplotlib<2.0.0']
+        extras['matrices'] = ['numpy<1.12.0']
+        extras['quantities'][1] = 'numpy<1.12.0'
 else:
     source_dir = 'python2_source'
     dependencies.append('future>=0.15.2')

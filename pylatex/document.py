@@ -12,6 +12,7 @@ import errno
 from .base_classes import Environment, Command, Container, LatexObject, \
     UnsafeCommand
 from .package import Package
+from .errors import CompilerError
 from .utils import dumps_list, rm_temp_dir, NoEscape
 import pylatex.config as cf
 
@@ -41,9 +42,11 @@ class Document(Environment):
         document_options: str or `list`
             The options to supply to the documentclass
         fontenc: str
-            The option for the fontenc package.
+            The option for the fontenc package. If it is `None`, the fontenc
+            package will not be loaded at all.
         inputenc: str
-            The option for the inputenc package.
+            The option for the inputenc package. If it is `None`, the inputenc
+            package will not be loaded at all.
         font_size: str
             The font size to declare as normalsize
         lmodern: bool
@@ -57,7 +60,7 @@ class Document(Environment):
             Determines whether or not the document requires indentation. If it
             is `None` it will use the value from the active config. Which is
             `True` by default.
-        geometry_options: str or `list`
+        geometry_options: str or list
             The options to supply to the geometry package
         data: list
             Initial content of the document.
@@ -83,10 +86,12 @@ class Document(Environment):
         self._indent = indent
         self._microtype = microtype
 
-        fontenc = Package('fontenc', options=fontenc)
-        inputenc = Package('inputenc', options=inputenc)
-        packages = [fontenc, inputenc]
+        packages = []
 
+        if fontenc is not None:
+            packages.append(Package('fontenc', options=fontenc))
+        if inputenc is not None:
+            packages.append(Package('inputenc', options=inputenc))
         if lmodern:
             packages.append(Package('lmodern'))
         if textcomp:
@@ -255,19 +260,22 @@ class Document(Environment):
                             # Use FileNotFoundError when python 2 is dropped
                             if e.errno != errno.ENOENT:
                                 raise
+                rm_temp_dir()
 
             if clean_tex:
                 os.remove(basename + '.tex')  # Remove generated tex file
-
-            rm_temp_dir()
 
             # Compilation has finished, so no further compilers have to be
             # tried
             break
 
         else:
-            # If none of the compilers worked, raise the last error
-            raise(os_error)
+            # Notify user that none of the compilers worked.
+            raise(CompilerError(
+                'No LaTex compiler was found\n' +
+                'Either specify a LaTex compiler ' +
+                'or make sure you have latexmk or pdfLaTex installed.'
+            ))
 
         os.chdir(cur_dir)
 

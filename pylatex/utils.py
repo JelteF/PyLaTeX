@@ -101,7 +101,7 @@ def escape_latex(s):
 
 
 def fix_filename(path):
-    """Fix filenames for use in LaTeX.
+    r"""Fix filenames for use in LaTeX.
 
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
@@ -124,6 +124,8 @@ def fix_filename(path):
     '/etc/local/{foo.bar}.pdf'
     >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
     '/etc/local/foo.bar.baz/document.pdf'
+    >>> fix_filename("/etc/local/foo.bar.baz/foo~1/document.pdf")
+    '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}'
     """
 
     path_parts = path.split('/' if os.name == 'posix' else '\\')
@@ -136,7 +138,12 @@ def fix_filename(path):
         filename = '{' + '.'.join(file_parts[0:-1]) + '}.' + file_parts[-1]
 
     dir_parts.append(filename)
-    return '/'.join(dir_parts)
+    fixed_path = '/'.join(dir_parts)
+
+    if '~' in fixed_path:
+        fixed_path = r'\detokenize{' + fixed_path + '}'
+
+    return fixed_path
 
 
 def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
@@ -151,9 +158,9 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     token : str
         The token (default is a newline) to separate objects in the list.
     mapper: callable or `list`
-        A function or a list of functions that should be called on all
-        entries of the list after converting them to a string, for instance
-        `~.bold`
+        A function, class or a list of functions/classes that should be called
+        on all entries of the list after converting them to a string, for
+        instance `~.bold` or `~.MediumText`.
     as_content: bool
         Indicates whether the items in the list should be dumped using
         `~.LatexObject.dumps_as_content`

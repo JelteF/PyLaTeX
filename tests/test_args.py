@@ -19,7 +19,9 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     PageStyle, Head, Foot, StandAloneGraphic, Tabularx, ColumnType, NewLine, \
     LineBreak, NewPage, HFill, HugeText, LargeText, MediumText, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
-    HorizontalSpace, VerticalSpace
+    HorizontalSpace, VerticalSpace, TikZCoordinate, TikZNode, \
+    TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, \
+    TikZScope, TikZOptions
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
 
@@ -117,6 +119,14 @@ def test_table():
     coloredtable = Tabu(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
 
+    # Colored Tabu with 'spread'
+    coloredtable = Tabu(table_spec='X[c] X[c]', spread="1in")
+    coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
+
+    # Colored Tabu with 'to'
+    coloredtable = Tabu(table_spec='X[c] X[c]', to="5in")
+    coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
+
     # Colored Tabularx
     coloredtable = Tabularx(table_spec='X[c] X[c]')
     coloredtable.add_row(["test", "test2"], color="gray", mapper=bold)
@@ -191,6 +201,103 @@ def test_tikz():
     p = Plot(name=None, func=None, coordinates=None, error_bar=None,
              options=None)
     repr(p)
+
+    opt = TikZOptions(None)
+    repr(opt)
+
+    scope = TikZScope(data=None)
+    repr(scope)
+
+    c = TikZCoordinate.from_str("(0,0)")
+    c = TikZCoordinate(x=0, y=0, relative=False)
+    d = c + (0, 1)
+    e = c - (0, 1)
+    f = (0, 1) + c
+    c.distance_to(d)
+    repr(c)
+    repr(d)
+    repr(e)
+    repr(f)
+
+    bool(c == (1, 1))
+    bool(c == TikZCoordinate(1, 1))
+    bool(TikZCoordinate(1, 1, relative=True) == (1, 1))
+    bool(TikZCoordinate(1, 1, relative=False) == (1, 1))
+    bool(TikZCoordinate(1, 1, relative=True) == TikZCoordinate(1,
+                                                               1,
+                                                               relative=False))
+
+    # test expected to fail
+    try:
+        g = TikZCoordinate(0, 1, relative=True) +\
+            TikZCoordinate(1, 0, relative=False)
+        repr(g)
+        raise Exception
+    except ValueError:
+        pass
+
+    a = TikZNodeAnchor(node_handle=None, anchor_name=None)
+    repr(a)
+
+    n = TikZNode(handle=None, options=None, at=None, text=None)
+    repr(n)
+
+    p = n.get_anchor_point("north")
+    repr(p)
+
+    p = n.get_anchor_point('_180')
+    repr(p)
+
+    p = n.west
+    repr(p)
+
+    up = TikZUserPath(path_type="edge", options=TikZOptions('bend right'))
+    repr(up)
+
+    pl = TikZPathList('(0, 1)', '--', '(2, 0)')
+    pl.append((0.5, 0))
+    repr(pl)
+
+    # generate a failure, illegal start
+    try:
+        pl = TikZPathList('--', '(0, 1)')
+        raise Exception
+    except TypeError:
+        pass
+
+    # fail with illegal path type
+    try:
+        pl = TikZPathList('(0, 1)', 'illegal', '(0, 2)')
+        raise Exception
+    except ValueError:
+        pass
+
+    # fail with path after path
+    try:
+        pl = TikZPathList('(0, 1)', '--', '--')
+        raise Exception
+    except ValueError:
+        pass
+
+    # other type of failure: illegal identifier after path
+    try:
+        pl = TikZPathList('(0, 1)', '--', 'illegal')
+        raise Exception
+    except (ValueError, TypeError):
+        pass
+
+    pt = TikZPath(path=None, options=TikZOptions("->"))
+    pt.append(TikZCoordinate(0, 1, relative=True))
+    repr(pt)
+
+    pt = TikZPath(path=[n.west, 'edge', TikZCoordinate(0, 1, relative=True)])
+    repr(pt)
+
+    pt = TikZPath(path=pl, options=None)
+    repr(pt)
+
+    dr = TikZDraw(path=None, options=None)
+    repr(dr)
 
 
 def test_lists():

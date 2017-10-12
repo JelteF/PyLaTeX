@@ -6,17 +6,47 @@ project adheres to `Semantic Versioning <http://semver.org/>`_.
 
 .. highlight:: bash
 
-Unreleased_ - `docs <../latest/>`_
------------------------------------------
+Unreleased_ - `docs <../latest/>`__
+-----------------------------------
 See these docs for changes that have not yet been released and are
 only present in the development version.
 This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- Longtables now have end_foot() and end_last_foot() functions.
+- Added TikZ basic drawing functions for nodes and paths, with minimal coordinate support.
+
+1.2.1_ - `docs <../v1.2.1/>`__ - 2017-05-19
+-------------------------------------------
+
 Fixed
 ~~~~~
-- Escape '[' and ']' (left and right bracket).
+- Filenames with a ``~`` (tilde) in them now also work as figure paths. This
+  caused issues when using temp directories on Windows.
+
+
+1.2.0_ - `docs <../v1.2.0/>`__ - 2017-05-06
+-------------------------------------------
+
+Added
+~~~~~
+- Escape flag to `.Math` container
+- ``_star_latex_name`` attribute of `.LatexObject` to append a star
+- `.Alignat` math environment
+- `.Figure.add_plot` method looks for extension in kwargs
+- `.Tabu` and `.LongTabu` environments learn 'spread' and 'to' syntax to control their width.
+
+
+Fixed
+~~~~~
+- Escape ``[`` and ``]`` (left and right bracket).
+- Allow mappers of `~.dumps_list` to return a `~.LatexObject`.
+- Section numbering default behaviour fixed
+- Setter method for `~.LatexObject.escape` property added
+
 
 1.1.1_ - `docs <../v1.1.1/>`__ - 2016-12-10
 -------------------------------------------
@@ -377,7 +407,9 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.1.1...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.2.1...HEAD
+.. _1.2.1: https://github.com/JelteF/PyLaTeX/compare/v1.2.0...v1.2.1
+.. _1.2.0: https://github.com/JelteF/PyLaTeX/compare/v1.1.1...v1.2.0
 .. _1.1.1: https://github.com/JelteF/PyLaTeX/compare/v1.1.0...v1.1.1
 .. _1.1.0: https://github.com/JelteF/PyLaTeX/compare/v1.0.0...v1.1.0
 .. _1.0.0: https://github.com/JelteF/PyLaTeX/compare/v0.8.0...v1.0.0

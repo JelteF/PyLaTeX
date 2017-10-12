@@ -45,6 +45,7 @@ python2_source
 
 # Venv
 venv*
+.venv*
 
 # Ignore generated doc files
 docs/source/examples
@@ -52,3 +53,5 @@ docs/source/pylatex
 docs/source/_static/examples
 
 docs/gh-pages
+
+coverage.xml

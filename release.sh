@@ -26,7 +26,7 @@ fi
 
 set -x
 
-git tag $1
+git tag $1 -a -m ''
 
 ./convert_to_py2.sh
 

@@ -1,5 +1,5 @@
-PyLaTeX |Travis|
-================
+PyLaTeX |Travis| |License| |PyPi| |Stable Docs| |Latest Docs|
+=============================================================
 
 PyLaTeX is a Python library for creating and compiling LaTeX files or
 snippets. The goal of this library is being an easy, but extensible
@@ -46,3 +46,15 @@ license <https://github.com/JelteF/PyLaTeX/blob/master/LICENSE>`__
 
 .. |Travis| image:: https://img.shields.io/travis/JelteF/PyLaTeX.svg
    :target: https://travis-ci.org/JelteF/PyLaTeX
+   
+.. |License| image:: https://img.shields.io/github/license/jeltef/pylatex.svg   
+   :target: https://github.com/JelteF/PyLaTeX/blob/master/LICENSE
+
+.. |PyPi| image:: https://img.shields.io/pypi/v/pylatex.svg
+   :target: https://pypi.python.org/pypi/PyLaTeX
+   
+.. |Latest Docs| image:: https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat
+   :target: https://jeltef.github.io/PyLaTeX/latest/
+   
+.. |Stable Docs| image:: https://img.shields.io/badge/docs-stable-brightgreen.svg?style=flat
+   :target: https://jeltef.github.io/PyLaTeX/current/
