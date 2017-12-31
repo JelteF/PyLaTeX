@@ -166,7 +166,8 @@ class Document(Environment):
         super().generate_tex(self._select_filepath(filepath))
 
     def generate_pdf(self, filepath=None, *, clean=True, clean_tex=True,
-                     compiler=None, compiler_args=None, silent=True):
+                     compiler=None, compiler_args=None, silent=True,
+                     rerun=False):
         """Generate a pdf file from the document.
 
         Args
@@ -188,8 +189,9 @@ class Document(Environment):
             this is None it defaults to an empty list.
         silent: bool
             Whether to hide compiler output
+        rerun: bool
+            If the compiler indicates that LaTeX should be rerun, do so.
         """
-
         if compiler_args is None:
             compiler_args = []
 
@@ -221,12 +223,25 @@ class Document(Environment):
 
         os_error = None
 
+        def _compile(command):
+            try:
+                output = subprocess.check_output(command,
+                                                 stderr=subprocess.STDOUT)
+            except subprocess.CalledProcessError as e:
+                # For all other errors print the output and raise the error
+                print(e.output.decode())
+                raise
+            else:
+                if rerun and "Rerun LaTeX" in output.decode():
+                    _compile(command)
+                if not silent:
+                    print(output.decode())
+
         for compiler, arguments in compilers:
             command = [compiler] + arguments + compiler_args + main_arguments
 
             try:
-                output = subprocess.check_output(command,
-                                                 stderr=subprocess.STDOUT)
+                _compile(command)
             except (OSError, IOError) as e:
                 # Use FileNotFoundError when python 2 is dropped
                 os_error = e
@@ -235,13 +250,6 @@ class Document(Environment):
                     # If compiler does not exist, try next in the list
                     continue
                 raise
-            except subprocess.CalledProcessError as e:
-                # For all other errors print the output and raise the error
-                print(e.output.decode())
-                raise
-            else:
-                if not silent:
-                    print(output.decode())
 
             if clean:
                 try:
