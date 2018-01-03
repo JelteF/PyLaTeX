@@ -88,6 +88,7 @@ repository <https://github.com/JelteF/PyLaTeX/>`_.
     usage
     examples
     api
+    faq
     changelog
     contributing
 
