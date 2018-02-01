@@ -69,8 +69,10 @@ def _dimensionality_to_siunitx(dim):
 class Quantity(Command):
     """A class representing quantities."""
 
-    packages = [Package('siunitx'),
-                NoEscape('\\DeclareSIUnit\\rpm{rpm}')]
+    packages = [
+        Package('siunitx', options=[NoEscape('separate-uncertainty=true')]),
+        NoEscape('\\DeclareSIUnit\\rpm{rpm}')
+    ]
 
     def __init__(self, quantity, *, options=None, format_cb=None):
         r"""
@@ -123,7 +125,8 @@ class Quantity(Command):
 
         if isinstance(quantity, pq.UncertainQuantity):
             magnitude_str = '{} +- {}'.format(
-                _format(quantity.magnitude), _format(quantity.uncertainty))
+                _format(quantity.magnitude),
+                _format(quantity.uncertainty.magnitude))
         elif isinstance(quantity, pq.Quantity):
             magnitude_str = _format(quantity.magnitude)
 

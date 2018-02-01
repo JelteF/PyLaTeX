@@ -35,4 +35,5 @@ def test_dimensionality_to_siunitx():
 
 if __name__ == '__main__':
     test_quantity()
+    test_quantity_uncertain()
     test_dimensionality_to_siunitx()
