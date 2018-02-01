@@ -82,7 +82,7 @@ class Quantity(Command):
             The quantity that should be displayed
         options: None, str, list or `~.Options`
             Options of the command. These are placed in front of the arguments.
-        format_cb: callable
+        format_cb: callableS
             A function which formats the number in the quantity. By default
             this uses `numpy.array_str`.
 
