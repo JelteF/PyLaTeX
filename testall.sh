@@ -66,7 +66,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! $python $(which nosetests) --with-coverage tests/*; then
+if ! $python "$(which nosetests)" --with-coverage tests/*; then
     exit 1
 fi
 mv .coverage{,.tests}
@@ -78,8 +78,8 @@ fi
 
 count=0
 for f in $main_folder/examples/*.py; do
-    echo -e '\e[32mTesting '$f'\e[0m'
-    if ! $python $(which coverage) run $f; then
+    echo -e '\e[32mTesting '"$f"'\e[0m'
+    if ! $python "$(which coverage)" run "$f"; then
         exit 1
     fi
     ((count ++))
@@ -89,7 +89,7 @@ done
 coverage combine
 
 if [ "$clean" = 'TRUE' ]; then
-    rm *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk > /dev/null
+    rm -- *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk > /dev/null
 fi
 
 
@@ -97,10 +97,10 @@ if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" !
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
     set -e
-    ./create_doc_files.sh -p $python
+    ./create_doc_files.sh -p "$python"
     make clean
     set +e
-    if ! $python $(which sphinx-build) -b html -d build/doctrees/ source build/html -nW; then
+    if ! $python "$(which sphinx-build)" -b html -d build/doctrees/ source build/html -nW; then
         exit 1
     fi
 fi
