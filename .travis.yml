@@ -39,7 +39,5 @@ install:
   - pip install 3to2 future
   - pip install codecov
   - 'if [ "$TRAVIS_PYTHON_VERSION" == 3.3 -o "$TRAVIS_PYTHON_VERSION" == 3.4 ]; then pip install -e .[all] --upgrade; else pip install -r dev_requirements.txt --upgrade; fi'
-  # Temporary fix for https://github.com/python-quantities/python-quantities/issues/129
-  - pip install --upgrade git+git://github.com/python-quantities/python-quantities.git@master
 script: ./testall.sh
 after_script: codecov
