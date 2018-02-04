@@ -21,7 +21,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace, TikZCoordinate, TikZNode, \
     TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, \
-    TikZScope, TikZOptions
+    TikZScope, TikZOptions, Hyperref, Marker
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
 
@@ -68,6 +68,11 @@ def test_document():
 def test_section():
     sec = Section(title='', numbering=True, data=None)
     repr(sec)
+
+
+def test_hyperref():
+    hr = Hyperref(Marker("marker", "prefix"), "text")
+    repr(hr)
 
 
 def test_math():
