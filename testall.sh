@@ -93,7 +93,7 @@ if [ "$clean" = 'TRUE' ]; then
 fi
 
 
-if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.3.* ]]; then
+if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.3.* && "$python_version_long" != 3.4.* ]]; then
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
     set -e
