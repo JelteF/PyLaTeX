@@ -73,7 +73,7 @@ class Section(Container):
 
         string = Command(self.latex_name + num, self.title).dumps()
         if self.label is not None:
-            string += '\n' + self.label.dumps()
+            string += '%\n' + self.label.dumps()
         string += '%\n' + self.dumps_content()
 
         return string
