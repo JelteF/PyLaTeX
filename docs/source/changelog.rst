@@ -19,6 +19,7 @@ Added
 - Longtables now have end_foot() and end_last_foot() functions.
 - Added TikZ basic drawing functions for nodes and paths, with minimal coordinate support.
 - More section levels `.Part`, `.Chapter`, `.Paragraph`, `.Subparagraph`.
+- Add label and cross reference support.
 
 Changed
 ~~~~~~~
