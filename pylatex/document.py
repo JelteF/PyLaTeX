@@ -110,7 +110,7 @@ class Document(Environment):
 
         # Usually the name is the class name, but if we create our own
         # document class, \begin{document} gets messed up.
-        self.latex_name = 'document'
+        self._latex_name = 'document'
 
         self.packages |= packages
         self.variables = []
