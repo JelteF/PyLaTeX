@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numpy example &mdash; PyLaTeX 1.2.1 documentation</title>
+  <title>Numpy example &mdash; PyLaTeX 1.3.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.2.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Own commands example" href="own_commands_ex.html"/>
         <link rel="prev" title="Multirow example" href="multirow.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
             
           
@@ -111,12 +111,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_inheritance.html">Basic inheritance example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="longtable.html">Longtable example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
@@ -131,9 +133,11 @@
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tikzdraw.html">Tikzdraw example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
 </ul>
@@ -274,7 +278,11 @@
 41
 42
 43
-44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
@@ -287,7 +295,9 @@
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>Numpy tests<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Numpy tests<span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection</span><span class="nb">{</span>Array<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>subsec:Array<span class="nb">}</span><span class="c">%</span>
 <span class="sb">\[</span><span class="c">%</span>
 <span class="nv">\mathbf</span><span class="nb">{a} </span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
 <span class="m">100</span><span class="nv">\\</span><span class="c">%</span>
@@ -298,6 +308,7 @@
 
 <span class="c">%</span>
 <span class="k">\subsection</span><span class="nb">{</span>Matrix<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>subsec:Matrix<span class="nb">}</span><span class="c">%</span>
 <span class="sb">\[</span><span class="c">%</span>
 <span class="nb">M</span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{bmatrix}</span><span class="c">%</span>
 <span class="m">2</span><span class="nb">&amp;</span><span class="m">3</span><span class="nb">&amp;</span><span class="m">4</span><span class="nv">\\</span><span class="c">%</span>
@@ -308,6 +319,7 @@
 
 <span class="c">%</span>
 <span class="k">\subsection</span><span class="nb">{</span>Product<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>subsec:Product<span class="nb">}</span><span class="c">%</span>
 <span class="sb">\[</span><span class="c">%</span>
 <span class="nb">M </span><span class="nv">\mathbf</span><span class="nb">{a} </span><span class="o">=</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{pmatrix}</span><span class="c">%</span>
 <span class="m">310</span><span class="nv">\\</span><span class="c">%</span>
@@ -369,7 +381,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.2.1',
+            VERSION:'1.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Matplotlib example &mdash; PyLaTeX 1.2.1 documentation</title>
+  <title>Matplotlib example &mdash; PyLaTeX 1.3.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.2.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Minipage example" href="minipage.html"/>
         <link rel="prev" title="Longtabu example" href="longtabu.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
             
           
@@ -111,12 +111,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Library usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_inheritance.html">Basic inheritance example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="longtable.html">Longtable example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Matplotlib example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
@@ -131,9 +133,11 @@
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tikzdraw.html">Tikzdraw example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
 </ul>
@@ -259,7 +263,8 @@
 27
 28
 29
-30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
@@ -274,12 +279,13 @@
 <span class="k">\normalsize</span><span class="c">%</span>
 Introduction.<span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:I am a section<span class="nb">}</span><span class="c">%</span>
 Take a look at this beautiful plot:<span class="c">%</span>
 
 
 <span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[htbp]<span class="c">%</span>
 <span class="k">\centering</span><span class="c">%</span>
-<span class="k">\includegraphics</span><span class="na">[width=1\textwidth]</span><span class="nb">{</span>/tmp/pylatex/4f3e9f79-c9c9-4aba-816a-08d0ace75a39.pdf<span class="nb">}</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=1\textwidth]</span><span class="nb">{</span>/tmp/pylatex/59ef652f-b3d0-4a78-a0d2-27530669eb64.pdf<span class="nb">}</span><span class="c">%</span>
 <span class="k">\caption</span><span class="nb">{</span>I am a caption.<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
 
@@ -327,7 +333,8 @@ Conclusion.<span class="c">%</span>
 27
 28
 29
-30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
@@ -342,12 +349,13 @@ Conclusion.<span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 Introduction.<span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>I am a section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:I am a section<span class="nb">}</span><span class="c">%</span>
 Take a look at this beautiful plot:<span class="c">%</span>
 
 
 <span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[htbp]<span class="c">%</span>
 <span class="k">\centering</span><span class="c">%</span>
-<span class="k">\includegraphics</span><span class="na">[width=0.5\textwidth]</span><span class="nb">{</span>/tmp/pylatex/7c37b266-ec0e-4866-a442-b478132f44bd.pdf<span class="nb">}</span><span class="c">%</span>
+<span class="k">\includegraphics</span><span class="na">[width=0.5\textwidth]</span><span class="nb">{</span>/tmp/pylatex/8fe65a5d-1679-49a1-8e11-65636326975e.pdf<span class="nb">}</span><span class="c">%</span>
 <span class="k">\caption</span><span class="nb">{</span>I am a caption.<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
 
@@ -408,7 +416,7 @@ Conclusion.<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.2.1',
+            VERSION:'1.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

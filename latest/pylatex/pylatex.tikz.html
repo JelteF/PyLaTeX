@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.tikz &mdash; PyLaTeX 1.2.1 documentation</title>
+  <title>pylatex.tikz &mdash; PyLaTeX 1.3.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.2.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.utils" href="pylatex.utils.html"/>
         <link rel="prev" title="pylatex.table" href="pylatex.table.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
             
           
@@ -122,6 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.figure.html">pylatex.figure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.frames.html">pylatex.frames</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.headfoot.html">pylatex.headfoot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylatex.labelref.html">pylatex.labelref</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.lists.html">pylatex.lists</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.math.html">pylatex.math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pylatex.package.html">pylatex.package</a></li>
@@ -133,6 +134,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pylatex.utils.html">pylatex.utils</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">How to contribute</a></li>
 </ul>
@@ -185,8 +187,33 @@
 <h1>pylatex.tikz<a class="headerlink" href="#pylatex-tikz" title="Permalink to this headline">¶</a></h1>
 <p>This module implements the classes used to show plots.</p>
 <dl class="class">
+<dt id="pylatex.tikz.TikZOptions">
+<em class="property">class </em><code class="descname">TikZOptions</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L15-L23"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.Options</span></code></a></p>
+<p>Options class, do not escape.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> &#8211; Positional parameters</li>
+<li><strong>**kwargs</strong> &#8211; Keyword parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pylatex.tikz.TikZOptions.append_positional">
+<code class="descname">append_positional</code><span class="sig-paren">(</span><em>option</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L20-L23"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZOptions.append_positional" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new positional option.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="pylatex.tikz.TikZ">
-<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.2.1/pylatex/tikz.py#L14-L18"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">TikZ</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L26-L30"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>Basic TikZ container class.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -211,7 +238,7 @@
 
 <dl class="class">
 <dt id="pylatex.tikz.Axis">
-<em class="property">class </em><code class="descname">Axis</code><span class="sig-paren">(</span><em>options=None</em>, <em>*</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.2.1/pylatex/tikz.py#L21-L34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.Axis" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Axis</code><span class="sig-paren">(</span><em>options=None</em>, <em>*</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L33-L46"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.Axis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>PGFPlots axis container class, this contains plots.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -230,8 +257,198 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="pylatex.tikz.TikZScope">
+<em class="property">class </em><code class="descname">TikZScope</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L49-L52"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZScope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
+<p>TikZ Scope Environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>options</strong> (str or list or  <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><code class="xref py py-obj docutils literal"><span class="pre">Options</span></code></a>) &#8211; Options to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added to the <code class="docutils literal"><span class="pre">\begin</span></code> command</li>
+<li><strong>start_arguments</strong> (str or list or <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments" title="pylatex.base_classes.command.Arguments"><code class="xref py py-obj docutils literal"><span class="pre">Arguments</span></code></a>) &#8211; Arguments to be added before the options</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pylatex.tikz.TikZScope.omit_if_empty">
+<code class="descname">omit_if_empty</code><em class="property"> = False</em><a class="headerlink" href="#pylatex.tikz.TikZScope.omit_if_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZCoordinate">
+<em class="property">class </em><code class="descname">TikZCoordinate</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>relative=False</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L55-L156"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZCoordinate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
+<p>A General Purpose Coordinate Class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<a class="reference internal" href="pylatex.base_classes.float.html#module-pylatex.base_classes.float" title="pylatex.base_classes.float"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; X coordinate</li>
+<li><strong>y</strong> (<a class="reference internal" href="pylatex.base_classes.float.html#module-pylatex.base_classes.float" title="pylatex.base_classes.float"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; Y coordinate</li>
+<li><strong>relative</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; Coordinate is relative or absolute</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="pylatex.tikz.TikZCoordinate.from_str">
+<em class="property">classmethod </em><code class="descname">from_str</code><span class="sig-paren">(</span><em>coordinate</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L88-L103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZCoordinate.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a TikZCoordinate object from a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylatex.tikz.TikZCoordinate.distance_to">
+<code class="descname">distance_to</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L151-L156"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZCoordinate.distance_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Euclidean distance between two coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZObject">
+<em class="property">class </em><code class="descname">TikZObject</code><span class="sig-paren">(</span><em>options=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L159-L171"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
+<p>Abstract Class that most TikZ Objects inherits from.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a>) &#8211; Options pertaining to the object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZNodeAnchor">
+<em class="property">class </em><code class="descname">TikZNodeAnchor</code><span class="sig-paren">(</span><em>node_handle</em>, <em>anchor_name</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L174-L196"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZNodeAnchor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
+<p>Representation of a node&#8217;s anchor point.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>node_handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Node&#8217;s identifier</li>
+<li><strong>anchor_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Name of the anchor</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZNode">
+<em class="property">class </em><code class="descname">TikZNode</code><span class="sig-paren">(</span><em>handle=None</em>, <em>options=None</em>, <em>at=None</em>, <em>text=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L199-L270"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.tikz.TikZObject" title="pylatex.tikz.TikZObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.tikz.TikZObject</span></code></a></p>
+<p>A class that represents a TiKZ node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>handle</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Node identifier</li>
+<li><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a>) &#8211; List of options</li>
+<li><strong>at</strong> (<a class="reference internal" href="#pylatex.tikz.TikZCoordinate" title="pylatex.tikz.TikZCoordinate"><em>TikZCoordinate</em></a>) &#8211; Coordinate where node is placed</li>
+<li><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Body text of the node</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pylatex.tikz.TikZNode.get_anchor_point">
+<code class="descname">get_anchor_point</code><span class="sig-paren">(</span><em>anchor_name</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L249-L263"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZNode.get_anchor_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an anchor point of the node, if it exists.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZUserPath">
+<em class="property">class </em><code class="descname">TikZUserPath</code><span class="sig-paren">(</span><em>path_type</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L276-L300"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZUserPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
+<p>Represents a possible TikZ path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; Type of path used</li>
+<li><strong>options</strong> (<a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.Options" title="pylatex.base_classes.command.Options"><em>Options</em></a>) &#8211; List of options to add</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZPathList">
+<em class="property">class </em><code class="descname">TikZPathList</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L303-L435"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZPathList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
+<p>Represents a path drawing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.6)"><em>list</em></a>) &#8211; A list of path elements</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZPath">
+<em class="property">class </em><code class="descname">TikZPath</code><span class="sig-paren">(</span><em>path=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L438-L474"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.tikz.TikZObject" title="pylatex.tikz.TikZObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.tikz.TikZObject</span></code></a></p>
+<p>The TikZ path command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> (<a class="reference internal" href="#pylatex.tikz.TikZPathList" title="pylatex.tikz.TikZPathList"><em>TikZPathList</em></a>) &#8211; A list of the nodes, path types in the path</li>
+<li><strong>options</strong> (<a class="reference internal" href="#pylatex.tikz.TikZOptions" title="pylatex.tikz.TikZOptions"><em>TikZOptions</em></a>) &#8211; A list of options for the command</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pylatex.tikz.TikZDraw">
+<em class="property">class </em><code class="descname">TikZDraw</code><span class="sig-paren">(</span><em>path=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L477-L495"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.TikZDraw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pylatex.tikz.TikZPath" title="pylatex.tikz.TikZPath"><code class="xref py py-class docutils literal"><span class="pre">pylatex.tikz.TikZPath</span></code></a></p>
+<p>A draw command is just a path command with the draw option.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> (<a class="reference internal" href="#pylatex.tikz.TikZPathList" title="pylatex.tikz.TikZPathList"><em>TikZPathList</em></a>) &#8211; A list of the nodes, path types in the path</li>
+<li><strong>options</strong> (<a class="reference internal" href="#pylatex.tikz.TikZOptions" title="pylatex.tikz.TikZOptions"><em>TikZOptions</em></a>) &#8211; A list of options for the command</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
 <dt id="pylatex.tikz.Plot">
-<em class="property">class </em><code class="descname">Plot</code><span class="sig-paren">(</span><em>name=None</em>, <em>func=None</em>, <em>coordinates=None</em>, <em>error_bar=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.2.1/pylatex/tikz.py#L37-L100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.Plot" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Plot</code><span class="sig-paren">(</span><em>name=None</em>, <em>func=None</em>, <em>coordinates=None</em>, <em>error_bar=None</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/tikz.py#L498-L565"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.tikz.Plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
 <p>A class representing a PGFPlot.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -293,7 +510,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.2.1',
+            VERSION:'1.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

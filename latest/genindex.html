@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; PyLaTeX 1.2.1 documentation</title>
+  <title>Index &mdash; PyLaTeX 1.3.0 documentation</title>
   
 
   
@@ -56,7 +56,7 @@
         <link rel="index" title="Index"
               href="#"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="PyLaTeX 1.2.1 documentation" href="index.html"/> 
+    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
             
           
@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Library usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a></li>
 </ul>
@@ -224,14 +225,14 @@
         <li><a href="pylatex/pylatex.table.html#pylatex.table.Tabularx.add_hline">(Tabularx method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.figure.html#pylatex.figure.Figure.add_image">add_image() (Figure method)</a>
 
       <ul>
         <li><a href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure.add_image">(SubFigure method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.lists.html#pylatex.lists.Description.add_item">add_item() (Description method)</a>
 
       <ul>
@@ -266,7 +267,11 @@
 </li>
       <li><a href="examples/environment_ex.html#examples.environment_ex.AllTT">AllTT (class in examples.environment_ex)</a>
 </li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZOptions.append_positional">append_positional() (TikZOptions method)</a>
+</li>
       <li><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Arguments">Arguments (class in pylatex.base_classes.command)</a>
+</li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Autoref">Autoref (class in pylatex.labelref)</a>
 </li>
       <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.Axis">Axis (class in pylatex.tikz)</a>
 </li>
@@ -316,13 +321,17 @@
 </li>
       <li><a href="pylatex/pylatex.headfoot.html#pylatex.headfoot.PageStyle.change_thickness">change_thickness() (PageStyle method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pylatex/pylatex.section.html#pylatex.section.Chapter">Chapter (class in pylatex.section)</a>
+</li>
       <li><a href="pylatex/pylatex.table.html#pylatex.table.ColumnType">ColumnType (class in pylatex.table)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Command">Command (class in pylatex.base_classes.command)</a>
 </li>
       <li><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase">CommandBase (class in pylatex.base_classes.command)</a>
+</li>
+      <li><a href="pylatex/pylatex.errors.html#pylatex.errors.CompilerError">CompilerError</a>
 </li>
       <li><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container">Container (class in pylatex.base_classes.containers)</a>
 </li>
@@ -334,6 +343,10 @@
         <li><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment.create">(Environment method)</a>
 </li>
       </ul></li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Cref">Cref (class in pylatex.labelref)</a>
+</li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.CrefUp">CrefUp (class in pylatex.labelref)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -343,6 +356,8 @@
       <li><a href="pylatex/pylatex.config.html#pylatex.config.Default">Default (in module pylatex.config)</a>
 </li>
       <li><a href="pylatex/pylatex.lists.html#pylatex.lists.Description">Description (class in pylatex.lists)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZCoordinate.distance_to">distance_to() (TikZCoordinate method)</a>
 </li>
       <li><a href="pylatex/pylatex.document.html#pylatex.document.Document">Document (class in pylatex.document)</a>
 </li>
@@ -380,6 +395,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.end_paragraph">end_paragraph (LatexObject attribute)</a>
 </li>
+      <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.end_table_footer">end_table_footer() (LongTable method)</a>
+
+      <ul>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.end_table_footer">(LongTabu method)</a>
+</li>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabularx.end_table_footer">(LongTabularx method)</a>
+</li>
+      </ul></li>
       <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.end_table_header">end_table_header() (LongTable method)</a>
 
       <ul>
@@ -388,9 +411,19 @@
         <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabularx.end_table_header">(LongTabularx method)</a>
 </li>
       </ul></li>
+      <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.end_table_last_footer">end_table_last_footer() (LongTable method)</a>
+
+      <ul>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.end_table_last_footer">(LongTabu method)</a>
+</li>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabularx.end_table_last_footer">(LongTabularx method)</a>
+</li>
+      </ul></li>
       <li><a href="pylatex/pylatex.lists.html#pylatex.lists.Enumerate">Enumerate (class in pylatex.lists)</a>
 </li>
       <li><a href="pylatex/pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment">Environment (class in pylatex.base_classes.containers)</a>
+</li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Eqref">Eqref (class in pylatex.labelref)</a>
 </li>
       <li><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.escape">escape (LatexObject attribute)</a>
 </li>
@@ -402,12 +435,14 @@
 </li>
       <li><a href="examples/basic.html#module-examples.basic">examples.basic (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="examples/basic_inheritance.html#module-examples.basic_inheritance">examples.basic_inheritance (module)</a>
+</li>
       <li><a href="examples/complex_report.html#module-examples.complex_report">examples.complex_report (module)</a>
 </li>
       <li><a href="examples/config.html#module-examples.config">examples.config (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="examples/environment_ex.html#module-examples.environment_ex">examples.environment_ex (module)</a>
 </li>
       <li><a href="examples/full.html#module-examples.full">examples.full (module)</a>
@@ -415,6 +450,8 @@
       <li><a href="examples/header.html#module-examples.header">examples.header (module)</a>
 </li>
       <li><a href="examples/lists.html#module-examples.lists">examples.lists (module)</a>
+</li>
+      <li><a href="examples/longtable.html#module-examples.longtable">examples.longtable (module)</a>
 </li>
       <li><a href="examples/longtabu.html#module-examples.longtabu">examples.longtabu (module)</a>
 </li>
@@ -436,6 +473,8 @@
 </li>
       <li><a href="examples/textblock.html#module-examples.textblock">examples.textblock (module)</a>
 </li>
+      <li><a href="examples/tikzdraw.html#module-examples.tikzdraw">examples.tikzdraw (module)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -450,17 +489,27 @@
 </li>
       <li><a href="pylatex/pylatex.utils.html#pylatex.utils.fix_filename">fix_filename() (in module pylatex.utils)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.base_classes.float.html#pylatex.base_classes.float.Float">Float (class in pylatex.base_classes.float)</a>
 </li>
       <li><a href="pylatex/pylatex.position.html#pylatex.position.FlushLeft">FlushLeft (class in pylatex.position)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.position.html#pylatex.position.FlushRight">FlushRight (class in pylatex.position)</a>
 </li>
       <li><a href="pylatex/pylatex.headfoot.html#pylatex.headfoot.Foot">Foot (class in pylatex.headfoot)</a>
 </li>
+      <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.foot">foot (LongTable attribute)</a>
+
+      <ul>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.foot">(LongTabu attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabularx.foot">(LongTabularx attribute)</a>
+</li>
+      </ul></li>
       <li><a href="pylatex/pylatex.basic.html#pylatex.basic.FootnoteText">FootnoteText (class in pylatex.basic)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZCoordinate.from_str">from_str() (pylatex.tikz.TikZCoordinate class method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -470,14 +519,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.document.html#pylatex.document.Document.generate_pdf">generate_pdf() (Document method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.document.html#pylatex.document.Document.generate_tex">generate_tex() (Document method)</a>
 
       <ul>
         <li><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.generate_tex">(LatexObject method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZNode.get_anchor_point">get_anchor_point() (TikZNode method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -501,6 +552,8 @@
       <li><a href="pylatex/pylatex.position.html#pylatex.position.HorizontalSpace">HorizontalSpace (class in pylatex.position)</a>
 </li>
       <li><a href="pylatex/pylatex.basic.html#pylatex.basic.HugeText">HugeText (class in pylatex.basic)</a>
+</li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Hyperref">Hyperref (class in pylatex.labelref)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -526,16 +579,26 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Label">Label (class in pylatex.labelref)</a>
+</li>
       <li><a href="pylatex/pylatex.basic.html#pylatex.basic.LargeText">LargeText (class in pylatex.basic)</a>
 </li>
+      <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTable.lastFoot">lastFoot (LongTable attribute)</a>
+
+      <ul>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabu.lastFoot">(LongTabu attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTabularx.lastFoot">(LongTabularx attribute)</a>
+</li>
+      </ul></li>
       <li><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.latex_name">latex_name (LatexObject attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject">LatexObject (class in pylatex.base_classes.latex_object)</a>
 </li>
       <li><a href="pylatex/pylatex.basic.html#pylatex.basic.LineBreak">LineBreak (class in pylatex.basic)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.lists.html#pylatex.lists.List">List (class in pylatex.lists)</a>
 </li>
       <li><a href="pylatex/pylatex.table.html#pylatex.table.LongTable">LongTable (class in pylatex.table)</a>
@@ -552,6 +615,26 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.utils.html#pylatex.utils.make_temp_dir">make_temp_dir() (in module pylatex.utils)</a>
 </li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Marker">Marker (class in pylatex.labelref)</a>
+</li>
+      <li><a href="pylatex/pylatex.section.html#pylatex.section.Chapter.marker_prefix">marker_prefix (Chapter attribute)</a>
+
+      <ul>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Paragraph.marker_prefix">(Paragraph attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Part.marker_prefix">(Part attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Section.marker_prefix">(Section attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Subparagraph.marker_prefix">(Subparagraph attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Subsection.marker_prefix">(Subsection attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Subsubsection.marker_prefix">(Subsubsection attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.math.html#pylatex.math.Math">Math (class in pylatex.math)</a>
 </li>
       <li><a href="pylatex/pylatex.math.html#pylatex.math.Matrix">Matrix (class in pylatex.math)</a>
@@ -560,8 +643,6 @@
 </li>
       <li><a href="pylatex/pylatex.basic.html#pylatex.basic.MediumText">MediumText (class in pylatex.basic)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.config.html#pylatex.config.Version1.microtype">microtype (Version1 attribute)</a>
 
       <ul>
@@ -586,13 +667,19 @@
 </li>
       <li><a href="pylatex/pylatex.config.html#pylatex.config.NextMajor">NextMajor (in module pylatex.config)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape">NoEscape (class in pylatex.utils)</a>
 </li>
-      <li><a href="pylatex/pylatex.section.html#pylatex.section.Section.numbering">numbering (Section attribute)</a>
+      <li><a href="pylatex/pylatex.section.html#pylatex.section.Chapter.numbering">numbering (Chapter attribute)</a>
 
       <ul>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Paragraph.numbering">(Paragraph attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Part.numbering">(Part attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Section.numbering">(Section attribute)</a>
+</li>
+        <li><a href="pylatex/pylatex.section.html#pylatex.section.Subparagraph.numbering">(Subparagraph attribute)</a>
+</li>
         <li><a href="pylatex/pylatex.section.html#pylatex.section.Subsection.numbering">(Subsection attribute)</a>
 </li>
         <li><a href="pylatex/pylatex.section.html#pylatex.section.Subsubsection.numbering">(Subsubsection attribute)</a>
@@ -679,6 +766,8 @@
 </li>
         <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZ.omit_if_empty">(TikZ attribute)</a>
 </li>
+        <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZScope.omit_if_empty">(TikZScope attribute)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -694,9 +783,15 @@
 </li>
       <li><a href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.packages">packages (LatexObject attribute)</a>
 </li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Pageref">Pageref (class in pylatex.labelref)</a>
+</li>
       <li><a href="pylatex/pylatex.headfoot.html#pylatex.headfoot.PageStyle">PageStyle (class in pylatex.headfoot)</a>
 </li>
+      <li><a href="pylatex/pylatex.section.html#pylatex.section.Paragraph">Paragraph (class in pylatex.section)</a>
+</li>
       <li><a href="pylatex/pylatex.base_classes.command.html#pylatex.base_classes.command.Parameters">Parameters (class in pylatex.base_classes.command)</a>
+</li>
+      <li><a href="pylatex/pylatex.section.html#pylatex.section.Part">Part (class in pylatex.section)</a>
 </li>
       <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.Plot">Plot (class in pylatex.tikz)</a>
 </li>
@@ -714,15 +809,17 @@
 </li>
       <li><a href="pylatex/pylatex.document.html#module-pylatex.document">pylatex.document (module)</a>
 </li>
-      <li><a href="pylatex/pylatex.errors.html#module-pylatex.errors">pylatex.errors (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pylatex/pylatex.errors.html#module-pylatex.errors">pylatex.errors (module)</a>
+</li>
       <li><a href="pylatex/pylatex.figure.html#module-pylatex.figure">pylatex.figure (module)</a>
 </li>
       <li><a href="pylatex/pylatex.frames.html#module-pylatex.frames">pylatex.frames (module)</a>
 </li>
       <li><a href="pylatex/pylatex.headfoot.html#module-pylatex.headfoot">pylatex.headfoot (module)</a>
+</li>
+      <li><a href="pylatex/pylatex.labelref.html#module-pylatex.labelref">pylatex.labelref (module)</a>
 </li>
       <li><a href="pylatex/pylatex.lists.html#module-pylatex.lists">pylatex.lists (module)</a>
 </li>
@@ -758,10 +855,14 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="pylatex/pylatex.utils.html#pylatex.utils.rm_temp_dir">rm_temp_dir() (in module pylatex.utils)</a>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.Ref">Ref (class in pylatex.labelref)</a>
+</li>
+      <li><a href="pylatex/pylatex.labelref.html#pylatex.labelref.RefLabelBase">RefLabelBase (class in pylatex.labelref)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pylatex/pylatex.utils.html#pylatex.utils.rm_temp_dir">rm_temp_dir() (in module pylatex.utils)</a>
+</li>
       <li><a href="pylatex/pylatex.config.html#pylatex.config.Version1.row_height">row_height (Version1 attribute)</a>
 
       <ul>
@@ -798,6 +899,8 @@
 </li>
       <li><a href="pylatex/pylatex.figure.html#pylatex.figure.SubFigure">SubFigure (class in pylatex.figure)</a>
 </li>
+      <li><a href="pylatex/pylatex.section.html#pylatex.section.Subparagraph">Subparagraph (class in pylatex.section)</a>
+</li>
       <li><a href="pylatex/pylatex.section.html#pylatex.section.Subsection">Subsection (class in pylatex.section)</a>
 </li>
       <li><a href="pylatex/pylatex.section.html#pylatex.section.Subsubsection">Subsubsection (class in pylatex.section)</a>
@@ -816,8 +919,6 @@
 </li>
       <li><a href="pylatex/pylatex.table.html#pylatex.table.Tabu">Tabu (class in pylatex.table)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pylatex/pylatex.table.html#pylatex.table.Tabular">Tabular (class in pylatex.table)</a>
 </li>
       <li><a href="pylatex/pylatex.table.html#pylatex.table.Tabularx">Tabularx (class in pylatex.table)</a>
@@ -827,6 +928,28 @@
       <li><a href="pylatex/pylatex.basic.html#pylatex.basic.TextColor">TextColor (class in pylatex.basic)</a>
 </li>
       <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZ">TikZ (class in pylatex.tikz)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZCoordinate">TikZCoordinate (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZDraw">TikZDraw (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZNode">TikZNode (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZNodeAnchor">TikZNodeAnchor (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZObject">TikZObject (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZOptions">TikZOptions (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZPath">TikZPath (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZPathList">TikZPathList (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZScope">TikZScope (class in pylatex.tikz)</a>
+</li>
+      <li><a href="pylatex/pylatex.tikz.html#pylatex.tikz.TikZUserPath">TikZUserPath (class in pylatex.tikz)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -898,7 +1021,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.2.1',
+            VERSION:'1.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
