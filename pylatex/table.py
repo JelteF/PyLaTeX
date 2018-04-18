@@ -250,7 +250,7 @@ class Tabular(Environment):
             Check for correct count of cells in row or not.
         """
     
-    if len(cells) == 1 and _is_iterable(cells):
+        if len(cells) == 1 and _is_iterable(cells):
             cells = cells[0]
 
         if escape is None:
