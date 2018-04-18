@@ -198,13 +198,36 @@ class Tabular(Environment):
             self.append(Command(cline,
                                 dumps_list([start, NoEscape('-'), end])))
 
-    def add_empty_row(self):
-        """Add an empty row to the table."""
+    # To prevent repeating code, is there some way that we can just
+    # have calls to this method in turn call add_row but the cells
+    # are all just empty?
+    def add_empty_row(self, color=None, height_modifier=None):
+        """Add an empty row to the table.
 
-        self.append(NoEscape((self.width - 1) * '&' + r'\\'))
+        Args
+        ----
+        color: str
+            The name of the color used to highlight the row
+        height_modifier: str
+            The height modifier appended to the end of a table row.
+            Example: `Some&Cells&Here\\\\[-0.5em]`
+        """
 
-    def add_row(self, *cells, color=None, escape=None, mapper=None,
-                strict=True):
+        if color:
+            if not self.color:
+                self.packages.append(Package("xcolor", options='table'))
+                self.color = True
+            color_command = Command(command="rowcolor", arguments=color)
+            self.append(color_command)
+
+        to_append = NoEscape((self.width - 1) * '&' + r'\\')
+        if height_modifier:
+            to_append += NoEscape('[{}]'.format(height_modifier))
+
+        self.append(to_append)
+
+    def add_row(self, *cells, color=None, escape=None, height_modifier=None,
+                mapper=None, strict=True):
         """Add a row of cells to the table.
 
         Args
@@ -216,6 +239,9 @@ class Tabular(Environment):
             contents.
         color: str
             The name of the color used to highlight the row
+        height_modifier: str
+            The height modifier appended to the end of a table row.
+            Example: `Some&Cells&Here\\\\[-0.5em]`
         mapper: callable or `list`
             A function or a list of functions that should be called on all
             entries of the list after converting them to a string,
@@ -223,8 +249,8 @@ class Tabular(Environment):
         strict: bool
             Check for correct count of cells in row or not.
         """
-
-        if len(cells) == 1 and _is_iterable(cells):
+    
+    if len(cells) == 1 and _is_iterable(cells):
             cells = cells[0]
 
         if escape is None:
@@ -257,9 +283,12 @@ class Tabular(Environment):
             color_command = Command(command="rowcolor", arguments=color)
             self.append(color_command)
 
-        self.append(dumps_list(cells, escape=escape, token='&',
-                    mapper=mapper) + NoEscape(r'\\'))
+        to_append = dumps_list(cells, escape=escape, token='&',
+                    mapper=mapper) + NoEscape(r'\\')
+        if height_modifier:
+            to_append += NoEscape('[{}]'.format(height_modifier))
 
+        self.append(to_append)
 
 class Tabularx(Tabular):
     """A class that represents a tabularx environment."""
