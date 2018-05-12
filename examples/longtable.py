@@ -27,12 +27,12 @@ def genenerate_longtabu():
             data_table.end_table_header()
             data_table.add_hline()
             data_table.add_row((MultiColumn(3, align='r',
-                                data='Containued on Next Page'),))
+                                data='Continued on Next Page'),))
             data_table.add_hline()
             data_table.end_table_footer()
             data_table.add_hline()
             data_table.add_row((MultiColumn(3, align='r',
-                                data='Not Containued on Next Page'),))
+                                data='Not Continued on Next Page'),))
             data_table.add_hline()
             data_table.end_table_last_footer()
             row = ["Content1", "9", "Longer String"]
