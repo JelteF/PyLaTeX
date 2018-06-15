@@ -14,6 +14,10 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Fixed
+~~~~~
+- The 'at' parameter for TikZNode should now work.
+
 1.3.0_ - `docs <../v1.3.0/>`__ - 2017-05-19
 -------------------------------------------
 
