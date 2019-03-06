@@ -17,6 +17,9 @@ import uuid
 class Figure(Float):
     """A class that represents a Figure environment."""
 
+    #: Default prefix to use with Marker
+    marker_prefix = "fig"
+
     def add_image(self, filename, *, width=NoEscape(r'0.8\textwidth'),
                   placement=NoEscape(r'\centering')):
         """Add an image to the figure.
@@ -93,6 +96,9 @@ class Figure(Float):
 
 class SubFigure(Figure):
     """A class that represents a subfigure from the subcaption package."""
+
+    #: Default prefix to use with Marker
+    marker_prefix = "subfig"
 
     packages = [Package('subcaption')]
 
