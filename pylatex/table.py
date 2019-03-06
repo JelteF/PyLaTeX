@@ -371,6 +371,9 @@ class MultiRow(Container):
 class Table(Float):
     """A class that represents a table float."""
 
+    #: Default prefix to use with Marker
+    marker_prefix = "tab"
+
 
 class Tabu(Tabular):
     """A class that represents a tabu (more flexible table)."""
