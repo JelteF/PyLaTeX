@@ -7,9 +7,9 @@ from .base_classes import LatexObject
 
 
 def _remove_invalid_char(s):
-    """Remove invalid and dangerous characters from a string."""
+    """Remove invalid and dangerous characters from a label string."""
 
-    s = ''.join([i if ord(i) >= 32 and ord(i) < 127 else '' for i in s])
+    s = ''.join([i if 32 <= ord(i) < 127 else '' for i in s])
     s = s.translate(dict.fromkeys(map(ord, "_%~#\\{}\":")))
     return s
 
@@ -79,6 +79,11 @@ class Marker(LatexObject):
             name = _remove_invalid_char(name)
         self.prefix = prefix
         self.name = name
+
+        if name == "":
+            raise ValueError("Cannot create Marker with empty name")
+
+        super().__init__()
 
     def __str__(self):
         return ((self.prefix + ":") if self.prefix != "" else "") + self.name
