@@ -10,15 +10,16 @@ python:
   - '3.7'
   # allow failures
   - 'nightly'
-  - 'pypy'
-  - 'pypy3'
+  - 'pypy2.7-6.0'
+  - 'pypy3.5-6.0'
+
 
 matrix:
   fast_finish: true
   allow_failures:
     - python: 'nightly'
-    - python: 'pypy'
-    - python: 'pypy3'
+    - python: 'pypy2.7-6.0'
+    - python: 'pypy3.5-6.0'
 
 addons:
   apt:
