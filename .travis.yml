@@ -32,6 +32,9 @@ addons:
       - pgf
 
 install:
+  - cat /etc/ImageMagick*/policy.xml
+  - sudo sed '/pattern=".*PDF.*"/d' -i /etc/ImageMagick*/policy.xml
+  - cat /etc/ImageMagick*/policy.xml
   - pip install 3to2 future
   - pip install codecov
   - 'if [ "$TRAVIS_PYTHON_VERSION" == 3.3 -o "$TRAVIS_PYTHON_VERSION" == 3.4 ]; then pip install -e .[all] --upgrade; else pip install -r dev_requirements.txt --upgrade; fi'
