@@ -455,7 +455,7 @@ class LongTable(Tabular):
 
     header = False
     foot = False
-    lastFoot = False
+    lastFoot = False  # noqa, casing is needed for backwards compatibility
 
     def end_table_header(self):
         r"""End the table header which will appear on every page."""

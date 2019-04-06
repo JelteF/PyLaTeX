@@ -59,3 +59,4 @@ coverage.xml
 # Folders
 .idea/
 .virtualenv/
+.coverage.*
