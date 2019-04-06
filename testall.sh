@@ -44,10 +44,10 @@ done
 
 
 # Run the examples and tests
-python_version=$($python --version |& sed 's|Python \(.\).*|\1|g')
+python_version=$($python --version |& sed 's|Python \(.\).*|\1|g' | head -n 1)
 
 # Run the examples and tests
-python_version_long=$($python --version |& sed 's|Python \(.*\)|\1|g')
+python_version_long=$($python --version |& sed 's|Python \(.*\)|\1|g' | head -n 1)
 
 if [ "$python_version" = '3' ]; then
     # Check code guidelines
