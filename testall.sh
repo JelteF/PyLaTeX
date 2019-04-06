@@ -66,7 +66,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! $python "$(which nosetests)" --with-coverage tests/*; then
+if ! $python "$(command -v nosetests)" --with-coverage tests/*; then
     exit 1
 fi
 mv .coverage{,.tests}
@@ -77,9 +77,9 @@ fi
 
 
 count=0
-for f in $main_folder/examples/*.py; do
+for f in "$main_folder"/examples/*.py; do
     echo -e '\e[32mTesting '"$f"'\e[0m'
-    if ! $python "$(which coverage)" run "$f"; then
+    if ! $python "$(command -v coverage)" run "$f"; then
         exit 1
     fi
     ((count ++))
@@ -100,7 +100,7 @@ if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" !
     ./create_doc_files.sh -p "$python"
     make clean
     set +e
-    if ! $python "$(which sphinx-build)" -b html -d build/doctrees/ source build/html -nW; then
+    if ! $python "$(command -v sphinx-build)" -b html -d build/doctrees/ source build/html -nW; then
         exit 1
     fi
 fi
