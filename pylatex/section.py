@@ -8,7 +8,7 @@ This module implements the section type classes.
 
 
 from .base_classes import Container, Command
-from .labelref import Marker, Label
+from .labelref import Label, make_label
 
 
 class Section(Container):
@@ -42,18 +42,8 @@ class Section(Container):
 
         if numbering is not None:
             self.numbering = numbering
-        if isinstance(label, Label):
-            self.label = label
-        elif isinstance(label, str):
-            if ':' in label:
-                label = label.split(':', 1)
-                self.label = Label(Marker(label[1], label[0]))
-            else:
-                self.label = Label(Marker(label, self.marker_prefix))
-        elif label:
-            self.label = Label(Marker(title, self.marker_prefix))
-        else:
-            self.label = None
+
+        self.label = make_label(label, self.marker_prefix, default_name=title)
 
         super().__init__(**kwargs)
 
