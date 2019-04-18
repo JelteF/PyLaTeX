@@ -38,7 +38,7 @@ simply be installed like this:
 
     pip install pylatex[matrices]
 
-The features that require aditional libraries are:
+The features that require additional libraries are:
 
 - matrices
 - matplotlib
