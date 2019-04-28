@@ -14,6 +14,14 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.3.1_ - `docs <../v1.3.1/>`__ - 2019-04-28
+-------------------------------------------
+
+Added
+~~~~~
+- TikZ's Plot now has ``trailing_path`` parameter for appending a trailing path command to the final drawing command.
+
+
 1.3.0_ - `docs <../v1.3.0/>`__ - 2017-05-19
 -------------------------------------------
 

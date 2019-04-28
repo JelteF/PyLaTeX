@@ -203,7 +203,7 @@ def test_tikz():
     a = Axis(data=None, options=None)
     repr(a)
 
-    p = Plot(name=None, func=None, coordinates=None, error_bar=None,
+    p = Plot(name=None, func=None, coordinates=None, trailing_path=None, error_bar=None,
              options=None)
     repr(p)
 

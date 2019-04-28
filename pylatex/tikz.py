@@ -8,6 +8,7 @@ This module implements the classes used to show plots.
 
 from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
+from .utils import _latex_item_to_string
 import re
 import math
 
@@ -504,6 +505,7 @@ class Plot(LatexObject):
                  name=None,
                  func=None,
                  coordinates=None,
+                 trailing_path=None,
                  error_bar=None,
                  options=None):
         """
@@ -514,14 +516,16 @@ class Plot(LatexObject):
         func: str
             A function that should be plotted.
         coordinates: list
-            A list of exact coordinates tat should be plotted.
-
+            A list of exact coordinates that should be plotted.
+        trailing_path: str or `~.LatexObject`
+            A TikZ's trailing path command that should be appended to the final drawing command
         options: str, list or `~.Options`
         """
 
         self.name = name
         self.func = func
         self.coordinates = coordinates
+        self.trailing_path = trailing_path
         self.error_bar = error_bar
         self.options = options
 
@@ -552,10 +556,20 @@ class Plot(LatexObject):
                     string += '(' + str(x) + ',' + str(y) + \
                         ') +- (' + str(e_x) + ',' + str(e_y) + ')%\n'
 
-            string += '};%\n%\n'
+            string += '}'
+
+            if self.trailing_path is not None:
+                string += _latex_item_to_string(self.trailing_path)
+
+            string += ';%\n%\n'
 
         elif self.func is not None:
-            string += '{' + self.func + '};%\n%\n'
+            string += '{' + self.func + '}'
+
+            if self.trailing_path is not None:
+                string += _latex_item_to_string(self.trailing_path)
+
+            string += ';%\n%\n'
 
         if self.name is not None:
             string += Command('addlegendentry', self.name).dumps()
