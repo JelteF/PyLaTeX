@@ -505,7 +505,9 @@ class Plot(LatexObject):
                  func=None,
                  coordinates=None,
                  error_bar=None,
-                 options=None):
+                 options=None,
+                 table=None,
+                 data=None):
         """
         Args
         ----
@@ -515,6 +517,18 @@ class Plot(LatexObject):
             A function that should be plotted.
         coordinates: list
             A list of exact coordinates tat should be plotted.
+        table: dict
+            dictionary of specification of the data which should be plotted from csv file
+                csv:    x_axe y_axe
+                        0 4
+                        1 1
+                        2 5
+                        3 4
+            table = {x:'x_axe', y:'y_axe}
+            cannot be used together with coordinates!
+        
+        data: string
+            path to file with csv data
 
         options: str, list or `~.Options`
         """
@@ -523,7 +537,10 @@ class Plot(LatexObject):
         self.func = func
         self.coordinates = coordinates
         self.error_bar = error_bar
+        self.table = table
+        self.data = data
         self.options = options
+        
 
         super().__init__()
 
@@ -554,11 +571,20 @@ class Plot(LatexObject):
 
             string += '};%\n%\n'
 
+        elif self.table is not None:
+            string += ' table['
+            for key, value in self.table.items():
+                string += '{0}={1},\n'.format(key, value)
+            string += ']'
+            string += '{{{0}}};\n'.format(self.data)
+            
         elif self.func is not None:
             string += '{' + self.func + '};%\n%\n'
 
         if self.name is not None:
             string += Command('addlegendentry', self.name).dumps()
+        
+
 
         super().dumps()
 
