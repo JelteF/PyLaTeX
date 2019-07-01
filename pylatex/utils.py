@@ -7,6 +7,7 @@ This module implements some simple utility functions.
 """
 
 import os.path
+import getpass
 import shutil
 import tempfile
 import pylatex.base_classes
@@ -32,6 +33,7 @@ _latex_special_chars = {
 _tmp_path = os.path.abspath(
     os.path.join(
         tempfile.gettempdir(),
+        getpass.getuser(),
         "pylatex"
     )
 )
