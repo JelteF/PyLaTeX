@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.headfoot &mdash; PyLaTeX 1.3.0 documentation</title>
+  <title>pylatex.headfoot &mdash; PyLaTeX 1.3.1 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.1 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.labelref" href="pylatex.labelref.html"/>
         <link rel="prev" title="pylatex.frames" href="pylatex.frames.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.0
+                1.3.1
               </div>
             
           
@@ -188,7 +188,7 @@
 <p>This module implements the classes that deal with creating headers and footers.</p>
 <dl class="class">
 <dt id="pylatex.headfoot.PageStyle">
-<em class="property">class </em><code class="descname">PageStyle</code><span class="sig-paren">(</span><em>name</em>, <em>*</em>, <em>header_thickness=0</em>, <em>footer_thickness=0</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/headfoot.py#L14-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.PageStyle" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">PageStyle</code><span class="sig-paren">(</span><em>name</em>, <em>*</em>, <em>header_thickness=0</em>, <em>footer_thickness=0</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/pylatex/headfoot.py#L14-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.PageStyle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.ContainerCommand" title="pylatex.base_classes.containers.ContainerCommand"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.ContainerCommand</span></code></a></p>
 <p>Allows the creation of new page styles.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -196,7 +196,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; The name of the page style</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; The name of the page style</li>
 <li><strong>header_thickness</strong> (<a class="reference internal" href="pylatex.base_classes.float.html#module-pylatex.base_classes.float" title="pylatex.base_classes.float"><em>float</em></a>) &#8211; Value to set for the line under the header</li>
 <li><strong>footer_thickness</strong> (<a class="reference internal" href="pylatex.base_classes.float.html#module-pylatex.base_classes.float" title="pylatex.base_classes.float"><em>float</em></a>) &#8211; Value to set for the line over the footer</li>
 <li><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The data to place inside the PageStyle</li>
@@ -207,7 +207,7 @@
 </table>
 <dl class="method">
 <dt id="pylatex.headfoot.PageStyle.change_thickness">
-<code class="descname">change_thickness</code><span class="sig-paren">(</span><em>element</em>, <em>thickness</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/headfoot.py#L47-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.PageStyle.change_thickness" title="Permalink to this definition">¶</a></dt>
+<code class="descname">change_thickness</code><span class="sig-paren">(</span><em>element</em>, <em>thickness</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/pylatex/headfoot.py#L47-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.PageStyle.change_thickness" title="Permalink to this definition">¶</a></dt>
 <dd><p>Change line thickness.</p>
 <p>Changes the thickness of the line under/over the header/footer
 to the specified thickness.</p>
@@ -216,7 +216,7 @@ to the specified thickness.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; the name of the element to change thickness for: header, footer</li>
+<li><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; the name of the element to change thickness for: header, footer</li>
 <li><strong>thickness</strong> (<a class="reference internal" href="pylatex.base_classes.float.html#module-pylatex.base_classes.float" title="pylatex.base_classes.float"><em>float</em></a>) &#8211; the thickness to set the line to</li>
 </ul>
 </td>
@@ -234,7 +234,7 @@ to the specified thickness.</p>
 
 <dl class="function">
 <dt id="pylatex.headfoot.simple_page_number">
-<code class="descname">simple_page_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/headfoot.py#L70-L79"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.simple_page_number" title="Permalink to this definition">¶</a></dt>
+<code class="descname">simple_page_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/pylatex/headfoot.py#L70-L79"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.simple_page_number" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a string containing commands to display the page number.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -242,7 +242,7 @@ to the specified thickness.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The latex string that displays the page number</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
 </tr>
 </tbody>
 </table>
@@ -250,7 +250,7 @@ to the specified thickness.</p>
 
 <dl class="class">
 <dt id="pylatex.headfoot.Head">
-<em class="property">class </em><code class="descname">Head</code><span class="sig-paren">(</span><em>position=None</em>, <em>*</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/headfoot.py#L82-L99"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.Head" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Head</code><span class="sig-paren">(</span><em>position=None</em>, <em>*</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/pylatex/headfoot.py#L82-L99"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.Head" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.ContainerCommand" title="pylatex.base_classes.containers.ContainerCommand"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.ContainerCommand</span></code></a></p>
 <p>Allows the creation of headers.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -258,7 +258,7 @@ to the specified thickness.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; the headers position: L, C, R</li>
+<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; the headers position: L, C, R</li>
 <li><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The data to place inside the Head element</li>
 </ul>
 </td>
@@ -274,7 +274,7 @@ to the specified thickness.</p>
 
 <dl class="class">
 <dt id="pylatex.headfoot.Foot">
-<em class="property">class </em><code class="descname">Foot</code><span class="sig-paren">(</span><em>position=None</em>, <em>*</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/pylatex/headfoot.py#L102-L105"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.Foot" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Foot</code><span class="sig-paren">(</span><em>position=None</em>, <em>*</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/pylatex/headfoot.py#L102-L105"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.headfoot.Foot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.headfoot.Head" title="pylatex.headfoot.Head"><code class="xref py py-class docutils literal"><span class="pre">pylatex.headfoot.Head</span></code></a></p>
 <p>Allows the creation of footers.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -282,7 +282,7 @@ to the specified thickness.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.6)"><em>str</em></a>) &#8211; the headers position: L, C, R</li>
+<li><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; the headers position: L, C, R</li>
 <li><strong>data</strong> (str or <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-obj docutils literal"><span class="pre">LatexObject</span></code></a>) &#8211; The data to place inside the Head element</li>
 </ul>
 </td>
@@ -339,7 +339,7 @@ to the specified thickness.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.0',
+            VERSION:'1.3.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basic example &mdash; PyLaTeX 1.3.0 documentation</title>
+  <title>Basic example &mdash; PyLaTeX 1.3.1 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.1 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Basic inheritance example" href="basic_inheritance.html"/>
         <link rel="prev" title="Examples" href="../examples.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.0
+                1.3.1
               </div>
             
           
@@ -191,7 +191,7 @@
 <p>This example shows basic document generation functionality.</p>
 <dl class="function">
 <dt id="examples.basic.fill_document">
-<code class="descname">fill_document</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/examples/basic.py#L14-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.basic.fill_document" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fill_document</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/examples/basic.py#L14-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.basic.fill_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a section, a subsection and some text to the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -299,16 +299,16 @@
 <span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\maketitle</span><span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>A section<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>sec:A section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Asection<span class="nb">}</span><span class="c">%</span>
 Some regular text and some <span class="c">%</span>
 <span class="k">\textit</span><span class="nb">{</span>italic text. <span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection</span><span class="nb">{</span>A subsection<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>subsec:A subsection<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>subsec:Asubsection<span class="nb">}</span><span class="c">%</span>
 Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
 
 <span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>A second section<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>sec:A second section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Asecondsection<span class="nb">}</span><span class="c">%</span>
 Some text.
 
 <span class="c">%</span>
@@ -360,11 +360,11 @@ Some text.
 <span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\maketitle</span><span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>A section<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>sec:A section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Asection<span class="nb">}</span><span class="c">%</span>
 Some regular text and some <span class="c">%</span>
 <span class="k">\textit</span><span class="nb">{</span>italic text. <span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection</span><span class="nb">{</span>A subsection<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>subsec:A subsection<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>subsec:Asubsection<span class="nb">}</span><span class="c">%</span>
 Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
 
 <span class="c">%</span>
@@ -410,11 +410,11 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>A section<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>sec:A section<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Asection<span class="nb">}</span><span class="c">%</span>
 Some regular text and some <span class="c">%</span>
 <span class="k">\textit</span><span class="nb">{</span>italic text. <span class="nb">}</span><span class="c">%</span>
 <span class="k">\subsection</span><span class="nb">{</span>A subsection<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>subsec:A subsection<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>subsec:Asubsection<span class="nb">}</span><span class="c">%</span>
 Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
 
 <span class="c">%</span>
@@ -470,7 +470,7 @@ Also some crazy characters: <span class="k">\$\&amp;\#\{\}</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.0',
+            VERSION:'1.3.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

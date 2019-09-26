@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Own commands example &mdash; PyLaTeX 1.3.0 documentation</title>
+  <title>Own commands example &mdash; PyLaTeX 1.3.1 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.0 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.1 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Quantities example" href="quantities_ex.html"/>
         <link rel="prev" title="Numpy example" href="numpy_ex.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.0
+                1.3.1
               </div>
             
           
@@ -191,7 +191,7 @@
 <p>How to represent your own LaTeX commands and environments in PyLaTeX.</p>
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleEnvironment">
-<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleEnvironment</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/examples/own_commands_ex.py#L16-L25"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX environment.</p>
 <p>This class represents a custom LaTeX environment named
 <code class="docutils literal"><span class="pre">exampleEnvironment</span></code>.</p>
@@ -212,7 +212,7 @@
 
 <dl class="class">
 <dt id="examples.own_commands_ex.ExampleCommand">
-<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.0/examples/own_commands_ex.py#L28-L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">ExampleCommand</code><span class="sig-paren">(</span><em>arguments=None</em>, <em>options=None</em>, <em>*</em>, <em>extra_arguments=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.1/examples/own_commands_ex.py#L28-L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#examples.own_commands_ex.ExampleCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing a custom LaTeX command.</p>
 <p>This class represents a custom LaTeX command named
 <code class="docutils literal"><span class="pre">exampleCommand</span></code>.</p>
@@ -373,7 +373,7 @@ before the options.</li>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>Custom commands<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>sec:Custom commands<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Customcommands<span class="nb">}</span><span class="c">%</span>
 
         The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>
         command with a couple of parameters.
@@ -385,7 +385,7 @@ before the options.</li>
 
 <span class="c">%</span>
 <span class="k">\section</span><span class="nb">{</span>Custom environments<span class="nb">}</span><span class="c">%</span>
-<span class="k">\label</span><span class="nb">{</span>sec:Custom environments<span class="nb">}</span><span class="c">%</span>
+<span class="k">\label</span><span class="nb">{</span>sec:Customenvironments<span class="nb">}</span><span class="c">%</span>
 
         The following is a demonstration of a custom <span class="k">\LaTeX</span><span class="nb">{}</span>
         environment using the mdframed package.
@@ -448,7 +448,7 @@ This is the actual content<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.0',
+            VERSION:'1.3.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
