@@ -14,6 +14,13 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.3.1_ - `docs <../v1.3.0/>`__ - 2019-09-26
+-------------------------------------------
+
+Fixed
+~~~~~
+- Make labels/sections with weird characters work
+
 1.3.0_ - `docs <../v1.3.0/>`__ - 2017-05-19
 -------------------------------------------
 
@@ -422,7 +429,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.3.0...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.3.1...HEAD
+.. _1.3.1: https://github.com/JelteF/PyLaTeX/compare/v1.3.0...1.3.1
 .. _1.3.0: https://github.com/JelteF/PyLaTeX/compare/v1.2.1...1.3.0
 .. _1.2.1: https://github.com/JelteF/PyLaTeX/compare/v1.2.0...v1.2.1
 .. _1.2.0: https://github.com/JelteF/PyLaTeX/compare/v1.1.1...v1.2.0
