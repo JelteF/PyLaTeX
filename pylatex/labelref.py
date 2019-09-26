@@ -10,7 +10,7 @@ def _remove_invalid_char(s):
     """Remove invalid and dangerous characters from a string."""
 
     s = ''.join([i if ord(i) >= 32 and ord(i) < 127 else '' for i in s])
-    s = s.translate(dict.fromkeys(map(ord, "_%~#\\{}\":$")))
+    s = s.translate(dict.fromkeys(map(ord, "&%$#_{}~^\\\n\xA0[]\"")))
     return s
 
 
