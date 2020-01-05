@@ -99,7 +99,7 @@ class TikZCoordinate(LatexObject):
         else:
             relative = False
 
-        return TikZCoordinate(
+        return cls(
             float(m.group(2)), float(m.group(4)), relative=relative)
 
     def __eq__(self, other):
@@ -154,6 +154,31 @@ class TikZCoordinate(LatexObject):
         other_coord = self._arith_check(other)
         return math.sqrt(math.pow(self._x - other_coord._x, 2) +
                          math.pow(self._y - other_coord._y, 2))
+
+
+class TikzPolarCoordinate(TikZCoordinate):
+    """Class representing the Tikz polar coordinate specification"""
+
+    _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
+                                       r':\s*([0-9]+(\.[0-9]+)?)\s*\)')
+
+    def __init__(self, angle, radius, relative=False):
+        if radius < 0:
+            raise ValueError("Radius must be positive")
+        self._radius = radius
+        self._angle = angle
+        x = radius * math.cos(math.radians(angle))
+        y = radius * math.sin(math.radians(angle))
+        super(TikzPolarCoordinate, self).__init__(x, y, relative=relative)
+
+    def __repr__(self):
+        if self.relative:
+            ret_str = '++'
+        else:
+            ret_str = ''
+        return ret_str + '({}:{})'.format(self._angle, self._radius)
+
+# class TikzArcSpecifier(LatexObject):
 
 
 class TikZObject(Container):
