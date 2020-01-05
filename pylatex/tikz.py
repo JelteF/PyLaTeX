@@ -441,7 +441,11 @@ class TikZPathList(LatexObject):
             # will raise typeerror if wrong
             self._add_path(item)
         elif self._last_item_type == 'path':
-            # only point allowed after path
+            # only point  or cycle allowed after path
+            if isinstance(item, str) and item.strip() == 'cycle':
+                self._arg_list.append(item)
+                return
+
             original_exception = None
             try:
                 self._add_point(item)
@@ -474,7 +478,6 @@ class TikZPathList(LatexObject):
             except (TypeError, ValueError) as ex:
                 raise ValueError('only an arc specifier can come after an '
                                  ' arc path descriptor')
-
 
     def _parse_arg_list(self, args):
 
