@@ -603,7 +603,7 @@ class TikZDraw(TikZPath):
         """
         Args
         ----
-        path: TikZPathList
+        path: TikZPathList | List
             A list of the nodes, path types in the path
         options: TikZOptions
             A list of options for the command
