@@ -196,7 +196,7 @@ class TikZArcSpecifier(LatexObject):
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
                                   r'\s*([0-9]+(\.[0-9]+)?)\s*\)')
 
-    def __init__(self, start_ang, finish_ang, radius, relative=False, ):
+    def __init__(self, start_ang, finish_ang, radius, relative=False, force_far_direction=False):
         """
         start_ang: float or int
             angle in degrees
@@ -204,8 +204,17 @@ class TikZArcSpecifier(LatexObject):
             radius from orig
         relative: bool
             Coordinate is relative or absolute
+        force_far_direction: bool
+            forces arc to go in the longer direction around circumference
 
         """
+        if force_far_direction:
+            # forcing an extra rotation around
+            if start_ang > finish_ang:
+                start_ang -= 360
+            else:
+                finish_ang -= 360
+
         self._radius = float(radius)
         self._start_ang = float(start_ang)
         self._finish_ang = float(finish_ang)
