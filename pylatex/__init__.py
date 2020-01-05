@@ -14,8 +14,8 @@ from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
     LongTabu, Tabularx, LongTabularx, ColumnType
-from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate, \
-    TikZPathList, TikZPath, TikZUserPath, TikZOptions, TikZNodeAnchor, \
+from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate, TikZPolarCoordinate, \
+    TikZArcSpecifier, TikZPathList, TikZPath, TikZUserPath, TikZOptions, TikZNodeAnchor, \
     TikZScope
 from .figure import Figure, SubFigure, StandAloneGraphic
 from .lists import Enumerate, Itemize, Description

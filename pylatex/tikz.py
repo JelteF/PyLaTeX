@@ -78,7 +78,7 @@ class TikZCoordinate(LatexObject):
             ret_str = '++'
         else:
             ret_str = ''
-        return ret_str + '({},{})'.format(self._x, self._y)
+        return ret_str + '({},{})'.format(round(self._x,3), round(self._y,3))
 
     def dumps(self):
         """Return representation."""
@@ -156,20 +156,29 @@ class TikZCoordinate(LatexObject):
                          math.pow(self._y - other_coord._y, 2))
 
 
-class TikzPolarCoordinate(TikZCoordinate):
+class TikZPolarCoordinate(TikZCoordinate):
     """Class representing the Tikz polar coordinate specification"""
 
     _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
                                        r':\s*([0-9]+(\.[0-9]+)?)\s*\)')
 
     def __init__(self, angle, radius, relative=False):
+        """
+        angle: float or int
+            angle in degrees
+        radius: float or int, non-negative
+            radius from orig
+        relative: bool
+            Coordinate is relative or absolute
+
+        """
         if radius < 0:
             raise ValueError("Radius must be positive")
-        self._radius = radius
-        self._angle = angle
+        self._radius = float(radius)
+        self._angle = float(angle)
         x = radius * math.cos(math.radians(angle))
         y = radius * math.sin(math.radians(angle))
-        super(TikzPolarCoordinate, self).__init__(x, y, relative=relative)
+        super(TikZPolarCoordinate, self).__init__(x, y, relative=relative)
 
     def __repr__(self):
         if self.relative:
@@ -178,7 +187,57 @@ class TikzPolarCoordinate(TikZCoordinate):
             ret_str = ''
         return ret_str + '({}:{})'.format(self._angle, self._radius)
 
-# class TikzArcSpecifier(LatexObject):
+
+class TikZArcSpecifier(LatexObject):
+    """A class to represent the tikz arc specifier (ang1: ang2: rad)"""
+
+    _str_verif_regex = re.compile(r'(\+\+)?\('
+                                  r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
+                                  r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
+                                  r'\s*([0-9]+(\.[0-9]+)?)\s*\)')
+
+    def __init__(self, start_ang, finish_ang, radius, relative=False, ):
+        """
+        start_ang: float or int
+            angle in degrees
+        radius: float or int
+            radius from orig
+        relative: bool
+            Coordinate is relative or absolute
+
+        """
+        self._radius = float(radius)
+        self._start_ang = float(start_ang)
+        self._finish_ang = float(finish_ang)
+        self._relative = relative
+
+    def __repr__(self):
+        if self._relative:
+            ret_str = "++"
+        else:
+            ret_str = ""
+        return ret_str + "({}:{}:{})".format(
+            self._start_ang, self._finish_ang, self._radius)
+
+    def dumps(self):
+        """Return a representation. Alias for consistency."""
+
+        return self.__repr__()
+
+    @classmethod
+    def from_str(cls, arc):
+        """Build a TikZArcSpecifier object from a string."""
+        m = cls._str_verif_regex.match(arc)
+
+        if m is None:
+            raise ValueError('invalid arc string')
+        if m.group(1) =='++':
+            relative = True
+        else:
+            relative = False
+
+        return cls(float(m.group(2)), float(m.group(4)), float(m.group(6)),
+            relative=relative)
 
 
 class TikZObject(Container):
@@ -396,6 +455,16 @@ class TikZPathList(LatexObject):
 
             if original_exception is not None:
                 raise original_exception
+        elif self._last_item_type == 'path.arc':
+            # only allow arc specifier after arc path
+            original_exception = None
+            try:
+                self._add_arc_spec(item)
+                return
+            except (TypeError, ValueError) as ex:
+                raise ValueError('only an arc specifier can come after an '
+                                 ' arc path descriptor')
+
 
     def _parse_arg_list(self, args):
 
@@ -417,6 +486,9 @@ class TikZPathList(LatexObject):
         if parse_only is False:
             self._arg_list.append(_path)
             self._last_item_type = 'path'
+            # if arc, need to know since then we expect following to be an arc not a point
+            if _path.path_type == "arc":
+                self._last_item_type += ".arc"
         else:
             return _path
 
@@ -445,19 +517,46 @@ class TikZPathList(LatexObject):
         else:
             return _item
 
+    def _add_arc_spec(self, arc, parse_only=False):
+        if isinstance(arc, str):
+            try:
+                _arc = TikZArcSpecifier.from_str(arc)
+            except ValueError:
+                raise ValueError('Illegal arc string: "{}"'.format(arc))
+        elif isinstance(arc, TikZArcSpecifier):
+            _arc = arc
+        elif isinstance(arc, tuple):
+            _arc = TikZArcSpecifier(*arc)
+        # tODO no idea whether node formatting should behave
+        elif isinstance(arc, TikZNode):
+            _arc = '({})'.format(arc.handle)
+        elif isinstance(arc, TikZNodeAnchor):
+            _arc = arc.dumps()
+        else:
+            raise TypeError('Only str, tuple, TikZArcSpecifier,'
+                            'TikZNode or TikZNodeAnchor types are allowed,'
+                            ' got: {}'.format(type(arc)))
+            # add, finally
+        if parse_only is False:
+            self._arg_list.append(_arc)
+            self._last_item_type = 'arc'
+        else:
+            return _arc
+
     def dumps(self):
         """Return representation of the path command."""
 
         ret_str = []
         for item in self._arg_list:
-            if isinstance(item, TikZUserPath):
-                ret_str.append(item.dumps())
-            elif isinstance(item, TikZCoordinate):
-                ret_str.append(item.dumps())
-            elif isinstance(item, str):
+            if isinstance(item, str):
                 ret_str.append(item)
-
+            elif isinstance(item, LatexObject):
+                ret_str.append(item.dumps())
+            else:
+                raise TypeError("Dumps failed. Unexpected item type in"
+                                "_arg_list")
         return ' '.join(ret_str)
+
 
 
 class TikZPath(TikZObject):
@@ -472,7 +571,6 @@ class TikZPath(TikZObject):
         options: TikZOptions
             A list of options for the command
         """
-
         super(TikZPath, self).__init__(options=options)
 
         if isinstance(path, TikZPathList):
@@ -484,7 +582,6 @@ class TikZPath(TikZObject):
         else:
             raise TypeError(
                 'argument "path" can only be of types list or TikZPathList')
-
     def append(self, element):
         """Append a path element to the current list."""
         self.path.append(element)
