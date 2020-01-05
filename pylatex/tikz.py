@@ -420,7 +420,7 @@ class TikZPathList(LatexObject):
                     'First element of path list must be a node identifier'
                     ' or coordinate'
                 )
-        elif self._last_item_type == 'point':
+        elif self._last_item_type in ('point', 'arc'):
             # point after point is permitted, doesnt draw
             try:
                 self._add_point(item)
@@ -455,6 +455,7 @@ class TikZPathList(LatexObject):
 
             if original_exception is not None:
                 raise original_exception
+        # not path.arc is path specifier "arc", not a TikZArcSpecifier
         elif self._last_item_type == 'path.arc':
             # only allow arc specifier after arc path
             original_exception = None
@@ -582,6 +583,7 @@ class TikZPath(TikZObject):
         else:
             raise TypeError(
                 'argument "path" can only be of types list or TikZPathList')
+
     def append(self, element):
         """Append a path element to the current list."""
         self.path.append(element)
@@ -592,7 +594,6 @@ class TikZPath(TikZObject):
         ret_str = [Command('path', options=self.options).dumps()]
 
         ret_str.append(self.path.dumps())
-
         return ' '.join(ret_str) + ';'
 
 
