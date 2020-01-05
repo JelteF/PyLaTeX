@@ -336,7 +336,6 @@ class TikZNode(TikZObject):
             ret_str.append('{{{text}}};'.format(text=self._node_text))
         else:
             ret_str.append('{};')
-
         return ' '.join(ret_str)
 
     def get_anchor_point(self, anchor_name):
@@ -431,6 +430,12 @@ class TikZPathList(LatexObject):
                 )
         elif self._last_item_type in ('point', 'arc'):
             # point after point is permitted, doesnt draw
+
+            if isinstance(item, TikZNode):
+                # Note that we drop the preceding backslash since that is not part
+                # of inline syntax. trailing ";" dropped as well since TikZNode will add this
+                self._arg_list.append(item.dumps()[1:-1])
+                return
             try:
                 self._add_point(item)
                 return
