@@ -644,11 +644,13 @@ class TikZDraw(TikZPath):
         """
         super(TikZDraw, self).__init__(path=path, options=options)
 
-        # append option
-        if self.options is not None:
-            self.options.append_positional('draw')
-        else:
-            self.options = TikZOptions('draw')
+    def dumps(self):
+        """Return a representation for the command. Override
+        to provide clearer syntax to user instead of \path[draw]"""
+        ret_str = [Command('draw', options=self.options).dumps()]
+
+        ret_str.append(self.path.dumps())
+        return ' '.join(ret_str)
 
 
 class Plot(LatexObject):
