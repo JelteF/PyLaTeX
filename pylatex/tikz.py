@@ -335,7 +335,7 @@ class TikZNode(TikZObject):
             ret_str.append('({})'.format(self.handle))
 
         if self._node_position is not None:
-            ret_str.append('at {}'.format(str(self._position)))
+            ret_str.append('at {}'.format(str(self._node_position)))
 
         if self._node_text is not None:
             ret_str.append('{{{text}}};'.format(text=self._node_text))
@@ -650,7 +650,7 @@ class TikZDraw(TikZPath):
         ret_str = [Command('draw', options=self.options).dumps()]
 
         ret_str.append(self.path.dumps())
-        return ' '.join(ret_str)
+        return ' '.join(ret_str) + ";"
 
 
 class Plot(LatexObject):
