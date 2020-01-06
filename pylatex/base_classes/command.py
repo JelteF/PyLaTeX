@@ -231,6 +231,11 @@ class Parameters(LatexObject):
 
         super().__init__()
 
+    def __contains__(self, item):
+        """ true if present in positional list, or full {k}={v} text is in kwargs"""
+        return item in self._list_args_kwargs()
+
+
     def __key(self):
         """Generate a unique hashable key representing the parameter object.
 
@@ -289,7 +294,7 @@ class Parameters(LatexObject):
         return string
 
     def _list_args_kwargs(self):
-        """Make a list of strings representing al parameters.
+        """Make a list of strings representing all parameters.
 
         Returns
         -------

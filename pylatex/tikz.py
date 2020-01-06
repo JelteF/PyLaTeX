@@ -395,11 +395,13 @@ class TikZUserPath(LatexObject):
 class TikZPathList(LatexObject):
     """Represents a path drawing."""
 
-    _legal_path_types = ['--', '-|', '|-', 'to',
+    _base_legal_path_types = ['--', '-|', '|-', 'to',
                          'rectangle', 'circle',
                          'arc', 'edge']
 
-    def __init__(self, *args):
+
+
+    def __init__(self, *args, additional_path_types=None):
         """
         Args
         ----
@@ -408,6 +410,10 @@ class TikZPathList(LatexObject):
         """
         self._last_item_type = None
         self._arg_list = []
+
+        self._legal_path_types = self._base_legal_path_types
+        if additional_path_types is not None:
+            self._legal_path_types.extend(additional_path_types)
 
         # parse list and verify legality
         self._parse_arg_list(args)
@@ -591,12 +597,17 @@ class TikZPath(TikZObject):
         """
         super(TikZPath, self).__init__(options=options)
 
-        if isinstance(path, TikZPathList):
+        additional_path_types = None
+        if options is not None and 'use Hobby shortcut' in options:
+            additional_path_types = [".."]
+
+        if isinstance(path, TikZPathList):  # if already TikZPathList, should already have been
+            # fed arg on construction
             self.path = path
         elif isinstance(path, list):
-            self.path = TikZPathList(*path)
+                self.path = TikZPathList(*path, additional_path_types=additional_path_types)
         elif path is None:
-            self.path = TikZPathList()
+            self.path = TikZPathList(additional_path_types=additional_path_types)
         else:
             raise TypeError(
                 'argument "path" can only be of types list or TikZPathList')
