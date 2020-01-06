@@ -72,6 +72,7 @@ class TikZCoordinate(LatexObject):
         self._x = float(x)
         self._y = float(y)
         self.relative = relative
+        self.to_stop = False
 
     def __repr__(self):
         if self.relative:
@@ -84,6 +85,10 @@ class TikZCoordinate(LatexObject):
         """Return representation."""
 
         return self.__repr__()
+
+    def __iter__(self):
+        return iter((self._x, self._y))
+
 
     @classmethod
     def from_str(cls, coordinate):
