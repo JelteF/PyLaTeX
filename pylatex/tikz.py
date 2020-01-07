@@ -377,13 +377,56 @@ class TikZNode(TikZObject):
         #    'Invalid attribute requested: "{}"'.format(attr_name))
 
 
-class TikZCoordinateVariable(TikZNode):
+class _TikZCoordinateHandle(_TikzCoordinateBase):
+    """Convenience class to represent the differing syntax of using a \coordinate
+    defined in TikZ as oppose to initialising one. Perhaps this can be avoided,
+    but the most logical solution would be to make init return a tuple,  - the class and
+     reference obj, which is also confusing. Still not happy with how this works.
+
+     Perhaps a conditional dumps could work (using one output for the
+      first call to dumps is not safe though)"""
+
+    def __init__(self, handle):
+        self.handle = handle
+
+    def dumps(self):
+        return f"({self.handle})"
+
+    def __add__(self, other):
+        if isinstance(other, _TikzCoordinateBase) is False:
+            raise TypeError("Only can add coordinates with other coordinate types")
+        return _TikZCoordinateImplicitCalculation(self, "+", other)
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        def __add__(self, other):
+            if isinstance(other, _TikzCoordinateBase) is False:
+                raise TypeError("Only can subtract coordinates with other coordinate types")
+            return _TikZCoordinateImplicitCalculation(self, "-", other)
+
+    def __rsub__(self, other):
+        return self.__sub__(other)
+
+    def __mul__(self, other):
+        if isinstance(other, (float, int)) is False:
+            raise TypeError("Coordinates can only be multiplied by scalars")
+        return  _TikZCoordinateImplicitCalculation(other, "*", self)
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+
+class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
     """Represents the \coordinate syntax for defining a coordinate constant in Tikz.
-    This itself is a shortcut for a special case of node"""
+    This itself is a shortcut for a special case of node. Use get_handle method to
+    retrive object for using this variable in \draw and etc."""
+
+    def get_handle(self):
+        return _TikZCoordinateHandle(self.handle)
 
     def dumps(self):
         """Return string representation of the node."""
-        print('dumps node_pos variable', self._node_position, self._position, self._node_text)
 
         ret_str = []
         ret_str.append(Command('coordinate', options=self.options).dumps())
@@ -399,19 +442,6 @@ class TikZCoordinateVariable(TikZNode):
         # note text can be empty in / coordinate
         return ' '.join(ret_str) + ";"  # avoid space on end
 
-    def __add__(self, other):
-        if isinstance(other, (TikZCoordinateVariable, TikZCoordinate)) is False:
-            raise TypeError("Only can add coordinates with other coordinate types")
-        return _TikZCoordinateImplicitCalculation(self, "+", other)
-
-    def __sub__(self, other):
-        def __add__(self, other):
-            if isinstance(other, (TikZCoordinateVariable, TikZCoordinate)) is False:
-                raise TypeError("Only can subtract coordinates with other coordinate types")
-            return _TikZCoordinateImplicitCalculation(self, "-", other)
-
-
-    # TODO define addition/ subtraction
 
 
 class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
@@ -440,31 +470,43 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
         self._parse_next_item(item)
 
     def _parse_next_item(self, item):
-
         # assume first item is a point
         if self._last_item_type is None:
-            try:
-                self._add_point(item)
-            except (TypeError, ValueError):
-                # not a point, do something
-                raise TypeError(
-                    'First element of operator list must be a node identifier'
-                    ' or coordinate'
-                )
+            if self._add_scalar(item):
+                return
+            self._add_point_wrapper(item,
+                    error_to_raise=TypeError(
+                    'First element of operator list must be a or coordinate or scalar'))
+
         elif self._last_item_type == 'point':
             try:
                 self._add_operator(item)
             except (TypeError, ValueError) as ex:
                 raise ValueError("Only a valid operator can follow a point")
         elif self._last_item_type == 'operator':
-
-            try:
-                self._add_point(item)
+            if self._add_scalar(item):
                 return
-            except (TypeError, ValueError) as ex:
+            self._add_point_wrapper(item,
+                                    error_to_raise=ValueError(
+                                        'only a point descriptor can come after an operator'))
 
-                raise ValueError('only a point descriptor can come'
-                                 ' after an operator')
+        elif self._last_item_type == 'scalar':
+            if item == "*":
+                self._arg_list.append(item)
+                self._last_item_type = "multiplication_operator"
+            else:
+                raise ValueError("Multiplicaton symbol * must follow scalar in calc syntax.")
+        elif self._last_item_type == 'multiplication_operator':
+            self._add_point_wrapper(item,
+                                    ValueError("Scalar must be followed by a point to be legal."))
+
+    def _add_scalar(self, item) -> bool:
+        """Attempt to process item as a scalar, returns result as boolean"""
+        if isinstance(item, (float, int)):
+            self._last_item_type = "scalar"
+            self._arg_list.append(str(round(item, 2)))  # note str conversion so dumps works
+            return True
+        return False
 
     def _parse_arg_list(self, args):
 
@@ -473,12 +515,11 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
 
     def _add_operator(self, operator, parse_only=False):
         if isinstance(operator, str):
-            if not operator in self._legal_operators:
+            if operator not in self._legal_operators:
                 raise ValueError('Illegal user operator type: "{}"'.format(operator))
         else:
             raise TypeError('Only string type operators are allowed')
 
-        # add
         if parse_only is False:
             self._arg_list.append(operator)
             self._last_item_type = 'operator'
@@ -486,8 +527,15 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
         else:
             return operator
 
-    def _add_point(self, point, parse_only=False):
-        print("point is ", point, type(point))
+    def _add_point_wrapper(self, point, error_to_raise: Exception) -> bool:
+        try:
+            self._add_point(point)
+            return True
+        except (TypeError, ValueError):
+            # not a point, do something
+            raise error_to_raise
+
+    def _add_point(self, point):
         if isinstance(point, str):
             try:
                 _item = TikZCoordinate.from_str(point)
@@ -499,18 +547,41 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
             _item = TikZCoordinate(*point)
         elif isinstance(point, TikZNode):
             _item = '({})'.format(point.handle)
-        elif isinstance(point, (TikZNodeAnchor, TikZCoordinateVariable)):
+        elif isinstance(point, TikZNodeAnchor):
             _item = point.dumps()
         else:
             raise TypeError('Only str, tuple, TikZCoordinate, TikZCoordinateVariable'
                             'TikZNode or TikZNodeAnchor types are allowed,'
                             ' got: {}'.format(type(point)))
         # add, finally
-        if parse_only is False:
-            self._arg_list.append(_item)
-            self._last_item_type = 'point'
-        else:
-            return _item
+        self._arg_list.append(_item)
+        self._last_item_type = 'point'
+
+    def __add__(self, other):
+        if isinstance(other, _TikZCoordinateImplicitCalculation):
+            args = self._arg_list
+            args.append("+")
+            args.extend(other._arg_list)
+            return _TikZCoordinateImplicitCalculation(*args)
+
+        elif isinstance(other, _TikzCoordinateBase):
+            return _TikZCoordinateImplicitCalculation(*self._arg_list, "+", other)
+
+        raise TypeError(f"Addition/ Subtraction unsupported for types {type(self)} and"
+                        f" {type(other)}")
+
+    def __sub__(self, other):
+        if isinstance(other, _TikZCoordinateImplicitCalculation):
+            args = self._arg_list
+            args.append("-")
+            args.extend(other._arg_list)
+            return _TikZCoordinateImplicitCalculation(*args)
+
+        elif isinstance(other, _TikzCoordinateBase):
+            return _TikZCoordinateImplicitCalculation(*self._arg_list, "-", other)
+
+        raise TypeError(f"Addition/ Subtraction unsupported for types {type(self)} and"
+                        f" {type(other)}")
 
     def dumps(self):
         """Return representation of the implicit unevaluated coordinates."""
@@ -524,8 +595,16 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
             else:
                 raise TypeError("Dumps failed. Unexpected item type in"
                                 "_arg_list")
-        ret_str = ' '.join(ret_list)
-        return f"(${ret_str}$)"
+        ret_str = ""
+        for i in ret_list:
+            # Asterisk in this context is for a calc line, which means we can't have spaces
+            if i == "*":
+                ret_str = ret_str[:-1] + str(i)
+            else:
+                ret_str += str(i) + " "
+
+        return f"($ {ret_str}$)"
+
 
 class TikZUserPath(LatexObject):
     """Represents a possible TikZ path."""
@@ -636,7 +715,7 @@ class TikZPathList(LatexObject):
 
             # disentangle exceptions
             if not_a_path is False:
-                raise ValueError('only a point descriptor can come'
+                raise ValueError('only a point descriptor can only come'
                                  ' after a path descriptor')
 
             if original_exception is not None:
