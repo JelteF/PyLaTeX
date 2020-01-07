@@ -10,6 +10,7 @@ from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
 import re
 import math
+from abc import ABC
 
 
 class TikZOptions(Options):
@@ -52,7 +53,12 @@ class TikZScope(Environment):
     _latex_name = 'scope'
 
 
-class TikZCoordinate(LatexObject):
+class _TikzCoordinateBase(LatexObject, ABC):
+    """Purely a marker class for isinstance checks to allow all kinds of
+    coordinate classes generically without explicitly referencing each of them"""
+
+
+class TikZCoordinate(_TikzCoordinateBase):
     """A General Purpose Coordinate Class, representing a tuple of points
     specified, as opposed to the node shortcut command \coordinate"""
 
@@ -393,6 +399,133 @@ class TikZCoordinateVariable(TikZNode):
         # note text can be empty in / coordinate
         return ' '.join(ret_str) + ";"  # avoid space on end
 
+    def __add__(self, other):
+        if isinstance(other, (TikZCoordinateVariable, TikZCoordinate)) is False:
+            raise TypeError("Only can add coordinates with other coordinate types")
+        return _TikZCoordinateImplicitCalculation(self, "+", other)
+
+    def __sub__(self, other):
+        def __add__(self, other):
+            if isinstance(other, (TikZCoordinateVariable, TikZCoordinate)) is False:
+                raise TypeError("Only can subtract coordinates with other coordinate types")
+            return _TikZCoordinateImplicitCalculation(self, "-", other)
+
+
+    # TODO define addition/ subtraction
+
+
+class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
+    """Class representing a non explicit coordinate calculation
+    that would be done in TikZ using the calc library.
+    i.e. addition of a \coordinate and (i,j)
+     Should never be directly instantiated"""
+
+    _legal_operators = ['-', '+']
+
+    def __init__(self, *args):
+        """
+        Args
+        ----
+        args: list
+            A list of coordinate elements
+        """
+        self._last_item_type = None
+        self._arg_list = []
+
+        # parse list and verify legality
+        self._parse_arg_list(args)
+
+    def append(self, item):
+        """Add a new element to the implicit calculation."""
+        self._parse_next_item(item)
+
+    def _parse_next_item(self, item):
+
+        # assume first item is a point
+        if self._last_item_type is None:
+            try:
+                self._add_point(item)
+            except (TypeError, ValueError):
+                # not a point, do something
+                raise TypeError(
+                    'First element of operator list must be a node identifier'
+                    ' or coordinate'
+                )
+        elif self._last_item_type == 'point':
+            try:
+                self._add_operator(item)
+            except (TypeError, ValueError) as ex:
+                raise ValueError("Only a valid operator can follow a point")
+        elif self._last_item_type == 'operator':
+
+            try:
+                self._add_point(item)
+                return
+            except (TypeError, ValueError) as ex:
+
+                raise ValueError('only a point descriptor can come'
+                                 ' after an operator')
+
+    def _parse_arg_list(self, args):
+
+        for item in args:
+            self._parse_next_item(item)
+
+    def _add_operator(self, operator, parse_only=False):
+        if isinstance(operator, str):
+            if not operator in self._legal_operators:
+                raise ValueError('Illegal user operator type: "{}"'.format(operator))
+        else:
+            raise TypeError('Only string type operators are allowed')
+
+        # add
+        if parse_only is False:
+            self._arg_list.append(operator)
+            self._last_item_type = 'operator'
+
+        else:
+            return operator
+
+    def _add_point(self, point, parse_only=False):
+        print("point is ", point, type(point))
+        if isinstance(point, str):
+            try:
+                _item = TikZCoordinate.from_str(point)
+            except ValueError:
+                raise ValueError('Illegal point string: "{}"'.format(point))
+        elif isinstance(point, _TikzCoordinateBase):
+            _item = point
+        elif isinstance(point, tuple):
+            _item = TikZCoordinate(*point)
+        elif isinstance(point, TikZNode):
+            _item = '({})'.format(point.handle)
+        elif isinstance(point, (TikZNodeAnchor, TikZCoordinateVariable)):
+            _item = point.dumps()
+        else:
+            raise TypeError('Only str, tuple, TikZCoordinate, TikZCoordinateVariable'
+                            'TikZNode or TikZNodeAnchor types are allowed,'
+                            ' got: {}'.format(type(point)))
+        # add, finally
+        if parse_only is False:
+            self._arg_list.append(_item)
+            self._last_item_type = 'point'
+        else:
+            return _item
+
+    def dumps(self):
+        """Return representation of the implicit unevaluated coordinates."""
+
+        ret_list = []
+        for item in self._arg_list:
+            if isinstance(item, str):
+                ret_list.append(item)
+            elif isinstance(item, LatexObject):
+                ret_list.append(item.dumps())
+            else:
+                raise TypeError("Dumps failed. Unexpected item type in"
+                                "_arg_list")
+        ret_str = ' '.join(ret_list)
+        return f"(${ret_str}$)"
 
 class TikZUserPath(LatexObject):
     """Represents a possible TikZ path."""
@@ -551,7 +684,7 @@ class TikZPathList(LatexObject):
                 _item = TikZCoordinate.from_str(point)
             except ValueError:
                 raise ValueError('Illegal point string: "{}"'.format(point))
-        elif isinstance(point, TikZCoordinate):
+        elif isinstance(point, _TikzCoordinateBase):
             _item = point
         elif isinstance(point, tuple):
             _item = TikZCoordinate(*point)
@@ -724,13 +857,13 @@ class Plot(LatexObject):
 
             if self.error_bar is None:
                 for x, y in self.coordinates:
-                    # ie: "(x,y)"
+                    # ie: "(rot,y)"
                     string += '(' + str(x) + ',' + str(y) + ')%\n'
 
             else:
                 for (x, y), (e_x, e_y) in zip(self.coordinates,
                                               self.error_bar):
-                    # ie: "(x,y) +- (e_x,e_y)"
+                    # ie: "(rot,y) +- (e_x,e_y)"
                     string += '(' + str(x) + ',' + str(y) + \
                         ') +- (' + str(e_x) + ',' + str(e_y) + ')%\n'
 
