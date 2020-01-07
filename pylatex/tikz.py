@@ -53,7 +53,8 @@ class TikZScope(Environment):
 
 
 class TikZCoordinate(LatexObject):
-    """A General Purpose Coordinate Class."""
+    """A General Purpose Coordinate Class, representing a tuple of points
+    specified, as opposed to the node shortcut command \coordinate"""
 
     _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
                                        r',\s*(-?[0-9]+(\.[0-9]+)?)\s*\)')
@@ -368,6 +369,29 @@ class TikZNode(TikZObject):
 
         # raise AttributeError(
         #    'Invalid attribute requested: "{}"'.format(attr_name))
+
+
+class TikZCoordinateVariable(TikZNode):
+    """Represents the \coordinate syntax for defining a coordinate constant in Tikz.
+    This itself is a shortcut for a special case of node"""
+
+    def dumps(self):
+        """Return string representation of the node."""
+        print('dumps node_pos variable', self._node_position, self._position, self._node_text)
+
+        ret_str = []
+        ret_str.append(Command('coordinate', options=self.options).dumps())
+
+        if self.handle is not None:
+            ret_str.append('({})'.format(self.handle))
+
+        if self._node_position is not None:
+            ret_str.append('at {}'.format(str(self._node_position)))
+
+        if self._node_text is not None:
+            ret_str.append('{{{text}}}'.format(text=self._node_text))
+        # note text can be empty in / coordinate
+        return ' '.join(ret_str) + ";"  # avoid space on end
 
 
 class TikZUserPath(LatexObject):
