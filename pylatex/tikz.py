@@ -252,7 +252,7 @@ class TikZArcSpecifier(LatexObject):
 
         if m is None:
             raise ValueError('invalid arc string')
-        if m.group(1) =='++':
+        if m.group(1) == '++':
             relative = True
         else:
             relative = False
@@ -412,7 +412,8 @@ class _TikZCoordinateHandle(_TikzCoordinateBase):
     def __mul__(self, other):
         if isinstance(other, (float, int)) is False:
             raise TypeError("Coordinates can only be multiplied by scalars")
-        return  _TikZCoordinateImplicitCalculation(other, "*", self)
+        return _TikZCoordinateImplicitCalculation(other, "*", self)
+
     def __rmul__(self, other):
         return self.__mul__(other)
 
@@ -442,6 +443,16 @@ class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
         # note text can be empty in / coordinate
         return ' '.join(ret_str) + ";"  # avoid space on end
 
+
+class TikZCalcScalar(LatexObject):
+    """Wrapper for multiplication value to enable dumps support. Easier than dealing
+    with string conversion to avoid needing dumps"""
+
+    def __init__(self, value):
+        self._value = value
+
+    def dumps(self):
+        return str(round(self._value, 2))
 
 
 class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
@@ -504,13 +515,22 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
         """Attempt to process item as a scalar, returns result as boolean"""
         if isinstance(item, (float, int)):
             self._last_item_type = "scalar"
-            self._arg_list.append(str(round(item, 2)))  # note str conversion so dumps works
+            self._arg_list.append(TikZCalcScalar(item))
+            return True
+        elif isinstance(item, TikZCalcScalar):
+            self._last_item_type = "scalar"
+            self._arg_list.append(item)
             return True
         return False
 
     def _parse_arg_list(self, args):
 
         for item in args:
+            if isinstance(item, TikZCoordinateVariable): # reasonably easy error to make
+                raise TypeError("TikZCoordinateVariable should only be used for coordinate "
+                                "definition. For other uses, "
+                                "call TikZCoordinateVariable.get_handle() to retrieve "
+                                r"reference variable for use in \draw, \path and other commands.")
             self._parse_next_item(item)
 
     def _add_operator(self, operator, parse_only=False):
