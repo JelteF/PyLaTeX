@@ -5,6 +5,7 @@ This module implements the classes used to show plots.
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
+from ordered_set import OrderedSet
 
 from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
@@ -22,6 +23,11 @@ class TikZOptions(Options):
         """Add a new positional option."""
 
         self._positional_args.append(option)
+
+class TikzLibrary(Package):
+    """Wrapper for package command for inclusion of tikz libraries. Allows
+    automatic detection of some tikz libraries. """
+    _latex_name = 'usetikzlibrary'
 
 
 class TikZ(Environment):
@@ -419,9 +425,11 @@ class _TikZCoordinateHandle(_TikzCoordinateBase):
 
 
 class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
-    """Represents the \coordinate syntax for defining a coordinate constant in Tikz.
+    """Represents the \\coordinate syntax for defining a coordinate constant in Tikz.
     This itself is a shortcut for a special case of node. Use get_handle method to
-    retrive object for using this variable in \draw and etc."""
+    retrieve object for using this variable in \\draw and etc."""
+
+    packages = [TikzLibrary('calc')]
 
     def get_handle(self):
         return _TikZCoordinateHandle(self.handle)
@@ -860,6 +868,7 @@ class TikZPath(TikZObject):
 
         additional_path_types = None
         if options is not None and 'use Hobby shortcut' in options:
+            self.packages.add(TikzLibrary('hobby'))
             additional_path_types = [".."]
 
         if isinstance(path, TikZPathList):  # if already TikZPathList, should already have been
