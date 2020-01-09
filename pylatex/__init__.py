@@ -14,9 +14,10 @@ from .package import Package
 from .section import Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
     LongTabu, Tabularx, LongTabularx, ColumnType
-from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate, TikZPolarCoordinate, \
-    TikZArc, TikZPathList, TikZPath, TikZUserPath, TikZOptions, TikZNodeAnchor, \
-    TikZScope
+from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate,\
+    TikZPolarCoordinate, TikZArc, TikZPathList, TikZPath, TikZUserPath, \
+    TikZOptions, TikZNodeAnchor, \
+    TikZScope, TikZCoordinateVariable, TikZCalcScalar, TikZLibrary
 from .figure import Figure, SubFigure, StandAloneGraphic
 from .lists import Enumerate, Itemize, Description
 from .quantities import Quantity

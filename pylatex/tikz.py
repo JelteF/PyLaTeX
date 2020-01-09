@@ -24,7 +24,7 @@ class TikZOptions(Options):
 
         self._positional_args.append(option)
 
-class TikzLibrary(Package):
+class TikZLibrary(Package):
     """Wrapper for package command for inclusion of tikz libraries. Allows
     automatic detection of some tikz libraries. """
     _latex_name = 'usetikzlibrary'
@@ -431,7 +431,7 @@ class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
     This itself is a shortcut for a special case of node. Use get_handle method to
     retrieve object for using this variable in \draw and etc."""
 
-    packages = [TikzLibrary('calc')]
+    packages = [TikZLibrary('calc')]
 
     def get_handle(self):
         return _TikZCoordinateHandle(self.handle)
@@ -871,7 +871,7 @@ class TikZPath(TikZObject):
 
         additional_path_types = None
         if options is not None and 'use Hobby shortcut' in options:
-            self.packages.add(TikzLibrary('hobby'))
+            self.packages.add(TikZLibrary('hobby'))
             additional_path_types = [".."]
 
         if isinstance(path, TikZPathList):  # if already TikZPathList, should already have been
