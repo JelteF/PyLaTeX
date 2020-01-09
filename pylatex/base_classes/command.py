@@ -206,8 +206,8 @@ class Parameters(LatexObject):
     @recursive_repr()
     def __repr__(self):
         args = [repr(a) for a in self._positional_args]
-        args += [f"{k}={v.dumps() if isinstance(v, LatexObject) else v}" for (k,v) in
-                 self._key_value_args.items()]
+        args += [f"{k}={v.dumps() if isinstance(v, LatexObject) else v}"
+                 for (k, v) in self._key_value_args.items()]
         return self.__class__.__name__ + '(' + ', '.join(args) + ')'
 
     def __init__(self, *args, **kwargs):
@@ -233,9 +233,11 @@ class Parameters(LatexObject):
         super().__init__()
 
     def __contains__(self, item):
-        """ true if present in positional list, or full {k}={v} text is in kwargs"""
+        """Define contains to support in queries. Returns true if
+        item present in positional list, or item matches string
+        representation of keyword args; {k}={v}.
+        """
         return item in self._list_args_kwargs()
-
 
     def __key(self):
         """Generate a unique hashable key representing the parameter object.
@@ -304,8 +306,8 @@ class Parameters(LatexObject):
 
         params = []
         params.extend(self._positional_args)
-        params.extend([f'{k}={v.dumps() if isinstance(v, LatexObject) else v}' for k, v in
-                       self._key_value_args.items()])
+        params.extend([f'{k}={v.dumps() if isinstance(v, LatexObject) else v}'
+                       for k, v in self._key_value_args.items()])
 
         return params
 

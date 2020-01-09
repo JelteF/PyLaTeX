@@ -217,7 +217,7 @@ def _latex_item_to_string(item, *, escape=False, as_content=False):
     NoEscape
         Latex
     """
-    
+
     if isinstance(item, pylatex.base_classes.LatexObject):
         if as_content:
             return item.dumps_as_content()

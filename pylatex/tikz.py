@@ -5,8 +5,6 @@ This module implements the classes used to show plots.
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
-from ordered_set import OrderedSet
-
 from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
 import re
@@ -24,9 +22,12 @@ class TikZOptions(Options):
 
         self._positional_args.append(option)
 
+
 class TikZLibrary(Package):
     """Wrapper for package command for inclusion of tikz libraries. Allows
-    automatic detection of some tikz libraries. """
+    automatic detection of some tikz libraries.
+    """
+
     _latex_name = 'usetikzlibrary'
 
 
@@ -59,14 +60,16 @@ class TikZScope(Environment):
     _latex_name = 'scope'
 
 
-class _TikzCoordinateBase(LatexObject, ABC):
+class _TikZCoordinateBase(LatexObject, ABC):
     """Marker abstract class from which all coordinate classes inherit. Allows
-        for cleaner use of isinstance"""
+    for cleaner use of isinstance regarding all coordinate objects.
+    """
 
 
-class TikZCoordinate(_TikzCoordinateBase):
-    """A General Purpose Coordinate Class, representing a tuple of points
-    specified, as opposed to the node shortcut command \coordinate"""
+class TikZCoordinate(_TikZCoordinateBase):
+    r"""A General Purpose Coordinate Class, representing a tuple of points
+    specified, as opposed to the node shortcut command \coordinate
+    """
 
     _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
                                        r',\s*(-?[0-9]+(\.[0-9]+)?)\s*\)')
@@ -92,7 +95,7 @@ class TikZCoordinate(_TikzCoordinateBase):
             ret_str = '++'
         else:
             ret_str = ''
-        return ret_str + '({},{})'.format(round(self._x,3), round(self._y,3))
+        return ret_str + '({},{})'.format(round(self._x, 3), round(self._y, 3))
 
     def dumps(self):
         """Return representation."""
@@ -101,7 +104,6 @@ class TikZCoordinate(_TikzCoordinateBase):
 
     def __iter__(self):
         return iter((self._x, self._y))
-
 
     @classmethod
     def from_str(cls, coordinate):
@@ -207,14 +209,17 @@ class TikZPolarCoordinate(TikZCoordinate):
 
 
 class TikZArc(LatexObject):
-    """A class to represent the tikz specification for arcs i.e. (ang1: ang2: rad)"""
+    """A class to represent the tikz specification for arcs
+    i.e. (ang1: ang2: rad)
+    """
 
     _str_verif_regex = re.compile(r'(\+\+)?\('
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
                                   r'\s*([0-9]+(\.[0-9]+)?)\s*\)')
 
-    def __init__(self, start_ang, finish_ang, radius, relative=False, force_far_direction=False):
+    def __init__(self, start_ang, finish_ang, radius, relative=False,
+                 force_far_direction=False):
         """
         start_ang: float or int
             angle in degrees
@@ -264,7 +269,7 @@ class TikZArc(LatexObject):
             relative = False
 
         return cls(float(m.group(2)), float(m.group(4)), float(m.group(6)),
-            relative=relative)
+                   relative=relative)
 
 
 class TikZObject(Container):
@@ -383,16 +388,17 @@ class TikZNode(TikZObject):
         #    'Invalid attribute requested: "{}"'.format(attr_name))
 
 
-class _TikZCoordinateHandle(_TikzCoordinateBase):
-    """Class to represent the syntax of using coordinate handle defined with \coordinate
-    as opposed to initialising one.
+class _TikZCoordinateHandle(_TikZCoordinateBase):
+    r"""Class to represent the syntax of using coordinate handle defined with
+     \coordinate as opposed to defining the coordinate.
 
-    Perhaps this can avoid being a seperate class, but the most logical solution would be to make
-    init return a tuple,  - the comand defn reference and the handle,
-     which is also confusing. Still not happy with how this works.
+    Perhaps this can avoid being a seperate class, but the clear solution
+    would be to make init return a tuple,  - the comand defn reference and
+    the handle, which is also confusing. Still not happy with how this works.
 
-     Perhaps a conditional dumps could work somehow (Note boolean flag on first
-     call to dumps is not safe though.)"""
+    Perhaps a conditional dumps could work somehow (Note boolean flag on first
+    call to dumps is not safe though).
+    """
 
     def __init__(self, handle):
         self.handle = handle
@@ -401,18 +407,19 @@ class _TikZCoordinateHandle(_TikzCoordinateBase):
         return f"({self.handle})"
 
     def __add__(self, other):
-        if isinstance(other, _TikzCoordinateBase) is False:
-            raise TypeError("Only can add coordinates with other coordinate types")
+        if isinstance(other, _TikZCoordinateBase) is False:
+            raise TypeError("Only can add coordinates with other"
+                            " coordinate types")
         return _TikZCoordinateImplicitCalculation(self, "+", other)
 
     def __radd__(self, other):
         return self.__add__(other)
 
     def __sub__(self, other):
-        def __add__(self, other):
-            if isinstance(other, _TikzCoordinateBase) is False:
-                raise TypeError("Only can subtract coordinates with other coordinate types")
-            return _TikZCoordinateImplicitCalculation(self, "-", other)
+        if isinstance(other, _TikZCoordinateBase) is False:
+            raise TypeError("Only can subtract coordinates with other"
+                            " coordinate types")
+        return _TikZCoordinateImplicitCalculation(self, "-", other)
 
     def __rsub__(self, other):
         return self.__sub__(other)
@@ -426,14 +433,21 @@ class _TikZCoordinateHandle(_TikzCoordinateBase):
         return self.__mul__(other)
 
 
-class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
-    r"""Represents the \coordinate syntax for defining a coordinate constant in Tikz.
-    This itself is a shortcut for a special case of node. Use get_handle method to
-    retrieve object for using this variable in \draw and etc."""
+class TikZCoordinateVariable(_TikZCoordinateBase, TikZNode):
+    r"""Represents the \coordinate syntax for defining a coordinate handle in
+    TikZ. This itself is a shortcut for a special case of node. Use
+    get_handle method to retrieve object corresponding to use of the
+    coordinate handle (as opposed to the initial definition)
+    """
 
     packages = [TikZLibrary('calc')]
 
     def get_handle(self):
+        """Retrieves the associated coordinate handle accessor. # noqa: D401
+
+        This handle is for the inline re-referencing of the same
+        coordinate using the label text supplied at definition.
+        """
         return _TikZCoordinateHandle(self.handle)
 
     def dumps(self):
@@ -455,22 +469,36 @@ class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
 
 
 class TikZCalcScalar(LatexObject):
-    """Wrapper for multiplication scalar in calc expressions to enable dumps support. Easier
-    than just casting to str and then having to write methods to detect if the str is a
-    coordinate str or a multiplication str."""
+    """Wrapper for multiplication scalar in calc expressions e.g.
+    ($ 4*(3,2.2) $)
+    Written explicitly as a seperate class to enable dumps support.
+    Simpler than trying to deal with casting floats and strings
+    without having other string parsing cause issues.
+    """
 
     def __init__(self, value):
+        """
+        Args
+        ----
+        value: float | int
+            The scalar operator to be applied to the successor coordinate.
+        """
         self._value = value
 
     def dumps(self):
+        """Represent the Scalar as a string in LaTeX syntax valid for a calc
+        calculation.
+        """
         return str(round(self._value, 2))
 
 
-class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
-    r"""Class representing an implicit coordinate that would be done in TikZ using the calc library.
-    i.e. addition of a \coordinate and (i,j)
+class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
+    r"""Class representing an implicit coordinate that would be defined in
+    TikZ using \coordinate. Supports addition/ subtraction of coordinates as
+    can be done in the TikZ calc library.
 
-     Should never be directly instantiated by user."""
+    Should never be directly instantiated by user.
+    """
 
     _legal_operators = ['-', '+']
 
@@ -496,31 +524,34 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
         if self._last_item_type is None:
             if self._add_scalar(item):
                 return
-            self._add_point_wrapper(item,
-                    error_to_raise=TypeError(
-                    'First element of operator list must be a or coordinate or scalar'))
+            self._add_point_wrapper(
+                item, error_to_raise=TypeError(
+                    'First element of operator list must '
+                    'be a or coordinate or scalar'))
 
         elif self._last_item_type == 'point':
             try:
                 self._add_operator(item)
-            except (TypeError, ValueError) as ex:
+            except (TypeError, ValueError):
                 raise ValueError("Only a valid operator can follow a point")
         elif self._last_item_type == 'operator':
             if self._add_scalar(item):
                 return
-            self._add_point_wrapper(item,
-                                    error_to_raise=ValueError(
-                                        'only a point descriptor can come after an operator'))
+            self._add_point_wrapper(
+                item, error_to_raise=ValueError(
+                    'only a point descriptor can come after an operator'))
 
         elif self._last_item_type == 'scalar':
             if item == "*":
                 self._arg_list.append(item)
                 self._last_item_type = "multiplication_operator"
             else:
-                raise ValueError("Multiplicaton symbol * must follow scalar in calc syntax.")
+                raise ValueError("Multiplication symbol * must follow scalar"
+                                 " in calc syntax.")
         elif self._last_item_type == 'multiplication_operator':
             self._add_point_wrapper(item,
-                                    ValueError("Scalar must be followed by a point to be legal."))
+                                    ValueError("Scalar must be followed by a"
+                                               " point to be legal."))
 
     def _add_scalar(self, item) -> bool:
         """Attempt to process item as a scalar, returns result as boolean"""
@@ -537,17 +568,18 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
     def _parse_arg_list(self, args):
 
         for item in args:
-            if isinstance(item, TikZCoordinateVariable): # reasonably easy error to make
-                raise TypeError("TikZCoordinateVariable should only be used for coordinate "
-                                "definition. For other uses, "
-                                "call TikZCoordinateVariable.get_handle() to retrieve "
-                                r"reference variable for use in \draw, \path and other commands.")
+            # relatively easy error to make so ensure error is descriptive
+            if isinstance(item, TikZCoordinateVariable):
+                raise TypeError("TikZCoordinateVariable should only be used "
+                                "for coordinate definition. To use "
+                                "coordinate label handle, call "
+                                "TikZCoordinateVariable.get_handle() ")
             self._parse_next_item(item)
 
     def _add_operator(self, operator, parse_only=False):
         if isinstance(operator, str):
             if operator not in self._legal_operators:
-                raise ValueError('Illegal user operator type: "{}"'.format(operator))
+                raise ValueError(f'Illegal user operator type: "{operator}"')
         else:
             raise TypeError('Only string type operators are allowed')
 
@@ -572,7 +604,7 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
                 _item = TikZCoordinate.from_str(point)
             except ValueError:
                 raise ValueError('Illegal point string: "{}"'.format(point))
-        elif isinstance(point, _TikzCoordinateBase):
+        elif isinstance(point, _TikZCoordinateBase):
             _item = point
         elif isinstance(point, tuple):
             _item = TikZCoordinate(*point)
@@ -581,7 +613,8 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
         elif isinstance(point, TikZNodeAnchor):
             _item = point.dumps()
         else:
-            raise TypeError('Only str, tuple, TikZCoordinate, TikZCoordinateVariable'
+            raise TypeError('Only str, tuple, TikZCoordinate, '
+                            'TikZCoordinateVariable'
                             'TikZNode or TikZNodeAnchor types are allowed,'
                             ' got: {}'.format(type(point)))
         # add, finally
@@ -595,11 +628,12 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
-        elif isinstance(other, _TikzCoordinateBase):
-            return _TikZCoordinateImplicitCalculation(*self._arg_list, "+", other)
+        elif isinstance(other, _TikZCoordinateBase):
+            return _TikZCoordinateImplicitCalculation(*self._arg_list,
+                                                      "+", other)
 
-        raise TypeError(f"Addition/ Subtraction unsupported for types {type(self)} and"
-                        f" {type(other)}")
+        raise TypeError("Addition/ Subtraction unsupported for types"
+                        f" {type(self)} and {type(other)}")
 
     def __sub__(self, other):
         if isinstance(other, _TikZCoordinateImplicitCalculation):
@@ -608,11 +642,12 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
-        elif isinstance(other, _TikzCoordinateBase):
-            return _TikZCoordinateImplicitCalculation(*self._arg_list, "-", other)
+        elif isinstance(other, _TikZCoordinateBase):
+            return _TikZCoordinateImplicitCalculation(*self._arg_list,
+                                                      "-", other)
 
-        raise TypeError(f"Addition/ Subtraction unsupported for types {type(self)} and"
-                        f" {type(other)}")
+        raise TypeError("Addition/ Subtraction unsupported for types"
+                        f" {type(self)} and {type(other)}")
 
     def dumps(self):
         """Return representation of the implicit unevaluated coordinates."""
@@ -628,7 +663,8 @@ class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
                                 "_arg_list")
         ret_str = ""
         for i in ret_list:
-            # Asterisk in this context is for a calc line, which means we can't have spaces
+            # Asterisk in this context is for a calc line,
+            # which means spaces are invalid, so string them
             if i == "*":
                 ret_str = ret_str[:-1] + str(i)
             else:
@@ -668,10 +704,8 @@ class TikZPathList(LatexObject):
     """Represents a path drawing."""
 
     _base_legal_path_types = ['--', '-|', '|-', 'to',
-                         'rectangle', 'circle',
-                         'arc', 'edge']
-
-
+                              'rectangle', 'circle',
+                              'arc', 'edge']
 
     def __init__(self, *args, additional_path_types=None):
         """
@@ -710,8 +744,9 @@ class TikZPathList(LatexObject):
             # point after point is permitted, doesnt draw
 
             if isinstance(item, TikZNode):
-                # Note that we drop the preceding backslash since that is not part
-                # of inline syntax. trailing ";" dropped as well since TikZNode will add this
+                # Note that we drop the preceding backslash since that is
+                # not part of inline syntax. trailing ";" dropped as well
+                # since TikZPath will add this from its own dumps
                 self._arg_list.append(item.dumps()[1:-1])
                 return
             try:
@@ -758,7 +793,7 @@ class TikZPathList(LatexObject):
             try:
                 self._add_arc_spec(item)
                 return
-            except (TypeError, ValueError) as ex:
+            except (TypeError, ValueError):
                 raise ValueError('only an arc specifier can come after an '
                                  ' arc path descriptor')
 
@@ -782,7 +817,8 @@ class TikZPathList(LatexObject):
         if parse_only is False:
             self._arg_list.append(_path)
             self._last_item_type = 'path'
-            # if arc, need to know since then we expect following to be an arc not a point
+            # if path is an arc, need to know since then we expect
+            # following to be a TikZArc not a point
             if _path.path_type == "arc":
                 self._last_item_type += ".arc"
         else:
@@ -794,7 +830,7 @@ class TikZPathList(LatexObject):
                 _item = TikZCoordinate.from_str(point)
             except ValueError:
                 raise ValueError('Illegal point string: "{}"'.format(point))
-        elif isinstance(point, _TikzCoordinateBase):
+        elif isinstance(point, _TikZCoordinateBase):
             _item = point
         elif isinstance(point, tuple):
             _item = TikZCoordinate(*point)
@@ -854,7 +890,6 @@ class TikZPathList(LatexObject):
         return ' '.join(ret_str)
 
 
-
 class TikZPath(TikZObject):
     r"""The TikZ \path command."""
 
@@ -874,13 +909,16 @@ class TikZPath(TikZObject):
             self.packages.add(TikZLibrary('hobby'))
             additional_path_types = [".."]
 
-        if isinstance(path, TikZPathList):  # if already TikZPathList, should already have been
-            # fed arg on construction
+        # if already a TikZPathList, additional paths should have already been
+        # supplied
+        if isinstance(path, TikZPathList):
             self.path = path
         elif isinstance(path, list):
-                self.path = TikZPathList(*path, additional_path_types=additional_path_types)
+                self.path = TikZPathList(
+                    *path, additional_path_types=additional_path_types)
         elif path is None:
-            self.path = TikZPathList(additional_path_types=additional_path_types)
+            self.path = TikZPathList(
+                additional_path_types=additional_path_types)
         else:
             raise TypeError(
                 'argument "path" can only be of types list or TikZPathList')
@@ -913,8 +951,9 @@ class TikZDraw(TikZPath):
         super(TikZDraw, self).__init__(path=path, options=options)
 
     def dumps(self):
-        """Return a representation for the command. Override
-        to provide clearer syntax to user instead of \path[draw]"""
+        r"""Return a representation for the command. Override
+        to provide clearer syntax to user instead of \path[draw]
+        """
         ret_str = [Command('draw', options=self.options).dumps()]
 
         ret_str.append(self.path.dumps())
