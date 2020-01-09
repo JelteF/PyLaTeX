@@ -318,7 +318,7 @@ class TikZNode(TikZObject):
         ----
         handle: str
             Node identifier
-        options: list
+        options: list | TikZOptions
             List of options
         at: TikZCoordinate
             Coordinate where node is placed
