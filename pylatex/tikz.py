@@ -206,7 +206,7 @@ class TikZPolarCoordinate(TikZCoordinate):
         return ret_str + '({}:{})'.format(self._angle, self._radius)
 
 
-class TikZArcSpecifier(LatexObject):
+class TikZArc(LatexObject):
     """A class to represent the tikz specification for arcs i.e. (ang1: ang2: rad)"""
 
     _str_verif_regex = re.compile(r'(\+\+)?\('
@@ -816,13 +816,13 @@ class TikZPathList(LatexObject):
     def _add_arc_spec(self, arc, parse_only=False):
         if isinstance(arc, str):
             try:
-                _arc = TikZArcSpecifier.from_str(arc)
+                _arc = TikZArc.from_str(arc)
             except ValueError:
                 raise ValueError('Illegal arc string: "{}"'.format(arc))
-        elif isinstance(arc, TikZArcSpecifier):
+        elif isinstance(arc, TikZArc):
             _arc = arc
         elif isinstance(arc, tuple):
-            _arc = TikZArcSpecifier(*arc)
+            _arc = TikZArc(*arc)
         # tODO no idea whether node formatting should behave
         elif isinstance(arc, TikZNode):
             _arc = '({})'.format(arc.handle)
