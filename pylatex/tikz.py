@@ -60,8 +60,8 @@ class TikZScope(Environment):
 
 
 class _TikzCoordinateBase(LatexObject, ABC):
-    """Purely a marker class for isinstance checks to allow all kinds of
-    coordinate classes generically without explicitly referencing each of them"""
+    """Marker abstract class from which all coordinate classes inherit. Allows
+        for cleaner use of isinstance"""
 
 
 class TikZCoordinate(_TikzCoordinateBase):
@@ -207,7 +207,7 @@ class TikZPolarCoordinate(TikZCoordinate):
 
 
 class TikZArcSpecifier(LatexObject):
-    """A class to represent the tikz arc specifier (ang1: ang2: rad)"""
+    """A class to represent the tikz specification for arcs i.e. (ang1: ang2: rad)"""
 
     _str_verif_regex = re.compile(r'(\+\+)?\('
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
@@ -384,13 +384,15 @@ class TikZNode(TikZObject):
 
 
 class _TikZCoordinateHandle(_TikzCoordinateBase):
-    """Convenience class to represent the differing syntax of using a \coordinate
-    defined in TikZ as oppose to initialising one. Perhaps this can be avoided,
-    but the most logical solution would be to make init return a tuple,  - the class and
-     reference obj, which is also confusing. Still not happy with how this works.
+    """Class to represent the syntax of using coordinate handle defined with \coordinate
+    as opposed to initialising one.
 
-     Perhaps a conditional dumps could work (using one output for the
-      first call to dumps is not safe though)"""
+    Perhaps this can avoid being a seperate class, but the most logical solution would be to make
+    init return a tuple,  - the comand defn reference and the handle,
+     which is also confusing. Still not happy with how this works.
+
+     Perhaps a conditional dumps could work somehow (Note boolean flag on first
+     call to dumps is not safe though.)"""
 
     def __init__(self, handle):
         self.handle = handle
@@ -425,9 +427,9 @@ class _TikZCoordinateHandle(_TikzCoordinateBase):
 
 
 class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
-    """Represents the \\coordinate syntax for defining a coordinate constant in Tikz.
+    r"""Represents the \coordinate syntax for defining a coordinate constant in Tikz.
     This itself is a shortcut for a special case of node. Use get_handle method to
-    retrieve object for using this variable in \\draw and etc."""
+    retrieve object for using this variable in \draw and etc."""
 
     packages = [TikzLibrary('calc')]
 
@@ -453,8 +455,9 @@ class TikZCoordinateVariable(_TikzCoordinateBase, TikZNode):
 
 
 class TikZCalcScalar(LatexObject):
-    """Wrapper for multiplication value to enable dumps support. Easier than dealing
-    with string conversion to avoid needing dumps"""
+    """Wrapper for multiplication scalar in calc expressions to enable dumps support. Easier
+    than just casting to str and then having to write methods to detect if the str is a
+    coordinate str or a multiplication str."""
 
     def __init__(self, value):
         self._value = value
@@ -464,10 +467,10 @@ class TikZCalcScalar(LatexObject):
 
 
 class _TikZCoordinateImplicitCalculation(_TikzCoordinateBase):
-    """Class representing a non explicit coordinate calculation
-    that would be done in TikZ using the calc library.
+    r"""Class representing an implicit coordinate that would be done in TikZ using the calc library.
     i.e. addition of a \coordinate and (i,j)
-     Should never be directly instantiated"""
+
+     Should never be directly instantiated by user."""
 
     _legal_operators = ['-', '+']
 
