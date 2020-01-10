@@ -9,7 +9,7 @@ This example shows TikZ drawing capabilities.
 # begin-doc-include
 from pylatex import (Document, TikZ, TikZNode, TikZDraw, TikZCoordinate,
                      TikZPolarCoordinate, TikZCoordinateVariable,
-                     TikZUserPath, TikZOptions, Command, NoEscape, TikZScope,
+                     TikZUserPath, TikZOptions, NoEscape, TikZScope,
                      TikZArc)
 from pylatex.tikz import TikZLibrary
 

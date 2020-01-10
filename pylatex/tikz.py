@@ -218,7 +218,7 @@ class TikZArc(LatexObject):
     i.e. (ang1: ang2: rad)
     """
 
-    _str_verif_regex = re.compile(r'(\+\+)?\('
+    _str_verif_regex = re.compile(r'\('
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
                                   r'\s*([0-9]+(\.[0-9]+)?)\s*\)')
@@ -261,10 +261,6 @@ class TikZArc(LatexObject):
 
         if m is None:
             raise ValueError('invalid arc string')
-        if m.group(1) == '++':
-            relative = True
-        else:
-            relative = False
 
         return cls(float(m.group(2)), float(m.group(4)), float(m.group(6)))
 
@@ -401,7 +397,7 @@ class _TikZCoordinateHandle(_TikZCoordinateBase):
         self.handle = handle
 
     def dumps(self):
-        return f"({self.handle})"
+        return "({})".format(self.handle)
 
     def __add__(self, other):
         if isinstance(other, tuple):
@@ -467,11 +463,11 @@ class TikZCoordinateVariable(_TikZCoordinateBase, TikZNode):
         return ' '.join(ret_str) + ";"  # avoid space on end
 
     def __add__(self, other, error_text="addition"):
-        raise TypeError("TikZCoordinateVariable does not support the operation "
-                        f"'{error_text}' as it represents the variable "
-                        f"definition. \n The handle returned by "
-                        f"TikZCoordinateVariable.get_handle() does support"
-                        f"arithmetic operators.")
+        raise TypeError("TikZCoordinateVariable does not support the operation"
+                        " '{}' as it represents the variable "
+                        "definition. \n The handle returned by "
+                        "TikZCoordinateVariable.get_handle() does support"
+                        "arithmetic operators.".format(error_text))
 
     def __radd__(self, other):
         return self.__add__(other)
@@ -607,7 +603,8 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
     def _add_operator(self, operator, parse_only=False):
         if isinstance(operator, str):
             if operator not in self._legal_operators:
-                raise ValueError(f'Illegal user operator type: "{operator}"')
+                raise ValueError('Illegal user operator type: "{}"'
+                                 .format(operator))
         else:
             raise TypeError('Only string type operators are allowed')
 
@@ -661,7 +658,7 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
                                                       "+", other)
 
         raise TypeError("Addition/ Subtraction unsupported for types"
-                        f" {type(self)} and {type(other)}")
+                        " {} and {}".format(type(self), type(other)))
 
     def __sub__(self, other):
         if isinstance(other, _TikZCoordinateImplicitCalculation):
@@ -675,7 +672,7 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
                                                       "-", other)
 
         raise TypeError("Addition/ Subtraction unsupported for types"
-                        f" {type(self)} and {type(other)}")
+                        " {} and {}".format(type(self), type(other)))
 
     def dumps(self):
         """Return representation of the implicit unevaluated coordinates."""
@@ -698,7 +695,7 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
             else:
                 ret_str += str(i) + " "
 
-        return f"($ {ret_str}$)"
+        return "($ {}$)".format(ret_str)
 
 
 class TikZUserPath(LatexObject):

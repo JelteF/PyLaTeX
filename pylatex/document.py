@@ -252,7 +252,7 @@ class Document(Environment):
                     # Try latexmk cleaning first
                     subprocess.check_output(['latexmk', '-c', basename],
                                             stderr=subprocess.STDOUT)
-                except (OSError, IOError, subprocess.CalledProcessError) as e:
+                except (OSError, IOError, subprocess.CalledProcessError):
                     # Otherwise just remove some file extensions.
                     extensions = ['aux', 'log', 'out', 'fls',
                                   'fdb_latexmk']

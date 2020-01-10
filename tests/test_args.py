@@ -257,7 +257,6 @@ def test_tikz():
         except TypeError:
             pass
 
-
     # test expected to fail
     try:
         g = TikZCoordinate(0, 1, relative=True) +\
@@ -338,7 +337,6 @@ def test_tikz():
     d1 = TikZDraw(path=[g, 'arc', a, '--', g])
     repr(a)
     repr(d1)
-
 
     s = TikZCalcScalar(value=3.4)
     repr(s)

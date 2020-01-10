@@ -206,7 +206,8 @@ class Parameters(LatexObject):
     @recursive_repr()
     def __repr__(self):
         args = [repr(a) for a in self._positional_args]
-        args += [f"{k}={v.dumps() if isinstance(v, LatexObject) else v}"
+        args += ["{}={}".format(k, v.dumps()
+                 if isinstance(v, LatexObject) else v)
                  for (k, v) in self._key_value_args.items()]
         return self.__class__.__name__ + '(' + ', '.join(args) + ')'
 
@@ -306,9 +307,9 @@ class Parameters(LatexObject):
 
         params = []
         params.extend(self._positional_args)
-        params.extend([f'{k}={v.dumps() if isinstance(v, LatexObject) else v}'
+        params.extend(['{}={}'.format(k, v.dumps()
+                       if isinstance(v, LatexObject) else v)
                        for k, v in self._key_value_args.items()])
-
         return params
 
 
