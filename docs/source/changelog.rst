@@ -14,6 +14,19 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- New extension of basic TikZ drawing functions to support arcs,
+  hobby shortcut paths, inline path nodes,
+- Extended support for coordinates and coordinate arithmetic using calc.
+- A very limited selection of TikZ libraries are automatically detected
+  and added to the preamble.
+
+Fixed
+~~~~~
+- TikZCoordinate subtraction now produces the right result.
+- TikZNode now produces valid output when position argument is supplied.
+
 1.3.1_ - `docs <../v1.3.0/>`__ - 2019-09-26
 -------------------------------------------
 

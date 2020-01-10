@@ -241,14 +241,15 @@ def test_tikz():
     lst = [b, c, g, hh]
     for i in lst:
         for j in lst:
-            tmp1 = i+j
-            tmp2 = (j+i)
-            tmp3 = (i-j)
-            tmp4 = (j-i)
-            repr(tmp1)
-            repr(tmp2)
-            repr(tmp3)
-            repr(tmp4)
+            if not (isinstance(i, tuple) and isinstance(j, tuple)):
+                tmp1 = i + j
+                tmp2 = (j + i)
+                tmp3 = (i-j)
+                tmp4 = (j-i)
+                repr(tmp1)
+                repr(tmp2)
+                repr(tmp3)
+                repr(tmp4)
 
         # test expected to fail
         try:
