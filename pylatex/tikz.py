@@ -150,6 +150,8 @@ class TikZCoordinate(_TikZCoordinateBase):
             if other.relative is True or self.relative is True:
                 raise ValueError('refusing to add relative coordinates')
             other_coord = other
+        elif isinstance(other, _TikZCoordinateBase):
+            return False
         else:
             raise TypeError('can only add tuple or TiKZCoordinate types')
 
@@ -157,6 +159,9 @@ class TikZCoordinate(_TikZCoordinateBase):
 
     def __add__(self, other):
         other_coord = self._arith_check(other)
+        # we have a legal type but can't use other coord syntax
+        if other_coord is False:
+            return other + self
         return TikZCoordinate(self._x + other_coord._x,
                               self._y + other_coord._y)
 
@@ -218,15 +223,13 @@ class TikZArc(LatexObject):
                                   r'\s*(-?[0-9]+(\.[0-9]+)?)\s*:'
                                   r'\s*([0-9]+(\.[0-9]+)?)\s*\)')
 
-    def __init__(self, start_ang, finish_ang, radius, relative=False,
+    def __init__(self, start_ang, finish_ang, radius,
                  force_far_direction=False):
         """
         start_ang: float or int
             angle in degrees
         radius: float or int
             radius from orig
-        relative: bool
-            Coordinate is relative or absolute
         force_far_direction: bool
             forces arc to go in the longer direction around circumference
 
@@ -241,14 +244,9 @@ class TikZArc(LatexObject):
         self._radius = float(radius)
         self._start_ang = float(start_ang)
         self._finish_ang = float(finish_ang)
-        self._relative = relative
 
     def __repr__(self):
-        if self._relative:
-            ret_str = "++"
-        else:
-            ret_str = ""
-        return ret_str + "({}:{}:{})".format(
+        return "({}:{}:{})".format(
             self._start_ang, self._finish_ang, self._radius)
 
     def dumps(self):
@@ -268,8 +266,7 @@ class TikZArc(LatexObject):
         else:
             relative = False
 
-        return cls(float(m.group(2)), float(m.group(4)), float(m.group(6)),
-                   relative=relative)
+        return cls(float(m.group(2)), float(m.group(4)), float(m.group(6)))
 
 
 class TikZObject(Container):
@@ -407,6 +404,8 @@ class _TikZCoordinateHandle(_TikZCoordinateBase):
         return f"({self.handle})"
 
     def __add__(self, other):
+        if isinstance(other, tuple):
+            other = TikZCoordinate(*other)
         if isinstance(other, _TikZCoordinateBase) is False:
             raise TypeError("Only can add coordinates with other"
                             " coordinate types")
@@ -466,6 +465,34 @@ class TikZCoordinateVariable(_TikZCoordinateBase, TikZNode):
             ret_str.append('{{{text}}}'.format(text=self._node_text))
         # note text can be empty in / coordinate
         return ' '.join(ret_str) + ";"  # avoid space on end
+
+    def __add__(self, other, error_text="addition"):
+        raise TypeError("TikZCoordinateVariable does not support the operation "
+                        f"'{error_text}' as it represents the variable "
+                        f"definition. \n The handle returned by "
+                        f"TikZCoordinateVariable.get_handle() does support"
+                        f"arithmetic operators.")
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        return self.__add__(other, error_text="subtraction")
+
+    def __rsub__(self, other):
+        return self.__sub__(other)
+
+    def __mul__(self, other):
+        return self.__add__(other, error_text="multiplication")
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __div__(self, other):
+        return self.__add__(other, error_text="division")
+
+    def __rdiv__(self, other):
+        return self.__div__(other)
 
 
 class TikZCalcScalar(LatexObject):
@@ -570,10 +597,11 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
         for item in args:
             # relatively easy error to make so ensure error is descriptive
             if isinstance(item, TikZCoordinateVariable):
-                raise TypeError("TikZCoordinateVariable should only be used "
-                                "for coordinate definition. To use "
-                                "coordinate label handle, call "
-                                "TikZCoordinateVariable.get_handle() ")
+                raise TypeError(
+                    "TikZCoordinateVariable is invalid in an arithmetic "
+                    "operation as it represents coordinate definition. "
+                    "Instead, "
+                    "TikZCoordinateVariable.get_handle() should be used.")
             self._parse_next_item(item)
 
     def _add_operator(self, operator, parse_only=False):
