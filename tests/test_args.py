@@ -21,7 +21,8 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace, TikZCoordinate, TikZNode, \
     TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, \
-    TikZScope, TikZOptions, Hyperref, Marker
+    TikZScope, TikZOptions, TikZLibrary, TikZPolarCoordinate, TikZArc,\
+    TikZCoordinateVariable, TikZCalcScalar, Hyperref, Marker
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
 
@@ -212,12 +213,12 @@ def test_tikz():
 
     scope = TikZScope(data=None)
     repr(scope)
-
+    b = (0, 1)
     c = TikZCoordinate.from_str("(0,0)")
     c = TikZCoordinate(x=0, y=0, relative=False)
-    d = c + (0, 1)
-    e = c - (0, 1)
-    f = (0, 1) + c
+    d = c + b
+    e = c - b
+    f = b + c
     c.distance_to(d)
     repr(c)
     repr(d)
@@ -231,6 +232,31 @@ def test_tikz():
     bool(TikZCoordinate(1, 1, relative=True) == TikZCoordinate(1,
                                                                1,
                                                                relative=False))
+    g = TikZPolarCoordinate(angle=225, radius=1, relative=False)
+    h = TikZCoordinateVariable(handle=None, options=None, at=c, text=None)
+    hh = h.get_handle()
+    repr(g)
+    repr(h)
+    repr(hh)
+    lst = [b, c, g, hh]
+    for i in lst:
+        for j in lst:
+            tmp1 = i+j
+            tmp2 = (j+i)
+            tmp3 = (i-j)
+            tmp4 = (j-i)
+            repr(tmp1)
+            repr(tmp2)
+            repr(tmp3)
+            repr(tmp4)
+
+        # test expected to fail
+        try:
+            i + h
+            raise Exception
+        except TypeError:
+            pass
+
 
     # test expected to fail
     try:
@@ -303,6 +329,19 @@ def test_tikz():
 
     dr = TikZDraw(path=None, options=None)
     repr(dr)
+
+    tl = TikZLibrary(name='', options=None)
+    repr(tl)
+
+    a = TikZArc(start_ang=0, finish_ang=300, radius=3,
+                force_far_direction=False)
+    d1 = TikZDraw(path=[g, 'arc', a, '--', g])
+    repr(a)
+    repr(d1)
+
+
+    s = TikZCalcScalar(value=3.4)
+    repr(s)
 
 
 def test_lists():
