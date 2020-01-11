@@ -17,7 +17,9 @@ from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
 from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate,\
     TikZPolarCoordinate, TikZArc, TikZPathList, TikZPath, TikZUserPath, \
     TikZOptions, TikZNodeAnchor, \
-    TikZScope, TikZCoordinateVariable, TikZCalcScalar, TikZLibrary
+    TikZScope, TikZCoordinateVariable, TikZCalcScalar, TikZLibrary, \
+    TikZCoordinateBase, _TikZCoordinateImplicitCalculation, \
+    _TikZCoordinateHandle
 from .figure import Figure, SubFigure, StandAloneGraphic
 from .lists import Enumerate, Itemize, Description
 from .quantities import Quantity

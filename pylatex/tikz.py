@@ -60,15 +60,19 @@ class TikZScope(Environment):
     _latex_name = 'scope'
 
 
-class _TikZCoordinateBase(LatexObject, ABC):
+class TikZCoordinateBase(LatexObject, ABC):
     """Marker abstract class from which all coordinate classes inherit. Allows
     for cleaner use of isinstance regarding all coordinate objects.
+
+    This should be a private class, but sphinx throws a reference target not
+    found error if it is.
     """
 
 
-class TikZCoordinate(_TikZCoordinateBase):
-    r"""A General Purpose Coordinate Class, representing a tuple of points
-    specified, as opposed to the node shortcut command \coordinate
+class TikZCoordinate(TikZCoordinateBase):
+    r"""Extension of `~.TikZCoordinateBase`. Forms a General Purpose
+    Coordinate Class, representing a tuple of points specified, as opposed
+    to the node shortcut command \coordinate.
     """
 
     _coordinate_str_regex = re.compile(r'(\+\+)?\(\s*(-?[0-9]+(\.[0-9]+)?)\s*'
@@ -150,7 +154,7 @@ class TikZCoordinate(_TikZCoordinateBase):
             if other.relative is True or self.relative is True:
                 raise ValueError('refusing to add relative coordinates')
             other_coord = other
-        elif isinstance(other, _TikZCoordinateBase):
+        elif isinstance(other, TikZCoordinateBase):
             return False
         else:
             raise TypeError('can only add tuple or TiKZCoordinate types')
@@ -316,7 +320,7 @@ class TikZNode(TikZObject):
         ----
         handle: str
             Node identifier
-        options: list | TikZOptions
+        options: list or `~.TikZOptions`
             List of options
         at: TikZCoordinate
             Coordinate where node is placed
@@ -381,7 +385,7 @@ class TikZNode(TikZObject):
         #    'Invalid attribute requested: "{}"'.format(attr_name))
 
 
-class _TikZCoordinateHandle(_TikZCoordinateBase):
+class _TikZCoordinateHandle(TikZCoordinateBase):
     r"""Class to represent the syntax of using coordinate handle defined with
      \coordinate as opposed to defining the coordinate.
 
@@ -402,7 +406,7 @@ class _TikZCoordinateHandle(_TikZCoordinateBase):
     def __add__(self, other):
         if isinstance(other, tuple):
             other = TikZCoordinate(*other)
-        if isinstance(other, _TikZCoordinateBase) is False:
+        if isinstance(other, TikZCoordinateBase) is False:
             raise TypeError("Only can add coordinates with other"
                             " coordinate types")
         return _TikZCoordinateImplicitCalculation(self, "+", other)
@@ -411,7 +415,9 @@ class _TikZCoordinateHandle(_TikZCoordinateBase):
         return self.__add__(other)
 
     def __sub__(self, other):
-        if isinstance(other, _TikZCoordinateBase) is False:
+        if isinstance(other, tuple):
+            other = TikZCoordinate(*other)
+        if isinstance(other, TikZCoordinateBase) is False:
             raise TypeError("Only can subtract coordinates with other"
                             " coordinate types")
         return _TikZCoordinateImplicitCalculation(self, "-", other)
@@ -428,7 +434,7 @@ class _TikZCoordinateHandle(_TikZCoordinateBase):
         return self.__mul__(other)
 
 
-class TikZCoordinateVariable(_TikZCoordinateBase, TikZNode):
+class TikZCoordinateVariable(TikZCoordinateBase, TikZNode):
     r"""Represents the \coordinate syntax for defining a coordinate handle in
     TikZ. This itself is a shortcut for a special case of node. Use
     get_handle method to retrieve object corresponding to use of the
@@ -503,7 +509,7 @@ class TikZCalcScalar(LatexObject):
         """
         Args
         ----
-        value: float | int
+        value: float or int
             The scalar operator to be applied to the successor coordinate.
         """
         self._value = value
@@ -515,7 +521,7 @@ class TikZCalcScalar(LatexObject):
         return str(round(self._value, 2))
 
 
-class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
+class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
     r"""Class representing an implicit coordinate that would be defined in
     TikZ using \coordinate. Supports addition/ subtraction of coordinates as
     can be done in the TikZ calc library.
@@ -629,7 +635,7 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
                 _item = TikZCoordinate.from_str(point)
             except ValueError:
                 raise ValueError('Illegal point string: "{}"'.format(point))
-        elif isinstance(point, _TikZCoordinateBase):
+        elif isinstance(point, TikZCoordinateBase):
             _item = point
         elif isinstance(point, tuple):
             _item = TikZCoordinate(*point)
@@ -653,7 +659,7 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
-        elif isinstance(other, _TikZCoordinateBase):
+        elif isinstance(other, TikZCoordinateBase):
             return _TikZCoordinateImplicitCalculation(*self._arg_list,
                                                       "+", other)
 
@@ -667,9 +673,10 @@ class _TikZCoordinateImplicitCalculation(_TikZCoordinateBase):
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
-        elif isinstance(other, _TikZCoordinateBase):
-            return _TikZCoordinateImplicitCalculation(*self._arg_list,
-                                                      "-", other)
+        elif isinstance(other, TikZCoordinateBase):
+            args = self._arg_list
+            args.extend(["-", other])  # python 3.4 compat
+            return _TikZCoordinateImplicitCalculation(*args)
 
         raise TypeError("Addition/ Subtraction unsupported for types"
                         " {} and {}".format(type(self), type(other)))
@@ -855,7 +862,7 @@ class TikZPathList(LatexObject):
                 _item = TikZCoordinate.from_str(point)
             except ValueError:
                 raise ValueError('Illegal point string: "{}"'.format(point))
-        elif isinstance(point, _TikZCoordinateBase):
+        elif isinstance(point, TikZCoordinateBase):
             _item = point
         elif isinstance(point, tuple):
             _item = TikZCoordinate(*point)
@@ -968,7 +975,7 @@ class TikZDraw(TikZPath):
         """
         Args
         ----
-        path: TikZPathList | List
+        path: `~.TikZPathList` or List
             A list of the nodes, path types in the path
         options: TikZOptions
             A list of options for the command
