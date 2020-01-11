@@ -158,24 +158,29 @@ class TikZCoordinate(TikZCoordinateBase):
             return False
         else:
             raise TypeError('can only add tuple or TiKZCoordinate types')
-
         return other_coord
 
     def __add__(self, other):
         other_coord = self._arith_check(other)
         # we have a legal type but can't use other coord syntax
+        # hope that operation is implemented in reverse
         if other_coord is False:
             return other + self
         return TikZCoordinate(self._x + other_coord._x,
                               self._y + other_coord._y)
 
     def __radd__(self, other):
-        self.__add__(other)
+        return self.__add__(other)
 
     def __sub__(self, other):
         other_coord = self._arith_check(other)
-        return TikZCoordinate(self._x - other_coord._y,
+        if other_coord is False:
+            return other - self
+        return TikZCoordinate(self._x - other_coord._x,
                               self._y - other_coord._y)
+
+    def __rsub__(self, other):
+        return self.__sub__(other)
 
     def distance_to(self, other):
         """Euclidean distance between two coordinates."""
