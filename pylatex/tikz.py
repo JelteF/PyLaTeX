@@ -9,7 +9,6 @@ from .base_classes import LatexObject, Environment, Command, Options, Container
 from .package import Package
 import re
 import math
-from abc import ABC
 
 
 class TikZOptions(Options):
@@ -60,12 +59,15 @@ class TikZScope(Environment):
     _latex_name = 'scope'
 
 
-class TikZCoordinateBase(LatexObject, ABC):
+class TikZCoordinateBase(LatexObject):
     """Marker abstract class from which all coordinate classes inherit. Allows
     for cleaner use of isinstance regarding all coordinate objects.
 
     This should be a private class, but sphinx throws a reference target not
     found error if it is.
+
+    This should be an abstract class with ABC but could not implement this in
+    a python 2/3 friendly way that also worked with the 3to2 conversion.
     """
 
 
@@ -540,7 +542,7 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
         """
         Args
         ----
-        args: list
+        args: TikZCoordinateBase or str
             A list of coordinate elements
         """
         self._last_item_type = None
@@ -665,8 +667,9 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
             return _TikZCoordinateImplicitCalculation(*args)
 
         elif isinstance(other, TikZCoordinateBase):
-            return _TikZCoordinateImplicitCalculation(*self._arg_list,
-                                                      "+", other)
+            args = self._arg_list
+            args.extend(['+', other])
+            return _TikZCoordinateImplicitCalculation(*args)
 
         raise TypeError("Addition/ Subtraction unsupported for types"
                         " {} and {}".format(type(self), type(other)))
