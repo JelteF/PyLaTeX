@@ -498,7 +498,6 @@ class TikZCoordinateVariable(TikZCoordinateBase, TikZNode):
         return self.__mul__(other)
 
 
-
 class TikZCalcScalar(LatexObject):
     """Wrapper for multiplication scalar in calc expressions e.g.
     ($ 4*(3,2.2) $)
@@ -821,12 +820,9 @@ class TikZPathList(LatexObject):
         elif self._last_item_type == 'path.arc':
             # only allow arc specifier after arc path
             original_exception = None
-            try:
-                self._add_arc_spec(item)
-                return
-            except (TypeError, ValueError):
-                raise ValueError('only an arc specifier can come after an '
-                                 ' arc path descriptor')
+            # note this will throw exceptions if incorrect
+            self._add_arc_spec(item)
+            return
 
     def _parse_arg_list(self, args):
 

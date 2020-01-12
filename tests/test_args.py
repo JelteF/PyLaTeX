@@ -251,7 +251,7 @@ def test_tikz():
     hh = h.get_handle()
     # CoordinateVariables don't support arithmetic:
     o = object()
-    for to_fail in [lambda: h-o, lambda: o * h ]:
+    for to_fail in [lambda: h - o, lambda: o * h]:
         try:
             to_fail()
             raise Exception
@@ -284,7 +284,7 @@ def test_tikz():
             pass
 
     # check invalid arithmetic with handles
-    checks = [lambda: hh + object(), lambda : hh - object(),
+    checks = [lambda: hh + object(), lambda: hh - object(),
               lambda: hh * object]
     for i in checks:
         try:
@@ -299,11 +299,11 @@ def test_tikz():
     repr(s)
     # scalar multiplication of TikzCoordinateHandle
     z = s * hh
-
+    repr(z)
 
     # test expected to fail
     try:
-        g = TikZCoordinate(0, 1, relative=True) +\
+        g = TikZCoordinate(0, 1, relative=True) + \
             TikZCoordinate(1, 0, relative=False)
         repr(g)
         raise Exception
@@ -393,7 +393,7 @@ def test_tikz():
     a = TikZArc(start_ang=0, finish_ang=300, radius=3,
                 force_far_direction=True)
     a2 = TikZArc(start_ang=300, finish_ang=0, radius=3,
-                force_far_direction=True)
+                 force_far_direction=True)
     a3 = TikZArc.from_str("(300:200:2)")
     repr(a)
     repr(a2)
@@ -409,19 +409,14 @@ def test_tikz():
     d2 = TikZDraw(path=[g, 'arc', "(300:200:2)", '--', g])
     repr(d1)
     repr(d2)
-    case_list = [(lambda : TikZDraw(path=[g, 'arc', g]), ValueError),
-                 (lambda : TikZDraw(path=[g, 'arc', 'z']), ValueError),
-                 (lambda : TikZDraw(path=[g, 'arc', 42]), TypeError)]
+    case_list = [(lambda: TikZDraw(path=[g, 'arc', g]), TypeError),
+                 (lambda: TikZDraw(path=[g, 'arc', 'z']), ValueError)]
     for to_fail, err_type in case_list:
         try:
             to_fail()
             raise Exception
         except err_type:
             pass
-
-
-
-
 
 
 def test_lists():
