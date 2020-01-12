@@ -21,10 +21,11 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace, TikZCoordinate, TikZNode, \
     TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, \
-    TikZScope, TikZOptions, TikZLibrary, TikZPolarCoordinate, TikZArc,\
+    TikZScope, TikZOptions, TikZLibrary, TikZPolarCoordinate, TikZArc, \
     TikZCoordinateVariable, TikZCalcScalar, Hyperref, Marker
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
+from pylatex.tikz import _TikZCoordinateImplicitCalculation
 
 matplotlib.use('Agg')  # Not to use X server. For TravisCI.
 import matplotlib.pyplot as pyplot  # noqa
@@ -369,6 +370,7 @@ def test_tikz():
     pt = TikZPath(path=None, options=TikZOptions("->"))
     pt.append(TikZCoordinate(0, 1, relative=True))
     repr(pt)
+    pt.dumps()
 
     pt = TikZPath(path=[n.west, 'edge', TikZCoordinate(0, 1, relative=True),
                         '--', TikZNode(handle='handle',
@@ -377,6 +379,12 @@ def test_tikz():
 
     pt = TikZPath(path=pl, options=None)
     repr(pt)
+
+    try:
+        TikZPath(path='z')
+        raise Exception
+    except TypeError:
+        pass
 
     opt = TikZOptions('use Hobby shortcut')
     opt.append_positional('close=true')
@@ -409,14 +417,51 @@ def test_tikz():
     d2 = TikZDraw(path=[g, 'arc', "(300:200:2)", '--', g])
     repr(d1)
     repr(d2)
-    case_list = [(lambda: TikZDraw(path=[g, 'arc', g]), TypeError),
-                 (lambda: TikZDraw(path=[g, 'arc', 'z']), ValueError)]
+    case_list = [
+        # 'arc' should be followed by TikZArc incorrect type
+        (lambda: TikZDraw(path=[g, 'arc', g]), TypeError),
+        # 'arc' should be followed by TikZArc  - string parsing throws
+        # valueerror
+        (lambda: TikZDraw(path=[g, 'arc', 'z']), ValueError)]
     for to_fail, err_type in case_list:
         try:
             to_fail()
             raise Exception
         except err_type:
             pass
+    # test implicit coordinate exceptions (not that a user should see these)
+    orig = TikZCoordinate(0, 0)
+    impl = _TikZCoordinateImplicitCalculation(orig, '+', orig)
+    case_list = [
+        # invalid operator (not + or -)
+        ((orig, 'z'), ValueError),
+        # invalid operator following scalar
+        ((3, 'z'), ValueError),
+        # can't TikZCoordinateVariable - should use handle
+        ((TikZCoordinateVariable(), '+', orig), TypeError),
+        # invalid string should throw typeError
+        (("z", '+', 'z'), TypeError),
+        # nested TikZImplicit operator should fail with invalid args
+        ((impl, '-', 'z'), ValueError)
+    ]
+    for fail_case, err_type in case_list:
+        try:
+            _TikZCoordinateImplicitCalculation(*fail_case)
+            raise Exception
+        except err_type:
+            pass
+
+    # pass cases
+    case_list = [(3, '*', orig), ('(0,0)', '+', (0, 0)),
+                 (TikZNode(at=orig, handle='h1'), '+', (0, 0)),
+                 (impl, '-', impl)]
+    for case in case_list:
+        tmp = _TikZCoordinateImplicitCalculation(*case)
+        repr(tmp)
+    tmp2 = tmp + orig
+    tmp3 = tmp + tmp
+    repr(tmp2)
+    repr(tmp3)
 
 
 def test_lists():

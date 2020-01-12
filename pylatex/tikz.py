@@ -553,7 +553,7 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
             self._add_point_wrapper(
                 item, error_to_raise=TypeError(
                     'First element of operator list must '
-                    'be a or coordinate or scalar'))
+                    'be a or coordinate or scalar, got{}'.format(type(item))))
 
         elif self._last_item_type == 'point':
             try:
@@ -688,9 +688,7 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
                 ret_list.append(item)
             elif isinstance(item, LatexObject):
                 ret_list.append(item.dumps())
-            else:
-                raise TypeError("Dumps failed. Unexpected item type in"
-                                "_arg_list")
+
         ret_str = ""
         for i in ret_list:
             # Asterisk in this context is for a calc line,
