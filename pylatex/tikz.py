@@ -273,7 +273,7 @@ class TikZArc(LatexObject):
         if m is None:
             raise ValueError('invalid arc string')
 
-        return cls(float(m.group(2)), float(m.group(4)), float(m.group(6)))
+        return cls(float(m.group(1)), float(m.group(3)), float(m.group(5)))
 
 
 class TikZObject(Container):
@@ -433,7 +433,7 @@ class _TikZCoordinateHandle(TikZCoordinateBase):
         return self.__sub__(other)
 
     def __mul__(self, other):
-        if isinstance(other, (float, int)) is False:
+        if isinstance(other, (float, int, TikZCalcScalar)) is False:
             raise TypeError("Coordinates can only be multiplied by scalars")
         return _TikZCoordinateImplicitCalculation(other, "*", self)
 
@@ -497,11 +497,6 @@ class TikZCoordinateVariable(TikZCoordinateBase, TikZNode):
     def __rmul__(self, other):
         return self.__mul__(other)
 
-    def __div__(self, other):
-        return self.__add__(other, error_text="division")
-
-    def __rdiv__(self, other):
-        return self.__div__(other)
 
 
 class TikZCalcScalar(LatexObject):
@@ -550,10 +545,6 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
 
         # parse list and verify legality
         self._parse_arg_list(args)
-
-    def append(self, item):
-        """Add a new element to the implicit calculation."""
-        self._parse_next_item(item)
 
     def _parse_next_item(self, item):
         # assume first item is a point
@@ -899,14 +890,9 @@ class TikZPathList(LatexObject):
             _arc = arc
         elif isinstance(arc, tuple):
             _arc = TikZArc(*arc)
-        # tODO no idea whether node formatting should behave
-        elif isinstance(arc, TikZNode):
-            _arc = '({})'.format(arc.handle)
-        elif isinstance(arc, TikZNodeAnchor):
-            _arc = arc.dumps()
         else:
-            raise TypeError('Only str, tuple, TikZArcSpecifier,'
-                            'TikZNode or TikZNodeAnchor types are allowed,'
+            raise TypeError('Only str, tuple or TikZArc'
+                            'arc allowed to follow arc specifier,'
                             ' got: {}'.format(type(arc)))
             # add, finally
         if parse_only is False:

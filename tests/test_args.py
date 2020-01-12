@@ -232,11 +232,36 @@ def test_tikz():
     bool(TikZCoordinate(1, 1, relative=True) == TikZCoordinate(1,
                                                                1,
                                                                relative=False))
+    for fail_case in ["test", object()]:
+        try:
+            TikZCoordinate(1, 1) == fail_case
+            raise Exception
+        except TypeError:
+            pass
     g = TikZPolarCoordinate(angle=225, radius=1, relative=False)
-    h = TikZCoordinateVariable(handle=None, options=None, at=c, text=None)
+    g2 = TikZPolarCoordinate(angle=225, radius=1, relative=True)
+    try:
+        TikZPolarCoordinate(225, -5)
+        raise Exception
+    except ValueError:
+        pass
+
+    h = TikZCoordinateVariable(handle='handle', options=None, at=c, text=None)
+    h2 = TikZCoordinateVariable(handle=None, options=None, at=c, text="text")
     hh = h.get_handle()
+    # CoordinateVariables don't support arithmetic:
+    o = object()
+    for to_fail in [lambda: h-o, lambda: o * h ]:
+        try:
+            to_fail()
+            raise Exception
+        except TypeError:
+            pass
+
     repr(g)
+    repr(g2)
     repr(h)
+    repr(h2)
     repr(hh)
     lst = [b, c, g, hh]
     for i in lst:
@@ -258,6 +283,24 @@ def test_tikz():
         except TypeError:
             pass
 
+    # check invalid arithmetic with handles
+    checks = [lambda: hh + object(), lambda : hh - object(),
+              lambda: hh * object]
+    for i in checks:
+        try:
+            i()
+            raise Exception
+        except TypeError:
+            pass
+
+    # coordinate handle checks
+    s = TikZCalcScalar(value=3.4)
+    s.dumps()
+    repr(s)
+    # scalar multiplication of TikzCoordinateHandle
+    z = s * hh
+
+
     # test expected to fail
     try:
         g = TikZCoordinate(0, 1, relative=True) +\
@@ -272,6 +315,12 @@ def test_tikz():
 
     n = TikZNode(handle=None, options=None, at=None, text=None)
     repr(n)
+
+    try:
+        TikZNode(handle=None, options=None, at=object())
+        raise Exception
+    except TypeError:
+        pass
 
     p = n.get_anchor_point("north")
     repr(p)
@@ -321,11 +370,19 @@ def test_tikz():
     pt.append(TikZCoordinate(0, 1, relative=True))
     repr(pt)
 
-    pt = TikZPath(path=[n.west, 'edge', TikZCoordinate(0, 1, relative=True)])
+    pt = TikZPath(path=[n.west, 'edge', TikZCoordinate(0, 1, relative=True),
+                        '--', TikZNode(handle='handle',
+                                       at=TikZCoordinate(0, 2, ))])
     repr(pt)
 
     pt = TikZPath(path=pl, options=None)
     repr(pt)
+
+    opt = TikZOptions('use Hobby shortcut')
+    opt.append_positional('close=true')
+
+    pt = TikZDraw(path=[TikZCoordinate(0, 0), '..', TikZCoordinate(1, 1), '..',
+                        TikZCoordinate(1, 2)], options=opt)
 
     dr = TikZDraw(path=None, options=None)
     repr(dr)
@@ -334,13 +391,37 @@ def test_tikz():
     repr(tl)
 
     a = TikZArc(start_ang=0, finish_ang=300, radius=3,
-                force_far_direction=False)
-    d1 = TikZDraw(path=[g, 'arc', a, '--', g])
+                force_far_direction=True)
+    a2 = TikZArc(start_ang=300, finish_ang=0, radius=3,
+                force_far_direction=True)
+    a3 = TikZArc.from_str("(300:200:2)")
     repr(a)
-    repr(d1)
+    repr(a2)
+    repr(a3)
 
-    s = TikZCalcScalar(value=3.4)
-    repr(s)
+    try:
+        TikZArc.from_str("zzzz")
+        raise Exception
+    except ValueError:
+        pass
+
+    d1 = TikZDraw(path=[g, 'arc', a, '--', g])
+    d2 = TikZDraw(path=[g, 'arc', "(300:200:2)", '--', g])
+    repr(d1)
+    repr(d2)
+    case_list = [(lambda : TikZDraw(path=[g, 'arc', g]), ValueError),
+                 (lambda : TikZDraw(path=[g, 'arc', 'z']), ValueError),
+                 (lambda : TikZDraw(path=[g, 'arc', 42]), TypeError)]
+    for to_fail, err_type in case_list:
+        try:
+            to_fail()
+            raise Exception
+        except err_type:
+            pass
+
+
+
+
 
 
 def test_lists():
