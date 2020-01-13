@@ -233,9 +233,12 @@ def test_tikz():
     bool(TikZCoordinate(1, 1, relative=True) == TikZCoordinate(1,
                                                                1,
                                                                relative=False))
-    for fail_case in ["test", object()]:
+    t = TikZCoordinate(1, 1)
+    # check invalid operations on coordinate fails
+    case_list = [lambda: t == "test", lambda: t == object(), lambda: t + 42]
+    for fail_case in case_list:
         try:
-            TikZCoordinate(1, 1) == fail_case
+            fail_case()
             raise Exception
         except TypeError:
             pass
@@ -263,6 +266,7 @@ def test_tikz():
     repr(g2)
     repr(h)
     repr(h2)
+    h2.dumps()
     repr(hh)
     lst = [b, c, g, hh]
     for i in lst:
@@ -441,8 +445,12 @@ def test_tikz():
         ((TikZCoordinateVariable(), '+', orig), TypeError),
         # invalid string should throw typeError
         (("z", '+', 'z'), TypeError),
+        # invalid type should throw typeError (outer context converts to Val
+        ((orig, '+', object()), ValueError),
         # nested TikZImplicit operator should fail with invalid args
-        ((impl, '-', 'z'), ValueError)
+        ((impl, '-', 'z'), ValueError),
+        # invalid +/- operator not of type string
+        ((orig, object(), orig), ValueError),
     ]
     for fail_case, err_type in case_list:
         try:
@@ -455,13 +463,19 @@ def test_tikz():
     case_list = [(3, '*', orig), ('(0,0)', '+', (0, 0)),
                  (TikZNode(at=orig, handle='h1'), '+', (0, 0)),
                  (impl, '-', impl)]
+
     for case in case_list:
         tmp = _TikZCoordinateImplicitCalculation(*case)
         repr(tmp)
-    tmp2 = tmp + orig
-    tmp3 = tmp + tmp
+
+    tmp2 = impl + orig
+    tmp3 = impl + impl
+    tmp4 = impl - impl
+    tmp5 = impl - orig
     repr(tmp2)
     repr(tmp3)
+    repr(tmp4)
+    repr(tmp5)
 
 
 def test_lists():

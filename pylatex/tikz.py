@@ -601,6 +601,11 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
                     "operation as it represents coordinate definition. "
                     "Instead, "
                     "TikZCoordinateVariable.get_handle() should be used.")
+            # if we have nested, we expand to have single instance
+            if isinstance(item, _TikZCoordinateImplicitCalculation):
+                for i in item._arg_list:
+                    self._parse_next_item(i)
+                continue
             self._parse_next_item(item)
 
     def _add_operator(self, operator, parse_only=False):
@@ -651,13 +656,13 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
 
     def __add__(self, other):
         if isinstance(other, _TikZCoordinateImplicitCalculation):
-            args = self._arg_list
+            args = self._arg_list.copy()
             args.append("+")
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
         elif isinstance(other, TikZCoordinateBase):
-            args = self._arg_list
+            args = self._arg_list.copy()
             args.extend(['+', other])
             return _TikZCoordinateImplicitCalculation(*args)
 
@@ -666,13 +671,15 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
 
     def __sub__(self, other):
         if isinstance(other, _TikZCoordinateImplicitCalculation):
-            args = self._arg_list
+            print(other.dumps(), "./")
+            args = self._arg_list.copy()
             args.append("-")
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
         elif isinstance(other, TikZCoordinateBase):
-            args = self._arg_list
+            print(other,  "./")
+            args = self._arg_list.copy()
             args.extend(["-", other])  # python 3.4 compat
             return _TikZCoordinateImplicitCalculation(*args)
 
