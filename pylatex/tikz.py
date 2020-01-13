@@ -656,13 +656,13 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
 
     def __add__(self, other):
         if isinstance(other, _TikZCoordinateImplicitCalculation):
-            args = self._arg_list.copy()
+            args = list(self._arg_list)  # list.copy on python >3.3
             args.append("+")
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
         elif isinstance(other, TikZCoordinateBase):
-            args = self._arg_list.copy()
+            args = list(self._arg_list)  # list.copy on python >3.3
             args.extend(['+', other])
             return _TikZCoordinateImplicitCalculation(*args)
 
@@ -672,14 +672,14 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
     def __sub__(self, other):
         if isinstance(other, _TikZCoordinateImplicitCalculation):
             print(other.dumps(), "./")
-            args = self._arg_list.copy()
+            args = list(self._arg_list)  # list.copy on python >3.3
             args.append("-")
             args.extend(other._arg_list)
             return _TikZCoordinateImplicitCalculation(*args)
 
         elif isinstance(other, TikZCoordinateBase):
             print(other, "./")
-            args = self._arg_list.copy()
+            args = list(self._arg_list)  # list.copy on python >3.3
             args.extend(["-", other])  # python 3.4 compat
             return _TikZCoordinateImplicitCalculation(*args)
 
