@@ -799,32 +799,17 @@ class TikZPathList(LatexObject):
                 self._arg_list.append(item)
                 return
 
-            original_exception = None
             try:
                 self._add_point(item)
                 return
             except (TypeError, ValueError) as ex:
-                # check if trying to insert path after path
-                try:
-                    self._add_path(item, parse_only=True)
-                    not_a_path = False
-                    original_exception = ex
-                except (TypeError, ValueError) as ex:
-                    # not a path either!
-                    not_a_path = True
-                    original_exception = ex
+                raise ValueError('only a point descriptor  or "cycle" can '
+                                 'come after a path descriptor, got {}'
+                                 .format(type(item)))
 
-            # disentangle exceptions
-            if not_a_path is False:
-                raise ValueError('only a point descriptor can only come'
-                                 ' after a path descriptor')
-
-            if original_exception is not None:
-                raise original_exception
         # not path.arc is path specifier "arc", not a TikZArcSpecifier
         elif self._last_item_type == 'path.arc':
             # only allow arc specifier after arc path
-            original_exception = None
             # note this will throw exceptions if incorrect
             self._add_arc_spec(item)
             return
@@ -834,7 +819,7 @@ class TikZPathList(LatexObject):
         for item in args:
             self._parse_next_item(item)
 
-    def _add_path(self, path, parse_only=False):
+    def _add_path(self, path):
         if isinstance(path, str):
             if path in self._legal_path_types:
                 _path = TikZUserPath(path)
@@ -846,17 +831,14 @@ class TikZPathList(LatexObject):
             raise TypeError('Only string or TikZUserPath types are allowed')
 
         # add
-        if parse_only is False:
-            self._arg_list.append(_path)
-            self._last_item_type = 'path'
-            # if path is an arc, need to know since then we expect
-            # following to be a TikZArc not a point
-            if _path.path_type == "arc":
-                self._last_item_type += ".arc"
-        else:
-            return _path
+        self._arg_list.append(_path)
+        self._last_item_type = 'path'
+        # if path is an arc, need to know since then we expect
+        # following to be a TikZArc not a point
+        if _path.path_type == "arc":
+            self._last_item_type += ".arc"
 
-    def _add_point(self, point, parse_only=False):
+    def _add_point(self, point):
         if isinstance(point, str):
             try:
                 _item = TikZCoordinate.from_str(point)
@@ -875,13 +857,10 @@ class TikZPathList(LatexObject):
                             'TikZNode or TikZNodeAnchor types are allowed,'
                             ' got: {}'.format(type(point)))
         # add, finally
-        if parse_only is False:
-            self._arg_list.append(_item)
-            self._last_item_type = 'point'
-        else:
-            return _item
+        self._arg_list.append(_item)
+        self._last_item_type = 'point'
 
-    def _add_arc_spec(self, arc, parse_only=False):
+    def _add_arc_spec(self, arc):
         if isinstance(arc, str):
             try:
                 _arc = TikZArc.from_str(arc)
@@ -895,12 +874,9 @@ class TikZPathList(LatexObject):
             raise TypeError('Only str, tuple or TikZArc'
                             'arc allowed to follow arc specifier,'
                             ' got: {}'.format(type(arc)))
-            # add, finally
-        if parse_only is False:
-            self._arg_list.append(_arc)
-            self._last_item_type = 'arc'
-        else:
-            return _arc
+        # add, finally
+        self._arg_list.append(_arc)
+        self._last_item_type = 'arc'
 
     def dumps(self):
         """Return representation of the path command."""

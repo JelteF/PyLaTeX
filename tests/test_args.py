@@ -472,6 +472,11 @@ def test_tikz():
     tmp3 = impl + impl
     tmp4 = impl - impl
     tmp5 = impl - orig
+    try:
+        impl - "z"
+        raise Exception
+    except TypeError:
+        pass
     repr(tmp2)
     repr(tmp3)
     repr(tmp4)
