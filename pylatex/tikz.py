@@ -678,7 +678,7 @@ class _TikZCoordinateImplicitCalculation(TikZCoordinateBase):
             return _TikZCoordinateImplicitCalculation(*args)
 
         elif isinstance(other, TikZCoordinateBase):
-            print(other,  "./")
+            print(other, "./")
             args = self._arg_list.copy()
             args.extend(["-", other])  # python 3.4 compat
             return _TikZCoordinateImplicitCalculation(*args)
