@@ -60,7 +60,7 @@ class Document(Environment):
             Determines whether or not the document requires indentation. If it
             is `None` it will use the value from the active config. Which is
             `True` by default.
-        geometry_options: str or list
+        geometry_options: dict
             The options to supply to the geometry package
         data: list
             Initial content of the document.
