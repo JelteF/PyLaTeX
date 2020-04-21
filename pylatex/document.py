@@ -199,13 +199,6 @@ class Document(Environment):
         if compiler_args is None:
             compiler_args = []
 
-        # Case 1: default_filepath = 'default_filepath', filepath = None ==> ./default_filepath.pdf
-        # Case 2: default_filepath = 'custom_value', filepath = None ==> ./custom_value.pdf
-        # Case 3: default_filepath = 'custom_value/', filepath = None ==> ./custom_value/default_basename.pdf
-        # Case 4: default_filepath = 'default_filepath', filepath = 'custom_value' ==> ./custom_value.pdf
-        # Case 5: default_filepath = 'default_filepath', filepath = 'custom_value/' ==> ./custom_value/default_filepath.pdf
-        # Case 6: default_filepath = 'custom_value/', filepath = 'custom_value/' ==> ./custom_value/custom_value/default_basename.pdf
-
         python_version = '{}.{}.{}'.format(sys.version_info[0],
                                            sys.version_info[1],
                                            sys.version_info[2])
@@ -256,7 +249,7 @@ class Document(Environment):
                 ('pdflatex', [])
             )
 
-        if python_cwd_available: 
+        if python_cwd_available:
             main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
         else:
             main_arguments = ['--interaction=nonstopmode', basename + '.tex']
@@ -293,7 +286,8 @@ class Document(Environment):
                 try:
                     # Try latexmk cleaning first
                     if python_cwd_available:
-                        subprocess.check_output(['latexmk', '-c', filepath], cwd=dest_dir,
+                        subprocess.check_output(['latexmk', '-c', filepath],
+                                                cwd=dest_dir,
                                                 stderr=subprocess.STDOUT)
                     else:
                         subprocess.check_output(['latexmk', '-c', filepath],
