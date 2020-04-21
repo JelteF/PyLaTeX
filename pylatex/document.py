@@ -16,7 +16,6 @@ from .errors import CompilerError
 from .utils import dumps_list, rm_temp_dir, NoEscape
 import pylatex.config as cf
 
-
 class Document(Environment):
     r"""
     A class that contains a full LaTeX document.
@@ -199,6 +198,7 @@ class Document(Environment):
 
         filepath = self._select_filepath(filepath)
         filepath = os.path.join('.', filepath)
+        filepath = os.path.abspath(filepath)
 
         cur_dir = os.getcwd()
         dest_dir = os.path.dirname(filepath)
@@ -207,9 +207,7 @@ class Document(Environment):
         if basename == '':
             basename = 'default_basename'
 
-        os.chdir(dest_dir)
-
-        self.generate_tex(basename)
+        self.generate_tex(filepath)
 
         if compiler is not None:
             compilers = ((compiler, []),)
@@ -229,7 +227,7 @@ class Document(Environment):
             command = [compiler] + arguments + compiler_args + main_arguments
 
             try:
-                output = subprocess.check_output(command,
+                output = subprocess.check_output(command, cwd=dest_dir,
                                                  stderr=subprocess.STDOUT)
             except (OSError, IOError) as e:
                 # Use FileNotFoundError when python 2 is dropped
@@ -250,7 +248,7 @@ class Document(Environment):
             if clean:
                 try:
                     # Try latexmk cleaning first
-                    subprocess.check_output(['latexmk', '-c', basename],
+                    subprocess.check_output(['latexmk', '-c', basename], cwd=dest_dir,
                                             stderr=subprocess.STDOUT)
                 except (OSError, IOError, subprocess.CalledProcessError) as e:
                     # Otherwise just remove some file extensions.
@@ -281,7 +279,6 @@ class Document(Environment):
                 'or make sure you have latexmk or pdfLaTex installed.'
             ))
 
-        os.chdir(cur_dir)
 
     def _select_filepath(self, filepath):
         """Make a choice between ``filepath`` and ``self.default_filepath``.
