@@ -327,7 +327,7 @@ class Document(Environment):
                 'or make sure you have latexmk or pdfLaTex installed.'
             ))
 
-        if python_cwd_available:
+        if not python_cwd_available:
             os.chdir(cur_dir)
 
     def _select_filepath(self, filepath):
