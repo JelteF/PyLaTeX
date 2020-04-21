@@ -7,6 +7,7 @@ This module implements the class that deals with the full document.
 """
 
 import os
+import sys
 import subprocess
 import errno
 from .base_classes import Environment, Command, Container, LatexObject, \
@@ -15,6 +16,8 @@ from .package import Package
 from .errors import CompilerError
 from .utils import dumps_list, rm_temp_dir, NoEscape
 import pylatex.config as cf
+from packaging import version
+
 
 class Document(Environment):
     r"""
@@ -196,18 +199,52 @@ class Document(Environment):
         if compiler_args is None:
             compiler_args = []
 
-        filepath = self._select_filepath(filepath)
-        filepath = os.path.join('.', filepath)
-        filepath = os.path.abspath(filepath)
+        # Case 1: default_filepath = 'default_filepath', filepath = None ==> ./default_filepath.pdf
+        # Case 2: default_filepath = 'custom_value', filepath = None ==> ./custom_value.pdf
+        # Case 3: default_filepath = 'custom_value/', filepath = None ==> ./custom_value/default_basename.pdf
+        # Case 4: default_filepath = 'default_filepath', filepath = 'custom_value' ==> ./custom_value.pdf
+        # Case 5: default_filepath = 'default_filepath', filepath = 'custom_value/' ==> ./custom_value/default_filepath.pdf
+        # Case 6: default_filepath = 'custom_value/', filepath = 'custom_value/' ==> ./custom_value/custom_value/default_basename.pdf
 
-        cur_dir = os.getcwd()
-        dest_dir = os.path.dirname(filepath)
-        basename = os.path.basename(filepath)
+        python_version = '{}.{}.{}'.format(sys.version_info[0],
+                                           sys.version_info[1],
+                                           sys.version_info[2])
+        python_cwd_available = False
 
-        if basename == '':
-            basename = 'default_basename'
+        if version.parse(python_version) > version.parse("3.6"):
+            # In case of newer python with the use of the cwd parameter
+            # one can avoid to physically change the directory
+            # to the destination folder
 
-        self.generate_tex(filepath)
+            python_cwd_available = True
+            filepath = self._select_filepath(filepath)
+            if not os.path.basename(filepath):
+                filepath = os.path.join(os.path.abspath(filepath),
+                                        'default_basename')
+            else:
+                filepath = os.path.abspath(filepath)
+
+            cur_dir = os.getcwd()
+            dest_dir = os.path.dirname(filepath)
+
+            self.generate_tex(filepath)
+
+        else:
+            # For older python versions this option is not
+            # available thus it is required to change the directory
+            filepath = self._select_filepath(filepath)
+            filepath = os.path.join('.', filepath)
+
+            cur_dir = os.getcwd()
+            dest_dir = os.path.dirname(filepath)
+            basename = os.path.basename(filepath)
+
+            if basename == '':
+                basename = 'default_basename'
+
+            os.chdir(dest_dir)
+
+            self.generate_tex(basename)
 
         if compiler is not None:
             compilers = ((compiler, []),)
@@ -219,7 +256,10 @@ class Document(Environment):
                 ('pdflatex', [])
             )
 
-        main_arguments = ['--interaction=nonstopmode', basename + '.tex']
+        if python_cwd_available: 
+            main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
+        else:
+            main_arguments = ['--interaction=nonstopmode', basename + '.tex']
 
         os_error = None
 
@@ -227,8 +267,12 @@ class Document(Environment):
             command = [compiler] + arguments + compiler_args + main_arguments
 
             try:
-                output = subprocess.check_output(command, cwd=dest_dir,
-                                                 stderr=subprocess.STDOUT)
+                if python_cwd_available:
+                    output = subprocess.check_output(command, cwd=dest_dir,
+                                                     stderr=subprocess.STDOUT)
+                else:
+                    output = subprocess.check_output(command,
+                                                     stderr=subprocess.STDOUT)
             except (OSError, IOError) as e:
                 # Use FileNotFoundError when python 2 is dropped
                 os_error = e
@@ -248,8 +292,12 @@ class Document(Environment):
             if clean:
                 try:
                     # Try latexmk cleaning first
-                    subprocess.check_output(['latexmk', '-c', basename], cwd=dest_dir,
-                                            stderr=subprocess.STDOUT)
+                    if python_cwd_available:
+                        subprocess.check_output(['latexmk', '-c', filepath], cwd=dest_dir,
+                                                stderr=subprocess.STDOUT)
+                    else:
+                        subprocess.check_output(['latexmk', '-c', filepath],
+                                                stderr=subprocess.STDOUT)
                 except (OSError, IOError, subprocess.CalledProcessError) as e:
                     # Otherwise just remove some file extensions.
                     extensions = ['aux', 'log', 'out', 'fls',
@@ -257,7 +305,10 @@ class Document(Environment):
 
                     for ext in extensions:
                         try:
-                            os.remove(basename + '.' + ext)
+                            if python_cwd_available:
+                                os.remove(filepath + '.' + ext)
+                            else:
+                                os.remove(basename + '.' + ext)
                         except (OSError, IOError) as e:
                             # Use FileNotFoundError when python 2 is dropped
                             if e.errno != errno.ENOENT:
@@ -265,7 +316,10 @@ class Document(Environment):
                 rm_temp_dir()
 
             if clean_tex:
-                os.remove(basename + '.tex')  # Remove generated tex file
+                if python_cwd_available:
+                    os.remove(filepath + '.tex')  # Remove generated tex file
+                else:
+                    os.remove(basename + '.tex')  # Remove generated tex file
 
             # Compilation has finished, so no further compilers have to be
             # tried
@@ -279,6 +333,8 @@ class Document(Environment):
                 'or make sure you have latexmk or pdfLaTex installed.'
             ))
 
+        if python_cwd_available:
+            os.chdir(cur_dir)
 
     def _select_filepath(self, filepath):
         """Make a choice between ``filepath`` and ``self.default_filepath``.
