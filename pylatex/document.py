@@ -16,7 +16,6 @@ from .package import Package
 from .errors import CompilerError
 from .utils import dumps_list, rm_temp_dir, NoEscape
 import pylatex.config as cf
-from packaging import version
 
 
 class Document(Environment):
@@ -199,12 +198,9 @@ class Document(Environment):
         if compiler_args is None:
             compiler_args = []
 
-        python_version = '{}.{}.{}'.format(sys.version_info[0],
-                                           sys.version_info[1],
-                                           sys.version_info[2])
         python_cwd_available = False
 
-        if version.parse(python_version) > version.parse("3.6"):
+        if sys.version_info >= (3, 6):
             # In case of newer python with the use of the cwd parameter
             # one can avoid to physically change the directory
             # to the destination folder
