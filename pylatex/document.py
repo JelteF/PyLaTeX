@@ -198,42 +198,25 @@ class Document(Environment):
         if compiler_args is None:
             compiler_args = []
 
-        python_cwd_available = False
+        # In case of newer python with the use of the cwd parameter
+        # one can avoid to physically change the directory
+        # to the destination folder
+        python_cwd_available = sys.version_info >= (3, 6)
 
-        if sys.version_info >= (3, 6):
-            # In case of newer python with the use of the cwd parameter
-            # one can avoid to physically change the directory
-            # to the destination folder
-
-            python_cwd_available = True
-            filepath = self._select_filepath(filepath)
-            if not os.path.basename(filepath):
-                filepath = os.path.join(os.path.abspath(filepath),
-                                        'default_basename')
-            else:
-                filepath = os.path.abspath(filepath)
-
-            cur_dir = os.getcwd()
-            dest_dir = os.path.dirname(filepath)
-
-            self.generate_tex(filepath)
-
+        filepath = self._select_filepath(filepath)
+        if not os.path.basename(filepath):
+            filepath = os.path.join(os.path.abspath(filepath),
+                                    'default_basename')
         else:
-            # For older python versions this option is not
-            # available thus it is required to change the directory
-            filepath = self._select_filepath(filepath)
-            filepath = os.path.join('.', filepath)
+            filepath = os.path.abspath(filepath)
 
-            cur_dir = os.getcwd()
-            dest_dir = os.path.dirname(filepath)
-            basename = os.path.basename(filepath)
+        cur_dir = os.getcwd()
+        dest_dir = os.path.dirname(filepath)
 
-            if basename == '':
-                basename = 'default_basename'
-
+        if not python_cwd_available:
             os.chdir(dest_dir)
 
-            self.generate_tex(basename)
+        self.generate_tex(filepath)
 
         if compiler is not None:
             compilers = ((compiler, []),)
@@ -245,10 +228,11 @@ class Document(Environment):
                 ('pdflatex', [])
             )
 
+        main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
+
+        check_output_kwargs = {}
         if python_cwd_available:
-            main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
-        else:
-            main_arguments = ['--interaction=nonstopmode', basename + '.tex']
+            check_output_kwargs = {'cwd': dest_dir}
 
         os_error = None
 
@@ -256,12 +240,9 @@ class Document(Environment):
             command = [compiler] + arguments + compiler_args + main_arguments
 
             try:
-                if python_cwd_available:
-                    output = subprocess.check_output(command, cwd=dest_dir,
-                                                     stderr=subprocess.STDOUT)
-                else:
-                    output = subprocess.check_output(command,
-                                                     stderr=subprocess.STDOUT)
+                output = subprocess.check_output(command,
+                                                 stderr=subprocess.STDOUT,
+                                                 **check_output_kwargs)
             except (OSError, IOError) as e:
                 # Use FileNotFoundError when python 2 is dropped
                 os_error = e
@@ -281,24 +262,17 @@ class Document(Environment):
             if clean:
                 try:
                     # Try latexmk cleaning first
-                    if python_cwd_available:
-                        subprocess.check_output(['latexmk', '-c', filepath],
-                                                cwd=dest_dir,
-                                                stderr=subprocess.STDOUT)
-                    else:
-                        subprocess.check_output(['latexmk', '-c', filepath],
-                                                stderr=subprocess.STDOUT)
-                except (OSError, IOError, subprocess.CalledProcessError) as e:
+                    subprocess.check_output(['latexmk', '-c', filepath],
+                                            stderr=subprocess.STDOUT,
+                                            **check_output_kwargs)
+                except (OSError, IOError, subprocess.CalledProcessError):
                     # Otherwise just remove some file extensions.
                     extensions = ['aux', 'log', 'out', 'fls',
                                   'fdb_latexmk']
 
                     for ext in extensions:
                         try:
-                            if python_cwd_available:
-                                os.remove(filepath + '.' + ext)
-                            else:
-                                os.remove(basename + '.' + ext)
+                            os.remove(filepath + '.' + ext)
                         except (OSError, IOError) as e:
                             # Use FileNotFoundError when python 2 is dropped
                             if e.errno != errno.ENOENT:
@@ -306,10 +280,7 @@ class Document(Environment):
                 rm_temp_dir()
 
             if clean_tex:
-                if python_cwd_available:
-                    os.remove(filepath + '.tex')  # Remove generated tex file
-                else:
-                    os.remove(basename + '.tex')  # Remove generated tex file
+                os.remove(filepath + '.tex')  # Remove generated tex file
 
             # Compilation has finished, so no further compilers have to be
             # tried
@@ -318,8 +289,8 @@ class Document(Environment):
         else:
             # Notify user that none of the compilers worked.
             raise(CompilerError(
-                'No LaTex compiler was found\n' +
-                'Either specify a LaTex compiler ' +
+                'No LaTex compiler was found\n'
+                'Either specify a LaTex compiler '
                 'or make sure you have latexmk or pdfLaTex installed.'
             ))
 
