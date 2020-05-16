@@ -19,3 +19,6 @@
 [submodule "version_submodules/v1.3.1"]
 	path = version_submodules/v1.3.1
 	url = ../PyLaTeX.git
+[submodule "version_submodules/v1.3.2"]
+	path = version_submodules/v1.3.2
+	url = ../PyLaTeX.git
