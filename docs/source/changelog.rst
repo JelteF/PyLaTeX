@@ -17,6 +17,7 @@ This version might not be stable, but to install it use::
 Fixed
 ~~~~~
 - The 'at' parameter for TikZNode should now work.
+- Use a different temporary directory per user.
 
 1.3.2_ - `docs <../v1.3.2/>`__ - 2020-05-16
 -------------------------------------------

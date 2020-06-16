@@ -29,12 +29,8 @@ _latex_special_chars = {
     ']': r'{]}',
 }
 
-_tmp_path = os.path.abspath(
-    os.path.join(
-        tempfile.gettempdir(),
-        "pylatex"
-    )
-)
+
+_tmp_path = None
 
 
 def _is_iterable(element):
@@ -326,10 +322,6 @@ def verbatim(s, *, delimiter='|'):
 def make_temp_dir():
     """Create a temporary directory if it doesn't exist.
 
-    Directories created by this functionn follow the format specified
-    by ``_tmp_path`` and are a pylatex subdirectory within
-    a standard ``tempfile`` tempdir.
-
     Returns
     -------
     str
@@ -341,13 +333,16 @@ def make_temp_dir():
     '/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex'
     """
 
-    if not os.path.exists(_tmp_path):
-        os.makedirs(_tmp_path)
+    global _tmp_path
+    if not _tmp_path:
+        _tmp_path = tempfile.mkdtemp(prefix="pylatex-tmp.")
     return _tmp_path
 
 
 def rm_temp_dir():
     """Remove the temporary directory specified in ``_tmp_path``."""
 
-    if os.path.exists(_tmp_path):
+    global _tmp_path
+    if _tmp_path:
         shutil.rmtree(_tmp_path)
+        _tmp_path = None
