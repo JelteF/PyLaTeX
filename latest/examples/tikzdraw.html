@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tikzdraw example &mdash; PyLaTeX 1.3.2 documentation</title>
+  <title>Tikzdraw example &mdash; PyLaTeX 1.3.3 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="API reference" href="../api.html"/>
         <link rel="prev" title="Textblock example" href="textblock.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.2
+                1.3.3
               </div>
             
           
@@ -211,6 +211,7 @@
         <span class="c1"># create our test node</span>
         <span class="n">box</span> <span class="o">=</span> <span class="n">TikZNode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;My block&#39;</span><span class="p">,</span>
                        <span class="n">handle</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">,</span>
+                       <span class="n">at</span><span class="o">=</span><span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                        <span class="n">options</span><span class="o">=</span><span class="n">TikZOptions</span><span class="p">(</span><span class="s1">&#39;draw&#39;</span><span class="p">,</span>
                                            <span class="s1">&#39;rounded corners&#39;</span><span class="p">,</span>
                                            <span class="o">**</span><span class="n">node_kwargs</span><span class="p">))</span>
@@ -281,7 +282,7 @@
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
 <span class="k">\normalsize</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>tikzpicture<span class="nb">}</span><span class="c">%</span>
-<span class="k">\node</span><span class="na">[draw,rounded corners,align=center,minimum size=100pt,fill=black!20]</span> (box) <span class="nb">{</span>My block<span class="nb">}</span>;<span class="c">%</span>
+<span class="k">\node</span><span class="na">[draw,rounded corners,align=center,minimum size=100pt,fill=black!20]</span> (box) at (0.0,0.0) <span class="nb">{</span>My block<span class="nb">}</span>;<span class="c">%</span>
 <span class="k">\path</span><span class="na">[draw,fill=red]</span> (0.0,-6.0) rectangle (2.0,-8.0);<span class="c">%</span>
 <span class="k">\path</span><span class="na">[draw]</span> (box.west) -- ++(-1.0,0.0);<span class="c">%</span>
 <span class="k">\path</span><span class="na">[draw]</span> (box.east) edge[-latex,in=90,out=0] ++(1.0,0.0);<span class="c">%</span>
@@ -338,7 +339,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

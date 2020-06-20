@@ -11,7 +11,7 @@
 \begin{document}%
 \normalsize%
 \begin{tikzpicture}%
-\node[draw,rounded corners,align=center,minimum size=100pt,fill=black!20] (box) {My block};%
+\node[draw,rounded corners,align=center,minimum size=100pt,fill=black!20] (box) at (0.0,0.0) {My block};%
 \path[draw,fill=red] (0.0,-6.0) rectangle (2.0,-8.0);%
 \path[draw] (box.west) -- ++(-1.0,0.0);%
 \path[draw] (box.east) edge[-latex,in=90,out=0] ++(1.0,0.0);%

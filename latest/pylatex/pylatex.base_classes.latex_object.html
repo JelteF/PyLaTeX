@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.base_classes.latex_object &mdash; PyLaTeX 1.3.2 documentation</title>
+  <title>pylatex.base_classes.latex_object &mdash; PyLaTeX 1.3.3 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.2 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.3 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.basic" href="pylatex.basic.html"/>
         <link rel="prev" title="pylatex.base_classes.float" href="pylatex.base_classes.float.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.2
+                1.3.3
               </div>
             
           
@@ -188,7 +188,7 @@
 <p>This module implements the base LaTeX object.</p>
 <dl class="class">
 <dt id="pylatex.base_classes.latex_object.LatexObject">
-<em class="property">class </em><code class="descname">LatexObject</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L32-L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">LatexObject</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L32-L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>The class that every other LaTeX class is a subclass of.</p>
 <p>This class implements the main methods that every LaTeX object needs. For
@@ -197,26 +197,26 @@ generate_tex methods. It also provides the methods that can be used to
 represent the packages required by the LatexObject.</p>
 <dl class="attribute">
 <dt id="pylatex.base_classes.latex_object.LatexObject.escape">
-<code class="descname">escape</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L57-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.escape" title="Permalink to this definition">¶</a></dt>
+<code class="descname">escape</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L57-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.escape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine whether or not to escape content of this class.</p>
 <p>This defaults to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> for most classes.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pylatex.base_classes.latex_object.LatexObject.begin_paragraph">
-<code class="descname">begin_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L75-L75"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.begin_paragraph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">begin_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L75-L75"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.begin_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start a new paragraph before this environment.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pylatex.base_classes.latex_object.LatexObject.end_paragraph">
-<code class="descname">end_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L78-L78"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.end_paragraph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L78-L78"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.end_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start a new paragraph after this environment.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pylatex.base_classes.latex_object.LatexObject.separate_paragraph">
-<code class="descname">separate_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L82-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.separate_paragraph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">separate_paragraph</code><em class="property"> = False</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L82-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.separate_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Same as enabling <a class="reference internal" href="#pylatex.base_classes.latex_object.LatexObject.begin_paragraph" title="pylatex.base_classes.latex_object.LatexObject.begin_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">begin_paragraph</span></code></a> and <a class="reference internal" href="#pylatex.base_classes.latex_object.LatexObject.end_paragraph" title="pylatex.base_classes.latex_object.LatexObject.end_paragraph"><code class="xref py py-obj docutils literal"><span class="pre">end_paragraph</span></code></a>, so
 effectively placing this element in its own paragraph.</p>
 </dd></dl>
@@ -228,14 +228,14 @@ effectively placing this element in its own paragraph.</p>
 
 <dl class="attribute">
 <dt id="pylatex.base_classes.latex_object.LatexObject.latex_name">
-<code class="descname">latex_name</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L124-L133"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.latex_name" title="Permalink to this definition">¶</a></dt>
+<code class="descname">latex_name</code><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L124-L133"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.latex_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the name of the class used in LaTeX.</p>
 <p>It can be <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> when the class doesn&#8217;t have a name.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.dumps">
-<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L139-L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dumps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L139-L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the class as a string in LaTeX syntax.</p>
 <p>This method should be implemented by any class that subclasses this
 class.</p>
@@ -243,7 +243,7 @@ class.</p>
 
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.dump">
-<code class="descname">dump</code><span class="sig-paren">(</span><em>file_w</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L147-L157"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dump" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dump</code><span class="sig-paren">(</span><em>file_w</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L147-L157"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the LaTeX representation of the class to a file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -257,7 +257,7 @@ class.</p>
 
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.generate_tex">
-<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L159-L169"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.generate_tex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L159-L169"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.generate_tex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a .tex file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -271,7 +271,7 @@ class.</p>
 
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.dumps_packages">
-<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L171-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps_packages" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dumps_packages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L171-L179"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps_packages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represent the packages needed as a string in LaTeX syntax.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -287,7 +287,7 @@ class.</p>
 
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.dump_packages">
-<code class="descname">dump_packages</code><span class="sig-paren">(</span><em>file_w</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L181-L191"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dump_packages" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dump_packages</code><span class="sig-paren">(</span><em>file_w</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L181-L191"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dump_packages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the LaTeX representation of the packages to a file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -301,7 +301,7 @@ class.</p>
 
 <dl class="method">
 <dt id="pylatex.base_classes.latex_object.LatexObject.dumps_as_content">
-<code class="descname">dumps_as_content</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.2/pylatex/base_classes/latex_object.py#L193-L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps_as_content" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dumps_as_content</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/base_classes/latex_object.py#L193-L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.base_classes.latex_object.LatexObject.dumps_as_content" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a string representation of the object as content.</p>
 <p>This is currently only used to add new lines before and after the
 output of the dumps function. These can be added or removed by changing
@@ -354,7 +354,7 @@ attributes of the class.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.2',
+            VERSION:'1.3.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
