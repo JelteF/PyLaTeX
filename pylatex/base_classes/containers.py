@@ -233,10 +233,10 @@ class ContainerCommand(Container):
         start = Command(self.latex_name, arguments=self.arguments,
                         options=self.options)
 
-        string += start.dumps() + '{ \n'
+        string += start.dumps() + '{%\n'
 
         if content != '':
-            string += content + '\n}'
+            string += content + '%\n}'
         else:
             string += '}'
 
