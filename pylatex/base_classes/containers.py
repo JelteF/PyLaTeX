@@ -187,6 +187,25 @@ class Environment(Container):
 
         return string
 
+class Fragment(Container):
+    """A LaTeX fragment container class for fragmented document construction."""
+
+    def __init__(self, **kwargs):
+        """
+        Args
+        ----
+        """
+
+        super().__init__(**kwargs)
+
+    def dumps(self):
+        """Represent the fragment as a string in LaTeX syntax.
+        Returns
+        -------
+        str
+        """
+
+        return self.dumps_content()
 
 class ContainerCommand(Container):
     r"""A base class for a container command (A command which contains data).
