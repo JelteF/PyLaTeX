@@ -453,7 +453,7 @@ Fixed
 
 
 .. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.3.4...HEAD
-.. _1.3.3: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...1.3.4
+.. _1.3.4: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...1.3.4
 .. _1.3.3: https://github.com/JelteF/PyLaTeX/compare/v1.3.2...1.3.3
 .. _1.3.2: https://github.com/JelteF/PyLaTeX/compare/v1.3.1...1.3.2
 .. _1.3.1: https://github.com/JelteF/PyLaTeX/compare/v1.3.0...1.3.1
