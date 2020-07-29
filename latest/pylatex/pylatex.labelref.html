@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.labelref &mdash; PyLaTeX 1.3.3 documentation</title>
+  <title>pylatex.labelref &mdash; PyLaTeX 1.3.4+0.g983b999 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.3 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.3.4+0.g983b999 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.lists" href="pylatex.lists.html"/>
         <link rel="prev" title="pylatex.headfoot" href="pylatex.headfoot.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.3
+                1.3.4+0.g983b999
               </div>
             
           
@@ -188,7 +188,7 @@
 <p>This module implements the label command and reference.</p>
 <dl class="class">
 <dt id="pylatex.labelref.Marker">
-<em class="property">class </em><code class="descname">Marker</code><span class="sig-paren">(</span><em>name</em>, <em>prefix=''</em>, <em>del_invalid_char=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L17-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Marker" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Marker</code><span class="sig-paren">(</span><em>name</em>, <em>prefix=''</em>, <em>del_invalid_char=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L17-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Marker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject" title="pylatex.base_classes.latex_object.LatexObject"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.latex_object.LatexObject</span></code></a></p>
 <p>A class that represents a marker (label/ref parameter).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -209,7 +209,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.RefLabelBase">
-<em class="property">class </em><code class="descname">RefLabelBase</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L58-L74"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.RefLabelBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">RefLabelBase</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L58-L74"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.RefLabelBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.CommandBase</span></code></a></p>
 <p>A class used as base for command that take a marker only.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -224,7 +224,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Label">
-<em class="property">class </em><code class="descname">Label</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L77-L78"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Label" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Label</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L77-L78"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represents a label.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -239,7 +239,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Ref">
-<em class="property">class </em><code class="descname">Ref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L81-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Ref" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Ref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L81-L82"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represents a reference.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -254,7 +254,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Pageref">
-<em class="property">class </em><code class="descname">Pageref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L85-L86"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Pageref" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Pageref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L85-L86"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Pageref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represents a page reference.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -269,7 +269,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Eqref">
-<em class="property">class </em><code class="descname">Eqref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L89-L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Eqref" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Eqref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L89-L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Eqref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represent a ref to a formulae.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -284,7 +284,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Cref">
-<em class="property">class </em><code class="descname">Cref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L95-L98"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Cref" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Cref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L95-L98"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Cref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represent a cref (not a Cref).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -299,7 +299,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.CrefUp">
-<em class="property">class </em><code class="descname">CrefUp</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L101-L105"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.CrefUp" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">CrefUp</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L101-L105"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.CrefUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represent a Cref.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -314,7 +314,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Autoref">
-<em class="property">class </em><code class="descname">Autoref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L108-L111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Autoref" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Autoref</code><span class="sig-paren">(</span><em>marker</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L108-L111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Autoref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.labelref.RefLabelBase" title="pylatex.labelref.RefLabelBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.labelref.RefLabelBase</span></code></a></p>
 <p>A class that represent an autoref.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -329,7 +329,7 @@ removed from the marker</li>
 
 <dl class="class">
 <dt id="pylatex.labelref.Hyperref">
-<em class="property">class </em><code class="descname">Hyperref</code><span class="sig-paren">(</span><em>marker</em>, <em>text</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.3.3/pylatex/labelref.py#L114-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Hyperref" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Hyperref</code><span class="sig-paren">(</span><em>marker</em>, <em>text</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/labelref.py#L114-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.labelref.Hyperref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.CommandBase</span></code></a></p>
 <p>A class that represents an hyperlink to a label.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -390,7 +390,7 @@ to the label of the same marker.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.3',
+            VERSION:'1.3.4+0.g983b999',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
