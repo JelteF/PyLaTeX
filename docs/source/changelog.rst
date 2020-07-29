@@ -14,6 +14,13 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.3.4_ - `docs <../v1.3.4/>`__ - 2020-07-29
+-------------------------------------------
+
+Fixed
+~~~~~
+- Use known working versions for Python 3.5 and lower of ordered-set dependency
+
 1.3.3_ - `docs <../v1.3.3/>`__ - 2020-06-20
 -------------------------------------------
 
@@ -445,7 +452,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.3.4...HEAD
+.. _1.3.3: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...1.3.4
 .. _1.3.3: https://github.com/JelteF/PyLaTeX/compare/v1.3.2...1.3.3
 .. _1.3.2: https://github.com/JelteF/PyLaTeX/compare/v1.3.1...1.3.2
 .. _1.3.1: https://github.com/JelteF/PyLaTeX/compare/v1.3.0...1.3.1
