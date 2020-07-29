@@ -20,7 +20,10 @@ if sys.version_info[:2] <= (2, 6):
         "Python version."
     )
 
-dependencies = ['ordered-set']
+if sys.version_info[:2] <= (3, 5):
+    dependencies = ['ordered-set<4.0.0']
+else:
+    dependencies = ['ordered-set']
 
 extras = {
     'docs': ['sphinx'],
