@@ -32,7 +32,7 @@ class Document(Environment):
                  documentclass='article', document_options=None, fontenc='T1',
                  inputenc='utf8', font_size="normalsize", lmodern=True,
                  textcomp=True, microtype=None, page_numbers=True, indent=None,
-                 geometry_options=None, data=None):
+                 geometry_options=None, data=None, **kwargs):
         r"""
         Args
         ----
@@ -106,6 +106,10 @@ class Document(Environment):
 
         if geometry_options is not None:
             packages.append(Package('geometry', options=geometry_options))
+
+        opt_packages = kwargs.get('packages', {})
+        for name, options in opt_packages.items():
+            packages.append(Package(name, options=options))
 
         super().__init__(data=data)
 
