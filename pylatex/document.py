@@ -105,7 +105,11 @@ class Document(Environment):
             packages.append(Package('microtype'))
 
         if geometry_options is not None:
-            packages.append(Package('geometry', options=geometry_options))
+            packages.append(Package('geometry'))
+            packages.append(Command(
+                'geometry',
+                arguments=','.join([k+'='+v for k,v in geometry_options.items()])
+            ))
 
         super().__init__(data=data)
 
