@@ -14,6 +14,19 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.4.0_ - `docs <../v1.4.0/>`__ - 2020-09-16
+-------------------------------------------
+
+Added
+~~~~~
+- Add ``Fragment`` class which is a ``Container`` without any LaTeX code
+  surrounding its content.
+
+Fixed
+~~~~~
+- Escape newlines in ``ContainerCommand``
+- Fix bug where the geometry options were not applied in some cases
+
 1.3.4_ - `docs <../v1.3.4/>`__ - 2020-07-29
 -------------------------------------------
 
@@ -452,7 +465,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.3.4...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.4.0...HEAD
+.. _1.4.0: https://github.com/JelteF/PyLaTeX/compare/v1.3.4...1.4.0
 .. _1.3.4: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...1.3.4
 .. _1.3.3: https://github.com/JelteF/PyLaTeX/compare/v1.3.2...1.3.3
 .. _1.3.2: https://github.com/JelteF/PyLaTeX/compare/v1.3.1...1.3.2

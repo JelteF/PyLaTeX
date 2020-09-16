@@ -4,37 +4,38 @@
 \usepackage{lmodern}%
 \usepackage{textcomp}%
 \usepackage{lastpage}%
-\usepackage[margin=0.7in]{geometry}%
+\usepackage{geometry}%
+\geometry{margin=0.7in}%
 \usepackage{ragged2e}%
 \usepackage{fancyhdr}%
 %
-\fancypagestyle{header}{ 
+\fancypagestyle{header}{%
 \renewcommand{\headrulewidth}{0pt}%
 \renewcommand{\footrulewidth}{0pt}%
-\fancyhead{ 
+\fancyhead{%
 }%
-\fancyfoot{ 
+\fancyfoot{%
 }%
-\fancyhead[L]{ 
+\fancyhead[L]{%
 Page date: %
 \linebreak%
-R3
+R3%
 }%
-\fancyhead[C]{ 
-Company
+\fancyhead[C]{%
+Company%
 }%
-\fancyhead[R]{ 
-Page \thepage\ of \pageref{LastPage}
+\fancyhead[R]{%
+Page \thepage\ of \pageref{LastPage}%
 }%
-\fancyfoot[L]{ 
-Left Footer
+\fancyfoot[L]{%
+Left Footer%
 }%
-\fancyfoot[C]{ 
-Center Footer
+\fancyfoot[C]{%
+Center Footer%
 }%
-\fancyfoot[R]{ 
-Right Footer
-}
+\fancyfoot[R]{%
+Right Footer%
+}%
 }%
 %
 \begin{document}%

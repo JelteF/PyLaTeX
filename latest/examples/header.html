@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Header example &mdash; PyLaTeX 1.3.4+0.g983b999 documentation</title>
+  <title>Header example &mdash; PyLaTeX 1.4.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.4+0.g983b999 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Lists example" href="lists.html"/>
         <link rel="prev" title="Full example" href="full.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.4+0.g983b999
+                1.4.0
               </div>
             
           
@@ -294,43 +294,45 @@
 50
 51
 52
-53</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+53
+54</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
-<span class="k">\usepackage</span><span class="na">[margin=0.7in]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\geometry</span><span class="nb">{</span>margin=0.7in<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>ragged2e<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
-<span class="k">\fancypagestyle</span><span class="nb">{</span>header<span class="nb">}{</span> 
+<span class="k">\fancypagestyle</span><span class="nb">{</span>header<span class="nb">}{</span><span class="c">%</span>
 <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\headrulewidth</span><span class="nb">}{</span>0pt<span class="nb">}</span><span class="c">%</span>
 <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\footrulewidth</span><span class="nb">}{</span>0pt<span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="nb">{</span> 
+<span class="k">\fancyhead</span><span class="nb">{</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyfoot</span><span class="nb">{</span> 
+<span class="k">\fancyfoot</span><span class="nb">{</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="na">[L]</span><span class="nb">{</span> 
+<span class="k">\fancyhead</span><span class="na">[L]</span><span class="nb">{</span><span class="c">%</span>
 Page date: <span class="c">%</span>
 <span class="k">\linebreak</span><span class="c">%</span>
-R3
+R3<span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="na">[C]</span><span class="nb">{</span> 
-Company
+<span class="k">\fancyhead</span><span class="na">[C]</span><span class="nb">{</span><span class="c">%</span>
+Company<span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="na">[R]</span><span class="nb">{</span> 
-Page <span class="k">\thepage\ </span>of <span class="k">\pageref</span><span class="nb">{</span>LastPage<span class="nb">}</span>
+<span class="k">\fancyhead</span><span class="na">[R]</span><span class="nb">{</span><span class="c">%</span>
+Page <span class="k">\thepage\ </span>of <span class="k">\pageref</span><span class="nb">{</span>LastPage<span class="nb">}</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyfoot</span><span class="na">[L]</span><span class="nb">{</span> 
-Left Footer
+<span class="k">\fancyfoot</span><span class="na">[L]</span><span class="nb">{</span><span class="c">%</span>
+Left Footer<span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyfoot</span><span class="na">[C]</span><span class="nb">{</span> 
-Center Footer
+<span class="k">\fancyfoot</span><span class="na">[C]</span><span class="nb">{</span><span class="c">%</span>
+Center Footer<span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyfoot</span><span class="na">[R]</span><span class="nb">{</span> 
-Right Footer
-<span class="nb">}</span>
+<span class="k">\fancyfoot</span><span class="na">[R]</span><span class="nb">{</span><span class="c">%</span>
+Right Footer<span class="c">%</span>
+<span class="nb">}</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span><span class="c">%</span>
@@ -398,7 +400,7 @@ Right Footer
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.4+0.g983b999',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

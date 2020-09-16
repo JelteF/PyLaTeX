@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.position &mdash; PyLaTeX 1.3.4+0.g983b999 documentation</title>
+  <title>pylatex.position &mdash; PyLaTeX 1.4.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.4+0.g983b999 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.quantities" href="pylatex.quantities.html"/>
         <link rel="prev" title="pylatex.package" href="pylatex.package.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.4+0.g983b999
+                1.4.0
               </div>
             
           
@@ -189,7 +189,7 @@
 <p>Positions various elements on the page.</p>
 <dl class="class">
 <dt id="pylatex.position.HorizontalSpace">
-<em class="property">class </em><code class="descname">HorizontalSpace</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>star=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L16-L39"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.HorizontalSpace" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">HorizontalSpace</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>star=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L16-L39"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.HorizontalSpace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.command.html#pylatex.base_classes.command.CommandBase" title="pylatex.base_classes.command.CommandBase"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.command.CommandBase</span></code></a></p>
 <p>Add/remove the amount of horizontal space between elements.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -209,7 +209,7 @@ space is also added where page breaking takes place.</li>
 
 <dl class="class">
 <dt id="pylatex.position.VerticalSpace">
-<em class="property">class </em><code class="descname">VerticalSpace</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>star=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L42-L45"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.VerticalSpace" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">VerticalSpace</code><span class="sig-paren">(</span><em>size</em>, <em>*</em>, <em>star=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L42-L45"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.VerticalSpace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.position.HorizontalSpace" title="pylatex.position.HorizontalSpace"><code class="xref py py-class docutils literal"><span class="pre">pylatex.position.HorizontalSpace</span></code></a></p>
 <p>Add the user specified amount of vertical space to the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -229,7 +229,7 @@ space is also added where page breaking takes place.</li>
 
 <dl class="class">
 <dt id="pylatex.position.Center">
-<em class="property">class </em><code class="descname">Center</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L48-L51"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.Center" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Center</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L48-L51"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.Center" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>Centered environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -254,7 +254,7 @@ space is also added where page breaking takes place.</li>
 
 <dl class="class">
 <dt id="pylatex.position.FlushLeft">
-<em class="property">class </em><code class="descname">FlushLeft</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L54-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.FlushLeft" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">FlushLeft</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L54-L55"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.FlushLeft" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.position.Center" title="pylatex.position.Center"><code class="xref py py-class docutils literal"><span class="pre">pylatex.position.Center</span></code></a></p>
 <p>Left-aligned environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -279,7 +279,7 @@ space is also added where page breaking takes place.</li>
 
 <dl class="class">
 <dt id="pylatex.position.FlushRight">
-<em class="property">class </em><code class="descname">FlushRight</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L58-L59"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.FlushRight" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">FlushRight</code><span class="sig-paren">(</span><em>*</em>, <em>options=None</em>, <em>arguments=None</em>, <em>start_arguments=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L58-L59"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.FlushRight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.position.Center" title="pylatex.position.Center"><code class="xref py py-class docutils literal"><span class="pre">pylatex.position.Center</span></code></a></p>
 <p>Right-aligned environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -304,7 +304,7 @@ space is also added where page breaking takes place.</li>
 
 <dl class="class">
 <dt id="pylatex.position.MiniPage">
-<em class="property">class </em><code class="descname">MiniPage</code><span class="sig-paren">(</span><em>*</em>, <em>width=NoEscape(textwidth)</em>, <em>pos=None</em>, <em>height=None</em>, <em>content_pos=None</em>, <em>align=None</em>, <em>fontsize=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L62-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.MiniPage" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">MiniPage</code><span class="sig-paren">(</span><em>*</em>, <em>width=NoEscape(textwidth)</em>, <em>pos=None</em>, <em>height=None</em>, <em>content_pos=None</em>, <em>align=None</em>, <em>fontsize=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L62-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.MiniPage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that allows the creation of minipages within document pages.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -335,7 +335,7 @@ bottom(b), top(t), spread(s))</li>
 
 <dl class="class">
 <dt id="pylatex.position.TextBlock">
-<em class="property">class </em><code class="descname">TextBlock</code><span class="sig-paren">(</span><em>width</em>, <em>horizontal_pos</em>, <em>vertical_pos</em>, <em>*</em>, <em>indent=False</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/position.py#L139-L178"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.TextBlock" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">TextBlock</code><span class="sig-paren">(</span><em>width</em>, <em>horizontal_pos</em>, <em>vertical_pos</em>, <em>*</em>, <em>indent=False</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/position.py#L139-L178"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.position.TextBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that represents a textblock environment.</p>
 <p>Make sure to set lengths of TPHorizModule and TPVertModule</p>
@@ -404,7 +404,7 @@ bottom(b), top(t), spread(s))</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.4+0.g983b999',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

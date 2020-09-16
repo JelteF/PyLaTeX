@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Complex report example &mdash; PyLaTeX 1.3.4+0.g983b999 documentation</title>
+  <title>Complex report example &mdash; PyLaTeX 1.4.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.4+0.g983b999 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.0 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="Config example" href="config.html"/>
         <link rel="prev" title="Basic inheritance example" href="basic_inheritance.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.4+0.g983b999
+                1.4.0
               </div>
             
           
@@ -505,13 +505,15 @@ containing data. It also creates a complex header with an image.</p>
 175
 176
 177
-178</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+178
+179</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>textcomp<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lastpage<span class="nb">}</span><span class="c">%</span>
-<span class="k">\usepackage</span><span class="na">[head=40pt,margin=0.5in,bottom=0.6in,includeheadfoot=True]</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\usepackage</span><span class="nb">{</span>geometry<span class="nb">}</span><span class="c">%</span>
+<span class="k">\geometry</span><span class="nb">{</span>head=40pt,margin=0.5in,bottom=0.6in,includeheadfoot=True<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>tabu<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>ragged2e<span class="nb">}</span><span class="c">%</span>
@@ -521,19 +523,19 @@ containing data. It also creates a complex header with an image.</p>
 <span class="k">\usepackage</span><span class="nb">{</span>fancyhdr<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>tabularx<span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
-<span class="k">\fancypagestyle</span><span class="nb">{</span>firstpage<span class="nb">}{</span> 
+<span class="k">\fancypagestyle</span><span class="nb">{</span>firstpage<span class="nb">}{</span><span class="c">%</span>
 <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\headrulewidth</span><span class="nb">}{</span>0pt<span class="nb">}</span><span class="c">%</span>
 <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\footrulewidth</span><span class="nb">}{</span>0pt<span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="nb">{</span> 
+<span class="k">\fancyhead</span><span class="nb">{</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyfoot</span><span class="nb">{</span> 
+<span class="k">\fancyfoot</span><span class="nb">{</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="na">[L]</span><span class="nb">{</span> 
+<span class="k">\fancyhead</span><span class="na">[L]</span><span class="nb">{</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[c]<span class="nb">{</span>0.49<span class="k">\textwidth</span><span class="nb">}</span><span class="c">%</span>
 <span class="k">\includegraphics</span><span class="na">[width=120px]</span><span class="nb">{</span>../../../../examples/sample-logo.png<span class="nb">}</span><span class="c">%</span>
-<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyhead</span><span class="na">[R]</span><span class="nb">{</span> 
+<span class="k">\fancyhead</span><span class="na">[R]</span><span class="nb">{</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>minipage<span class="nb">}</span>[c]<span class="nb">{</span>0.49<span class="k">\textwidth</span><span class="nb">}</span><span class="c">%</span>
 <span class="k">\flushright</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>Large<span class="nb">}</span><span class="c">%</span>
@@ -543,12 +545,12 @@ containing data. It also creates a complex header with an image.</p>
 <span class="k">\begin</span><span class="nb">{</span>large<span class="nb">}</span><span class="c">%</span>
 <span class="k">\textbf</span><span class="nb">{</span>Date<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>large<span class="nb">}</span><span class="c">%</span>
-<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
-<span class="k">\fancyfoot</span><span class="na">[C]</span><span class="nb">{</span> 
+<span class="k">\fancyfoot</span><span class="na">[C]</span><span class="nb">{</span><span class="c">%</span>
 <span class="k">\begin</span><span class="nb">{</span>tabularx<span class="nb">}{</span><span class="k">\textwidth</span><span class="nb">}{</span>X X X X<span class="nb">}</span><span class="c">%</span>
-<span class="k">\multicolumn</span><span class="nb">{</span>4<span class="nb">}{</span>l<span class="nb">}{</span><span class="k">\textcolor</span><span class="nb">{</span>blue<span class="nb">}{</span> 
-Important message please read
+<span class="k">\multicolumn</span><span class="nb">{</span>4<span class="nb">}{</span>l<span class="nb">}{</span><span class="k">\textcolor</span><span class="nb">{</span>blue<span class="nb">}{</span><span class="c">%</span>
+Important message please read<span class="c">%</span>
 <span class="nb">}}</span><span class="k">\\</span><span class="c">%</span>
 <span class="k">\arrayrulecolor</span><span class="nb">{</span>blue<span class="nb">}</span><span class="c">%</span>
 <span class="k">\hline</span><span class="c">%</span>
@@ -574,8 +576,8 @@ Saskatoon, SK<span class="c">%</span>
 <span class="k">\linebreak</span><span class="c">%</span>
 Page <span class="k">\thepage\ </span>of <span class="k">\pageref</span><span class="nb">{</span>LastPage<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>minipage<span class="nb">}</span><span class="k">\\</span><span class="c">%</span>
-<span class="k">\end</span><span class="nb">{</span>tabularx<span class="nb">}</span>
-<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>tabularx<span class="nb">}</span><span class="c">%</span>
+<span class="nb">}</span><span class="c">%</span>
 <span class="nb">}</span><span class="c">%</span>
 <span class="k">\definecolor</span><span class="nb">{</span>lightgray<span class="nb">}{</span>gray<span class="nb">}{</span>0.80<span class="nb">}</span><span class="c">%</span>
 <span class="c">%</span>
@@ -749,7 +751,7 @@ Branch no.<span class="c">%</span>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.4+0.g983b999',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

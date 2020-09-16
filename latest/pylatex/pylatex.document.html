@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.document &mdash; PyLaTeX 1.3.4+0.g983b999 documentation</title>
+  <title>pylatex.document &mdash; PyLaTeX 1.4.0 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.3.4+0.g983b999 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.0 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.errors" href="pylatex.errors.html"/>
         <link rel="prev" title="pylatex.config" href="pylatex.config.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.3.4+0.g983b999
+                1.4.0
               </div>
             
           
@@ -188,7 +188,7 @@
 <p>This module implements the class that deals with the full document.</p>
 <dl class="class">
 <dt id="pylatex.document.Document">
-<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>*</em>, <em>documentclass='article'</em>, <em>document_options=None</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>font_size='normalsize'</em>, <em>lmodern=True</em>, <em>textcomp=True</em>, <em>microtype=None</em>, <em>page_numbers=True</em>, <em>indent=None</em>, <em>geometry_options=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L21-L409"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Document</code><span class="sig-paren">(</span><em>default_filepath='default_filepath'</em>, <em>*</em>, <em>documentclass='article'</em>, <em>document_options=None</em>, <em>fontenc='T1'</em>, <em>inputenc='utf8'</em>, <em>font_size='normalsize'</em>, <em>lmodern=True</em>, <em>textcomp=True</em>, <em>microtype=None</em>, <em>page_numbers=True</em>, <em>indent=None</em>, <em>geometry_options=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L21-L413"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Environment" title="pylatex.base_classes.containers.Environment"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Environment</span></code></a></p>
 <p>A class that contains a full LaTeX document.</p>
 <p>If needed, you can append stuff to the preamble or the packages.
@@ -223,7 +223,7 @@ is <a class="reference external" href="https://docs.python.org/3/library/constan
 </table>
 <dl class="method">
 <dt id="pylatex.document.Document.generate_tex">
-<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L161-L171"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_tex</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L165-L175"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_tex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a .tex file for the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -238,7 +238,7 @@ default filepath attribute is used as the path.</td>
 
 <dl class="method">
 <dt id="pylatex.document.Document.generate_pdf">
-<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>*</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L173-L298"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_pdf</code><span class="sig-paren">(</span><em>filepath=None</em>, <em>*</em>, <em>clean=True</em>, <em>clean_tex=True</em>, <em>compiler=None</em>, <em>compiler_args=None</em>, <em>silent=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L177-L302"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.generate_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a pdf file from the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -265,7 +265,7 @@ this is None it defaults to an empty list.</li>
 
 <dl class="method">
 <dt id="pylatex.document.Document.change_page_style">
-<code class="descname">change_page_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L322-L331"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_page_style" title="Permalink to this definition">¶</a></dt>
+<code class="descname">change_page_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L326-L335"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_page_style" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alternate page styles of the current page.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -279,7 +279,7 @@ this is None it defaults to an empty list.</li>
 
 <dl class="method">
 <dt id="pylatex.document.Document.change_document_style">
-<code class="descname">change_document_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L333-L342"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_document_style" title="Permalink to this definition">¶</a></dt>
+<code class="descname">change_document_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L337-L346"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_document_style" title="Permalink to this definition">¶</a></dt>
 <dd><p>Alternate page style for the entire document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -293,7 +293,7 @@ this is None it defaults to an empty list.</li>
 
 <dl class="method">
 <dt id="pylatex.document.Document.add_color">
-<code class="descname">add_color</code><span class="sig-paren">(</span><em>name</em>, <em>model</em>, <em>description</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L344-L363"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.add_color" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_color</code><span class="sig-paren">(</span><em>name</em>, <em>model</em>, <em>description</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L348-L367"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.add_color" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a color that can be used throughout the document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -312,7 +312,7 @@ this is None it defaults to an empty list.</li>
 
 <dl class="method">
 <dt id="pylatex.document.Document.change_length">
-<code class="descname">change_length</code><span class="sig-paren">(</span><em>parameter</em>, <em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L365-L377"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_length" title="Permalink to this definition">¶</a></dt>
+<code class="descname">change_length</code><span class="sig-paren">(</span><em>parameter</em>, <em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L369-L381"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.change_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Change the length of a certain parameter to a certain value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -335,7 +335,7 @@ this is None it defaults to an empty list.</li>
 
 <dl class="method">
 <dt id="pylatex.document.Document.set_variable">
-<code class="descname">set_variable</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/tree/983b999/pylatex/document.py#L379-L409"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.set_variable" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_variable</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/document.py#L383-L413"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.document.Document.set_variable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a variable which can be used inside the document.</p>
 <p>Variables are defined before the preamble. If a variable with that name
 has already been set, the new value will override it for future uses.
@@ -399,7 +399,7 @@ This is done by appending <code class="docutils literal"><span class="pre">\rene
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.3.4+0.g983b999',
+            VERSION:'1.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -4,7 +4,8 @@
 \usepackage{lmodern}%
 \usepackage{textcomp}%
 \usepackage{lastpage}%
-\usepackage[head=40pt,margin=0.5in,bottom=0.6in,includeheadfoot=True]{geometry}%
+\usepackage{geometry}%
+\geometry{head=40pt,margin=0.5in,bottom=0.6in,includeheadfoot=True}%
 \usepackage{color}%
 \usepackage{tabu}%
 \usepackage{ragged2e}%
@@ -14,19 +15,19 @@
 \usepackage{fancyhdr}%
 \usepackage{tabularx}%
 %
-\fancypagestyle{firstpage}{ 
+\fancypagestyle{firstpage}{%
 \renewcommand{\headrulewidth}{0pt}%
 \renewcommand{\footrulewidth}{0pt}%
-\fancyhead{ 
+\fancyhead{%
 }%
-\fancyfoot{ 
+\fancyfoot{%
 }%
-\fancyhead[L]{ 
+\fancyhead[L]{%
 \begin{minipage}[c]{0.49\textwidth}%
 \includegraphics[width=120px]{../../../../examples/sample-logo.png}%
-\end{minipage}
+\end{minipage}%
 }%
-\fancyhead[R]{ 
+\fancyhead[R]{%
 \begin{minipage}[c]{0.49\textwidth}%
 \flushright%
 \begin{Large}%
@@ -36,12 +37,12 @@
 \begin{large}%
 \textbf{Date}%
 \end{large}%
-\end{minipage}
+\end{minipage}%
 }%
-\fancyfoot[C]{ 
+\fancyfoot[C]{%
 \begin{tabularx}{\textwidth}{X X X X}%
-\multicolumn{4}{l}{\textcolor{blue}{ 
-Important message please read
+\multicolumn{4}{l}{\textcolor{blue}{%
+Important message please read%
 }}\\%
 \arrayrulecolor{blue}%
 \hline%
@@ -67,8 +68,8 @@ Saskatoon, SK%
 \linebreak%
 Page \thepage\ of \pageref{LastPage}%
 \end{minipage}\\%
-\end{tabularx}
-}
+\end{tabularx}%
+}%
 }%
 \definecolor{lightgray}{gray}{0.80}%
 %
