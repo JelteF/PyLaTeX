@@ -11,7 +11,7 @@ from .document import Document
 from .frames import MdFramed, FBox
 from .math import Math, VectorName, Matrix, Alignat
 from .package import Package
-from .section import Section, Subsection, Subsubsection
+from .section import Chapter, Section, Subsection, Subsubsection
 from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
     LongTabu, Tabularx, LongTabularx, ColumnType
 from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate, \
