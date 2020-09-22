@@ -1,8 +1,6 @@
 #!/usr/bin/python
 """
-This example shows the functionality of the MiniPage element.
-
-It creates a sample page filled with labels using the MiniPage element.
+This example shows the functionality of the Tabu and LongTabu element.
 
 ..  :copyright: (c) 2016 by Vladimir Gorovikov and Scott Wallace
     :license: MIT, see License for more details.
