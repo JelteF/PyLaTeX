@@ -29,7 +29,6 @@ _latex_special_chars = {
     ']': r'{]}',
 }
 
-
 _tmp_path = None
 
 
@@ -102,10 +101,15 @@ def fix_filename(path):
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
 
+    Windows gets angry about the curly braces that resolve the above issue on linux
+    Latex distributions. MikTeX however, has no qualms about multiple dots in the
+    filename so the behavior is different for posix vs nt when the length of
+    file_parts is greater than two.
+
     Args
     ----
     filename : str
-        The filen name to be changed.
+        The file name to be changed.
 
     Returns
     -------
@@ -130,7 +134,7 @@ def fix_filename(path):
     filename = path_parts[-1]
     file_parts = filename.split('.')
 
-    if len(file_parts) > 2:
+    if os.name == 'posix' and len(file_parts) > 2:
         filename = '{' + '.'.join(file_parts[0:-1]) + '}.' + file_parts[-1]
 
     dir_parts.append(filename)
