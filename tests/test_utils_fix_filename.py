@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 from pylatex.utils import fix_filename
 
 
@@ -15,7 +16,10 @@ def test_one_dot():
 
 def test_two_dots():
     fname = "aa.a.a"
-    assert fix_filename(fname) == "{aa.a}.a"
+    if os.name == 'posix':
+        assert fix_filename(fname) == "{aa.a}.a"
+    else:
+        assert fix_filename(fname) == "aa.a.a"
 
 
 def test_three_dots():
