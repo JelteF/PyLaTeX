@@ -16,10 +16,14 @@ def test_one_dot():
 
 def test_two_dots():
     fname = "aa.a.a"
-    if os.name == 'posix':
+    original_os_name = os.name
+    try:
+        os.name = 'posix'
         assert fix_filename(fname) == "{aa.a}.a"
-    else:
+        os.name = 'nt'
         assert fix_filename(fname) == "aa.a.a"
+    finally:
+        os.name = original_os_name
 
 
 def test_three_dots():
