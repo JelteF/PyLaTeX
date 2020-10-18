@@ -101,10 +101,10 @@ def fix_filename(path):
     Latex has problems if there are one or more points in the filename, thus
     'abc.def.jpg' will be changed to '{abc.def}.jpg'
 
-    Windows gets angry about the curly braces that resolve the above issue on linux
-    Latex distributions. MikTeX however, has no qualms about multiple dots in the
-    filename so the behavior is different for posix vs nt when the length of
-    file_parts is greater than two.
+    Windows gets angry about the curly braces that resolve the above issue on
+    linux Latex distributions. MikTeX however, has no qualms about multiple
+    dots in the filename so the behavior is different for posix vs nt when the
+    length of file_parts is greater than two.
 
     Args
     ----
