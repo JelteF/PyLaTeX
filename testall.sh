@@ -66,15 +66,8 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if [[ "$python_version_long" != 3.5.* ]]; then
-    if ! $python "$(command -v pytest)" --cov=pylatex tests/*; then
-        exit 1
-    fi
-else
-    # for some reason coverage doesn't work on 3.5
-    if ! $python "$(command -v pytest)" tests/*; then
-        exit 1
-    fi
+if ! $python "$(command -v pytest)" --cov=pylatex tests/*; then
+    exit 1
 fi
 mv .coverage{,.tests}
 

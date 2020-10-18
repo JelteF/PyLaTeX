@@ -32,7 +32,8 @@ extras = {
     'quantities': ['quantities', 'numpy'],
     'testing': ['flake8<3.0.0', 'pep8-naming==0.8.2',
                 'flake8_docstrings==1.3.0', 'pycodestyle==2.0.0',
-                'pydocstyle==3.0.0', 'pyflakes==1.2.3', 'pytest', 'flake8-putty',
+                'pydocstyle==3.0.0', 'pyflakes==1.2.3', 'pytest>=4.6',
+                'flake8-putty',
                 'coverage', 'pytest-cov'],
     'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
