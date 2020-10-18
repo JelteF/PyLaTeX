@@ -80,4 +80,6 @@ cd ../..
 
 git push
 git push --tags
-python setup.py sdist upload
+rm -rf dist
+python setup.py sdist
+twine upload dist/*

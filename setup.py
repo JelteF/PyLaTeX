@@ -35,6 +35,7 @@ extras = {
                 'pydocstyle==3.0.0', 'pyflakes==1.2.3', 'pytest>=4.6',
                 'flake8-putty',
                 'coverage', 'pytest-cov'],
+    'packaging': ['twine'],
     'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 
