@@ -106,10 +106,13 @@ class Document(Environment):
 
         if geometry_options is not None:
             packages.append(Package('geometry'))
-            packages.append(Command(
-                'geometry',
-                arguments=SpecialArguments(geometry_options),
-            ))
+            # Make sure we don't add this options command for an empty list,
+            # because that breaks.
+            if geometry_options:
+                packages.append(Command(
+                    'geometry',
+                    arguments=SpecialArguments(geometry_options),
+                ))
 
         super().__init__(data=data)
 
