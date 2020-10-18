@@ -14,6 +14,16 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.4.1_ - `docs <../v1.4.1/>`__ - 2020-10-18
+-------------------------------------------
+
+Fixed
+~~~~~
+
+- Fixes filename generation with dots in the final filename on Windows.
+- Fixes regression in 1.4.0 where empty ``geometry_options`` would throw an
+  error.
+
 1.4.0_ - `docs <../v1.4.0/>`__ - 2020-09-16
 -------------------------------------------
 
@@ -465,7 +475,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.4.0...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.4.1...HEAD
+.. _1.4.1: https://github.com/JelteF/PyLaTeX/compare/v1.4.0...1.4.1
 .. _1.4.0: https://github.com/JelteF/PyLaTeX/compare/v1.3.4...1.4.0
 .. _1.3.4: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...1.3.4
 .. _1.3.3: https://github.com/JelteF/PyLaTeX/compare/v1.3.2...1.3.3

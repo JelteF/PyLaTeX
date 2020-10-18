@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylatex.section &mdash; PyLaTeX 1.4.0 documentation</title>
+  <title>pylatex.section &mdash; PyLaTeX 1.4.1 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.1 documentation" href="../index.html"/>
         <link rel="up" title="API reference" href="../api.html"/>
         <link rel="next" title="pylatex.table" href="pylatex.table.html"/>
         <link rel="prev" title="pylatex.quantities" href="pylatex.quantities.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.4.1
               </div>
             
           
@@ -188,7 +188,7 @@
 <p>This module implements the section type classes.</p>
 <dl class="class">
 <dt id="pylatex.section.Section">
-<em class="property">class </em><code class="descname">Section</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L14-L79"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Section" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Section</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L14-L79"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pylatex.base_classes.containers.html#pylatex.base_classes.containers.Container" title="pylatex.base_classes.containers.Container"><code class="xref py py-class docutils literal"><span class="pre">pylatex.base_classes.containers.Container</span></code></a></p>
 <p>A class that represents a section.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -196,9 +196,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -207,13 +207,13 @@ preference between automatic or no label</li>
 </table>
 <dl class="attribute">
 <dt id="pylatex.section.Section.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'sec'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L21-L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Section.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'sec'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L21-L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Section.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default prefix to use with Marker</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pylatex.section.Section.numbering">
-<code class="descname">numbering</code><em class="property"> = True</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L26-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Section.numbering" title="Permalink to this definition">¶</a></dt>
+<code class="descname">numbering</code><em class="property"> = True</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L26-L26"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Section.numbering" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number the sections when the section element is compatible,
 by changing the <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-obj docutils literal"><span class="pre">Section</span></code></a> class default all
 subclasses will also have the new default.</p>
@@ -223,7 +223,7 @@ subclasses will also have the new default.</p>
 
 <dl class="class">
 <dt id="pylatex.section.Part">
-<em class="property">class </em><code class="descname">Part</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L82-L85"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Part" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Part</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L82-L85"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Part" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.Section</span></code></a></p>
 <p>A class that represents a part.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -231,9 +231,9 @@ subclasses will also have the new default.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -242,7 +242,7 @@ preference between automatic or no label</li>
 </table>
 <dl class="attribute">
 <dt id="pylatex.section.Part.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'part'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L85-L85"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Part.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'part'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L85-L85"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Part.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -254,7 +254,7 @@ preference between automatic or no label</li>
 
 <dl class="class">
 <dt id="pylatex.section.Chapter">
-<em class="property">class </em><code class="descname">Chapter</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L88-L91"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Chapter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Chapter</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L88-L91"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Chapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.Section</span></code></a></p>
 <p>A class that represents a chapter.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -262,9 +262,9 @@ preference between automatic or no label</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -273,7 +273,7 @@ preference between automatic or no label</li>
 </table>
 <dl class="attribute">
 <dt id="pylatex.section.Chapter.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'chap'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L91-L91"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Chapter.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'chap'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L91-L91"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Chapter.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -285,7 +285,7 @@ preference between automatic or no label</li>
 
 <dl class="class">
 <dt id="pylatex.section.Subsection">
-<em class="property">class </em><code class="descname">Subsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L94-L97"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Subsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L94-L97"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.Section</span></code></a></p>
 <p>A class that represents a subsection.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -293,9 +293,9 @@ preference between automatic or no label</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -304,7 +304,7 @@ preference between automatic or no label</li>
 </table>
 <dl class="attribute">
 <dt id="pylatex.section.Subsection.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'subsec'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L97-L97"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsection.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'subsec'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L97-L97"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsection.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -316,7 +316,7 @@ preference between automatic or no label</li>
 
 <dl class="class">
 <dt id="pylatex.section.Subsubsection">
-<em class="property">class </em><code class="descname">Subsubsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L100-L103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsubsection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Subsubsection</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L100-L103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsubsection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.Section</span></code></a></p>
 <p>A class that represents a subsubsection.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -324,9 +324,9 @@ preference between automatic or no label</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -340,14 +340,14 @@ preference between automatic or no label</li>
 
 <dl class="attribute">
 <dt id="pylatex.section.Subsubsection.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'ssubsec'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L103-L103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsubsection.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'ssubsec'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L103-L103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subsubsection.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.section.Paragraph">
-<em class="property">class </em><code class="descname">Paragraph</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L106-L109"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Paragraph" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Paragraph</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L106-L109"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.Section</span></code></a></p>
 <p>A class that represents a paragraph.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -355,9 +355,9 @@ preference between automatic or no label</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -371,14 +371,14 @@ preference between automatic or no label</li>
 
 <dl class="attribute">
 <dt id="pylatex.section.Paragraph.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'para'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L109-L109"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Paragraph.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'para'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L109-L109"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Paragraph.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pylatex.section.Subparagraph">
-<em class="property">class </em><code class="descname">Subparagraph</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L112-L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subparagraph" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">Subparagraph</code><span class="sig-paren">(</span><em>title</em>, <em>numbering=None</em>, <em>*</em>, <em>label=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L112-L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subparagraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pylatex.section.Section" title="pylatex.section.Section"><code class="xref py py-class docutils literal"><span class="pre">pylatex.section.Section</span></code></a></p>
 <p>A class that represents a subparagraph.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -386,9 +386,9 @@ preference between automatic or no label</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; The section title.</li>
-<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
-<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; The section title.</li>
+<li><strong>numbering</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) &#8211; Add a number before the section title.</li>
+<li><strong>label</strong> (<a class="reference internal" href="pylatex.labelref.html#pylatex.labelref.Label" title="pylatex.labelref.Label"><em>Label</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) &#8211; Can set a label manually or use a boolean to set
 preference between automatic or no label</li>
 </ul>
 </td>
@@ -402,7 +402,7 @@ preference between automatic or no label</li>
 
 <dl class="attribute">
 <dt id="pylatex.section.Subparagraph.marker_prefix">
-<code class="descname">marker_prefix</code><em class="property"> = 'subpara'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.0/pylatex/section.py#L115-L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subparagraph.marker_prefix" title="Permalink to this definition">¶</a></dt>
+<code class="descname">marker_prefix</code><em class="property"> = 'subpara'</em><a class="reference external" href="https://github.com/JelteF/PyLaTeX/blob/v1.4.1/pylatex/section.py#L115-L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pylatex.section.Subparagraph.marker_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -450,7 +450,7 @@ preference between automatic or no label</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.4.0',
+            VERSION:'1.4.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
