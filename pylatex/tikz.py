@@ -505,7 +505,8 @@ class Plot(LatexObject):
                  func=None,
                  coordinates=None,
                  error_bar=None,
-                 options=None):
+                 options=None,
+                 append_options=False):
         """
         Args
         ----
@@ -517,6 +518,9 @@ class Plot(LatexObject):
             A list of exact coordinates tat should be plotted.
 
         options: str, list or `~.Options`
+        append_options: bool
+            If the given options should be appended to the automatically
+            assigned TikZ cycle list.
         """
 
         self.name = name
@@ -524,6 +528,7 @@ class Plot(LatexObject):
         self.coordinates = coordinates
         self.error_bar = error_bar
         self.options = options
+        self.append_options = append_options
 
         super().__init__()
 
@@ -535,7 +540,14 @@ class Plot(LatexObject):
         str
         """
 
-        string = Command('addplot', options=self.options).dumps()
+        if not isinstance(self.append_options, bool):
+            raise TypeError(
+                'argument "append_options" can only be of type bool')
+        elif not self.append_options:
+            command_string = 'addplot'
+        else:
+            command_string = 'addplot+'
+        string = Command(command_string, options=self.options).dumps()
 
         if self.coordinates is not None:
             string += ' coordinates {%\n'
