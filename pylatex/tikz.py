@@ -199,7 +199,7 @@ class TikZNodeAnchor(LatexObject):
 class TikZNode(TikZObject):
     """A class that represents a TiKZ node."""
 
-    _possible_anchors = ['center', 'north', 'south', 'east', 'west']
+    _possible_anchors = ['center', 'north', 'south', 'east', 'west', 'north east', 'south east', 'south west', 'north west']
 
     def __init__(self, handle=None, options=None, at=None, text=None):
         """
