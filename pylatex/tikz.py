@@ -199,7 +199,7 @@ class TikZNodeAnchor(LatexObject):
 class TikZNode(TikZObject):
     """A class that represents a TiKZ node."""
 
-    _possible_anchors = ['north', 'south', 'east', 'west']
+    _possible_anchors = ['center', 'north', 'south', 'east', 'west', 'north east', 'south east', 'south west', 'north west']
 
     def __init__(self, handle=None, options=None, at=None, text=None):
         """
@@ -209,8 +209,8 @@ class TikZNode(TikZObject):
             Node identifier
         options: list
             List of options
-        at: TikZCoordinate
-            Coordinate where node is placed
+        at: TikZCoordinate of TikZNodeAnchor
+            Coordinate or anchor where node is placed
         text: str
             Body text of the node
         """
@@ -218,12 +218,12 @@ class TikZNode(TikZObject):
 
         self.handle = handle
 
-        if isinstance(at, (TikZCoordinate, type(None))):
+        if isinstance(at, (TikZCoordinate, TikZNodeAnchor, type(None))):
             self._node_position = at
         else:
             raise TypeError(
                 'at parameter must be an object of the'
-                'TikzCoordinate class')
+                'TikZCoordinate or TikZNodeAnchor class')
 
         self._node_text = text
 
