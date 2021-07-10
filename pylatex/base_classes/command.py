@@ -379,7 +379,7 @@ class Arguments(Parameters):
 
 
 class SpecialArguments(Arguments):
-    """A class that separates arguments with ',' intsead of '}{'."""
+    """A class that separates arguments with ',' instead of '}{'."""
 
     def dumps(self):
         """Represent the parameters as a string in LaTeX syntax.
