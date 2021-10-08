@@ -235,8 +235,6 @@ class Document(Environment):
                 ('pdflatex', [])
             )
 
-        main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
-
         check_output_kwargs = {}
         if python_cwd_available:
             check_output_kwargs = {'cwd': dest_dir}
@@ -244,6 +242,11 @@ class Document(Environment):
         os_error = None
 
         for compiler, arguments in compilers:
+            if compiler == 'tectonic':
+                main_arguments = [filepath + '.tex']
+            else:
+                main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
+
             command = [compiler] + arguments + compiler_args + main_arguments
 
             try:
