@@ -22,7 +22,7 @@ class Figure(Float):
         filename,
         *,
         width=NoEscape(r"0.8\textwidth"),
-        placement=NoEscape(r"\centering")
+        placement=NoEscape(r"\centering"),
     ):
         """Add an image to the figure.
 
@@ -50,7 +50,7 @@ class Figure(Float):
             StandAloneGraphic(image_options=width, filename=fix_filename(filename))
         )
 
-    def _save_plot(self, *args, extension="pdf", **kwargs):
+    def _save_plot(self, *args, figure=None, extension="pdf", **kwargs):
         """Save the plot.
 
         Returns
@@ -64,11 +64,12 @@ class Figure(Float):
         filename = "{}.{}".format(str(uuid.uuid4()), extension.strip("."))
         filepath = posixpath.join(tmp_path, filename)
 
-        plt.savefig(filepath, *args, **kwargs)
+        fig = figure or plt.gcf()
+        fig.savefig(filepath, *args, **kwargs)
         return filepath
 
-    def add_plot(self, *args, extension="pdf", **kwargs):
-        """Add the current Matplotlib plot to the figure.
+    def add_plot(self, *args, figure=None, extension="pdf", **kwargs):
+        """Add a Matplotlib plot to the figure.
 
         The plot that gets added is the one that would normally be shown when
         using ``plt.show()``.
@@ -77,6 +78,8 @@ class Figure(Float):
         ----
         args:
             Arguments passed to plt.savefig for displaying the plot.
+        figure:
+            Optional matplotlib figure. If None add the current figure.
         extension : str
             extension of image file indicating figure file type
         kwargs:
@@ -92,7 +95,7 @@ class Figure(Float):
             if key in kwargs:
                 add_image_kwargs[key] = kwargs.pop(key)
 
-        filename = self._save_plot(*args, extension=extension, **kwargs)
+        filename = self._save_plot(*args, figure=figure, extension=extension, **kwargs)
 
         self.add_image(filename, **add_image_kwargs)
 
