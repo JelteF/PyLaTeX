@@ -46,7 +46,7 @@ def _dimensionality_to_siunitx(dim):
             # Split unitname into prefix and actual name if possible
             if unit.name.startswith(prefix):
                 substring += '\\' + prefix
-                name = unit.name[len(prefix)]
+                name = unit.name[len(prefix):]
                 break
         else:
             # Otherwise simply use the full name
