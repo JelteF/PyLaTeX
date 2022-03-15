@@ -1,28 +1,28 @@
 sudo: required
-dist: trusty
+dist: xenial
 cache: pip
 language: python
 python:
   - '2.7'
-  - '3.3'
   - '3.4'
   - '3.5'
   - '3.6'
+  - '3.7'
+  - '3.8'
+  # Travis doesn't support 3.9 yet
+  # - '3.9'
   # allow failures
-  - '3.5-dev'
-  - '3.6-dev'
   - 'nightly'
-  - 'pypy'
-  - 'pypy3'
+  - 'pypy2.7-6.0'
+  - 'pypy3.5-6.0'
+
 
 matrix:
   fast_finish: true
   allow_failures:
-    - python: '3.5-dev'
-    - python: '3.6-dev'
     - python: 'nightly'
-    - python: 'pypy'
-    - python: 'pypy3'
+    - python: 'pypy2.7-6.0'
+    - python: 'pypy3.5-6.0'
 
 addons:
   apt:
@@ -36,8 +36,11 @@ addons:
       - pgf
 
 install:
+  - cat /etc/ImageMagick*/policy.xml
+  - sudo sed '/pattern=".*PDF.*"/d' -i /etc/ImageMagick*/policy.xml
+  - cat /etc/ImageMagick*/policy.xml
   - pip install 3to2 future
   - pip install codecov
-  - 'if [ "$TRAVIS_PYTHON_VERSION" == 3.3 -o "$TRAVIS_PYTHON_VERSION" == 3.4 ]; then pip install -e .[all] --upgrade; else pip install -r dev_requirements.txt --upgrade; fi'
+  - 'if [ "$TRAVIS_PYTHON_VERSION" == 3.4 ]; then pip install -e .[all] --upgrade; else pip install -r dev_requirements.txt --upgrade; fi'
 script: ./testall.sh
 after_script: codecov

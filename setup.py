@@ -20,15 +20,22 @@ if sys.version_info[:2] <= (2, 6):
         "Python version."
     )
 
-dependencies = ['ordered-set']
+if sys.version_info[:2] <= (3, 5):
+    dependencies = ['ordered-set<4.0.0']
+else:
+    dependencies = ['ordered-set']
 
 extras = {
     'docs': ['sphinx'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
-    'testing': ['flake8<3.0.0', 'pep8-naming', 'flake8_docstrings', 'nose',
-                'flake8-putty', 'coverage'],
+    'testing': ['flake8<3.0.0', 'pep8-naming==0.8.2',
+                'flake8_docstrings==1.3.0', 'pycodestyle==2.0.0',
+                'pydocstyle==3.0.0', 'pyflakes==1.2.3', 'pytest>=4.6',
+                'flake8-putty',
+                'coverage', 'pytest-cov'],
+    'packaging': ['twine'],
     'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 

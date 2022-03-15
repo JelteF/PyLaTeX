@@ -58,7 +58,7 @@ for f in ../examples/*.py; do
     $python ../../../$f > /dev/null
     rst=../../../$rst
     for pdf in ${name}*.pdf; do
-        convert $pdf ${pdf}.png
+        convert "$pdf" -colorspace RGB "${pdf}.png"
         echo ".. literalinclude:: /_static/examples/${pdf%.pdf}.tex" >> $rst
         echo "    :language: latex" >> $rst
         echo "    :linenos:" >> $rst

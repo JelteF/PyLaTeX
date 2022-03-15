@@ -188,6 +188,35 @@ class Environment(Container):
         return string
 
 
+class Fragment(Container):
+    r"""A LaTeX fragment container class for fragmented document construction.
+
+    This only provides logical wrapping of the items. The final document will
+    look the same as if all items would not have been part of a container.
+
+    A common usecase of this is to generate a .tex snippet containing more than
+    one LaTeX item item without any extra container around it. This snippet can
+    then be included in another ``.tex`` file using ``\input{snippet.tex}``
+    """
+
+    def __init__(self, **kwargs):
+        """
+        Args
+        ----
+        """
+
+        super().__init__(**kwargs)
+
+    def dumps(self):
+        """Represent the fragment as a string in LaTeX syntax.
+        Returns
+        -------
+        str
+        """
+
+        return self.dumps_content()
+
+
 class ContainerCommand(Container):
     r"""A base class for a container command (A command which contains data).
 
@@ -233,10 +262,10 @@ class ContainerCommand(Container):
         start = Command(self.latex_name, arguments=self.arguments,
                         options=self.options)
 
-        string += start.dumps() + '{ \n'
+        string += start.dumps() + '{%\n'
 
         if content != '':
-            string += content + '\n}'
+            string += content + '%\n}'
         else:
             string += '}'
 

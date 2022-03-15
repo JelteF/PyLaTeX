@@ -11,6 +11,13 @@ Simply install using ``pip``::
 
     pip install pylatex
 
+And then install a relevant LaTeX processor and other dependencies. Examples:
+
+Ubuntu
+~~~~~~~
+    sudo apt-get install texlive-pictures texlive-science \
+    texlive-latex-extra latexmk
+
 Documentation
 -------------
 

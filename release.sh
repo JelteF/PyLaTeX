@@ -17,7 +17,7 @@ if [[ -n $(git status --porcelain) ]]; then
     exit 1
 fi
 
-if ! grep $1 docs/source/changelog.rst > /dev/null; then
+if ! grep "$1" docs/source/changelog.rst > /dev/null; then
     echo "ERROR: You forgot to update the changelog"
     exit 1
 fi
@@ -26,11 +26,14 @@ fi
 
 set -x
 
-git tag $1 -a -m ''
+git tag "$1" -a -m ''
 
 ./convert_to_py2.sh
+cd docs/gh-pages
+git pull
+git submodule update --init
 
-cd docs
+cd ..
 ./create_doc_files.sh
 make clean
 make html
@@ -39,7 +42,7 @@ git add -A
 git commit -m "Updating docs to version $1"
 
 while true; do
-    read -p "Going to irreversibly release stuff now as $1. Are you sure y/n?" yn
+    read -rp "Going to irreversibly release stuff now as $1. Are you sure y/n?" yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
@@ -49,20 +52,20 @@ done
 
 git push
 
-git submodule add --force ../PyLaTeX.git version_submodules/$1
-cd version_submodules/$1
+git submodule add --force ../PyLaTeX.git "version_submodules/$1"
+cd version_submodules/"$1"
 git checkout gh-pages
 git pull
 cd ../../
 
-ln -s version_submodules/$1/latest/ $1
+ln -s "version_submodules/$1/latest/" "$1"
 rm current
-ln -s $1 current
+ln -s "$1" current
 git add -A
 git commit -m "Updated symlinks for version $1"
 
 while true; do
-    read -p "Going to irreversibly release stuff now as $1. Are you sure y/n?" yn
+    read -rp "Going to irreversibly release stuff now as $1. Are you sure y/n?" yn
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
@@ -77,4 +80,6 @@ cd ../..
 
 git push
 git push --tags
-python setup.py sdist upload
+rm -rf dist
+python setup.py sdist
+twine upload dist/*

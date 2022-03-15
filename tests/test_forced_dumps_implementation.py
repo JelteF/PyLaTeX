@@ -1,16 +1,16 @@
 from pylatex.base_classes import LatexObject
-from nose.tools import raises
+from pytest import raises
 
 
 class BadObject(LatexObject):
     pass
 
 
-@raises(TypeError)
 def test_latex_object():
-    LatexObject()
+    with raises(TypeError):
+        LatexObject()
 
 
-@raises(TypeError)
 def test_bad_object():
-    BadObject()
+    with raises(TypeError):
+        BadObject()

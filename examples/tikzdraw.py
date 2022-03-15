@@ -27,6 +27,7 @@ if __name__ == '__main__':
         # create our test node
         box = TikZNode(text='My block',
                        handle='box',
+                       at=TikZCoordinate(0, 0),
                        options=TikZOptions('draw',
                                            'rounded corners',
                                            **node_kwargs))

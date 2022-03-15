@@ -376,3 +376,19 @@ class Arguments(Parameters):
         """
 
         return self._format_contents('{', '}{', '}')
+
+
+class SpecialArguments(Arguments):
+    """A class that separates arguments with ',' instead of '}{'."""
+
+    def dumps(self):
+        """Represent the parameters as a string in LaTeX syntax.
+
+        This is to be appended to a command.
+
+        Returns
+        -------
+        str
+        """
+
+        return self._format_contents('{', ',', '}')
