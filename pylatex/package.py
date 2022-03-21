@@ -30,3 +30,4 @@ class Package(CommandBase):
         """
 
         super().__init__(arguments=name, options=options)
+
