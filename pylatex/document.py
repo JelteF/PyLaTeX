@@ -295,7 +295,7 @@ class Document(Environment):
 
         else:
             # Notify user that none of the compilers worked.
-            raise(CompilerError(
+            raise (CompilerError(
                 'No LaTex compiler was found\n'
                 'Either specify a LaTex compiler '
                 'or make sure you have latexmk or pdfLaTex installed.'
