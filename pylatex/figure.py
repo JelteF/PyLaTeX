@@ -41,6 +41,7 @@ class Figure(Float):
         if placement is not None:
             self.append(placement)
 
+
         self.append(StandAloneGraphic(image_options=width,
                                       filename=fix_filename(filename)))
 
