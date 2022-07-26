@@ -8,7 +8,7 @@ if __name__ == '__main__':
         # geometry_options=geometry_options,
     )
 
-    doc.packages.append(Package('geometry',options=["margin=0.5in"]))
+    doc.packages.append(Package('geometry',options=["margin=1.0in"]))
     # doc.append(NoEscape(r'\addtolength{\oddsidemargin}{-.875in}'))
     # doc.append(NoEscape(r'\addtolength{\evensidemargin}{-.875in}'))
     # doc.append(NoEscape(r'\addtolength{\textwidth}{1.75in}'))
