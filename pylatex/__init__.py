@@ -27,6 +27,7 @@ from .headfoot import PageStyle, Head, Foot, simple_page_number
 from .position import Center, FlushLeft, FlushRight, MiniPage, TextBlock, \
     HorizontalSpace, VerticalSpace
 from .labelref import Marker, Label, Ref, Pageref, Eqref, Autoref, Hyperref
+from .multicols import MultiCols
 
 from ._version import get_versions
 __version__ = get_versions()['version']

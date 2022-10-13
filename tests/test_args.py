@@ -21,7 +21,7 @@ from pylatex import Document, Section, Math, Tabular, Figure, SubFigure, \
     SmallText, FootnoteText, TextColor, FBox, MdFramed, Tabu, \
     HorizontalSpace, VerticalSpace, TikZCoordinate, TikZNode, \
     TikZNodeAnchor, TikZUserPath, TikZPathList, TikZPath, TikZDraw, \
-    TikZScope, TikZOptions, Hyperref, Marker
+    TikZScope, TikZOptions, Hyperref, Marker, MultiCols
 from pylatex.utils import escape_latex, fix_filename, dumps_list, bold, \
     italic, verbatim, NoEscape
 
@@ -303,6 +303,12 @@ def test_tikz():
 
     dr = TikZDraw(path=None, options=None)
     repr(dr)
+
+
+def test_multicols():
+
+    multicols = MultiCols(2)
+    repr(multicols)
 
 
 def test_lists():

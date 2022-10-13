@@ -14,6 +14,8 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+- Add ``MultiCols`` class based on the LaTeX ``multicol`` package.
+
 1.4.1_ - `docs <../v1.4.1/>`__ - 2020-10-18
 -------------------------------------------
 
