@@ -455,6 +455,7 @@ class LongTable(Tabular):
 
     header = False
     foot = False
+    firstHeader = False
     lastFoot = False  # noqa, casing is needed for backwards compatibility
 
     def end_table_header(self):
@@ -467,6 +468,17 @@ class LongTable(Tabular):
         self.header = True
 
         self.append(Command(r'endhead'))
+
+    def end_table_first_header(self):
+        r"""End the table header which will appear on the first page."""
+
+        if self.firstHeader:
+            msg = "Table already has a first header"
+            raise TableError(msg)
+
+        self.firstHeader = True
+
+        self.append(Command(r'endfirsthead'))
 
     def end_table_footer(self):
         r"""End the table foot which will appear on every page."""
@@ -507,6 +519,13 @@ class LongTabularx(Tabularx, LongTable):
     _latex_name = 'tabularx'
 
     packages = [Package('ltablex')]
+
+class XLTabular(Tabularx, LongTable):
+    """ Uses the xltabular package """
+
+    _latex_name = 'xltabular'
+
+    packages = [Package('xltabular')]
 
 
 class ColumnType(UnsafeCommand):
