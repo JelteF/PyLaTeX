@@ -231,7 +231,14 @@ class Tabular(Environment):
             escape = self.escape
 
         # Propagate packages used in cells
-        for c in cells:
+        def flatten(x):
+            if _is_iterable(x):
+                return [a for i in x for a in flatten(i)]
+            else:
+                return [x]
+        
+        flat_list = [c for c in cells] + flatten(cells)
+        for c in flat_list:
             if isinstance(c, LatexObject):
                 for p in c.packages:
                     self.packages.add(p)
