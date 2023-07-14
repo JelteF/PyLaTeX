@@ -28,6 +28,5 @@ from .position import Center, FlushLeft, FlushRight, MiniPage, TextBlock, \
     HorizontalSpace, VerticalSpace
 from .labelref import Marker, Label, Ref, Pageref, Eqref, Autoref, Hyperref
 
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions
+from . import _version
+__version__ = _version.get_versions()['version']
