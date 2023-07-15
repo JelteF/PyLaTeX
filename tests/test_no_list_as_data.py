@@ -1,15 +1,14 @@
-from pylatex import Document, Section, Subsection, Command
+from pylatex import Command, Document, Section, Subsection
 
 
 def test():
     doc = Document()
-    Subsection('Only a single string', data='Some words')
+    Subsection("Only a single string", data="Some words")
 
-    sec1 = Section('Only contains one subsection', data='Subsection')
+    sec1 = Section("Only contains one subsection", data="Subsection")
 
-    sec2 = Section('Only a single italic command', data=Command('textit',
-                                                                'Hey'))
-    sec2.append('something else that is not italic')
+    sec2 = Section("Only a single italic command", data=Command("textit", "Hey"))
+    sec2.append("something else that is not italic")
     doc.append(sec1)
     doc.append(sec2)
 

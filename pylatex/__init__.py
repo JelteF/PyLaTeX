@@ -5,28 +5,66 @@ A library for creating Latex files.
     :license: MIT, see License for more details.
 """
 
-from .basic import HugeText, NewPage, LineBreak, NewLine, HFill, LargeText, \
-    MediumText, SmallText, FootnoteText, TextColor
-from .document import Document
-from .frames import MdFramed, FBox
-from .math import Math, VectorName, Matrix, Alignat
-from .package import Package
-from .section import Chapter, Section, Subsection, Subsubsection
-from .table import Table, MultiColumn, MultiRow, Tabular, Tabu, LongTable, \
-    LongTabu, Tabularx, LongTabularx, ColumnType
-from .tikz import TikZ, Axis, Plot, TikZNode, TikZDraw, TikZCoordinate, \
-    TikZPathList, TikZPath, TikZUserPath, TikZOptions, TikZNodeAnchor, \
-    TikZScope
-from .figure import Figure, SubFigure, StandAloneGraphic
-from .lists import Enumerate, Itemize, Description
-from .quantities import Quantity
-from .base_classes import Command, UnsafeCommand
-from .utils import NoEscape, escape_latex
-from .errors import TableRowSizeError
-from .headfoot import PageStyle, Head, Foot, simple_page_number
-from .position import Center, FlushLeft, FlushRight, MiniPage, TextBlock, \
-    HorizontalSpace, VerticalSpace
-from .labelref import Marker, Label, Ref, Pageref, Eqref, Autoref, Hyperref
-
 from . import _version
-__version__ = _version.get_versions()['version']
+from .base_classes import Command, UnsafeCommand
+from .basic import (
+    FootnoteText,
+    HFill,
+    HugeText,
+    LargeText,
+    LineBreak,
+    MediumText,
+    NewLine,
+    NewPage,
+    SmallText,
+    TextColor,
+)
+from .document import Document
+from .errors import TableRowSizeError
+from .figure import Figure, StandAloneGraphic, SubFigure
+from .frames import FBox, MdFramed
+from .headfoot import Foot, Head, PageStyle, simple_page_number
+from .labelref import Autoref, Eqref, Hyperref, Label, Marker, Pageref, Ref
+from .lists import Description, Enumerate, Itemize
+from .math import Alignat, Math, Matrix, VectorName
+from .package import Package
+from .position import (
+    Center,
+    FlushLeft,
+    FlushRight,
+    HorizontalSpace,
+    MiniPage,
+    TextBlock,
+    VerticalSpace,
+)
+from .quantities import Quantity
+from .section import Chapter, Section, Subsection, Subsubsection
+from .table import (
+    ColumnType,
+    LongTable,
+    LongTabu,
+    LongTabularx,
+    MultiColumn,
+    MultiRow,
+    Table,
+    Tabu,
+    Tabular,
+    Tabularx,
+)
+from .tikz import (
+    Axis,
+    Plot,
+    TikZ,
+    TikZCoordinate,
+    TikZDraw,
+    TikZNode,
+    TikZNodeAnchor,
+    TikZOptions,
+    TikZPath,
+    TikZPathList,
+    TikZScope,
+    TikZUserPath,
+)
+from .utils import NoEscape, escape_latex
+
+__version__ = _version.get_versions()["version"]

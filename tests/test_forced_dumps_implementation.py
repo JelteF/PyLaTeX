@@ -1,5 +1,6 @@
-from pylatex.base_classes import LatexObject
 from pytest import raises
+
+from pylatex.base_classes import LatexObject
 
 
 class BadObject(LatexObject):

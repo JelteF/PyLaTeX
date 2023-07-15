@@ -9,7 +9,7 @@ It creates a sample page filled with labels using the MiniPage element.
 """
 
 # begin-doc-include
-from pylatex import Document, MiniPage, LineBreak, VerticalSpace
+from pylatex import Document, LineBreak, MiniPage, VerticalSpace
 
 
 def generate_labels():

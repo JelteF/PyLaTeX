@@ -7,8 +7,8 @@ Test to check if configuration changes have effect.
     :license: MIT, see License for more details.
 """
 
-from pylatex import Document
 import pylatex.config as cf
+from pylatex import Document
 
 
 def test():
@@ -36,5 +36,5 @@ def test():
     assert not Document()._indent
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test()

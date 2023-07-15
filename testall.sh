@@ -52,7 +52,12 @@ python_version_long=$($python --version |& sed 's|Python \(.*\)|\1|g' | head -n 
 if [ "$python_version" = '3' ]; then
     # Check code guidelines
     echo -e '\e[32mChecking for code style errors \e[0m'
-    # TODO: Replace with black
+    if ! black --check .; then
+        exit 1
+    fi
+    if ! isort --check .; then
+        exit 1
+    fi
 fi
 
 

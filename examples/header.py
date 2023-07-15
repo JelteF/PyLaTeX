@@ -9,8 +9,17 @@ It creates a sample page with the different types of headers and footers.
 """
 
 # begin-doc-include
-from pylatex import Document, PageStyle, Head, MiniPage, Foot, LargeText, \
-    MediumText, LineBreak, simple_page_number
+from pylatex import (
+    Document,
+    Foot,
+    Head,
+    LargeText,
+    LineBreak,
+    MediumText,
+    MiniPage,
+    PageStyle,
+    simple_page_number,
+)
 from pylatex.utils import bold
 
 
@@ -44,11 +53,12 @@ def generate_header():
     doc.change_document_style("header")
 
     # Add Heading
-    with doc.create(MiniPage(align='c')):
+    with doc.create(MiniPage(align="c")):
         doc.append(LargeText(bold("Title")))
         doc.append(LineBreak())
         doc.append(MediumText(bold("As at:")))
 
     doc.generate_pdf("header", clean_tex=False)
+
 
 generate_header()

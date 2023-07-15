@@ -5,11 +5,18 @@ Baseclasses that can be used to create classes representing LaTeX objects.
     :license: MIT, see License for more details.
 """
 
-from .latex_object import LatexObject
-from .containers import Container, Environment, ContainerCommand
-from .command import CommandBase, Command, UnsafeCommand, Options, \
-    SpecialOptions, Arguments, SpecialArguments
+from .command import (
+    Arguments,
+    Command,
+    CommandBase,
+    Options,
+    SpecialArguments,
+    SpecialOptions,
+    UnsafeCommand,
+)
+from .containers import Container, ContainerCommand, Environment
 from .float import Float
+from .latex_object import LatexObject
 
 # Old names of the base classes for backwards compatibility
 BaseLaTeXClass = LatexObject

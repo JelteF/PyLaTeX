@@ -9,31 +9,32 @@ This module implements some simple utility functions.
 import os.path
 import shutil
 import tempfile
+
 import pylatex.base_classes
 
 _latex_special_chars = {
-    '&': r'\&',
-    '%': r'\%',
-    '$': r'\$',
-    '#': r'\#',
-    '_': r'\_',
-    '{': r'\{',
-    '}': r'\}',
-    '~': r'\textasciitilde{}',
-    '^': r'\^{}',
-    '\\': r'\textbackslash{}',
-    '\n': '\\newline%\n',
-    '-': r'{-}',
-    '\xA0': '~',  # Non-breaking space
-    '[': r'{[}',
-    ']': r'{]}',
+    "&": r"\&",
+    "%": r"\%",
+    "$": r"\$",
+    "#": r"\#",
+    "_": r"\_",
+    "{": r"\{",
+    "}": r"\}",
+    "~": r"\textasciitilde{}",
+    "^": r"\^{}",
+    "\\": r"\textbackslash{}",
+    "\n": "\\newline%\n",
+    "-": r"{-}",
+    "\xA0": "~",  # Non-breaking space
+    "[": r"{[}",
+    "]": r"{]}",
 }
 
 _tmp_path = None
 
 
 def _is_iterable(element):
-    return hasattr(element, '__iter__') and not isinstance(element, str)
+    return hasattr(element, "__iter__") and not isinstance(element, str)
 
 
 class NoEscape(str):
@@ -51,7 +52,7 @@ class NoEscape(str):
     """
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self)
+        return "%s(%s)" % (self.__class__.__name__, self)
 
     def __add__(self, right):
         s = super().__add__(right)
@@ -92,7 +93,7 @@ def escape_latex(s):
     if isinstance(s, NoEscape):
         return s
 
-    return NoEscape(''.join(_latex_special_chars.get(c, c) for c in str(s)))
+    return NoEscape("".join(_latex_special_chars.get(c, c) for c in str(s)))
 
 
 def fix_filename(path):
@@ -128,25 +129,25 @@ def fix_filename(path):
     '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}'
     """
 
-    path_parts = path.split('/' if os.name == 'posix' else '\\')
+    path_parts = path.split("/" if os.name == "posix" else "\\")
     dir_parts = path_parts[:-1]
 
     filename = path_parts[-1]
-    file_parts = filename.split('.')
+    file_parts = filename.split(".")
 
-    if os.name == 'posix' and len(file_parts) > 2:
-        filename = '{' + '.'.join(file_parts[0:-1]) + '}.' + file_parts[-1]
+    if os.name == "posix" and len(file_parts) > 2:
+        filename = "{" + ".".join(file_parts[0:-1]) + "}." + file_parts[-1]
 
     dir_parts.append(filename)
-    fixed_path = '/'.join(dir_parts)
+    fixed_path = "/".join(dir_parts)
 
-    if '~' in fixed_path:
-        fixed_path = r'\detokenize{' + fixed_path + '}'
+    if "~" in fixed_path:
+        fixed_path = r"\detokenize{" + fixed_path + "}"
 
     return fixed_path
 
 
-def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
+def dumps_list(l, *, escape=True, token="%\n", mapper=None, as_content=True):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
@@ -185,8 +186,9 @@ def dumps_list(l, *, escape=True, token='%\n', mapper=None, as_content=True):
     \$100\%
     True
     """
-    strings = (_latex_item_to_string(i, escape=escape, as_content=as_content)
-               for i in l)
+    strings = (
+        _latex_item_to_string(i, escape=escape, as_content=as_content) for i in l
+    )
 
     if mapper is not None:
         if not isinstance(mapper, list):
@@ -260,7 +262,7 @@ def bold(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\textbf{' + s + '}')
+    return NoEscape(r"\textbf{" + s + "}")
 
 
 def italic(s, *, escape=True):
@@ -290,10 +292,10 @@ def italic(s, *, escape=True):
     if escape:
         s = escape_latex(s)
 
-    return NoEscape(r'\textit{' + s + '}')
+    return NoEscape(r"\textit{" + s + "}")
 
 
-def verbatim(s, *, delimiter='|'):
+def verbatim(s, *, delimiter="|"):
     r"""Make the string verbatim.
 
     Wraps the given string in a \verb LaTeX command.
@@ -320,7 +322,7 @@ def verbatim(s, *, delimiter='|'):
     \verb!pi|pe!
     """
 
-    return NoEscape(r'\verb' + delimiter + s + delimiter)
+    return NoEscape(r"\verb" + delimiter + s + delimiter)
 
 
 def make_temp_dir():

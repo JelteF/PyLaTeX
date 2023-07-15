@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+
 from pylatex.utils import fix_filename
 
 
@@ -18,9 +19,9 @@ def test_two_dots():
     fname = "aa.a.a"
     original_os_name = os.name
     try:
-        os.name = 'posix'
+        os.name = "posix"
         assert fix_filename(fname) == "{aa.a}.a"
-        os.name = 'nt'
+        os.name = "nt"
         assert fix_filename(fname) == "aa.a.a"
     finally:
         os.name = original_os_name
@@ -53,5 +54,6 @@ def test_dots_in_path_and_multiple_in_filename():
 
 def test_tilde_in_filename():
     fname = "/etc/local/foo.bar.baz/foo~1/document.pdf"
-    assert (fix_filename(fname) ==
-            '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}')
+    assert (
+        fix_filename(fname) == "\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}"
+    )
