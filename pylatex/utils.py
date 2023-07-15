@@ -36,30 +36,6 @@ def _is_iterable(element):
     return hasattr(element, '__iter__') and not isinstance(element, str)
 
 
-class NoEscape(str):
-    """
-    A simple string class that is not escaped.
-
-    When a `.NoEscape` string is added to another `.NoEscape` string it will
-    produce a `.NoEscape` string. If it is added to normal string it will
-    produce a normal string.
-
-    Args
-    ----
-    string: str
-        The content of the `NoEscape` string.
-    """
-
-    def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self)
-
-    def __add__(self, right):
-        s = super().__add__(right)
-        if isinstance(right, NoEscape):
-            return NoEscape(s)
-        return s
-
-
 def escape_latex(s):
     r"""Escape characters that are special in latex.
 
@@ -93,6 +69,30 @@ def escape_latex(s):
         return s
 
     return NoEscape(''.join(_latex_special_chars.get(c, c) for c in str(s)))
+
+
+class NoEscape(str):
+    """
+    A simple string class that is not escaped.
+
+    When a `.NoEscape` string is added to another `.NoEscape` string it will
+    produce a `.NoEscape` string. If it is added to normal string it will
+    produce a normal string.
+
+    Args
+    ----
+    string: str
+        The content of the `NoEscape` string.
+    """
+
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self)
+
+    def __add__(self, right):
+        s = super().__add__(right)
+        if isinstance(right, NoEscape):
+            return NoEscape(s)
+        return s
 
 
 def fix_filename(path):

@@ -24,6 +24,7 @@ UNIT_NAME_TRANSLATIONS = {
     'Celsius': 'celsius',
     'revolutions_per_minute': 'rpm',
     'v': 'volt',
+    'arcdegree': 'degree'
 }
 
 
@@ -46,7 +47,7 @@ def _dimensionality_to_siunitx(dim):
             # Split unitname into prefix and actual name if possible
             if unit.name.startswith(prefix):
                 substring += '\\' + prefix
-                name = unit.name[len(prefix)]
+                name = unit.name[len(prefix):]
                 break
         else:
             # Otherwise simply use the full name
@@ -141,3 +142,12 @@ class Quantity(Command):
         self.arguments._escape = False  # dash in e.g. \num{3 +- 2}
         if self.options is not None:
             self.options._escape = False  # siunitx uses dashes in kwargs
+
+    def __str__(self):
+        return self.dumps()
+
+    def __add__(self, other):
+        return str(self) + other
+
+    def __radd__(self, other):
+        return other + str(self)

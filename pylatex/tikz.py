@@ -12,6 +12,10 @@ import re
 import math
 
 
+class TikZLibrary(Package):
+    _latex_name = "usetikzlibrary"
+
+
 class TikZOptions(Options):
     """Options class, do not escape."""
 
@@ -27,13 +31,15 @@ class TikZ(Environment):
     """Basic TikZ container class."""
 
     _latex_name = 'tikzpicture'
-    packages = [Package('tikz')]
+    packages = [Package('tikz'), TikZLibrary('positioning'),Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
 
 
 class Axis(Environment):
     """PGFPlots axis container class, this contains plots."""
 
-    packages = [Package('pgfplots'), Command('pgfplotsset', 'compat=newest')]
+    packages = [Package('pgfplots'),
+                Command('pgfplotsset', 'compat=newest'),
+                Command('usepgfplotslibrary','groupplots')]
 
     def __init__(self, options=None, *, data=None):
         """
@@ -200,8 +206,9 @@ class TikZNode(TikZObject):
     """A class that represents a TiKZ node."""
 
     _possible_anchors = ['north', 'south', 'east', 'west']
+    _counter = 0
 
-    def __init__(self, handle=None, options=None, at=None, text=None):
+    def __init__(self, handle=None, options=None, at=None, text=None, positioning=None):
         """
         Args
         ----
@@ -215,8 +222,12 @@ class TikZNode(TikZObject):
             Body text of the node
         """
         super(TikZNode, self).__init__(options=options)
-
+        if not handle:
+            handle = f'Node{TikZNode._counter}'
+            TikZNode._counter += 1
         self.handle = handle
+
+        self._positioning = positioning
 
         if isinstance(at, (TikZCoordinate, type(None))):
             self._node_position = at
@@ -230,14 +241,16 @@ class TikZNode(TikZObject):
     def dumps(self):
         """Return string representation of the node."""
 
-        ret_str = []
-        ret_str.append(Command('node', options=self.options).dumps())
+        ret_str = [Command('node', options=self.options).dumps()]
 
         if self.handle is not None:
             ret_str.append('({})'.format(self.handle))
 
         if self._node_position is not None:
             ret_str.append('at {}'.format(str(self._node_position)))
+
+        if self._positioning is not None:
+            ret_str.append(f'[{self._positioning[1]} = of {self._positioning[0].handle}]')
 
         if self._node_text is not None:
             ret_str.append('{{{text}}};'.format(text=self._node_text))
@@ -550,7 +563,7 @@ class Plot(LatexObject):
                                               self.error_bar):
                     # ie: "(x,y) +- (e_x,e_y)"
                     string += '(' + str(x) + ',' + str(y) + \
-                        ') +- (' + str(e_x) + ',' + str(e_y) + ')%\n'
+                              ') +- (' + str(e_x) + ',' + str(e_y) + ')%\n'
 
             string += '};%\n%\n'
 
