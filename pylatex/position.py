@@ -16,11 +16,9 @@ from .utils import NoEscape
 class HorizontalSpace(CommandBase):
     """Add/remove the amount of horizontal space between elements."""
 
-    _latex_name = 'hspace'
+    _latex_name = "hspace"
 
-    _repr_attributes_mapping = {
-        "size": "arguments"
-    }
+    _repr_attributes_mapping = {"size": "arguments"}
 
     def __init__(self, size, *, star=True):
         """
@@ -34,7 +32,7 @@ class HorizontalSpace(CommandBase):
         """
 
         if star:
-            self.latex_name += '*'
+            self.latex_name += "*"
 
         super().__init__(arguments=size)
 
@@ -42,13 +40,13 @@ class HorizontalSpace(CommandBase):
 class VerticalSpace(HorizontalSpace):
     """Add the user specified amount of vertical space to the document."""
 
-    _latex_name = 'vspace'
+    _latex_name = "vspace"
 
 
 class Center(Environment):
     r"""Centered environment."""
 
-    packages = [Package('ragged2e')]
+    packages = [Package("ragged2e")]
 
 
 class FlushLeft(Center):
@@ -62,19 +60,27 @@ class FlushRight(Center):
 class MiniPage(Environment):
     r"""A class that allows the creation of minipages within document pages."""
 
-    packages = [Package('ragged2e')]
+    packages = [Package("ragged2e")]
 
     _repr_attributes_mapping = {
         "width": "arguments",
         "pos": "options",
         "height": "options",
         "content_pos": "options",
-        "align": "options"
+        "align": "options",
     }
 
-    def __init__(self, *, width=NoEscape(r'\textwidth'), pos=None,
-                 height=None, content_pos=None, align=None, fontsize=None,
-                 data=None):
+    def __init__(
+        self,
+        *,
+        width=NoEscape(r"\textwidth"),
+        pos=None,
+        height=None,
+        content_pos=None,
+        align=None,
+        fontsize=None,
+        data=None
+    ):
         r"""
         Args
         ----
@@ -104,8 +110,7 @@ class MiniPage(Environment):
         if height is not None:
             options.append(NoEscape(height))
 
-        if ((content_pos is not None) and (pos is not None) and
-           (height is not None)):
+        if (content_pos is not None) and (pos is not None) and (height is not None):
             options.append(content_pos)
 
         options = SpecialOptions(*options)
@@ -142,14 +147,11 @@ class TextBlock(Environment):
     Make sure to set lengths of TPHorizModule and TPVertModule
     """
 
-    _repr_attributes_mapping = {
-        "width": "arguments"
-    }
+    _repr_attributes_mapping = {"width": "arguments"}
 
-    packages = [Package('textpos')]
+    packages = [Package("textpos")]
 
-    def __init__(self, width, horizontal_pos, vertical_pos, *,
-                 indent=False, data=None):
+    def __init__(self, width, horizontal_pos, vertical_pos, *, indent=False, data=None):
         r"""
         Args
         ----
@@ -171,8 +173,7 @@ class TextBlock(Environment):
 
         super().__init__(arguments=arguments)
 
-        self.append("(%s, %s)" % (str(self.horizontal_pos),
-                    str(self.vertical_pos)))
+        self.append("(%s, %s)" % (str(self.horizontal_pos), str(self.vertical_pos)))
 
         if not indent:
-            self.append(NoEscape(r'\noindent'))
+            self.append(NoEscape(r"\noindent"))

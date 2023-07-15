@@ -16,10 +16,9 @@ class PageStyle(ContainerCommand):
 
     _latex_name = "fancypagestyle"
 
-    packages = [Package('fancyhdr')]
+    packages = [Package("fancyhdr")]
 
-    def __init__(self, name, *, header_thickness=0, footer_thickness=0,
-                 data=None):
+    def __init__(self, name, *, header_thickness=0, footer_thickness=0, data=None):
         r"""
         Args
         ----
@@ -59,12 +58,19 @@ class PageStyle(ContainerCommand):
         """
 
         if element == "header":
-            self.data.append(Command("renewcommand",
-                             arguments=[NoEscape(r"\headrulewidth"),
-                                        str(thickness) + 'pt']))
+            self.data.append(
+                Command(
+                    "renewcommand",
+                    arguments=[NoEscape(r"\headrulewidth"), str(thickness) + "pt"],
+                )
+            )
         elif element == "footer":
-            self.data.append(Command("renewcommand", arguments=[
-                NoEscape(r"\footrulewidth"), str(thickness) + 'pt']))
+            self.data.append(
+                Command(
+                    "renewcommand",
+                    arguments=[NoEscape(r"\footrulewidth"), str(thickness) + "pt"],
+                )
+            )
 
 
 def simple_page_number():
@@ -76,7 +82,7 @@ def simple_page_number():
         The latex string that displays the page number
     """
 
-    return NoEscape(r'Page \thepage\ of \pageref{LastPage}')
+    return NoEscape(r"Page \thepage\ of \pageref{LastPage}")
 
 
 class Head(ContainerCommand):

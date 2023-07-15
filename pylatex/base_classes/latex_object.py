@@ -18,11 +18,11 @@ class _CreatePackages(ABCMeta):
         packages = OrderedSet()
 
         for b in bases:
-            if hasattr(b, 'packages'):
+            if hasattr(b, "packages"):
                 packages |= b.packages
 
-        if 'packages' in d:
-            packages |= d['packages']
+        if "packages" in d:
+            packages |= d["packages"]
 
         cls.packages = packages
 
@@ -39,7 +39,7 @@ class LatexObject(metaclass=_CreatePackages):
     """
 
     _latex_name = None
-    _star_latex_name = False    # latex_name + ('*' if True else '')
+    _star_latex_name = False  # latex_name + ('*' if True else '')
 
     #: Set this to an iterable to override the list of default repr
     #: attributes.
@@ -91,18 +91,23 @@ class LatexObject(metaclass=_CreatePackages):
     def __repr__(self):
         """Create a printable representation of the object."""
 
-        return self.__class__.__name__ + '(' + \
-            ', '.join(map(repr, self._repr_values)) + ')'
+        return (
+            self.__class__.__name__
+            + "("
+            + ", ".join(map(repr, self._repr_values))
+            + ")"
+        )
 
     @property
     def _repr_values(self):
         """Return values that are to be shown in repr string."""
+
         def getattr_better(obj, field):
             try:
                 return getattr(obj, field)
             except AttributeError as e:
                 try:
-                    return getattr(obj, '_' + field)
+                    return getattr(obj, "_" + field)
                 except AttributeError:
                     raise e
 
@@ -127,7 +132,7 @@ class LatexObject(metaclass=_CreatePackages):
 
         It can be `None` when the class doesn't have a name.
         """
-        star = ('*' if self._star_latex_name else '')
+        star = "*" if self._star_latex_name else ""
         if self._latex_name is not None:
             return self._latex_name + star
         return self.__class__.__name__.lower() + star
@@ -165,7 +170,7 @@ class LatexObject(metaclass=_CreatePackages):
             The name of the file (without .tex)
         """
 
-        with open(filepath + '.tex', 'w', encoding='utf-8') as newf:
+        with open(filepath + ".tex", "w", encoding="utf-8") as newf:
             self.dump(newf)
 
     def dumps_packages(self):
@@ -202,9 +207,9 @@ class LatexObject(metaclass=_CreatePackages):
         string = self.dumps()
 
         if self.separate_paragraph or self.begin_paragraph:
-            string = '\n\n' + string.lstrip('\n')
+            string = "\n\n" + string.lstrip("\n")
 
         if self.separate_paragraph or self.end_paragraph:
-            string = string.rstrip('\n') + '\n\n'
+            string = string.rstrip("\n") + "\n\n"
 
         return string

@@ -17,8 +17,13 @@ import uuid
 class Figure(Float):
     """A class that represents a Figure environment."""
 
-    def add_image(self, filename, *, width=NoEscape(r'0.8\textwidth'),
-                  placement=NoEscape(r'\centering')):
+    def add_image(
+        self,
+        filename,
+        *,
+        width=NoEscape(r"0.8\textwidth"),
+        placement=NoEscape(r"\centering")
+    ):
         """Add an image to the figure.
 
         Args
@@ -36,15 +41,16 @@ class Figure(Float):
             if self.escape:
                 width = escape_latex(width)
 
-            width = 'width=' + str(width)
+            width = "width=" + str(width)
 
         if placement is not None:
             self.append(placement)
 
-        self.append(StandAloneGraphic(image_options=width,
-                                      filename=fix_filename(filename)))
+        self.append(
+            StandAloneGraphic(image_options=width, filename=fix_filename(filename))
+        )
 
-    def _save_plot(self, *args, extension='pdf', **kwargs):
+    def _save_plot(self, *args, extension="pdf", **kwargs):
         """Save the plot.
 
         Returns
@@ -55,13 +61,13 @@ class Figure(Float):
         import matplotlib.pyplot as plt
 
         tmp_path = make_temp_dir()
-        filename = '{}.{}'.format(str(uuid.uuid4()), extension.strip('.'))
+        filename = "{}.{}".format(str(uuid.uuid4()), extension.strip("."))
         filepath = posixpath.join(tmp_path, filename)
 
         plt.savefig(filepath, *args, **kwargs)
         return filepath
 
-    def add_plot(self, *args, extension='pdf', **kwargs):
+    def add_plot(self, *args, extension="pdf", **kwargs):
         """Add the current Matplotlib plot to the figure.
 
         The plot that gets added is the one that would normally be shown when
@@ -82,7 +88,7 @@ class Figure(Float):
 
         add_image_kwargs = {}
 
-        for key in ('width', 'placement'):
+        for key in ("width", "placement"):
             if key in kwargs:
                 add_image_kwargs[key] = kwargs.pop(key)
 
@@ -94,17 +100,17 @@ class Figure(Float):
 class SubFigure(Figure):
     """A class that represents a subfigure from the subcaption package."""
 
-    packages = [Package('subcaption')]
+    packages = [Package("subcaption")]
 
     #: By default a subfigure is not on its own paragraph since that looks
     #: weird inside another figure.
     separate_paragraph = False
 
     _repr_attributes_mapping = {
-        'width': 'arguments',
+        "width": "arguments",
     }
 
-    def __init__(self, width=NoEscape(r'0.45\linewidth'), **kwargs):
+    def __init__(self, width=NoEscape(r"0.45\linewidth"), **kwargs):
         """
         Args
         ----
@@ -116,8 +122,7 @@ class SubFigure(Figure):
 
         super().__init__(arguments=width, **kwargs)
 
-    def add_image(self, filename, *, width=NoEscape(r'\linewidth'),
-                  placement=None):
+    def add_image(self, filename, *, width=NoEscape(r"\linewidth"), placement=None):
         """Add an image to the subfigure.
 
         Args
@@ -138,16 +143,16 @@ class StandAloneGraphic(UnsafeCommand):
 
     _latex_name = "includegraphics"
 
-    packages = [Package('graphicx')]
+    packages = [Package("graphicx")]
 
-    _repr_attributes_mapping = {
-        "filename": "arguments",
-        "image_options": "options"
-    }
+    _repr_attributes_mapping = {"filename": "arguments", "image_options": "options"}
 
-    def __init__(self, filename,
-                 image_options=NoEscape(r'width=0.8\textwidth'),
-                 extra_arguments=None):
+    def __init__(
+        self,
+        filename,
+        image_options=NoEscape(r"width=0.8\textwidth"),
+        extra_arguments=None,
+    ):
         r"""
         Args
         ----
@@ -159,6 +164,9 @@ class StandAloneGraphic(UnsafeCommand):
 
         arguments = [NoEscape(filename)]
 
-        super().__init__(command=self._latex_name, arguments=arguments,
-                         options=image_options,
-                         extra_arguments=extra_arguments)
+        super().__init__(
+            command=self._latex_name,
+            arguments=arguments,
+            options=image_options,
+            extra_arguments=extra_arguments,
+        )

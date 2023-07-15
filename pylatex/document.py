@@ -10,8 +10,14 @@ import os
 import sys
 import subprocess
 import errno
-from .base_classes import Environment, Command, Container, LatexObject, \
-    UnsafeCommand, SpecialArguments
+from .base_classes import (
+    Environment,
+    Command,
+    Container,
+    LatexObject,
+    UnsafeCommand,
+    SpecialArguments,
+)
 from .package import Package
 from .errors import CompilerError
 from .utils import dumps_list, rm_temp_dir, NoEscape
@@ -28,11 +34,23 @@ class Document(Environment):
 
     """
 
-    def __init__(self, default_filepath='default_filepath', *,
-                 documentclass='article', document_options=None, fontenc='T1',
-                 inputenc='utf8', font_size="normalsize", lmodern=True,
-                 textcomp=True, microtype=None, page_numbers=True, indent=None,
-                 geometry_options=None, data=None):
+    def __init__(
+        self,
+        default_filepath="default_filepath",
+        *,
+        documentclass="article",
+        document_options=None,
+        fontenc="T1",
+        inputenc="utf8",
+        font_size="normalsize",
+        lmodern=True,
+        textcomp=True,
+        microtype=None,
+        page_numbers=True,
+        indent=None,
+        geometry_options=None,
+        data=None
+    ):
         r"""
         Args
         ----
@@ -72,9 +90,9 @@ class Document(Environment):
         if isinstance(documentclass, Command):
             self.documentclass = documentclass
         else:
-            self.documentclass = Command('documentclass',
-                                         arguments=documentclass,
-                                         options=document_options)
+            self.documentclass = Command(
+                "documentclass", arguments=documentclass, options=document_options
+            )
         if indent is None:
             indent = cf.active.indent
         if microtype is None:
@@ -90,35 +108,37 @@ class Document(Environment):
         packages = []
 
         if fontenc is not None:
-            packages.append(Package('fontenc', options=fontenc))
+            packages.append(Package("fontenc", options=fontenc))
         if inputenc is not None:
-            packages.append(Package('inputenc', options=inputenc))
+            packages.append(Package("inputenc", options=inputenc))
         if lmodern:
-            packages.append(Package('lmodern'))
+            packages.append(Package("lmodern"))
         if textcomp:
-            packages.append(Package('textcomp'))
+            packages.append(Package("textcomp"))
         if page_numbers:
-            packages.append(Package('lastpage'))
+            packages.append(Package("lastpage"))
         if not indent:
-            packages.append(Package('parskip'))
+            packages.append(Package("parskip"))
         if microtype:
-            packages.append(Package('microtype'))
+            packages.append(Package("microtype"))
 
         if geometry_options is not None:
-            packages.append(Package('geometry'))
+            packages.append(Package("geometry"))
             # Make sure we don't add this options command for an empty list,
             # because that breaks.
             if geometry_options:
-                packages.append(Command(
-                    'geometry',
-                    arguments=SpecialArguments(geometry_options),
-                ))
+                packages.append(
+                    Command(
+                        "geometry",
+                        arguments=SpecialArguments(geometry_options),
+                    )
+                )
 
         super().__init__(data=data)
 
         # Usually the name is the class name, but if we create our own
         # document class, \begin{document} gets messed up.
-        self._latex_name = 'document'
+        self._latex_name = "document"
 
         self.packages |= packages
         self.variables = []
@@ -143,7 +163,7 @@ class Document(Environment):
 
         super()._propagate_packages()
 
-        for item in (self.preamble):
+        for item in self.preamble:
             if isinstance(item, LatexObject):
                 if isinstance(item, Container):
                     item._propagate_packages()
@@ -158,12 +178,12 @@ class Document(Environment):
         str
         """
 
-        head = self.documentclass.dumps() + '%\n'
-        head += self.dumps_packages() + '%\n'
-        head += dumps_list(self.variables) + '%\n'
-        head += dumps_list(self.preamble) + '%\n'
+        head = self.documentclass.dumps() + "%\n"
+        head += self.dumps_packages() + "%\n"
+        head += dumps_list(self.variables) + "%\n"
+        head += dumps_list(self.preamble) + "%\n"
 
-        return head + '%\n' + super().dumps()
+        return head + "%\n" + super().dumps()
 
     def generate_tex(self, filepath=None):
         """Generate a .tex file for the document.
@@ -177,8 +197,16 @@ class Document(Environment):
 
         super().generate_tex(self._select_filepath(filepath))
 
-    def generate_pdf(self, filepath=None, *, clean=True, clean_tex=True,
-                     compiler=None, compiler_args=None, silent=True):
+    def generate_pdf(
+        self,
+        filepath=None,
+        *,
+        clean=True,
+        clean_tex=True,
+        compiler=None,
+        compiler_args=None,
+        silent=True
+    ):
         """Generate a pdf file from the document.
 
         Args
@@ -212,8 +240,7 @@ class Document(Environment):
 
         filepath = self._select_filepath(filepath)
         if not os.path.basename(filepath):
-            filepath = os.path.join(os.path.abspath(filepath),
-                                    'default_basename')
+            filepath = os.path.join(os.path.abspath(filepath), "default_basename")
         else:
             filepath = os.path.abspath(filepath)
 
@@ -228,18 +255,15 @@ class Document(Environment):
         if compiler is not None:
             compilers = ((compiler, []),)
         else:
-            latexmk_args = ['--pdf']
+            latexmk_args = ["--pdf"]
 
-            compilers = (
-                ('latexmk', latexmk_args),
-                ('pdflatex', [])
-            )
+            compilers = (("latexmk", latexmk_args), ("pdflatex", []))
 
-        main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
+        main_arguments = ["--interaction=nonstopmode", filepath + ".tex"]
 
         check_output_kwargs = {}
         if python_cwd_available:
-            check_output_kwargs = {'cwd': dest_dir}
+            check_output_kwargs = {"cwd": dest_dir}
 
         os_error = None
 
@@ -247,9 +271,9 @@ class Document(Environment):
             command = [compiler] + arguments + compiler_args + main_arguments
 
             try:
-                output = subprocess.check_output(command,
-                                                 stderr=subprocess.STDOUT,
-                                                 **check_output_kwargs)
+                output = subprocess.check_output(
+                    command, stderr=subprocess.STDOUT, **check_output_kwargs
+                )
             except (OSError, IOError) as e:
                 # Use FileNotFoundError when python 2 is dropped
                 os_error = e
@@ -269,17 +293,18 @@ class Document(Environment):
             if clean:
                 try:
                     # Try latexmk cleaning first
-                    subprocess.check_output(['latexmk', '-c', filepath],
-                                            stderr=subprocess.STDOUT,
-                                            **check_output_kwargs)
+                    subprocess.check_output(
+                        ["latexmk", "-c", filepath],
+                        stderr=subprocess.STDOUT,
+                        **check_output_kwargs
+                    )
                 except (OSError, IOError, subprocess.CalledProcessError):
                     # Otherwise just remove some file extensions.
-                    extensions = ['aux', 'log', 'out', 'fls',
-                                  'fdb_latexmk']
+                    extensions = ["aux", "log", "out", "fls", "fdb_latexmk"]
 
                     for ext in extensions:
                         try:
-                            os.remove(filepath + '.' + ext)
+                            os.remove(filepath + "." + ext)
                         except (OSError, IOError) as e:
                             # Use FileNotFoundError when python 2 is dropped
                             if e.errno != errno.ENOENT:
@@ -287,7 +312,7 @@ class Document(Environment):
                 rm_temp_dir()
 
             if clean_tex:
-                os.remove(filepath + '.tex')  # Remove generated tex file
+                os.remove(filepath + ".tex")  # Remove generated tex file
 
             # Compilation has finished, so no further compilers have to be
             # tried
@@ -295,11 +320,13 @@ class Document(Environment):
 
         else:
             # Notify user that none of the compilers worked.
-            raise(CompilerError(
-                'No LaTex compiler was found\n'
-                'Either specify a LaTex compiler '
-                'or make sure you have latexmk or pdfLaTex installed.'
-            ))
+            raise (
+                CompilerError(
+                    "No LaTex compiler was found\n"
+                    "Either specify a LaTex compiler "
+                    "or make sure you have latexmk or pdfLaTex installed."
+                )
+            )
 
         if not python_cwd_available:
             os.chdir(cur_dir)
@@ -321,9 +348,10 @@ class Document(Environment):
         if filepath is None:
             return self.default_filepath
         else:
-            if os.path.basename(filepath) == '':
-                filepath = os.path.join(filepath, os.path.basename(
-                    self.default_filepath))
+            if os.path.basename(filepath) == "":
+                filepath = os.path.join(
+                    filepath, os.path.basename(self.default_filepath)
+                )
             return filepath
 
     def change_page_style(self, style):
@@ -365,9 +393,9 @@ class Document(Environment):
             self.packages.append(Package("color"))
             self.color = True
 
-        self.preamble.append(Command("definecolor", arguments=[name,
-                                                               model,
-                                                               description]))
+        self.preamble.append(
+            Command("definecolor", arguments=[name, model, description])
+        )
 
     def change_length(self, parameter, value):
         r"""Change the length of a certain parameter to a certain value.
@@ -380,8 +408,7 @@ class Document(Environment):
             The value to set the parameter to
         """
 
-        self.preamble.append(UnsafeCommand('setlength',
-                                           arguments=[parameter, value]))
+        self.preamble.append(UnsafeCommand("setlength", arguments=[parameter, value]))
 
     def set_variable(self, name, value):
         r"""Add a variable which can be used inside the document.
@@ -407,10 +434,10 @@ class Document(Environment):
                 break
 
         if variable_exists:
-            renew = Command(command="renewcommand",
-                            arguments=[NoEscape(name_arg), value])
+            renew = Command(
+                command="renewcommand", arguments=[NoEscape(name_arg), value]
+            )
             self.append(renew)
         else:
-            new = Command(command="newcommand",
-                          arguments=[NoEscape(name_arg), value])
+            new = Command(command="newcommand", arguments=[NoEscape(name_arg), value])
             self.variables.append(new)

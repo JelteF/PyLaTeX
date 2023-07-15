@@ -69,9 +69,7 @@ class FootnoteText(HugeText):
 class TextColor(ContainerCommand):
     """An environment which changes the text color of the data."""
 
-    _repr_attributes_mapping = {
-        "color": "arguments"
-    }
+    _repr_attributes_mapping = {"color": "arguments"}
 
     packages = [Package("xcolor")]
 

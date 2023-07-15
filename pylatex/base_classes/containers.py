@@ -23,7 +23,7 @@ class Container(LatexObject, UserList):
 
     """
 
-    content_separator = '%\n'
+    content_separator = "%\n"
 
     def __init__(self, *, data=None):
         r"""
@@ -48,7 +48,7 @@ class Container(LatexObject, UserList):
 
     @property
     def _repr_attributes(self):
-        return super()._repr_attributes + ['real_data']
+        return super()._repr_attributes + ["real_data"]
 
     def dumps_content(self, **kwargs):
         r"""Represent the container as a string in LaTeX syntax.
@@ -65,8 +65,9 @@ class Container(LatexObject, UserList):
             A LaTeX string representing the container
         """
 
-        return dumps_list(self, escape=self.escape,
-                          token=self.content_separator, **kwargs)
+        return dumps_list(
+            self, escape=self.escape, token=self.content_separator, **kwargs
+        )
 
     def _propagate_packages(self):
         """Make sure packages get propagated."""
@@ -133,8 +134,7 @@ class Environment(Container):
     #: string if it has no content.
     omit_if_empty = False
 
-    def __init__(self, *, options=None, arguments=None, start_arguments=None,
-                 **kwargs):
+    def __init__(self, *, options=None, arguments=None, start_arguments=None, **kwargs):
         r"""
         Args
         ----
@@ -165,9 +165,9 @@ class Environment(Container):
 
         content = self.dumps_content()
         if not content.strip() and self.omit_if_empty:
-            return ''
+            return ""
 
-        string = ''
+        string = ""
 
         # Something other than None needs to be used as extra arguments, that
         # way the options end up behind the latex_name argument.
@@ -176,14 +176,15 @@ class Environment(Container):
         else:
             extra_arguments = self.arguments
 
-        begin = Command('begin', self.start_arguments, self.options,
-                        extra_arguments=extra_arguments)
+        begin = Command(
+            "begin", self.start_arguments, self.options, extra_arguments=extra_arguments
+        )
         begin.arguments._positional_args.insert(0, self.latex_name)
         string += begin.dumps() + self.content_separator
 
         string += content + self.content_separator
 
-        string += Command('end', self.latex_name).dumps()
+        string += Command("end", self.latex_name).dumps()
 
         return string
 
@@ -255,18 +256,17 @@ class ContainerCommand(Container):
         content = self.dumps_content()
 
         if not content.strip() and self.omit_if_empty:
-            return ''
+            return ""
 
-        string = ''
+        string = ""
 
-        start = Command(self.latex_name, arguments=self.arguments,
-                        options=self.options)
+        start = Command(self.latex_name, arguments=self.arguments, options=self.options)
 
-        string += start.dumps() + '{%\n'
+        string += start.dumps() + "{%\n"
 
-        if content != '':
-            string += content + '%\n}'
+        if content != "":
+            string += content + "%\n}"
         else:
-            string += '}'
+            string += "}"
 
         return string

@@ -45,8 +45,8 @@ class Section(Container):
         if isinstance(label, Label):
             self.label = label
         elif isinstance(label, str):
-            if ':' in label:
-                label = label.split(':', 1)
+            if ":" in label:
+                label = label.split(":", 1)
                 self.label = Label(Marker(label[1], label[0]))
             else:
                 self.label = Label(Marker(label, self.marker_prefix))
@@ -67,14 +67,14 @@ class Section(Container):
         """
 
         if not self.numbering:
-            num = '*'
+            num = "*"
         else:
-            num = ''
+            num = ""
 
         string = Command(self.latex_name + num, self.title).dumps()
         if self.label is not None:
-            string += '%\n' + self.label.dumps()
-        string += '%\n' + self.dumps_content()
+            string += "%\n" + self.label.dumps()
+        string += "%\n" + self.dumps_content()
 
         return string
 

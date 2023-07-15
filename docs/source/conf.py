@@ -17,6 +17,7 @@ import sys
 
 # Needed for old sphinx version to work
 import collections
+
 if sys.version_info >= (3, 10):
     collections.Callable = collections.abc.Callable
 
@@ -28,7 +29,7 @@ import sphinx_rtd_theme
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('../../'))
+sys.path.insert(0, os.path.abspath("../../"))
 from pylatex import __version__
 
 # -- General configuration ------------------------------------------------
@@ -40,17 +41,17 @@ from pylatex import __version__
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.extlinks',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.linkcode',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
+    "sphinx.ext.todo",
+    "sphinx.ext.coverage",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.ifconfig",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.extlinks",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.linkcode",
 ]
 
 napoleon_include_special_with_doc = False
@@ -58,30 +59,30 @@ numpydoc_show_inherited_class_members = False
 numpydoc_class_members_toctree = False
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = 'PyLaTeX'
-copyright = '2015, Jelte Fennema'
-author = 'Jelte Fennema'
+project = "PyLaTeX"
+copyright = "2015, Jelte Fennema"
+author = "Jelte Fennema"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = __version__.rstrip('.dirty')
+version = __version__.rstrip(".dirty")
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -98,9 +99,9 @@ language = None
 # Else, today_fmt is used as the format for a strftime call.
 # today_fmt = '%B %d, %Y'
 
-autodoc_member_order = 'bysource'
-autodoc_default_flags = ['inherited-members']
-autoclass_content = 'both'
+autodoc_member_order = "bysource"
+autodoc_default_flags = ["inherited-members"]
+autoclass_content = "both"
 
 
 def auto_change_docstring(app, what, name, obj, options, lines):
@@ -111,54 +112,70 @@ def auto_change_docstring(app, what, name, obj, options, lines):
         - Add a title to module docstrings
         - Merge lines that end with a '\' with the next line.
     """
-    if what == 'module' and name.startswith('pylatex'):
-        lines.insert(0, len(name) * '=')
+    if what == "module" and name.startswith("pylatex"):
+        lines.insert(0, len(name) * "=")
         lines.insert(0, name)
 
     hits = 0
     for i, line in enumerate(lines.copy()):
-        if line.endswith('\\'):
+        if line.endswith("\\"):
             lines[i - hits] += lines.pop(i + 1 - hits)
             hits += 1
 
 
-def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
-                                   options):
-    cls = namespace.split('.')[-1]
+def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip, options):
+    cls = namespace.split(".")[-1]
 
     members = {
-        'object': ['dump', 'dumps_packages', 'dump_packages', 'latex_name',
-                   'escape', 'generate_tex', 'packages', 'dumps_as_content',
-                   'end_paragraph', 'separate_paragraph', 'content_separator'],
-
-        'container': ['create', 'dumps', 'dumps_content', 'begin_paragraph'],
-
-        'userlist': ['append', 'clear', 'copy', 'count', 'extend', 'index',
-                     'insert', 'pop', 'remove', 'reverse', 'sort'],
-        'error': ['args', 'with_traceback'],
+        "object": [
+            "dump",
+            "dumps_packages",
+            "dump_packages",
+            "latex_name",
+            "escape",
+            "generate_tex",
+            "packages",
+            "dumps_as_content",
+            "end_paragraph",
+            "separate_paragraph",
+            "content_separator",
+        ],
+        "container": ["create", "dumps", "dumps_content", "begin_paragraph"],
+        "userlist": [
+            "append",
+            "clear",
+            "copy",
+            "count",
+            "extend",
+            "index",
+            "insert",
+            "pop",
+            "remove",
+            "reverse",
+            "sort",
+        ],
+        "error": ["args", "with_traceback"],
     }
 
-    members['all'] = list(set([req for reqs in members.values() for req in
-                               reqs]))
+    members["all"] = list(set([req for reqs in members.values() for req in reqs]))
 
-    if name in members['all']:
+    if name in members["all"]:
         skip = True
 
-        if cls == 'LatexObject':
+        if cls == "LatexObject":
             return False
 
-        if cls in ('Container', 'Environment') and \
-                name in members['container']:
+        if cls in ("Container", "Environment") and name in members["container"]:
             return False
 
-        if cls == 'Document' and name == 'generate_tex':
+        if cls == "Document" and name == "generate_tex":
             return False
 
-    if name == 'separate_paragraph' and cls in ('SubFigure', 'Float'):
+    if name == "separate_paragraph" and cls in ("SubFigure", "Float"):
         return False
 
     # Ignore all functions of NoEscape, since it is inherited
-    if cls == 'NoEscape':
+    if cls == "NoEscape":
         return True
 
     return skip
@@ -166,30 +183,30 @@ def autodoc_allow_most_inheritance(app, what, name, obj, namespace, skip,
 
 def setup(app):
     """Connect autodoc event to custom handler."""
-    app.connect('autodoc-process-docstring', auto_change_docstring)
-    app.connect('autodoc-skip-member', autodoc_allow_most_inheritance)
+    app.connect("autodoc-process-docstring", auto_change_docstring)
+    app.connect("autodoc-skip-member", autodoc_allow_most_inheritance)
 
 
 def linkcode_resolve(domain, info):
     """A simple function to find matching source code."""
-    module_name = info['module']
-    fullname = info['fullname']
-    attribute_name = fullname.split('.')[-1]
-    base_url = 'https://github.com/JelteF/PyLaTeX/'
+    module_name = info["module"]
+    fullname = info["fullname"]
+    attribute_name = fullname.split(".")[-1]
+    base_url = "https://github.com/JelteF/PyLaTeX/"
 
-    if '+' in version:
-        commit_hash = version.split('.')[-1][1:]
-        base_url += 'tree/%s/' % commit_hash
+    if "+" in version:
+        commit_hash = version.split(".")[-1][1:]
+        base_url += "tree/%s/" % commit_hash
     else:
-        base_url += 'blob/v%s/' % version
+        base_url += "blob/v%s/" % version
 
-    filename = module_name.replace('.', '/') + '.py'
+    filename = module_name.replace(".", "/") + ".py"
     module = sys.modules.get(module_name)
 
     # Get the actual object
     try:
         actual_object = module
-        for obj in fullname.split('.'):
+        for obj in fullname.split("."):
             parent = actual_object
             actual_object = getattr(actual_object, obj)
     except AttributeError:
@@ -217,7 +234,7 @@ def linkcode_resolve(domain, info):
     else:
         end_line = start_line + len(source) - 1
 
-    line_anchor = '#L%d-L%d' % (start_line, end_line)
+    line_anchor = "#L%d-L%d" % (start_line, end_line)
 
     return base_url + filename + line_anchor
 
@@ -228,7 +245,7 @@ exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
-default_role = 'py:obj'
+default_role = "py:obj"
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 # add_function_parentheses = True
@@ -242,10 +259,10 @@ add_module_names = False
 # show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # A list of ignored prefixes for module index sorting.
-modindex_common_prefix = ['pylatex.']
+modindex_common_prefix = ["pylatex."]
 
 # If true, keep warnings as "system message" paragraphs in the built documents.
 # keep_warnings = False
@@ -254,11 +271,10 @@ modindex_common_prefix = ['pylatex.']
 todo_include_todos = True
 
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3', None),
-    'matplotlib': ('http://matplotlib.org/', None),
-    'numpy': ('https://docs.scipy.org/doc/numpy/', None),
-    'quantities': ('https://pythonhosted.org/quantities/',
-                   'quantities-inv.txt'),
+    "python": ("https://docs.python.org/3", None),
+    "matplotlib": ("http://matplotlib.org/", None),
+    "numpy": ("https://docs.scipy.org/doc/numpy/", None),
+    "quantities": ("https://pythonhosted.org/quantities/", "quantities-inv.txt"),
 }
 
 
@@ -266,7 +282,7 @@ intersphinx_mapping = {
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -291,12 +307,12 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = '_static/realfavicongenerator.ico'
+html_favicon = "_static/realfavicongenerator.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -359,20 +375,17 @@ html_static_path = ['_static']
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PyLaTeXdoc'
+htmlhelp_basename = "PyLaTeXdoc"
 
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     # 'pointsize': '10pt',
-
     # Additional stuff for the LaTeX preamble.
     # 'preamble': '',
-
     # Latex figure (float) alignment
     # 'figure_align': 'htbp',
 }
@@ -381,8 +394,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PyLaTeX.tex', 'PyLaTeX Documentation',
-     'Jelte Fennema', 'manual'),
+    (master_doc, "PyLaTeX.tex", "PyLaTeX Documentation", "Jelte Fennema", "manual"),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -410,10 +422,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'pylatex', 'PyLaTeX Documentation',
-     [author], 1)
-]
+man_pages = [(master_doc, "pylatex", "PyLaTeX Documentation", [author], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -425,8 +434,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'PyLaTeX', 'PyLaTeX Documentation', author, 'PyLaTeX',
-     'One line description of project.', 'Miscellaneous'),
+    (
+        master_doc,
+        "PyLaTeX",
+        "PyLaTeX Documentation",
+        author,
+        "PyLaTeX",
+        "One line description of project.",
+        "Miscellaneous",
+    ),
 ]
 
 # Documents to append as an appendix to all manuals.

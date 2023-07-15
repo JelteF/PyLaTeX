@@ -13,7 +13,7 @@ from .package import Package
 class MdFramed(Environment):
     """A class that defines an mdframed environment."""
 
-    packages = [Package('mdframed')]
+    packages = [Package("mdframed")]
 
 
 class FBox(ContainerCommand):
