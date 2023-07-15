@@ -17,6 +17,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
+          cache-dependency-path: |
+            dev_requirements.txt
+            setup.py
       - name: Install dependencies
         run: |
           sudo apt install texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended lmodern ghostscript pgf
