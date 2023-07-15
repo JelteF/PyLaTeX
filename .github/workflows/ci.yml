@@ -24,10 +24,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-          cache-dependency-path: |
-            dev_requirements.txt
-            setup.py
+          # Disable cache so that issues with new dependencies are found more easily
+          # cache: 'pip'
+          # cache-dependency-path: |
+          #   dev_requirements.txt
+          #   setup.py
       - name: Install dependencies
         run: |
           sudo apt-get update
