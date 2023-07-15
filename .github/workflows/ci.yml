@@ -25,6 +25,7 @@ jobs:
           sudo apt install texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended lmodern ghostscript
           python -m pip install --upgrade pip
           pip install -r dev_requirements.txt --upgrade
+          sudo sed '/pattern=".*PDF.*"/d' -i /etc/ImageMagick*/policy.xml
       - name: Run tests
         run: |
           ./test_all.sh
