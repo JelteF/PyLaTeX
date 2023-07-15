@@ -26,17 +26,13 @@ else:
     dependencies = ['ordered-set']
 
 extras = {
-    'docs': ['sphinx'],
+    'docs': ['sphinx', 'jinja2<3.0', 'MarkupSafe==2.0.1', 'alabaster<0.7.12'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
-    'testing': ['flake8<3.0.0', 'pep8-naming==0.8.2',
-                'flake8_docstrings==1.3.0', 'pycodestyle==2.0.0',
-                'pydocstyle==3.0.0', 'pyflakes==1.2.3', 'pytest>=4.6',
-                'flake8-putty',
+    'testing': ['pytest>=4.6',
                 'coverage', 'pytest-cov'],
     'packaging': ['twine'],
-    'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 
 if sys.version_info[0] == 3:

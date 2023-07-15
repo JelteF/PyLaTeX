@@ -14,6 +14,12 @@
 # serve to show the default.
 
 import sys
+
+# Needed for old sphinx version to work
+import collections
+if sys.version_info >= (3, 10):
+    collections.Callable = collections.abc.Callable
+
 import os
 import inspect
 import sphinx_rtd_theme

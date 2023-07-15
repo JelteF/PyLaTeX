@@ -28,7 +28,6 @@ set -x
 
 git tag "$1" -a -m ''
 
-./convert_to_py2.sh
 cd docs/gh-pages
 git pull
 git submodule update --init
