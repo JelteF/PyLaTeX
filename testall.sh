@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script runs flake8 to test for pep8 compliance and executes all the examples and tests
+# This script executes all the examples and tests
 # run as: testall.sh [-p COMMAND] [clean]
 # Optional positional arguments
 #      -c: cleans up the latex files generated
@@ -52,9 +52,7 @@ python_version_long=$($python --version |& sed 's|Python \(.*\)|\1|g' | head -n 
 if [ "$python_version" = '3' ]; then
     # Check code guidelines
     echo -e '\e[32mChecking for code style errors \e[0m'
-    if ! flake8 pylatex examples tests; then
-        exit 1
-    fi
+    # TODO: Replace with black
 fi
 
 
