@@ -22,7 +22,7 @@ jobs:
             setup.py
       - name: Install dependencies
         run: |
-          sudo apt install texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended lmodern ghostscript pgf
+          sudo apt install texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended lmodern ghostscript
           python -m pip install --upgrade pip
           pip install -r dev_requirements.txt --upgrade
       - name: Run tests
