@@ -178,7 +178,8 @@ class Document(Environment):
         super().generate_tex(self._select_filepath(filepath))
 
     def generate_pdf(self, filepath=None, *, clean=True, clean_tex=True,
-                     compiler=None, compiler_args=None, silent=True):
+                     compiler=None, compiler_args=None, silent=True,
+                     check_output_kwargs=None):
         """Generate a pdf file from the document.
 
         Args
@@ -200,6 +201,10 @@ class Document(Environment):
             this is None it defaults to an empty list.
         silent: bool
             Whether to hide compiler output
+        check_output_kwargs: `dict` or `None`
+            Extra keyword arguments that should be passed to the subprocess
+            that runs the LaTeX compiler. If this is None it defaults to an
+            empty dictionary.
         """
 
         if compiler_args is None:
@@ -237,9 +242,10 @@ class Document(Environment):
 
         main_arguments = ['--interaction=nonstopmode', filepath + '.tex']
 
-        check_output_kwargs = {}
+        if check_output_kwargs is None:
+            check_output_kwargs = {}
         if python_cwd_available:
-            check_output_kwargs = {'cwd': dest_dir}
+            check_output_kwargs.update({'cwd': dest_dir})
 
         os_error = None
 
