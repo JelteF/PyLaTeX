@@ -26,7 +26,7 @@ else:
     dependencies = ['ordered-set']
 
 extras = {
-    'docs': ['sphinx'],
+    'docs': ['sphinx', 'jinja2<3.0', 'MarkupSafe==2.0.1', 'alabaster<0.7.12'],
     'matrices': ['numpy'],
     'matplotlib': ['matplotlib'],
     'quantities': ['quantities', 'numpy'],
