@@ -33,7 +33,6 @@ extras = {
     'testing': ['pytest>=4.6',
                 'coverage', 'pytest-cov'],
     'packaging': ['twine'],
-    'convert_to_py2': ['3to2', 'future>=0.15.2'],
 }
 
 if sys.version_info[0] == 3:
