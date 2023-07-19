@@ -51,7 +51,7 @@ if __name__ == "__main__":
                 table.add_row((4, 5, 6, 7))
 
     a = np.array([[100, 10, 20]]).T
-    M = np.matrix([[2, 3, 4], [0, 0, 1], [0, 0, 2]])
+    M = np.array([[2, 3, 4], [0, 0, 1], [0, 0, 2]])
 
     with doc.create(Section("The fancy stuff")):
         with doc.create(Subsection("Correct matrix equations")):
