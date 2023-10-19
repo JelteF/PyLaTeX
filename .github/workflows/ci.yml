@@ -15,9 +15,7 @@ jobs:
           - "3.9"
           - "3.10"
           - "3.11"
-          # Pip is broken in 3.12 for now
-          # - "3.12.0-beta.4"
-
+          - "3.12"
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
