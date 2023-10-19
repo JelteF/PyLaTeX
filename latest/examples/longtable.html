@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Longtable example &mdash; PyLaTeX 1.4.1 documentation</title>
+  <title>Longtable example &mdash; PyLaTeX 1.4.2 documentation</title>
   
 
   
@@ -55,9 +55,9 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.4.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.2 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
-        <link rel="next" title="Longtabu example" href="longtabu.html"/>
+        <link rel="next" title="Matplotlib example" href="matplotlib_ex.html"/>
         <link rel="prev" title="Lists example" href="lists.html"/> 
 
   
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.4.1
+                1.4.2
               </div>
             
           
@@ -112,7 +112,6 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic_inheritance.html">Basic inheritance example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
@@ -123,7 +122,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#the-generated-files">The generated files</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
@@ -131,7 +129,6 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tikzdraw.html">Tikzdraw example</a></li>
 </ul>
@@ -196,33 +193,31 @@
 
 
 <span class="k">def</span> <span class="nf">genenerate_longtabu</span><span class="p">():</span>
-    <span class="n">geometry_options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;2.54cm&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;includeheadfoot&quot;</span><span class="p">:</span> <span class="kc">True</span>
-    <span class="p">}</span>
+    <span class="n">geometry_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;2.54cm&quot;</span><span class="p">,</span> <span class="s2">&quot;includeheadfoot&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">page_numbers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">geometry_options</span><span class="o">=</span><span class="n">geometry_options</span><span class="p">)</span>
 
     <span class="c1"># Generate data table</span>
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">LongTable</span><span class="p">(</span><span class="s2">&quot;l l l&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">data_table</span><span class="p">:</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="s2">&quot;header 1&quot;</span><span class="p">,</span> <span class="s2">&quot;header 2&quot;</span><span class="p">,</span> <span class="s2">&quot;header 3&quot;</span><span class="p">])</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">end_table_header</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
-                                <span class="n">data</span><span class="o">=</span><span class="s1">&#39;Continued on Next Page&#39;</span><span class="p">),))</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">end_table_footer</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
-                                <span class="n">data</span><span class="o">=</span><span class="s1">&#39;Not Continued on Next Page&#39;</span><span class="p">),))</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
-            <span class="n">data_table</span><span class="o">.</span><span class="n">end_table_last_footer</span><span class="p">()</span>
-            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Content1&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Longer String&quot;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">150</span><span class="p">):</span>
-                <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="s2">&quot;header 1&quot;</span><span class="p">,</span> <span class="s2">&quot;header 2&quot;</span><span class="p">,</span> <span class="s2">&quot;header 3&quot;</span><span class="p">])</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">end_table_header</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">((</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;Continued on Next Page&quot;</span><span class="p">),))</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">end_table_footer</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">MultiColumn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;Not Continued on Next Page&quot;</span><span class="p">),)</span>
+        <span class="p">)</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">add_hline</span><span class="p">()</span>
+        <span class="n">data_table</span><span class="o">.</span><span class="n">end_table_last_footer</span><span class="p">()</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Content1&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;Longer String&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">150</span><span class="p">):</span>
+            <span class="n">data_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
     <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;longtable&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
 
 <span class="n">genenerate_longtabu</span><span class="p">()</span>
 </pre></div>
@@ -230,187 +225,187 @@
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">longtable.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<div class="literal-block-wrapper docutils container" id="container-1">
+<div class="code-block-caption"><span class="caption-text">longtable.tex</span><a class="headerlink" href="#container-1" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
@@ -589,8 +584,8 @@ Content1<span class="nb">&amp;</span>9<span class="nb">&amp;</span>Longer String
 Content1<span class="nb">&amp;</span>9<span class="nb">&amp;</span>Longer String<span class="k">\\</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>longtable<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</pre></div>
-</td></tr></table></div>
+</pre></div></td></tr></table></div>
+</div>
 </div>
 <p>longtable.pdf</p>
 <div class="figure">
@@ -615,7 +610,7 @@ Content1<span class="nb">&amp;</span>9<span class="nb">&amp;</span>Longer String
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="longtabu.html" class="btn btn-neutral float-right" title="Longtabu example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="matplotlib_ex.html" class="btn btn-neutral float-right" title="Matplotlib example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="lists.html" class="btn btn-neutral" title="Lists example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -649,7 +644,7 @@ Content1<span class="nb">&amp;</span>9<span class="nb">&amp;</span>Longer String
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.4.1',
+            VERSION:'1.4.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

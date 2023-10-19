@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tikzdraw example &mdash; PyLaTeX 1.4.1 documentation</title>
+  <title>Tikzdraw example &mdash; PyLaTeX 1.4.2 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyLaTeX 1.4.1 documentation" href="../index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.2 documentation" href="../index.html"/>
         <link rel="up" title="Examples" href="../examples.html"/>
         <link rel="next" title="API reference" href="../api.html"/>
         <link rel="prev" title="Textblock example" href="textblock.html"/> 
@@ -86,7 +86,7 @@
             
             
               <div class="version">
-                1.4.1
+                1.4.2
               </div>
             
           
@@ -112,14 +112,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic.html">Basic example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basic_inheritance.html">Basic inheritance example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="complex_report.html">Complex report example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Config example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment_ex.html">Environment example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="full.html">Full example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="header.html">Header example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lists.html">Lists example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="longtable.html">Longtable example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="longtabu.html">Longtabu example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib_ex.html">Matplotlib example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="minipage.html">Minipage example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multirow.html">Multirow example</a></li>
@@ -127,7 +125,6 @@
 <li class="toctree-l2"><a class="reference internal" href="own_commands_ex.html">Own commands example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantities_ex.html">Quantities example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="subfigure.html">Subfigure example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tabus.html">Tabus example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="textblock.html">Textblock example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Tikzdraw example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-code">The code</a></li>
@@ -191,85 +188,85 @@
 <p>This example shows TikZ drawing capabilities.</p>
 <div class="section" id="the-code">
 <h2>The code<a class="headerlink" href="#the-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Document</span><span class="p">,</span> <span class="n">TikZ</span><span class="p">,</span> <span class="n">TikZNode</span><span class="p">,</span>
-                     <span class="n">TikZDraw</span><span class="p">,</span> <span class="n">TikZCoordinate</span><span class="p">,</span>
-                     <span class="n">TikZUserPath</span><span class="p">,</span> <span class="n">TikZOptions</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pylatex</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">TikZ</span><span class="p">,</span>
+    <span class="n">TikZCoordinate</span><span class="p">,</span>
+    <span class="n">TikZDraw</span><span class="p">,</span>
+    <span class="n">TikZNode</span><span class="p">,</span>
+    <span class="n">TikZOptions</span><span class="p">,</span>
+    <span class="n">TikZUserPath</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># create document</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">()</span>
 
     <span class="c1"># add our sample drawings</span>
     <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">TikZ</span><span class="p">())</span> <span class="k">as</span> <span class="n">pic</span><span class="p">:</span>
-
         <span class="c1"># options for our node</span>
-        <span class="n">node_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;minimum size&#39;</span><span class="p">:</span> <span class="s1">&#39;100pt&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;fill&#39;</span><span class="p">:</span> <span class="s1">&#39;black!20&#39;</span><span class="p">}</span>
+        <span class="n">node_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;minimum size&quot;</span><span class="p">:</span> <span class="s2">&quot;100pt&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">:</span> <span class="s2">&quot;black!20&quot;</span><span class="p">}</span>
 
         <span class="c1"># create our test node</span>
-        <span class="n">box</span> <span class="o">=</span> <span class="n">TikZNode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;My block&#39;</span><span class="p">,</span>
-                       <span class="n">handle</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">,</span>
-                       <span class="n">at</span><span class="o">=</span><span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                       <span class="n">options</span><span class="o">=</span><span class="n">TikZOptions</span><span class="p">(</span><span class="s1">&#39;draw&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;rounded corners&#39;</span><span class="p">,</span>
-                                           <span class="o">**</span><span class="n">node_kwargs</span><span class="p">))</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">TikZNode</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;My block&quot;</span><span class="p">,</span>
+            <span class="n">handle</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span>
+            <span class="n">at</span><span class="o">=</span><span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">options</span><span class="o">=</span><span class="n">TikZOptions</span><span class="p">(</span><span class="s2">&quot;draw&quot;</span><span class="p">,</span> <span class="s2">&quot;rounded corners&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">node_kwargs</span><span class="p">),</span>
+        <span class="p">)</span>
 
         <span class="c1"># add to tikzpicture</span>
         <span class="n">pic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
 
         <span class="c1"># draw a few paths</span>
-        <span class="n">pic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TikZDraw</span><span class="p">([</span><span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">),</span>
-                             <span class="s1">&#39;rectangle&#39;</span><span class="p">,</span>
-                             <span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">)],</span>
-                            <span class="n">options</span><span class="o">=</span><span class="n">TikZOptions</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)))</span>
+        <span class="n">pic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">TikZDraw</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">),</span> <span class="s2">&quot;rectangle&quot;</span><span class="p">,</span> <span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">)],</span>
+                <span class="n">options</span><span class="o">=</span><span class="n">TikZOptions</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="c1"># show use of anchor, relative coordinate</span>
-        <span class="n">pic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TikZDraw</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">west</span><span class="p">,</span>
-                             <span class="s1">&#39;--&#39;</span><span class="p">,</span>
-                             <span class="s1">&#39;++(-1,0)&#39;</span><span class="p">]))</span>
+        <span class="n">pic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TikZDraw</span><span class="p">([</span><span class="n">box</span><span class="o">.</span><span class="n">west</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;++(-1,0)&quot;</span><span class="p">]))</span>
 
         <span class="c1"># demonstrate the use of the with syntax</span>
         <span class="k">with</span> <span class="n">pic</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">TikZDraw</span><span class="p">())</span> <span class="k">as</span> <span class="n">path</span><span class="p">:</span>
-
             <span class="c1"># start at an anchor of the node</span>
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">east</span><span class="p">)</span>
 
             <span class="c1"># necessary here because &#39;in&#39; is a python keyword</span>
-            <span class="n">path_options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;in&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
-            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TikZUserPath</span><span class="p">(</span><span class="s1">&#39;edge&#39;</span><span class="p">,</span>
-                                     <span class="n">TikZOptions</span><span class="p">(</span><span class="s1">&#39;-latex&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">path_options</span><span class="p">)))</span>
+            <span class="n">path_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;in&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TikZUserPath</span><span class="p">(</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">TikZOptions</span><span class="p">(</span><span class="s2">&quot;-latex&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">path_options</span><span class="p">)))</span>
 
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TikZCoordinate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">relative</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s1">&#39;tikzdraw&#39;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">generate_pdf</span><span class="p">(</span><span class="s2">&quot;tikzdraw&quot;</span><span class="p">,</span> <span class="n">clean_tex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="the-generated-files">
 <h2>The generated files<a class="headerlink" href="#the-generated-files" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">tikzdraw.tex</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-latex"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
+<div class="literal-block-wrapper docutils container" id="container-1">
+<div class="code-block-caption"><span class="caption-text">tikzdraw.tex</span><a class="headerlink" href="#container-1" title="Permalink to this code">¶</a></div>
+<div class="highlight-latex"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[T1]</span><span class="nb">{</span>fontenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="na">[utf8]</span><span class="nb">{</span>inputenc<span class="nb">}</span><span class="c">%</span>
 <span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span><span class="c">%</span>
@@ -288,8 +285,8 @@
 <span class="k">\path</span><span class="na">[draw]</span> (box.east) edge[-latex,in=90,out=0] ++(1.0,0.0);<span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>tikzpicture<span class="nb">}</span><span class="c">%</span>
 <span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</pre></div>
-</td></tr></table></div>
+</pre></div></td></tr></table></div>
+</div>
 </div>
 <p>tikzdraw.pdf</p>
 <div class="figure">
@@ -339,7 +336,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.4.1',
+            VERSION:'1.4.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

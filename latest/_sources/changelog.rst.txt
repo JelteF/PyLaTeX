@@ -14,6 +14,22 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+1.4.2_ - `docs <../v1.4.2/>`__ - 2023-10-19
+-------------------------------------------
+
+Added
+~~~~~
+- Add `.Chapter` in ``__init__.py``
+
+Fixed
+~~~~~
+- Fix installation on Python 3.12
+
+Cleanup
+~~~~~~~
+- Update tooling (use black and isort and remove custom flake8 stuff)
+
+
 1.4.1_ - `docs <../v1.4.1/>`__ - 2020-10-18
 -------------------------------------------
 
@@ -475,7 +491,8 @@ Fixed
 - Fix package delegation with duplicate packages
 
 
-.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.4.1...HEAD
+.. _Unreleased: https://github.com/JelteF/PyLaTeX/compare/v1.4.2...HEAD
+.. _1.4.2: https://github.com/JelteF/PyLaTeX/compare/v1.4.1...1.4.2
 .. _1.4.1: https://github.com/JelteF/PyLaTeX/compare/v1.4.0...1.4.1
 .. _1.4.0: https://github.com/JelteF/PyLaTeX/compare/v1.3.4...1.4.0
 .. _1.3.4: https://github.com/JelteF/PyLaTeX/compare/v1.3.3...1.3.4

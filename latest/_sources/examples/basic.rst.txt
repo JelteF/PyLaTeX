@@ -9,22 +9,6 @@ The code
 
 The generated files
 -------------------
-.. literalinclude:: /_static/examples/basic.tex
-    :language: latex
-    :linenos:
-    :caption: basic.tex
-
-basic.pdf
-
-.. figure:: /_static/examples/basic.pdf.png
-.. literalinclude:: /_static/examples/basic_maketitle.tex
-    :language: latex
-    :linenos:
-    :caption: basic_maketitle.tex
-
-basic_maketitle.pdf
-
-.. figure:: /_static/examples/basic_maketitle.pdf.png
 .. literalinclude:: /_static/examples/basic_maketitle2.tex
     :language: latex
     :linenos:
@@ -33,3 +17,19 @@ basic_maketitle.pdf
 basic_maketitle2.pdf
 
 .. figure:: /_static/examples/basic_maketitle2.pdf.png
+.. literalinclude:: /_static/examples/basic_maketitle.tex
+    :language: latex
+    :linenos:
+    :caption: basic_maketitle.tex
+
+basic_maketitle.pdf
+
+.. figure:: /_static/examples/basic_maketitle.pdf.png
+.. literalinclude:: /_static/examples/basic.tex
+    :language: latex
+    :linenos:
+    :caption: basic.tex
+
+basic.pdf
+
+.. figure:: /_static/examples/basic.pdf.png

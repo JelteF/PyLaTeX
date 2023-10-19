@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Library usage &mdash; PyLaTeX 1.4.1 documentation</title>
+  <title>Library usage &mdash; PyLaTeX 1.4.2 documentation</title>
   
 
   
@@ -55,7 +55,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="PyLaTeX 1.4.1 documentation" href="index.html"/>
+    <link rel="top" title="PyLaTeX 1.4.2 documentation" href="index.html"/>
         <link rel="next" title="Examples" href="examples.html"/>
         <link rel="prev" title="PyLaTeX" href="index.html"/> 
 
@@ -85,7 +85,7 @@
             
             
               <div class="version">
-                1.4.1
+                1.4.2
               </div>
             
           
@@ -250,12 +250,12 @@ default almost all strings are escaped. This is done for security reasons and
 to make sure valid LaTeX code will be generated at all times. However, there
 are cases where raw LaTeX strings should just be used directly in the document.
 This is why the <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> string type exists. This is just a subclass of
-<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, but it will not be escaped. One important thing to note about this class
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, but it will not be escaped. One important thing to note about this class
 is that appending a <a class="reference internal" href="pylatex/pylatex.utils.html#pylatex.utils.NoEscape" title="pylatex.utils.NoEscape"><code class="xref py py-obj docutils literal"><span class="pre">NoEscape</span></code></a> type string to a regular string results in
 a regular string, since one type has to be chosen and the most conservative
 approach is taken.</p>
 <p>Another way to make sure strings are not escaped is by setting the
-<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.escape" title="pylatex.base_classes.latex_object.LatexObject.escape"><code class="xref py py-obj docutils literal"><span class="pre">escape</span></code></a> attribute to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> on the class that is the container
+<a class="reference internal" href="pylatex/pylatex.base_classes.latex_object.html#pylatex.base_classes.latex_object.LatexObject.escape" title="pylatex.base_classes.latex_object.LatexObject.escape"><code class="xref py py-obj docutils literal"><span class="pre">escape</span></code></a> attribute to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.12)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> on the class that is the container
 of the string. Keep in mind though that any strings that are added to that
 object will not be escaped when doing this. So, only use this method for
 objects that don&#8217;t contain possibly unsafe strings.</p>
@@ -304,7 +304,7 @@ objects that don&#8217;t contain possibly unsafe strings.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.4.1',
+            VERSION:'1.4.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
