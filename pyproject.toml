@@ -1,0 +1,6 @@
+[tool.isort]
+profile = 'black'
+skip = 'versioneer.py'
+
+[tool.black]
+extend-exclude = 'versioneer\.py'
