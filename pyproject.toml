@@ -1,6 +1,6 @@
 [tool.isort]
 profile = 'black'
-skip = 'versioneer.py'
+skip = ['.bzr', '.direnv', '.eggs', '.git', '.hg', '.mypy_cache', '.nox', '.pants.d', '.svn', '.tox', '.venv', '__pypackages__', '_build', 'buck-out', 'build', 'dist', 'node_modules', 'venv', 'versioneer.py', 'src']
 
 [tool.black]
-extend-exclude = 'versioneer\.py'
+extend-exclude = 'versioneer\.py|src'
