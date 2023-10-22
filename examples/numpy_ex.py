@@ -26,7 +26,7 @@ if __name__ == "__main__":
     section.append(subsection)
 
     subsection = Subsection("Matrix")
-    M = np.matrix([[2, 3, 4], [0, 0, 1], [0, 0, 2]])
+    M = np.array([[2, 3, 4], [0, 0, 1], [0, 0, 2]])
     matrix = Matrix(M, mtype="b")
     math = Math(data=["M=", matrix])
 

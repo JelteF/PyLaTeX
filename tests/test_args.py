@@ -140,7 +140,7 @@ def test_math():
     repr(vec)
 
     # Numpy
-    m = np.matrix([[2, 3, 4], [0, 0, 1], [0, 0, 2]])
+    m = np.array([[2, 3, 4], [0, 0, 1], [0, 0, 2]])
 
     matrix = Matrix(matrix=m, mtype="p", alignment=None)
     repr(matrix)
