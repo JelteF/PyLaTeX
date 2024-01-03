@@ -25,7 +25,7 @@ class Section(Container):
     #: subclasses will also have the new default.
     numbering = True
 
-    def __init__(self, title, numbering=None, *, label=True, **kwargs):
+    def __init__(self, title, short=None, numbering=None, *, label=True, **kwargs):
         """
         Args
         ----
@@ -39,6 +39,8 @@ class Section(Container):
         """
 
         self.title = title
+        if short is not None:
+            self.short = short
 
         if numbering is not None:
             self.numbering = numbering
@@ -71,7 +73,7 @@ class Section(Container):
         else:
             num = ""
 
-        string = Command(self.latex_name + num, self.title).dumps()
+        string = Command(self.latex_name + num, self.title, self.short).dumps()
         if self.label is not None:
             string += "%\n" + self.label.dumps()
         string += "%\n" + self.dumps_content()
