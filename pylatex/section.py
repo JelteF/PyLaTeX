@@ -39,8 +39,7 @@ class Section(Container):
         """
 
         self.title = title
-        if short is not None:
-            self.short = short
+        self.short = short
 
         if numbering is not None:
             self.numbering = numbering
