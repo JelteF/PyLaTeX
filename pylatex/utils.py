@@ -149,12 +149,12 @@ def fix_filename(path):
     return fixed_path
 
 
-def dumps_list(lst, *, escape=True, token="%\n", mapper=None, as_content=True):
+def dumps_list(l, *, escape=True, token="%\n", mapper=None, as_content=True):
     r"""Try to generate a LaTeX string of a list that can contain anything.
 
     Args
     ----
-    lst : list
+    l : list
         A list of objects to be converted into a single string.
     escape : bool
         Whether to escape special LaTeX characters in converted text.
@@ -190,7 +190,7 @@ def dumps_list(lst, *, escape=True, token="%\n", mapper=None, as_content=True):
     True
     """
     strings = (
-        _latex_item_to_string(i, escape=escape, as_content=as_content) for i in lst
+        _latex_item_to_string(i, escape=escape, as_content=as_content) for i in l
     )
 
     if mapper is not None:
