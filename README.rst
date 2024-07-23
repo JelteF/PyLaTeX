@@ -1,4 +1,4 @@
-PyLaTeX |Actions| |License| |PyPi| |Stable Docs| |Latest Docs|
+PyLaTeX |Actions| |License| |PyPi| |Latest Docs|
 ==============================================================
 
 PyLaTeX is a Python library for creating and compiling LaTeX files or
@@ -21,12 +21,8 @@ Ubuntu
 Documentation
 -------------
 
-There are two versions of the documentation:
-
-- The one generated for the `last stable release
+- For more details on how to use the library take a look at `the documentation
   <https://jeltef.github.io/PyLaTeX/current/>`__.
-- The one based on the `latest git version
-  <https://jeltef.github.io/PyLaTeX/latest/>`__.
 
 Contributing
 ------------
@@ -62,6 +58,3 @@ license <https://github.com/JelteF/PyLaTeX/blob/master/LICENSE>`__
    
 .. |Latest Docs| image:: https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat
    :target: https://jeltef.github.io/PyLaTeX/latest/
-   
-.. |Stable Docs| image:: https://img.shields.io/badge/docs-stable-brightgreen.svg?style=flat
-   :target: https://jeltef.github.io/PyLaTeX/current/
