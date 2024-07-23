@@ -2,9 +2,10 @@
 
 import os
 
+import matplotlib.pyplot as plt
+
 from pylatex import Document, Section
 from pylatex.figure import Figure
-import matplotlib.pyplot as plt
 
 
 def test_add_image():
