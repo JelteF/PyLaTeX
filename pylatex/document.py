@@ -34,6 +34,47 @@ class Document(Environment):
     For instance, if you need to use ``\maketitle`` you can add the title,
     author and date commands to the preamble to make it work.
 
+    Example
+    -------
+    >>> import pylatex
+    >>> import pathlib
+    >>> import tempfile
+    >>> # Create a place where we can write our PDF to disk
+    >>> temp_output_path = pathlib.Path(tempfile.mkdtemp())
+    >>> temp_output_path.mkdir(exist_ok=True)
+    >>> document_fpath = temp_output_path / 'my_document.pdf'
+    >>> # The Document class is the main point of interaction.
+    >>> doc = pylatex.Document(
+    >>>     document_fpath.with_suffix(''),  # give the output file path without the .pdf
+    >>>     inputenc=None,
+    >>>     page_numbers=False,
+    >>>     indent=False,
+    >>>     fontenc=None,
+    >>>     lmodern=True,
+    >>>     textcomp=False,
+    >>>     documentclass='article',
+    >>>     geometry_options='paperheight=0.4in,paperwidth=1in,margin=0.1in',
+    >>> )
+    >>> # Append content to the document, which can be plain text, or
+    >>> # object from pylatex. For now lets just say hello!
+    >>> doc.append('Hello World')
+    >>> # Inspect the generated latex
+    >>> print(doc.dumps())
+    \documentclass{article}%
+    \usepackage{lmodern}%
+    \usepackage{parskip}%
+    \usepackage{geometry}%
+    \geometry{paperheight=0.4in,paperwidth=1in,margin=0.1in}%
+    %
+    %
+    %
+    \begin{document}%
+    \pagestyle{empty}%
+    \normalsize%
+    Hello World%
+    \end{document}
+    >>> # Generate and the PDF in document_fpath
+    >>> doc.generate_pdf()
     """
 
     def __init__(

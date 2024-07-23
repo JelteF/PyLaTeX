@@ -5,9 +5,12 @@ This module implements LaTeX base classes that can be subclassed.
 ..  :copyright: (c) 2014 by Jelte Fennema.
     :license: MIT, see License for more details.
 """
+from __future__ import annotations
 
 from collections import UserList
+from collections.abc import Generator
 from contextlib import contextmanager
+from typing import TypeVar
 
 from pylatex.utils import dumps_list
 
@@ -95,7 +98,7 @@ class Container(LatexObject, UserList):
         return super().dumps_packages()
 
     @contextmanager
-    def create(self, child):
+    def create(self, child: T) -> Generator[T, None, None]:
         """Add a LaTeX object to current container, context-manager style.
 
         Args
@@ -111,6 +114,9 @@ class Container(LatexObject, UserList):
 
         self.data = prev_data
         self.append(child)
+
+
+T = TypeVar("T", bound=Container)
 
 
 class Environment(Container):
