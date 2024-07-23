@@ -8,9 +8,9 @@ This module implements LaTeX base classes that can be subclassed.
 from __future__ import annotations
 
 from collections import UserList
+from collections.abc import Generator
 from contextlib import contextmanager
 from typing import TypeVar
-from collections.abc import Generator
 
 from pylatex.utils import dumps_list
 
