@@ -107,6 +107,7 @@ class Version2(Version1):
     microtype = True
     row_height = 1.3
 
+
 #: The default configuration in the nxt major release. Currently the same as
 #: `Version2`.
 NextMajor = Version2

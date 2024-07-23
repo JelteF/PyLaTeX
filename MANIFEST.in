@@ -2,3 +2,4 @@ include *.md
 recursive-include pylatex *.py
 recursive-include python2_source/pylatex *.py
 include versioneer.py
+include examples/kitten.jpg

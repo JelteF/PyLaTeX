@@ -8,7 +8,8 @@ This example shows the functionality of the Tabu and LongTabu element.
 
 # begin-doc-include
 from random import randint
-from pylatex import Document, LongTabu, Tabu, Center
+
+from pylatex import Center, Document, LongTabu, Tabu
 from pylatex.utils import bold
 
 
@@ -18,7 +19,7 @@ def genenerate_tabus():
         "margin": "1.5in",
         "headheight": "20pt",
         "headsep": "10pt",
-        "includeheadfoot": True
+        "includeheadfoot": True,
     }
     doc = Document(page_numbers=True, geometry_options=geometry_options)
 
@@ -30,8 +31,7 @@ def genenerate_tabus():
         data_table.add_hline()
         data_table.add_empty_row()
         data_table.end_table_header()
-        data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total",
-                            "IntR"])
+        data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"])
         row = ["PA", "9", "$100", "%10", "$1000", "Test"]
         for i in range(40):
             data_table.add_row(row)
@@ -55,5 +55,6 @@ def genenerate_tabus():
                 data_table.add_row(row)
 
     doc.generate_pdf("tabus", clean_tex=False)
+
 
 genenerate_tabus()

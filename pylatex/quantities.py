@@ -18,34 +18,33 @@ from .base_classes import Command
 from .package import Package
 from .utils import NoEscape, escape_latex
 
-
 # Translations for names used in the quantities package to ones used by SIunitx
 UNIT_NAME_TRANSLATIONS = {
-    'Celsius': 'celsius',
-    'revolutions_per_minute': 'rpm',
-    'v': 'volt',
+    "Celsius": "celsius",
+    "revolutions_per_minute": "rpm",
+    "v": "volt",
 }
 
 
 def _dimensionality_to_siunitx(dim):
     import quantities as pq
 
-    string = ''
+    string = ""
     items = dim.items()
     for unit, power in sorted(items, key=itemgetter(1), reverse=True):
         if power < 0:
-            substring = r'\per'
+            substring = r"\per"
             power = -power
         elif power == 0:
             continue
         else:
-            substring = ''
+            substring = ""
 
-        prefixes = [x for x in dir(pq.prefixes) if not x.startswith('_')]
+        prefixes = [x for x in dir(pq.prefixes) if not x.startswith("_")]
         for prefix in prefixes:
             # Split unitname into prefix and actual name if possible
             if unit.name.startswith(prefix):
-                substring += '\\' + prefix
+                substring += "\\" + prefix
                 name = unit.name[len(prefix)]
                 break
         else:
@@ -58,10 +57,10 @@ def _dimensionality_to_siunitx(dim):
         except KeyError:
             pass
 
-        substring += '\\' + name
+        substring += "\\" + name
 
         if power > 1:
-            substring += r'\tothe{' + str(power) + '}'
+            substring += r"\tothe{" + str(power) + "}"
         string += substring
     return NoEscape(string)
 
@@ -70,8 +69,8 @@ class Quantity(Command):
     """A class representing quantities."""
 
     packages = [
-        Package('siunitx', options=[NoEscape('separate-uncertainty=true')]),
-        NoEscape('\\DeclareSIUnit\\rpm{rpm}')
+        Package("siunitx", options=[NoEscape("separate-uncertainty=true")]),
+        NoEscape("\\DeclareSIUnit\\rpm{rpm}"),
     ]
 
     def __init__(self, quantity, *, options=None, format_cb=None):
@@ -92,20 +91,20 @@ class Quantity(Command):
         >>> speed = 3.14159265 * pq.meter / pq.second
         >>> Quantity(speed, options={'round-precision': 3,
         ...                          'round-mode': 'figures'}).dumps()
-        '\\SI[round-mode=figures,round-precision=3]{3.14159265}{\meter\per\second}'
+        '\\SI[round-precision=3,round-mode=figures]{3.14159265}{\\meter\\per\\second}'
 
         Uncertainties are also handled:
 
         >>> length = pq.UncertainQuantity(16.0, pq.meter, 0.3)
         >>> width = pq.UncertainQuantity(16.0, pq.meter, 0.4)
         >>> Quantity(length*width).dumps()
-        '\\SI{256.0 +- 0.5}{\meter\tothe{2}}
+        '\\SI{256.0 +- 8.0}{\\meter\\tothe{2}}'
 
         Ordinary numbers are also supported:
 
         >>> Avogadro_constant = 6.022140857e23
         >>> Quantity(Avogadro_constant, options={'round-precision': 3}).dumps()
-        '\\num[round-precision=3]{6.022e23}'
+        '\\num[round-precision=3]{6.022140857e+23}'
 
         """
         import numpy as np
@@ -124,19 +123,21 @@ class Quantity(Command):
                 return format_cb(val)
 
         if isinstance(quantity, pq.UncertainQuantity):
-            magnitude_str = '{} +- {}'.format(
-                _format(quantity.magnitude),
-                _format(quantity.uncertainty.magnitude))
+            magnitude_str = "{} +- {}".format(
+                _format(quantity.magnitude), _format(quantity.uncertainty.magnitude)
+            )
         elif isinstance(quantity, pq.Quantity):
             magnitude_str = _format(quantity.magnitude)
 
         if isinstance(quantity, (pq.UncertainQuantity, pq.Quantity)):
             unit_str = _dimensionality_to_siunitx(quantity.dimensionality)
-            super().__init__(command='SI', arguments=(magnitude_str, unit_str),
-                             options=options)
+            super().__init__(
+                command="SI", arguments=(magnitude_str, unit_str), options=options
+            )
         else:
-            super().__init__(command='num', arguments=_format(quantity),
-                             options=options)
+            super().__init__(
+                command="num", arguments=_format(quantity), options=options
+            )
 
         self.arguments._escape = False  # dash in e.g. \num{3 +- 2}
         if self.options is not None:

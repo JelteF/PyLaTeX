@@ -8,9 +8,10 @@ These lists are specifically enumerate, itemize and description.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment, Command, Options
-from .package import Package
 from pylatex.utils import NoEscape
+
+from .base_classes import Command, Environment, Options
+from .package import Package
 
 
 class List(Environment):
@@ -28,7 +29,7 @@ class List(Environment):
         s: str or `~.LatexObject`
             The item itself.
         """
-        self.append(Command('item'))
+        self.append(Command("item"))
         self.append(s)
 
 
@@ -58,8 +59,7 @@ class Enumerate(List):
                 options = Options(options)
             else:
                 options = Options()
-            options._positional_args.append(NoEscape('label=' +
-                                                     enumeration_symbol))
+            options._positional_args.append(NoEscape("label=" + enumeration_symbol))
 
         super().__init__(options=options, **kwargs)
 
@@ -81,5 +81,5 @@ class Description(List):
         s: str or `~.LatexObject`
             The item itself.
         """
-        self.append(Command('item', options=label))
+        self.append(Command("item", options=label))
         self.append(s)

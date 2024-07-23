@@ -12,10 +12,10 @@ from .base_classes import CommandBase
 class Package(CommandBase):
     """A class that represents a package."""
 
-    _latex_name = 'usepackage'
+    _latex_name = "usepackage"
 
     _repr_attributes_mapping = {
-        'name': 'arguments',
+        "name": "arguments",
     }
 
     def __init__(self, name, options=None):

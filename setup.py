@@ -1,13 +1,15 @@
 try:
     from setuptools import setup
-    from setuptools.command.install import install
     from setuptools.command.egg_info import egg_info
+    from setuptools.command.install import install
 except ImportError:
     from distutils.core import setup
-import sys
+
+import errno
 import os
 import subprocess
-import errno
+import sys
+
 import versioneer
 
 cmdclass = versioneer.get_cmdclass()
@@ -21,39 +23,34 @@ if sys.version_info[:2] <= (2, 6):
     )
 
 if sys.version_info[:2] <= (3, 5):
-    dependencies = ['ordered-set<4.0.0']
+    dependencies = ["ordered-set<4.0.0"]
 else:
-    dependencies = ['ordered-set']
+    dependencies = ["ordered-set"]
 
 extras = {
-    'docs': ['sphinx'],
-    'matrices': ['numpy'],
-    'matplotlib': ['matplotlib'],
-    'quantities': ['quantities', 'numpy'],
-    'testing': ['flake8<3.0.0', 'pep8-naming==0.8.2',
-                'flake8_docstrings==1.3.0', 'pycodestyle==2.0.0',
-                'pydocstyle==3.0.0', 'pyflakes==1.2.3', 'pytest>=4.6',
-                'flake8-putty',
-                'coverage', 'pytest-cov'],
-    'packaging': ['twine'],
-    'convert_to_py2': ['3to2', 'future>=0.15.2'],
+    "docs": ["sphinx", "jinja2<3.0", "MarkupSafe==2.0.1", "alabaster<0.7.12"],
+    "matrices": ["numpy"],
+    "matplotlib": ["matplotlib"],
+    "quantities": ["quantities", "numpy"],
+    "testing": ["pytest>=4.6", "coverage", "pytest-cov", "black", "isort", "xdoctest"],
+    "packaging": ["twine"],
 }
 
 if sys.version_info[0] == 3:
-    source_dir = '.'
+    source_dir = "."
     if sys.version_info < (3, 4):
-        del extras['docs']
-        extras['matplotlib'] = ['matplotlib<2.0.0']
-        extras['matrices'] = ['numpy<1.12.0']
-        extras['quantities'][1] = 'numpy<1.12.0'
+        del extras["docs"]
+        extras["matplotlib"] = ["matplotlib<2.0.0"]
+        extras["matrices"] = ["numpy<1.12.0"]
+        extras["quantities"][1] = "numpy<1.12.0"
 else:
-    source_dir = 'python2_source'
-    dependencies.append('future>=0.15.2')
+    source_dir = "python2_source"
+    dependencies.append("future>=0.15.2")
 
 PY2_CONVERTED = False
 
 
-extras['all'] = list(set([req for reqs in extras.values() for req in reqs]))
+extras["all"] = list(set([req for reqs in extras.values() for req in reqs]))
 
 
 # Automatically convert the source from Python 3 to Python 2 if we need to.
@@ -71,66 +68,70 @@ class CustomEggInfo(egg_info):
 
 def convert_to_py2():
     global PY2_CONVERTED
-    if source_dir == 'python2_source' and not PY2_CONVERTED:
-        pylatex_exists = os.path.exists(os.path.join(source_dir, 'pylatex'))
+    if source_dir == "python2_source" and not PY2_CONVERTED:
+        pylatex_exists = os.path.exists(os.path.join(source_dir, "pylatex"))
 
-        if '+' not in version and pylatex_exists:
+        if "+" not in version and pylatex_exists:
             # This is an official release, just use the pre existing existing
             # python2_source dir
             return
 
         try:
             # Check if 3to2 exists
-            subprocess.check_output(['3to2', '--help'])
-            subprocess.check_output(['pasteurize', '--help'])
+            subprocess.check_output(["3to2", "--help"])
+            subprocess.check_output(["pasteurize", "--help"])
         except OSError as e:
             if e.errno != errno.ENOENT:
                 raise
             if not pylatex_exists:
-                raise ImportError('3to2 and future need to be installed '
-                                  'before installing when PyLaTeX for Python '
-                                  '2.7 when it is not installed using one of '
-                                  'the pip releases.')
+                raise ImportError(
+                    "3to2 and future need to be installed "
+                    "before installing when PyLaTeX for Python "
+                    "2.7 when it is not installed using one of "
+                    "the pip releases."
+                )
         else:
-            converter = os.path.dirname(os.path.realpath(__file__)) \
-                + '/convert_to_py2.sh'
+            converter = (
+                os.path.dirname(os.path.realpath(__file__)) + "/convert_to_py2.sh"
+            )
             subprocess.check_call([converter])
             PY2_CONVERTED = True
 
 
-cmdclass['install'] = CustomInstall
-cmdclass['egg_info'] = CustomEggInfo
+cmdclass["install"] = CustomInstall
+cmdclass["egg_info"] = CustomEggInfo
 
-setup(name='PyLaTeX',
-      version=version,
-      author='Jelte Fennema',
-      author_email='pylatex@jeltef.nl',
-      description='A Python library for creating LaTeX files and snippets',
-      long_description=open('README.rst').read(),
-      package_dir={'': source_dir},
-      packages=['pylatex', 'pylatex.base_classes'],
-      url='https://github.com/JelteF/PyLaTeX',
-      license='MIT',
-      install_requires=dependencies,
-      extras_require=extras,
-      cmdclass=cmdclass,
-      classifiers=[
-          'Development Status :: 5 - Production/Stable',
-          'Environment :: Console',
-          'Intended Audience :: Developers',
-          'Intended Audience :: Education',
-          'Intended Audience :: End Users/Desktop',
-          'Intended Audience :: Science/Research',
-          'License :: OSI Approved :: MIT License',
-          'Operating System :: POSIX :: Linux',
-          'Programming Language :: Python',
-          'Programming Language :: Python :: 2',
-          'Programming Language :: Python :: 2.7',
-          'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.3',
-          'Programming Language :: Python :: 3.4',
-          'Programming Language :: Python :: 3.5',
-          'Topic :: Software Development :: Code Generators',
-          'Topic :: Text Processing :: Markup :: LaTeX',
-      ]
-      )
+setup(
+    name="PyLaTeX",
+    version=version,
+    author="Jelte Fennema",
+    author_email="pylatex@jeltef.nl",
+    description="A Python library for creating LaTeX files and snippets",
+    long_description=open("README.rst").read(),
+    package_dir={"": source_dir},
+    packages=["pylatex", "pylatex.base_classes"],
+    url="https://github.com/JelteF/PyLaTeX",
+    license="MIT",
+    install_requires=dependencies,
+    extras_require=extras,
+    cmdclass=cmdclass,
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Console",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Education",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: POSIX :: Linux",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Topic :: Software Development :: Code Generators",
+        "Topic :: Text Processing :: Markup :: LaTeX",
+    ],
+)

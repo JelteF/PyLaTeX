@@ -1,0 +1,45 @@
+name: Python package
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          # Disable cache so that issues with new dependencies are found more easily
+          # cache: 'pip'
+          # cache-dependency-path: |
+          #   dev_requirements.txt
+          #   setup.py
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install texlive-latex-extra texlive-pictures texlive-science texlive-fonts-recommended lmodern ghostscript
+          python -m pip install --upgrade pip
+          pip install -r dev_requirements.txt --upgrade
+          sudo sed '/pattern=".*PDF.*"/d' -i /etc/ImageMagick*/policy.xml
+      - name: Run tests
+        run: |
+          ./testall.sh

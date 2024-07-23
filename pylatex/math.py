@@ -16,7 +16,7 @@ class Alignat(Environment):
     #: Alignat environment cause compile errors when they do not contain items.
     #: This is why it is omitted fully if they are empty.
     omit_if_empty = True
-    packages = [Package('amsmath')]
+    packages = [Package("amsmath")]
 
     def __init__(self, aligns=2, numbering=True, escape=None):
         """
@@ -40,9 +40,9 @@ class Alignat(Environment):
 class Math(Container):
     """A class representing a math environment."""
 
-    packages = [Package('amsmath')]
+    packages = [Package("amsmath")]
 
-    content_separator = ' '
+    content_separator = " "
 
     def __init__(self, *, inline=False, data=None, escape=None):
         r"""
@@ -69,15 +69,15 @@ class Math(Container):
 
         """
         if self.inline:
-            return '$' + self.dumps_content() + '$'
-        return '\\[%\n' + self.dumps_content() + '%\n\\]'
+            return "$" + self.dumps_content() + "$"
+        return "\\[%\n" + self.dumps_content() + "%\n\\]"
 
 
 class VectorName(Command):
     """A class representing a named vector."""
 
     _repr_attributes_mapping = {
-        'name': 'arguments',
+        "name": "arguments",
     }
 
     def __init__(self, name):
@@ -88,19 +88,19 @@ class VectorName(Command):
             Name of the vector
         """
 
-        super().__init__('mathbf', arguments=name)
+        super().__init__("mathbf", arguments=name)
 
 
 class Matrix(Environment):
     """A class representing a matrix."""
 
-    packages = [Package('amsmath')]
+    packages = [Package("amsmath")]
 
     _repr_attributes_mapping = {
-        'alignment': 'arguments',
+        "alignment": "arguments",
     }
 
-    def __init__(self, matrix, *, mtype='p', alignment=None, replace_zeros=False):
+    def __init__(self, matrix, *, mtype="p", alignment=None, replace_zeros=False):
         r"""
         Args
         ----
@@ -125,10 +125,9 @@ class Matrix(Environment):
 
         self.matrix = matrix
 
-        self.latex_name = mtype + 'matrix'
+        self.latex_name = mtype + "matrix"
         self._mtype = mtype
         if alignment is not None:
-            self.latex_name += '*'
         self._replace_zeros = replace_zeros
 
         super().__init__(arguments=alignment)
@@ -143,7 +142,7 @@ class Matrix(Environment):
 
         import numpy as np
 
-        string = ''
+        string = ""
         shape = self.matrix.shape
 
         for (y, x), value in np.ndenumerate(self.matrix):
@@ -152,7 +151,7 @@ class Matrix(Environment):
             string += str(value) if not (value == 0 and self._replace_zeros) else '\cdot'
 
             if x == shape[1] - 1 and y != shape[0] - 1:
-                string += r'\\' + '%\n'
+                string += r"\\" + "%\n"
 
         super().dumps_content()
 

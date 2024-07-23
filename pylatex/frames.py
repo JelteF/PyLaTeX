@@ -6,14 +6,14 @@ This module implements the classes that deal with adding frames.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import Environment, ContainerCommand
+from .base_classes import ContainerCommand, Environment
 from .package import Package
 
 
 class MdFramed(Environment):
     """A class that defines an mdframed environment."""
 
-    packages = [Package('mdframed')]
+    packages = [Package("mdframed")]
 
 
 class FBox(ContainerCommand):

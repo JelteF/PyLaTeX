@@ -1,0 +1,13 @@
+[tool.isort]
+profile = 'black'
+skip = ['.bzr', '.direnv', '.eggs', '.git', '.hg', '.mypy_cache', '.nox', '.pants.d', '.svn', '.tox', '.venv', '__pypackages__', '_build', 'buck-out', 'build', 'dist', 'node_modules', 'venv', 'versioneer.py', 'src']
+
+[tool.black]
+extend-exclude = 'versioneer\.py|src'
+
+[tool.pytest.ini_options]
+addopts = "--xdoctest --ignore-glob=setup.py --ignore-glob=docs"
+norecursedirs = ".git __pycache__ docs"
+filterwarnings = [
+    "default",
+]

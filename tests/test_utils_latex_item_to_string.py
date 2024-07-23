@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-from pylatex.utils import _latex_item_to_string
 from pylatex.base_classes import LatexObject
+from pylatex.utils import _latex_item_to_string
 
-TEST_STR = 'hello'
+TEST_STR = "hello"
 
 
 def test_string():
-    name = 'abc'
+    name = "abc"
     assert _latex_item_to_string(name) == name
 
 
