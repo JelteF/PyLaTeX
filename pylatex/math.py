@@ -128,6 +128,7 @@ class Matrix(Environment):
         self.latex_name = mtype + "matrix"
         self._mtype = mtype
         if alignment is not None:
+            self.latex_name += "*"
         self._replace_zeros = replace_zeros
 
         super().__init__(arguments=alignment)
@@ -147,8 +148,10 @@ class Matrix(Environment):
 
         for (y, x), value in np.ndenumerate(self.matrix):
             if x:
-                string += '&'
-            string += str(value) if not (value == 0 and self._replace_zeros) else '\cdot'
+                string += "&"
+            string += (
+                str(value) if not (value == 0 and self._replace_zeros) else "\cdot"
+            )
 
             if x == shape[1] - 1 and y != shape[0] - 1:
                 string += r"\\" + "%\n"
