@@ -91,20 +91,20 @@ class Quantity(Command):
         >>> speed = 3.14159265 * pq.meter / pq.second
         >>> Quantity(speed, options={'round-precision': 3,
         ...                          'round-mode': 'figures'}).dumps()
-        '\\SI[round-mode=figures,round-precision=3]{3.14159265}{\meter\per\second}'
+        '\\SI[round-precision=3,round-mode=figures]{3.14159265}{\\meter\\per\\second}'
 
         Uncertainties are also handled:
 
         >>> length = pq.UncertainQuantity(16.0, pq.meter, 0.3)
         >>> width = pq.UncertainQuantity(16.0, pq.meter, 0.4)
         >>> Quantity(length*width).dumps()
-        '\\SI{256.0 +- 0.5}{\meter\tothe{2}}
+        '\\SI{256.0 +- 8.0}{\\meter\\tothe{2}}'
 
         Ordinary numbers are also supported:
 
         >>> Avogadro_constant = 6.022140857e23
         >>> Quantity(Avogadro_constant, options={'round-precision': 3}).dumps()
-        '\\num[round-precision=3]{6.022e23}'
+        '\\num[round-precision=3]{6.022140857e+23}'
 
         """
         import numpy as np
