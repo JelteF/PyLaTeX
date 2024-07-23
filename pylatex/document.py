@@ -34,10 +34,6 @@ class Document(Environment):
     For instance, if you need to use ``\maketitle`` you can add the title,
     author and date commands to the preamble to make it work.
 
-    Demo
-    ----
-    xdoctest -m pylatex.document Document --show
-
     Example
     -------
     >>> import pylatex
@@ -77,11 +73,8 @@ class Document(Environment):
     \normalsize%
     Hello World%
     \end{document}
-    >>> # xdoctest: +REQUIRES(--show)
-    >>> # Generate and show the PDF if requested
+    >>> # Generate and the PDF in document_fpath
     >>> doc.generate_pdf()
-    >>> import xdev
-    >>> xdev.startfile(document_fpath)
     """
 
     def __init__(
