@@ -69,7 +69,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! $python "$(command -v pytest)" --cov=pylatex tests/*; then
+if ! $python "$(command -v pytest)" --xdoctest --cov=pylatex pylatex tests/*; then
     exit 1
 fi
 mv .coverage{,.tests}
@@ -92,6 +92,7 @@ done
 coverage combine
 
 if [ "$clean" = 'TRUE' ]; then
+    rm -rf -- tests/__pycache__
     rm -- *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk > /dev/null
 fi
 
