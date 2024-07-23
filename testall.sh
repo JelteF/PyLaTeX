@@ -69,7 +69,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! $python "$(command -v pytest)" --cov=pylatex tests/*; then
+if ! $python "$(command -v pytest)" --xdoctest --cov=pylatex pylatex tests/*.py; then
     exit 1
 fi
 mv .coverage{,.tests}

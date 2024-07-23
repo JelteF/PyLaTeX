@@ -32,7 +32,7 @@ extras = {
     "matrices": ["numpy"],
     "matplotlib": ["matplotlib"],
     "quantities": ["quantities", "numpy"],
-    "testing": ["pytest>=4.6", "coverage", "pytest-cov", "black", "isort"],
+    "testing": ["pytest>=4.6", "coverage", "pytest-cov", "black", "isort", "xdoctest"],
     "packaging": ["twine"],
 }
 

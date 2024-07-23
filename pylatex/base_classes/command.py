@@ -170,13 +170,13 @@ class Command(CommandBase):
         >>>         options=Options('12pt', 'a4paper', 'twoside'),
         >>>         arguments='article').dumps()
         '\\documentclass[12pt,a4paper,twoside]{article}'
-        >>> Command('com')
+        >>> Command('com').dumps()
         '\\com'
-        >>> Command('com', 'first')
+        >>> Command('com', 'first').dumps()
         '\\com{first}'
-        >>> Command('com', 'first', 'option')
+        >>> Command('com', 'first', 'option').dumps()
         '\\com[option]{first}'
-        >>> Command('com', 'first', 'option', 'second')
+        >>> Command('com', 'first', 'option', extra_arguments='second').dumps()
         '\\com{first}[option]{second}'
 
         """
@@ -326,10 +326,10 @@ class Options(Parameters):
 
     Examples
     --------
-    >>> args = Options('a', 'b', 'c').dumps()
+    >>> Options('a', 'b', 'c').dumps()
     '[a,b,c]'
     >>> Options('clip', width=50, height='25em', trim='1 2 3 4').dumps()
-    '[clip,trim=1 2 3 4,width=50,height=25em]'
+    '[clip,width=50,height=25em,trim=1 2 3 4]'
 
     """
 
@@ -367,9 +367,9 @@ class Arguments(Parameters):
 
     Examples
     --------
-    >>> args = Arguments('a', 'b', 'c').dumps()
+    >>> Arguments('a', 'b', 'c').dumps()
     '{a}{b}{c}'
-    >>> args = Arguments('clip', width=50, height='25em').dumps()
+    >>> args = Arguments('clip', width=50, height='25em')
     >>> args.dumps()
     '{clip}{width=50}{height=25em}'
 

@@ -79,10 +79,11 @@ def escape_latex(s):
     Examples
     --------
     >>> escape_latex("Total cost: $30,000")
-    'Total cost: \$30,000'
+    NoEscape(Total cost: \$30,000)
     >>> escape_latex("Issue #5 occurs in 30% of all cases")
-    'Issue \#5 occurs in 30\% of all cases'
+    NoEscape(Issue \#5 occurs in 30\% of all cases)
     >>> print(escape_latex("Total cost: $30,000"))
+    Total cost: \$30,000
 
     References
     ----------
@@ -126,7 +127,8 @@ def fix_filename(path):
     >>> fix_filename("/etc/local/foo.bar.baz/document.pdf")
     '/etc/local/foo.bar.baz/document.pdf'
     >>> fix_filename("/etc/local/foo.bar.baz/foo~1/document.pdf")
-    '\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}'
+    '\\detokenize{/etc/local/foo.bar.baz/foo~1/document.pdf}'
+
     """
 
     path_parts = path.split("/" if os.name == "posix" else "\\")
@@ -174,16 +176,17 @@ def dumps_list(l, *, escape=True, token="%\n", mapper=None, as_content=True):
     Examples
     --------
     >>> dumps_list([r"\textbf{Test}", r"\nth{4}"])
-    '\\textbf{Test}%\n\\nth{4}'
+    NoEscape(\textbackslash{}textbf\{Test\}%
+    \textbackslash{}nth\{4\})
     >>> print(dumps_list([r"\textbf{Test}", r"\nth{4}"]))
-    \textbf{Test}
-    \nth{4}
+    \textbackslash{}textbf\{Test\}%
+    \textbackslash{}nth\{4\}
     >>> print(pylatex.utils.dumps_list(["There are", 4, "lights!"]))
-    There are
-    4
+    There are%
+    4%
     lights!
     >>> print(dumps_list(["$100%", "True"], escape=True))
-    \$100\%
+    \$100\%%
     True
     """
     strings = (
@@ -254,7 +257,7 @@ def bold(s, *, escape=True):
     Examples
     --------
     >>> bold("hello")
-    '\\textbf{hello}'
+    NoEscape(\textbf{hello})
     >>> print(bold("hello"))
     \textbf{hello}
     """
@@ -285,7 +288,7 @@ def italic(s, *, escape=True):
     Examples
     --------
     >>> italic("hello")
-    '\\textit{hello}'
+    NoEscape(\textit{hello})
     >>> print(italic("hello"))
     \textit{hello}
     """
@@ -315,10 +318,10 @@ def verbatim(s, *, delimiter="|"):
     Examples
     --------
     >>> verbatim(r"\renewcommand{}")
-    '\\verb|\\renewcommand{}|'
+    NoEscape(\verb|\renewcommand{}|)
     >>> print(verbatim(r"\renewcommand{}"))
     \verb|\renewcommand{}|
-    >>> print(verbatim('pi|pe', '!'))
+    >>> print(verbatim('pi|pe', delimiter='!'))
     \verb!pi|pe!
     """
 
@@ -335,8 +338,8 @@ def make_temp_dir():
 
     Examples
     --------
-    >>> make_temp_dir()
-    '/var/folders/g9/ct5f3_r52c37rbls5_9nc_qc0000gn/T/pylatex'
+    >>> make_temp_dir()  # xdoctest: +IGNORE_WANT
+    '/tmp/pylatex-tmp.y_b7xp21'
     """
 
     global _tmp_path
