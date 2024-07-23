@@ -100,7 +100,7 @@ class Matrix(Environment):
         "alignment": "arguments",
     }
 
-    def __init__(self, matrix, *, mtype="p", alignment=None):
+    def __init__(self, matrix, *, mtype="p", alignment=None, replace_zeros=False):
         r"""
         Args
         ----
@@ -113,6 +113,8 @@ class Matrix(Environment):
         alignment: str
             How to align the content of the cells in the matrix. This is ``c``
             by default.
+        replace_zeros: bool
+            Should zeros in the matrix be replaced with a cdot.
 
         References
         ----------
@@ -127,6 +129,7 @@ class Matrix(Environment):
         self._mtype = mtype
         if alignment is not None:
             self.latex_name += "*"
+        self._replace_zeros = replace_zeros
 
         super().__init__(arguments=alignment)
 
@@ -146,7 +149,9 @@ class Matrix(Environment):
         for (y, x), value in np.ndenumerate(self.matrix):
             if x:
                 string += "&"
-            string += str(value)
+            string += (
+                str(value) if not (value == 0 and self._replace_zeros) else "\cdot"
+            )
 
             if x == shape[1] - 1 and y != shape[0] - 1:
                 string += r"\\" + "%\n"
