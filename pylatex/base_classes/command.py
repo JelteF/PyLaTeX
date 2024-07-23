@@ -11,8 +11,8 @@ to it.
 
 from reprlib import recursive_repr
 
-from .latex_object import LatexObject
 from ..utils import dumps_list
+from .latex_object import LatexObject
 
 
 class CommandBase(LatexObject):
@@ -23,8 +23,7 @@ class CommandBase(LatexObject):
 
     """
 
-    def __init__(self, arguments=None, options=None, *,
-                 extra_arguments=None):
+    def __init__(self, arguments=None, options=None, *, extra_arguments=None):
         r"""
         Args
         ----
@@ -40,17 +39,17 @@ class CommandBase(LatexObject):
 
         """
 
-        self._set_parameters(arguments, 'arguments')
-        self._set_parameters(options, 'options')
+        self._set_parameters(arguments, "arguments")
+        self._set_parameters(options, "options")
         if extra_arguments is None:
             self.extra_arguments = None
         else:
-            self._set_parameters(extra_arguments, 'extra_arguments')
+            self._set_parameters(extra_arguments, "extra_arguments")
 
         super().__init__()
 
     def _set_parameters(self, parameters, argument_type):
-        parameter_cls = Options if argument_type == 'options' else Arguments
+        parameter_cls = Options if argument_type == "options" else Arguments
 
         if parameters is None:
             parameters = parameter_cls()
@@ -70,8 +69,7 @@ class CommandBase(LatexObject):
         tuple
         """
 
-        return (self.latex_name, self.arguments, self.options,
-                self.extra_arguments)
+        return (self.latex_name, self.arguments, self.options, self.extra_arguments)
 
     def __eq__(self, other):
         """Compare two commands.
@@ -117,15 +115,18 @@ class CommandBase(LatexObject):
         arguments = self.arguments.dumps()
 
         if self.extra_arguments is None:
-            return r'\{command}{options}{arguments}'\
-                .format(command=self.latex_name, options=options,
-                        arguments=arguments)
+            return r"\{command}{options}{arguments}".format(
+                command=self.latex_name, options=options, arguments=arguments
+            )
 
         extra_arguments = self.extra_arguments.dumps()
 
-        return r'\{command}{arguments}{options}{extra_arguments}'\
-            .format(command=self.latex_name, arguments=arguments,
-                    options=options, extra_arguments=extra_arguments)
+        return r"\{command}{arguments}{options}{extra_arguments}".format(
+            command=self.latex_name,
+            arguments=arguments,
+            options=options,
+            extra_arguments=extra_arguments,
+        )
 
 
 class Command(CommandBase):
@@ -135,10 +136,17 @@ class Command(CommandBase):
     is used multiple times it is better to subclass `.CommandBase`.
     """
 
-    _repr_attributes_mapping = {'command': 'latex_name'}
+    _repr_attributes_mapping = {"command": "latex_name"}
 
-    def __init__(self, command=None, arguments=None, options=None, *,
-                 extra_arguments=None, packages=None):
+    def __init__(
+        self,
+        command=None,
+        arguments=None,
+        options=None,
+        *,
+        extra_arguments=None,
+        packages=None
+    ):
         r"""
         Args
         ----
@@ -162,13 +170,13 @@ class Command(CommandBase):
         >>>         options=Options('12pt', 'a4paper', 'twoside'),
         >>>         arguments='article').dumps()
         '\\documentclass[12pt,a4paper,twoside]{article}'
-        >>> Command('com')
+        >>> Command('com').dumps()
         '\\com'
-        >>> Command('com', 'first')
+        >>> Command('com', 'first').dumps()
         '\\com{first}'
-        >>> Command('com', 'first', 'option')
+        >>> Command('com', 'first', 'option').dumps()
         '\\com[option]{first}'
-        >>> Command('com', 'first', 'option', 'second')
+        >>> Command('com', 'first', 'option', extra_arguments='second').dumps()
         '\\com{first}[option]{second}'
 
         """
@@ -207,7 +215,7 @@ class Parameters(LatexObject):
     def __repr__(self):
         args = [repr(a) for a in self._positional_args]
         args += ["%s=%r" % k_v for k_v in self._key_value_args.items()]
-        return self.__class__.__name__ + '(' + ', '.join(args) + ')'
+        return self.__class__.__name__ + "(" + ", ".join(args) + ")"
 
     def __init__(self, *args, **kwargs):
         r"""
@@ -220,10 +228,10 @@ class Parameters(LatexObject):
         """
 
         if len(args) == 1 and not isinstance(args[0], str):
-            if hasattr(args[0], 'items') and len(kwargs) == 0:
+            if hasattr(args[0], "items") and len(kwargs) == 0:
                 kwargs = args[0]  # do not just iterate over the dict keys
                 args = ()
-            elif hasattr(args[0], '__iter__'):
+            elif hasattr(args[0], "__iter__"):
                 args = args[0]
 
         self._positional_args = list(args)
@@ -281,10 +289,11 @@ class Parameters(LatexObject):
         params = self._list_args_kwargs()
 
         if len(params) <= 0:
-            return ''
+            return ""
 
-        string = prefix + dumps_list(params, escape=self.escape,
-                                     token=separator) + suffix
+        string = (
+            prefix + dumps_list(params, escape=self.escape, token=separator) + suffix
+        )
 
         return string
 
@@ -298,8 +307,9 @@ class Parameters(LatexObject):
 
         params = []
         params.extend(self._positional_args)
-        params.extend(['{k}={v}'.format(k=k, v=v) for k, v in
-                       self._key_value_args.items()])
+        params.extend(
+            ["{k}={v}".format(k=k, v=v) for k, v in self._key_value_args.items()]
+        )
 
         return params
 
@@ -316,10 +326,10 @@ class Options(Parameters):
 
     Examples
     --------
-    >>> args = Options('a', 'b', 'c').dumps()
+    >>> Options('a', 'b', 'c').dumps()
     '[a,b,c]'
     >>> Options('clip', width=50, height='25em', trim='1 2 3 4').dumps()
-    '[clip,trim=1 2 3 4,width=50,height=25em]'
+    '[clip,width=50,height=25em,trim=1 2 3 4]'
 
     """
 
@@ -333,7 +343,7 @@ class Options(Parameters):
         str
         """
 
-        return self._format_contents('[', ',', ']')
+        return self._format_contents("[", ",", "]")
 
 
 class SpecialOptions(Options):
@@ -342,7 +352,7 @@ class SpecialOptions(Options):
     def dumps(self):
         """Represent the parameters as a string in LaTex syntax."""
 
-        return self._format_contents('[', '][', ']')
+        return self._format_contents("[", "][", "]")
 
 
 class Arguments(Parameters):
@@ -357,9 +367,9 @@ class Arguments(Parameters):
 
     Examples
     --------
-    >>> args = Arguments('a', 'b', 'c').dumps()
+    >>> Arguments('a', 'b', 'c').dumps()
     '{a}{b}{c}'
-    >>> args = Arguments('clip', width=50, height='25em').dumps()
+    >>> args = Arguments('clip', width=50, height='25em')
     >>> args.dumps()
     '{clip}{width=50}{height=25em}'
 
@@ -375,7 +385,7 @@ class Arguments(Parameters):
         str
         """
 
-        return self._format_contents('{', '}{', '}')
+        return self._format_contents("{", "}{", "}")
 
 
 class SpecialArguments(Arguments):
@@ -391,4 +401,4 @@ class SpecialArguments(Arguments):
         str
         """
 
-        return self._format_contents('{', ',', '}')
+        return self._format_contents("{", ",", "}")

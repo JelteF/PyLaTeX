@@ -10,10 +10,17 @@ This example shows list functionality.
 # begin-doc-include
 # Test for list structures in PyLaTeX.
 # More info @ http://en.wikibooks.org/wiki/LaTeX/List_Structures
-from pylatex import Document, Section, Itemize, Enumerate, Description, \
-    Command, NoEscape
+from pylatex import (
+    Command,
+    Description,
+    Document,
+    Enumerate,
+    Itemize,
+    NoEscape,
+    Section,
+)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     doc = Document()
 
     # create a bulleted "itemize" list like the below:
@@ -39,8 +46,9 @@ if __name__ == '__main__':
     # \end{enumerate}
 
     with doc.create(Section('"Enumerate" list')):
-        with doc.create(Enumerate(enumeration_symbol=r"\alph*)",
-                                  options={'start': 20})) as enum:
+        with doc.create(
+            Enumerate(enumeration_symbol=r"\alph*)", options={"start": 20})
+        ) as enum:
             enum.add_item("the first item")
             enum.add_item("the second item")
             enum.add_item(NoEscape("the third etc \\ldots"))
@@ -58,4 +66,4 @@ if __name__ == '__main__':
             desc.add_item("Second", "The second item")
             desc.add_item("Third", NoEscape("The third etc \\ldots"))
 
-    doc.generate_pdf('lists', clean_tex=False)
+    doc.generate_pdf("lists", clean_tex=False)

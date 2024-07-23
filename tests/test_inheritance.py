@@ -4,7 +4,6 @@ from pylatex import Document
 
 
 class TestInheritance(unittest.TestCase):
-
     def test_latex_name(self):
         class MyDoc(Document):
             def __init__(self):

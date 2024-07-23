@@ -10,8 +10,16 @@ the page.
 """
 
 # begin-doc-include
-from pylatex import Document, MiniPage, TextBlock, MediumText, HugeText, \
-    SmallText, VerticalSpace, HorizontalSpace
+from pylatex import (
+    Document,
+    HorizontalSpace,
+    HugeText,
+    MediumText,
+    MiniPage,
+    SmallText,
+    TextBlock,
+    VerticalSpace,
+)
 from pylatex.utils import bold
 
 geometry_options = {"margin": "0.5in"}

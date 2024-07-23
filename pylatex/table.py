@@ -6,19 +6,25 @@ This module implements the class that deals with tables.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import LatexObject, Container, Command, UnsafeCommand, \
-    Float, Environment
-from .package import Package
-from .errors import TableRowSizeError, TableError
-from .utils import dumps_list, NoEscape, _is_iterable
+import re
+from collections import Counter
+
 import pylatex.config as cf
 
-from collections import Counter
-import re
-
+from .base_classes import (
+    Command,
+    Container,
+    Environment,
+    Float,
+    LatexObject,
+    UnsafeCommand,
+)
+from .errors import TableError, TableRowSizeError
+from .package import Package
+from .utils import NoEscape, _is_iterable, dumps_list
 
 # The letters used to count the table width
-COLUMN_LETTERS = {'l', 'c', 'r', 'p', 'm', 'b', 'X'}
+COLUMN_LETTERS = {"l", "c", "r", "p", "m", "b", "X"}
 
 
 def _get_table_width(table_spec):
@@ -37,10 +43,10 @@ def _get_table_width(table_spec):
     """
 
     # Remove things like {\bfseries}
-    cleaner_spec = re.sub(r'{[^}]*}', '', table_spec)
+    cleaner_spec = re.sub(r"{[^}]*}", "", table_spec)
 
     # Remove X[] in tabu environments so they dont interfere with column count
-    cleaner_spec = re.sub(r'X\[(.*?(.))\]', r'\2', cleaner_spec)
+    cleaner_spec = re.sub(r"X\[(.*?(.))\]", r"\2", cleaner_spec)
     spec_counter = Counter(cleaner_spec)
 
     return sum(spec_counter[l] for l in COLUMN_LETTERS)
@@ -50,13 +56,22 @@ class Tabular(Environment):
     """A class that represents a tabular."""
 
     _repr_attributes_mapping = {
-        'table_spec': 'arguments',
-        'pos': 'options',
+        "table_spec": "arguments",
+        "pos": "options",
     }
 
-    def __init__(self, table_spec, data=None, pos=None, *,
-                 row_height=None, col_space=None, width=None, booktabs=None,
-                 **kwargs):
+    def __init__(
+        self,
+        table_spec,
+        data=None,
+        pos=None,
+        *,
+        row_height=None,
+        col_space=None,
+        width=None,
+        booktabs=None,
+        **kwargs
+    ):
         """
         Args
         ----
@@ -95,16 +110,15 @@ class Tabular(Environment):
         self.booktabs = booktabs
 
         if self.booktabs:
-            self.packages.add(Package('booktabs'))
-            table_spec = '@{}%s@{}' % table_spec
+            self.packages.add(Package("booktabs"))
+            table_spec = "@{}%s@{}" % table_spec
 
-        self.row_height = row_height if row_height is not None else \
-            cf.active.row_height
+        self.row_height = row_height if row_height is not None else cf.active.row_height
         self.col_space = col_space
 
-        super().__init__(data=data, options=pos,
-                         arguments=NoEscape(table_spec),
-                         **kwargs)
+        super().__init__(
+            data=data, options=pos, arguments=NoEscape(table_spec), **kwargs
+        )
 
         # Parameter that determines if the xcolor package has been added.
         self.color = False
@@ -115,16 +129,16 @@ class Tabular(Environment):
         string = ""
 
         if self.row_height is not None:
-            row_height = Command('renewcommand', arguments=[
-                NoEscape(r'\arraystretch'),
-                self.row_height])
-            string += row_height.dumps() + '%\n'
+            row_height = Command(
+                "renewcommand", arguments=[NoEscape(r"\arraystretch"), self.row_height]
+            )
+            string += row_height.dumps() + "%\n"
 
         if self.col_space is not None:
-            col_space = Command('setlength', arguments=[
-                NoEscape(r'\tabcolsep'),
-                self.col_space])
-            string += col_space.dumps() + '%\n'
+            col_space = Command(
+                "setlength", arguments=[NoEscape(r"\tabcolsep"), self.col_space]
+            )
+            string += col_space.dumps() + "%\n"
 
         return string + super().dumps()
 
@@ -144,19 +158,18 @@ class Tabular(Environment):
             A LaTeX string representing the
         """
 
-        content = ''
+        content = ""
         if self.booktabs:
-            content += '\\toprule%\n'
+            content += "\\toprule%\n"
 
         content += super().dumps_content(**kwargs)
 
         if self.booktabs:
-            content += '\\bottomrule%\n'
+            content += "\\bottomrule%\n"
 
         return NoEscape(content)
 
-    def add_hline(self, start=None, end=None, *, color=None,
-                  cmidruleoption=None):
+    def add_hline(self, start=None, end=None, *, color=None, cmidruleoption=None):
         r"""Add a horizontal line to the table.
 
         Args
@@ -172,17 +185,17 @@ class Tabular(Environment):
             ``\cmidrule(x){1-3}``.
         """
         if self.booktabs:
-            hline = 'midrule'
-            cline = 'cmidrule'
+            hline = "midrule"
+            cline = "cmidrule"
             if cmidruleoption is not None:
-                cline += '(' + cmidruleoption + ')'
+                cline += "(" + cmidruleoption + ")"
         else:
-            hline = 'hline'
-            cline = 'cline'
+            hline = "hline"
+            cline = "cline"
 
         if color is not None:
             if not self.color:
-                self.packages.append(Package('xcolor', options='table'))
+                self.packages.append(Package("xcolor", options="table"))
                 self.color = True
             color_command = Command(command="arrayrulecolor", arguments=color)
             self.append(color_command)
@@ -195,16 +208,14 @@ class Tabular(Environment):
             elif end is None:
                 end = self.width
 
-            self.append(Command(cline,
-                                dumps_list([start, NoEscape('-'), end])))
+            self.append(Command(cline, dumps_list([start, NoEscape("-"), end])))
 
     def add_empty_row(self):
         """Add an empty row to the table."""
 
-        self.append(NoEscape((self.width - 1) * '&' + r'\\'))
+        self.append(NoEscape((self.width - 1) * "&" + r"\\"))
 
-    def add_row(self, *cells, color=None, escape=None, mapper=None,
-                strict=True):
+    def add_row(self, *cells, color=None, escape=None, mapper=None, strict=True):
         """Add a row of cells to the table.
 
         Args
@@ -231,7 +242,14 @@ class Tabular(Environment):
             escape = self.escape
 
         # Propagate packages used in cells
-        for c in cells:
+        def flatten(x):
+            if _is_iterable(x):
+                return [a for i in x for a in flatten(i)]
+            else:
+                return [x]
+
+        flat_list = [c for c in cells] + flatten(cells)
+        for c in flat_list:
             if isinstance(c, LatexObject):
                 for p in c.packages:
                     self.packages.add(p)
@@ -246,28 +264,30 @@ class Tabular(Environment):
                 cell_count += 1
 
         if strict and cell_count != self.width:
-            msg = "Number of cells added to table ({}) " \
+            msg = (
+                "Number of cells added to table ({}) "
                 "did not match table width ({})".format(cell_count, self.width)
+            )
             raise TableRowSizeError(msg)
 
         if color is not None:
             if not self.color:
-                self.packages.append(Package("xcolor", options='table'))
+                self.packages.append(Package("xcolor", options="table"))
                 self.color = True
             color_command = Command(command="rowcolor", arguments=color)
             self.append(color_command)
 
-        self.append(dumps_list(cells, escape=escape, token='&',
-                    mapper=mapper) + NoEscape(r'\\'))
+        self.append(
+            dumps_list(cells, escape=escape, token="&", mapper=mapper) + NoEscape(r"\\")
+        )
 
 
 class Tabularx(Tabular):
     """A class that represents a tabularx environment."""
 
-    packages = [Package('tabularx')]
+    packages = [Package("tabularx")]
 
-    def __init__(self, *args, width_argument=NoEscape(r'\textwidth'),
-                 **kwargs):
+    def __init__(self, *args, width_argument=NoEscape(r"\textwidth"), **kwargs):
         """
         Args
         ----
@@ -283,7 +303,7 @@ class MultiColumn(Container):
 
     # TODO: Make this subclass of ContainerCommand
 
-    def __init__(self, size, *, align='c', color=None, data=None):
+    def __init__(self, size, *, align="c", color=None, data=None):
         """
         Args
         ----
@@ -304,7 +324,7 @@ class MultiColumn(Container):
 
         # Add a cell color to the MultiColumn
         if color is not None:
-            self.packages.append(Package('xcolor', options='table'))
+            self.packages.append(Package("xcolor", options="table"))
             color_command = Command("cellcolor", arguments=color)
             self.append(color_command)
 
@@ -327,9 +347,9 @@ class MultiRow(Container):
 
     # TODO: Make this subclass CommandBase and Container
 
-    packages = [Package('multirow')]
+    packages = [Package("multirow")]
 
-    def __init__(self, size, *, width='*', color=None, data=None):
+    def __init__(self, size, *, width="*", color=None, data=None):
         """
         Args
         ----
@@ -350,7 +370,7 @@ class MultiRow(Container):
         super().__init__(data=data)
 
         if color is not None:
-            self.packages.append(Package('xcolor', options='table'))
+            self.packages.append(Package("xcolor", options="table"))
             color_command = Command("cellcolor", arguments=color)
             self.append(color_command)
 
@@ -375,11 +395,22 @@ class Table(Float):
 class Tabu(Tabular):
     """A class that represents a tabu (more flexible table)."""
 
-    packages = [Package('tabu')]
+    packages = [Package("tabu")]
 
-    def __init__(self, table_spec, data=None, pos=None, *,
-                 row_height=None, col_space=None, width=None, booktabs=None,
-                 spread=None, to=None, **kwargs):
+    def __init__(
+        self,
+        table_spec,
+        data=None,
+        pos=None,
+        *,
+        row_height=None,
+        col_space=None,
+        width=None,
+        booktabs=None,
+        spread=None,
+        to=None,
+        **kwargs
+    ):
         """
         Args
         ----
@@ -415,9 +446,16 @@ class Tabu(Tabular):
         * https://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment
         """
 
-        super().__init__(table_spec, data, pos,
-                         row_height=row_height, col_space=col_space,
-                         width=width, booktabs=booktabs, **kwargs)
+        super().__init__(
+            table_spec,
+            data,
+            pos,
+            row_height=row_height,
+            col_space=col_space,
+            width=width,
+            booktabs=booktabs,
+            **kwargs
+        )
 
         self._preamble = ""
         if spread:
@@ -442,8 +480,10 @@ class Tabu(Tabular):
             elif _s.startswith(r"\begin{tabu}"):
                 _s = _s[:12] + self._preamble + _s[12:]
             else:
-                raise TableError("Can't apply preamble to Tabu table "
-                                 "(unexpected initial command sequence)")
+                raise TableError(
+                    "Can't apply preamble to Tabu table "
+                    "(unexpected initial command sequence)"
+                )
 
         return _s
 
@@ -451,7 +491,7 @@ class Tabu(Tabular):
 class LongTable(Tabular):
     """A class that represents a longtable (multipage table)."""
 
-    packages = [Package('longtable')]
+    packages = [Package("longtable")]
 
     header = False
     foot = False
@@ -466,7 +506,7 @@ class LongTable(Tabular):
 
         self.header = True
 
-        self.append(Command(r'endhead'))
+        self.append(Command(r"endhead"))
 
     def end_table_footer(self):
         r"""End the table foot which will appear on every page."""
@@ -477,7 +517,7 @@ class LongTable(Tabular):
 
         self.foot = True
 
-        self.append(Command('endfoot'))
+        self.append(Command("endfoot"))
 
     def end_table_last_footer(self):
         r"""End the table foot which will appear on the last page."""
@@ -488,7 +528,7 @@ class LongTable(Tabular):
 
         self.lastFoot = True
 
-        self.append(Command('endlastfoot'))
+        self.append(Command("endlastfoot"))
 
 
 class LongTabu(LongTable, Tabu):
@@ -504,9 +544,9 @@ class LongTabularx(Tabularx, LongTable):
     elements in that document over multiple pages as well.
     """
 
-    _latex_name = 'tabularx'
+    _latex_name = "tabularx"
 
-    packages = [Package('ltablex')]
+    packages = [Package("ltablex")]
 
 
 class ColumnType(UnsafeCommand):
@@ -517,10 +557,7 @@ class ColumnType(UnsafeCommand):
     questions/257128/how-does-the-newcolumntype-command-work>`_.
     """
 
-    _repr_attributes_mapping = {
-        'name': 'arguments',
-        'parameters': 'options'
-    }
+    _repr_attributes_mapping = {"name": "arguments", "parameters": "options"}
 
     def __init__(self, name, base, modifications, *, parameters=None):
         """
@@ -546,13 +583,17 @@ class ColumnType(UnsafeCommand):
 
         if parameters is None:
             # count the number of non escaped #<number> parameters
-            parameters = len(re.findall(r'(?<!\\)#\d', modifications))
-            parameters += len(re.findall(r'(?<!\\)#\d', base))
+            parameters = len(re.findall(r"(?<!\\)#\d", modifications))
+            parameters += len(re.findall(r"(?<!\\)#\d", base))
 
         if parameters == 0:
             parameters = None
 
         modified = r">{%s\arraybackslash}%s" % (modifications, base)
 
-        super().__init__(command="newcolumntype", arguments=name,
-                         options=parameters, extra_arguments=modified)
+        super().__init__(
+            command="newcolumntype",
+            arguments=name,
+            options=parameters,
+            extra_arguments=modified,
+        )

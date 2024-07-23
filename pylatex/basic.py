@@ -6,7 +6,7 @@ This module implements several classes that represent basic latex commands.
     :license: MIT, see License for more details.
 """
 
-from .base_classes import CommandBase, Environment, ContainerCommand
+from .base_classes import CommandBase, ContainerCommand, Environment
 from .package import Package
 
 
@@ -69,9 +69,7 @@ class FootnoteText(HugeText):
 class TextColor(ContainerCommand):
     """An environment which changes the text color of the data."""
 
-    _repr_attributes_mapping = {
-        "color": "arguments"
-    }
+    _repr_attributes_mapping = {"color": "arguments"}
 
     packages = [Package("xcolor")]
 

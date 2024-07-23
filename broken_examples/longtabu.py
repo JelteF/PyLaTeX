@@ -9,7 +9,7 @@ It creates a sample page filled with labels using the MiniPage element.
 """
 
 # begin-doc-include
-from pylatex import Document, LongTabu, HFill
+from pylatex import Document, HFill, LongTabu
 from pylatex.utils import bold
 
 
@@ -19,7 +19,7 @@ def genenerate_longtabu():
         "margin": "0.5in",
         "headheight": "20pt",
         "headsep": "10pt",
-        "includeheadfoot": True
+        "includeheadfoot": True,
     }
     doc = Document(page_numbers=True, geometry_options=geometry_options)
 
@@ -30,8 +30,7 @@ def genenerate_longtabu():
         data_table.add_hline()
         data_table.add_empty_row()
         data_table.end_table_header()
-        data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total",
-                            "IntR"])
+        data_table.add_row(["Prov", "Num", "CurBal", "IntPay", "Total", "IntR"])
         row = ["PA", "9", "$100", "%10", "$1000", "Test"]
         for i in range(50):
             data_table.add_row(row)
@@ -41,5 +40,6 @@ def genenerate_longtabu():
     doc.append(bold("Total"))
 
     doc.generate_pdf("longtabu", clean_tex=False)
+
 
 genenerate_longtabu()

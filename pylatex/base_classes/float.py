@@ -6,7 +6,7 @@ This module implements the classes that deal with floating environments.
     :license: MIT, see License for more details.
 """
 
-from . import Environment, Command
+from . import Command, Environment
 
 
 class Float(Environment):
@@ -17,7 +17,7 @@ class Float(Environment):
     separate_paragraph = True
 
     _repr_attributes_mapping = {
-        'position': 'options',
+        "position": "options",
     }
 
     def __init__(self, *, position=None, **kwargs):
@@ -44,4 +44,4 @@ class Float(Environment):
             The text of the caption.
         """
 
-        self.append(Command('caption', caption))
+        self.append(Command("caption", caption))

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script runs flake8 to test for pep8 compliance and executes all the examples and tests
+# This script executes all the examples and tests
 # run as: testall.sh [-p COMMAND] [clean]
 # Optional positional arguments
 #      -c: cleans up the latex files generated
@@ -52,7 +52,10 @@ python_version_long=$($python --version |& sed 's|Python \(.*\)|\1|g' | head -n 
 if [ "$python_version" = '3' ]; then
     # Check code guidelines
     echo -e '\e[32mChecking for code style errors \e[0m'
-    if ! flake8 pylatex examples tests; then
+    if ! black --check .; then
+        exit 1
+    fi
+    if ! isort --check .; then
         exit 1
     fi
 fi
@@ -66,7 +69,7 @@ else
 fi
 
 echo -e '\e[32mTesting tests directory\e[0m'
-if ! $python "$(command -v pytest)" --cov=pylatex tests/*; then
+if ! $python "$(command -v pytest)" --xdoctest --cov=pylatex pylatex tests/*.py; then
     exit 1
 fi
 mv .coverage{,.tests}
@@ -93,7 +96,7 @@ if [ "$clean" = 'TRUE' ]; then
 fi
 
 
-if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.3.* && "$python_version_long" != 3.4.* ]]; then
+if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.3.* && "$python_version_long" != 3.4.* && "$python_version_long" != 3.12.* ]]; then
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
     set -e
