@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from pylatex import Document, Section, Tabular, MultiColumn, StandAloneGraphic
+from pylatex import Document, MultiColumn, Section, StandAloneGraphic, Tabular
 
 # This file contains function that test several Tabular related functionality.
 
