@@ -25,7 +25,7 @@ class Section(Container):
     #: subclasses will also have the new default.
     numbering = True
 
-    def __init__(self, title, short=None, numbering=None, *, label=True, **kwargs):
+    def __init__(self, title, numbering=None, *, short=None, label=True, **kwargs):
         """
         Args
         ----
