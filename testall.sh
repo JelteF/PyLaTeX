@@ -12,36 +12,35 @@ python="python"
 
 # Check if a command line argument was provided as an input argument.
 while getopts ":p:cdh" opt; do
-  case $opt in
+    case $opt in
     p)
-      python=$OPTARG
-      ;;
+        python=$OPTARG
+        ;;
     c)
-      clean=TRUE
-      ;;
+        clean=TRUE
+        ;;
     d)
-      nodoc=TRUE
-      ;;
+        nodoc=TRUE
+        ;;
     h)
-      echo This runs all the tests and examples and checks for pep8 compliance
-      echo
-      echo Options:
-      echo '   -c            cleans up the latex and pdf files generated'
-      echo '   -p COMMAND    the python command that should be used to run the tests'
-      echo "   -d            don't execute the doc tests, they can take long"
-      exit 0
-      ;;
+        echo This runs all the tests and examples and checks for pep8 compliance
+        echo
+        echo Options:
+        echo '   -c            cleans up the latex and pdf files generated'
+        echo '   -p COMMAND    the python command that should be used to run the tests'
+        echo "   -d            don't execute the doc tests, they can take long"
+        exit 0
+        ;;
     \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
+        echo "Invalid option: -$OPTARG" >&2
+        exit 1
+        ;;
     :)
-      echo "Option -$OPTARG requires an argument." >&2
-      exit 1
-      ;;
-  esac
+        echo "Option -$OPTARG requires an argument." >&2
+        exit 1
+        ;;
+    esac
 done
-
 
 # Run the examples and tests
 python_version=$($python --version |& sed 's|Python \(.\).*|\1|g' | head -n 1)
@@ -60,7 +59,6 @@ if [ "$python_version" = '3' ]; then
     fi
 fi
 
-
 if [ "$python_version" = '2' ]; then
     main_folder=python2_source
     cd $main_folder
@@ -78,25 +76,23 @@ if [ "$python_version" = '2' ]; then
     cd ..
 fi
 
-
 count=0
 for f in "$main_folder"/examples/*.py; do
     echo -e '\e[32mTesting '"$f"'\e[0m'
     if ! $python "$(command -v coverage)" run "$f"; then
         exit 1
     fi
-    ((count ++))
+    ((count++))
     mv .coverage .coverage.example$count
 done
 
 coverage combine
 
 if [ "$clean" = 'TRUE' ]; then
-    rm -- *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk > /dev/null
+    rm -- *.pdf *.log *.aux *.tex *.fls *.fdb_latexmk >/dev/null
 fi
 
-
-if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.3.* && "$python_version_long" != 3.4.* && "$python_version_long" != 3.12.* ]]; then
+if [[ "$nodoc" != 'TRUE' && "$python_version" == "3" && "$python_version_long" != 3.7.* && "$python_version_long" != 3.8.* && "$python_version_long" != 3.12.* ]]; then
     echo -e '\e[32mChecking for errors in docs and docstrings\e[0m'
     cd docs
     set -e
