@@ -25,7 +25,7 @@ class Section(Container):
     #: subclasses will also have the new default.
     numbering = True
 
-    def __init__(self, title, numbering=None, *, label=True, **kwargs):
+    def __init__(self, title, numbering=None, *, short=None, label=True, **kwargs):
         """
         Args
         ----
@@ -33,12 +33,15 @@ class Section(Container):
             The section title.
         numbering: bool
             Add a number before the section title.
+        short: str
+            The short section title.            
         label: Label or bool or str
             Can set a label manually or use a boolean to set
             preference between automatic or no label
         """
 
         self.title = title
+        self.short = short
 
         if numbering is not None:
             self.numbering = numbering
@@ -71,7 +74,7 @@ class Section(Container):
         else:
             num = ""
 
-        string = Command(self.latex_name + num, self.title).dumps()
+        string = Command(self.latex_name + num, self.title, self.short).dumps()
         if self.label is not None:
             string += "%\n" + self.label.dumps()
         string += "%\n" + self.dumps_content()
