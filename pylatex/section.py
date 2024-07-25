@@ -33,6 +33,8 @@ class Section(Container):
             The section title.
         numbering: bool
             Add a number before the section title.
+        short: str
+            The short section title.            
         label: Label or bool or str
             Can set a label manually or use a boolean to set
             preference between automatic or no label
