@@ -215,7 +215,7 @@ class Tabular(Environment):
 
         self.append(NoEscape((self.width - 1) * "&" + r"\\"))
 
-    def add_row(self, *cells, color=None, escape=None, mapper=None, strict=True):
+    def add_row(self, *cells, color=None, escape=None, mapper=None, strict=True, allow_pagebreak=True):
         """Add a row of cells to the table.
 
         Args
@@ -277,9 +277,10 @@ class Tabular(Environment):
             color_command = Command(command="rowcolor", arguments=color)
             self.append(color_command)
 
-        self.append(
-            dumps_list(cells, escape=escape, token="&", mapper=mapper) + NoEscape(r"\\")
-        )
+        row = dumps_list(cells, escape=escape, token="&", mapper=mapper) + NoEscape(r"\\")
+        if not allow_pagebreak:
+            row += NoEscape(r"*")
+        self.append(row)
 
 
 class Tabularx(Tabular):
