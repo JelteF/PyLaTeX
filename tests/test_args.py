@@ -80,6 +80,7 @@ from pylatex.utils import (
     fix_filename,
     italic,
     verbatim,
+    emphasis,
 )
 
 matplotlib.use("Agg")  # Not to use X server. For TravisCI.
@@ -492,6 +493,8 @@ def test_utils():
     bold(s="")
 
     italic(s="")
+
+    emphasis(s="")
 
     verbatim(s="", delimiter="|")
 

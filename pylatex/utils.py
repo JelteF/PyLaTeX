@@ -298,6 +298,36 @@ def italic(s, *, escape=True):
     return NoEscape(r"\textit{" + s + "}")
 
 
+def emphasis(s, *, escape=True):
+    r"""Make a string appear emphasis in LaTeX formatting.
+
+    emphasis() wraps a given string in the LaTeX command \emph{}.
+
+    Args
+    ----
+    s : str
+        The string to be formatted.
+    escape: bool
+        If true the emphasis text will be escaped
+
+    Returns
+    -------
+    NoEscape
+        The formatted string.
+
+    Examples
+    --------
+    >>> emphasis("hello")
+    NoEscape(\emph{hello})
+    >>> print(emphasis("hello"))
+    \emph{hello}
+    """
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r"\emph{" + s + "}")
+
+
 def verbatim(s, *, delimiter="|"):
     r"""Make the string verbatim.
 

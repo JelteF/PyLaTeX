@@ -27,7 +27,7 @@ from pylatex import (
     Tabular,
     TikZ,
 )
-from pylatex.utils import italic
+from pylatex.utils import italic, emphasis
 
 if __name__ == "__main__":
     image_filename = os.path.join(os.path.dirname(__file__), "kitten.jpg")
@@ -38,6 +38,7 @@ if __name__ == "__main__":
     with doc.create(Section("The simple stuff")):
         doc.append("Some regular text and some")
         doc.append(italic("italic text. "))
+        doc.append(emphasis("Even some emphasized text. "))
         doc.append("\nAlso some crazy characters: $&#{}")
         with doc.create(Subsection("Math that is incorrect")):
             doc.append(Math(data=["2*3", "=", 9]))
