@@ -14,6 +14,10 @@ This version might not be stable, but to install it use::
 
     pip install git+https://github.com/JelteF/PyLaTeX.git
 
+Added
+~~~~~
+- Add support for the ``\emph`` command
+
 1.4.2_ - `docs <../v1.4.2/>`__ - 2023-10-19
 -------------------------------------------
 
