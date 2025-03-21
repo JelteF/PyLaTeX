@@ -188,6 +188,41 @@ class Command(CommandBase):
         if packages is not None:
             self.packages |= packages
 
+    def __call__(*args, **kwargs):
+        """Make the command callable
+
+        Examples
+        --------
+        >>> Command('com')('first') # === Command('com', 'first')
+        >>> com = Command('com') # or com = Command('com', 'first')
+        >>> com('one') # === Command('com', 'one')
+        >>> com('another') # === Command('com', 'another')
+        
+        Returns
+        -------
+        Command
+        """
+
+        return Command(self.latex_name, *args, **kwargs)
+
+
+class slash:
+
+    r"""
+    Imitate the slash symbol `\` in LaTeX
+
+    >>> __ = slash()
+    >>> print(__.item.dumps())
+    '\item'
+    >>> print(__.frac(('a', 'b')).dumps())
+    '\frac{a}{b}'
+    """
+
+    def __getattr__(self, name):
+        return Command(name)
+
+__ = slash()
+
 
 class UnsafeCommand(Command):
     """An unsafe version of the `Command` class.

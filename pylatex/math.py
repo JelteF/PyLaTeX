@@ -44,7 +44,7 @@ class Math(Container):
 
     content_separator = " "
 
-    def __init__(self, *, inline=False, data=None, escape=None):
+    def __init__(self, *, inline=False, data=None, escape=None, dollar=False):
         r"""
         Args
         ----
@@ -52,12 +52,15 @@ class Math(Container):
             Content of the math container.
         inline: bool
             If the math should be displayed inline or not.
-        escape : bool
+        escape: bool
             if True, will escape strings
+        dollar: bool
+            if True, use $$<math formula>$$ instead of \[<math formula>\]
         """
 
         self.inline = inline
         self.escape = escape
+        self.dollar = dollar
         super().__init__(data=data)
 
     def dumps(self):
@@ -70,7 +73,10 @@ class Math(Container):
         """
         if self.inline:
             return "$" + self.dumps_content() + "$"
-        return "\\[%\n" + self.dumps_content() + "%\n\\]"
+        if self.dollar:
+            return '$$\n' + self.dumps_content() + '\n$$'
+        else:
+            return '\\[%\n' + self.dumps_content() + '%\n\\]'
 
 
 class VectorName(Command):
@@ -154,3 +160,68 @@ class Matrix(Environment):
         super().dumps_content()
 
         return string
+
+
+class Determinant(Matrix):
+    """A sublcass of `Matrix`, representing the determinant of a matrix."""
+
+    def __init__(self, matrix, *args, **kwargs):
+        """
+        Args
+        ---
+        matrix: numpy.ndarray
+            The square matrix
+        """
+        super().__init__(matrix, mtype='v', *args, **kwargs)
+        assert self.matrix.ndim == 2 and \
+            self.matrix.shape[1] == self.matrix.shape[0]
+
+
+class Vector(Matrix):
+    """
+    A subclass of `Matrix`, representing a vector. If it receives a matrix,
+    then the matrix will be reshaped.
+    """
+
+    def __init__(self, vec, *args, **kwargs):
+        r"""
+        Args
+        ----
+        vec: `numpy.ndarray` instance
+        """
+        super().__init__(matrix=vec, *args, **kwargs)
+        size = self.matrix.size
+        self.matrix = self.matrix.reshape(1, size)
+
+
+class ColumnVector(Vector):
+    """a subclass of `Vector`, representing a column vector."""
+
+    def __init__(self, *args, **kwargs):
+        """As the transposition of `Vector`"""
+        super().__init__(*args, **kwargs)
+        self.matrix = self.matrix.T
+
+
+def dollar(x, *args, **kwargs):
+    """Shorthand for inline math form: $math expression$.
+
+    Example
+    ---
+    >>> dollar('c_B')
+    $c_B$
+    """
+    return Math(data=x, inline=True, *args, **kwargs)
+
+
+def ddollar(x, *args, **kwargs):
+    """Shorthand for math form: $$math expression$$, or $$math expression$$.
+
+    Example
+    ---
+    >>> ddollar('c_B')
+    $$
+    c_B
+    $$
+    """
+    return Math(data=x, dollar=True, *args, **kwargs)
