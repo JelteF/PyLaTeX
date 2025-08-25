@@ -79,6 +79,7 @@ from pylatex.utils import (
     escape_latex,
     fix_filename,
     italic,
+    monospace,
     verbatim,
 )
 
@@ -492,6 +493,8 @@ def test_utils():
     bold(s="")
 
     italic(s="")
+
+    monospace(s="")
 
     verbatim(s="", delimiter="|")
 

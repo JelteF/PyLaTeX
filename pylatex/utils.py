@@ -298,6 +298,32 @@ def italic(s, *, escape=True):
     return NoEscape(r"\textit{" + s + "}")
 
 
+def monospace(s, *, escape=True):
+    r"""Make a string appear monospaced (typewriter) in LaTeX formatting.
+    monospace() wraps a given string in the LaTeX command \texttt{}.
+    Args
+    ----
+    s : str
+        The string to be formatted.
+    escape: bool
+        If true the monospace text will be escaped.
+    Returns
+    -------
+    NoEscape
+        The formatted string.
+    Examples
+    --------
+    >>> monospace("hello")
+    NoEscape(\texttt{hello})
+    >>> print(monospace("hello"))
+    \texttt{hello}
+    """
+    if escape:
+        s = escape_latex(s)
+
+    return NoEscape(r"\texttt{" + s + "}")
+
+
 def verbatim(s, *, delimiter="|"):
     r"""Make the string verbatim.
 
