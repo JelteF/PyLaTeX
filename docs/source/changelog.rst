@@ -19,6 +19,10 @@ This version might not be stable, but to install it use::
 
 Added
 ~~~~~
+- Add support for the ``\texttt`` command
+
+Added
+~~~~~
 - Add `.Chapter` in ``__init__.py``
 
 Fixed
