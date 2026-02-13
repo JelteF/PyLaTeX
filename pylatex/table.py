@@ -496,6 +496,7 @@ class LongTable(Tabular):
     header = False
     foot = False
     lastFoot = False  # noqa, casing is needed for backwards compatibility
+    caption = None
 
     def end_table_header(self):
         r"""End the table header which will appear on every page."""
@@ -529,6 +530,39 @@ class LongTable(Tabular):
         self.lastFoot = True
 
         self.append(Command("endlastfoot"))
+
+    def add_caption(self, caption):
+        """Add a caption to the float.
+
+        Args
+        ----
+        caption: str
+            The text of the caption.
+        """
+
+        self.caption = Command("caption", caption)
+
+    def dumps_content(self, **kwargs):
+        r"""Represent the content of the tabular in LaTeX syntax.
+
+        This adds the top and bottomrule when using a booktabs style tabular.
+
+        Args
+        ----
+        \*\*kwargs:
+            Arguments that can be passed to `~.dumps_list`
+
+        Returns
+        -------
+        string:
+            A LaTeX string representing the
+        """
+
+        content = ""
+        if self.caption is not None:
+            content += self.caption.dumps() + "\\\\%\n"
+        content += super().dumps_content(**kwargs)
+        return NoEscape(content)
 
 
 class LongTabu(LongTable, Tabu):
